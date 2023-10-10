@@ -67,7 +67,7 @@ En este apartado es importante considerar:
 
 **2. Variables** (2 puntos)
 
-Esta sección también incluye una tabla de descriptivos básicos, y una descripción detallada de la operacionalización y medición de las variables.
+Esta sección también incluye una tabla de descriptivos básicos, y un detalle de la operacionalización y medición de las variables.
 
 ::: callout-note
 **Atención sobre recodificación de variables**
@@ -85,9 +85,9 @@ Mencionar al final de esta sección los métodos estadísticos a utilizar para e
 
 **3. Análisis** (6 puntos)
 
-- 3.1 Análisis descriptivo: tablas o gráficos comentados, univariados y bivariados según sea más pertinente. Para esto considere medidas de tendencia central, dispersion y frecuencias, siempre considerando el nivel de medicion de sus variables. En los casos que sea atingente, incluya los intervalos de confanza al 95 %. Esta sección debe incluir la reproducción de alguno de los gráficos o tablas de reportes de CASEN / EBS.
+- 3.1 Análisis descriptivo: tablas o gráficos comentados, univariados y bivariados según sea más pertinente. Para esto considere medidas de tendencia central, dispersión y frecuencias, siempre considerando el nivel de medición de sus variables. En los casos que sea atingente, incluya los intervalos de confianza al 95 %. Esta sección debe incluir la reproducción de alguno de los gráficos o tablas de reportes de CASEN / EBS.
 
-- 3.2 Análisis estadístico bivariado: considerar la estimación de coeficientes de correlación y también medidas de asociación para variables categóricas. Esta parte del análisis se relaciona directamente con las hipótesis planteadas. Para esto considere pruebas de hipotesis estadsticas, estadisticos de tamaño del efecto y tablas de contingencia / cruzadas, siempre considerando el nivel de medición de sus variables.
+- 3.2 Análisis estadístico bivariado: considerar la estimación de coeficientes de correlación y también medidas de asociación para variables categóricas. Esta parte del análisis se relaciona directamente con las hipótesis planteadas. Para esto realizar  pruebas de hipótesis estadísticas, estadísticos de tamaño del efecto y tablas de contingencia / cruzadas, siempre considerando el nivel de medición de sus variables.
 
 Al final de esta sección también se realiza la discusión de resultados en relación a las hipótesis planteadas
 
@@ -135,4 +135,20 @@ En la sección de tareas de UCursos. Se debe adjuntar un archivo comprimido con 
 
 # Foro
 
-
+```{=html}
+<script src="https://giscus.app/client.js"
+        data-repo="cursos-metodos-facso/correlacional"
+        data-repo-id="R_kgDOKCMXJQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOKCMXJc4CYd9S"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
+</script>
+```
