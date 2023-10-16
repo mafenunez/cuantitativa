@@ -34,12 +34,6 @@ Cada grupo seleccionará un tema de análisis que considere relaciones entre dos
 Al menos alguno de los temas/variables seleccionadas debe haber sido presentada en los [reportes de CASEN](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022) y o en los [reportes de la EBS](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-bienestar-social-2021), y los análisis deben poder reproducir alguna tabla o gráfico que aparezca en ese informe.
 
 
-# Modalidad de trabajo y asesorías
-
-Los trabajos se desarrollarán en grupos de máximo 5 integrantes. Cada grupo será asignado a un/a ayudante y también a un/a apoyo docente, quienes asesorarán periódicamente a sus grupos.
-
-El espacio principal de asesoría será durante el práctico, que desde el 17 de octubre se dividirá en dos momentos: ejercicios breves de aplicación de contenidos de la clase, y asesoría de trabajos.
-
 # Inscripción de grupos
 
 Inscribirse en la siguiente [planilla](https://docs.google.com/spreadsheets/d/1DQ5mUqJnvoPpUO2FjNv-1tKqbSigIhbodoSbnpt_3is/edit#gid=0) a más tardar hasta el **16 de octubre**.
@@ -104,13 +98,31 @@ Formato APA 7
 
 El formato de entrega del trabajo será en html vía Rmarkdown, dado facilita la integración y reproducibilidad de los análisis en R. Se pondrá a disposición de l_s estudiantes una plantilla para poder realizarlo en este formato.
 
-# Modalidad de entrega
+# Entrega
 
 En la sección de tareas de UCursos. Se debe adjuntar un archivo comprimido con la carpeta del proyecto (por temas de espacio esta carpeta no debe contener la base original de CASEN).
 
----
+# Modalidad de trabajo y asesorías
 
-# Recomendaciones para el trabajo {.tabset}
+Los trabajos se desarrollarán en grupos de máximo 5 integrantes. Cada grupo será asignado a un/a ayudante y también a un/a apoyo docente, quienes asesorarán periódicamente a sus grupos.
+
+El espacio principal de asesoría será durante el práctico, que desde el 17 de octubre se dividirá en dos momentos: ejercicios breves de aplicación de contenidos de la clase, y asesoría de trabajos.
+
+Los temas de las asesorías son los siguientes:
+
+| Fecha        | Tema asesoría  |
+|----------------|-------------------------------------------------------|
+| 10 Octubre   | El día martes 10 de octubre el equipo docente hará entrega de las instrucciones del trabajo final. Durante esta semana se recomienda que cada grupo se junte para revisar en detalle los términos de referencia y organizar la realización del trabajo. Para seleccionar el tema y las variables de interés, se aconseja revisar el libro de códigos de la base de datos de la Encuesta de Caracterización Socioeconómica (CASEN) y/o de la Encuesta de Bienestar Social (EBS), y los reportes de la CASEN y/o de la EBS. |
+| 17 Octubre   | Recordar que el día 16 de octubre termina el plazo de inscripción de los grupos. Durante esta semana se recomienda delimitar el tema de interés para su trabajo, que debe considerar la relación entre dos variables (por ejemplo, género y pobreza). Para seleccionar el tema se deben revisar los cuestionarios, libros de códigos y reportes de las encuestas mencionadas.   |
+| 24 Octubre   | Durante esta semana se sugiere comenzar con la preparación de datos, lo cual incluye limpieza, recodificación, etiquetado, tratamiento de valores NA, creación de índices (de ser necesario), etc. Para este paso es útil revisar el libro de códigos. |
+| 31 Noviembre | Semana de trabajo autónomo. Se recomienda terminar la preparación de datos y comenzar con los estadísticos descriptivos.    |
+| 07 Noviembre | Durante esta semana se recomienda finalizar la escritura de la introducción, variables y el análisis descriptivo. Por otro lado, se aconseja que cada grupo se reúna para discutir qué técnica de análisis bivariado es la más apropiada para someter a prueba las hipótesis formuladas, teniendo en consideración el nivel de medición de sus variables.    |
+| 14 Noviembre | Asesorías con el equipo docente. Para esta semana se aconseja comenzar el análisis bivariado en RStudio y la escritura de la discusión de resultados, en relación con las hipótesis planteadas.  |
+| 21 Noviembre | Esta semana se debe finalizar el análisis bivariado y la discusión de resultados. Una vez culminada la tarea anterior, realizar la escritura de las conclusiones y formatear adecuadamente el reporte.  |
+| 27 Noviembre | Entrega trabajos por UCursos 
+
+
+# Recomendaciones generales para el trabajo {.tabset}
 
 ## Escritura académica
 
