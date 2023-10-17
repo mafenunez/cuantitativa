@@ -1,0 +1,296 @@
+---
+title: "Inferencia 3: Pruebas de hipótesis"
+date: "2023-10-17"
+lang: es
+website:
+  comments:
+    giscus:
+      repo: cursos-metodos-facso/correlacional
+---
+
+# Objetivo de la práctica
+
+El objetivo de esta guía práctica es continuar profundizando en la inferencia estadística. En esta oportunidad, vamos a repasar el concepto de hipótesis y realizar ejercicios de test de hipótesis para diferencia de medias con R. 
+
+En detalle, repasaremos y aprenderemos:
+
+1.  Qué es una hipótesis
+2.  Qué es un test de hipótesis
+3.  Cómo realizar test de hipótesis para diferencia de medias con R
+
+
+
+# Hipótesis
+
+Como pudimos ver en la [sesión 7](/content/07-content.html), una **hipótesis de investigación** es una aseveración o una predicción sobre una situación que ocurre en la población de estudio. Es una declaración basada en la teoría, investigaciones previas, o intuiciones bien fundadas en la investigación.
+
+Algunos ejemplos podrían ser:
+
+- En Chile, el promedio de sueldo de mujeres es más bajo que el de los hombres.
+- Más de la mitad de la población votará Rechazo en el plebiscito de salida.
+- Las mujeres dedican más tiempo que los hombres al trabajo doméstico.
+
+En inferencia estadística hablaremos de la *hipótesis alternativa* e *hipotesis nula*.
+
+La $H_a$ o **hipótesis alternativa**, será nuestra hipótesis de investigación, o dicho en otras palabras, será la afirmación que queremos poner a prueba.
+
+Mientras que la $H_0$ o **hipótesis nula**, consistirá en el opuesto de la hipótesis alternativa, y en general, implicará la no diferencia.
+
+
+
+# Test de hipótesis
+
+El test de hipótesis, prueba de hipótesis o contraste de hipótesis corresponde al mecanismo mediante el cual rechazamos la hipótesis nula, con una probabilidad de error \alpha.
+
+
+![](../slides/img/errortypes.png)
+
+El $\alpha$ o *nivel de significancia* (en el cuadro error tipo I) es la probabilidad de error que fijamos para rechazar la hipótesis nula $H_0$. Es la probabilidad máxima que estamos dispuestos a aceptar para cometer este tipo de error.
+
+La diferencia de este $\alpha$ corresponde al *nivel de confianza*, que usualmente fijamos en 95\% o 99\%.
+
+Podemos realizar distintos tipos de test dependiendo dependiendo del número de conceptos/variables:
+
+- una variable: probar si es igual, mayor o menor a un valor.
+- dos o más variables: probar diferencias estadísticamente significativas entre grupos.
+
+
+::: callout-note
+**¿Estadísticamente significativo?** 
+
+Cuando digamos que algo es estadísticamente significativo no nos referiremos a su tamaño, sino a que hay evidencia estadística para realizar su afirmación. 
+Por ejemplo, si decimos que dos valores son diferentes significativamente, no nos referiremos a que la diferencia sea grande, sino que hay evidencia para afirmar su diferencia.
+:::
+
+En este práctico realizaremos test de hipótesis para diferencia de medias, es decir, realizaremos las pruebas para hipótesis que involucran dos o más variables. 
+
+# Test de hipótesis con R
+
+Ahora ¡Manos a la obra!
+
+Primero, carguemos las librerías necesarias:
+
+```{r librerias}
+library(pacman)
+pacman::p_load(tidyverse,  # colección de paquetes para manipulación de datos
+               car,        # para recodificar
+               psych,      # para analizar datos
+               sjmisc,     # para analizar datos
+               srvyr,      # para estimación de IC y ponderadores
+               Publish,    # para IC
+               kableExtra) # para presentación de tablas
+
+options(scipen = 999) # para desactivar notacion cientifica
+rm(list = ls()) # para limpiar el entorno de trabajo
+```
+
+
+## Test de hipótesis para diferencia de medias
+
+Como en este práctico realizaremos test de hipótesis para diferencia de medias, necesitamos contar con dos variables, y que al menos una sea numérica.
+
+Vamos a trabajar testando la diferencia de medias de la variable edad. Para ello, agregaremos la variable sexo para dividir a la muestra entre hombres y mujeres, y así poder probar la diferencia entre los promedios de edad de cada grupo. 
+
+Comenzaremos con la muestra 1, utilizando las variables `edad` y `sexo`.
+
+```{r}
+muestra_1 <- data.frame(edad=c(28,32,29,30,31,27,33,28,29,30),
+                        sexo=c(1,1,2,1,2,2,2,1,1,1))
+
+mean(muestra_1$edad)
+
+muestra_1$sexo <- as.factor(muestra_1$sexo)
+
+muestra_1 %>% 
+  group_by(sexo) %>% 
+  summarise(media=mean(edad)) 
+```
+
+
+```{r}
+muestra_1 %>% 
+  group_by(sexo) %>% 
+  summarise(media=mean(edad)) %>% 
+  ggplot(aes(x=sexo, y=media)) +
+  geom_point() +
+  ylim(25,35) +
+  labs(title = "Medias de edad para hombres y mujeres, muestra 1",
+                   x = "Sexo",
+                   y = "Media edad")
+```
+
+
+Formulamos las siguientes hipótesis:
+
+$H_a$: La media de la edad de mujeres es distinta a la media de la edad de los hombres ($\mu_m - \mu_h \neq 0$)
+
+$H_0$: La media de la edad de mujeres es igual a la media de la edad de los hombres ($\mu_m - \mu_h = 0$)
+
+Realizamos la prueba t para diferencia de medias:
+
+```{r}
+t.test(edad ~ sexo, data=muestra_1)
+```
+
+En este caso, no podemos rechazar la hipótesis nula ya que su valor p es mayor al nivel de significancia ($p-value = 0.7065 > \alpha = 0.05$). Por lo tanto, no hay suficiente evidencia estadística para sostener que los promedios de edad de hombres y mujeres sean diferentes.
+
+Ahora, realizaremos el mismo ejercicio con la muestra 2, con las variables `edad_2` y `sexo_2`. Mantendremos las mismas hipótesis.
+
+```{r}
+muestra_2 <- data.frame(edad=c(31,35,25,30,24,25,33,31,32,31),
+                        sexo=c(1,1,2,1,2,2,2,1,1,1))
+
+mean(muestra_2$edad)
+
+muestra_2$sexo <- as.factor(muestra_2$sexo)
+
+muestra_2 %>% 
+  group_by(sexo) %>% 
+  summarise(media=mean(edad)) 
+```
+
+```{r}
+muestra_2 %>% 
+  group_by(sexo) %>% 
+  summarise(media=mean(edad)) %>% 
+  ggplot(aes(x=sexo, y=media)) +
+  geom_point() +
+  ylim(25,35) +
+  labs(title = "Medias de edad para hombres y mujeres, muestra 2",
+                   x = "Sexo",
+                   y = "Media edad")
+```
+
+```{r}
+t.test(edad ~ sexo, data=muestra_2)
+```
+
+Para la muestra 2, en cambio, rechazamos la hipótesis nula de igualdad de medias, dado que el valor p es menor al nivel de significancia ($p-value = 0.03108 < \alpha = 0.05$). Por tanto, con un 95\% de confianza podemos sostener que hay suficiente evidencia estadíatica para decir que las medias de edad para hombres y mujeres son distintas. No obstante, si nuestro nivel de confianza fuera 99\% tampoco podríamos hacer esta afirmación.
+
+En un mejor caso, podríamos tener la muestra 3:
+
+```{r}
+muestra_3 <- data.frame(edad=c(33,35,23,32,24,25,29,31,32,31),
+                        sexo=c(1,1,2,1,2,2,2,1,1,1))
+
+mean(muestra_3$edad)
+
+muestra_3$sexo <- as.factor(muestra_3$sexo)
+
+muestra_3 %>% 
+  group_by(sexo) %>% 
+  summarise(media=mean(edad)) 
+```
+
+```{r}
+muestra_3 %>% 
+  group_by(sexo) %>% 
+  summarise(media=mean(edad)) %>% 
+  ggplot(aes(x=sexo, y=media)) +
+  geom_point() +
+  ylim(25,35) +
+  labs(title = "Medias de edad para hombres y mujeres, muestra 3",
+                   x = "Sexo",
+                   y = "Media edad")
+```
+
+```{r}
+t.test(edad ~ sexo,data=muestra_3)
+```
+
+Para la muestra 3, rechazamos la hipótesis nula de igualdad de medias con un 99\% de confianza, dado que el valor p se encuentra por debajo del nivel de significancia $\alpha$ ($p-value = 0.006658 < \alpha = 0.01$). Por lo tanto, hay suficiente evidencia estadística para sostener que el promedio de edad de hombres y mujeres es diferente.
+
+En este último caso, realicemos el ejercicio manualmente yendo paso por paso con lo visto en la [sesión 7](/content/07-content.html).
+
+1. Se calcula la diferencia de medias
+2. Se calcula el error estándar de la diferencia de medias
+3. Se fija un $\alpha$ (usualmente 0.05) para rechazar $H_0$
+4. Se establece un valor crítico asociado al $\alpha$
+
+**Paso 1**: Calculamos la diferencia de medias
+
+```{r}
+muestra_3 %>%
+   dplyr::group_by(sexo=sjlabelled::as_label(sexo)) %>% # se agrupan por la variable categórica y se usan sus etiquetas con as_label
+  dplyr::summarise(Obs.=n(),Promedio=mean(edad, na.rm=TRUE),SD=sd(edad, na.rm=TRUE)) %>% # se agregan las operaciones a presentar en la tabla
+  kable(format = "markdown")
+
+dif_medias <- 32.333 - 25.250
+dif_medias
+```
+
+**Paso 2**: Calculamos el error estándar de la diferencia de medias
+
+```{r}
+muestra_3h <- muestra_3 %>% filter(sexo==1)
+muestra_3m <- muestra_3 %>% filter(sexo==2)
+  
+s_h <- sd(muestra_3h$edad)
+n_h <- length(muestra_3h$edad)
+s_m <- sd(muestra_3m$edad)
+n_m <- length(muestra_3m$edad)
+
+ee <- sqrt((s_h^2)/n_h + (s_m^2)/n_m)
+ee
+```
+
+**Paso 3**: Fijamos un $\alpha$
+
+En este caso utilizaremos el valor usual de $\alpha = 0.05$.
+
+**Paso 4**: Establecemos un valor crítico asociado al $\alpha$
+
+```{r}
+te <- dif_medias/ee
+te
+
+tt <- qt(0.05/2,df=9,lower.tail = F)
+tt
+```
+
+Si el valor t empírico es mayor al valor t teórico se rechaza $H_0$.
+
+# Resumen
+
+En resumen, en esta guía práctica pudimos continuar profundizando en la inferencia estadística. En esta oportunidad, repasamos el concepto de hipótesis y realizamos ejercicios de test de hipótesis con R. 
+
+En detalle, repasamos y aprendimos:
+
+1.  Qué es una hipótesis
+2.  Qué es un test de hipótesis
+3.  Cómo realizar test de hipótesis para diferencia de medias con R
+
+
+
+# Reporte de progreso
+
+Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/r9dSoZgk7qee5PUT6).
+El plazo para contestarlo es hasta el día martes de la semana siguiente a la que se publica la guía práctica.
+
+
+
+# Video de práctica
+
+<!-- {{< video https://youtu.be/K5fvYH_UWKY >}} -->
+
+
+
+# Foro
+
+```{=html}
+<script src="https://giscus.app/client.js"
+        data-repo="cursos-metodos-facso/correlacional"
+        data-repo-id="R_kgDOKCMXJQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOKCMXJc4CYd9S"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
+</script>
+```
