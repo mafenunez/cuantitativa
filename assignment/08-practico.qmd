@@ -237,7 +237,7 @@ $$  H_{A}: \mu_{0} < \mu_{1} $$
 :::
 
 
-Tomando como ejemplo el trabajo de la ganadora del Premio Nobel de economía 2023 Claudia Goldin, comprobemos si los ingresos de las mujeres trabajadoras que tienen no hijos es mayor al ingreso de las mujeres trabajadoras que tienen hijos.
+Tomando como ejemplo el trabajo de la ganadora del Premio Nobel de Economía 2023 Claudia Goldin, comprobemos si los ingresos de las mujeres trabajadoras que no tienen hijos es mayor al ingreso de las mujeres trabajadoras que sí tienen hijos.
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=TRUE}
 
@@ -251,7 +251,7 @@ goldin_data %>%
 
 ```
 
-A simple vista, el $\mu$ de ingresos de las mujeres ocupadas sin hijos es mayor al de las mujeres con hijos, pero ¿es esta aseveración aplicable a la población?
+A simple vista, el $\bar{x}$ de ingresos de las mujeres ocupadas sin hijos es mayor al de las mujeres con hijos, pero ¿es esta aseveración aplicable a la población?
 
 Formulemos nuestras hipótesis:
 

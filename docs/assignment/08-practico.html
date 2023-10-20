@@ -562,7 +562,7 @@ Prueba de una cola
 <p><span class="math display">\[  H_{A}: \mu_{0} &lt; \mu_{1} \]</span></p>
 </div>
 </div>
-<p>Tomando como ejemplo el trabajo de la ganadora del Premio Nobel de economía 2023 Claudia Goldin, comprobemos si los ingresos de las mujeres trabajadoras que tienen no hijos es mayor al ingreso de las mujeres trabajadoras que tienen hijos.</p>
+<p>Tomando como ejemplo el trabajo de la ganadora del Premio Nobel de Economía 2023 Claudia Goldin, comprobemos si los ingresos de las mujeres trabajadoras que no tienen hijos es mayor al ingreso de las mujeres trabajadoras que sí tienen hijos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>goldin_data <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span> </span>
@@ -578,7 +578,7 @@ Prueba de una cola
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 1     0 729850.</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 2     1 655088.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A simple vista, el <span class="math inline">\(\mu\)</span> de ingresos de las mujeres ocupadas sin hijos es mayor al de las mujeres con hijos, pero ¿es esta aseveración aplicable a la población?</p>
+<p>A simple vista, el <span class="math inline">\(\bar{x}\)</span> de ingresos de las mujeres ocupadas sin hijos es mayor al de las mujeres con hijos, pero ¿es esta aseveración aplicable a la población?</p>
 <p>Formulemos nuestras hipótesis:</p>
 <p><span class="math display">\[H_{0}: \mu_{0} - \mu_{1} = 0\]</span> <span class="math display">\[H_{A}: \mu_{0} &gt; \mu_{1} \]</span></p>
 <p>Probemos nuestra hipótesis con <code>prueba T</code> para diferencia de medias.</p>
