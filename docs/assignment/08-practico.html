@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Estadística Correlacional - Asociación, inferencia y reporte">
+
+<title>Estadística Correlacional - Inferencia 4: Pruebas de hipótesis II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//files/logo-correlacional-transp.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="Estadística Correlacional - Inferencia 4: Pruebas de hipótesis II">
+<meta property="og:description" content="El objetivo de esta guía práctica es profundizar en la inferencia estadóstica, particularmente en el contraste de hipótesis de diferencias entre dos grupos.">
+<meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
+<meta property="og:site-name" content="Estadística Correlacional">
+<meta property="og:locale" content="es">
+<meta property="og:image:height" content="500">
+<meta property="og:image:width" content="500">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Estadística Correlacional</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html">
+ <span class="menu-text">Programa</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Planificación</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/index.html">
+ <span class="menu-text">Clases</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../assignment/index.html" aria-current="page">
+ <span class="menu-text">Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../trabajos.html">
+ <span class="menu-text">Trabajos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resource/index.html">
+ <span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../news/index.html">
+ <span class="menu-text">Noticias</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://rstudio.cloud"><i class="bi bi-cloud-fill" role="img" aria-label="RStudio.cloud">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Inferencia 4: Pruebas de hipótesis II</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Sobre prácticos</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/index.html" class="sidebar-item-text sidebar-link">Instrucciones generales</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Guías</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/01-practico.html" class="sidebar-item-text sidebar-link">1: Reportes dinámicos 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/02-practico.html" class="sidebar-item-text sidebar-link">2: Cálculo y reporte de correlación</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/03-practico.html" class="sidebar-item-text sidebar-link">3: Matrices de correlación y tamaños de efecto</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/04-practico.html" class="sidebar-item-text sidebar-link">4: Inferencia 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/05-practico.html" class="sidebar-item-text sidebar-link">5: Reportes dinámicos 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/06-practico.html" class="sidebar-item-text sidebar-link">6: Inferencia 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/07-practico.html" class="sidebar-item-text sidebar-link">7: Inferencia 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/08-practico.html" class="sidebar-item-text sidebar-link active">8: Inferencia 4</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivo-de-la-práctica" id="toc-objetivo-de-la-práctica" class="nav-link active" data-scroll-target="#objetivo-de-la-práctica">Objetivo de la práctica</a>
+  <ul class="collapse">
+  <li><a href="#recursos-de-la-práctica" id="toc-recursos-de-la-práctica" class="nav-link" data-scroll-target="#recursos-de-la-práctica">Recursos de la práctica</a></li>
+  </ul></li>
+  <li><a href="#preparación-datos" id="toc-preparación-datos" class="nav-link" data-scroll-target="#preparación-datos">Preparación datos</a></li>
+  <li><a href="#intervalos-de-confianza-como-pruebas-de-hipótesis" id="toc-intervalos-de-confianza-como-pruebas-de-hipótesis" class="nav-link" data-scroll-target="#intervalos-de-confianza-como-pruebas-de-hipótesis">Intervalos de confianza como “pruebas” de hipótesis</a>
+  <ul class="collapse">
+  <li><a href="#a-intervalos-de-confianza-para-la-media" id="toc-a-intervalos-de-confianza-para-la-media" class="nav-link" data-scroll-target="#a-intervalos-de-confianza-para-la-media">a) Intervalos de confianza para la media</a></li>
+  <li><a href="#b-intervalos-de-confianza-para-proporciones" id="toc-b-intervalos-de-confianza-para-proporciones" class="nav-link" data-scroll-target="#b-intervalos-de-confianza-para-proporciones">b) Intervalos de confianza para proporciones</a></li>
+  </ul></li>
+  <li><a href="#pruebas-de-hipótesis-direccionales" id="toc-pruebas-de-hipótesis-direccionales" class="nav-link" data-scroll-target="#pruebas-de-hipótesis-direccionales">Pruebas de hipótesis direccionales</a></li>
+  <li><a href="#inferencia-para-proporciones" id="toc-inferencia-para-proporciones" class="nav-link" data-scroll-target="#inferencia-para-proporciones">Inferencia para proporciones</a></li>
+  <li><a href="#inferencia-en-correlación" id="toc-inferencia-en-correlación" class="nav-link" data-scroll-target="#inferencia-en-correlación">Inferencia en correlación</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
+  <li><a href="#reporte-de-progreso" id="toc-reporte-de-progreso" class="nav-link" data-scroll-target="#reporte-de-progreso">Reporte de progreso</a></li>
+  <li><a href="#video-de-práctica" id="toc-video-de-práctica" class="nav-link" data-scroll-target="#video-de-práctica">Video de práctica</a></li>
+  <li><a href="#foro" id="toc-foro" class="nav-link" data-scroll-target="#foro">Foro</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7">Inferencia 4: Pruebas de hipótesis II</h1>
+
+<div class="date-block bg-assignment text-white p-2">
+  <p class="date">Completar hasta as 11:59 PM del viernes, 27 de octubre de 2023</p>
+</div>
+</header>
+
+<section id="objetivo-de-la-práctica" class="level1">
+<h1>Objetivo de la práctica</h1>
+<p>El objetivo de esta guía práctica es profundizar en la inferencia estadóstica, particularmente en el contraste de hipótesis de diferencias entre dos grupos.</p>
+<p>En detalle, aprenderemos:</p>
+<ol type="1">
+<li>Cómo los intervalos de confianza permiten “probar hipótesis”.</li>
+<li>Aplicar pruebas de hipótesis direccionales.</li>
+<li>Aplicar inferencia estadística a proporciones.</li>
+<li>Emplear la correlación en contexto de inferencia.</li>
+</ol>
+<section id="recursos-de-la-práctica" class="level2">
+<h2 class="anchored" data-anchor-id="recursos-de-la-práctica">Recursos de la práctica</h2>
+<p>En esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta de Caracterización Socioeconómica (CASEN) del año 2022, elaborada por el <a href="https://observatorio.ministeriodesarrollosocial.gob.cl/">Ministerio de Desarrollo Social y Familia</a>. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace: <a href="https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/proc_casen.RData"><i class="fa-solid fa-table" aria-label="table"></i> <code>CASEN 20222</code></a>. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos CASEN 2022.</p>
+</section>
+</section>
+<section id="preparación-datos" class="level1">
+<h1>Preparación datos</h1>
+<p>Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># Manipulacion datos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               confintr, <span class="co"># IC</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               gginference, <span class="co"># Visualizacion</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               rempsyc, <span class="co"># Bivariados</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               effectsize, <span class="co"># Reporte </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               easystats) <span class="co"># Varios</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cargamos los datos directamente desde internet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/proc_casen.RData"</span>)) <span class="co">#Cargar base de datos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A continuación, exploramos la base de datos <strong>proc_casen</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(proc_casen) <span class="co"># Nombre de columnas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "id_vivienda"      "folio"            "id_persona"       "hogar"           
+ [5] "nucleo"           "varunit"          "varstrat"         "expr"            
+ [9] "edad"             "sexo"             "educ"             "activ"           
+[13] "y1"               "ytrabajocor"      "pobreza_multi_5d" "o15"             
+[17] "fdt"              "ocupado"          "desocupado"       "inact"           
+[21] "hijo"             "n_educ"           "universitaria"    "tipo_ocup"       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(proc_casen) <span class="co"># Dimensiones</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 202111     24</code></pre>
+</div>
+</div>
+<p>Contamos con 24 variables (columnas) y 202.111 observaciones (filas).</p>
+</section>
+<section id="intervalos-de-confianza-como-pruebas-de-hipótesis" class="level1">
+<h1>Intervalos de confianza como “pruebas” de hipótesis</h1>
+<p>Recordemos que, en el contexto de la inferencia, un intervalo de confianza <strong>es un rango de valores plausibles que pueden contener el verdadero parámetro poblacional</strong>, con un determinado nivel de confianza.</p>
+<p>En ese sentido, estimar un intervalo de confianza responde a cierta pregunta de investigación:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../files/esquema1.drawio.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sin embargo, los intervalos de confianza <strong>también pueden ser útiles para determinar si existen diferencias estadísticamente significativas entre dos grupos</strong>. ¿Cómo?:</p>
+<div class="row d-flex justify-content-center">
+<div class="col-md-6">
+<div class="card bg-danger text-white">
+<div class="card-body">
+<p>Si no hay superposición de intervalos, hay diferencias poblacionales entre los grupos que estamos comparando.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br> Veamos dos ejemplos con nuestros datos.</p>
+<section id="a-intervalos-de-confianza-para-la-media" class="level3">
+<h3 class="anchored" data-anchor-id="a-intervalos-de-confianza-para-la-media">a) Intervalos de confianza para la media</h3>
+<p>Obtengamos el promedio y un intervalo de confianza para los ingresos del trabajo para hombres y mujeres ocupadas en Chile en el 2022.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ocupados <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ocupado <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># subset de datos solo con personas ocupadas</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ocupados_h <span class="ot">&lt;-</span> <span class="fu">ci_mean</span>(ocupados<span class="sc">$</span>ytrabajocor[ocupados<span class="sc">$</span>sexo <span class="sc">==</span> <span class="dv">1</span>]) <span class="co"># IC para hombres</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ocupados_m <span class="ot">&lt;-</span> <span class="fu">ci_mean</span>(ocupados<span class="sc">$</span>ytrabajocor[ocupados<span class="sc">$</span>sexo <span class="sc">==</span> <span class="dv">2</span>]) <span class="co"># IC para mujeres</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Veamos los resultados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ocupados_h; ocupados_m</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  Two-sided 95% t confidence interval for the population mean</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Sample estimate: 768421.8 </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Confidence interval:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">##     2.5%    97.5% </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 759942.5 776901.0</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  Two-sided 95% t confidence interval for the population mean</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Sample estimate: 606662.1 </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Confidence interval:</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">##     2.5%    97.5% </span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 599886.6 613437.5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora, grafiquemos ambas estimaciones para visualizar de mejor manera sus rangos de valores posibles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sexo =</span> <span class="fu">c</span>(<span class="st">"hombre"</span>, <span class="st">"mujer"</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">media =</span> <span class="fu">c</span>(ocupados_h<span class="sc">$</span>estimate, ocupados_m<span class="sc">$</span>estimate),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">l_inf =</span> <span class="fu">c</span>(ocupados_h<span class="sc">$</span>interval[<span class="dv">1</span>], ocupados_m<span class="sc">$</span>interval[<span class="dv">1</span>]),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">l_sup =</span> <span class="fu">c</span>(ocupados_h<span class="sc">$</span>interval[<span class="dv">2</span>], ocupados_m<span class="sc">$</span>interval[<span class="dv">2</span>])) <span class="co"># creamos un dataframe </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> g1, </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> media)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape=</span>sexo), </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"darkred"</span>, </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> l_inf, <span class="at">ymax=</span> l_sup), </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span><span class="fl">0.2</span>, </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span><span class="dv">1</span>, </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"darkred"</span>) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">n.breaks =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Promedio de ingresos del trabajo según sexo."</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Ingresos"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sexo"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: Elaboración propia en base a CASEN 2022."</span>) <span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="co"># graficamos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-practico_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Vemos que, en este caso, los intervalos <strong>no se solapan</strong>. De esta manera, podemos sostener que con un 95% de confianza, existen diferencias poblacionales en el promedio de ingresos del trabajo entre hombres y mujeres en Chile en el 2022.</p>
+</section>
+<section id="b-intervalos-de-confianza-para-proporciones" class="level3">
+<h3 class="anchored" data-anchor-id="b-intervalos-de-confianza-para-proporciones">b) Intervalos de confianza para proporciones</h3>
+<p>Cuando queremos obtener un intervalo de confianza para proporciones, es decir para variables categóricas, el cálculo es escencialmente el mismo pero con leves modificaciones.</p>
+<p>Obtengamos la proporción y un intervalo de confianza de hombres y mujeres que se encuentran en situación de pobreza multidimensional en Chile en el 2022.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pobreza <span class="ot">&lt;-</span> proc_casen[<span class="dv">1</span><span class="sc">:</span><span class="dv">300</span>,] <span class="co"># creamos un subsample solo como ejemplo </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pob_h <span class="ot">&lt;-</span> <span class="fu">ci_proportion</span>(pobreza<span class="sc">$</span>pobreza_multi_5d[pobreza<span class="sc">$</span>sexo<span class="sc">==</span><span class="dv">1</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>pob_m <span class="ot">&lt;-</span> <span class="fu">ci_proportion</span>(pobreza<span class="sc">$</span>pobreza_multi_5d[pobreza<span class="sc">$</span>sexo<span class="sc">==</span><span class="dv">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Veamos los resultados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pob_h; pob_m</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  Two-sided 95% Clopper-Pearson confidence interval for the true</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  proportion</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Sample estimate: 0.3208955 </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Confidence interval:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">##      2.5%     97.5% </span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.2429176 0.4069917</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  Two-sided 95% Clopper-Pearson confidence interval for the true</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  proportion</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Sample estimate: 0.2901235 </span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Confidence interval:</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">##      2.5%     97.5% </span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.2215968 0.3665057</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora, grafiquemos ambas estimaciones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sexo =</span> <span class="fu">c</span>(<span class="st">"hombre"</span>, <span class="st">"mujer"</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">prop =</span> <span class="fu">c</span>(pob_h<span class="sc">$</span>estimate, pob_m<span class="sc">$</span>estimate),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">l_inf =</span> <span class="fu">c</span>(pob_h<span class="sc">$</span>interval[<span class="dv">1</span>], pob_m<span class="sc">$</span>interval[<span class="dv">1</span>]),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">l_sup =</span> <span class="fu">c</span>(pob_h<span class="sc">$</span>interval[<span class="dv">2</span>], pob_m<span class="sc">$</span>interval[<span class="dv">2</span>])) <span class="co"># creamos un dataframe </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> g2, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape=</span>sexo), </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> l_inf, <span class="at">ymax=</span> l_sup), </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span><span class="fl">0.2</span>, </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span><span class="dv">1</span>, </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">n.breaks =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proporción de hombres y mujeres en pobreza multidimensional."</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proporción"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sexo"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: Elaboración propia en base a CASEN 2022."</span>) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="co"># graficamos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-practico_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>En este caso, los intervalos <strong>si se solapan</strong>. Por ejemplo, el límite superior del IC de mujeres se toca con el IC de hombres.</p>
+<p>Entonces, ¿puedo decir que <strong><em>no</em></strong> hay diferencias estadísticamente significativas en la proporción de pobreza entre hombres y mujeres?…</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../files/stop.gif" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>NO tan rápido</strong>, si los <em>intervalos sí se superponen, aún existe la posibilidad de que existan diferencias</em> entre los grupos que estamos comparando. Aquí es donde entran las <strong>pruebas de hipótesis</strong>.</p>
+</section>
+</section>
+<section id="pruebas-de-hipótesis-direccionales" class="level1">
+<h1>Pruebas de hipótesis direccionales</h1>
+<p>En estadística, la formulación de hipótesis que implica dos variables (o la comparación de grupos) suele tener como objetivo determinar si existen diferencias en una variable particular entre grupos y, de ser el caso, evaluar si esta diferencia es estadísticamente significativa.</p>
+<p>Así, y a diferencia de los intervalos de confianza, las pruebas de hipótesis responden a determinada pregunta de investigación:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../files/esquema2.drawio.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://correlacional.netlify.app/assignment/07-practico">Hasta ahora</a>, hemos aprendido a contrastar hipótesis sobre <strong>diferencias entre grupos</strong>. A esto también se le llama <strong>hipótesis de dos colas</strong>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prueba de dos colas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Contrastamos la <em>hipótesis nula</em> (o de trabajo) de <em>no</em> diferencias entre grupos: <span class="math display">\[  H_{0}: \mu_{0} - \mu_{1} = 0 \]</span> En relación a una <em>hipótesis alternativa</em> sobre <em>diferencias</em> entre grupos: <span class="math display">\[  H_{A}: \mu_{0} - \mu_{1} \neq 0 \]</span></p>
+</div>
+</div>
+<p>Sin embargo, también podemos <strong>plantear hipótesis</strong> respecto a que el valor de cierto parámetro para un grupo <strong>puede ser mayor o menor</strong> al de otro grupo. A esto se le conoce como <strong>hipótesis de una cola</strong>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prueba de una cola
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[  H_{0}: \mu_{0} - \mu_{1} = 0 \]</span></p>
+<p><span class="math display">\[  H_{A}: \mu_{0} &gt; \mu_{1} \]</span></p>
+<p><span class="math display">\[  H_{A}: \mu_{0} &lt; \mu_{1} \]</span></p>
+</div>
+</div>
+<p>Tomando como ejemplo el trabajo de la ganadora del Premio Nobel de economía 2023 Claudia Goldin, comprobemos si los ingresos de las mujeres trabajadoras que tienen no hijos es mayor al ingreso de las mujeres trabajadoras que tienen hijos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>goldin_data <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ocupado <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> sexo <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()<span class="co"># creamos subset con solo mujeres ocupadas</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>goldin_data <span class="sc">%&gt;%</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hijo) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(ytrabajocor, <span class="at">na.rm =</span> T)) <span class="co"># calculamos el promedio de ingresos para los grupos</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 × 2</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    hijo   media</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 1     0 729850.</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 2     1 655088.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A simple vista, el <span class="math inline">\(\mu\)</span> de ingresos de las mujeres ocupadas sin hijos es mayor al de las mujeres con hijos, pero ¿es esta aseveración aplicable a la población?</p>
+<p>Formulemos nuestras hipótesis:</p>
+<p><span class="math display">\[H_{0}: \mu_{0} - \mu_{1} = 0\]</span> <span class="math display">\[H_{A}: \mu_{0} &gt; \mu_{1} \]</span></p>
+<p>Probemos nuestra hipótesis con <code>prueba T</code> para diferencia de medias.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>t_results_goldin <span class="ot">&lt;-</span> <span class="fu">t.test</span>(goldin_data<span class="sc">$</span>ytrabajocor <span class="sc">~</span> goldin_data<span class="sc">$</span>hijo, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">alternative =</span> <span class="st">"greater"</span>) <span class="co"># indicamos la direccion de la prueba</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>t_results_goldin</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  goldin_data$ytrabajocor by goldin_data$hijo
+t = 8.1486, df = 11417, p-value &lt; 0.00000000000000022
+alternative hypothesis: true difference in means between group 0 and group 1 is greater than 0
+95 percent confidence interval:
+ 59669.77      Inf
+sample estimates:
+mean in group 0 mean in group 1 
+       729850.1        655087.8 </code></pre>
+</div>
+</div>
+<p>¿Y cómo reportamos esto? una forma estándar es la siguiente:</p>
+<blockquote class="blockquote">
+<p>La prueba T que evalúa la diferencia de medias entre el ingreso del trabajo y tener hijos en las mujeres ocupadas sugiere que el efecto es positivo y estadísticamente signficativo (diferencia = 74.762, t(11417.34) = 8.15, p &lt; .001). Por tanto, rechazamos la <span class="math inline">\(H_{0}\)</span> sobre igualdad de medias con un 95% de confianza, existiendo evidencia a favor de nuestra <span class="math inline">\(H_{A}\)</span> respecto a que el ingreso de las mujeres sin hijos es mayor al ingreso de las mujeres con hijos.</p>
+</blockquote>
+<p>Visualicemos la distribución de esta prueba y su zona de rechazo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggttest</span>(t_results_goldin)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-practico_files/figure-html/t_goldin_graf-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="inferencia-para-proporciones" class="level1">
+<h1>Inferencia para proporciones</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pobreza<span class="sc">$</span>pobreza_multi_5d[pobreza<span class="sc">$</span>sexo <span class="sc">==</span> <span class="dv">1</span>]) <span class="co"># freq hombres</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  0  1 </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 91 43</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pobreza<span class="sc">$</span>pobreza_multi_5d[pobreza<span class="sc">$</span>sexo <span class="sc">==</span> <span class="dv">2</span>]) <span class="co"># freq mujeres</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   0   1 </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 115  47</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>xtab <span class="ot">&lt;-</span> <span class="fu">as.table</span>(<span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">91</span>),<span class="fu">c</span>(<span class="dv">47</span>, <span class="dv">115</span>)))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(xtab) <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="fu">c</span>(<span class="st">"hombre"</span>, <span class="st">"mujer"</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pobreza =</span> <span class="fu">c</span>(<span class="st">"si"</span>, <span class="st">"no"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>prop_results <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(xtab, <span class="at">alternative =</span> <span class="st">"less"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>prop_results</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  xtab
+X-squared = 0.19887, df = 1, p-value = 0.6722
+alternative hypothesis: less
+95 percent confidence interval:
+ -1.0000000  0.1261311
+sample estimates:
+   prop 1    prop 2 
+0.3208955 0.2901235 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggproptest</span>(prop_results)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-practico_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="inferencia-en-correlación" class="level1">
+<h1>Inferencia en correlación</h1>
+<p>En el contexto de la inferencia, <strong>la correlación</strong> nos permite <strong>determinar si existe (o no) una asociación estadísticamente significativa</strong> entre dos variables. En ese sentido, la lógica del contraste de hipótesis usando correlación es:</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hipótesis en correlación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Contrastamos la <em>hipótesis nula</em> (o de trabajo) de <em>no</em> asociación entre variables: <span class="math display">\[  H_{0}: \rho = 0 \]</span></p>
+<p>En relación a una <em>hipótesis alternativa</em> sobre la existencia una asociación significativa entre variables:</p>
+<p><span class="math display">\[  H_{A}: \rho \neq 0 \]</span></p>
+</div>
+</div>
+<p>Tomemos por ejemplo la siguiente pregunta de investigación: ¿en qué medida el nivel educacional alcanzado por las personas se relaciona con sus ingresos en Chile en el 2022?</p>
+<p>Formulemos nuestra hipótesis:</p>
+<p><span class="math display">\[  H_{0}: cor(educ,ingreso) = 0 \]</span> <span class="math display">\[  H_{A}: cor(educ,ingreso) \neq 0 \]</span></p>
+<p>Obtengamos el coeficiente de correlación <span class="math inline">\(r\)</span> de Pearson entre el nivel educacional alcanzado y los ingresos de las personas en Chile en 2022. Para esto usaremos solamente observaciones completas (<em>listwise</em>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(proc_casen<span class="sc">$</span>educ, proc_casen<span class="sc">$</span>ytrabajocor, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"pearson"</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  proc_casen$educ and proc_casen$ytrabajocor
+t = 123.36, df = 88290, p-value &lt; 0.00000000000000022
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3777987 0.3890514
+sample estimates:
+      cor 
+0.3834393 </code></pre>
+</div>
+</div>
+<p>Ya sabemos <a href="https://correlacional.netlify.app/assignment/03-practico#tama%C3%B1os-de-efecto">cómo interpretar una correlación</a>, ahora usemos este resultado para probar nuestra hipótesis:</p>
+<blockquote class="blockquote">
+<p>El coeficiente de correlación de Pearson entre nivel educativo e ingresos es positivo, estadísticamente significativo (r = 0.38, p &lt; .001) y moderado de acuerdo con las recomendaciones de Cohen (1988). Por tanto, con un 95% de confianza se puede rechazar la <span class="math inline">\(H_{0}\)</span> de no asociación entre variables, existiendo evidencia a favor de la <span class="math inline">\(H_{A}\)</span> sobre una asociación significativa entre educación e ingresos.</p>
+</blockquote>
+</section>
+<section id="resumen" class="level1">
+<h1>Resumen</h1>
+<p>Hoy profundizamos en la inferencia estadóstica, particularmente en el contraste de hipótesis de diferencias entre dos grupos.</p>
+<p>En detalle, aprendimos:</p>
+<ol type="1">
+<li>Cómo los intervalos de confianza permiten “probar hipótesis”.</li>
+<li>Aplicar pruebas de hipótesis direccionales.</li>
+<li>Aplicar inferencia estadística a proporciones.</li>
+<li>Emplear la correlación en contexto de inferencia.</li>
+</ol>
+</section>
+<section id="reporte-de-progreso" class="level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="">aquí</a>. El plazo para contestarlo es hasta el día viernes de la semana en la que se publica la práctica correspondiente.</p>
+</section>
+<section id="video-de-práctica" class="level1">
+<h1>Video de práctica</h1>
+</section>
+<section id="foro" class="level1">
+<h1>Foro</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2023 by <a href="https://www.jc-castillo.com">Juan Castillo</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
+    <div class="nav-footer-right">Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/cursos-metodos-facso/correlacional">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
