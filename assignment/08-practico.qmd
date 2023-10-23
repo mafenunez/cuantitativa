@@ -50,7 +50,7 @@ En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado
     <th class="cell-left"> Detalle</th>
   </tr>
   <tr>
-    <td class="cell-left">1&emsp;</td>
+    <td class="cell-left">1</td>
     <td class="cell-left">Formula $H_0$ y $H_A$ y estipula la dirección de la prueba</td>
   </tr>
   <tr>
@@ -59,7 +59,7 @@ En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado
   </tr>
   <tr>
     <td class="cell-left">3</td>
-    <td class="cell-left">Calcula el valor estimado de la prueba (ej: Z o t)E</td>
+    <td class="cell-left">Calcula el valor estimado de la prueba (ej: Z o t)</td>
   </tr>
   <tr>
     <td class="cell-left">4</td>
@@ -220,7 +220,7 @@ $$  H_{A}: \mu_{0} < \mu_{1} $$
 
 Tomando como ejemplo el trabajo de la ganadora del Premio Nobel de Economía 2023 Claudia Goldin, comprobemos si los ingresos de las mujeres trabajadoras que no tienen hijos es mayor al ingreso de las mujeres trabajadoras que sí tienen hijos. Por tanto, usaremos **prueba $t$** para diferencia de medias.
 
-Apliquemos nuestros 6 pasos.
+Apliquemos nuestros 5 pasos.
 
 1. Formulamos nuestras hipótesis y dirección de la prueba:
 
@@ -279,7 +279,7 @@ t_stat
 ```
 
 
-4. Calcula el valor estimado de la prueba:
+4. Especifica el valor crítico:
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
 
@@ -308,10 +308,8 @@ t_stat > t_critico
 t_results_goldin <- t.test(goldin_data$ytrabajocor ~ goldin_data$hijo, 
                            alternative = "greater") # indicamos la direccion de la prueba
 
-stats.table  <- tidy(t_results_goldin, conf.int = T)
+stats.table <- tidy(t_results_goldin, conf.int = T)
 nice_table(stats.table, broom = "t.test") 
-
-
 ```
 
 Visualicemos la distribución de esta prueba y su zona de rechazo.
@@ -373,9 +371,9 @@ Formulemos nuestras hipótesis:
 - $H_A$: $p_{hombres}$ $\neq$ $p_{mujeres}$
 
 
-Ahora, creemos un objeto llamado `xtab` que contendrá la frecuencia de casos exitosos ("pobreza") sobre el total de casos para cada grupo. Luego, aplicamos la función `prop.test()` para evaluar nuestra hipótesis.
+Ahora, creemos un objeto llamado `xtab` que contendrá la frecuencia de casos exitosos ("pobreza") sobre el total de casos para cada grupo. 
 
-```{r prop_test, echo=TRUE, warning=FALSE, message=FALSE}
+```{r xtab, echo=TRUE, warning=FALSE, message=FALSE}
 
 xtab <- as.table(rbind(c(43, 91),c(47, 115)))
 
@@ -383,11 +381,18 @@ dimnames(xtab) <- list(
   sexo = c("hombre", "mujer"),
   pobreza = c("si", "no")
 )
+```
+
+Luego, aplicamos la función `prop.test()` para evaluar nuestra hipótesis.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 
 prop_results <- prop.test(xtab, alternative = "two.sided")
 
-prop_results
+stats.table <- tidy(prop_results, conf.int = T)
+nice_table(stats.table, broom = "prop.test")
 ```
+
 
 ¿Y cómo reportamos esto?: 
 
@@ -420,12 +425,14 @@ Formulemos nuestra hipótesis:
 Obtengamos el coeficiente de correlación $r$ de Pearson entre el nivel educacional alcanzado y los ingresos de las personas en Chile en 2022. Para esto usaremos solamente observaciones completas (_listwise_).
 
 
-```{r cor_test, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 
-cor.test(proc_casen$educ, proc_casen$ytrabajocor, 
+cor_results <- cor.test(proc_casen$educ, proc_casen$ytrabajocor, 
          method = "pearson", 
          use = "complete.obs")
 
+stats.table <- tidy(cor_results)
+nice_table(stats.table, broom = "cor")
 ```
 
 Ya sabemos [cómo interpretar una correlación](https://correlacional.netlify.app/assignment/03-practico#tama%C3%B1os-de-efecto), ahora usemos este resultado para probar nuestra hipótesis: 
