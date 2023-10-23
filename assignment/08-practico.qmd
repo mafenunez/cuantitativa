@@ -8,6 +8,12 @@ website:
       repo: cursos-metodos-facso/correlacional
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,
+                      warning = FALSE)
+```
+
 # Objetivo de la práctica
 
 El objetivo de esta guía práctica es profundizar en la inferencia estadóstica, particularmente en el contraste de hipótesis de diferencias entre dos grupos. 
@@ -71,11 +77,13 @@ En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado
   </tr>
 </table>
 
+Además de estos 5 pasos también existe la posibilidad de calcular un intervalo de confianza, que acompañe la precisión de nuestra estimación.
+
 # Preparación datos
 
 Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.
 
-```{r librerias, echo=TRUE, message=FALSE, warning=FALSE, collapse=TRUE}
+```{r librerias, collapse=TRUE}
 pacman::p_load(tidyverse, # Manipulacion datos
                sjPlot, #tablas
                confintr, # IC
@@ -89,7 +97,7 @@ rm(list = ls()) # para limpiar el entorno de trabajo
 
 Cargamos los datos directamente desde internet.
 
-```{r datos, echo=TRUE, message=FALSE, warning=FALSE}
+```{r datos}
 
 load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/proc_casen.RData")) #Cargar base de datos
 
@@ -97,7 +105,7 @@ load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/proc_c
 
 A continuación, exploramos la base de datos **proc_casen**.
 
-```{r exploracion, echo=TRUE, message=FALSE, warning=FALSE}
+```{r exploracion}
 
 names(proc_casen) # Nombre de columnas
 dim(proc_casen) # Dimensiones
@@ -106,13 +114,11 @@ dim(proc_casen) # Dimensiones
 Contamos con 24 variables (columnas) y 202.111 observaciones (filas).
 
 
-# Pruebas de hipótesis direccionales para la media
-
 ```{r echo=FALSE, warning=FALSE, out.width="70%", fig.align='center'}
 knitr::include_graphics("../files/stop.gif", error = FALSE)
 ```
 
-#### Recordemos...
+# Recordemos...
 
 En estadística, la formulación de hipótesis que implica dos variables (o la comparación de grupos) busca determinar si existen diferencias en una variable entre grupos y, de ser el caso, evaluar si esta diferencia es estadísticamente significativa.
 
@@ -127,17 +133,9 @@ En relación a una _hipótesis alternativa_ sobre _diferencias_ entre grupos:
 $$  H_{A}: \mu_{1} - \mu_{2} \neq 0 $$
 :::
 
+Veamos un ejemplo con nuestros datos. Evaluemos si el promedio de ingresos del trabajo de las mujeres es distinto al de los hombres en Chile en el 2022.
 
-Pero, los intervalos de confianza **también pueden ser útiles para determinar si existen diferencias estadísticamente significativas entre dos grupos**. ¿Cómo?: 
-
-> Si no hay superposición de intervalos, hay diferencias poblacionales entre los grupos que estamos comparando.
-
-
-### a) Intervalos de confianza para la media
-
-Veamos un ejemplo con nuestros datos. Obtengamos el promedio y un intervalo de confianza para los ingresos del trabajo para hombres y mujeres ocupadas en Chile en el 2022.
-
-Apliquemos nuestros seis pasos para inferencia.
+Apliquemos nuestros cinco pasos para inferencia.
 
 1. Formulamos nuestras hipótesis y dirección de la prueba:
 
@@ -145,67 +143,96 @@ Apliquemos nuestros seis pasos para inferencia.
 
 - $H_{A}$: $\mu_{hombres}$ $-$ $\mu_{mujeres}$ $\neq$ $0$ 
 
-2. Calculamos el error estándar (SE):
+2. Calcula el error estándar (SE) para diferencia de medias:
 
-```{r ci_mean, echo=TRUE, message=FALSE, warning=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
+
 ocupados <- proc_casen %>%
-  filter(ocupado == 1) #  subset de datos solo con personas ocupadas
+  filter(ocupado == 1) %>% 
+  na.omit() #  subset de datos solo con personas ocupadas
 
-datos_ic <- ocupados %>% 
+datos_t <- ocupados %>% 
   group_by(sexo) %>% 
   summarise(media = mean(ytrabajocor, na.rm = T),
             ds = sd(ytrabajocor, na.rm = T),
-            n = n(),
-            se = (ds/sqrt(n)))
+            n = n())
 
-datos_ic
+datos_t
 ```
 
-3. Calcula el valor estimado de la prueba:
+Obtenemos la diferencia de medias ($\bar{x_1}$ - $\bar{x_2}$)
 
-Esto ya lo hicimos en el paso anterior estimando la $\bar{x}$ muestral para hombres y mujeres.
+```{r, echo=TRUE}
+dif_medias <- 817688.2 - 674428.3
+dif_medias
+```
 
-4. Especifica el valor crítico de la prueba:
+Ahora, calculamos el error estándar.
 
-```{r ci_mean_1, echo=TRUE, message=FALSE, warning=FALSE, collapse=FALSE}
+```{r}
+s_h <- 837710.9	
+s_m <- 638044.1
 
-datos_ic <- datos_ic %>% 
-  group_by(sexo) %>% 
-  mutate(critico = qt(0.975, df = n - 1))
+n_h <- 32019 
+n_m <- 26313	
 
-datos_ic
+se_dif <- sqrt((s_h^2)/n_h + (s_m^2)/n_m)
+se_dif
+```
+
+
+3. Calcula el valor estimado de la prueba (t para diferencia de medias):
+
+```{r}
+t_stat <- dif_medias/se_dif
+t_stat
+```
+
+4. Especifica el valor crítico:
+
+```{r collapse=FALSE}
+df <- n_h + n_m - 2 # definimos grados de libertad
+
+t_critico <- qt(p = 0.05/2, df, lower.tail = FALSE)
+t_critico
 ```
 
 5. Contrasta el valor estimado con el crítico e interpreta los resultados: 
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
 
-datos_ic %>% 
-  group_by(sexo) %>% 
-  summarise(media,
-            l_inf = media - critico * se,
-            l_sup = media + critico * se)
+t_stat > t_critico
 
 ```
 
-Para el caso de los hombres, su $\bar{x}$ es de 768.422, con un IC[760.057	- 776.787]. Para las mujeres, el 
-$\bar{x}$ es de 606.662, con un IC[599.998 -	613.326].
+Comparamos el valor estimado con el valor crítico para dos colas. Por tanto, nuestro valor estimado queda dentro de la zona de rechazo de $H_0$. En consecuencia, podemos decir que:
 
-Vemos que, en este caso, los intervalos **no se solapan**. Así, podemos sostener que, con un 95% de confianza, existen diferencias poblacionales en el promedio de ingresos del trabajo entre hombres y mujeres en Chile en el 2022.
+> La prueba T que evalúa la diferencia de medias entre el ingreso del trabajo según sexo sugiere que el efecto es positivo y estadísticamente signficativo (diferencia =  143.260, t(58004.33) = 23.43, p < .001). Por tanto, rechazamos la $H_{0}$ sobre igualdad de medias con un 95% de confianza, existiendo evidencia a favor de nuestra $H_{A}$ ya que hay diferencias salariales significativas entre hombres y mujeres.
 
 6. Y el cálculo directo en R:
 
-```{r ci_mean_r, echo=TRUE, message=FALSE, warning=FALSE, collapse=TRUE}
-ocupados_h <- ci_mean(ocupados$ytrabajocor[ocupados$sexo == 1]) # IC para hombres
+```{r, collapse=TRUE}
 
-ocupados_m <- ci_mean(ocupados$ytrabajocor[ocupados$sexo == 2]) # IC para mujeres
+t_results <- t.test(ocupados$ytrabajocor ~ ocupados$sexo, 
+       alternative = "two.sided")
 
-ocupados_h; ocupados_m
+stats.table <- tidy(t_results, conf_int = T)
+nice_table(stats.table, broom = "t.test")
 ```
 
-### b) Prueba t direccional para la media
 
-Ya hemos visto cómo contrastar hipótesis solo para diferencias entre grupos. Sin embargo, también podemos **plantear hipótesis** respecto a que el valor de cierto parámetro para un grupo **puede ser mayor o menor** al de otro grupo. A esto se le conoce como **hipótesis de una cola**. 
+Visualicemos la distribución de esta prueba y su zona de rechazo.
+
+```{r}
+ggttest(t_results)
+```
+
+Además, podemos calcular un intervalo de confianza que acompaña nuestra estimación. En este caso, vemos que el IC para la diferencia de medias oscila entre [131.275 - 155.245] y **no contiene el cero**, por lo que podemos rechazar la hipótesis nula.
+
+
+# Pruebas de hipótesis direccionales para la media
+
+Sin embargo, también podemos **plantear hipótesis** respecto a que el valor de cierto parámetro para un grupo **puede ser mayor o menor** al de otro grupo. A esto se le conoce como **hipótesis de una cola**. 
 
 ::: {.callout-tip}
 #### Prueba de una cola
@@ -233,7 +260,7 @@ En donde 0 = sin hijos y 1 = con hijos;
 
 2. Calcula el error estándar (SE) para diferencia de medias:
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
 
 goldin_data <- proc_casen %>% 
   filter(ocupado == 1 & sexo == 2) %>% 
@@ -250,14 +277,14 @@ datos_t
 
 En este caso, obtenemos la diferencia de medias ($\bar{x}_0 - \bar{x}_1$ ). 
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r}
 dif_medias <- 729850.1 - 655087.8
 dif_medias
 ```
 
 Y luego su error estándar.
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
 
 s_0 <- 659400.5	
 s_1 <- 629290.5
@@ -271,7 +298,7 @@ se_dif
 
 3. Calcula el valor estimado de la prueba (t para diferencia de medias):
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
 
 t_stat <- dif_medias / se_dif
 
@@ -281,7 +308,7 @@ t_stat
 
 4. Especifica el valor crítico:
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
 
 df <- n_0 + n_1 - 2 # definimos grados de libertad
 
@@ -293,18 +320,18 @@ t_critico
 
 5. Contrasta el valor estimado con el crítico e interpreta los resultados:
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r, collapse=FALSE}
 
 t_stat > t_critico
 
 ```
 
 
-> La prueba T que evalúa la diferencia de medias entre el ingreso del trabajo y tener hijos en las mujeres ocupadas sugiere que el efecto es positivo y estadísticamente signficativo (diferencia = 74.762, t(11417.34) = 8.15, p < .05). Por tanto, rechazamos la $H_{0}$ sobre igualdad de medias con un 95% de confianza, existiendo evidencia a favor de nuestra $H_{A}$ respecto a que el ingreso de las mujeres sin hijos es mayor al ingreso de las mujeres con hijos. 
+> La prueba T que evalúa la diferencia de medias entre el ingreso del trabajo y tener hijos en las mujeres ocupadas sugiere que el efecto es positivo y estadísticamente signficativo (diferencia = 74.762, t(11417.34) = 8.15, p < .05). Por tanto, con un 95% de confianza, rechazamos la $H_{0}$ ya que existe evidencia a favor de nuestra $H_{A}$ respecto a que el ingreso de las mujeres sin hijos es mayor al ingreso de las mujeres con hijos. 
 
 6. Y el cálculo en R.
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
+```{r}
 t_results_goldin <- t.test(goldin_data$ytrabajocor ~ goldin_data$hijo, 
                            alternative = "greater") # indicamos la direccion de la prueba
 
@@ -318,47 +345,21 @@ Visualicemos la distribución de esta prueba y su zona de rechazo.
 ggttest(t_results_goldin)
 ```
 
+En este caso, el IC del 95% es (59.670, Inf), donde "Inf" representa infinito. Esto significa que podemos estar 95% seguros de que **la diferencia real entre las medias está por encima de 59.670**. En otras palabras, con alta confianza, podemos afirmar que la media del "grupo 0" es significativamente mayor que la del "grupo 1".
+
 
 
 # Inferencia para proporciones
 
-Cuando queremos realizar inferencia para variables categóricas, generlamente utilizamos pruebas que comparan **proporciones de una variable de interés** entre grupos. Para esto, y siguiendo la lógica anterior, podemos utilizar intervalos de confianza para proporciones y pruebas de hipótesis para proporciones.
+Cuando queremos realizar inferencia para variables categóricas, generlamente utilizamos pruebas que comparan **proporciones de una variable de interés** entre grupos.
 
-### a) Intervalos de confianza para proporciones
+El _test de proporciones_ es una prueba estadística utilizada para **determinar si hay una diferencia significativa entre dos proporciones (tasas) en dos grupos**. Se basa en datos categóricos, en donde **se cuentan los eventos "exitosos"** o "positivos" en cada grupo de comparación, por sobre el total de eventos.
 
-Cuando queremos obtener un intervalo de confianza para proporciones el cálculo es escencialmente el mismo que el de medias, pero con leves modificaciones.
+Evaluamos si existen diferencias entre hombres y mujeres en la proporción de encontrarse en situación de pobreza multidimensional.
 
-Obtengamos la proporción y un intervalo de confianza de hombres y mujeres que se encuentran en situación de pobreza multidimensional en Chile en el 2022.
 
-```{r ci_prop, echo=TRUE, message=FALSE, warning=FALSE, collapse=FALSE}
-
-pobreza <- proc_casen[1:300,] # creamos un subsample solo como ejemplo 
-  
-pob_h <- ci_proportion(pobreza$pobreza_multi_5d[pobreza$sexo==1])
-
-pob_m <- ci_proportion(pobreza$pobreza_multi_5d[pobreza$sexo==2])
-
-```
-
-Veamos los resultados.
-
-```{r ci_prop_r, echo=TRUE, message=FALSE, warning=FALSE, collapse=TRUE}
-
-pob_h; pob_m
-
-```
-
-En este caso, los intervalos **si se solapan**. Por ejemplo, el límite superior del IC de mujeres se toca con el IC de hombres. ¿Puedo decir entonces que _no_ hay diferencias significativas?
-
-**NO tan rápido**, si los _intervalos sí se superponen, aún existe la posibilidad de que existan diferencias_ entre los grupos que estamos comparando. Aquí es donde entran las **pruebas de hipótesis**.
-
-### b) Pruebas de hipótesis para proporciones
-
-El test de proporciones es una prueba estadística utilizada para **determinar si hay una diferencia significativa entre dos proporciones (tasas) en dos grupos**. Se basa en datos categóricos, en donde **se cuentan los eventos "exitosos"** o "positivos" en cada grupo de comparación, por sobre el total de eventos.
-
-Continuemos con el ejemplo anterior, pero ahora aplicando la prueba de hipótesis. Veamos la distribución del porcentaje por colmunas entre sexo y situación de pobreza:
-
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=TRUE}
+```{r, collapse=TRUE}
+pobreza <- proc_casen[1:300,] # creamos un subsample solo como ejemplo
 
 sjPlot::sjt.xtab(pobreza$sexo, pobreza$pobreza_multi_5d, show.col.prc = T)
 
@@ -373,7 +374,7 @@ Formulemos nuestras hipótesis:
 
 Ahora, creemos un objeto llamado `xtab` que contendrá la frecuencia de casos exitosos ("pobreza") sobre el total de casos para cada grupo. 
 
-```{r xtab, echo=TRUE, warning=FALSE, message=FALSE}
+```{r xtab}
 
 xtab <- as.table(rbind(c(43, 91),c(47, 115)))
 
@@ -385,7 +386,7 @@ dimnames(xtab) <- list(
 
 Luego, aplicamos la función `prop.test()` para evaluar nuestra hipótesis.
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r}
 
 prop_results <- prop.test(xtab, alternative = "two.sided")
 
@@ -393,11 +394,12 @@ stats.table <- tidy(prop_results, conf.int = T)
 nice_table(stats.table, broom = "prop.test")
 ```
 
-
 ¿Y cómo reportamos esto?: 
 
-> Esta prueba que evalúa la diferencia de proporciones entre encontrarse en situación de pobreza según sexo sugiere que el efecto es positivo y estadísticamente no signficativo ($X^2$= 0.19887, p = 0.6556). Por tanto, no se rechaza la $H_{0}$ sobre igualdad de proporciones ya que no existe suficiente evidencia para concluir que las proporciones en los dos grupos son significativamente diferentes.
+> Esta prueba que evalúa la diferencia de proporciones entre encontrarse en situación de pobreza según sexo sugiere que el efecto es positivo y estadísticamente no significativo ($X^2$= 0.19887, p = 0.6556). Por tanto, no se rechaza la $H_{0}$ sobre igualdad de proporciones ya que no existe suficiente evidencia para concluir que las proporciones en los dos grupos son significativamente diferentes.
 
+
+Además de lo anterior, vemos que en este caso el IC de diferencia de proporciones **sí contiene el cero**, por lo que no podemos rechazar la hipótesis nula.
 
 # Inferencia en correlación
 
@@ -425,7 +427,7 @@ Formulemos nuestra hipótesis:
 Obtengamos el coeficiente de correlación $r$ de Pearson entre el nivel educacional alcanzado y los ingresos de las personas en Chile en 2022. Para esto usaremos solamente observaciones completas (_listwise_).
 
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r}
 
 cor_results <- cor.test(proc_casen$educ, proc_casen$ytrabajocor, 
          method = "pearson", 
