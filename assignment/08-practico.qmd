@@ -24,9 +24,9 @@ En detalle, aprenderemos:
 En esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta de Caracterización Socioeconómica (CASEN) del año 2022, elaborada por el [Ministerio de Desarrollo Social y Familia](https://observatorio.ministeriodesarrollosocial.gob.cl/). Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace: [{{< fa table >}} `CASEN 20222`](https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/proc_casen.RData). Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos CASEN 2022.
 
 
-## Seis pasos para la inferencia estadística
+## Cinco pasos para la inferencia estadística
 
-En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado que obtenemos en nuestra muestra es un efecto real/extensible a la población o un error de muestreo. Aquí recomendamos una lista de seis pasos lógicos para enfrentarnos a la inferencia estadística: 
+En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado que obtenemos en nuestra muestra es un efecto real/extensible a la población o un error de muestreo. Aquí recomendamos una lista de cinco pasos lógicos para enfrentarnos a la inferencia estadística: 
 
 <style>
   table {
@@ -59,19 +59,15 @@ En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado
   </tr>
   <tr>
     <td class="cell-left">3</td>
-    <td class="cell-left">Especifica el valor crítico de la prueba</td>
+    <td class="cell-left">Calcula el valor estimado de la prueba (ej: Z o t)E</td>
   </tr>
   <tr>
     <td class="cell-left">4</td>
-    <td class="cell-left">Calcula el valor estimado de la prueba</td>
+    <td class="cell-left">Especifica el valor crítico de la prueba</td>
   </tr>
   <tr>
     <td class="cell-left">5</td>
-    <td class="cell-left">Contrasta el valor estimado con el valor crítico y toma la desición de rechazo</td>
-  </tr>
-  <tr>
-    <td class="cell-left">6</td>
-    <td class="cell-left">Interpreta y comunica los resultados</td>
+    <td class="cell-left">Contrasta el valor estimado con el valor crítico e intrepreta los resultados</td>
   </tr>
 </table>
 
@@ -83,7 +79,9 @@ Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesa
 pacman::p_load(tidyverse, # Manipulacion datos
                sjPlot, #tablas
                confintr, # IC
-               gginference) # Visualizacion 
+               gginference, # Visualizacion 
+               rempsyc, # Reporte
+               broom) # Varios
 
 options(scipen = 999) # para desactivar notacion cientifica
 rm(list = ls()) # para limpiar el entorno de trabajo
@@ -163,7 +161,11 @@ datos_ic <- ocupados %>%
 datos_ic
 ```
 
-3. Especifica el valor crítico de la prueba:
+3. Calcula el valor estimado de la prueba:
+
+Esto ya lo hicimos en el paso anterior estimando la $\bar{x}$ muestral para hombres y mujeres.
+
+4. Especifica el valor crítico de la prueba:
 
 ```{r ci_mean_1, echo=TRUE, message=FALSE, warning=FALSE, collapse=FALSE}
 
@@ -174,7 +176,7 @@ datos_ic <- datos_ic %>%
 datos_ic
 ```
 
-4. Calcula el valor estimado de la prueba:
+5. Contrasta el valor estimado con el crítico e interpreta los resultados: 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, collapse=FALSE}
 
@@ -186,16 +188,12 @@ datos_ic %>%
 
 ```
 
-5. Contrasta el valor estimado con el crítico y toma la desición de rechazo: 
-
 Para el caso de los hombres, su $\bar{x}$ es de 768.422, con un IC[760.057	- 776.787]. Para las mujeres, el 
 $\bar{x}$ es de 606.662, con un IC[599.998 -	613.326].
 
-6. Interpreta y comunica: 
-
 Vemos que, en este caso, los intervalos **no se solapan**. Así, podemos sostener que, con un 95% de confianza, existen diferencias poblacionales en el promedio de ingresos del trabajo entre hombres y mujeres en Chile en el 2022.
 
-7. Y el cálculo directo en R:
+6. Y el cálculo directo en R:
 
 ```{r ci_mean_r, echo=TRUE, message=FALSE, warning=FALSE, collapse=TRUE}
 ocupados_h <- ci_mean(ocupados$ytrabajocor[ocupados$sexo == 1]) # IC para hombres
@@ -212,7 +210,7 @@ Ya hemos visto cómo contrastar hipótesis solo para diferencias entre grupos. S
 ::: {.callout-tip}
 #### Prueba de una cola
 
-$$  H_{0}: \mu_{0} - \mu_{1} = 0 $$
+$$  H_{0}: \mu_{0} ≥ \mu_{1} ; \mu_{0} ≤ \mu_{1}$$
 
 $$  H_{A}: \mu_{0} > \mu_{1} $$
 
@@ -228,12 +226,12 @@ Apliquemos nuestros 6 pasos.
 
 En donde 0 = sin hijos y 1 = con hijos;
 
-- $H_{0}$: $\mu_{0}$ $-$ $\mu_{1}$ $=$ $0$
+- $H_{0}$: $\mu_{0}$ $≤$ $\mu_{1}$ 
 
 - $H_{A}$: $\mu_{0}$ $>$ $\mu_{1}$
 
 
-2. Calcula el error estándar (SE):
+2. Calcula el error estándar (SE) para diferencia de medias:
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
 
@@ -271,18 +269,7 @@ se_dif <- sqrt((s_0^2)/n_0 + (s_1^2)/n_1)
 se_dif
 ```
 
-3. Especifica el valor crítico.
-
-```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
-
-df <- n_0 + n_1 - 2 # definimos grados de libertad
-
-t_critico <- qt(1 - 0.05, df)
-
-t_critico
-```
-
-4. Calcula el valor estimado de la prueba.
+3. Calcula el valor estimado de la prueba (t para diferencia de medias):
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
 
@@ -291,7 +278,20 @@ t_stat <- dif_medias / se_dif
 t_stat
 ```
 
-5. Contrasta el valor estimado con el crítico y toma desición de rechazo.
+
+4. Calcula el valor estimado de la prueba:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+
+df <- n_0 + n_1 - 2 # definimos grados de libertad
+
+t_critico <- qt(p = 0.05, df, lower.tail = FALSE)
+
+t_critico
+```
+
+
+5. Contrasta el valor estimado con el crítico e interpreta los resultados:
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
 
@@ -299,17 +299,19 @@ t_stat > t_critico
 
 ```
 
-6. Interpreta y comunica los resultados. 
 
 > La prueba T que evalúa la diferencia de medias entre el ingreso del trabajo y tener hijos en las mujeres ocupadas sugiere que el efecto es positivo y estadísticamente signficativo (diferencia = 74.762, t(11417.34) = 8.15, p < .05). Por tanto, rechazamos la $H_{0}$ sobre igualdad de medias con un 95% de confianza, existiendo evidencia a favor de nuestra $H_{A}$ respecto a que el ingreso de las mujeres sin hijos es mayor al ingreso de las mujeres con hijos. 
 
-7. Y el cálculo en R.
+6. Y el cálculo en R.
 
-```{r t_goldin, echo=TRUE, warning=FALSE, message=FALSE, collapse=FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 t_results_goldin <- t.test(goldin_data$ytrabajocor ~ goldin_data$hijo, 
                            alternative = "greater") # indicamos la direccion de la prueba
 
-t_results_goldin
+stats.table  <- tidy(t_results_goldin, conf.int = T)
+nice_table(stats.table, broom = "t.test") 
+
+
 ```
 
 Visualicemos la distribución de esta prueba y su zona de rechazo.
@@ -366,9 +368,9 @@ sjPlot::sjt.xtab(pobreza$sexo, pobreza$pobreza_multi_5d, show.col.prc = T)
 
 Formulemos nuestras hipótesis:
 
-- $H_0$: $p_1$ $=$ $p_2$ 
+- $H_0$: $p_{hombres}$ $=$ $p_{mujeres}$ 
 
-- $H_A$: $p_1$ $\neq$ $p_2$
+- $H_A$: $p_{hombres}$ $\neq$ $p_{mujeres}$
 
 
 Ahora, creemos un objeto llamado `xtab` que contendrá la frecuencia de casos exitosos ("pobreza") sobre el total de casos para cada grupo. Luego, aplicamos la función `prop.test()` para evaluar nuestra hipótesis.
@@ -449,3 +451,19 @@ Completar el reporte de progreso correspondiente a esta práctica [aquí](). El 
 
 
 # Foro
+
+<script src="https://giscus.app/client.js"
+        data-repo="cursos-metodos-facso/correlacional"
+        data-repo-id="R_kgDOKCMXJQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOKCMXJc4CYd9S"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="es"
+        crossorigin="anonymous"
+        async>
+</script>
