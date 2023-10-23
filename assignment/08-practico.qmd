@@ -347,8 +347,6 @@ ggttest(t_results_goldin)
 
 En este caso, el IC del 95% es (59.670, Inf), donde "Inf" representa infinito. Esto significa que podemos estar 95% seguros de que **la diferencia real entre las medias está por encima de 59.670**. En otras palabras, con alta confianza, podemos afirmar que la media del "grupo 0" es significativamente mayor que la del "grupo 1".
 
-
-
 # Inferencia para proporciones
 
 Cuando queremos realizar inferencia para variables categóricas, generlamente utilizamos pruebas que comparan **proporciones de una variable de interés** entre grupos.
@@ -454,7 +452,7 @@ En detalle, aprendimos a:
 
 # Reporte de progreso
 
-Completar el reporte de progreso correspondiente a esta práctica [aquí](). El plazo para contestarlo es hasta el día viernes de la semana en la que se publica la práctica correspondiente.
+Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/4uicFBYH8RmJ5U6g6). El plazo para contestarlo es hasta el día viernes de la semana en la que se publica la práctica correspondiente.
 
 # Video de práctica
 
