@@ -359,7 +359,8 @@ Evaluamos si existen diferencias entre hombres y mujeres en la proporción de en
 ```{r, collapse=TRUE}
 pobreza <- proc_casen[1:300,] # creamos un subsample solo como ejemplo
 
-sjPlot::sjt.xtab(pobreza$sexo, pobreza$pobreza_multi_5d, show.col.prc = T)
+sjPlot::sjt.xtab(pobreza$pobreza_multi_5d, pobreza$sexo, show.col.prc = T)
+
 
 ```
 
@@ -374,12 +375,13 @@ Ahora, creemos un objeto llamado `xtab` que contendrá la frecuencia de casos ex
 
 ```{r xtab}
 
-xtab <- as.table(rbind(c(43, 91),c(47, 115)))
+xtab <- as.table(rbind(c(43, 47),c(91, 115)))
 
 dimnames(xtab) <- list(
-  sexo = c("hombre", "mujer"),
-  pobreza = c("si", "no")
+  pobreza = c("si", "no"),
+  sexo = c("hombre", "mujer")
 )
+
 ```
 
 Luego, aplicamos la función `prop.test()` para evaluar nuestra hipótesis.
