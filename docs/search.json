@@ -516,5 +516,68 @@
     "title": "Programa",
     "section": "Programación de sesiones",
     "text": "Programación de sesiones\nVisitar la página de Planificación."
+  },
+  {
+    "objectID": "assignment/09-practico.html",
+    "href": "assignment/09-practico.html",
+    "title": "Reportes dinámicos 3",
+    "section": "",
+    "text": "El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso.\nEn detalle, aprenderemos los siguientes contenidos:\n\nOrganización de un informe en Quarto\nGeneración y presentación de tablas y gráficos en Quarto.\nCómo autoreferenciar elementos dentro un documento Quarto.\n\nAdemás de la plantilla para el informe, dejamos a disposición una carpeta con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:\n\ninput: insumos, libro de códigos\ninput/data: base de datos original\nprocesamiento: archivos de sintaxis .R o .qmd\noutput: bases de datos procesada, informes, tablas, gráficos"
+  },
+  {
+    "objectID": "assignment/09-practico.html#encabezado-o-yaml",
+    "href": "assignment/09-practico.html#encabezado-o-yaml",
+    "title": "Reportes dinámicos 3",
+    "section": "Encabezado o YAML",
+    "text": "Encabezado o YAML\nPara comenzar, definiremos los elementos que van en el encabezado (front matter o YAML), al menos debemos especificar:\n\nTítulo\nSubtítulo\nAutores\nFecha\nIdioma\n\n\nCon ese YAML el encabezado queda de la siguiente forma:"
+  },
+  {
+    "objectID": "assignment/09-practico.html#apartados-y-subapartados",
+    "href": "assignment/09-practico.html#apartados-y-subapartados",
+    "title": "Reportes dinámicos 3",
+    "section": "Apartados y subapartados",
+    "text": "Apartados y subapartados\nPara los títulos de los apartados deben poner un #, y para los subapartados cada vez más pequeños dos o más #.\nPor ejemplo, si ponemos:\n# Variables\n## Descripción de variables\nLos apartados y subapartados diferirán en su tamaño y se verán de esta forma.\n\n\n\n\n\n\n\nNota\n\n\n\nPara los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN."
+  },
+  {
+    "objectID": "assignment/09-practico.html#introducción",
+    "href": "assignment/09-practico.html#introducción",
+    "title": "Reportes dinámicos 3",
+    "section": "Introducción",
+    "text": "Introducción\n\nEn este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace."
+  },
+  {
+    "objectID": "assignment/09-practico.html#variables",
+    "href": "assignment/09-practico.html#variables",
+    "title": "Reportes dinámicos 3",
+    "section": "Variables",
+    "text": "Variables\n\nEn este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nPodemos cargar las librerías sin que aparezca en nuestro informe, señalando la especificación al chunk echo=FALSE.\n```{r librerias, echo=FALSE, warning=FALSE, message=FALSE, collapse=TRUE}\nlibrary(pacman)\npacman::p_load(tidyverse,   # manipulacion datos\n               sjPlot,      # tablas\n               confintr,    # IC\n               gginference, # visualizacion \n               rempsyc,     # reporte\n               broom,       # varios\n               sjmisc)      # para descriptivos       \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo\n\n````\nEsto lo podemos repetir para la carga de la base de datos y el procesamiento de los datos.\n```{r datos, echo=FALSE, warning=FALSE, message=FALSE}\nload(\"../input/data/ELSOC_Long.RData\")\n````\n```{r procesamiento, echo=FALSE, warning=FALSE, message=FALSE}\n# Filtrar casos y seleccionar variables\n  data &lt;- elsoc_long_2016_2022 %&gt;% \n  filter(ola==1) %&gt;%\n  select(m0_sexo,m0_edad,m01,s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)\n\n# remover NA's\n  data &lt;- data %&gt;% \n  set_na(., na = c(-888, -999)) %&gt;% \n  na.omit()\n\n# crear variable nueva \n  data &lt;- data %&gt;% \n  rowwise() %&gt;%\n  mutate(sint_depresivos = mean(c(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) %&gt;% \n  ungroup()\n````"
+  },
+  {
+    "objectID": "assignment/09-practico.html#análisis",
+    "href": "assignment/09-practico.html#análisis",
+    "title": "Reportes dinámicos 3",
+    "section": "Análisis",
+    "text": "Análisis\n\nEn este apartado pueden poner sus análisis, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nAqui ponemos el análisis, de acuerdo con la pauta.\nEn la Figura 1 es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236\n\n\n\n\n\nFigura 1: Correlación entre edad y sintomatología depresiva"
+  },
+  {
+    "objectID": "assignment/09-practico.html#conclusiones",
+    "href": "assignment/09-practico.html#conclusiones",
+    "title": "Reportes dinámicos 3",
+    "section": "Conclusiones",
+    "text": "Conclusiones\n\nEn este apartado pueden poner sus conclusiones, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nAquí redactamos algunas conclusiones."
+  },
+  {
+    "objectID": "assignment/09-practico.html#bibliografía",
+    "href": "assignment/09-practico.html#bibliografía",
+    "title": "Reportes dinámicos 3",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\nEn este apartado pueden poner su bibliografía, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nPonemos un - para generar un listado.\n\nCOES (2023). Radiografía del Cambio Social: Análisis de Resultados Longitudinales ELSOC 2016-2022. Presentación de Resultados COES. Marzo, Santiago de Chile.\nR Core Team (2023). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/."
+  },
+  {
+    "objectID": "assignment/09-practico.html#descripción-de-variables",
+    "href": "assignment/09-practico.html#descripción-de-variables",
+    "title": "Reportes dinámicos 3",
+    "section": "Descripción de variables",
+    "text": "Descripción de variables\nEn este ejemplo, se seleccionaron las variables:\n\nsexo: sexo del encuestado, con nivel de medición nominal\nedad: edad del encuestado, con nivel de medición intervalar\n\nY las variables del módulo de Salud y Bienestar, referentes a Estado de ánimo: sintomatología depresiva, con nivel de medición ordinal, los ítems son los siguientes:\n\nFrecuencia: Poco interés o alegría\nFrecuencia: Decaimiento, pesadez o desesperanza\nFrecuencia: Dificultad para dormir o exceso de sueño\nFrecuencia: Cansancio o sensación de falta de energía\nFrecuencia: Apetito disminuido o aumentado\nFrecuencia: Dificultad para concentrarse\nFrecuencia: Mala opinión de sí mismo\nFrecuencia: Enlentecimiento físico\nFrecuencia: Pensamiento de muerte o dañarse\n\nEn la Tabla 1 podemos ver que la proporción de mujeres que responde la encuesta corresponde a 60.12%, mientras que la propoción de hombres corresponde a 39.88%.\n\n\n\n\nTabla 1: Distribución de sexo\n\n\nSexo\nn\nProporción\n\n\n\n\n1\n1151\n39.88\n\n\n2\n1735\n60.12\n\n\n\na Fuente: Elaboración propia en base a ELSOC 2016."
   }
 ]

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.353">
@@ -8,7 +8,7 @@
 
 <meta name="description" content="Estadística Correlacional - Asociación, inferencia y reporte">
 
-<title>Estadística Correlacional - Informaciones de la semana</title>
+<title>Estadística Correlacional - Reportes dinámicos 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,20 +50,23 @@ ul.task-list li input[type="checkbox"] {
   "type": "overlay",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
   }
 }</script>
 
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-<meta property="og:title" content="Estadística Correlacional - Informaciones de la semana">
+
+<meta property="og:title" content="Estadística Correlacional - Reportes dinámicos 3">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site-name" content="Estadística Correlacional">
@@ -83,8 +86,8 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Estadística Correlacional</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -134,45 +137,259 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivo-de-la-práctica" id="toc-objetivo-de-la-práctica" class="nav-link active" data-scroll-target="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+  <li><a href="#crear-un-documento-quarto" id="toc-crear-un-documento-quarto" class="nav-link" data-scroll-target="#crear-un-documento-quarto">Crear un documento Quarto</a></li>
+  <li><a href="#organización-de-un-informe-en-quarto" id="toc-organización-de-un-informe-en-quarto" class="nav-link" data-scroll-target="#organización-de-un-informe-en-quarto">Organización de un informe en Quarto</a>
+  <ul class="collapse">
+  <li><a href="#encabezado-o-yaml" id="toc-encabezado-o-yaml" class="nav-link" data-scroll-target="#encabezado-o-yaml">Encabezado o YAML</a></li>
+  <li><a href="#apartados-y-subapartados" id="toc-apartados-y-subapartados" class="nav-link" data-scroll-target="#apartados-y-subapartados">Apartados y subapartados</a></li>
+  </ul></li>
+  <li><a href="#informe" id="toc-informe" class="nav-link" data-scroll-target="#informe">Informe</a>
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
+  <li><a href="#descripción-de-variables" id="toc-descripción-de-variables" class="nav-link" data-scroll-target="#descripción-de-variables">Descripción de variables</a></li>
+  <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis">Análisis</a></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  </ul></li>
+  <li><a href="#video-de-práctica" id="toc-video-de-práctica" class="nav-link" data-scroll-target="#video-de-práctica">Video de práctica</a></li>
+  <li><a href="#foro" id="toc-foro" class="nav-link" data-scroll-target="#foro">Foro</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<div class="back-nav"><a href="../news/">← News</a></div>
+<header id="title-block-header">
+<h1 class="title display-7">Reportes dinámicos 3</h1>
 
-<header id="title-block-header" class="news quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Informaciones de la semana</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">info</div>
-  </div>
-  </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Posted</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Monday August 7, 2023 at 12:00 AM</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
+<div class="date-block bg-assignment text-white p-2">
+  <p class="date">Completar hasta as 11:59 PM del martes, 7 de noviembre de 2023</p>
+</div>
 </header>
 
-<p>Actualizaciones sitio web:</p>
+<section id="objetivo-de-la-práctica" class="level1">
+<h1>Objetivo de la práctica</h1>
+<p>El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso.</p>
+<p>En detalle, aprenderemos los siguientes contenidos:</p>
+<ol type="1">
+<li>Organización de un informe en Quarto</li>
+<li>Generación y presentación de tablas y gráficos en Quarto.</li>
+<li>Cómo autoreferenciar elementos dentro un documento Quarto.</li>
+</ol>
+<p>Además de la plantilla para el informe, dejamos a disposición una carpeta con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:</p>
 <ul>
-<li></li>
+<li><em>input</em>: insumos, libro de códigos</li>
+<li><em>input/data</em>: base de datos original</li>
+<li><em>procesamiento</em>: archivos de sintaxis .R o .qmd</li>
+<li><em>output</em>: bases de datos procesada, informes, tablas, gráficos</li>
 </ul>
+</section>
+<section id="crear-un-documento-quarto" class="level1">
+<h1>Crear un documento Quarto</h1>
+<p>Para generar un documento Quarto hacemos lo siguiente:</p>
+<p><img src="../files/crear-rmd.gif" class="img-fluid"></p>
+</section>
+<section id="organización-de-un-informe-en-quarto" class="level1">
+<h1>Organización de un informe en Quarto</h1>
+<section id="encabezado-o-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="encabezado-o-yaml">Encabezado o YAML</h2>
+<p>Para comenzar, definiremos los elementos que van en el encabezado (front matter o YAML), al menos debemos especificar:</p>
+<ul>
+<li>Título</li>
+<li>Subtítulo</li>
+<li>Autores</li>
+<li>Fecha</li>
+<li>Idioma</li>
+</ul>
+<p><img src="../files/yaml_informe.png" class="img-fluid"></p>
+<p>Con ese YAML el encabezado queda de la siguiente forma:</p>
+<p><img src="../files/encabezado.png" class="img-fluid"></p>
+</section>
+<section id="apartados-y-subapartados" class="level2">
+<h2 class="anchored" data-anchor-id="apartados-y-subapartados">Apartados y subapartados</h2>
+<p>Para los títulos de los <em>apartados</em> deben poner un #, y para los <em>subapartados</em> cada vez más pequeños dos o más #.</p>
+<p>Por ejemplo, si ponemos:</p>
+<p># Variables</p>
+<p>## Descripción de variables</p>
+<p>Los apartados y subapartados diferirán en su tamaño y se verán de esta forma.</p>
+<p><img src="../files/apartados.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="informe" class="level1">
+<h1>Informe</h1>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<blockquote class="blockquote">
+<p>En este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
+</blockquote>
+</section>
+<section id="variables" class="level2">
+<h2 class="anchored" data-anchor-id="variables">Variables</h2>
+<blockquote class="blockquote">
+<p>En este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
+</blockquote>
+<p>Podemos cargar las librerías sin que aparezca en nuestro informe, señalando la especificación al chunk <code>echo=FALSE</code>.</p>
+<pre><code>```{r librerias, echo=FALSE, warning=FALSE, message=FALSE, collapse=TRUE}
+library(pacman)
+pacman::p_load(tidyverse,   # manipulacion datos
+               sjPlot,      # tablas
+               confintr,    # IC
+               gginference, # visualizacion 
+               rempsyc,     # reporte
+               broom,       # varios
+               sjmisc)      # para descriptivos       
+
+options(scipen = 999) # para desactivar notacion cientifica
+rm(list = ls()) # para limpiar el entorno de trabajo
+
+````</code></pre>
+<p>Esto lo podemos repetir para la carga de la base de datos y el procesamiento de los datos.</p>
+<pre><code>```{r datos, echo=FALSE, warning=FALSE, message=FALSE}
+load("../input/data/ELSOC_Long.RData")
+````</code></pre>
+<pre><code>```{r procesamiento, echo=FALSE, warning=FALSE, message=FALSE}
+# Filtrar casos y seleccionar variables
+  data &lt;- elsoc_long_2016_2022 %&gt;% 
+  filter(ola==1) %&gt;%
+  select(m0_sexo,m0_edad,m01,s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)
+
+# remover NA's
+  data &lt;- data %&gt;% 
+  set_na(., na = c(-888, -999)) %&gt;% 
+  na.omit()
+
+# crear variable nueva 
+  data &lt;- data %&gt;% 
+  rowwise() %&gt;%
+  mutate(sint_depresivos = mean(c(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) %&gt;% 
+  ungroup()
+````</code></pre>
+</section>
+<section id="descripción-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-de-variables">Descripción de variables</h2>
+<p>En este ejemplo, se seleccionaron las variables:</p>
+<ul>
+<li>sexo: sexo del encuestado, con nivel de medición nominal</li>
+<li>edad: edad del encuestado, con nivel de medición intervalar</li>
+</ul>
+<p>Y las variables del módulo de Salud y Bienestar, referentes a <em>Estado de ánimo: sintomatología depresiva</em>, con nivel de medición ordinal, los ítems son los siguientes:</p>
+<ul>
+<li>Frecuencia: Poco interés o alegría</li>
+<li>Frecuencia: Decaimiento, pesadez o desesperanza</li>
+<li>Frecuencia: Dificultad para dormir o exceso de sueño</li>
+<li>Frecuencia: Cansancio o sensación de falta de energía</li>
+<li>Frecuencia: Apetito disminuido o aumentado</li>
+<li>Frecuencia: Dificultad para concentrarse</li>
+<li>Frecuencia: Mala opinión de sí mismo</li>
+<li>Frecuencia: Enlentecimiento físico</li>
+<li>Frecuencia: Pensamiento de muerte o dañarse</li>
+</ul>
+<p>En la <a href="#tbl-sexo">Tabla&nbsp;1</a> podemos ver que la proporción de mujeres que responde la encuesta corresponde a 60.12%, mientras que la propoción de hombres corresponde a 39.88%.</p>
+<div class="cell tbl-cap-location-top">
+<div class="cell-output-display">
+<div id="tbl-sexo" class="anchored">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Tabla&nbsp;1: Distribución de sexo</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sexo</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Proporción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1151</td>
+<td style="text-align: center;">39.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1735</td>
+<td style="text-align: center;">60.12</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: center; padding: 0; border: 0;"><sup>a</sup> Fuente: Elaboración propia en base a ELSOC 2016.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
 
 
+</div>
+</div>
+</section>
+<section id="análisis" class="level2">
+<h2 class="anchored" data-anchor-id="análisis">Análisis</h2>
+<blockquote class="blockquote">
+<p>En este apartado pueden poner sus análisis, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
+</blockquote>
+<p>Aqui ponemos el análisis, de acuerdo con la <a href="https://correlacional.netlify.app/trabajos">pauta</a>.</p>
+<p>En la <a href="#fig-cor_edad_dep">Figura&nbsp;1</a> es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cor_edad_dep" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="09-practico_files/figure-html/fig-cor_edad_dep-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Figura&nbsp;1: Correlación entre edad y sintomatología depresiva</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusiones" class="level2">
+<h2 class="anchored" data-anchor-id="conclusiones">Conclusiones</h2>
+<blockquote class="blockquote">
+<p>En este apartado pueden poner sus conclusiones, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
+</blockquote>
+<p>Aquí redactamos algunas conclusiones.</p>
+</section>
+<section id="bibliografía" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografía">Bibliografía</h2>
+<blockquote class="blockquote">
+<p>En este apartado pueden poner su bibliografía, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
+</blockquote>
+<p>Ponemos un <code>-</code> para generar un listado.</p>
+<ul>
+<li><p>COES (2023). <em>Radiografía del Cambio Social: Análisis de Resultados Longitudinales ELSOC 2016-2022. Presentación de Resultados COES</em>. Marzo, Santiago de Chile.</p></li>
+<li><p>R Core Team (2023). <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="video-de-práctica" class="level1">
+<h1>Video de práctica</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/-nvtdhKOD9E" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="foro" class="level1">
+<h1>Foro</h1>
+<script src="https://giscus.app/client.js" data-repo="cursos-metodos-facso/correlacional" data-repo-id="R_kgDOKCMXJQ" data-category="Q&amp;A" data-category-id="DIC_kwDOKCMXJc4CYd9S" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="es" crossorigin="anonymous" async="">
+</script>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -229,12 +446,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
