@@ -272,7 +272,7 @@ Ponemos un `-` para generar un listado.
 
 # Video de práctica
 
-{{< video https://youtu.be/-nvtdhKOD9E >}}
+<!-- {{< video https://youtu.be/-nvtdhKOD9E >}} -->
 
 # Foro
 
