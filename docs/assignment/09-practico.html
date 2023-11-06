@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -142,11 +176,20 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#objetivo-de-la-práctica" id="toc-objetivo-de-la-práctica" class="nav-link active" data-scroll-target="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
-  <li><a href="#crear-un-documento-quarto" id="toc-crear-un-documento-quarto" class="nav-link" data-scroll-target="#crear-un-documento-quarto">Crear un documento Quarto</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
   <li><a href="#organización-de-un-informe-en-quarto" id="toc-organización-de-un-informe-en-quarto" class="nav-link" data-scroll-target="#organización-de-un-informe-en-quarto">Organización de un informe en Quarto</a>
   <ul class="collapse">
+  <li><a href="#crear-un-documento-quarto" id="toc-crear-un-documento-quarto" class="nav-link" data-scroll-target="#crear-un-documento-quarto">Crear un documento Quarto</a></li>
   <li><a href="#encabezado-o-yaml" id="toc-encabezado-o-yaml" class="nav-link" data-scroll-target="#encabezado-o-yaml">Encabezado o YAML</a></li>
   <li><a href="#apartados-y-subapartados" id="toc-apartados-y-subapartados" class="nav-link" data-scroll-target="#apartados-y-subapartados">Apartados y subapartados</a></li>
+  <li><a href="#insertar-imágenes" id="toc-insertar-imágenes" class="nav-link" data-scroll-target="#insertar-imágenes">Insertar imágenes</a></li>
+  </ul></li>
+  <li><a href="#procesamiento-de-datos" id="toc-procesamiento-de-datos" class="nav-link" data-scroll-target="#procesamiento-de-datos">Procesamiento de datos</a>
+  <ul class="collapse">
+  <li><a href="#carga-de-librerías" id="toc-carga-de-librerías" class="nav-link" data-scroll-target="#carga-de-librerías">Carga de librerías</a></li>
+  <li><a href="#carga-de-datos" id="toc-carga-de-datos" class="nav-link" data-scroll-target="#carga-de-datos">Carga de datos</a></li>
+  <li><a href="#limpieza-de-datos" id="toc-limpieza-de-datos" class="nav-link" data-scroll-target="#limpieza-de-datos">Limpieza de datos</a></li>
+  <li><a href="#guardar-base-de-datos-resultante" id="toc-guardar-base-de-datos-resultante" class="nav-link" data-scroll-target="#guardar-base-de-datos-resultante">Guardar base de datos resultante</a></li>
   </ul></li>
   <li><a href="#informe" id="toc-informe" class="nav-link" data-scroll-target="#informe">Informe</a>
   <ul class="collapse">
@@ -157,6 +200,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
   <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
   </ul></li>
+  <li><a href="#reporte-de-progreso" id="toc-reporte-de-progreso" class="nav-link" data-scroll-target="#reporte-de-progreso">Reporte de progreso</a></li>
   <li><a href="#video-de-práctica" id="toc-video-de-práctica" class="nav-link" data-scroll-target="#video-de-práctica">Video de práctica</a></li>
   <li><a href="#foro" id="toc-foro" class="nav-link" data-scroll-target="#foro">Foro</a></li>
   </ul>
@@ -175,28 +219,43 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="objetivo-de-la-práctica" class="level1">
 <h1>Objetivo de la práctica</h1>
-<p>El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso.</p>
+<p>El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso, de manera colaborativa.</p>
 <p>En detalle, aprenderemos los siguientes contenidos:</p>
 <ol type="1">
-<li>Organización de un informe en Quarto</li>
+<li>Creación y organización de un informe en Quarto</li>
 <li>Generación y presentación de tablas y gráficos en Quarto.</li>
 <li>Cómo autoreferenciar elementos dentro un documento Quarto.</li>
 </ol>
-<p>Además de la plantilla para el informe, dejamos a disposición una carpeta con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:</p>
+<p>Además de la plantilla para el informe, dejamos a disposición una <a href="">carpeta</a> con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:</p>
 <ul>
 <li><em>input</em>: insumos, libro de códigos</li>
+<li><em>input/img</em>: imágenes</li>
 <li><em>input/data</em>: base de datos original</li>
-<li><em>procesamiento</em>: archivos de sintaxis .R o .qmd</li>
+<li><em>procesamiento</em>: archivos de sintaxis .R</li>
 <li><em>output</em>: bases de datos procesada, informes, tablas, gráficos</li>
 </ul>
+<p>Recordemos que este sistema de carpetas hace referencia al sistema IPO (Input-Procesamiento-Output).</p>
+<p><img src="../files/ipo-rproj.png" class="img-fluid"></p>
+<p>Donde el flujo de trabajo es el siguiente:</p>
+<p><img src="../files/ipo-exp.png" class="img-fluid"></p>
+<p>Por último, Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.</p>
 </section>
-<section id="crear-un-documento-quarto" class="level1">
-<h1>Crear un documento Quarto</h1>
-<p>Para generar un documento Quarto hacemos lo siguiente:</p>
-<p><img src="../files/crear-rmd.gif" class="img-fluid"></p>
+<section id="quarto" class="level1">
+<h1>Quarto</h1>
+<p><a href="https://quarto.org/">Quarto</a> es un sistema de publicación técnico y científico de código abierto. Es un lenguaje para crear y formatear documentos, similar a <strong>Markdown</strong>, aunque más general, con nuevas características y capacidades.</p>
+<p>No es exclusivo de R, también funciona con Python, Julia, y Observable.</p>
+<p>Como R Markdown, Quarto usa knitr para ejcutar códigos de R, y por lo tanto es capaz de renderizar la mayor parte de los archivos .Rmd sin necesidad de hacer modificaciones. Es así como lo que hemos hecho con R Markdown funciona en Quarto, sin embargo, el uso de Quarto se ha masificado en el último tiempo, con su mayor amplitud de recursos.</p>
+<p>El nombre de Quarto viene del formato de un libro o panfleto producido a partir de hojas completas impresas con ocho páginas de texto, cuatro en cada lado, que luego se pliegan dos veces para producir cuatro hojas. Las hojas se recortan a lo largo de los pliegues para producir ocho páginas de libro. Cada página impresa se presenta como un cuarto del tamaño de la hoja completa.</p>
+<p>El libro impreso más antiguo de Europa conocido es un quarto, el Sibyllenbuch, que se cree que fue impreso por Johannes Gutenberg en 1452-53, antes de la Biblia de Gutenberg, y que sobrevive solo como un fragmento.</p>
+<p>Lo que nos remite a las ideas de ciencia abierta y a la posibilidad de universalizar el conocimiento.</p>
 </section>
 <section id="organización-de-un-informe-en-quarto" class="level1">
 <h1>Organización de un informe en Quarto</h1>
+<section id="crear-un-documento-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="crear-un-documento-quarto">Crear un documento Quarto</h2>
+<p>Para generar un documento Quarto hacemos lo siguiente:</p>
+<p><img src="../files/crear-rmd.gif" class="img-fluid"></p>
+</section>
 <section id="encabezado-o-yaml" class="level2">
 <h2 class="anchored" data-anchor-id="encabezado-o-yaml">Encabezado o YAML</h2>
 <p>Para comenzar, definiremos los elementos que van en el encabezado (front matter o YAML), al menos debemos especificar:</p>
@@ -208,30 +267,96 @@ ul.task-list li input[type="checkbox"] {
 <li>Idioma</li>
 </ul>
 <p><img src="../files/yaml_informe.png" class="img-fluid"></p>
-<p>Con ese YAML el encabezado queda de la siguiente forma:</p>
+<p>Con ese YAML el encabezado se ve de la siguiente forma:</p>
 <p><img src="../files/encabezado.png" class="img-fluid"></p>
 </section>
 <section id="apartados-y-subapartados" class="level2">
 <h2 class="anchored" data-anchor-id="apartados-y-subapartados">Apartados y subapartados</h2>
-<p>Para los títulos de los <em>apartados</em> deben poner un #, y para los <em>subapartados</em> cada vez más pequeños dos o más #.</p>
+<p>Para los títulos de los <em>apartados</em> deben poner un # antes del nombre, y para los <em>subapartados</em> cada vez más pequeños dos o más #.</p>
 <p>Por ejemplo, si ponemos:</p>
 <p># Variables</p>
 <p>## Descripción de variables</p>
 <p>Los apartados y subapartados diferirán en su tamaño y se verán de esta forma.</p>
 <p><img src="../files/apartados.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section>
+<section id="insertar-imágenes" class="level2">
+<h2 class="anchored" data-anchor-id="insertar-imágenes">Insertar imágenes</h2>
+<p>Si quisiéramos poner una imagen, lo ideal es llamarla desde la web:</p>
+<blockquote class="blockquote">
+<p>Recordemos que si no queremos que se vea un chunk, en las options debemos poner <code>echo=FALSE</code>.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include_graphics</span>(<span class="st">"https://www.desarrollosocialyfamilia.gob.cl/storage/image/banner-saludmental.png"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="https://www.desarrollosocialyfamilia.gob.cl/storage/image/banner-saludmental.png" class="img-fluid"></p>
 </div>
-<div class="callout-title-container flex-fill">
-Nota
+</div>
+<p>O desde la carpeta local <code>![](../input/img/nombre_imagen.extension)</code> o con:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include_graphics</span>(<span class="st">"../files/banner-saludmental.png"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="../files/banner-saludmental.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.</p>
+</section>
+</section>
+<section id="procesamiento-de-datos" class="level1">
+<h1>Procesamiento de datos</h1>
+<p>El procesamiento de datos lo realizaremos en un archivo de sintaxis <code>proc_data.R</code>, que alojaremos en la carpeta de <em>procesamiento</em>.</p>
+<section id="carga-de-librerías" class="level2">
+<h2 class="anchored" data-anchor-id="carga-de-librerías">Carga de librerías</h2>
+<p>Las librerías que utilizaremos en esta guía práctica son:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,   <span class="co"># manipulacion datos</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               sjPlot,      <span class="co"># tablas</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               confintr,    <span class="co"># IC</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               gginference, <span class="co"># visualizacion </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>               rempsyc,     <span class="co"># reporte</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>               broom,       <span class="co"># varios</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>               sjmisc,      <span class="co"># para descriptivos</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>               knitr)       <span class="co"># para       </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="carga-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="carga-de-datos">Carga de datos</h2>
+<p>Como señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta <code>input/data</code>, y se llama de la siguiente forma:</p>
+<pre><code>```{r datos, warning=FALSE, message=FALSE}
+load("../input/data/ELSOC_Long.RData")
+````</code></pre>
+<p>Pero, para llamar la base de datos desde la web:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://dataverse.harvard.edu/api/access/datafile/7245118"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="limpieza-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="limpieza-de-datos">Limpieza de datos</h2>
+<p>Realizaremos un tratamiento simple de los casos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar casos y seleccionar variables</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> elsoc_long_2016_2022<span class="fl">.2</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ola<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">sexo=</span>m0_sexo,<span class="at">edad=</span>m0_edad,<span class="at">nedu=</span>m01,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># remover NA's</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_na</span>(., <span class="at">na =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">888</span>, <span class="sc">-</span><span class="dv">999</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># crear variable nueva </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sint_depresivos =</span> <span class="fu">mean</span>(<span class="fu">c</span>(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="guardar-base-de-datos-resultante" class="level2">
+<h2 class="anchored" data-anchor-id="guardar-base-de-datos-resultante">Guardar base de datos resultante</h2>
+<p>Guardamos la base de datos procesada en la carpeta de <em>output</em>, con <code>saveRDS(data, "../output/data.Rdata")</code></p>
 </section>
 </section>
 <section id="informe" class="level1">
@@ -241,48 +366,14 @@ Nota
 <blockquote class="blockquote">
 <p>En este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
 </blockquote>
+<p>En este ejemplo daremos una mirada a la salud mental, y exploraremos posibles asociaciones con la edad, sexo y nivel educacional.</p>
 </section>
 <section id="variables" class="level2">
 <h2 class="anchored" data-anchor-id="variables">Variables</h2>
 <blockquote class="blockquote">
 <p>En este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
 </blockquote>
-<p>Podemos cargar las librerías sin que aparezca en nuestro informe, señalando la especificación al chunk <code>echo=FALSE</code>.</p>
-<pre><code>```{r librerias, echo=FALSE, warning=FALSE, message=FALSE, collapse=TRUE}
-library(pacman)
-pacman::p_load(tidyverse,   # manipulacion datos
-               sjPlot,      # tablas
-               confintr,    # IC
-               gginference, # visualizacion 
-               rempsyc,     # reporte
-               broom,       # varios
-               sjmisc)      # para descriptivos       
-
-options(scipen = 999) # para desactivar notacion cientifica
-rm(list = ls()) # para limpiar el entorno de trabajo
-
-````</code></pre>
-<p>Esto lo podemos repetir para la carga de la base de datos y el procesamiento de los datos.</p>
-<pre><code>```{r datos, echo=FALSE, warning=FALSE, message=FALSE}
-load("../input/data/ELSOC_Long.RData")
-````</code></pre>
-<pre><code>```{r procesamiento, echo=FALSE, warning=FALSE, message=FALSE}
-# Filtrar casos y seleccionar variables
-  data &lt;- elsoc_long_2016_2022 %&gt;% 
-  filter(ola==1) %&gt;%
-  select(m0_sexo,m0_edad,m01,s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)
-
-# remover NA's
-  data &lt;- data %&gt;% 
-  set_na(., na = c(-888, -999)) %&gt;% 
-  na.omit()
-
-# crear variable nueva 
-  data &lt;- data %&gt;% 
-  rowwise() %&gt;%
-  mutate(sint_depresivos = mean(c(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) %&gt;% 
-  ungroup()
-````</code></pre>
+<p>A continuación, en nuestro ejemplo describiremos las variables necesarias para responder a nuestro objetivo.</p>
 </section>
 <section id="descripción-de-variables" class="level2">
 <h2 class="anchored" data-anchor-id="descripción-de-variables">Descripción de variables</h2>
@@ -290,6 +381,7 @@ load("../input/data/ELSOC_Long.RData")
 <ul>
 <li>sexo: sexo del encuestado, con nivel de medición nominal</li>
 <li>edad: edad del encuestado, con nivel de medición intervalar</li>
+<li>nedu: nivel educativo del encuestado, con nivel de medición ordinal</li>
 </ul>
 <p>Y las variables del módulo de Salud y Bienestar, referentes a <em>Estado de ánimo: sintomatología depresiva</em>, con nivel de medición ordinal, los ítems son los siguientes:</p>
 <ul>
@@ -303,8 +395,29 @@ load("../input/data/ELSOC_Long.RData")
 <li>Frecuencia: Enlentecimiento físico</li>
 <li>Frecuencia: Pensamiento de muerte o dañarse</li>
 </ul>
+<blockquote class="blockquote">
+<p>Podemos caargar los datos en nuestro informe sin que se vea poniendo la option <code>echo=FALSE</code>: <code>load("../output/data.RData")</code>.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> <span class="co"># agrupamos por sexo</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># contamos por categ de respuesta</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">round</span>((n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="co"># porcentaje</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tab1[<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ph <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tab1[<span class="dv">1</span>,<span class="dv">3</span>])</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>tabla1 <span class="ot">&lt;-</span> tab1 <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Sexo"</span>, <span class="st">"n"</span>, <span class="st">"Proporción"</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 1. Distribución de sexo"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>, <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a ELSOC 2016."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>En la <a href="#tbl-sexo">Tabla&nbsp;1</a> podemos ver que la proporción de mujeres que responde la encuesta corresponde a 60.12%, mientras que la propoción de hombres corresponde a 39.88%.</p>
 <div class="cell tbl-cap-location-top">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tabla1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-sexo" class="anchored">
 <table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
@@ -341,15 +454,40 @@ load("../input/data/ELSOC_Long.RData")
 
 </div>
 </div>
+<blockquote class="blockquote">
+<p>En las options del chunk desde el que llamamos a la tabla le ponemos <code>tbl-nombre tabla</code> para etiquetarla, y luego en el texto ponemos <code>@tbl-nombre-tabla</code> para referenciarla. También, cuando queremos llamar un valor, es necesario asignarlo a un objeto, y en el texto lo llamamos con:</p>
+</blockquote>
+<p><img src="../files/resul-m.png" class="img-fluid"></p>
 </section>
 <section id="análisis" class="level2">
 <h2 class="anchored" data-anchor-id="análisis">Análisis</h2>
 <blockquote class="blockquote">
 <p>En este apartado pueden poner sus análisis, de acuerdo con la pauta del trabajo que se encuentra disponible en el <a href="https://correlacional.netlify.app/trabajos">enlace</a>.</p>
 </blockquote>
-<p>Aqui ponemos el análisis, de acuerdo con la <a href="https://correlacional.netlify.app/trabajos">pauta</a>.</p>
-<p>En la <a href="#fig-cor_edad_dep">Figura&nbsp;1</a> es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236</p>
+<p>En nuestro ejemplo, analizaremos la correlación entre algunas variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cor_edad_dep <span class="ot">&lt;-</span> <span class="fu">cor</span>(data<span class="sc">$</span>edad, data<span class="sc">$</span>sint_depresivos)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cor_nedu_dep <span class="ot">&lt;-</span> <span class="fu">cor</span>(data<span class="sc">$</span>nedu, data<span class="sc">$</span>sint_depresivos)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>cor_nedu_edad <span class="ot">&lt;-</span> <span class="fu">cor</span>(data<span class="sc">$</span>nedu, data<span class="sc">$</span>edad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nedu) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sint_dep =</span> <span class="fu">mean</span>(sint_depresivos, <span class="at">na.rm =</span> T),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">edad=</span><span class="fu">mean</span>(edad, <span class="at">na.rm =</span> T))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>grafico1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> g1,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sint_dep, <span class="at">y =</span> edad, <span class="at">label =</span> nedu)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,<span class="at">colour =</span> <span class="st">"black"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>,<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sintomatología depresiva"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Edad"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: Elaboración propia en base a ELSOC 2026"</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>En la <a href="#fig-cor_edad_dep">Figura&nbsp;1</a> es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236.</p>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grafico1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-cor_edad_dep" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -359,6 +497,9 @@ load("../input/data/ELSOC_Long.RData")
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>En las options del chunk desde el que llamamos a la figura le ponemos <code>fig-nombre figura</code> para etiquetarla, y luego en el texto ponemos <code>@fig-nombre-figura</code> para referenciarla.</p>
+</blockquote>
 </section>
 <section id="conclusiones" class="level2">
 <h2 class="anchored" data-anchor-id="conclusiones">Conclusiones</h2>
@@ -378,6 +519,10 @@ load("../input/data/ELSOC_Long.RData")
 <li><p>R Core Team (2023). <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p></li>
 </ul>
 </section>
+</section>
+<section id="reporte-de-progreso" class="level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://docs.google.com/forms/d/1cJbjoBBweNANbBaEb4PGIg9wGJdA_bDRap-gMc3Ma3c/edit">aquí</a>. El plazo para contestarlo es hasta el día martes de la semana siguiente a la que se publica la práctica correspondiente.</p>
 </section>
 <section id="video-de-práctica" class="level1">
 <h1>Video de práctica</h1>
