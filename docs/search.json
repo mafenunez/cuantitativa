@@ -606,7 +606,7 @@
     "href": "assignment/09-practico.html#carga-de-datos",
     "title": "Reportes dinámicos 3",
     "section": "Carga de datos",
-    "text": "Carga de datos\nComo señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta input/data, y se llama de la siguiente forma:\n```{r datos, warning=FALSE, message=FALSE}\nload(\"../input/data/ELSOC_Long.RData\")\n````\nPero, para llamar la base de datos desde la web:\n\nload(url(\"https://dataverse.harvard.edu/api/access/datafile/7245118\"))"
+    "text": "Carga de datos\nComo señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta input/data, y se llama de la siguiente forma:\nload(\"../input/data/ELSOC_Long.RData\")\nPero, para llamar la base de datos desde la web:\n\nload(url(\"https://dataverse.harvard.edu/api/access/datafile/7245118\"))"
   },
   {
     "objectID": "assignment/09-practico.html#limpieza-de-datos",
@@ -620,6 +620,6 @@
     "href": "assignment/09-practico.html#guardar-base-de-datos-resultante",
     "title": "Reportes dinámicos 3",
     "section": "Guardar base de datos resultante",
-    "text": "Guardar base de datos resultante\nGuardamos la base de datos procesada en la carpeta de output, con saveRDS(data, \"../output/data.Rdata\")"
+    "text": "Guardar base de datos resultante\nGuardamos la base de datos procesada en la carpeta de output, con\nsaveRDS(data, \"../output/data.Rdata\")"
   }
 ]

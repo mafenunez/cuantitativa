@@ -75,7 +75,7 @@ Lo que nos remite a las ideas de ciencia abierta y a la posibilidad de universal
 
 Para generar un documento Quarto hacemos lo siguiente:
 
-![](../files/crear-rmd.gif)
+![](../files/crear-qmd.gif)
 
 
 ## Encabezado o YAML
@@ -160,15 +160,14 @@ rm(list = ls()) # para limpiar el entorno de trabajo
 
 Como señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta `input/data`, y se llama de la siguiente forma:
 
-
-    `r ''````{r datos, warning=FALSE, message=FALSE}
-    load("../input/data/ELSOC_Long.RData")
-    ````
+`load("../input/data/ELSOC_Long.RData")`
+    
 Pero, para llamar la base de datos desde la web:
 
 ```{r datos, warning=FALSE, message=FALSE}
 load(url("https://dataverse.harvard.edu/api/access/datafile/7245118"))
 ```
+
 
 ## Limpieza de datos
 
@@ -196,7 +195,9 @@ data <- data %>%
 
 ## Guardar base de datos resultante
 
-Guardamos la base de datos procesada en la carpeta de _output_, con  `saveRDS(data, "../output/data.Rdata")`
+Guardamos la base de datos procesada en la carpeta de _output_, con 
+
+`saveRDS(data, "../output/data.Rdata")`
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 saveRDS(data, "../assignment/data/data.RData")
