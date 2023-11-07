@@ -105,116 +105,151 @@
     "text": "Estadística Correlacional\n        \n        \n            Asociación, inferencia y reporte\n        \n        \n            SOC01019 • Segundo Semestre 2023Departamento de Sociología, Facultad de Ciencias SocialesUniversidad de Chile\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\nEquipo docente\nProfesor\n\n\n\nProf. Juan Carlos Castillo\n\n   325 Sociología FACSO, Universidad de Chile\n   juancastillov@uchile.cl\n   Agendar reunión\n\nApoyos docentes\n\n\n\nDaniela Olivares\n\n   danielaolivarescollio@gmail.com\n   Agendar reunión\n\n\n\n\nAndreas Laffert\n\n   andreas.laffert@ug.uchile.cl\n   Agendar reunión\n\nAyudantes\n\nBladimir Beltran\nMatías Buller\nNeyem Cares\nCarolina Collao\nAníbal Figueroa\nValentina Frómeta\nPedro González\nAnaís Herrada\nMoira Martínez\nEmilio Miranda\n\n\n\nActividades\n\n   Lunes 8:30-10:00 - Aulario A/7-8\n   Martes 10:15-11:45 Online / Laboratorio computación 2\n\n\n\nContacto\nE-mail es la mejor manera de ponerse en contacto conmigo y con el equipo docente del curso."
   },
   {
-    "objectID": "example/cace.html",
-    "href": "example/cace.html",
-    "title": "Complier average treatment effects",
+    "objectID": "example/index.html",
+    "href": "example/index.html",
+    "title": "Code examples",
     "section": "",
-    "text": "Throughout this course, we’ve talked about the difference between the average treatment effect (ATE), or the average effect of a program for an entire population, and conditional average treatment effect (CATE), or the average effect of a program for some segment of the population. There are all sorts of CATEs: you can find the CATE for men vs. women, for people who are treated with the program (the average treatment on the treated, or ATT or TOT), for people who are not treated with the program (the average treatment on the untreated, or ATU), and so on.\nOne important type of CATE is the effect of a program on just those who comply with the program. We can call this the complier average treatment effect, but the acronym would be the same as conditional average treatment effect, so we’ll call it the complier average causal effect or CACE.\nThinking about compliance is important. You might randomly assign people to receive treatment or a program, but people might not do what you tell them. Additionally, people might do the program if assigned to do it, but they would have done it anyway. We can split the population into four types of people:\n\nCompliers: People who follow whatever their assignment is (if assigned to treatment, they do the program; if assigned to control, they don’t)\nAlways takers: People who will receive or seek out the program regardless of assignment (if assigned to treatment, they do the program; if assigned to control, they still do the program)\nNever takers: People who will not receive or seek out the program regardless of assignment (if assigned to treatment, they don’t do the program; if assigned to control, they also don’t do it)\nDefiers: People who will do the opposite of whatever their assignment is (if assigned to treatment, they don’t do the program; if assigned to control, they do the program)\n\nTo simplify things, evaluators and econometricians assume that defiers don’t exist based on the idea of monotonicity, which means that we can assume that the effect of being assigned to treatment only increases the likelihood of participating in the program (and doesn’t make it more likely).\nThe tricky part about trying to find who the compliers are in a sample is that we can’t know what people would have done in the absence of treatment. If we see that someone in the experiment was assigned to be in the treatment group and they then participated in the program, they could be a complier (since they did what they were assigned to do), or they could be an always taker (they did what they were assigned to do, but they would have done it anyway). Due to the fundamental problem of causal inference, we cannot know what each person would have done in a parallel world.\nWe can use data from a hypothetical program to see how these three types of compliers distort our outcomes, and more importantly, how we can disentangle compliers from their always- and never-taker counterparts.\nIf you want to follow along with this example, you can download these two datasets:\n\n bed_nets_time_machine.csv\n bed_nets_observed.csv"
+    "text": "Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.\nMany sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You’ll notice me make all sorts of little errors, which is totally normal—everyone does!"
   },
   {
-    "objectID": "example/cace.html#compliance-and-treatment-effects",
-    "href": "example/cace.html#compliance-and-treatment-effects",
-    "title": "Complier average treatment effects",
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Sobre clases y lecturas",
     "section": "",
-    "text": "Throughout this course, we’ve talked about the difference between the average treatment effect (ATE), or the average effect of a program for an entire population, and conditional average treatment effect (CATE), or the average effect of a program for some segment of the population. There are all sorts of CATEs: you can find the CATE for men vs. women, for people who are treated with the program (the average treatment on the treated, or ATT or TOT), for people who are not treated with the program (the average treatment on the untreated, or ATU), and so on.\nOne important type of CATE is the effect of a program on just those who comply with the program. We can call this the complier average treatment effect, but the acronym would be the same as conditional average treatment effect, so we’ll call it the complier average causal effect or CACE.\nThinking about compliance is important. You might randomly assign people to receive treatment or a program, but people might not do what you tell them. Additionally, people might do the program if assigned to do it, but they would have done it anyway. We can split the population into four types of people:\n\nCompliers: People who follow whatever their assignment is (if assigned to treatment, they do the program; if assigned to control, they don’t)\nAlways takers: People who will receive or seek out the program regardless of assignment (if assigned to treatment, they do the program; if assigned to control, they still do the program)\nNever takers: People who will not receive or seek out the program regardless of assignment (if assigned to treatment, they don’t do the program; if assigned to control, they also don’t do it)\nDefiers: People who will do the opposite of whatever their assignment is (if assigned to treatment, they don’t do the program; if assigned to control, they do the program)\n\nTo simplify things, evaluators and econometricians assume that defiers don’t exist based on the idea of monotonicity, which means that we can assume that the effect of being assigned to treatment only increases the likelihood of participating in the program (and doesn’t make it more likely).\nThe tricky part about trying to find who the compliers are in a sample is that we can’t know what people would have done in the absence of treatment. If we see that someone in the experiment was assigned to be in the treatment group and they then participated in the program, they could be a complier (since they did what they were assigned to do), or they could be an always taker (they did what they were assigned to do, but they would have done it anyway). Due to the fundamental problem of causal inference, we cannot know what each person would have done in a parallel world.\nWe can use data from a hypothetical program to see how these three types of compliers distort our outcomes, and more importantly, how we can disentangle compliers from their always- and never-taker counterparts.\nIf you want to follow along with this example, you can download these two datasets:\n\n bed_nets_time_machine.csv\n bed_nets_observed.csv"
+    "text": "Cada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.\nEn esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase. Para verlos en pantalla completa presionar F sobre el documento."
   },
   {
-    "objectID": "example/cace.html#finding-compliers-with-a-mind-reading-time-machine",
-    "href": "example/cace.html#finding-compliers-with-a-mind-reading-time-machine",
-    "title": "Complier average treatment effects",
-    "section": "Finding compliers with a mind-reading time machine",
-    "text": "Finding compliers with a mind-reading time machine\nFirst let’s load the data and reorder some of the categories:\n\n\nCode\nlibrary(tidyverse)  # ggplot(), %&gt;%, mutate(), and friends\nlibrary(broom)  # Convert models to data frames\nlibrary(estimatr)  # Run 2SLS models in one step with iv_robust()\n\nbed_nets &lt;- read_csv(\"data/bed_nets_observed.csv\") %&gt;%\n  # Make \"No bed net\" (control) come first\n  mutate(bed_net = fct_relevel(bed_net, \"No bed net\"))\n\nbed_nets_time_machine &lt;- read_csv(\"data/bed_nets_time_machine.csv\") %&gt;%\n  # Make \"No bed net\" come first and \"Complier\" come first\n  mutate(bed_net = fct_relevel(bed_net, \"No bed net\"),\n         status = fct_relevel(status, \"Complier\"))\n\n\nThis is what we would be able to see if we could read everyone’s minds. There are always takers who will use a bed net regardless of the program, and they’ll have higher health outcomes. However, those better outcomes are because of something endogenous—there’s something else that makes these people always pursue bed nets, and that’s likely related to health. We probably want to not consider them when looking for the program effect. There are never takers who won’t ever use a bed net, and they have worse health outcomes. Again, there’s endogeneity here—something is causing them to not use the bed nets, and it likely also causes their health level. We don’t want to look at them either.\nThe first group—the compliers—are the people we want to focus on. Here we see that the program had an effect when compared to a control group.\n\n\nCode\nset.seed(1234)  # Make the jittering the same every time\n\nggplot(bed_nets_time_machine, aes(y = health, x = treatment)) +\n  geom_point(aes(shape = bed_net, color = status),\n             position = position_jitter(height = NULL, width = 0.25)) +\n  facet_wrap(vars(status)) +\n  labs(color = \"Type of person\", shape = \"Compliance\",\n       x = NULL, y = \"Health status\") +\n  scale_color_viridis_d(option = \"plasma\", end = 0.85) +\n  theme_bw()"
-  },
-  {
-    "objectID": "example/cace.html#finding-compliers-in-actual-data",
-    "href": "example/cace.html#finding-compliers-in-actual-data",
-    "title": "Complier average treatment effects",
-    "section": "Finding compliers in actual data",
-    "text": "Finding compliers in actual data\nThis is what we actually see in the data, though. You can tell who some of the always takers are (those who used bed nets after being assigned to the control group) and who some of the never takers are (those who did not use a bed net after being assigned to the treatment group), but compliers are mixed up with the always and never takers. We have to somehow disentangle them!\n\n\nCode\nset.seed(1234)\nggplot(bed_nets_time_machine, aes(y = health, x = bed_net)) +\n  geom_point(aes(shape = bed_net, color = status),\n             position = position_jitter(height = NULL, width = 0.25)) +\n  facet_wrap(vars(treatment)) +\n  labs(color = \"Type of person\", shape = \"Compliance\",\n       x = NULL, y = \"Health status\") +\n  scale_color_viridis_d(option = \"plasma\", end = 0.85) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\nWe can do this by assuming the proportion of compliers, never takers, and always takers are equally spread across treatment and control (which we can assume through the magic of randomization). If that’s the case, we can calculate the intent to treat (ITT) effect, which is the CATE of being assigned treatment (or the effect of being assigned treatment on health status, regardless of actual compliance).\nThe ITT is actually composed of three different causal effects: the complier average causal effect (CACE), the always taker average causal effect (ATACE), and the never taker average causal effect (NTACE). In the formula below, \\(\\pi\\) stands for the proportion of people in each group. Formally, the ITT can be defined like this:\n\\[\n\\begin{aligned}\n\\text{ITT}\\ =\\ & \\color{#0D0887}{\\pi_\\text{compliers} \\times (\\text{T} - \\text{C})_\\text{compliers}} + \\\\\n&\\color{#B7318A}{\\pi_\\text{always takers} \\times (\\text{T} - \\text{C})_\\text{always takers}} + \\\\\n&\\color{#FEBA2C}{\\pi_\\text{never takers} \\times (\\text{T} - \\text{C})_\\text{never takers}}\n\\end{aligned}\n\\]\nWe can simplify this to this acronymized version:\n\\[\n\\text{ITT}\\ =\\ \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}} + \\color{#B7318A}{\\pi_\\text{A} \\text{ATACE}} + \\color{#FEBA2C}{\\pi_\\text{N} \\text{NTACE}}\n\\]\nThe number we care about the most here is the CACE, which is stuck in the middle of the equation. But we can rescue it with some fun logical and algebraic trickery!\nIf we assume that assignment to treatment doesn’t make someone more likely to be an always taker or a never taker, we can set the ATACE and NTACE to zero, leaving us with just three variables to worry about: ITT, \\(\\pi_\\text{c}\\), and CACE:\n\\[\n\\begin{aligned}\n\\text{ITT}\\ =\\ & \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}} + \\color{#B7318A}{\\pi_\\text{A} \\text{ATACE}} + \\color{#FEBA2C}{\\pi_\\text{N} \\text{NTACE}} \\\\[6pt]\n=\\ & \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}} + \\color{#B7318A}{\\pi_\\text{A} \\times 0} + \\color{#FEBA2C}{\\pi_\\text{N} \\times 0}\\\\[6pt]\n\\text{ITT}\\ =\\ & \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}}\n\\end{aligned}\n\\]\nWe can use algebra to rearrange this formula so that we’re left with an equation that starts with CACE (since that’s the value we care about):\n\\[\n\\text{CACE} = \\frac{\\text{ITT}}{\\pi_\\text{C}}\n\\]\nIf we can find the ITT and the proportion of compliers, we can find the complier average causal effect (CACE). Fortunately, both those pieces—ITT and \\(\\pi_\\text{C}\\)—are findable in the data we have!"
-  },
-  {
-    "objectID": "example/cace.html#finding-the-itt",
-    "href": "example/cace.html#finding-the-itt",
-    "title": "Complier average treatment effects",
-    "section": "Finding the ITT",
-    "text": "Finding the ITT\nThe ITT is easy to find with a simple OLS model:\n\n\nCode\nitt_model &lt;- lm(health ~ treatment, data = bed_nets)\n\ntidy(itt_model)\n## # A tibble: 2 × 5\n##   term               estimate std.error statistic  p.value\n##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n## 1 (Intercept)           40.9      0.444     92.1  0       \n## 2 treatmentTreatment     5.99     0.630      9.51 5.20e-21\n\nITT &lt;- tidy(itt_model) %&gt;%\n  filter(term == \"treatmentTreatment\") %&gt;%\n  pull(estimate)\n\n\nThe ITT here is ≈6—being assigned treatment increases average health status by 5.99 health points."
-  },
-  {
-    "objectID": "example/cace.html#finding-the-proportion-of-compliers",
-    "href": "example/cace.html#finding-the-proportion-of-compliers",
-    "title": "Complier average treatment effects",
-    "section": "Finding the proportion of compliers",
-    "text": "Finding the proportion of compliers\nThe proportion of compliers is a little trickier, but doable with some algebraic trickery. Recall from the graph above that the people who were in the treatment group and who complied are a combination of always takers and compliers. This means we can say:\n\\[\n\\begin{aligned}\n\\pi_\\text{A} + \\pi_\\text{C} =& \\text{% yes in treatment; or} \\\\\n\\pi_\\text{C} =& \\text{% yes in treatment} - \\pi_\\text{A}\n\\end{aligned}\n\\]\nWe actually know \\(\\pi_\\text{A}\\)—remember in the graph above that the people who were in the control group and who used bed nets are guaranteed to be always takers (none of them are compliers or never takers). If we assume that the proportion of always takers is the same in both treatment and control, we can use that percent here, giving us this final equation for \\(\\pi_\\text{C}\\):\n\\[\n\\begin{aligned}\n\\pi_\\text{C} =& \\text{% yes in treatment} - \\pi_\\text{A} \\\\\n=& \\text{% yes in treatment} - \\text{% yes in control}\n\\end{aligned}\n\\]\nSo, if we can find the percent of people assigned to treatment who used bed nets, find the percent of people assigned to control and used bed nets, and subtract the two percentages, we’ll have the proportion of compliers, or \\(\\pi_\\text{C}\\). We can do that with the data we have (61% - 19.5% = 41.5% compliers):\n\n\nCode\nbed_nets %&gt;%\n  group_by(treatment, bed_net) %&gt;%\n  summarize(n = n()) %&gt;%\n  mutate(prop = n / sum(n))\n## # A tibble: 4 × 4\n## # Groups:   treatment [2]\n##   treatment bed_net        n  prop\n##   &lt;chr&gt;     &lt;fct&gt;      &lt;int&gt; &lt;dbl&gt;\n## 1 Control   No bed net   808 0.805\n## 2 Control   Bed net      196 0.195\n## 3 Treatment No bed net   388 0.390\n## 4 Treatment Bed net      608 0.610\n\n# pi_c = prop yes in treatment - prop yes in control\npi_c &lt;- 0.6104418 - 0.1952191\n\n\nFinally, now that we know both the ITT and \\(\\pi_\\text{C}\\), we can find the CACE (or the LATE):\n\n\nCode\nCACE &lt;- ITT / pi_c\nCACE\n## [1] 14.43\n\n\nIt’s 14.4, which means that using bed nets increased health by 14 health points for compliers (which is a lot bigger than the 6 that we found before). We successfully filtered out the always takers and the never takers, and we have our complier-specific causal effect."
-  },
-  {
-    "objectID": "example/cace.html#finding-the-cacelate-with-iv2sls",
-    "href": "example/cace.html#finding-the-cacelate-with-iv2sls",
-    "title": "Complier average treatment effects",
-    "section": "Finding the CACE/LATE with IV/2SLS",
-    "text": "Finding the CACE/LATE with IV/2SLS\nDoing that is super tedious though! What if there was an easier way to find the effect of the bed net program for just the compliers? We can do this with IV/2SLS regression by using assignment to treatment as an instrument.\nAssignment to treatment works as an instrument because it’s (1) relevant, since being told to use bed nets is probably highly correlated with using bed nets, (2) exclusive, since the only way that being told to use bed nets can cause changes in health is through the actual use of the bed nets, and (3) exogenous, since being told to use bed nets probably isn’t related to other things that cause health.\nHere’s a 2SLS regression with assignment to treatment as the instrument:\n\n\nCode\nmodel_2sls &lt;- iv_robust(health ~ bed_net | treatment, data = bed_nets)\ntidy(model_2sls)\n##             term estimate std.error statistic   p.value conf.low conf.high   df outcome\n## 1    (Intercept)    38.12    0.5151     74.01 0.000e+00    37.11     39.13 1998  health\n## 2 bed_netBed net    14.43    1.2538     11.51 1.038e-29    11.97     16.89 1998  health\n\n\nThe coefficient for bed_net is identical to the CACE that we found manually! Instrumental variables are helpful for isolated program effects to only compliers when you’re dealing with noncompliance."
-  },
-  {
-    "objectID": "content/08-content.html",
-    "href": "content/08-content.html",
-    "title": "Inferencia 4 - Hipótesis direccionales y proporciones",
+    "objectID": "content/07-content.html",
+    "href": "content/07-content.html",
+    "title": "Inferencia 3 - Hipótesis y prueba t",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/06-content.html",
-    "href": "content/06-content.html",
-    "title": "Inferencia 2 - Error e intervalos de confianza",
+    "objectID": "content/05-content.html",
+    "href": "content/05-content.html",
+    "title": "Inferencia 1 - Introducción: Probabilidades y curva normal",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/04-content.html",
-    "href": "content/04-content.html",
-    "title": "Asociación 3: Tamaño de efecto, otros coeficientes de correlación y matrices",
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Asociación 2: Correlación de Pearson",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Asociación 1: Bases",
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Presentación",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "assignment/index.html",
-    "href": "assignment/index.html",
-    "title": "Instrucciones generales",
+    "objectID": "assignment/09-practico.html",
+    "href": "assignment/09-practico.html",
+    "title": "Reportes dinámicos 3",
     "section": "",
-    "text": "Los prácticos consisten en el desarrollo de una guía práctica (por lo general cada semana) donde se aplican y profundizan los contenidos de las clases, y donde también se abordan otras temáticas relacionadas al manejo y repote de datos. La organización semestras se puede revisar en la planificación del curso.\nEl trabajo con estas guías se organiza en los siguientes momentos:\n\nla guía se presenta los días martes y se avanza en resolver dudas para su resolución\ncada estudiante realiza la guía de manera autónoma durante la semana\nen caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos disponible para este fin\nlas sesiones prácticas se realizarán por lo general en grupos pequeños guiados por ayudantes.\ncada semana se completa un reporte de progreso (detalles abajo)\n\nEn las prácticas vamos a trabajar con el software R, Versión 4.3.1."
+    "text": "El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso, de manera colaborativa.\nEn detalle, aprenderemos los siguientes contenidos:\n\nCreación y organización de un informe en Quarto\nGeneración y presentación de tablas y gráficos en Quarto.\nCómo autoreferenciar elementos dentro un documento Quarto.\n\nAdemás de la plantilla para el informe, dejamos a disposición una carpeta con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:\n\ninput: insumos, libro de códigos\ninput/img: imágenes\ninput/data: base de datos original\nprocesamiento: archivos de sintaxis .R\noutput: bases de datos procesada, informes, tablas, gráficos\n\nRecordemos que este sistema de carpetas hace referencia al sistema IPO (Input-Procesamiento-Output).\n\nDonde el flujo de trabajo es el siguiente:\n\nPor último, Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN."
   },
   {
-    "objectID": "assignment/index.html#descripción",
-    "href": "assignment/index.html#descripción",
-    "title": "Instrucciones generales",
-    "section": "",
-    "text": "Los prácticos consisten en el desarrollo de una guía práctica (por lo general cada semana) donde se aplican y profundizan los contenidos de las clases, y donde también se abordan otras temáticas relacionadas al manejo y repote de datos. La organización semestras se puede revisar en la planificación del curso.\nEl trabajo con estas guías se organiza en los siguientes momentos:\n\nla guía se presenta los días martes y se avanza en resolver dudas para su resolución\ncada estudiante realiza la guía de manera autónoma durante la semana\nen caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos disponible para este fin\nlas sesiones prácticas se realizarán por lo general en grupos pequeños guiados por ayudantes.\ncada semana se completa un reporte de progreso (detalles abajo)\n\nEn las prácticas vamos a trabajar con el software R, Versión 4.3.1."
+    "objectID": "assignment/09-practico.html#crear-un-documento-quarto",
+    "href": "assignment/09-practico.html#crear-un-documento-quarto",
+    "title": "Reportes dinámicos 3",
+    "section": "Crear un documento Quarto",
+    "text": "Crear un documento Quarto\nPara generar un documento Quarto hacemos lo siguiente:"
   },
   {
-    "objectID": "assignment/index.html#reporte",
-    "href": "assignment/index.html#reporte",
-    "title": "Instrucciones generales",
-    "section": "Reportes de progreso",
-    "text": "Reportes de progreso\nEste curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos (es muy difícil aprender a multiplicar sin saber sumar). Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.\nEl sistema de monitoreo permanente de cumplimiento de objetivos se llevará a cabo mediante reportes de progreso. Los reportes consisten en completar un formulario simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada guía Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.\nComo incentivo para completar los reportes de progreso, se entregarán dos décimas adicionales a la nota de quienes tengan al menos el 80% de los reportes de progreso completados entre instancias de evaluación (por ejemplo, en el caso de la evaluación 2 se deben tener todos los reportes de progreso completados entre la evaluación 1 y 2)."
+    "objectID": "assignment/09-practico.html#encabezado-o-yaml",
+    "href": "assignment/09-practico.html#encabezado-o-yaml",
+    "title": "Reportes dinámicos 3",
+    "section": "Encabezado o YAML",
+    "text": "Encabezado o YAML\nPara comenzar, definiremos los elementos que van en el encabezado (front matter o YAML), al menos debemos especificar:\n\nTítulo\nSubtítulo\nAutores\nFecha\nIdioma\n\n\nCon ese YAML el encabezado se ve de la siguiente forma:"
   },
   {
-    "objectID": "assignment/index.html#trabajo-con-software-r",
-    "href": "assignment/index.html#trabajo-con-software-r",
-    "title": "Instrucciones generales",
-    "section": "Trabajo con software R",
-    "text": "Trabajo con software R\nPara los análisis estadísticos de este curso usamos el programa R, en parte porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.\nEl carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.\nPara minimizar estos posibles problemas en este curso, vamos a:\n\ntrabajar con la misma y última versión de R, que es la 4.3\nevitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variables"
+    "objectID": "assignment/09-practico.html#apartados-y-subapartados",
+    "href": "assignment/09-practico.html#apartados-y-subapartados",
+    "title": "Reportes dinámicos 3",
+    "section": "Apartados y subapartados",
+    "text": "Apartados y subapartados\nPara los títulos de los apartados deben poner un # antes del nombre, y para los subapartados cada vez más pequeños dos o más #.\nPor ejemplo, si ponemos:\n# Variables\n## Descripción de variables\nLos apartados y subapartados diferirán en su tamaño y se verán de esta forma."
   },
   {
-    "objectID": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
-    "href": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
-    "title": "Instrucciones generales",
-    "section": "Sobre errores y consultas sobre problemas con R y ejecución de código",
-    "text": "Sobre errores y consultas sobre problemas con R y ejecución de código\nEn caso de problemas con ejecución de código, se sugiere intentar solucionarlo autónomamente por no más de 10 minutos, si los problemas siguen entonces consultar.\nSe sugiere que las consultas sobre problemas en la ejecución del código y otros se realicen en los foros al final de los prácticos correspondientes, para lo cual se requiere solo habilitar una cuenta en Github. Al hacer la consulta, adjuntar la siguiente información:\n\nCódigo completo hasta que se produce el problema\nIndicar línea del código donde se produce el problema\nAdjuntar el resultado del output de la información de la sesión (sessionInfo())\n\n\nInstalación de R & RStudio\nPara esta versión del curso vamos a trabajar con el programa R Version 4.3 y con RStudio, que ofrece un entorno más amigable para trabajar con R.\nPara instalar R: ir a https://cran.r-project.org/index.html y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)\nPara instalar RStudio: ir a https://rstudio.com/products/rstudio/ y bajar/instalar RStudio desktop, Open Source License (libre).\nEn caso de dudas se puede revisar el siguiente video tutorial de instalación de R & RStudio, preparado por Julio Iturra (apoyo docente) del curso Estadística Multivariada 2020:\n\n\n\n\n\nSi por alguna razón se prefiere trabajar sin descargar, también se puede utilizar RCloud, abajo un tutorial preparado por Valentina Andrade para el curso de Estadística Multivariada:\n\n\n\n\n\n\n\nSobre el trabajo en hojas de código en RStudio\n\nEl trabajo de análisis en RStudio se efectua en una hoja de código (o R script o sintaxis, o para los usuarios de Stata la do-file), que es donde se anotan los comandos y funciones. Para abrir una hoja, en RStudio ir a File &gt; New File &gt; R Script (o ctrl+shift+N),y aparecerá un panel con una pestaña “Untitled” (sin título). Esta es la hoja de código donde se anotan los comandos.\nLos contenidos de las hojas de código son básicamente 2:\n\ncomandos o funciones: se escriben en la hoja, y para ejecutarlos se debe posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o Consola.\ntexto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo #\n\nPara grabar nuestra hoja de código y así respaldar nuestros análisis, File &gt; Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R"
+    "objectID": "assignment/09-practico.html#insertar-imágenes",
+    "href": "assignment/09-practico.html#insertar-imágenes",
+    "title": "Reportes dinámicos 3",
+    "section": "Insertar imágenes",
+    "text": "Insertar imágenes\nSi quisiéramos poner una imagen, lo ideal es llamarla desde la web:\n\nRecordemos que si no queremos que se vea un chunk, en las options debemos poner echo=FALSE.\n\n\ninclude_graphics(\"https://www.desarrollosocialyfamilia.gob.cl/storage/image/banner-saludmental.png\")\n\n\n\n\nO desde la carpeta local ![](../input/img/nombre_imagen.extension) o con:\n\ninclude_graphics(\"../files/banner-saludmental.png\")"
+  },
+  {
+    "objectID": "assignment/09-practico.html#carga-de-librerías",
+    "href": "assignment/09-practico.html#carga-de-librerías",
+    "title": "Reportes dinámicos 3",
+    "section": "Carga de librerías",
+    "text": "Carga de librerías\nLas librerías que utilizaremos en esta guía práctica son:\n\nlibrary(pacman)\npacman::p_load(tidyverse,   # manipulacion datos\n               sjPlot,      # tablas\n               confintr,    # IC\n               gginference, # visualizacion \n               rempsyc,     # reporte\n               broom,       # varios\n               sjmisc,      # para descriptivos\n               knitr)       # para       \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo"
+  },
+  {
+    "objectID": "assignment/09-practico.html#carga-de-datos",
+    "href": "assignment/09-practico.html#carga-de-datos",
+    "title": "Reportes dinámicos 3",
+    "section": "Carga de datos",
+    "text": "Carga de datos\nComo señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta input/data, y se llama de la siguiente forma:\nload(\"input/data/ELSOC_Long.RData\")\nPero, para llamar la base de datos desde la web:\n\nload(url(\"https://dataverse.harvard.edu/api/access/datafile/7245118\"))"
+  },
+  {
+    "objectID": "assignment/09-practico.html#limpieza-de-datos",
+    "href": "assignment/09-practico.html#limpieza-de-datos",
+    "title": "Reportes dinámicos 3",
+    "section": "Limpieza de datos",
+    "text": "Limpieza de datos\nRealizaremos un tratamiento simple de los casos:\n\n# Filtrar casos y seleccionar variables\ndata &lt;- elsoc_long_2016_2022.2 %&gt;% \n  filter(ola==1) %&gt;%\n  select(sexo=m0_sexo,edad=m0_edad,nedu=m01,\n         s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)\n\n# remover NA's\ndata &lt;- data %&gt;% \n  set_na(., na = c(-888, -999)) %&gt;% \n  na.omit()\n\n# crear variable nueva \ndata &lt;- data %&gt;% \n  rowwise() %&gt;%\n  mutate(sint_depresivos = mean(c(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) %&gt;% \n  ungroup()"
+  },
+  {
+    "objectID": "assignment/09-practico.html#guardar-base-de-datos-resultante",
+    "href": "assignment/09-practico.html#guardar-base-de-datos-resultante",
+    "title": "Reportes dinámicos 3",
+    "section": "Guardar base de datos resultante",
+    "text": "Guardar base de datos resultante\nGuardamos la base de datos procesada en la carpeta de output, con\nsaveRDS(data, \"output/data.Rdata\")"
+  },
+  {
+    "objectID": "assignment/09-practico.html#introducción",
+    "href": "assignment/09-practico.html#introducción",
+    "title": "Reportes dinámicos 3",
+    "section": "Introducción",
+    "text": "Introducción\n\nEn este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nEn este ejemplo daremos una mirada a la salud mental, y exploraremos posibles asociaciones con la edad, sexo y nivel educacional."
+  },
+  {
+    "objectID": "assignment/09-practico.html#variables",
+    "href": "assignment/09-practico.html#variables",
+    "title": "Reportes dinámicos 3",
+    "section": "Variables",
+    "text": "Variables\n\nEn este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nA continuación, en nuestro ejemplo describiremos las variables necesarias para responder a nuestro objetivo."
+  },
+  {
+    "objectID": "assignment/09-practico.html#descripción-de-variables",
+    "href": "assignment/09-practico.html#descripción-de-variables",
+    "title": "Reportes dinámicos 3",
+    "section": "Descripción de variables",
+    "text": "Descripción de variables\nEn este ejemplo, se seleccionaron las variables:\n\nsexo: sexo del encuestado, con nivel de medición nominal\nedad: edad del encuestado, con nivel de medición intervalar\nnedu: nivel educativo del encuestado, con nivel de medición ordinal\n\nY las variables del módulo de Salud y Bienestar, referentes a Estado de ánimo: sintomatología depresiva, con nivel de medición ordinal, los ítems son los siguientes:\n\nFrecuencia: Poco interés o alegría\nFrecuencia: Decaimiento, pesadez o desesperanza\nFrecuencia: Dificultad para dormir o exceso de sueño\nFrecuencia: Cansancio o sensación de falta de energía\nFrecuencia: Apetito disminuido o aumentado\nFrecuencia: Dificultad para concentrarse\nFrecuencia: Mala opinión de sí mismo\nFrecuencia: Enlentecimiento físico\nFrecuencia: Pensamiento de muerte o dañarse\n\n\nPodemos caargar los datos en nuestro informe sin que se vea poniendo la option echo=FALSE: data &lt;-readRDS(\"output/data.RData\").\n\n\ntab1 &lt;- data %&gt;%\n  group_by(sexo) %&gt;% # agrupamos por sexo\n  summarise(n = n()) %&gt;% # contamos por categ de respuesta\n  mutate(prop = round((n / sum(n)) * 100, 2)) # porcentaje\n \npm &lt;- as.numeric(tab1[2,3])\nph &lt;- as.numeric(tab1[1,3])\n\ntabla1 &lt;- tab1 %&gt;% \n  kableExtra::kable(format = \"html\",\n                    align = \"c\",\n                    col.names = c(\"Sexo\", \"n\", \"Proporción\"),\n                    caption = \"Tabla 1. Distribución de sexo\") %&gt;% \n  kableExtra::kable_classic(full_width = FALSE, position = \"center\", font_size = 14) %&gt;% \n  kableExtra::add_footnote(label = \"Fuente: Elaboración propia en base a ELSOC 2016.\")\n\nEn la Tabla 1 podemos ver que la proporción de mujeres que responde la encuesta corresponde a 60.12%, mientras que la propoción de hombres corresponde a 39.88%.\n\ntabla1\n\n\n\nTabla 1: Distribución de sexo\n\n\nSexo\nn\nProporción\n\n\n\n\n1\n1151\n39.88\n\n\n2\n1735\n60.12\n\n\n\na Fuente: Elaboración propia en base a ELSOC 2016.\n\n\n\n\n\n\n\n\n\n\n\n\nEn las options del chunk desde el que llamamos a la tabla le ponemos tbl-nombre tabla para etiquetarla, y luego en el texto ponemos @tbl-nombre-tabla para referenciarla. También, cuando queremos llamar un valor, es necesario asignarlo a un objeto, y en el texto lo llamamos con:"
+  },
+  {
+    "objectID": "assignment/09-practico.html#análisis",
+    "href": "assignment/09-practico.html#análisis",
+    "title": "Reportes dinámicos 3",
+    "section": "Análisis",
+    "text": "Análisis\n\nEn este apartado pueden poner sus análisis, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nEn nuestro ejemplo, analizaremos la correlación entre algunas variables.\n\ncor_edad_dep &lt;- cor(data$edad, data$sint_depresivos)\ncor_nedu_dep &lt;- cor(data$nedu, data$sint_depresivos)\ncor_nedu_edad &lt;- cor(data$nedu, data$edad)\n\n\ng1 &lt;- data %&gt;% \n  group_by(nedu) %&gt;% \n  summarise(sint_dep = mean(sint_depresivos, na.rm = T),\n            edad=mean(edad, na.rm = T))\n\ngrafico1 &lt;- ggplot(data = g1,\n       mapping = aes(x = sint_dep, y = edad, label = nedu)) +\n  geom_point() +\n  geom_smooth(method = \"lm\",colour = \"black\",fill=\"lightblue\",size=0.5) + \n  labs(x = \"Sintomatología depresiva\",\n       y = \"Edad\",\n       caption = \"Fuente: Elaboración propia en base a ELSOC 2026\") +\n  theme_bw()\n\nEn la Figura 1 es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236.\n\ngrafico1\n\n\n\n\nFigura 1: Correlación entre edad y sintomatología depresiva\n\n\n\n\n\nEn las options del chunk desde el que llamamos a la figura le ponemos fig-nombre figura para etiquetarla, y luego en el texto ponemos @fig-nombre-figura para referenciarla."
+  },
+  {
+    "objectID": "assignment/09-practico.html#conclusiones",
+    "href": "assignment/09-practico.html#conclusiones",
+    "title": "Reportes dinámicos 3",
+    "section": "Conclusiones",
+    "text": "Conclusiones\n\nEn este apartado pueden poner sus conclusiones, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nAquí redactamos algunas conclusiones."
+  },
+  {
+    "objectID": "assignment/09-practico.html#bibliografía",
+    "href": "assignment/09-practico.html#bibliografía",
+    "title": "Reportes dinámicos 3",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\nEn este apartado pueden poner su bibliografía, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nPonemos un - para generar un listado.\n\nCOES (2023). Radiografía del Cambio Social: Análisis de Resultados Longitudinales ELSOC 2016-2022. Presentación de Resultados COES. Marzo, Santiago de Chile.\nR Core Team (2023). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/."
   },
   {
     "objectID": "assignment/07-practico.html",
@@ -357,46 +392,123 @@
     "text": "En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado que obtenemos en nuestra muestra es un efecto real/extensible a la población o un error de muestreo. Aquí recomendamos una lista de cinco pasos lógicos para enfrentarnos a la inferencia estadística:\n\n\n\n\n\nPaso\n\n\nDetalle\n\n\n\n\n1\n\n\nFormula \\(H_0\\) y \\(H_A\\) y estipula la dirección de la prueba\n\n\n\n\n2\n\n\nCalcula el error estándar (SE)\n\n\n\n\n3\n\n\nCalcula el valor estimado de la prueba (ej: Z o t)\n\n\n\n\n4\n\n\nEspecifica el valor crítico de la prueba\n\n\n\n\n5\n\n\nContrasta el valor estimado con el valor crítico e intrepreta los resultados\n\n\n\n\nAdemás de estos 5 pasos también existe la posibilidad de calcular un intervalo de confianza, que acompañe la precisión de nuestra estimación."
   },
   {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Presentación",
+    "objectID": "assignment/index.html",
+    "href": "assignment/index.html",
+    "title": "Instrucciones generales",
+    "section": "",
+    "text": "Los prácticos consisten en el desarrollo de una guía práctica (por lo general cada semana) donde se aplican y profundizan los contenidos de las clases, y donde también se abordan otras temáticas relacionadas al manejo y repote de datos. La organización semestras se puede revisar en la planificación del curso.\nEl trabajo con estas guías se organiza en los siguientes momentos:\n\nla guía se presenta los días martes y se avanza en resolver dudas para su resolución\ncada estudiante realiza la guía de manera autónoma durante la semana\nen caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos disponible para este fin\nlas sesiones prácticas se realizarán por lo general en grupos pequeños guiados por ayudantes.\ncada semana se completa un reporte de progreso (detalles abajo)\n\nEn las prácticas vamos a trabajar con el software R, Versión 4.3.1."
+  },
+  {
+    "objectID": "assignment/index.html#descripción",
+    "href": "assignment/index.html#descripción",
+    "title": "Instrucciones generales",
+    "section": "",
+    "text": "Los prácticos consisten en el desarrollo de una guía práctica (por lo general cada semana) donde se aplican y profundizan los contenidos de las clases, y donde también se abordan otras temáticas relacionadas al manejo y repote de datos. La organización semestras se puede revisar en la planificación del curso.\nEl trabajo con estas guías se organiza en los siguientes momentos:\n\nla guía se presenta los días martes y se avanza en resolver dudas para su resolución\ncada estudiante realiza la guía de manera autónoma durante la semana\nen caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos disponible para este fin\nlas sesiones prácticas se realizarán por lo general en grupos pequeños guiados por ayudantes.\ncada semana se completa un reporte de progreso (detalles abajo)\n\nEn las prácticas vamos a trabajar con el software R, Versión 4.3.1."
+  },
+  {
+    "objectID": "assignment/index.html#reporte",
+    "href": "assignment/index.html#reporte",
+    "title": "Instrucciones generales",
+    "section": "Reportes de progreso",
+    "text": "Reportes de progreso\nEste curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos (es muy difícil aprender a multiplicar sin saber sumar). Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.\nEl sistema de monitoreo permanente de cumplimiento de objetivos se llevará a cabo mediante reportes de progreso. Los reportes consisten en completar un formulario simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada guía Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.\nComo incentivo para completar los reportes de progreso, se entregarán dos décimas adicionales a la nota de quienes tengan al menos el 80% de los reportes de progreso completados entre instancias de evaluación (por ejemplo, en el caso de la evaluación 2 se deben tener todos los reportes de progreso completados entre la evaluación 1 y 2)."
+  },
+  {
+    "objectID": "assignment/index.html#trabajo-con-software-r",
+    "href": "assignment/index.html#trabajo-con-software-r",
+    "title": "Instrucciones generales",
+    "section": "Trabajo con software R",
+    "text": "Trabajo con software R\nPara los análisis estadísticos de este curso usamos el programa R, en parte porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.\nEl carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.\nPara minimizar estos posibles problemas en este curso, vamos a:\n\ntrabajar con la misma y última versión de R, que es la 4.3\nevitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variables"
+  },
+  {
+    "objectID": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
+    "href": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
+    "title": "Instrucciones generales",
+    "section": "Sobre errores y consultas sobre problemas con R y ejecución de código",
+    "text": "Sobre errores y consultas sobre problemas con R y ejecución de código\nEn caso de problemas con ejecución de código, se sugiere intentar solucionarlo autónomamente por no más de 10 minutos, si los problemas siguen entonces consultar.\nSe sugiere que las consultas sobre problemas en la ejecución del código y otros se realicen en los foros al final de los prácticos correspondientes, para lo cual se requiere solo habilitar una cuenta en Github. Al hacer la consulta, adjuntar la siguiente información:\n\nCódigo completo hasta que se produce el problema\nIndicar línea del código donde se produce el problema\nAdjuntar el resultado del output de la información de la sesión (sessionInfo())\n\n\nInstalación de R & RStudio\nPara esta versión del curso vamos a trabajar con el programa R Version 4.3 y con RStudio, que ofrece un entorno más amigable para trabajar con R.\nPara instalar R: ir a https://cran.r-project.org/index.html y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)\nPara instalar RStudio: ir a https://rstudio.com/products/rstudio/ y bajar/instalar RStudio desktop, Open Source License (libre).\nEn caso de dudas se puede revisar el siguiente video tutorial de instalación de R & RStudio, preparado por Julio Iturra (apoyo docente) del curso Estadística Multivariada 2020:\n\n\n\n\n\nSi por alguna razón se prefiere trabajar sin descargar, también se puede utilizar RCloud, abajo un tutorial preparado por Valentina Andrade para el curso de Estadística Multivariada:\n\n\n\n\n\n\n\nSobre el trabajo en hojas de código en RStudio\n\nEl trabajo de análisis en RStudio se efectua en una hoja de código (o R script o sintaxis, o para los usuarios de Stata la do-file), que es donde se anotan los comandos y funciones. Para abrir una hoja, en RStudio ir a File &gt; New File &gt; R Script (o ctrl+shift+N),y aparecerá un panel con una pestaña “Untitled” (sin título). Esta es la hoja de código donde se anotan los comandos.\nLos contenidos de las hojas de código son básicamente 2:\n\ncomandos o funciones: se escriben en la hoja, y para ejecutarlos se debe posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o Consola.\ntexto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo #\n\nPara grabar nuestra hoja de código y así respaldar nuestros análisis, File &gt; Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R"
+  },
+  {
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Asociación 1: Bases",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/03-content.html",
-    "href": "content/03-content.html",
-    "title": "Asociación 2: Correlación de Pearson",
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Asociación 3: Tamaño de efecto, otros coeficientes de correlación y matrices",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/05-content.html",
-    "href": "content/05-content.html",
-    "title": "Inferencia 1 - Introducción: Probabilidades y curva normal",
+    "objectID": "content/06-content.html",
+    "href": "content/06-content.html",
+    "title": "Inferencia 2 - Error e intervalos de confianza",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/07-content.html",
-    "href": "content/07-content.html",
-    "title": "Inferencia 3 - Hipótesis y prueba t",
+    "objectID": "content/08-content.html",
+    "href": "content/08-content.html",
+    "title": "Inferencia 4 - Hipótesis direccionales y proporciones",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nForo"
   },
   {
-    "objectID": "content/index.html",
-    "href": "content/index.html",
-    "title": "Sobre clases y lecturas",
+    "objectID": "example/cace.html",
+    "href": "example/cace.html",
+    "title": "Complier average treatment effects",
     "section": "",
-    "text": "Cada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.\nEn esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase. Para verlos en pantalla completa presionar F sobre el documento."
+    "text": "Throughout this course, we’ve talked about the difference between the average treatment effect (ATE), or the average effect of a program for an entire population, and conditional average treatment effect (CATE), or the average effect of a program for some segment of the population. There are all sorts of CATEs: you can find the CATE for men vs. women, for people who are treated with the program (the average treatment on the treated, or ATT or TOT), for people who are not treated with the program (the average treatment on the untreated, or ATU), and so on.\nOne important type of CATE is the effect of a program on just those who comply with the program. We can call this the complier average treatment effect, but the acronym would be the same as conditional average treatment effect, so we’ll call it the complier average causal effect or CACE.\nThinking about compliance is important. You might randomly assign people to receive treatment or a program, but people might not do what you tell them. Additionally, people might do the program if assigned to do it, but they would have done it anyway. We can split the population into four types of people:\n\nCompliers: People who follow whatever their assignment is (if assigned to treatment, they do the program; if assigned to control, they don’t)\nAlways takers: People who will receive or seek out the program regardless of assignment (if assigned to treatment, they do the program; if assigned to control, they still do the program)\nNever takers: People who will not receive or seek out the program regardless of assignment (if assigned to treatment, they don’t do the program; if assigned to control, they also don’t do it)\nDefiers: People who will do the opposite of whatever their assignment is (if assigned to treatment, they don’t do the program; if assigned to control, they do the program)\n\nTo simplify things, evaluators and econometricians assume that defiers don’t exist based on the idea of monotonicity, which means that we can assume that the effect of being assigned to treatment only increases the likelihood of participating in the program (and doesn’t make it more likely).\nThe tricky part about trying to find who the compliers are in a sample is that we can’t know what people would have done in the absence of treatment. If we see that someone in the experiment was assigned to be in the treatment group and they then participated in the program, they could be a complier (since they did what they were assigned to do), or they could be an always taker (they did what they were assigned to do, but they would have done it anyway). Due to the fundamental problem of causal inference, we cannot know what each person would have done in a parallel world.\nWe can use data from a hypothetical program to see how these three types of compliers distort our outcomes, and more importantly, how we can disentangle compliers from their always- and never-taker counterparts.\nIf you want to follow along with this example, you can download these two datasets:\n\n bed_nets_time_machine.csv\n bed_nets_observed.csv"
   },
   {
-    "objectID": "example/index.html",
-    "href": "example/index.html",
-    "title": "Code examples",
+    "objectID": "example/cace.html#compliance-and-treatment-effects",
+    "href": "example/cace.html#compliance-and-treatment-effects",
+    "title": "Complier average treatment effects",
     "section": "",
-    "text": "Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.\nMany sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You’ll notice me make all sorts of little errors, which is totally normal—everyone does!"
+    "text": "Throughout this course, we’ve talked about the difference between the average treatment effect (ATE), or the average effect of a program for an entire population, and conditional average treatment effect (CATE), or the average effect of a program for some segment of the population. There are all sorts of CATEs: you can find the CATE for men vs. women, for people who are treated with the program (the average treatment on the treated, or ATT or TOT), for people who are not treated with the program (the average treatment on the untreated, or ATU), and so on.\nOne important type of CATE is the effect of a program on just those who comply with the program. We can call this the complier average treatment effect, but the acronym would be the same as conditional average treatment effect, so we’ll call it the complier average causal effect or CACE.\nThinking about compliance is important. You might randomly assign people to receive treatment or a program, but people might not do what you tell them. Additionally, people might do the program if assigned to do it, but they would have done it anyway. We can split the population into four types of people:\n\nCompliers: People who follow whatever their assignment is (if assigned to treatment, they do the program; if assigned to control, they don’t)\nAlways takers: People who will receive or seek out the program regardless of assignment (if assigned to treatment, they do the program; if assigned to control, they still do the program)\nNever takers: People who will not receive or seek out the program regardless of assignment (if assigned to treatment, they don’t do the program; if assigned to control, they also don’t do it)\nDefiers: People who will do the opposite of whatever their assignment is (if assigned to treatment, they don’t do the program; if assigned to control, they do the program)\n\nTo simplify things, evaluators and econometricians assume that defiers don’t exist based on the idea of monotonicity, which means that we can assume that the effect of being assigned to treatment only increases the likelihood of participating in the program (and doesn’t make it more likely).\nThe tricky part about trying to find who the compliers are in a sample is that we can’t know what people would have done in the absence of treatment. If we see that someone in the experiment was assigned to be in the treatment group and they then participated in the program, they could be a complier (since they did what they were assigned to do), or they could be an always taker (they did what they were assigned to do, but they would have done it anyway). Due to the fundamental problem of causal inference, we cannot know what each person would have done in a parallel world.\nWe can use data from a hypothetical program to see how these three types of compliers distort our outcomes, and more importantly, how we can disentangle compliers from their always- and never-taker counterparts.\nIf you want to follow along with this example, you can download these two datasets:\n\n bed_nets_time_machine.csv\n bed_nets_observed.csv"
+  },
+  {
+    "objectID": "example/cace.html#finding-compliers-with-a-mind-reading-time-machine",
+    "href": "example/cace.html#finding-compliers-with-a-mind-reading-time-machine",
+    "title": "Complier average treatment effects",
+    "section": "Finding compliers with a mind-reading time machine",
+    "text": "Finding compliers with a mind-reading time machine\nFirst let’s load the data and reorder some of the categories:\n\n\nCode\nlibrary(tidyverse)  # ggplot(), %&gt;%, mutate(), and friends\nlibrary(broom)  # Convert models to data frames\nlibrary(estimatr)  # Run 2SLS models in one step with iv_robust()\n\nbed_nets &lt;- read_csv(\"data/bed_nets_observed.csv\") %&gt;%\n  # Make \"No bed net\" (control) come first\n  mutate(bed_net = fct_relevel(bed_net, \"No bed net\"))\n\nbed_nets_time_machine &lt;- read_csv(\"data/bed_nets_time_machine.csv\") %&gt;%\n  # Make \"No bed net\" come first and \"Complier\" come first\n  mutate(bed_net = fct_relevel(bed_net, \"No bed net\"),\n         status = fct_relevel(status, \"Complier\"))\n\n\nThis is what we would be able to see if we could read everyone’s minds. There are always takers who will use a bed net regardless of the program, and they’ll have higher health outcomes. However, those better outcomes are because of something endogenous—there’s something else that makes these people always pursue bed nets, and that’s likely related to health. We probably want to not consider them when looking for the program effect. There are never takers who won’t ever use a bed net, and they have worse health outcomes. Again, there’s endogeneity here—something is causing them to not use the bed nets, and it likely also causes their health level. We don’t want to look at them either.\nThe first group—the compliers—are the people we want to focus on. Here we see that the program had an effect when compared to a control group.\n\n\nCode\nset.seed(1234)  # Make the jittering the same every time\n\nggplot(bed_nets_time_machine, aes(y = health, x = treatment)) +\n  geom_point(aes(shape = bed_net, color = status),\n             position = position_jitter(height = NULL, width = 0.25)) +\n  facet_wrap(vars(status)) +\n  labs(color = \"Type of person\", shape = \"Compliance\",\n       x = NULL, y = \"Health status\") +\n  scale_color_viridis_d(option = \"plasma\", end = 0.85) +\n  theme_bw()"
+  },
+  {
+    "objectID": "example/cace.html#finding-compliers-in-actual-data",
+    "href": "example/cace.html#finding-compliers-in-actual-data",
+    "title": "Complier average treatment effects",
+    "section": "Finding compliers in actual data",
+    "text": "Finding compliers in actual data\nThis is what we actually see in the data, though. You can tell who some of the always takers are (those who used bed nets after being assigned to the control group) and who some of the never takers are (those who did not use a bed net after being assigned to the treatment group), but compliers are mixed up with the always and never takers. We have to somehow disentangle them!\n\n\nCode\nset.seed(1234)\nggplot(bed_nets_time_machine, aes(y = health, x = bed_net)) +\n  geom_point(aes(shape = bed_net, color = status),\n             position = position_jitter(height = NULL, width = 0.25)) +\n  facet_wrap(vars(treatment)) +\n  labs(color = \"Type of person\", shape = \"Compliance\",\n       x = NULL, y = \"Health status\") +\n  scale_color_viridis_d(option = \"plasma\", end = 0.85) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\nWe can do this by assuming the proportion of compliers, never takers, and always takers are equally spread across treatment and control (which we can assume through the magic of randomization). If that’s the case, we can calculate the intent to treat (ITT) effect, which is the CATE of being assigned treatment (or the effect of being assigned treatment on health status, regardless of actual compliance).\nThe ITT is actually composed of three different causal effects: the complier average causal effect (CACE), the always taker average causal effect (ATACE), and the never taker average causal effect (NTACE). In the formula below, \\(\\pi\\) stands for the proportion of people in each group. Formally, the ITT can be defined like this:\n\\[\n\\begin{aligned}\n\\text{ITT}\\ =\\ & \\color{#0D0887}{\\pi_\\text{compliers} \\times (\\text{T} - \\text{C})_\\text{compliers}} + \\\\\n&\\color{#B7318A}{\\pi_\\text{always takers} \\times (\\text{T} - \\text{C})_\\text{always takers}} + \\\\\n&\\color{#FEBA2C}{\\pi_\\text{never takers} \\times (\\text{T} - \\text{C})_\\text{never takers}}\n\\end{aligned}\n\\]\nWe can simplify this to this acronymized version:\n\\[\n\\text{ITT}\\ =\\ \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}} + \\color{#B7318A}{\\pi_\\text{A} \\text{ATACE}} + \\color{#FEBA2C}{\\pi_\\text{N} \\text{NTACE}}\n\\]\nThe number we care about the most here is the CACE, which is stuck in the middle of the equation. But we can rescue it with some fun logical and algebraic trickery!\nIf we assume that assignment to treatment doesn’t make someone more likely to be an always taker or a never taker, we can set the ATACE and NTACE to zero, leaving us with just three variables to worry about: ITT, \\(\\pi_\\text{c}\\), and CACE:\n\\[\n\\begin{aligned}\n\\text{ITT}\\ =\\ & \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}} + \\color{#B7318A}{\\pi_\\text{A} \\text{ATACE}} + \\color{#FEBA2C}{\\pi_\\text{N} \\text{NTACE}} \\\\[6pt]\n=\\ & \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}} + \\color{#B7318A}{\\pi_\\text{A} \\times 0} + \\color{#FEBA2C}{\\pi_\\text{N} \\times 0}\\\\[6pt]\n\\text{ITT}\\ =\\ & \\color{#0D0887}{\\pi_\\text{C} \\text{CACE}}\n\\end{aligned}\n\\]\nWe can use algebra to rearrange this formula so that we’re left with an equation that starts with CACE (since that’s the value we care about):\n\\[\n\\text{CACE} = \\frac{\\text{ITT}}{\\pi_\\text{C}}\n\\]\nIf we can find the ITT and the proportion of compliers, we can find the complier average causal effect (CACE). Fortunately, both those pieces—ITT and \\(\\pi_\\text{C}\\)—are findable in the data we have!"
+  },
+  {
+    "objectID": "example/cace.html#finding-the-itt",
+    "href": "example/cace.html#finding-the-itt",
+    "title": "Complier average treatment effects",
+    "section": "Finding the ITT",
+    "text": "Finding the ITT\nThe ITT is easy to find with a simple OLS model:\n\n\nCode\nitt_model &lt;- lm(health ~ treatment, data = bed_nets)\n\ntidy(itt_model)\n## # A tibble: 2 × 5\n##   term               estimate std.error statistic  p.value\n##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n## 1 (Intercept)           40.9      0.444     92.1  0       \n## 2 treatmentTreatment     5.99     0.630      9.51 5.20e-21\n\nITT &lt;- tidy(itt_model) %&gt;%\n  filter(term == \"treatmentTreatment\") %&gt;%\n  pull(estimate)\n\n\nThe ITT here is ≈6—being assigned treatment increases average health status by 5.99 health points."
+  },
+  {
+    "objectID": "example/cace.html#finding-the-proportion-of-compliers",
+    "href": "example/cace.html#finding-the-proportion-of-compliers",
+    "title": "Complier average treatment effects",
+    "section": "Finding the proportion of compliers",
+    "text": "Finding the proportion of compliers\nThe proportion of compliers is a little trickier, but doable with some algebraic trickery. Recall from the graph above that the people who were in the treatment group and who complied are a combination of always takers and compliers. This means we can say:\n\\[\n\\begin{aligned}\n\\pi_\\text{A} + \\pi_\\text{C} =& \\text{% yes in treatment; or} \\\\\n\\pi_\\text{C} =& \\text{% yes in treatment} - \\pi_\\text{A}\n\\end{aligned}\n\\]\nWe actually know \\(\\pi_\\text{A}\\)—remember in the graph above that the people who were in the control group and who used bed nets are guaranteed to be always takers (none of them are compliers or never takers). If we assume that the proportion of always takers is the same in both treatment and control, we can use that percent here, giving us this final equation for \\(\\pi_\\text{C}\\):\n\\[\n\\begin{aligned}\n\\pi_\\text{C} =& \\text{% yes in treatment} - \\pi_\\text{A} \\\\\n=& \\text{% yes in treatment} - \\text{% yes in control}\n\\end{aligned}\n\\]\nSo, if we can find the percent of people assigned to treatment who used bed nets, find the percent of people assigned to control and used bed nets, and subtract the two percentages, we’ll have the proportion of compliers, or \\(\\pi_\\text{C}\\). We can do that with the data we have (61% - 19.5% = 41.5% compliers):\n\n\nCode\nbed_nets %&gt;%\n  group_by(treatment, bed_net) %&gt;%\n  summarize(n = n()) %&gt;%\n  mutate(prop = n / sum(n))\n## # A tibble: 4 × 4\n## # Groups:   treatment [2]\n##   treatment bed_net        n  prop\n##   &lt;chr&gt;     &lt;fct&gt;      &lt;int&gt; &lt;dbl&gt;\n## 1 Control   No bed net   808 0.805\n## 2 Control   Bed net      196 0.195\n## 3 Treatment No bed net   388 0.390\n## 4 Treatment Bed net      608 0.610\n\n# pi_c = prop yes in treatment - prop yes in control\npi_c &lt;- 0.6104418 - 0.1952191\n\n\nFinally, now that we know both the ITT and \\(\\pi_\\text{C}\\), we can find the CACE (or the LATE):\n\n\nCode\nCACE &lt;- ITT / pi_c\nCACE\n## [1] 14.43\n\n\nIt’s 14.4, which means that using bed nets increased health by 14 health points for compliers (which is a lot bigger than the 6 that we found before). We successfully filtered out the always takers and the never takers, and we have our complier-specific causal effect."
+  },
+  {
+    "objectID": "example/cace.html#finding-the-cacelate-with-iv2sls",
+    "href": "example/cace.html#finding-the-cacelate-with-iv2sls",
+    "title": "Complier average treatment effects",
+    "section": "Finding the CACE/LATE with IV/2SLS",
+    "text": "Finding the CACE/LATE with IV/2SLS\nDoing that is super tedious though! What if there was an easier way to find the effect of the bed net program for just the compliers? We can do this with IV/2SLS regression by using assignment to treatment as an instrument.\nAssignment to treatment works as an instrument because it’s (1) relevant, since being told to use bed nets is probably highly correlated with using bed nets, (2) exclusive, since the only way that being told to use bed nets can cause changes in health is through the actual use of the bed nets, and (3) exogenous, since being told to use bed nets probably isn’t related to other things that cause health.\nHere’s a 2SLS regression with assignment to treatment as the instrument:\n\n\nCode\nmodel_2sls &lt;- iv_robust(health ~ bed_net | treatment, data = bed_nets)\ntidy(model_2sls)\n##             term estimate std.error statistic   p.value conf.low conf.high   df outcome\n## 1    (Intercept)    38.12    0.5151     74.01 0.000e+00    37.11     39.13 1998  health\n## 2 bed_netBed net    14.43    1.2538     11.51 1.038e-29    11.97     16.89 1998  health\n\n\nThe coefficient for bed_net is identical to the CACE that we found manually! Instrumental variables are helpful for isolated program effects to only compliers when you’re dealing with noncompliance."
+  },
+  {
+    "objectID": "files/reporte_notas/reporte_notas.html",
+    "href": "files/reporte_notas/reporte_notas.html",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "",
+    "text": "Datos"
   },
   {
     "objectID": "news/2023-01-09_welcome.html",
@@ -516,110 +628,5 @@
     "title": "Programa",
     "section": "Programación de sesiones",
     "text": "Programación de sesiones\nVisitar la página de Planificación."
-  },
-  {
-    "objectID": "assignment/09-practico.html",
-    "href": "assignment/09-practico.html",
-    "title": "Reportes dinámicos 3",
-    "section": "",
-    "text": "El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso, de manera colaborativa.\nEn detalle, aprenderemos los siguientes contenidos:\n\nCreación y organización de un informe en Quarto\nGeneración y presentación de tablas y gráficos en Quarto.\nCómo autoreferenciar elementos dentro un documento Quarto.\n\nAdemás de la plantilla para el informe, dejamos a disposición una carpeta con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:\n\ninput: insumos, libro de códigos\ninput/img: imágenes\ninput/data: base de datos original\nprocesamiento: archivos de sintaxis .R\noutput: bases de datos procesada, informes, tablas, gráficos\n\nRecordemos que este sistema de carpetas hace referencia al sistema IPO (Input-Procesamiento-Output).\n\nDonde el flujo de trabajo es el siguiente:\n\nPor último, Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN."
-  },
-  {
-    "objectID": "assignment/09-practico.html#encabezado-o-yaml",
-    "href": "assignment/09-practico.html#encabezado-o-yaml",
-    "title": "Reportes dinámicos 3",
-    "section": "Encabezado o YAML",
-    "text": "Encabezado o YAML\nPara comenzar, definiremos los elementos que van en el encabezado (front matter o YAML), al menos debemos especificar:\n\nTítulo\nSubtítulo\nAutores\nFecha\nIdioma\n\n\nCon ese YAML el encabezado se ve de la siguiente forma:"
-  },
-  {
-    "objectID": "assignment/09-practico.html#apartados-y-subapartados",
-    "href": "assignment/09-practico.html#apartados-y-subapartados",
-    "title": "Reportes dinámicos 3",
-    "section": "Apartados y subapartados",
-    "text": "Apartados y subapartados\nPara los títulos de los apartados deben poner un # antes del nombre, y para los subapartados cada vez más pequeños dos o más #.\nPor ejemplo, si ponemos:\n# Variables\n## Descripción de variables\nLos apartados y subapartados diferirán en su tamaño y se verán de esta forma."
-  },
-  {
-    "objectID": "assignment/09-practico.html#introducción",
-    "href": "assignment/09-practico.html#introducción",
-    "title": "Reportes dinámicos 3",
-    "section": "Introducción",
-    "text": "Introducción\n\nEn este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nEn este ejemplo daremos una mirada a la salud mental, y exploraremos posibles asociaciones con la edad, sexo y nivel educacional."
-  },
-  {
-    "objectID": "assignment/09-practico.html#variables",
-    "href": "assignment/09-practico.html#variables",
-    "title": "Reportes dinámicos 3",
-    "section": "Variables",
-    "text": "Variables\n\nEn este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nA continuación, en nuestro ejemplo describiremos las variables necesarias para responder a nuestro objetivo."
-  },
-  {
-    "objectID": "assignment/09-practico.html#análisis",
-    "href": "assignment/09-practico.html#análisis",
-    "title": "Reportes dinámicos 3",
-    "section": "Análisis",
-    "text": "Análisis\n\nEn este apartado pueden poner sus análisis, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nEn nuestro ejemplo, analizaremos la correlación entre algunas variables.\n\ncor_edad_dep &lt;- cor(data$edad, data$sint_depresivos)\ncor_nedu_dep &lt;- cor(data$nedu, data$sint_depresivos)\ncor_nedu_edad &lt;- cor(data$nedu, data$edad)\n\n\ng1 &lt;- data %&gt;% \n  group_by(nedu) %&gt;% \n  summarise(sint_dep = mean(sint_depresivos, na.rm = T),\n            edad=mean(edad, na.rm = T))\n\ngrafico1 &lt;- ggplot(data = g1,\n       mapping = aes(x = sint_dep, y = edad, label = nedu)) +\n  geom_point() +\n  geom_smooth(method = \"lm\",colour = \"black\",fill=\"lightblue\",size=0.5) + \n  labs(x = \"Sintomatología depresiva\",\n       y = \"Edad\",\n       caption = \"Fuente: Elaboración propia en base a ELSOC 2026\") +\n  theme_bw()\n\nEn la Figura 1 es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236.\n\ngrafico1\n\n\n\n\nFigura 1: Correlación entre edad y sintomatología depresiva\n\n\n\n\n\nEn las options del chunk desde el que llamamos a la figura le ponemos fig-nombre figura para etiquetarla, y luego en el texto ponemos @fig-nombre-figura para referenciarla."
-  },
-  {
-    "objectID": "assignment/09-practico.html#conclusiones",
-    "href": "assignment/09-practico.html#conclusiones",
-    "title": "Reportes dinámicos 3",
-    "section": "Conclusiones",
-    "text": "Conclusiones\n\nEn este apartado pueden poner sus conclusiones, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nAquí redactamos algunas conclusiones."
-  },
-  {
-    "objectID": "assignment/09-practico.html#bibliografía",
-    "href": "assignment/09-practico.html#bibliografía",
-    "title": "Reportes dinámicos 3",
-    "section": "Bibliografía",
-    "text": "Bibliografía\n\nEn este apartado pueden poner su bibliografía, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nPonemos un - para generar un listado.\n\nCOES (2023). Radiografía del Cambio Social: Análisis de Resultados Longitudinales ELSOC 2016-2022. Presentación de Resultados COES. Marzo, Santiago de Chile.\nR Core Team (2023). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/."
-  },
-  {
-    "objectID": "assignment/09-practico.html#descripción-de-variables",
-    "href": "assignment/09-practico.html#descripción-de-variables",
-    "title": "Reportes dinámicos 3",
-    "section": "Descripción de variables",
-    "text": "Descripción de variables\nEn este ejemplo, se seleccionaron las variables:\n\nsexo: sexo del encuestado, con nivel de medición nominal\nedad: edad del encuestado, con nivel de medición intervalar\nnedu: nivel educativo del encuestado, con nivel de medición ordinal\n\nY las variables del módulo de Salud y Bienestar, referentes a Estado de ánimo: sintomatología depresiva, con nivel de medición ordinal, los ítems son los siguientes:\n\nFrecuencia: Poco interés o alegría\nFrecuencia: Decaimiento, pesadez o desesperanza\nFrecuencia: Dificultad para dormir o exceso de sueño\nFrecuencia: Cansancio o sensación de falta de energía\nFrecuencia: Apetito disminuido o aumentado\nFrecuencia: Dificultad para concentrarse\nFrecuencia: Mala opinión de sí mismo\nFrecuencia: Enlentecimiento físico\nFrecuencia: Pensamiento de muerte o dañarse\n\n\nPodemos caargar los datos en nuestro informe sin que se vea poniendo la option echo=FALSE: load(\"../output/data.RData\").\n\n\ntab1 &lt;- data %&gt;%\n  group_by(sexo) %&gt;% # agrupamos por sexo\n  summarise(n = n()) %&gt;% # contamos por categ de respuesta\n  mutate(prop = round((n / sum(n)) * 100, 2)) # porcentaje\n \npm &lt;- as.numeric(tab1[2,3])\nph &lt;- as.numeric(tab1[1,3])\n\ntabla1 &lt;- tab1 %&gt;% \n  kableExtra::kable(format = \"html\",\n                    align = \"c\",\n                    col.names = c(\"Sexo\", \"n\", \"Proporción\"),\n                    caption = \"Tabla 1. Distribución de sexo\") %&gt;% \n  kableExtra::kable_classic(full_width = FALSE, position = \"center\", font_size = 14) %&gt;% \n  kableExtra::add_footnote(label = \"Fuente: Elaboración propia en base a ELSOC 2016.\")\n\nEn la Tabla 1 podemos ver que la proporción de mujeres que responde la encuesta corresponde a 60.12%, mientras que la propoción de hombres corresponde a 39.88%.\n\ntabla1\n\n\n\nTabla 1: Distribución de sexo\n\n\nSexo\nn\nProporción\n\n\n\n\n1\n1151\n39.88\n\n\n2\n1735\n60.12\n\n\n\na Fuente: Elaboración propia en base a ELSOC 2016.\n\n\n\n\n\n\n\n\n\n\n\n\nEn las options del chunk desde el que llamamos a la tabla le ponemos tbl-nombre tabla para etiquetarla, y luego en el texto ponemos @tbl-nombre-tabla para referenciarla. También, cuando queremos llamar un valor, es necesario asignarlo a un objeto, y en el texto lo llamamos con:"
-  },
-  {
-    "objectID": "assignment/09-practico.html#crear-un-documento-quarto",
-    "href": "assignment/09-practico.html#crear-un-documento-quarto",
-    "title": "Reportes dinámicos 3",
-    "section": "Crear un documento Quarto",
-    "text": "Crear un documento Quarto\nPara generar un documento Quarto hacemos lo siguiente:"
-  },
-  {
-    "objectID": "assignment/09-practico.html#insertar-imágenes",
-    "href": "assignment/09-practico.html#insertar-imágenes",
-    "title": "Reportes dinámicos 3",
-    "section": "Insertar imágenes",
-    "text": "Insertar imágenes\nSi quisiéramos poner una imagen, lo ideal es llamarla desde la web:\n\nRecordemos que si no queremos que se vea un chunk, en las options debemos poner echo=FALSE.\n\n\ninclude_graphics(\"https://www.desarrollosocialyfamilia.gob.cl/storage/image/banner-saludmental.png\")\n\n\n\n\nO desde la carpeta local ![](../input/img/nombre_imagen.extension) o con:\n\ninclude_graphics(\"../files/banner-saludmental.png\")"
-  },
-  {
-    "objectID": "assignment/09-practico.html#carga-de-librerías",
-    "href": "assignment/09-practico.html#carga-de-librerías",
-    "title": "Reportes dinámicos 3",
-    "section": "Carga de librerías",
-    "text": "Carga de librerías\nLas librerías que utilizaremos en esta guía práctica son:\n\nlibrary(pacman)\npacman::p_load(tidyverse,   # manipulacion datos\n               sjPlot,      # tablas\n               confintr,    # IC\n               gginference, # visualizacion \n               rempsyc,     # reporte\n               broom,       # varios\n               sjmisc,      # para descriptivos\n               knitr)       # para       \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo"
-  },
-  {
-    "objectID": "assignment/09-practico.html#carga-de-datos",
-    "href": "assignment/09-practico.html#carga-de-datos",
-    "title": "Reportes dinámicos 3",
-    "section": "Carga de datos",
-    "text": "Carga de datos\nComo señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta input/data, y se llama de la siguiente forma:\nload(\"../input/data/ELSOC_Long.RData\")\nPero, para llamar la base de datos desde la web:\n\nload(url(\"https://dataverse.harvard.edu/api/access/datafile/7245118\"))"
-  },
-  {
-    "objectID": "assignment/09-practico.html#limpieza-de-datos",
-    "href": "assignment/09-practico.html#limpieza-de-datos",
-    "title": "Reportes dinámicos 3",
-    "section": "Limpieza de datos",
-    "text": "Limpieza de datos\nRealizaremos un tratamiento simple de los casos:\n\n# Filtrar casos y seleccionar variables\ndata &lt;- elsoc_long_2016_2022.2 %&gt;% \n  filter(ola==1) %&gt;%\n  select(sexo=m0_sexo,edad=m0_edad,nedu=m01,\n         s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)\n\n# remover NA's\ndata &lt;- data %&gt;% \n  set_na(., na = c(-888, -999)) %&gt;% \n  na.omit()\n\n# crear variable nueva \ndata &lt;- data %&gt;% \n  rowwise() %&gt;%\n  mutate(sint_depresivos = mean(c(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) %&gt;% \n  ungroup()"
-  },
-  {
-    "objectID": "assignment/09-practico.html#guardar-base-de-datos-resultante",
-    "href": "assignment/09-practico.html#guardar-base-de-datos-resultante",
-    "title": "Reportes dinámicos 3",
-    "section": "Guardar base de datos resultante",
-    "text": "Guardar base de datos resultante\nGuardamos la base de datos procesada en la carpeta de output, con\nsaveRDS(data, \"../output/data.Rdata\")"
   }
 ]

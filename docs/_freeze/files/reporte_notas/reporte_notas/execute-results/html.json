@@ -1,0 +1,14 @@
+{
+  "hash": "71bb898c790d7f91979b84e4d49dd804",
+  "result": {
+    "markdown": "---\ntitle: \"Reporte Notas - Estadística Correlacional 2023 \"\ndate: \"2023-10-25\"\nlang: es\nwebsite:\n  comments:\n    giscus:\n      repo: cursos-metodos-facso/correlacional\n---\n\n\n\n\n# Datos\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
