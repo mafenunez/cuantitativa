@@ -160,7 +160,7 @@ rm(list = ls()) # para limpiar el entorno de trabajo
 
 Como señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta `input/data`, y se llama de la siguiente forma:
 
-`load("../input/data/ELSOC_Long.RData")`
+`load("input/data/ELSOC_Long.RData")`
     
 Pero, para llamar la base de datos desde la web:
 
@@ -197,7 +197,7 @@ data <- data %>%
 
 Guardamos la base de datos procesada en la carpeta de _output_, con 
 
-`saveRDS(data, "../output/data.Rdata")`
+`saveRDS(data, "output/data.Rdata")`
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 saveRDS(data, "../assignment/data/data.RData")
@@ -240,7 +240,7 @@ Y las variables del módulo de Salud y Bienestar, referentes a *Estado de ánimo
 -   Frecuencia: Enlentecimiento físico
 -   Frecuencia: Pensamiento de muerte o dañarse
 
-> Podemos caargar los datos en nuestro informe sin que se vea poniendo la option `echo=FALSE`: `load("../output/data.RData")`.
+> Podemos caargar los datos en nuestro informe sin que se vea poniendo la option `echo=FALSE`: `data <-readRDS("output/data.RData")`.
 
 ```{r, warning=FALSE, message=FALSE}
 tab1 <- data %>%
