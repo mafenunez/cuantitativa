@@ -27,6 +27,12 @@ Para la elaboración de los trabajos se utilizará la base de datos de la Encues
 
 En principio utilizaremos [CASEN 2022](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022) (la más reciente), pero también es posible utilizar la [ Encuesta de Bienestar Social EBS 2021](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-bienestar-social), que se aplica a una submuestra de CASEN y que por lo tanto permite vincular la información de ambas encuestas. En su primera versión se aplicó a una submuestra de CASEN 2020, por lo que los análisis utilizando la EBS 2021 remiten a la CASEN 2020 en pandemia. La versión de EBS vinculada a CASEN 2022 se encuentra actualmente en fase de recolección de datos, por lo tanto aún no está disponible.
 
+::: {.callout-tip}
+## Combinación (merge) de datos CASEN-EBS
+La forma de combinar ambas bases se presenta en la página de prácticos del curso, link directo [acá](/assignment/11-practico.html).
+:::
+
+
 # Temas
 
 Cada grupo seleccionará un tema de análisis que considere relaciones entre dos variables, por ejemplo: género y nivel educacional, migración y pobreza, nivel educacional por regiones. Para seleccionar el tema se deben revisar los cuestionarios, libros de códigos y reportes de las encuestas mencionadas.

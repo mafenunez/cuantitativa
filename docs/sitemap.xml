@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://correlacional.netlify.app/trabajos.html</loc>
-    <lastmod>2023-11-07T12:01:16.311Z</lastmod>
+    <lastmod>2023-11-09T13:50:16.996Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/schedule.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/index.html</loc>
-    <lastmod>2023-11-07T12:00:56.029Z</lastmod>
+    <lastmod>2023-11-09T13:38:30.449Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/example/index.html</loc>
@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/09-practico.html</loc>
-    <lastmod>2023-11-07T12:00:25.240Z</lastmod>
+    <lastmod>2023-11-09T13:39:23.685Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/07-practico.html</loc>
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/06-practico.html</loc>
-    <lastmod>2023-11-07T11:59:57.511Z</lastmod>
+    <lastmod>2023-11-09T13:28:08.353Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/08-practico.html</loc>
@@ -82,7 +82,7 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/index.html</loc>
-    <lastmod>2023-11-07T12:00:27.492Z</lastmod>
+    <lastmod>2023-11-09T13:38:34.618Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/content/02-content.html</loc>
@@ -122,6 +122,10 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/syllabus.html</loc>
-    <lastmod>2023-11-07T12:01:13.111Z</lastmod>
+    <lastmod>2023-11-09T13:37:00.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/assignment/11-practico.html</loc>
+    <lastmod>2023-11-09T13:38:41.600Z</lastmod>
   </url>
 </urlset>

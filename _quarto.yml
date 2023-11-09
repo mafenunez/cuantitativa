@@ -113,6 +113,8 @@ website:
               file: assignment/08-practico.qmd
             - text: "9: Reporte - plantilla trabajos"
               file: assignment/09-practico.qmd
+            - text: "CASEN-EBS"
+              file: assignment/11-practico.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
