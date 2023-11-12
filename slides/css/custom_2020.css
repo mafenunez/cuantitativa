@@ -416,3 +416,22 @@ iframe {
 .output {
     background: #eee;
 }
+
+/* scroll vertical code blocks */
+
+.pre {
+  height: 30pc;
+  overflow-y: scroll;
+}
+
+/* then add to code like this:this
+.pre[
+```{r}
+fu <- function(x){
+  x
+}
+```
+]
+
+*/
+
