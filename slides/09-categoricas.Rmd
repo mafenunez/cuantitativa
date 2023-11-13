@@ -30,20 +30,6 @@ pacman::p_load(flipbookr, tidyverse, kableExtra)
 ```
 
 
-```{r include=FALSE}
-options(width = 60)
-local({
-  hook_output <- knitr::knit_hooks$get('output')
-  knitr::knit_hooks$set(output = function(x, options) {
-    if (!is.null(options$max.height)) options$attr.output <- c(
-      options$attr.output,
-      sprintf('style="max-height: %s;"', options$max.height)
-    )
-    hook_output(x, options)
-  })
-})
-```
-
 ```{r xaringanExtra, include=FALSE}
 xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
 xaringanExtra::use_scribble()
@@ -95,9 +81,15 @@ DE CONTINGENCIA](https://correlacional.netlify.app/files/textos/Moore.pdf)
 - inferencia para diferencias y asociaciones (Unidad 2)
 
 ---
+class: inverse
+
+# Hoy Unidad 3: 
+# Asociación con variables categóricas
+
+---
 class: roja
 
-# Hoy Unidad 3: Asociación con variables categóricas
+# Asociación en tablas de contingencia
 
 ---
 ## Escalas de medición de variables
@@ -233,25 +225,25 @@ frq(casen2022_chi$r9t)
 
 ---
 
-En la lista CASEN al final hay una item de "no ha sido discriminado", quienes responden si son quienes no se han sentido discriminados, por lo tanto mejor cambiar las etiquetas para evitar confusiones
+- En la lista CASEN al final hay una item de "no ha sido discriminado" (**r9t**), que usaremos para nuestro análisis; la renombramos "discrim"
+
+- Quienes responden si son quienes no se han sentido discriminados, por lo tanto mejor cambiar las etiquetas para evitar confusiones
 
 ```{r}
-casen2022_chi$r9t <- sjlabelled::set_labels(casen2022_chi$r9t,
+casen2022_chi$discrim <- sjlabelled::set_labels(casen2022_chi$r9t,
             labels=c( "discriminad@"=0,
                       "no discriminad@"=1))
-frq(casen2022_chi$r9t)
 ```
 
 ---
-Y cambiamos el nombre de la variable (r9t) por uno más sustantivo:
 
 ```{r}
-casen2022_chi <- rename(casen2022_chi,"discrim"=r9t)
 frq(casen2022_chi$discrim)
 ```
 
 ---
-Ahora con la variable educación:
+Ahora con la variable educación, recodificar universitario=1
+
 
 ```{r}
 casen2022_chi$educ_sup <- rec(casen2022_chi$educacion, rec = "1:12=0;13:15=1",val.labels = c("Menos que universitaria", "Universitaria o más"))
@@ -261,48 +253,130 @@ frq(casen2022_chi$educ_sup)
 ---
 Veamos ahora una tabla de frecuencias cruzadas
 
-```{r}
+.pull-left-narrow[
+.small[
+```{r eval=FALSE}
 pacman::p_load(sjPlot)
 casen2022_chi %>%
-  sjtab(educ_sup,discrim)
+  sjtab(educ_sup,
+        discrim)
 ```
+]]
+
+.pull-right-wide[
+.small[
+```{r echo=FALSE}
+casen2022_chi %>%
+  sjtab(educ_sup,
+        discrim)
+```
+]]
 
 ---
 Para mayor claridad generamos porcentajes por columnas de la tabla (discriminación)
 
-```{r}
+.pull-left-narrow[
+.small[
+```{r eval=FALSE}
 casen2022_chi %>%
-  sjtab(educ_sup,discrim,
+  sjtab(educ_sup,
+        discrim,
   show.col.prc=TRUE)
 ```
+]]
+
+.pull-right-wide[
+.small[
+```{r echo=FALSE}
+casen2022_chi %>%
+  sjtab(educ_sup,
+        discrim,
+  show.col.prc=TRUE)
+```
+]
+]
 
 ---
+Y acá por filas (educación)
 
-```{r}
+.pull-left-narrow[
+.small[
+```{r eval=FALSE}
 casen2022_chi %>%
-  sjtab(educ_sup,discrim,
+  sjtab(educ_sup,
+        discrim,
   show.row.prc=TRUE)
 ```
+]]
 
----
-
-```{r}
+.pull-right-wide[
+.small[
+```{r echo=FALSE}
 casen2022_chi %>%
-  sjtab(educ_sup,discrim,
-  show.row.prc=TRUE, show.col.prc=TRUE)
+  sjtab(educ_sup,
+        discrim,
+  show.row.prc=TRUE)
 ```
+]
+]
+
 
 ---
-class: red
+.pull-left-narrow[
 
+Con ambos porcentajes:
+.small[
+```{r eval=FALSE}
+casen2022_chi %>%
+  sjtab(educ_sup,
+        discrim,
+  show.row.prc=TRUE,
+  show.col.prc=TRUE
+  )
+```
+]]
+
+.pull-right-wide[
+.small[
+```{r echo=FALSE}
+casen2022_chi %>%
+  sjtab(educ_sup,
+        discrim,
+  show.row.prc=TRUE,
+  show.col.prc=TRUE)
+```
+]
+]
+
+---
+
+.pull-left-wide[
+.small[
+```{r echo=FALSE}
+casen2022_chi %>%
+  sjtab(educ_sup,
+        discrim,
+  show.row.prc=TRUE,
+  show.col.prc=TRUE)
+```
+]
+]
+
+.pull-right-narrow[
+<br>
 # ¿Cómo saber si existe asociación o no entre estas variables?
+]
 
 ---
 # Prueba de $\chi^2$
 
-- La prueba de $\chi^2$ (chi cuadrado) se utiliza para inferencia sobre  asociación de variables categóricas en una tabla de contingencia.
+- La prueba de $\chi^2$ (chi cuadrado) se utiliza para inferencia sobre  asociación de variables categóricas en una tabla de contingencia
+
+--
 
 - $\chi^2$ se basa en un **test de diferencia**, donde se compara nuestra tabla de contingencia y una tabla donde no existe asociación entre variables, que representa la hipótesis nula $H_0$
+
+--
 
 - La lógica detrás es que si nuestra tabla es significativamente distinta de una tabla sin asociación, entonces podemos rechazar la hipóteis nula
 
@@ -332,7 +406,7 @@ Para simplificar, pensemos en una muestra más pequeña de 100 casos y además b
 | Universitaria o más     | 0            | 50              | 50    |
 | Total                   | 50           | 50              | 100   |
 
-Esta tabla estaría expresando nuestra hipótesis (alternativa): existen diferencias al cruzar estas variables, y por lo tanto hay asociación entre educación y percepción de discriminación
+Esta tabla estaría expresando lo esperado por nuestra **hipótesis (alternativa)**: existen diferencias al cruzar estas variables, y por lo tanto hay asociación entre educación y percepción de discriminación
 
 ---
 
@@ -534,6 +608,20 @@ casen2022_chi %>%
 ```
 ]
 ]
+
+---
+# Resumen: 5 pasos inferencia para tablas cruzadas
+
+1. Establecer las hipótesis 
+
+2. Calcular frecuencias esperadas 
+
+3. Estimar estadístico de prueba $\chi^2$
+
+4. Establecer valor crítico de la prueba (de acuerdo a un cierto nivel de confianza y grados de libertad)
+
+5. Contraste e interpretación
+
 ---
 class: roja
 

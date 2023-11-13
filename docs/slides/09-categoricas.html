@@ -22,8 +22,6 @@ class: front
 
 
 
-
-
 .pull-left-wide[
 # Estadística Correlacional]
 
@@ -70,9 +68,15 @@ DE CONTINGENCIA](https://correlacional.netlify.app/files/textos/Moore.pdf)
 - inferencia para diferencias y asociaciones (Unidad 2)
 
 ---
+class: inverse
+
+# Hoy Unidad 3: 
+# Asociación con variables categóricas
+
+---
 class: roja
 
-# Hoy Unidad 3: Asociación con variables categóricas
+# Asociación en tablas de contingencia
 
 ---
 ## Escalas de medición de variables
@@ -221,33 +225,21 @@ Value | Label |      N | Raw % | Valid % | Cum. %
 
 ---
 
-En la lista CASEN al final hay una item de "no ha sido discriminado", quienes responden si son quienes no se han sentido discriminados, por lo tanto mejor cambiar las etiquetas para evitar confusiones
+- En la lista CASEN al final hay una item de "no ha sido discriminado" (**r9t**), que usaremos para nuestro análisis; la renombramos "discrim"
+
+- Quienes responden si son quienes no se han sentido discriminados, por lo tanto mejor cambiar las etiquetas para evitar confusiones
 
 
 ```r
-casen2022_chi$r9t &lt;- sjlabelled::set_labels(casen2022_chi$r9t,
+casen2022_chi$discrim &lt;- sjlabelled::set_labels(casen2022_chi$r9t,
             labels=c( "discriminad@"=0,
                       "no discriminad@"=1))
-frq(casen2022_chi$r9t)
-```
-
-```
-r9t. Últ. 12 meses: No ha sido tratado injustamente o discriminado (x) &lt;numeric&gt; 
-# total N=202231 valid N=202231 mean=0.83 sd=0.37
-
-Value |           Label |      N | Raw % | Valid % | Cum. %
------------------------------------------------------------
-    0 |    discriminad@ |  33472 | 16.55 |   16.55 |  16.55
-    1 | no discriminad@ | 168759 | 83.45 |   83.45 | 100.00
- &lt;NA&gt; |            &lt;NA&gt; |      0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
 ```
 
 ---
-Y cambiamos el nombre de la variable (r9t) por uno más sustantivo:
 
 
 ```r
-casen2022_chi &lt;- rename(casen2022_chi,"discrim"=r9t)
 frq(casen2022_chi$discrim)
 ```
 
@@ -263,7 +255,8 @@ Value |           Label |      N | Raw % | Valid % | Cum. %
 ```
 
 ---
-Ahora con la variable educación:
+Ahora con la variable educación, recodificar universitario=1
+
 
 
 ```r
@@ -285,13 +278,19 @@ Value |                   Label |      N | Raw % | Valid % | Cum. %
 ---
 Veamos ahora una tabla de frecuencias cruzadas
 
+.pull-left-narrow[
+.small[
 
 ```r
 pacman::p_load(sjPlot)
 casen2022_chi %&gt;%
-  sjtab(educ_sup,discrim)
+  sjtab(educ_sup,
+        discrim)
 ```
+]]
 
+.pull-right-wide[
+.small[
 &lt;table style="border-collapse:collapse; border:none;"&gt;
  &lt;tr&gt;
  &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;e6a. ¿Cuál es el&lt;br&gt;nivel educacional al&lt;br&gt;que asiste o el más&lt;br&gt;alto al cual&lt;br&gt;asistió?&lt;/th&gt;
@@ -328,17 +327,24 @@ casen2022_chi %&gt;%
 &lt;/tr&gt;
  
 &lt;/table&gt;
+]]
 
 ---
 Para mayor claridad generamos porcentajes por columnas de la tabla (discriminación)
 
+.pull-left-narrow[
+.small[
 
 ```r
 casen2022_chi %&gt;%
-  sjtab(educ_sup,discrim,
+  sjtab(educ_sup,
+        discrim,
   show.col.prc=TRUE)
 ```
+]]
 
+.pull-right-wide[
+.small[
 &lt;table style="border-collapse:collapse; border:none;"&gt;
  &lt;tr&gt;
  &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;e6a. ¿Cuál es el&lt;br&gt;nivel educacional al&lt;br&gt;que asiste o el más&lt;br&gt;alto al cual&lt;br&gt;asistió?&lt;/th&gt;
@@ -375,16 +381,25 @@ casen2022_chi %&gt;%
 &lt;/tr&gt;
  
 &lt;/table&gt;
+]
+]
 
 ---
+Y acá por filas (educación)
 
+.pull-left-narrow[
+.small[
 
 ```r
 casen2022_chi %&gt;%
-  sjtab(educ_sup,discrim,
+  sjtab(educ_sup,
+        discrim,
   show.row.prc=TRUE)
 ```
+]]
 
+.pull-right-wide[
+.small[
 &lt;table style="border-collapse:collapse; border:none;"&gt;
  &lt;tr&gt;
  &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;e6a. ¿Cuál es el&lt;br&gt;nivel educacional al&lt;br&gt;que asiste o el más&lt;br&gt;alto al cual&lt;br&gt;asistió?&lt;/th&gt;
@@ -421,16 +436,28 @@ casen2022_chi %&gt;%
 &lt;/tr&gt;
  
 &lt;/table&gt;
+]
+]
+
 
 ---
+.pull-left-narrow[
 
+Con ambos porcentajes:
+.small[
 
 ```r
 casen2022_chi %&gt;%
-  sjtab(educ_sup,discrim,
-  show.row.prc=TRUE, show.col.prc=TRUE)
+  sjtab(educ_sup,
+        discrim,
+  show.row.prc=TRUE,
+  show.col.prc=TRUE
+  )
 ```
+]]
 
+.pull-right-wide[
+.small[
 &lt;table style="border-collapse:collapse; border:none;"&gt;
  &lt;tr&gt;
  &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;e6a. ¿Cuál es el&lt;br&gt;nivel educacional al&lt;br&gt;que asiste o el más&lt;br&gt;alto al cual&lt;br&gt;asistió?&lt;/th&gt;
@@ -467,18 +494,67 @@ casen2022_chi %&gt;%
 &lt;/tr&gt;
  
 &lt;/table&gt;
+]
+]
 
 ---
-class: red
 
+.pull-left-wide[
+.small[
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+ &lt;tr&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;e6a. ¿Cuál es el&lt;br&gt;nivel educacional al&lt;br&gt;que asiste o el más&lt;br&gt;alto al cual&lt;br&gt;asistió?&lt;/th&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2"&gt;r9t. Últ. 12 meses:&lt;br&gt;No ha sido tratado&lt;br&gt;injustamente o&lt;br&gt;discriminado&lt;/th&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2"&gt;Total&lt;/th&gt;
+ &lt;/tr&gt;
+ 
+&lt;tr&gt;
+ &lt;td style="border-bottom:1px solid; text-align:center; padding:0.2cm;"&gt;discriminad@&lt;/td&gt;
+ &lt;td style="border-bottom:1px solid; text-align:center; padding:0.2cm;"&gt;no discriminad@&lt;/td&gt;
+ &lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;Menos que&lt;br&gt;universitaria&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;26996&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;16&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;80.7&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;141998&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;84&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;84.1&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;168994&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;83.6&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;Universitaria o más&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;6476&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;19.5&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;19.3&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;26761&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;80.5&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;15.9&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;33237&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;16.4&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;"&gt;Total&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;33472&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;16.6&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;168759&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;83.4&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;202231&lt;/span&gt;&lt;br&gt;&lt;span style="color:#333399;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+&lt;td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="4"&gt;&amp;chi;&lt;sup&gt;2&lt;/sup&gt;=247.461 &amp;middot; df=1 &amp;middot; &amp;phi;=0.035 &amp;middot; p=0.000&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;/table&gt;
+]
+]
+
+.pull-right-narrow[
+&lt;br&gt;
 # ¿Cómo saber si existe asociación o no entre estas variables?
+]
 
 ---
 # Prueba de `\(\chi^2\)`
 
-- La prueba de `\(\chi^2\)` (chi cuadrado) se utiliza para inferencia sobre  asociación de variables categóricas en una tabla de contingencia.
+- La prueba de `\(\chi^2\)` (chi cuadrado) se utiliza para inferencia sobre  asociación de variables categóricas en una tabla de contingencia
+
+--
 
 - `\(\chi^2\)` se basa en un **test de diferencia**, donde se compara nuestra tabla de contingencia y una tabla donde no existe asociación entre variables, que representa la hipótesis nula `\(H_0\)`
+
+--
 
 - La lógica detrás es que si nuestra tabla es significativamente distinta de una tabla sin asociación, entonces podemos rechazar la hipóteis nula
 
@@ -508,7 +584,7 @@ Para simplificar, pensemos en una muestra más pequeña de 100 casos y además b
 | Universitaria o más     | 0            | 50              | 50    |
 | Total                   | 50           | 50              | 100   |
 
-Esta tabla estaría expresando nuestra hipótesis (alternativa): existen diferencias al cruzar estas variables, y por lo tanto hay asociación entre educación y percepción de discriminación
+Esta tabla estaría expresando lo esperado por nuestra **hipótesis (alternativa)**: existen diferencias al cruzar estas variables, y por lo tanto hay asociación entre educación y percepción de discriminación
 
 ---
 
@@ -822,6 +898,20 @@ casen2022_chi %&gt;%
 &lt;/table&gt;
 ]
 ]
+
+---
+# Resumen: 5 pasos inferencia para tablas cruzadas
+
+1. Establecer las hipótesis 
+
+2. Calcular frecuencias esperadas 
+
+3. Estimar estadístico de prueba `\(\chi^2\)`
+
+4. Establecer valor crítico de la prueba (de acuerdo a un cierto nivel de confianza y grados de libertad)
+
+5. Contraste e interpretación
+
 ---
 class: roja
 
