@@ -115,6 +115,8 @@ website:
               file: assignment/08-practico.qmd
             - text: "9: Reporte - plantilla trabajos"
               file: assignment/09-practico.qmd
+            - text: "10: Asociación con categóricas"
+              file: assignment/10-practico.qmd
             - text: "CASEN-EBS"
               file: assignment/11-practico.qmd
   page-footer:

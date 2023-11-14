@@ -98,7 +98,7 @@ Aquí, los porcentajes fila aparecen en azul y los porcentajes columna en verde.
 
 # Prueba de hipótesis con Chi-cuadrado
 
-La prueba de Chi-cudrado ($X^2$) es una herramienta estadística utilizada para evaluar si existe una asociación significativa entre dos variables categóricas. 
+La prueba de Chi-cudrado ($\chi^2$) es una herramienta estadística utilizada para evaluar si existe una asociación significativa entre dos variables categóricas. 
 
 Testeamos la **hipótesis de independencia** en una tabla de contigencia. Por ejemplo, si decimos que existe una relación entre tener educación superior y la preferencia por algún sistema de salud, esperamos encontrar que un porcentaje más alto de quienes tienen educación superior se inclinen por un sistema de salud determinado. 
 
