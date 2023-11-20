@@ -185,6 +185,7 @@ prueba2 %>% descr(., show = c("label","range", "mean", "sd", "n"))%>% kable(.,"m
 
 ```{r}
 hist(prueba2$nota_final)
+plot_frq(data = prueba2$nota_final,type = "hist",show.mean = T)
 ```
 
 
