@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -138,7 +172,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#datos" id="toc-datos" class="nav-link active" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#prueba-1" id="toc-prueba-1" class="nav-link active" data-scroll-target="#prueba-1">Prueba 1</a>
+  <ul class="collapse">
+  <li><a href="#librerías-datos" id="toc-librerías-datos" class="nav-link" data-scroll-target="#librerías-datos">Librerías &amp; datos</a></li>
+  <li><a href="#etiquetados" id="toc-etiquetados" class="nav-link" data-scroll-target="#etiquetados">Etiquetados</a></li>
+  <li><a href="#tabla-descriptiva" id="toc-tabla-descriptiva" class="nav-link" data-scroll-target="#tabla-descriptiva">Tabla descriptiva</a></li>
+  <li><a href="#gráficos-descriptivos" id="toc-gráficos-descriptivos" class="nav-link" data-scroll-target="#gráficos-descriptivos">Gráficos descriptivos</a></li>
+  <li><a href="#preguntas-y-asociaciones" id="toc-preguntas-y-asociaciones" class="nav-link" data-scroll-target="#preguntas-y-asociaciones">Preguntas y asociaciones</a></li>
+  </ul></li>
+  <li><a href="#prueba-2" id="toc-prueba-2" class="nav-link" data-scroll-target="#prueba-2">Prueba 2</a>
+  <ul class="collapse">
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#adecuación-preguntas" id="toc-adecuación-preguntas" class="nav-link" data-scroll-target="#adecuación-preguntas">Adecuación preguntas</a></li>
+  <li><a href="#etiquetados-1" id="toc-etiquetados-1" class="nav-link" data-scroll-target="#etiquetados-1">Etiquetados</a></li>
+  <li><a href="#tabla-descriptiva-1" id="toc-tabla-descriptiva-1" class="nav-link" data-scroll-target="#tabla-descriptiva-1">Tabla descriptiva</a></li>
+  <li><a href="#gráficos-descriptivos-1" id="toc-gráficos-descriptivos-1" class="nav-link" data-scroll-target="#gráficos-descriptivos-1">Gráficos descriptivos</a></li>
+  <li><a href="#preguntas-y-asociaciones-1" id="toc-preguntas-y-asociaciones-1" class="nav-link" data-scroll-target="#preguntas-y-asociaciones-1">Preguntas y asociaciones</a></li>
+  </ul></li>
+  <li><a href="#pruebas-1-2" id="toc-pruebas-1-2" class="nav-link" data-scroll-target="#pruebas-1-2">Pruebas 1 &amp; 2</a></li>
   </ul>
 </nav>
     </div>
@@ -168,8 +219,628 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="datos" class="level1">
-<h1>Datos</h1>
+<section id="prueba-1" class="level1">
+<h1>Prueba 1</h1>
+<section id="librerías-datos" class="level2">
+<h2 class="anchored" data-anchor-id="librerías-datos">Librerías &amp; datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "N"            "Persona"      "p1-a"         "p1-b"         "p2"          
+ [6] "p3"           "p4"           "p5"           "pje"          "Nota 60%"    
+[11] "corrector/a"  "decimas"      "nota_final"   "Recorrección" "...15"       
+[16] "...16"       </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"prueba1.Rdata"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="etiquetados" class="level2">
+<h2 class="anchored" data-anchor-id="etiquetados">Etiquetados</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Label variables</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p1a <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p1a, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Cálculo Pearson"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p1b <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p1b, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Interpretación Pearson"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p2 <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p2, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Limitación Pearson"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p3 <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p3, </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Coeficiente determinación"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p4 <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p4, </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Spearman"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p5 <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p5, </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Perdidos matrices"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tabla-descriptiva" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-descriptiva">Tabla descriptiva</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="sc">%&gt;%</span> <span class="fu">descr</span>(., <span class="at">show =</span> <span class="fu">c</span>(<span class="st">"label"</span>,<span class="st">"range"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"n"</span>))<span class="sc">%&gt;%</span> <span class="fu">kable</span>(.,<span class="st">"markdown"</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">var</th>
+<th style="text-align: left;">label</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: left;">range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">p1a</td>
+<td style="text-align: left;">Cálculo Pearson</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">1.78</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: left;">3 (0-3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">p1b</td>
+<td style="text-align: left;">Interpretación Pearson</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">1.66</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: left;">3 (0-3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">p2</td>
+<td style="text-align: left;">Limitación Pearson</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">1.53</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">p3</td>
+<td style="text-align: left;">Coeficiente determinación</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">0.64</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">p4</td>
+<td style="text-align: left;">Spearman</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">1.39</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">p5</td>
+<td style="text-align: left;">Perdidos matrices</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">nota_final</td>
+<td style="text-align: left;">nota_final</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">4.54</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: left;">6 (1-7)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="gráficos-descriptivos" class="level2">
+<h2 class="anchored" data-anchor-id="gráficos-descriptivos">Gráficos descriptivos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(prueba1<span class="sc">$</span>nota_final)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reporte_notas_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_frq</span>(<span class="at">data =</span> prueba1<span class="sc">$</span>nota_final,<span class="at">type =</span> <span class="st">"hist"</span>,<span class="at">show.mean =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reporte_notas_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">notas_cat=</span><span class="fu">cut</span>(nota_final, <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>, <span class="cn">Inf</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Menor a 4.0"</span>,<span class="st">"4.0-5.0"</span>,<span class="st">"5.0-6.0"</span>,<span class="st">"6.0-7.0"</span>)))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(prueba1<span class="sc">$</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;categorical&gt; 
+# total N=89 valid N=79 mean=2.23 sd=1.13
+
+Value       |  N | Raw % | Valid % | Cum. %
+-------------------------------------------
+Menor a 4.0 | 30 | 33.71 |   37.97 |  37.97
+4.0-5.0     | 14 | 15.73 |   17.72 |  55.70
+5.0-6.0     | 22 | 24.72 |   27.85 |  83.54
+6.0-7.0     | 13 | 14.61 |   16.46 | 100.00
+&lt;NA&gt;        | 10 | 11.24 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preguntas-y-asociaciones" class="level2">
+<h2 class="anchored" data-anchor-id="preguntas-y-asociaciones">Preguntas y asociaciones</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_corr</span>(prueba1,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Cálculo Pearson</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Interpretación Pearson</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Limitación Pearson</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Coeficiente determinación</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Spearman</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Perdidos matrices</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">nota_final</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Cálculo Pearson</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Interpretación Pearson</td>
+<td style="text-align: center; padding: 0.2cm;">0.405<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Limitación Pearson</td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.211<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.153<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Coeficiente determinación</td>
+<td style="text-align: center; padding: 0.2cm;">0.271<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.407<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.267<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Spearman</td>
+<td style="text-align: center; padding: 0.2cm;">0.229<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.203<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.375<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.197<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Perdidos matrices</td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.063<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.127<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.435<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.095<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.277<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">nota_final</td>
+<td style="text-align: center; padding: 0.2cm;">0.696<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.627<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.619<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.524<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.583<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.539<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_scatter</span>(prueba1, p1a, p1b)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reporte_notas_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Consistencia interna</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ltm)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>preguntas <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>nota_final)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(<span class="fu">na.omit</span>(preguntas))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cronbach's alpha for the 'na.omit(preguntas)' data-set
+
+Items: 6
+Sample units: 79
+alpha: 0.634</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="prueba-2" class="level1">
+<h1>Prueba 2</h1>
+<section id="datos" class="level2">
+<h2 class="anchored" data-anchor-id="datos">Datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"prueba2.Rdata"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="adecuación-preguntas" class="level2">
+<h2 class="anchored" data-anchor-id="adecuación-preguntas">Adecuación preguntas</h2>
+<p>La prueba tiene dos formas: A y B, la única diferencia es en el orden de las preguntas, la forma A parte por la pregunta sobre identificación con la izquierda, mientras que en la forma B la primera pregunta es la de CASEN. Para poder realizar un correcto análisis de las preguntas vamos a adaptar la forma B a la A.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(prueba2<span class="sc">$</span>forma)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;character&gt; 
+# total N=87 valid N=48 mean=1.54 sd=0.50
+
+Value |  N | Raw % | Valid % | Cum. %
+-------------------------------------
+A     | 22 | 25.29 |   45.83 |  45.83
+B     | 26 | 29.89 |   54.17 | 100.00
+&lt;NA&gt;  | 39 | 44.83 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">subset</span>(prueba2, <span class="at">subset =</span> prueba2<span class="sc">$</span>forma<span class="sc">==</span><span class="st">"A"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">subset</span>(prueba2, <span class="at">subset =</span> prueba2<span class="sc">$</span>forma<span class="sc">==</span><span class="st">"B"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(A)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22  8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(B)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26  8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">descr</span>(B, <span class="at">show =</span> <span class="st">"mean"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+## Basic descriptive statistics
+
+        var mean
+        p1a 1.29
+        p1b 1.40
+        p1c 1.35
+        p2a 1.37
+        p2b 1.46
+        p2c 1.44
+ nota_final 4.78</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> B <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"p1a"</span><span class="ot">=</span><span class="st">"p2a"</span>, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"p1b"</span><span class="ot">=</span><span class="st">"p2b"</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"p1c"</span><span class="ot">=</span><span class="st">"p2c"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"p2a"</span><span class="ot">=</span><span class="st">"p1a"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"p2b"</span><span class="ot">=</span><span class="st">"p1b"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"p2c"</span><span class="ot">=</span><span class="st">"p1c"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">descr</span>(B, <span class="at">show =</span> <span class="st">"mean"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+## Basic descriptive statistics
+
+        var mean
+        p2a 1.29
+        p2b 1.40
+        p2c 1.35
+        p1a 1.37
+        p1b 1.46
+        p1c 1.44
+ nota_final 4.78</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(A,B)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="etiquetados-1" class="level2">
+<h2 class="anchored" data-anchor-id="etiquetados-1">Etiquetados</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Label variables</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>prueba2<span class="sc">$</span>p1a <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba2<span class="sc">$</span>p1a, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"H1 promedio direccional"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>prueba2<span class="sc">$</span>p1b <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba2<span class="sc">$</span>p1b, </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Prueba promedios"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>prueba2<span class="sc">$</span>p1c <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba2<span class="sc">$</span>p1c, </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Rechazo H0"</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>prueba2<span class="sc">$</span>p2a <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba2<span class="sc">$</span>p2a, </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"H1 proporcion no direccional"</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>prueba2<span class="sc">$</span>p2b <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba2<span class="sc">$</span>p2b, </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Error tipo 1"</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>prueba2<span class="sc">$</span>p2c <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba2<span class="sc">$</span>p2c, </span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Intervalo confianza"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tabla-descriptiva-1" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-descriptiva-1">Tabla descriptiva</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="sc">%&gt;%</span> <span class="fu">descr</span>(., <span class="at">show =</span> <span class="fu">c</span>(<span class="st">"label"</span>,<span class="st">"range"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"n"</span>))<span class="sc">%&gt;%</span> <span class="fu">kable</span>(.,<span class="st">"markdown"</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 16%">
+<col style="width: 42%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">var</th>
+<th style="text-align: left;">label</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: left;">range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">p1a</td>
+<td style="text-align: left;">H1 promedio direccional</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">1.33</td>
+<td style="text-align: right;">0.64</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">p1b</td>
+<td style="text-align: left;">Prueba promedios</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">p1c</td>
+<td style="text-align: left;">Rechazo H0</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">p2a</td>
+<td style="text-align: left;">H1 proporcion no direccional</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">p2b</td>
+<td style="text-align: left;">Error tipo 1</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">p2c</td>
+<td style="text-align: left;">Intervalo confianza</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">1.25</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">nota_final</td>
+<td style="text-align: left;">nota_final</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">4.55</td>
+<td style="text-align: right;">1.34</td>
+<td style="text-align: left;">5.6 (1.4-7)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="gráficos-descriptivos-1" class="level2">
+<h2 class="anchored" data-anchor-id="gráficos-descriptivos-1">Gráficos descriptivos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(prueba2<span class="sc">$</span>nota_final)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reporte_notas_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="ot">&lt;-</span> prueba2 <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">notas_cat=</span><span class="fu">cut</span>(nota_final, <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>, <span class="cn">Inf</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Menor a 4.0"</span>,<span class="st">"4.0-5.0"</span>,<span class="st">"5.0-6.0"</span>,<span class="st">"6.0-7.0"</span>)))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(prueba2<span class="sc">$</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;categorical&gt; 
+# total N=48 valid N=48 mean=2.23 sd=1.06
+
+Value       |  N | Raw % | Valid % | Cum. %
+-------------------------------------------
+Menor a 4.0 | 16 | 33.33 |   33.33 |  33.33
+4.0-5.0     | 11 | 22.92 |   22.92 |  56.25
+5.0-6.0     | 15 | 31.25 |   31.25 |  87.50
+6.0-7.0     |  6 | 12.50 |   12.50 | 100.00
+&lt;NA&gt;        |  0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="ot">&lt;-</span> prueba2 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preguntas-y-asociaciones-1" class="level2">
+<h2 class="anchored" data-anchor-id="preguntas-y-asociaciones-1">Preguntas y asociaciones</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="ot">&lt;-</span> prueba2 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>forma)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_corr</span>(prueba2,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">H1 promedio direccional</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Prueba promedios</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Rechazo H0</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">H1 proporcion no direccional</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Error tipo 1</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Intervalo confianza</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">nota_final</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">H1 promedio direccional</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Prueba promedios</td>
+<td style="text-align: center; padding: 0.2cm;">0.307<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Rechazo H0</td>
+<td style="text-align: center; padding: 0.2cm;">0.477<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.530<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">H1 proporcion no direccional</td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.077<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.208<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.048<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Error tipo 1</td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.025<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.175<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.099<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.009<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Intervalo confianza</td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.102<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.261<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.361<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.245<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.328<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">nota_final</td>
+<td style="text-align: center; padding: 0.2cm;">0.548<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.712<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.706<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.435<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.489<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.619<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>Consistencia interna</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ltm)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>preguntas <span class="ot">&lt;-</span> prueba2 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>nota_final)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(<span class="fu">na.omit</span>(preguntas))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cronbach's alpha for the 'na.omit(preguntas)' data-set
+
+Items: 6
+Sample units: 48
+alpha: 0.628</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="pruebas-1-2" class="level1">
+<h1>Pruebas 1 &amp; 2</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rescatar ID secuencial</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="st">'https://docs.google.com/spreadsheets/d/1ahL6yZpDRUmFFnilWHqMKchNqzVzAo7YZiA401crxGA/edit?usp=sharing'</span>, <span class="at">sheet =</span> <span class="st">"Prueba 1 2023-10-10"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="st">'https://docs.google.com/spreadsheets/d/1lnZ7ojc3jxAMTFwC5Y_Wble08YaONTNTaPdz7KnDOXI/edit#gid=1600039458'</span>, <span class="at">sheet =</span><span class="st">"Prueba 2 2023-11-19"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(RUT,Nota) <span class="sc">%&gt;%</span>  <span class="fu">rename</span>(<span class="st">"Nota_p1"</span><span class="ot">=</span><span class="st">"Nota"</span>) </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>prueba2 <span class="ot">&lt;-</span> prueba2 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(RUT,Nota) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"Nota_p2"</span><span class="ot">=</span><span class="st">"Nota"</span>) </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>pruebas <span class="ot">&lt;-</span> <span class="fu">merge</span>(prueba1, prueba2, <span class="at">by =</span> <span class="st">'RUT'</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_scatter</span>(pruebas, Nota_p1, Nota_p2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="reporte_notas_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pruebas_c <span class="ot">&lt;-</span><span class="fu">na.omit</span>(pruebas)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(pruebas_c<span class="sc">$</span>Nota_p1, pruebas_c<span class="sc">$</span>Nota_p2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2586201</code></pre>
+</div>
+</div>
 
 
 </section>

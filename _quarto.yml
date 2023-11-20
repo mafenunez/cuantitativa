@@ -89,6 +89,8 @@ website:
               file: content/08-content.qmd
             - text: "Asociación con categóricas"
               file: content/09-content.qmd
+            - text: "Cierre"
+              file: content/10-content.qmd
 
     - title: "Prácticos"
       contents:
