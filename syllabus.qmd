@@ -133,6 +133,13 @@ Requisitos de eximición a examen:
 - contar con un promedio ponderado igual o superior a 5.5
 - no tener nota bajo 4.0 en ninguna de las evaluaciones
 
+::: {.callout-important}
+## Actualización criterios eximición
+- contar con un promedio ponderado igual o superior a 5.0
+- si en alguna de las dos pruebas se obtiene una nota bajo 4.0, se podrá eximir solo si en la otra prueba la nota es superior a 5.5
+:::
+
+
 Requisitos para presentación a examen:
 
 - Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.
