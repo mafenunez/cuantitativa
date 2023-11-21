@@ -51,9 +51,9 @@ A continuación se presentan las secciones que debe contener el informe, con una
 
 **Título**: Breve, lo principal es hacer alusión a las principales variables a relacionar (0,5 puntos)
 
-**1. Introducción** (2 puntos)
+**1. Introducción** (2 puntos, app. 500 palabras)
 
-Definición de la problemática a abordar, su relevancia y principales conceptos (500 palabras). 
+Definición de la problemática a abordar, su relevancia y principales conceptos. 
 
 En este apartado es importante considerar:
 
@@ -65,9 +65,9 @@ En este apartado es importante considerar:
   
   - Mencionar el principal objetivo del trabajo y las hipótesis de investigación en el párrafo final de esta sección (ej: se espera que el nivel educacional sea mayor en zonas urbanas en relación a zonas rurales). Mencionar al menos tres hipótesis.
 
-**2. Variables** (2 puntos)
+**2. Variables** (2 puntos, app. 800 palabras)
 
-Esta sección también incluye una tabla de descriptivos básicos, y un detalle de la operacionalización y medición de las variables.
+Esta sección también incluye una **tabla de descriptivos** básicos, y un detalle de la operacionalización y medición de las variables.
 
 ::: callout-note
 **Atención sobre recodificación de variables**
@@ -83,15 +83,15 @@ Es importante que las variables sean recodificadas en el sentido del atributo qu
 Mencionar al final de esta sección los métodos estadísticos a utilizar para el contraste de hipótesis.
 
 
-**3. Análisis** (6 puntos)
+**3. Análisis** (6 puntos, app. 1000 -1500 palabras)
 
-- 3.1 Análisis descriptivo: tablas o gráficos comentados, univariados y bivariados según sea más pertinente. Para esto considere medidas de tendencia central, dispersión y frecuencias, siempre considerando el nivel de medición de sus variables. En los casos que sea atingente, incluya los intervalos de confianza al 95 %. Esta sección debe incluir la reproducción de alguno de los gráficos o tablas de reportes de CASEN / EBS.
+- 3.1 Análisis descriptivo: tablas y/o gráficos comentados, univariados y bivariados según sea más pertinente. Para esto considere medidas de tendencia central, dispersión y frecuencias, siempre considerando el nivel de medición de sus variables. En los casos que sea atingente, incluya los intervalos de confianza al 95 %. Esta sección se incluye también la reproducción de alguno de los gráficos o tablas de reportes de CASEN / EBS, en caso que sea pertinente (por ejemplo, un trabajo que busca reproducir un análisis ya publicado)
 
 - 3.2 Análisis estadístico bivariado: considerar la estimación de coeficientes de correlación y también medidas de asociación para variables categóricas. Esta parte del análisis se relaciona directamente con las hipótesis planteadas. Para esto realizar  pruebas de hipótesis estadísticas, estadísticos de tamaño del efecto y tablas de contingencia / cruzadas, siempre considerando el nivel de medición de sus variables.
 
 Al final de esta sección también se realiza la discusión de resultados en relación a las hipótesis planteadas
 
-**4. Conclusiones** (2 puntos)
+**4. Conclusiones** (2 puntos, app. 300 palabras)
 
 Resumen general, limitaciones y sugerencias para futuros análisis
 
@@ -102,7 +102,7 @@ Formato APA 7
 
 # Formato
 
-El formato de entrega del trabajo será en html vía Rmarkdown, dado facilita la integración y reproducibilidad de los análisis en R. Se pondrá a disposición de l_s estudiantes una plantilla para poder realizarlo en este formato.
+El formato de entrega del trabajo será en html vía Rmarkdown, dado facilita la integración y reproducibilidad de los análisis en R. La plantilla para poder realizar el trabajo se explica en el [Práctico 9](https://correlacional.netlify.app/assignment/09-practico).
 
 # Entrega
 
@@ -125,7 +125,7 @@ Los temas de las asesorías son los siguientes:
 | 07 Noviembre | Durante esta semana se recomienda finalizar la escritura de la introducción, variables y el análisis descriptivo. Por otro lado, se aconseja que cada grupo se reúna para discutir qué técnica de análisis bivariado es la más apropiada para someter a prueba las hipótesis formuladas, teniendo en consideración el nivel de medición de sus variables.    |
 | 14 Noviembre | Asesorías con el equipo docente. Para esta semana se aconseja comenzar el análisis bivariado en RStudio y la escritura de la discusión de resultados, en relación con las hipótesis planteadas.  |
 | 21 Noviembre | Esta semana se debe finalizar el análisis bivariado y la discusión de resultados. Una vez culminada la tarea anterior, realizar la escritura de las conclusiones y formatear adecuadamente el reporte.  |
-| 27 Noviembre | Entrega trabajos por UCursos 
+| 29 Noviembre | Entrega trabajos por UCursos 
 
 
 # Recomendaciones generales para el trabajo {.tabset}
