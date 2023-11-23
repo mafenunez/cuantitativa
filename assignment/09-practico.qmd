@@ -34,7 +34,7 @@ En detalle, aprenderemos los siguientes contenidos:
 2.  Generación y presentación de tablas y gráficos en Quarto.
 3.  Cómo autoreferenciar elementos dentro un documento Quarto.
 
-Además de la plantilla para el informe, dejamos a disposición una [carpeta]() con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:
+Además de la plantilla para el informe, dejamos a disposición una [carpeta](https://github.com/cursos-metodos-facso/plantilla_informe) con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:
 
 -   *input*: insumos, libro de códigos
 -   *input/img*: imágenes
@@ -336,6 +336,11 @@ Ponemos un `-` para generar un listado.
 -   COES (2023). *Radiografía del Cambio Social: Análisis de Resultados Longitudinales ELSOC 2016-2022. Presentación de Resultados COES*. Marzo, Santiago de Chile.
 
 -   R Core Team (2023). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+
+
+# Visualizacion informe
+
+Finalmente, podemos ver el informe que hemos creado en este [enlace](https://rpubs.com/DaniOlivaresCollio/1118647).
 
 
 # Reporte de progreso
