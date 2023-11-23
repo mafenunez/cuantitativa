@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -92,7 +92,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
     "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar"
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -331,14 +332,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="objetivo-de-la-práctica" class="level1">
 <h1>Objetivo de la práctica</h1>
-<p>El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso, de manera colaborativa.</p>
-<p>En detalle, aprenderemos los siguientes contenidos:</p>
-<ol type="1">
-<li>Creación y organización de un informe en Quarto</li>
-<li>Generación y presentación de tablas y gráficos en Quarto.</li>
-<li>Cómo autoreferenciar elementos dentro un documento Quarto.</li>
-</ol>
-<p>Además de la plantilla para el informe, dejamos a disposición una <a href="https://github.com/cursos-metodos-facso/plantilla_informe">carpeta</a> con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:</p>
+<p>El objetivo de esta guía práctica es explicar el formato del informe de los trabajos del curso. Ya que la elaboración de los informes incluye analisis en R, la idea es poder aprovechar los recursos existentes para poder realizar escritura y análisis en un mismo documento. La base de esto son los prácticos sobre <a href="../assignment/01-practico.html">Reportes Dinámicos 1</a> y <a href="../assignment/01-practico.html">Reportes Dinámicos 2</a>, donde se describieron las estructura de carpetas y archivos, así como también el lenfuage RMarkdown, que permite vincular análisis en R con escritura en Markdown.</p>
+<p>Para facilitar el desarrollo de los trabajos en este entorno ponemos a disposición una carpeta que se puede bajar <a href="https://github.com/cursos-metodos-facso/plantilla_informe/archive/refs/heads/main.zip">aquí</a>. Esta carpeta está basada en el protocolo <strong>IPO</strong>, mencionado en el práctico <a href="../assignment/01-practico.html">Reportes Dinámicos 1</a>, con la siguente estructura de archivos y carpetas:</p>
 <ul>
 <li><em>input</em>: insumos, libro de códigos</li>
 <li><em>input/img</em>: imágenes</li>
@@ -346,11 +341,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>procesamiento</em>: archivos de sintaxis .R</li>
 <li><em>output</em>: bases de datos procesada, informes, tablas, gráficos</li>
 </ul>
-<p>Recordemos que este sistema de carpetas hace referencia al sistema IPO (Input-Procesamiento-Output).</p>
 <p><img src="../files/ipo-rproj.png" class="img-fluid"></p>
 <p>Donde el flujo de trabajo es el siguiente:</p>
 <p><img src="../files/ipo-exp.png" class="img-fluid"></p>
-<p>Por último, Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.</p>
+<p>En detalle, aprenderemos los siguientes contenidos:</p>
+<ol type="1">
+<li>Creación y organización de un informe en Quarto</li>
+<li>Generación y presentación de tablas y gráficos en Quarto.</li>
+<li>Cómo autoreferenciar elementos dentro un documento Quarto.</li>
+</ol>
+<p>Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.</p>
 </section>
 <section id="quarto" class="level1">
 <h1>Quarto</h1>

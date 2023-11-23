@@ -23,18 +23,11 @@ options(scipen = 999) # para desactivar notacion cientifica
 rm(list = ls()) # para limpiar el entorno de trabajo
 ```
 
-
 # Objetivo de la práctica
 
-El objetivo de esta guía práctica es generar una plantilla de informe que nos sirva para desarrollar el trabajo final del curso, de manera colaborativa.
+El objetivo de esta guía práctica es explicar el formato del informe de los trabajos del curso. Ya que la elaboración de los informes incluye analisis en R, la idea es poder aprovechar los recursos existentes para poder realizar escritura y análisis en un mismo documento. La base de esto son los prácticos sobre [Reportes Dinámicos 1](/assignment/01-practico.html) y [Reportes Dinámicos 2](/assignment/01-practico.html), donde se describieron las estructura de carpetas y archivos, así como también el lenfuage RMarkdown, que permite vincular análisis en R con escritura en Markdown.
 
-En detalle, aprenderemos los siguientes contenidos:
-
-1.  Creación y organización de un informe en Quarto
-2.  Generación y presentación de tablas y gráficos en Quarto.
-3.  Cómo autoreferenciar elementos dentro un documento Quarto.
-
-Además de la plantilla para el informe, dejamos a disposición una [carpeta](https://github.com/cursos-metodos-facso/plantilla_informe) con un proyecto de R y la estructura de carpetas recomendada para la elaboración del trabajo:
+Para facilitar el desarrollo de los trabajos en este entorno ponemos a disposición una carpeta que se puede bajar [aquí](https://github.com/cursos-metodos-facso/plantilla_informe/archive/refs/heads/main.zip). Esta carpeta está basada en el protocolo **IPO**, mencionado en el práctico [Reportes Dinámicos 1](/assignment/01-practico.html), con la siguente estructura de archivos y carpetas:
 
 -   *input*: insumos, libro de códigos
 -   *input/img*: imágenes
@@ -42,16 +35,19 @@ Además de la plantilla para el informe, dejamos a disposición una [carpeta](ht
 -   *procesamiento*: archivos de sintaxis .R
 -   *output*: bases de datos procesada, informes, tablas, gráficos
 
-Recordemos que este sistema de carpetas hace referencia al sistema IPO (Input-Procesamiento-Output).
-
 ![](../files/ipo-rproj.png)
 
 Donde el flujo de trabajo es el siguiente:
 
 ![](../files/ipo-exp.png)
 
-Por último, Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.
+En detalle, aprenderemos los siguientes contenidos:
 
+1.  Creación y organización de un informe en Quarto
+2.  Generación y presentación de tablas y gráficos en Quarto.
+3.  Cómo autoreferenciar elementos dentro un documento Quarto.
+
+Para los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN.
 
 # Quarto
 
@@ -63,20 +59,17 @@ Como R Markdown, Quarto usa knitr para ejcutar códigos de R, y por lo tanto es 
 
 El nombre de Quarto viene del formato de un libro o panfleto producido a partir de hojas completas impresas con ocho páginas de texto, cuatro en cada lado, que luego se pliegan dos veces para producir cuatro hojas. Las hojas se recortan a lo largo de los pliegues para producir ocho páginas de libro. Cada página impresa se presenta como un cuarto del tamaño de la hoja completa.
 
-El libro impreso más antiguo de Europa conocido es un quarto, el Sibyllenbuch, que se cree que fue impreso por Johannes Gutenberg en 1452-53, antes de la Biblia de Gutenberg, y que sobrevive solo como un fragmento. 
+El libro impreso más antiguo de Europa conocido es un quarto, el Sibyllenbuch, que se cree que fue impreso por Johannes Gutenberg en 1452-53, antes de la Biblia de Gutenberg, y que sobrevive solo como un fragmento.
 
 Lo que nos remite a las ideas de ciencia abierta y a la posibilidad de universalizar el conocimiento.
 
-
 # Organización de un informe en Quarto
-
 
 ## Crear un documento Quarto
 
 Para generar un documento Quarto hacemos lo siguiente:
 
 ![](../files/crear-qmd.gif)
-
 
 ## Encabezado o YAML
 
@@ -90,16 +83,13 @@ Para comenzar, definiremos los elementos que van en el encabezado (front matter 
 
 ![](../files/yaml_informe.png)
 
-
 Con ese YAML el encabezado se ve de la siguiente forma:
-
 
 ![](../files/encabezado.png)
 
-
 ## Apartados y subapartados
 
-Para los títulos de los *apartados* deben poner un # antes del nombre, y para los *subapartados* cada vez más pequeños dos o más #.
+Para los títulos de los *apartados* deben poner un \# antes del nombre, y para los *subapartados* cada vez más pequeños dos o más #.
 
 Por ejemplo, si ponemos:
 
@@ -111,30 +101,25 @@ Los apartados y subapartados diferirán en su tamaño y se verán de esta forma.
 
 ![](../files/apartados.png)
 
-
 ## Insertar imágenes
 
 Si quisiéramos poner una imagen, lo ideal es llamarla desde la web:
 
-
 > Recordemos que si no queremos que se vea un chunk, en las options debemos poner `echo=FALSE`.
-
 
 ```{r}
 include_graphics("https://www.desarrollosocialyfamilia.gob.cl/storage/image/banner-saludmental.png")
 ```
 
-
-O desde la carpeta local `![](../input/img/nombre_imagen.extension)` o con: 
+O desde la carpeta local `![](../input/img/nombre_imagen.extension)` o con:
 
 ```{r}
 include_graphics("../files/banner-saludmental.png")
 ```
 
-
 # Procesamiento de datos
 
-El procesamiento de datos lo realizaremos en un archivo de sintaxis `proc_data.R`, que alojaremos en la carpeta de _procesamiento_. 
+El procesamiento de datos lo realizaremos en un archivo de sintaxis `proc_data.R`, que alojaremos en la carpeta de *procesamiento*.
 
 ## Carga de librerías
 
@@ -155,19 +140,17 @@ options(scipen = 999) # para desactivar notacion cientifica
 rm(list = ls()) # para limpiar el entorno de trabajo
 ```
 
-
 ## Carga de datos
 
 Como señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta `input/data`, y se llama de la siguiente forma:
 
 `load("input/data/ELSOC_Long.RData")`
-    
+
 Pero, para llamar la base de datos desde la web:
 
 ```{r datos, warning=FALSE, message=FALSE}
 load(url("https://dataverse.harvard.edu/api/access/datafile/7245118"))
 ```
-
 
 ## Limpieza de datos
 
@@ -192,10 +175,9 @@ data <- data %>%
   ungroup()
 ```
 
-
 ## Guardar base de datos resultante
 
-Guardamos la base de datos procesada en la carpeta de _output_, con 
+Guardamos la base de datos procesada en la carpeta de *output*, con
 
 `saveRDS(data, "output/data.Rdata")`
 
@@ -203,22 +185,19 @@ Guardamos la base de datos procesada en la carpeta de _output_, con
 saveRDS(data, "../assignment/data/data.RData")
 ```
 
-
 # Informe
 
 ## Introducción
 
 > En este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el [enlace](https://correlacional.netlify.app/trabajos).
 
-En este ejemplo daremos una mirada a la salud mental, y exploraremos posibles asociaciones con la edad, sexo y nivel educacional. 
-
+En este ejemplo daremos una mirada a la salud mental, y exploraremos posibles asociaciones con la edad, sexo y nivel educacional.
 
 ## Variables
 
 > En este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el [enlace](https://correlacional.netlify.app/trabajos).
 
 A continuación, en nuestro ejemplo describiremos las variables necesarias para responder a nuestro objetivo.
-
 
 ## Descripción de variables
 
@@ -263,7 +242,6 @@ tabla1 <- tab1 %>%
 
 En la @tbl-sexo podemos ver que la proporción de mujeres que responde la encuesta corresponde a `r pm`%, mientras que la propoción de hombres corresponde a `r ph`%.
 
-
 ```{r tbl-sexo, warning=FALSE, message=FALSE}
 #| label: tbl-sexo
 #| tbl-cap: "Distribución de sexo"
@@ -272,11 +250,9 @@ En la @tbl-sexo podemos ver que la proporción de mujeres que responde la encues
 tabla1
 ```
 
-> En las options del chunk desde el que llamamos a la tabla le ponemos `tbl-nombre tabla` para etiquetarla, y luego en el texto ponemos `@tbl-nombre-tabla` para referenciarla. 
-También, cuando queremos llamar un valor, es necesario asignarlo a un objeto, y en el texto lo llamamos con:
+> En las options del chunk desde el que llamamos a la tabla le ponemos `tbl-nombre tabla` para etiquetarla, y luego en el texto ponemos `@tbl-nombre-tabla` para referenciarla. También, cuando queremos llamar un valor, es necesario asignarlo a un objeto, y en el texto lo llamamos con:
 
 ![](../files/resul-m.png)
-
 
 ## Análisis
 
@@ -319,7 +295,7 @@ En la @fig-cor_edad_dep es posible apreciar... La correlación entre la edad y e
 grafico1
 ```
 
-> En las options del chunk desde el que llamamos a la figura le ponemos `fig-nombre figura` para etiquetarla, y luego en el texto ponemos `@fig-nombre-figura` para referenciarla. 
+> En las options del chunk desde el que llamamos a la figura le ponemos `fig-nombre figura` para etiquetarla, y luego en el texto ponemos `@fig-nombre-figura` para referenciarla.
 
 ## Conclusiones
 
@@ -327,7 +303,7 @@ grafico1
 
 Aquí redactamos algunas conclusiones.
 
-##  Bibliografía
+## Bibliografía
 
 > En este apartado pueden poner su bibliografía, de acuerdo con la pauta del trabajo que se encuentra disponible en el [enlace](https://correlacional.netlify.app/trabajos).
 
@@ -337,22 +313,17 @@ Ponemos un `-` para generar un listado.
 
 -   R Core Team (2023). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
 
-
 # Visualizacion informe
 
 Finalmente, podemos ver el informe que hemos creado en este [enlace](https://rpubs.com/DaniOlivaresCollio/1118647).
-
 
 # Reporte de progreso
 
 Completar el reporte de progreso correspondiente a esta práctica [aquí](https://docs.google.com/forms/d/1cJbjoBBweNANbBaEb4PGIg9wGJdA_bDRap-gMc3Ma3c/edit). El plazo para contestarlo es hasta el día martes de la semana siguiente a la que se publica la práctica correspondiente.
 
-
 # Video de práctica
 
 {{< video https://youtu.be/FvcfVg-ONiM >}}
-
-
 
 # Foro
 
