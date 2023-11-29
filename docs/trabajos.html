@@ -265,6 +265,31 @@ Nota
 <section id="entrega" class="level1">
 <h1>Entrega</h1>
 <p>En la sección de tareas de UCursos. Se debe adjuntar un archivo comprimido con la carpeta del proyecto (por temas de espacio esta carpeta no debe contener la base original de CASEN).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sobre cargar base de datos CASEN
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>CASEN original pesa 1,7 Gigas, por lo que no es posible adjuntarla como parte de la carpeta del trabajo.</p>
+<p><strong>Cómo hacerlo</strong>: Tal como se ejemplificó en la <a href="./content/07-content.html">sesión de Inferencia 3</a> (lámina 25), se sugiere generar un subset de CASEN con los datos a utilizar, grabar el subset como una nueva base con formato Rdata, y esos datos incluirlos en la carpeta input/data. El código que genera este subset debe quedar respaldado en la carpeta de procesamiento (proc), con un nombre del tipo subset.R.</p>
+<p>Acá ejemplo:</p>
+<pre><code>casen2022 &lt;- read_dta("/home/Downloads/Base de datos Casen 2022 STATA.dta") # llamar desde carpeta local
+casen2022_subset &lt;- casen2022 %&gt;% 
+  select(y1,sexo)  # seleccionar variables y dar un nombre al subset (puede ser cualquier nombre)
+casen2022_subset &lt;- casen2020_inf %&gt;% 
+  rename("salario"=y1) #renombrar 
+save(casen2022_subset, 
+     file = "input/data/casen2022_subset.Rdata") #guardar objeto
+rm(list = c('casen2022')) # quitar del environment para liberar espacio en la memoria</code></pre>
+<p>Y luego, en el documento (ej: <a href="./assignment/09-practico.html">plantilla Quarto del trabajo</a>), comenzar con:</p>
+<pre><code>load("input/data/casen2022_subset.Rdata")</code></pre>
+</div>
+</div>
 </section>
 <section id="modalidad-de-trabajo-y-asesorías" class="level1">
 <h1>Modalidad de trabajo y asesorías</h1>

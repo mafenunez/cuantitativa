@@ -108,6 +108,34 @@ El formato de entrega del trabajo será en html vía Rmarkdown, dado facilita la
 
 En la sección de tareas de UCursos. Se debe adjuntar un archivo comprimido con la carpeta del proyecto (por temas de espacio esta carpeta no debe contener la base original de CASEN).
 
+::: {.callout-tip}
+## Sobre cargar base de datos CASEN 
+CASEN original pesa 1,7 Gigas, por lo que no es posible adjuntarla como parte de la carpeta del trabajo.
+
+**Cómo hacerlo**: Tal como se ejemplificó en la [sesión de Inferencia 3](/content/07-content.html) (lámina 25), se sugiere generar un subset de CASEN con los datos a utilizar, grabar el subset como una nueva base con formato Rdata, y esos datos incluirlos en la carpeta input/data. El código que genera este subset debe quedar respaldado en la carpeta de procesamiento (proc), con un nombre del tipo subset.R.
+
+Acá ejemplo:
+
+```
+casen2022 <- read_dta("/home/Downloads/Base de datos Casen 2022 STATA.dta") # llamar desde carpeta local
+casen2022_subset <- casen2022 %>% 
+  select(y1,sexo)  # seleccionar variables y dar un nombre al subset (puede ser cualquier nombre)
+casen2022_subset <- casen2020_inf %>% 
+  rename("salario"=y1) #renombrar 
+save(casen2022_subset, 
+     file = "input/data/casen2022_subset.Rdata") #guardar objeto
+rm(list = c('casen2022')) # quitar del environment para liberar espacio en la memoria
+```
+
+Y luego, en el documento (ej: [plantilla Quarto del trabajo](/assignment/09-practico.html)), comenzar con:
+
+```
+load("input/data/casen2022_subset.Rdata")
+```
+
+:::
+
+
 # Modalidad de trabajo y asesorías
 
 Los trabajos se desarrollarán en grupos de máximo 5 integrantes. Cada grupo será asignado a un/a ayudante y también a un/a apoyo docente, quienes asesorarán periódicamente a sus grupos.
@@ -153,7 +181,6 @@ Los temas de las asesorías son los siguientes:
 
 # Foro
 
-```{=html}
 <script src="https://giscus.app/client.js"
         data-repo="cursos-metodos-facso/correlacional"
         data-repo-id="R_kgDOKCMXJQ"
@@ -169,4 +196,4 @@ Los temas de las asesorías son los siguientes:
         crossorigin="anonymous"
         async>
 </script>
-```
+
