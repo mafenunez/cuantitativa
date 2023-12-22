@@ -179,6 +179,24 @@ Los temas de las asesorías son los siguientes:
 
 - mantener coherencia entre conceptos, hipótesis, descripción de variables, análisis, discusión, ojalá siempre en el mismo orden. 
 
+# Galeria
+
+
+![](docs/fotos/20231121_103623.jpg)
+
+![](docs/fotos/20231121_103641.jpg)
+
+![](docs/fotos/20231121_103644.jpg)
+
+![](docs/fotos/20231121_103709.jpg)
+
+![](docs/fotos/20231121_111645.jpg)
+
+![](docs/fotos/20231121_111924.jpg)
+
+![](docs/fotos/20231121_111945.jpg)
+
+
 # Foro
 
 <script src="https://giscus.app/client.js"
