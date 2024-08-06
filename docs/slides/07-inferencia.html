@@ -323,7 +323,7 @@ class: inverse middle center
 
 
 
-```r
+``` r
 casen2022 &lt;- read_dta("/home/juank/Downloads/Base de datos Casen 2022 STATA.dta")
 casen2020_inf &lt;- casen2022 %&gt;% 
   select(y1,sexo)  # seleccionar variables
@@ -342,7 +342,7 @@ rm(list = c('casen2022')) # quitar del environment por tamaño/memoria
 .small[
 
 
-```r
+``` r
 load("casen2020_inf.Rdata")
 pacman::p_load(stargazer)
 stargazer(as.data.frame(casen2020_inf), type = "text")
@@ -367,7 +367,7 @@ sexo      61,363    1.450       0.497     1      2
 # Revisión valores perdidos salario
 .medium[
 
-```r
+``` r
 casen2020_inf %&gt;% select(salario) %&gt;% 
   filter(salario&lt;10000) %&gt;% frq(.)
 ```
@@ -389,7 +389,7 @@ Value |                Label |    N | Raw % | Valid % | Cum. %
 # Recodificación
 
 
-```r
+``` r
 casen2020_inf$salario &lt;- car::recode(casen2020_inf$salario, "c(-88,0)=NA")
 stargazer(as.data.frame(casen2020_inf), type = "text") #check
 ```
@@ -409,7 +409,7 @@ sexo      61,363    1.450       0.497      1       2
 
 
 
-```r
+``` r
 casen2020_inf%&gt;% # se especifica la base de datos
    dplyr::group_by(sexo=sjlabelled::as_label(sexo)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label
   dplyr::summarise(Obs.=n(),Promedio=mean(salario, na.rm=TRUE),SD=sd(salario, na.rm=TRUE)) %&gt;% # se agregan las operaciones a presentar en la tabla
@@ -581,7 +581,7 @@ Como se ve en la table, en una muestra de 1000 el valor crítico para 0.05 (dos 
 
 .medium[
 
-```r
+``` r
 t.test(salario ~ sexo, data = casen2020_inf,  var.equal=TRUE)
 ```
 
@@ -688,7 +688,7 @@ class: front
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script src="libs/macros.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
 "highlightStyle": "dracula",
