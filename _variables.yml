@@ -3,7 +3,7 @@ author: Juan Carlos Castillo (Credits to Andrew Heiss)
 instructor:
   name: Prof. Juan Carlos Castillo
   name_no_title: Juan Castillo
-  email: juancastillov@uchile.cl
+  email: "[juancastillov@uchile.cl](mailto:juancastillov@uchile.cl)"
   url: "https://www.jc-castillo.com"
   twitter:
   github: juancarloscastillo
@@ -13,24 +13,24 @@ instructor:
   appointment_url: https://calendly.com/juancastillov/horas-oficina
 
 other:
-  email: andreas.laffert@ug.uchile.cl
+  email: "[andreas.laffert@ug.uchile.cl](mailto:andreas.laffert@ug.uchile.cl)"
   appointment_url: https://calendly.com/andreas-laffert
 
 other2:
-  email: danielaolivarescollio@gmail.com
+  email: "[danielaolivarescollio@gmail.com](mailto:danielaolivarescollio@gmail.com)"
   appointment_url: https://calendly.com/juancastillov/horas-oficina
 
 
 course:
   number: "PMAP 8521"
-  semester: "Segundo 2023"
+  semester: "Segundo 2024"
   days: "Lunes y Martes"
-  time: "8:30-10:00 (Lunes) y 10:15-11:45 (Martes)"
-  location: "Lunes - Aulario A Salas 7 y 8 -- Martes - Online o Laboratorio de Computación 2"
-  dates: "7 Agosto al 28 de Noviembre, 2023"
+  time: "10:15-11:45 (Lunes) y 8:30-10:00  (Martes)"
+  location: "Lunes - Aulario C6, Martes - Aulario C7-C8 & FACSO 345"
+  dates: "12 Agosto al 29 de Noviembre, 2023"
   github: "https://github.com/cursos-metodos-facso/correlacional"
   url: "https://correlacional.netlify.app"
-  copyright_year: "2023"
+  copyright_year: "2024"
   slack: ""
 
 university:

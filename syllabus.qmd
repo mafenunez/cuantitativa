@@ -16,7 +16,7 @@ library(pander)
 
 - {{< fa user >}} &nbsp; [{{< var instructor.name >}}]({{< var instructor.url >}})
 - {{< fa university >}} &nbsp; {{< var instructor.office >}}
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>
+- {{< fa envelope >}} &nbsp; {{< var instructor.email >}}</a>
 - {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var instructor.appointment_url >}})
 :::
 
@@ -47,9 +47,9 @@ En este curso vamos a aprender tres cosas principales:
 Al finalizar el curso los estudiantes conocerán los fundamentos del análisis estadístico inferencial. Se espera que los estudiantes sean capaces de:
 
 - elaborar de manera pertinente hipótesis estadísticas
-- aplicar estadísticos de asociación y correlación, a partir de los cuáles puedan desarrollar análisis de problemas sociales
+- aplicar estadísticos de asociación bivariada, a partir de los cuáles puedan desarrollar análisis de problemas sociales
 - corroborar el cumplimiento de las condiciones de aplicación de cada estadístico
-- utilizar diferentes softwares de análisis estadístico
+- utilizar software de análisis estadístico
 - contrastar hipótesis de investigación
 - elaborar conclusiones integrando fundamentos teóricos con herramientas de análisis estadístico de resultados. 
 
@@ -83,40 +83,70 @@ Complementariamente se espera que los estudiantes adquieran herramientas que les
 
 ##  Saberes / Contenidos
 
-### Unidad I: Asociación entre dos variables cuantitativas.
+### Unidad I: Inferencia
 
-- Descripción, asociación, y explicación en estadística. La importancia del análisis de covariación entre variables. La inferencia estadística: tipos y rol en el análisis descriptivo, asociativo y explicativo.
-- Concepto de covarianza y relación/correlación lineal versus relación no-lineal entre variables.
-- Correlación de Pearson: supuestos y condiciones de aplicación, interpretación de resultados como tamaño efecto según criterios de Cohen. El coeficiente de determinación, utilidad e interpretación.
+- Datos, variables y probabilidad
 
-### Unidad II: Inferencia y asociación
-- Asociación entre una variable cuantitativa y una dicotómica como intervalos de confianza de medias y proporciones usando distribución Z y revisión de conceptos fundamentales de inferencia: área de una distribución, probabilidades en la curva normal, error Tipo I, y error tipo II.
-- Asociación entre una variable cuantitativa y una dicotómica como diferencia de medias y proporciones con prueba Z; revisión y análisis de valor de Z observado, el concepto de valor-p y determinación del tamaño del efecto con d de Cohen. 
-- Generalización de intervalos de confianza y pruebas de diferencia de medias y proporciones en dos grupos en muestras pequeñas usando distribución t de Student; revisión de concepto de grados de libertad.
-- Generalizaciones de esta lógica: Prueba t de Student e intervalos de confianza en correlaciones de Pearson; Comparación de medias de tres o más grupos con ANOVA e intervalos de confianza corregidos por número de comparaciones.
+- Curva normal  y error estándar
 
-### Unidad III: Asociación con variables categóricas 
+- Intervalos de confianza
 
-- El uso de tablas de contingencia y la determinación de la asociación: uso de frecuencias observadas, porcentajes fila, columna y totales.
-- Evaluación de la asociación poblacional mediante Chi Cuadrado: el concepto de frecuencias esperadas y observadas. Estimación e interpretación de resultados y medición de tamaño efecto.
-- Breve mirada a estadísticos de correlación para variables categóricas: la correlación tetracórica y policórica.
+- Test de hipótesis
+
+- Hipótesis no direccionales y para proporciones
+
+
+### Unidad II: Asociación 
+
+- Asociación y covarianza
+
+- Correlación de Pearson
+
+- Correlación con variables ordinales
+
+- Matrices y tamaños de efecto en correlación
+
+- Asociación con variables categóricas 
+
+### Unidad III: Reporte
+
+- Responder problemas de investigación de lógica bivariada con datos reales
+- Escritura de reportes de investigación
+- Visualización de datos
+- Presentación de resultados
 
 ## Metodología
-1. Sesiones de clases lectivas presenciales semanales, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana.
 
-2. Prácticos online semanales: cada tema de las sesiones se acompaña de una guía práctica de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana en grupos pequeños con supervisión de ayudantes para dar mayor oportunidad de participación y resolver las dudas respectivas. Existe un reporte de progreso asociado a estas guías que deberá ser completado semanalmente con fines de monitoreo y retroalimentación.
+1. Sesiones de **clases lectivas** presenciales semanales, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana.
 
-3. Trabajos: se desarrollarán trabajos de investigación que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados por ayudantes que se asignarán a cada grupo.
+2. **Prácticos**: los temas del curso se acompañan de guías prácticas de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma, y también habrá espacio de revisión y consultas en el espacio de clases.
+
+3. **Trabajos**: se desarrollarán trabajos de investigación que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados por ayudantes que se asignarán a cada grupo.
+
+El semestre comienza con clases lectivas, y posteriormente se integran elementos prácticos y de aplicación.
 
 ## Evaluación
 
 El curso tendrá tres instancias de evaluación:
 
-- Evaluación 1: prueba correlación lineal (30%).
-- Evaluación 2: prueba inferencia estadística (30%)
-- Evaluación 3: trabajo grupal (40%)
+- Evaluación 1: Inferencia (35% = 30% teórico + 5% práctico).
+- Evaluación 2: Asociación (35% = 30% teórico + 5% práctico)
+- Evaluación 3: Reporte de aplicación - trabajo grupal (30%= 20% reporte escrito + 10% poster)
 
 La nota ponderada de las evaluaciones equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
+
+Las evaluaciones se distribuyen en el semestre de la siguiente manera:
+
+![](/slides/img/plan.png)
+
+::: {.callout-note appearance="simple"}
+
+## ATENCIÓN
+
+**Las fechas de evaluación no se cambian** por respeto a la planificación de los tiempos de tod_s quienes participan en el curso y el cumplimiento apropiado de los objetivos de aprendizaje.
+
+:::
+
 
 ## Inasistencias y atraso en entregas
 
@@ -132,13 +162,6 @@ Requisitos de eximición a examen:
 
 - contar con un promedio ponderado igual o superior a 5.5
 - no tener nota bajo 4.0 en ninguna de las evaluaciones
-
-::: {.callout-important}
-## Actualización criterios eximición
-- contar con un promedio ponderado igual o superior a 5.0
-- si en alguna de las dos pruebas se obtiene una nota bajo 4.0, se podrá eximir solo si en la otra prueba la nota es superior a 5.5
-:::
-
 
 Requisitos para presentación a examen:
 
@@ -167,14 +190,15 @@ Levin, J. & Levin, W. (1997). Fundamentos de Estadística en la Investigación S
 
 ## VARIOS
 
-- Se espera asistencia y participación activa, tanto a las sesiones lectivas como a las prácticas. Se pasará lista en todas las sesiones. No habrá penalización por inasistencia, pero si llevaremos registro principalmente con objetivos de monitoreo y retroalimentación del curso 
+- Se espera asistencia y participación activa, tanto a las sesiones lectivas como a las prácticas. Se pasará lista en todas las sesiones. No habrá penalización por inasistencia, pero si llevaremos registro principalmente con objetivos de monitoreo y retroalimentación del curso.
+
+- Informar flexibilidades académicas al principio del semestre (en caso que la jefatura de carrera no lo haga de manera centralizada). Las flexibilidades academicas no aplican para cambios de fechas de evaluaciones grupales. 
 
 - Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de Contenidos, y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:
 
   - “la clase”
   - autoexplicativos (ni aspiran a serlo)
-  - “el ppt” (ni  “la ppt”)
-
+  - “el ppt” (ni menos  “la ppt”)
 
 - Políticas de participación y trato: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de “l_s cabr_s” o “l_s chiquill_s”, que si bien puede intentar transmitir cercanía finalmente expresan minimización de la contraparte. Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo están siendo, se solicita reportar para solucionar la situación.
 
