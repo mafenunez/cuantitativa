@@ -1,8 +1,8 @@
 ---
 title: "Estadística Correlacional"
-subtitle: "Asociación, inferencia y reporte"
+subtitle: "Inferencia, asociación y reporte"
 details: |
-  SOC01019 • Segundo Semestre 2023<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile
+  SOC01019 • Segundo Semestre 2024<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile
 sidebar: false
 toc: false
 page-layout: full
@@ -41,7 +41,7 @@ withr::with_dir(here::here(), {
 [{{< var instructor.name >}}]({{< var instructor.url >}})
 
 - {{< fa university >}} &nbsp; {{< var instructor.office >}}
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>
+- {{< fa envelope >}} &nbsp; {{< var instructor.email >}}
 - {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var instructor.appointment_url >}})
 
 **Apoyos docentes**
@@ -51,9 +51,9 @@ withr::with_dir(here::here(), {
 </div>
 
 
-Daniela Olivares
+*Daniela Olivares*
 
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var other2.email >}}">{{< var other2.email >}}</a>
+- {{< fa envelope >}} &nbsp; {{< var other2.email >}}
 - {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var other2.appointment_url >}})
 
 <div class="image-cropper">
@@ -61,32 +61,23 @@ Daniela Olivares
 </div>
 
 
-Andreas Laffert
+*Andreas Laffert*
 
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var other.email >}}">{{< var other.email >}}</a>
+- {{< fa envelope >}} &nbsp; {{< var other.email >}}
 - {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var other.appointment_url >}})
 
 **Ayudantes**
 
-- Bladimir Beltran
-- Matías Buller
-- Neyem Cares
-- Carolina Collao
-- Aníbal Figueroa
-- Valentina Frómeta
-- Pedro González
-- Anaís Herrada
-- Moira Martínez
-- Emilio Miranda
+(por definir)
 
 :::
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 ### Actividades
 
-- {{< fa university >}} &nbsp; **Lunes 8:30-10:00** - Aulario A/7-8
+- {{< fa university >}} &nbsp; **Lunes 10:15-11:45** - Aulario C/6
 
-- {{< fa computer >}} &nbsp; **Martes 10:15-11:45** Online / Laboratorio computación 2
+- {{< fa university >}} &nbsp; **Martes 8:30-10:00** Aulario C7/C8 & FACSO 345
 
 :::
 

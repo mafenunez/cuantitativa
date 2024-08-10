@@ -22,7 +22,7 @@ execute:
 
 bibliography: files/bib/references.bib
 csl: files/bib/chicago-author-date.csl
-description-meta: "Estadística Correlacional - Asociación, inferencia y reporte"
+description-meta: "Estadística Correlacional - Inferencia, asociación y reporte"
 
 website:
   title: "Estadística Correlacional"
@@ -42,7 +42,7 @@ website:
 
   navbar:
     pinned: true
-    background: "#BC3C6F"
+    background: "#0f6070"
     right:
       - syllabus.qmd
       - schedule.qmd
@@ -50,11 +50,12 @@ website:
         file: content/index.qmd
       - text: "Prácticos"
         file: assignment/index.qmd
-      - trabajos.qmd
+      - text: "Trabajos"
+        file: trabajos.qmd
       - text: "Recursos"
         file: resource/index.qmd
-      - text: "Noticias"
-        file: news/index.qmd
+      # - text: "Noticias"
+      #   file: news/index.qmd
       - icon: cloud-fill
         href: "https://rstudio.cloud"
         aria-label: RStudio.cloud
@@ -73,24 +74,24 @@ website:
           contents:
             - text: "Introducción"
               file: content/01-content.qmd
-            - text: "Asociación 1: Bases"
-              file: content/02-content.qmd
-            - text: "Asociación 2: Pearson"
-              file: content/03-content.qmd
-            - text: "Asociación 3: Tamaños, Spearman & Matrices"
-              file: content/04-content.qmd
-            - text: "Inferencia 1"
-              file: content/05-content.qmd
-            - text: "Inferencia 2"
-              file: content/06-content.qmd
-            - text: "Inferencia 3"
-              file: content/07-content.qmd
-            - text: "Inferencia 4"
-              file: content/08-content.qmd
-            - text: "Asociación con categóricas"
-              file: content/09-content.qmd
-            - text: "Cierre"
-              file: content/10-content.qmd
+            # - text: "Asociación 1: Bases"
+            #   file: content/02-content.qmd
+            # - text: "Asociación 2: Pearson"
+            #   file: content/03-content.qmd
+            # - text: "Asociación 3: Tamaños, Spearman & Matrices"
+            #   file: content/04-content.qmd
+            # - text: "Inferencia 1"
+            #   file: content/05-content.qmd
+            # - text: "Inferencia 2"
+            #   file: content/06-content.qmd
+            # - text: "Inferencia 3"
+            #   file: content/07-content.qmd
+            # - text: "Inferencia 4"
+            #   file: content/08-content.qmd
+            # - text: "Asociación con categóricas"
+            #   file: content/09-content.qmd
+            # - text: "Cierre"
+            #   file: content/10-content.qmd
 
     - title: "Prácticos"
       contents:
@@ -99,28 +100,28 @@ website:
             - assignment/index.qmd
         - section: "Guías"
           contents:
-            - text: "1: Reportes dinámicos 1"
-              file: assignment/01-practico.qmd
-            - text: "2: Cálculo y reporte de correlación"
-              file: assignment/02-practico.qmd
-            - text: "3: Matrices de correlación y tamaños de efecto"
-              file: assignment/03-practico.qmd
-            - text: "4: Inferencia 1"
-              file: assignment/04-practico.qmd
-            - text: "5: Reportes dinámicos 2"
-              file: assignment/05-practico.qmd
-            - text: "6: Inferencia 2"
-              file: assignment/06-practico.qmd
-            - text: "7: Inferencia 3"
-              file: assignment/07-practico.qmd
-            - text: "8: Inferencia 4"
-              file: assignment/08-practico.qmd
-            - text: "9: Reporte - plantilla trabajos"
-              file: assignment/09-practico.qmd
-            - text: "10: Asociación con categóricas"
-              file: assignment/10-practico.qmd
-            - text: "CASEN-EBS"
-              file: assignment/11-practico.qmd
+            # - text: "1: Reportes dinámicos 1"
+            #   file: assignment/01-practico.qmd
+            # - text: "2: Cálculo y reporte de correlación"
+            #   file: assignment/02-practico.qmd
+            # - text: "3: Matrices de correlación y tamaños de efecto"
+            #   file: assignment/03-practico.qmd
+            # - text: "4: Inferencia 1"
+            #   file: assignment/04-practico.qmd
+            # - text: "5: Reportes dinámicos 2"
+            #   file: assignment/05-practico.qmd
+            # - text: "6: Inferencia 2"
+            #   file: assignment/06-practico.qmd
+            # - text: "7: Inferencia 3"
+            #   file: assignment/07-practico.qmd
+            # - text: "8: Inferencia 4"
+            #   file: assignment/08-practico.qmd
+            # - text: "9: Reporte - plantilla trabajos"
+            #   file: assignment/09-practico.qmd
+            # - text: "10: Asociación con categóricas"
+            #   file: assignment/10-practico.qmd
+            # - text: "CASEN-EBS"
+            #   file: assignment/11-practico.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>

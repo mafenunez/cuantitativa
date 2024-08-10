@@ -6,25 +6,7 @@ lang: es
 
 ## Descripción
 
-- Los prácticos consisten en el desarrollo de una guía práctica (por lo general cada semana) donde se aplican y profundizan los contenidos de las clases, y donde también se abordan otras temáticas relacionadas al manejo y repote de datos. La organización semestras se puede revisar en la [planificación del curso](/schedule.html).
-
-- El trabajo con estas guías se organiza en los siguientes momentos:
-
-  - la guía se presenta los días martes y se avanza en resolver dudas para su resolución
-  - cada estudiante realiza la guía de manera autónoma durante la semana
-  - en caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos disponible para este fin
-  - las sesiones prácticas se realizarán por lo general en grupos pequeños guiados por ayudantes.
-  - cada semana se completa un **reporte de progreso** (detalles abajo)
-
-- En las prácticas vamos a trabajar con el software R, Versión 4.3.1.
-
-## Reportes de progreso{#reporte}
-
-Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos (es muy difícil aprender a multiplicar sin saber sumar). Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
-
-El sistema de monitoreo permanente de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Los reportes consisten en completar un formulario simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada guía Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.
-
-Como incentivo para completar los reportes de progreso, se entregarán **dos décimas adicionales** a la nota de quienes tengan al menos el 80% de los  reportes de progreso completados entre instancias de evaluación (por ejemplo, en el caso de la evaluación 2 se deben tener todos los reportes de progreso completados entre la evaluación 1 y 2). 
+- Las clases se acompañan  de una guía de ejercicios prácticos donde se aplican y profundizan los contenidos de las clases en base a ejercicios con software estadístico, y donde también se abordan otras temáticas relacionadas al manejo y repote de datos. La organización semestral de guías y espacios prácticos se puede revisar en la [planificación del curso](/schedule.html).
 
 ## Trabajo con software R
 
@@ -34,22 +16,23 @@ El carácter de apertura de R posee muchas ventajas, pero también conlleva comp
 
 Para minimizar estos posibles problemas en este curso, vamos a:
 
-- trabajar con la misma y última versión de R, que es la 4.3
+- trabajar con la misma y última versión de R, que es la [4.4.1](https://www.r-project.org/)
 - evitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variables
 
 ## Sobre errores y consultas sobre problemas con R y ejecución de código
 
 En caso de problemas con ejecución de código, se sugiere intentar solucionarlo autónomamente por no más de 10 minutos, si los problemas siguen entonces consultar. 
 
-Se sugiere que las consultas sobre problemas en la ejecución del código y otros se realicen en los foros al final de los prácticos correspondientes, para lo cual se requiere solo habilitar una cuenta en Github. Al hacer la consulta, adjuntar la siguiente información:
+El espacio principal de consultas son los foros que se encuentran tanto al final de las guías. El formato de los foros requiere habilitar una cuenta en [Github](https://github.com/).
+
+Al hacer la consulta, adjuntar la siguiente información:
 
   1. Código completo hasta que se produce el problema
   2. Indicar línea del código donde se produce el problema
-  3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
+  3. Adjuntar el resultado del output de la información de la sesión (output del comando `sessionInfo()`)
 
 ### Instalación de R & RStudio {#installR}
 
-Para esta versión del curso vamos a trabajar con el programa R Version 4.3 y con RStudio, que ofrece un entorno más amigable para trabajar con R.
 
 Para **instalar R**: ir a [https://cran.r-project.org/index.html](https://cran.r-project.org/index.html) y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)
 
@@ -70,7 +53,6 @@ Si por alguna razón se prefiere trabajar sin descargar, también se puede utili
 <source src="https://www.dropbox.com/s/6nqm99dqnjvtmry/rcloud.mp4?raw=1" type="video/mp4">
 </video>
 </div>
-
 
 ### Sobre el trabajo en hojas de código en RStudio {#codigoR}
 
