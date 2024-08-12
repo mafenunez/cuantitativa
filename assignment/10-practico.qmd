@@ -2,10 +2,9 @@
 title: "Asociación con categóricas"
 date: "2023-11-17"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto
+  cache: true  
 ---
 
 ```{r setup, include=FALSE}
@@ -200,8 +199,8 @@ chi_stat > chi_critico
 ```{r, collapse=TRUE}
 chi_results <- chisq.test(table(proc_casen$ss_salud, proc_casen$universitaria))
 
-stats.table <- tidy(chi_results, conf_int = T)
-nice_table(stats.table)
+#stats.table <- tidy(chi_results, conf_int = T)
+#nice_table(stats.table)
 ```
 
 Visualicemos la distribución de esta prueba y su zona de rechazo.

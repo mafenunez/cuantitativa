@@ -69,8 +69,21 @@ class: animated, fadeIn
 
 ---
 
-<iframe src="https://www.mentimeter.com/app/presentation/alicgp8h2kyx1ozk2x77oqkv5vpfjwyu/kfwq8a8kxaxu" height="600" width=100% allowfullscreen="true">
-</iframe>
+# Objetivo de la sesión:
+
+- marco general del curso
+
+- motivación 
+
+- contenidos y funcionamiento
+
+
+---
+class: inverse middle center
+
+# _¿Qué saben de este curso?_
+
+# _¿Cuáles son sus expectativas?_
 
 ---
 # Algunos mitos
@@ -137,13 +150,14 @@ Una apreciación de que tan usual o inusual es un evento, circunstancia o compor
 ---
 class: inverse middle center
 
-## *"Adquirir la imaginación estadística es abrir los ojos a una representación más amplia de la realidad y superar malentendidos, prejuicios y estrechez de pensamiento"* (Ritchey, 2008, p.3)
+## *"Adquirir la **.yellow[imaginación estadística]** es abrir los ojos a una representación más amplia de la realidad y superar malentendidos, prejuicios y estrechez de pensamiento"* 
+(Ritchey, 2008, p.3)
 
 ---
 
 .pull-left[
 # Estadística:
-"Rama de la matemática que utiliza grandes conjuntos de datos numéricos para obtener inferencias basadas en el cálculo de probabilidades". (RAE)]
+"Rama de la matemática que utiliza grandes conjuntos de datos numéricos para obtener **inferencias** basadas en el cálculo de probabilidades". (RAE)]
 
 --
 
@@ -239,6 +253,8 @@ class: roja
 
 
 # [.yellow[correlacional.netlify.app]](https://correlacional.netlify.app)
+
+## -> revisar programa y planificación
 
 ---
 class: front

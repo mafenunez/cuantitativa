@@ -2,10 +2,9 @@
 title: "Bonus track: Trabajando con CASEN y EBS"
 date: "2023-10-26"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto   
+  cache: true 
 ---
 
 ```{r setup, include=FALSE}

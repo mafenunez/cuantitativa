@@ -50,8 +50,8 @@ website:
         file: content/index.qmd
       - text: "Prácticos"
         file: assignment/index.qmd
-      - text: "Trabajos"
-        file: trabajos.qmd
+#      - text: "Trabajos"
+#        file: trabajos.qmd
       - text: "Recursos"
         file: resource/index.qmd
       # - text: "Noticias"
@@ -67,10 +67,9 @@ website:
       lang: es
       background: dark
       contents:
-        - section: "Sobre clases"
-          contents:
-            - content/index.qmd
-        - section: "Sesiones"
+        - text: "Descripción"
+          file: content/index.qmd      
+        - section: "Presentaciones"
           contents:
             - text: "Introducción"
               file: content/01-content.qmd
@@ -92,12 +91,12 @@ website:
             #   file: content/09-content.qmd
             # - text: "Cierre"
             #   file: content/10-content.qmd
-
+        - text: "Foro Clases"
+          file: content/foro-clases.qmd
     - title: "Prácticos"
       contents:
-        - section: "Sobre prácticos"
-          contents:
-            - assignment/index.qmd
+        - text: "Descripción"
+          file: assignment/index.qmd  
         - section: "Guías"
           contents:
             # - text: "1: Reportes dinámicos 1"
@@ -122,6 +121,8 @@ website:
             #   file: assignment/10-practico.qmd
             # - text: "CASEN-EBS"
             #   file: assignment/11-practico.qmd
+        - text: "Foro Prácticos"
+          file: assignment/foro-practicos.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>

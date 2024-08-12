@@ -10,6 +10,8 @@ format:
   html:
     template-partials:
       - html/home/title-block.html
+execute:
+  freeze: auto   
 course-logo: /files/logo-correlacional.png
 ---
 
@@ -73,7 +75,7 @@ withr::with_dir(here::here(), {
 :::
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-### Actividades
+### Sesiones
 
 - {{< fa university >}} &nbsp; **Lunes 10:15-11:45** - Aulario C/6
 
@@ -85,9 +87,14 @@ withr::with_dir(here::here(), {
 ### Contacto
 
 {{< var instructor.contact_policy >}}
+Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/content/foro-clases.qmd) y de las [Guías prácticas](/assignment/foro-practicos.qmd).
 :::
 
 :::
 
 
 :::
+
+### Versiones previas del curso:
+
+- [2023](https://2023--correlacional.netlify.app/)

@@ -2,10 +2,9 @@
 title: "Inferencia 4: Pruebas de hipótesis II"
 date: "2023-10-27"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto   
+  cache: true
 ---
 
 ```{r setup, include=FALSE}
@@ -216,8 +215,8 @@ Comparamos el valor estimado con el valor crítico para dos colas. Por tanto, nu
 t_results <- t.test(ocupados$ytrabajocor ~ ocupados$sexo, 
        alternative = "two.sided")
 
-stats.table <- tidy(t_results, conf_int = T)
-nice_table(stats.table, broom = "t.test")
+#stats.table <- tidy(t_results, conf_int = T)
+#nice_table(stats.table, broom = "t.test")
 ```
 
 
@@ -335,8 +334,8 @@ t_stat > t_critico
 t_results_goldin <- t.test(goldin_data$ytrabajocor ~ goldin_data$hijo, 
                            alternative = "greater") # indicamos la direccion de la prueba
 
-stats.table <- tidy(t_results_goldin, conf.int = T)
-nice_table(stats.table, broom = "t.test") 
+# stats.table <- tidy(t_results_goldin, conf.int = T)
+# nice_table(stats.table, broom = "t.test") 
 ```
 
 Visualicemos la distribución de esta prueba y su zona de rechazo.
@@ -390,8 +389,8 @@ Luego, aplicamos la función `prop.test()` para evaluar nuestra hipótesis.
 
 prop_results <- prop.test(xtab, alternative = "two.sided")
 
-stats.table <- tidy(prop_results, conf.int = T)
-nice_table(stats.table, broom = "prop.test")
+#stats.table <- tidy(prop_results, conf.int = T)
+#nice_table(stats.table, broom = "prop.test")
 ```
 
 ¿Y cómo reportamos esto?: 
@@ -433,8 +432,8 @@ cor_results <- cor.test(proc_casen$educ, proc_casen$ytrabajocor,
          method = "pearson", 
          use = "complete.obs")
 
-stats.table <- tidy(cor_results)
-nice_table(stats.table, broom = "cor")
+#stats.table <- tidy(cor_results)
+#nice_table(stats.table, broom = "cor")
 ```
 
 Ya sabemos [cómo interpretar una correlación](https://correlacional.netlify.app/assignment/03-practico#tama%C3%B1os-de-efecto), ahora usemos este resultado para probar nuestra hipótesis: 

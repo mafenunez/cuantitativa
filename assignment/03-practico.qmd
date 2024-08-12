@@ -2,10 +2,10 @@
 title: "Matrices de correlación y tamaños de efecto"
 date: "2023-09-01"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto 
+  cache: true 
+
 ---
 
 # Objetivo de la práctica

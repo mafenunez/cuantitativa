@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Correlacional</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs-2.21/header-attrs.js"></script>
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+    <script src="libs/tabwid-1.1.3/tabwid.js"></script>
+    <link rel="stylesheet" href="css/custom_2020.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+
+
+.pull-left-wide[
+# Estadística Correlacional]
+
+.pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
+
+## Asociación, inferencia y reporte
+
+----
+.pull-left[
+
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 2do Sem 2023 
+## [.orange[correlacional.netlify.com]](https:/correlacional.netlify.com)
+]
+
+
+.pull-right-narrow[
+.center[
+.content-block-gray[
+## Sesión 8: 
+## .orange[Inferencia 4: Hipótesis direccionales y proporciones]]
+]
+]
+
+---
+
+layout: true
+class: animated, fadeIn
+
+---
+# Lectura hoy:
+
+[Moore cap. 8 - Inferencia para proporciones](https://correlacional.netlify.app/files/textos/Moore.pdf)
+
+
+---
+# Resumen clase anterior
+
+- **hipótesis**: aseveraciones sobre algo que ocurre en la población, usualmente asociaciones entre conceptos / variables
+
+- el contraste de hipótesis en estadística opera mediante el rechazo de la **hipótesis nula** (o de no diferencias), con una probabilidad de error `\(\alpha\)`
+
+- para diferencia de medias se utiliza la prueba t, que básicamente es una distribución normal ajustada al tamaño muestral
+
+---
+## Tipos de preguntas e hipótesis (ej: con promedio(s))
+----
+
+.small[
+
+| **Pregunta**| **Hipotesis**   | **Prueba**
+|---------------------|------------------------------------------------------|
+| A. ¿Existe el promedio en la población?  &lt;br&gt;  | `$$H_{a}: \bar{X}_1 \neq 0$$`  `$$H_{0}: \bar{X}_1 = 0$$`    | Dos colas (no direccional)
+| B. ¿Existen diferencias de promedios en la población? | `$$H_{a}: \bar{X}_1 -  \bar{X}_2 \neq 0$$`  `$$H_{0}: \bar{X}_1 -  \bar{X}_2= 0$$`    | Dos colas (no direccional)
+| C. ¿Es un promedio (1) superior (o inferior) al otro (2)?         | `$$H_{a}: \bar{X}_1 -  \bar{X}_2 \gt 0$$`  `$$H_{0}: \bar{X}_1 -  \bar{X}_2 \leq 0$$` | Una cola (direccional)
+  - ]
+---
+class: center middle
+
+![:scale 73%](img/one_vs_two-tailed.png)
+
+---
+class: middle center
+![:scale 70%](img/rechazar_meme.png)
+
+---
+.content-box-red[
+# BUSCAMOS RECHAZAR LA HIPÓTESIS NULA]
+
+- Recordar que nuestra hipótesis de investigación es la .red[hipótesis alternativa]
+
+- La .blue[hipótesis nula] (cero) expresa que lo que nosotros buscamos no existe o ES CERO en la población
+
+- Si logramos rechazar `\(H_0\)` entonces hay sustento para nuestra hipótesis de investigación
+---
+# Los cinco pasos de la inferencia
+
+1. Establecer las hipótesis (y definir si son o no direccionales)
+
+2. Calcular error estándar
+
+3. Estimar estadístico de prueba (ej: Z o t)
+
+4. Establecer valor crítico de la prueba (de acuerdo a un cierto nivel de confianza)
+
+5. Contraste e interpretación
+  
+  -&gt;posibilidad de calcular intervalo de confianza
+
+---
+# Sobre los cinco pasos de la inferencia
+
+- Definir estos pasos y realizar los cálculos paso a paso tiene un sentido procedimiental y pedagógico
+
+- Mediante el uso de software (como R) es suficiente con paso 1 (hipótesis) y paso 5 (interpretación)
+
+- Pero ... para hacer una buena interpretación, es importante saber qué ocurre tras bambalinas en el contraste de hipótesis
+
+---
+class: roja right
+ 
+.pull-left-narrow[
+.left[
+### .black[Contenidos]
+]
+]
+.pull-right-wide[
+
+## .yellow[1- Repaso hipótesis de diferencia de medias]
+## 2- Hipótesis direccionales
+## 3- Hipótesis para proporciones
+## 4- Inferencia en correlación
+]
+
+---
+# Datos
+
+Vamos a generar una submuestra de 350 casos de CASEN para ilustrar de mejor manera el sentido del test de hipótesis
+
+
+```r
+pacman::p_load(sjmisc, haven, dplyr, stargazer, interpretCI, kableExtra)
+load("casen2022_inf2.Rdata")
+options(scipen=999) # para evitar notación en los ceros
+set.seed(20) # para fijar el resultado aleatorio
+casen_350 &lt;- casen2022_inf %&gt;% select(salario,sexo)  %&gt;% sample_n(350)
+casen_350 &lt;- na.omit(casen_350)
+```
+
+---
+# Datos
+
+
+```r
+stargazer(as.data.frame(casen_350), type = "text")
+```
+
+```
+
+======================================================
+Statistic  N     Mean      St. Dev.    Min      Max   
+------------------------------------------------------
+salario   343 634,402.300 459,180.200 30,000 2,900,000
+sexo      343    1.402       0.491      1        2    
+------------------------------------------------------
+```
+---
+
+
+```r
+casen_350%&gt;% # se especifica la base de datos
+   dplyr::group_by(sexo=sjlabelled::as_label(sexo)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label
+  dplyr::summarise(Obs.=n(),Promedio=mean(salario, na.rm=TRUE),SD=sd(salario, na.rm=TRUE)) %&gt;% # se agregan las operaciones a presentar en la tabla
+  kable(, format = "markdown") # se genera la tabla
+```
+
+
+
+|sexo      | Obs.| Promedio|       SD|
+|:---------|----:|--------:|--------:|
+|1. Hombre |  205| 654585.4| 468692.5|
+|2. Mujer  |  138| 604420.3| 444666.0|
+
+
+---
+## Hipótesis de diferencia de medias
+
+### Paso 1: Establecimiento de hipótesis
+
+El salario promedio de las mujeres es distinto al de los hombres
+
+`$$H_{a}: \bar{X}_1 -  \bar{X}_2 \neq 0$$` 
+`$$H_{0}: \bar{X}_1 -  \bar{X}_2= 0$$`
+
+---
+## Hipótesis de diferencia de medias
+
+### Paso 2: Cálculo del error estándar (para diferencia de medias)
+
+`$$SE=\sqrt{\frac{\sigma_{diff}}{n_a}+\frac{\sigma_{diff}}{n_b}}$$`
+Donde
+
+`$$\sigma_{diff}=\frac{\sigma^2_{a}(n_a-1)+\sigma^2_{b}(n_b-1)}{n_a+n_b-2}$$`
+---
+
+Cálculo de la desviación estándar de las diferencias de promedios:
+
+`\begin{align*}
+\sigma_{diff}&amp;=\frac{468692^2(205-1)+444666^2(138-1)}{205+138-2} \\ \\ 
+&amp;=\frac{44813126936256+27088715663172}{341}\\ \\ 
+&amp;=210855843400
+\end{align*}`
+
+---
+
+Y enfonces el error estándar de la diferencia de medias:
+`\begin{align*}
+SE&amp;=\sqrt{\frac{\sigma_{diff}}{n_a}+\frac{\sigma_{diff}}{n_b}} \\ \\
+&amp;=\sqrt{\frac{210855843400}{205}+\frac{210855843400}{138}}\\ \\
+&amp;=50561
+\end{align*}`
+---
+## Hipótesis de diferencia de medias
+
+### Paso 3: Cálculo del estadístico de prueba (t para diferencia de medias)
+
+`\begin{align*}
+t&amp;=\frac{(\bar{x}_1-\bar{x}_2)}{SE_{\bar{x_1}-\bar{x_2}}} \\ \\
+&amp;=\frac{654585.4- 604420.3}{50561} \\ \\
+&amp;=\frac{50165.1}{50561} = 0.992
+\end{align*}`
+
+---
+## Hipótesis de diferencia de medias
+
+### Paso 4: Establecimiento del valor crítico de la prueba (t)
+
+.pull-left[
+
+- para un nivel de error `\(\alpha=0.05\)`
+
+- y una hipótesis de diferencia de dos colas: `\(\alpha/2=[0.025-0.975]\)`
+
+- grados de libertad N-2= 343-2 = 341]
+
+.pull-right[
+
+```r
+qt(p=.05/2, 
+   df=341, 
+   lower.tail=FALSE)
+```
+
+```
+[1] 1.966945
+```
+]
+
+---
+class: middle center
+
+![:scale 90%](https://multivariada.netlify.app/slides/07-inferencia/imagen4.png)
+
+
+---
+## Hipótesis de diferencia de medias
+
+### Paso 5: Contraste de hipótesis
+
+En este contraste se compara el valor estimado del estadístico de prueba y su valor crítico para dos colas:
+
+`$$t_{cri}= -1.96 &lt; t_{est}=0.992 &lt; t_{cri}= 1.96$$`
+Por lo tanto, nuestro valor estimado queda fuera de la zona de rechazo de la hipótesis nula. 
+
+En consecuencia, con un nivel de confianza de 95% no podemos afirmar que existen diferencias salariales entre hombres y mujeres
+
+
+---
+
+.pull-left-wide[
+![](08-inferencia_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+
+.pull-right-narrow[
+.medium[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+El gráfico muestra nuestro valor estimado de t fuera de la zona de rechazo. Por lo tanto, no podemos rechazar `\(H_0\)`, las diferencias no son distintas de cero 
+]
+]
+---
+# Test de hipótesis de diferencias en R
+
+
+```r
+t.test(salario ~ sexo, data = casen_350, var.equal=TRUE)
+```
+
+```
+
+	Two Sample t-test
+
+data:  salario by sexo
+t = 0.99215, df = 341, p-value = 0.3218
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+ -49287.48 149617.63
+sample estimates:
+mean in group 1 mean in group 2 
+       654585.4        604420.3 
+```
+
+---
+# tabla t test con `rempsyc`
+
+
+```r
+pacman::p_load(rempsyc,broom)
+model &lt;- t.test(salario ~ sexo, data = casen_350, var.equal=TRUE)
+stats.table &lt;- tidy(model, conf.int = TRUE)
+nice_table(stats.table, broom = "t.test")
+```
+
+&lt;div class="tabwid"&gt;&lt;style&gt;.cl-e3c10ad0{table-layout:auto;}.cl-e3ba03f2{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e3ba041a{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e3ba042e{font-family:'Times New Roman';font-size:7.2pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.6pt;}.cl-e3bd3dec{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 2;background-color:transparent;}.cl-e3bd3e0a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 2;background-color:transparent;}.cl-e3bd51e2{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e3bd51f6{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e3bd520a{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table data-quarto-disable-processing='true' class='cl-e3c10ad0'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;Method&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;Alternative&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;Mean 1&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;Mean 2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba041a"&gt;M&lt;/span&gt;&lt;span class="cl-e3ba042e"&gt;1&lt;/span&gt;&lt;span class="cl-e3ba03f2"&gt; - &lt;/span&gt;&lt;span class="cl-e3ba041a"&gt;M&lt;/span&gt;&lt;span class="cl-e3ba042e"&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba041a"&gt;t&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba041a"&gt;df&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba041a"&gt;p&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e3bd51e2"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;95% CI&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-e3bd51f6"&gt;&lt;p class="cl-e3bd3e0a"&gt;&lt;span class="cl-e3ba03f2"&gt;Two Sample t-test&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;two.sided&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;654,585.37&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;604,420.29&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;50,165.08&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;0.99&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;341&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;.322&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e3bd520a"&gt;&lt;p class="cl-e3bd3dec"&gt;&lt;span class="cl-e3ba03f2"&gt;[-49287.48, 149617.63]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+???
+https://rempsyc.remi-theriault.com/articles/t-test
+
+
+---
+# Intervalo de confianza al 95%
+
+`\begin{align*}
+\bar{x}_1-\bar{x}_2 &amp;\pm t_{\alpha/2}*SE_{\bar{x_1}-\bar{x_2}} \\\\
+50165 &amp;\pm 1.96*50561 \\\\
+50165 &amp;\pm 99099.56 \\\\
+CI[-49287.48&amp;;149617.63]
+\end{align*}`
+
+Como vemos, nuestro intervalo de confianza **contiene el cero**, por lo que no se rechaza la hipótesis nula
+
+
+
+---
+## ¿Qué habría pasado con otro nivel de confianza/probabilidad de error?
+
+.medium[
+
+```r
+model3 &lt;- t.test(salario ~ sexo, data = casen_350, var.equal=TRUE,
+                 conf.level=0.5); model3 
+```
+
+```
+
+	Two Sample t-test
+
+data:  salario by sexo
+t = 0.99215, df = 341, p-value = 0.3218
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+50 percent confidence interval:
+ 16025.16 84304.99
+sample estimates:
+mean in group 1 mean in group 2 
+       654585.4        604420.3 
+```
+]
+---
+class: middle center
+![](08-inferencia_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+
+## Y ... qué hubiera pasado con una muestra más grande?
+.medium[
+
+```r
+load("casen2022_inf2.Rdata")
+model4 &lt;- t.test(salario ~ sexo, data = casen2022_inf, var.equal=TRUE)
+model4
+```
+
+```
+
+	Two Sample t-test
+
+data:  salario by sexo
+t = 22.151, df = 54754, p-value &lt; 0.00000000000000022
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+ 111554.7 133213.2
+sample estimates:
+mean in group 1 mean in group 2 
+       734620.3        612236.4 
+```
+]
+---
+
+![](08-inferencia_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+class: inverse
+
+## Por lo tanto, recordar:
+
+- una diferencia en la muestra puede o no puede existir en la población
+
+- para ello, establecemos una hipótesis nula (diferencias=0), que queremos rechazar
+
+- ¿cómo rechazamos? con un contraste de hipótesis, donde se establece un nivel de probabilidad de error que estamos dispuestos a aceptar
+
+- el rechazo depende tanto del nivel de probabilidad de error como también del tamaño muestral
+
+---
+class: roja right
+ 
+.pull-left-narrow[
+.left[
+### .black[Contenidos]
+]
+]
+.pull-right-wide[
+
+## 1- Repaso hipótesis de diferencia de medias
+## .yellow[2- Hipótesis direccionales]
+## 3- Hipótesis para proporciones
+## 4- Inferencia en correlación
+]
+
+
+---
+# Hipótesis direccional
+
+Se siguen los mismos pasos:
+
+1. Establecer las hipótesis (y definir si son o no direccionales)
+
+2. Calcular error estándar
+
+3. Estimar estadístico de prueba (ej: Z o t)
+
+4. Establecer valor crítico de la prueba (de acuerdo a un cierto nivel de confianza)
+
+5. Contraste e interpretación
+  
+  -&gt;posibilidad de calcular intervalo de confianza
+
+---
+## Hipótesis direccional
+
+### Paso 1: Establecimiento de hipótesis
+
+El salario de los hombres (grupo 1) es mayor al de las mujeres (grupo 2) 
+
+`$$H_{a}: \bar{X}_1 \gt  \bar{X}_2$$`  
+`$$H_{0}: \bar{X}_1 \leq  \bar{X}_2  0$$`
+
+---
+# Paso 2 (SE) y paso 3 (Estadístico de prueba)
+
+-&gt; son los mismos que los de las hipótesis direccionales
+
+---
+## Hipótesis direccionales 
+### Paso 4: Establecimiento del valor crítico de la prueba (t)
+
+.pull-left[
+
+- para un nivel de error `\(\alpha=0.05\)` (de una cola9
+
+- grados de libertad N-2= 343-2 = 341]
+
+.pull-right[
+
+```r
+qt(p=.05, 
+   df=341,
+   lower.tail = FALSE)
+```
+
+```
+[1] 1.649334
+```
+]
+
+
+---
+## Hipótesis direccionales
+
+### Paso 5: Contraste de hipótesis
+
+En este contraste se compara el valor estimado del estadístico de prueba y su valor crítico para una cola:
+
+`$$t{cri}= 1.64 &gt; t{est}=0.992$$`
+Por lo tanto, nuestro valor estimado queda fuera de la zona de rechazo de la hipótesis nula. 
+
+En consecuencia, con un nivel de confianza de 95% no podemos afirmar que el salario de los hombres es superior al de las mujeres.
+
+---
+# En R
+
+
+```r
+model5 &lt;- t.test(salario ~ sexo, data = casen_350, alternative="greater", var.equal=TRUE, conf.level = 0.95)
+stats.table2 &lt;- tidy(model5)
+nice_table(stats.table2, broom = "t.test")
+```
+
+&lt;div class="tabwid"&gt;&lt;style&gt;.cl-e4b210a6{table-layout:auto;}.cl-e4a457f4{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e4a45808{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e4a4581c{font-family:'Times New Roman';font-size:7.2pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.6pt;}.cl-e4a77506{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 2;background-color:transparent;}.cl-e4a77510{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 2;background-color:transparent;}.cl-e4a78884{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e4a7888e{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e4a788a2{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table data-quarto-disable-processing='true' class='cl-e4b210a6'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;Method&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;Alternative&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;Mean 1&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;Mean 2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a45808"&gt;M&lt;/span&gt;&lt;span class="cl-e4a4581c"&gt;1&lt;/span&gt;&lt;span class="cl-e4a457f4"&gt; - &lt;/span&gt;&lt;span class="cl-e4a45808"&gt;M&lt;/span&gt;&lt;span class="cl-e4a4581c"&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a45808"&gt;t&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a45808"&gt;df&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a45808"&gt;p&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-e4a78884"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;95% CI&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-e4a7888e"&gt;&lt;p class="cl-e4a77510"&gt;&lt;span class="cl-e4a457f4"&gt;Two Sample t-test&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;greater&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;654,585.37&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;604,420.29&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;50,165.08&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;0.99&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;341&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;.161&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-e4a788a2"&gt;&lt;p class="cl-e4a77506"&gt;&lt;span class="cl-e4a457f4"&gt;[-33228.46, Inf]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+
+---
+
+![](08-inferencia_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+class: roja right
+ 
+.pull-left-narrow[
+.left[
+### .black[Contenidos]
+]
+]
+.pull-right-wide[
+
+## 1- Repaso hipótesis de diferencia de medias
+## 2- Hipótesis direccionales
+## .yellow[3- Hipótesis para proporciones]
+## 4- Inferencia en correlación
+]
+
+
+---
+# Test para proporciones
+
+- además de las inferencias con medidas de tendencia central (como promedios), es posible también realizar inferencia sobre porcentajes/proporciones, ej:
+
+  - El 20% de l_s chilen_s asiste a la educación superior (hipótesis  puntual)
+  
+  - Los hombres y las mujeres tienen un distinto porcentaje de acceso a la educación superior (hipótesis de diferencia)
+  - Las mujeres asisten más a la educación superior que los hombres (hipótesis direccional)
+
+---
+# Datos
+
+```r
+stargazer(as.data.frame(casen2022_inf), type = "text")
+```
+
+```
+
+=========================================================
+Statistic   N       Mean      St. Dev.    Min     Max    
+---------------------------------------------------------
+salario   54,756 680,138.000 645,405.500 8,000 25,000,000
+sexo      57,530    1.445       0.497      1       2     
+educacion 57,530   10.350       2.245      1       15    
+---------------------------------------------------------
+```
+
+---
+.small[
+
+```r
+frq(casen2022_inf$educacion)
+```
+
+```
+e6a_no_asiste. ¿Cuál es el nivel educacional más alto al cual asistió? (x) &lt;numeric&gt; 
+# total N=57530 valid N=57530 mean=10.35 sd=2.25
+
+Value |                                                             Label |     N | Raw % | Valid % | Cum. %
+------------------------------------------------------------------------------------------------------------
+    1 |                                                  1. Nunca asistió |   242 |  0.42 |    0.42 |   0.42
+    2 |                                                      2. Sala cuna |     0 |  0.00 |    0.00 |   0.42
+    3 |                    3. Jardín Infantil (Medio menor y Medio mayor) |     3 |  0.01 |    0.01 |   0.43
+    4 |       4. Prekínder / Kínder (Transición menor y Transición Mayor) |     4 |  0.01 |    0.01 |   0.43
+    5 |                               5. Educación Especial (Diferencial) |    73 |  0.13 |    0.13 |   0.56
+    6 |                      6. Primaria o Preparatoria (Sistema antiguo) |   472 |  0.82 |    0.82 |   1.38
+    7 |                                               7. Educación Básica |  7728 | 13.43 |   13.43 |  14.81
+    8 |                                  8. Humanidades (Sistema Antiguo) |   348 |  0.60 |    0.60 |  15.42
+    9 |                           9. Educación Media Científico-Humanista | 18879 | 32.82 |   32.82 |  48.23
+   10 | 10. Técnica, Comercial, Industrial o Normalista (Sistema Antiguo) |   280 |  0.49 |    0.49 |  48.72
+   11 |                           11. Educación Media Técnica Profesional |  7457 | 12.96 |   12.96 |  61.68
+   12 |                  12. Técnico Nivel Superior (Carreras 1 a 3 años) |  7623 | 13.25 |   13.25 |  74.93
+   13 |                           13. Profesional (Carreras 4 o más años) | 13166 | 22.89 |   22.89 |  97.82
+   14 |                                           14. Magíster o maestría |  1098 |  1.91 |    1.91 |  99.73
+   15 |                                                     15. Doctorado |   157 |  0.27 |    0.27 | 100.00
+ &lt;NA&gt; |                                                              &lt;NA&gt; |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+```
+]
+---
+###Generar variable educación universitaria y menos que universitaria:
+.medium[
+
+```r
+casen2022_inf$educ_sup &lt;- rec(casen2022_inf$educacion, rec = "1:12=0;13:15=1",val.labels = c("Menos que universitaria", "Universitaria o más"))
+frq(casen2022_inf$educ_sup)
+```
+
+```
+e6a_no_asiste. ¿Cuál es el nivel educacional más alto al cual asistió? (x) &lt;numeric&gt; 
+# total N=57530 valid N=57530 mean=0.25 sd=0.43
+
+Value |                   Label |     N | Raw % | Valid % | Cum. %
+------------------------------------------------------------------
+    0 | Menos que universitaria | 43109 | 74.93 |   74.93 |  74.93
+    1 |     Universitaria o más | 14421 | 25.07 |   25.07 | 100.00
+ &lt;NA&gt; |                    &lt;NA&gt; |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+```
+]
+
+---
+.pull-left[
+.small[
+
+```r
+pacman::p_load(sjPlot)
+casen2022_inf %&gt;%
+  sjtab(educ_sup,sexo,
+  show.col.prc=TRUE)
+```
+
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+ &lt;tr&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;e6a_no_asiste. ¿Cuál&lt;br&gt;es el nivel&lt;br&gt;educacional más alto&lt;br&gt;al cual asistió?&lt;/th&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2"&gt;Sexo&lt;/th&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2"&gt;Total&lt;/th&gt;
+ &lt;/tr&gt;
+ 
+&lt;tr&gt;
+ &lt;td style="border-bottom:1px solid; text-align:center; padding:0.2cm;"&gt;1. Hombre&lt;/td&gt;
+ &lt;td style="border-bottom:1px solid; text-align:center; padding:0.2cm;"&gt;2. Mujer&lt;/td&gt;
+ &lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;Menos que&lt;br&gt;universitaria&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;25102&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;78.6&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;18007&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;70.3&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;43109&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;74.9&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;Universitaria o más&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;6818&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;21.4&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;7603&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;29.7&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;14421&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;25.1&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;"&gt;Total&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;31920&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;25610&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;57530&lt;/span&gt;&lt;br&gt;&lt;span style="color:#339933;"&gt;100&amp;nbsp;&amp;#37;&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+&lt;td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="4"&gt;&amp;chi;&lt;sup&gt;2&lt;/sup&gt;=524.222 &amp;middot; df=1 &amp;middot; &amp;phi;=0.095 &amp;middot; p=0.000&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;/table&gt;
+]]
+
+
+.pull-right[
+&lt;br&gt;
+&lt;br&gt;
+
+`\(p_m - p_h=0.297-0.214=0.083\)`
+
+El porcentaje de mujeres con educación universitaria es .red[8.3%] superior en las mujeres
+&lt;br&gt;
+.content-box-red[.center[
+.red[¿Es significativa esta diferencia?]
+]
+]
+]
+
+???
+ver: http://www.sthda.com/english/wiki/two-proportions-z-test-in-r
+
+
+
+---
+# Diferencias entre proporciones
+
+1. Establecer las hipótesis (y definir si son o no direccionales)
+
+2. Calcular error estándar
+
+3. Estimar estadístico de prueba (ej: Z o t)
+
+4. Establecer valor crítico de la prueba (de acuerdo a un cierto nivel de confianza)
+
+5. Contraste e interpretación
+  
+  -&gt;posibilidad de calcular intervalo de confianza
+---
+## Diferencias entre proporciones 
+### 1. Establecer las hipótesis
+
+
+¿Existen diferencias entre el porcentaje de mujeres y hombres con nivel educacional universitario?
+
+`$$H_{a}: p_{mujeres} -  p_{hombres} \neq 0$$`
+`$$H_{0}: p_{mujeres} -  p_{hombres}= 0$$`
+
+---
+## Diferencias entre proporciones 
+### 2. Cálculo de error estándar
+
+Recordemos que el SE para una proporción es:
+$$SE_p=\sqrt{\frac{p(1-p)}{n}} $$
+Y para diferencia de proporciones:
+
+`$$SE_{p_1 - p_2}=\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$$`
+???
+https://online.stat.psu.edu/stat415/lesson/9/9.4
+
+---
+Estimación de error estándar
+
+`\begin{align*}
+SE_{p_a - p_b}&amp;=\sqrt{\frac{p_a(1-p_a)}{n_a}+\frac{p_b(1-p_b)}{n_b}} \\\\
+SE_{p_m - p_h}&amp;=\sqrt{\frac{0.297(1-0.297)}{7603}+\frac{0.214(1-0.214)}{6818}} \\\\
+SE_{p_m - p_h}&amp;=\sqrt{\frac{0.209}{7603}+\frac{0.168}{6818}}=\sqrt{0.0000275+0.0000246}=0.00722
+\end{align*}`
+
+---
+## Diferencias entre proporciones 
+### 3. Cálculo de estadístico de prueba
+
+
+Para diferencia de proporciones también se utiliza la prueba `\(Z\)`
+
+`$$Z_{est}=\frac{p_m -  p_h}{SE_{p_m -p_h}}=\frac{0.083}{0.0072}=11.528$$`
+
+---
+## Diferencias entre proporciones 
+### 4. Establecer valor crítico de prueba
+
+Y comparamos este valor con el Z crítico para un `\(\alpha=0.05\)` de dos colas (porque es hipótesis de diferencia)
+
+
+```r
+qnorm(p=.05/2, lower.tail=FALSE)
+```
+
+```
+[1] 1.959964
+```
+
+
+---
+## Diferencias entre proporciones 
+### 5. Interpretación 
+
+En este caso, nuestro `\(Z_{est}=11.528\)` &gt; `\(Z_{cri}=1.96\)`, por lo tanto se rechaza `\(H_0\)`
+
+La proporción de universitarias y universitarios es diferente, con un 95% de confianza
+
+---
+## (6). Construcción intervalo de confianza
+
+.medium[
+Para obtener un intervalo de confianza, a la diferencia de proporciones se le suman/restan errores estándar muttiplicados por el valor Z crítico según nivel de confianza, en este caso `\(\alpha=0.5/2\)` (prueba de dos colas)
+
+`\begin{align*}
+p_1 - p_2 &amp;\pm Z_{crit_{\alpha/2}}*SE_{p_a - p_b} \\
+0.297-0.214 &amp;\pm1.96*0.00722\\
+0.083&amp;\pm 0.0142 \\
+\end{align*}`
+
+`$$CI[0.07;0.09]$$`
+Podemos entonces decir con un 95% de confianza que la diferencia de proporción de universitari_s entre hombres y mujeres se encuentra entre un 7% y un 9%]
+
+---
+# Estimación directamente en R con .blue[prop.test]
+
+
+.small[
+.pull-left[
+
+```r
+prop_dif &lt;-prop.test(x = c(7603,6818), n = c(25610,31920))
+prop_dif
+```
+
+2-sample test for equality of proportions with continuity
+	correction
+
+data:  c(7603, 6818) out of c(25610, 31920)
+X-squared = 524.22, df = 1, p-value &lt; 0.00000000000000022
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.07606640 0.09049306
+sample estimates:
+   prop 1    prop 2 
+0.2968762 0.2135965
+
+
+]
+]
+
+
+.pull-right[
+.medium[
+Dos cosas importantes para reporte de este output:
+
+- probabilidad de error p: si es menor al nivel de error especificado ( `\(\alpha\)`), se rechaza la hipótesis nula. En este caso, las diferencias entre grupos son significativamente distinas de cero.
+
+- el intervalo de confianza: rango de valores con un 95% de confianza para la diferencia estimada.
+]
+]
+???
+
+---
+## Hipótesis direccionales de proporciones
+### Paso 1: hipótesis
+
+¿Es superior la proporción de mujeres con educación superior?
+
+En este caso, 
+
+`$$H_{0}: p_{mujeres} \leq  p_{hombres}$$`
+
+En relación a la siguiente hipótesis alternativa:
+
+`$$H_{a}: p_{mujeres} \gt  p_{hombres}$$`
+---
+## Hipótesis direccionales de proporciones
+### Paso 2 (SE) y 3 (estadístico de prueba) igual que para hipótesis no direccionales
+
+---
+## Hipótesis direccionales de proporciones
+### Paso 4: Valor crítico de prueba
+
+Valor crítico de Z para una cola
+
+
+```r
+qnorm(p=.05, lower.tail=FALSE)
+```
+
+```
+[1] 1.644854
+```
+
+
+---
+## Hipótesis direccionales de proporciones
+### Paso 5: Interpretación
+
+Valor crítico se compara con el valor estimado de Z para la diferencia de proporciones, 
+
+
+En este caso, `$$Z_{est}=11.528 \gt Z_{cri}=1.644$$`
+
+Por lo tanto se rechaza `\(\H_0\)`, con un 95% de confianza podemos decir que la proporción de mujeres universitarias es mayor en mujeres que en hombres.
+
+
+---
+# Estimación directamente en R con .blue[prop.test]
+
+.small[
+.pull-left[
+
+```r
+prop_greater &lt;-prop.test(x = c(7603,6818), n = c(25610,31920), alternative = "greater")
+prop_greater
+```
+```
+	2-sample test for equality of proportions with continuity
+	correction
+
+data:  c(7603, 6818) out of c(25610, 31920)
+X-squared = 524.22, df = 1, p-value &lt; 0.00000000000000022
+alternative hypothesis: greater
+95 percent confidence interval:
+ 0.07722045 1.00000000
+sample estimates:
+   prop 1    prop 2 
+0.2968762 0.2135965 
+```
+
+]
+]
+
+
+.pull-right[
+.medium[
+
+
+]
+]
+
+---
+class: roja right
+ 
+.pull-left-narrow[
+.left[
+### .black[Contenidos]
+]
+]
+.pull-right-wide[
+
+## 1- Repaso hipótesis de diferencia de medias
+## 2- Hipótesis direccionales
+## 3- Hipótesis para proporciones
+## .yellow[4- Inferencia en correlación]
+]
+
+---
+# Datos 
+.medium[
+Simulamos dos variables: edad, y puntaje en escala de izquierda (1) - derecha (10):
+
+
+```r
+edad &lt;-c(18,25,40,55,70, 82)
+iz_der &lt;-c(5,4,5,9,5,7)
+cor(edad,iz_der)
+```
+
+```
+[1] 0.5070278
+```
+
+```r
+(cor(edad,iz_der))^2 #r2
+```
+
+```
+[1] 0.2570772
+```
+]
+
+---
+.pull-left[
+
+```r
+plot1 &lt;- ggplot(, 
+  aes(x=edad, y=iz_der)) + 
+  geom_point(
+    colour = "red", 
+    size = 5) +
+  theme(text = 
+    element_text(size = 20))
+```
+]
+
+.pull-right[
+
+```r
+plot1
+```
+
+![](08-inferencia_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+]
+---
+## Prueba de hipótesis de correlación
+### 1. Formulación de hipótesis
+
+Siendo `\(\rho\)` (rho) la correlación `\(r\)` en la población:
+
+`$$H_0: \rho = 0$$`
+`$$H_a: \rho \neq 0$$`
+---
+## Prueba de hipótesis de correlación
+### 2. Error estándar de la correlación
+
+`\begin{align*}
+SE_r=&amp;\sqrt{\frac{1-r²}{n-2}} \\\\
+=&amp;\sqrt{\frac{1-0.257}{6-2}} \\\\
+=&amp;\sqrt{\frac{0.743}{4}}=\sqrt{0.186}=0.431
+\end{align*}`
+---
+## Prueba de hipótesis de correlación
+### 3. Estimación de estadístico de prueba ( `\(t\)`)
+
+`\begin{align*}
+t_r&amp;=\frac{r}{SE_r} \\\\
+&amp;=\frac{0.51}{0.431} \\\\
+&amp;=1.18
+\end{align*}`
+
+---
+## Prueba de hipótesis de correlación
+### 4. Valor crítico para `\(t\)`
+
+.pull-left[
+
+- para un nivel de error `\(\alpha=0.05\)`
+
+- y una hipótesis de diferencia de dos colas: `\(\alpha/2=[0.025-0.975]\)`
+
+- grados de libertad N-2= 6-2 = 4]
+
+.pull-right[
+
+```r
+qt(p=.05/2, 
+   df=4, 
+   lower.tail=FALSE)
+```
+
+```
+[1] 2.776445
+```
+]
+
+---
+## Prueba de hipótesis de correlación
+### 5. Interpretación
+
+`\(t_{r}=1.18 &lt; t_{cri}=2.77\)`
+
+Nuestro t estimado es menor que el valor t crítico para un 95% de confianza, por lo tanto no rechazamos la hipótesis nula. No existe evidencia en nuestros datos para afirmar que la correlación entre la escala izquierda-derecha y edad es distinta de cero en la población.
+
+---
+## En R
+
+
+```r
+cor.test(iz_der,edad)
+```
+
+```
+
+	Pearson's product-moment correlation
+
+data:  iz_der and edad
+t = 1.1765, df = 4, p-value = 0.3046
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5174601  0.9341863
+sample estimates:
+      cor 
+0.5070278 
+```
+
+---
+
+![](08-inferencia_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+
+---
+class: inverse
+
+## Resumen
+
+- 5 pasos en la prueba de hipótesis
+
+- Hipótesis direccionales y no direccionales
+
+- Hipótesis para 
+  - estimación puntual (ej: correlación)
+  - diferencias 
+  - comparación 
+
+---
+
+# ASISTENCIA
+
+.pull-left[
+
+![:scale 90%](img/qr-correlacional-asistencia.png)
+]
+
+.pull-right[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+bit.ly/correlacional-asistencia
+]
+
+
+---
+class: front
+
+.pull-left-wide[
+# Estadística Correlacional]
+
+.pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
+
+## Asociación, inferencia y reporte
+
+----
+.pull-left[
+
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 2do Sem 2023 
+## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "dracula",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url("img/logo-correlacional-transp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

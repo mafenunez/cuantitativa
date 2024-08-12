@@ -177,10 +177,6 @@ window.Quarto = {
 <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../trabajos.qmd"> 
-<span class="menu-text">Trabajos</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../resource/index.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
@@ -233,7 +229,7 @@ window.Quarto = {
 <section id="test-de-hipótesis-para-diferencia-de-medias" class="level1">
 <h1>Test de hipótesis para diferencia de medias</h1>
 <p>Primero, carguemos las librerías necesarias:</p>
-<div class="cell" data-hash="07-practico_cache/html/librerias_9bb8dd8ee44fb5371c6668fd3ddb156f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,  <span class="co"># colección de paquetes para manipulación de datos</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               car,        <span class="co"># para recodificar</span></span>
@@ -255,7 +251,7 @@ window.Quarto = {
 <li><span class="math inline">\(H_0\)</span>: no existen diferencias de edad entre hombres y mujeres</li>
 </ul>
 <p>Generación de datos (muestra_3) y descriptivos:</p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-1_97da5453425763500f8cbac66fd7aa15">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">edad=</span><span class="fu">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">23</span>,<span class="dv">32</span>,<span class="dv">24</span>,<span class="dv">25</span>,<span class="dv">29</span>,<span class="dv">31</span>,<span class="dv">32</span>,<span class="dv">31</span>),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sexo=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -277,7 +273,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Gráfico descriptivo:</p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-2_7e0e4908235db7d4b1e234b914c63449">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media=</span><span class="fu">mean</span>(edad)) <span class="sc">%&gt;%</span> </span>
@@ -296,7 +292,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Prueba t de diferencia de medias:</p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-3_859ca6334a156b8a607df88a66c69061">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(edad <span class="sc">~</span> sexo,<span class="at">data=</span>muestra_3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -329,7 +325,7 @@ mean in group 1 mean in group 2
 <li>Si nuestro t es superior al valor crítico, se rechaza <span class="math inline">\(H_0\)</span></li>
 </ol>
 <p><strong>Paso 1</strong>: Calculamos la diferencia de medias <span class="math inline">\((\bar{x}_1-\bar{x}_2)\)</span></p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-4_b5d554e946329a22099d99e35fa49f0a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">group_by</span>(<span class="at">sexo=</span>sjlabelled<span class="sc">::</span><span class="fu">as_label</span>(sexo)) <span class="sc">%&gt;%</span> <span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Obs.=</span><span class="fu">n</span>(),<span class="at">Promedio=</span><span class="fu">mean</span>(edad, <span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">SD=</span><span class="fu">sd</span>(edad, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co"># se agregan las operaciones a presentar en la tabla</span></span>
@@ -367,7 +363,7 @@ mean in group 1 mean in group 2
 </div>
 </div>
 <p><strong>Paso 2</strong>: Calculamos el error estándar de la diferencia de medias: <span class="math inline">\(\sqrt{\frac{s_1²}{\sqrt{n_1}}+\frac{s_2²}{\sqrt{n_2}}}\)</span></p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-5_2c7ffca804001b7ca3bc0583afbb0be8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>muestra_3h <span class="ot">&lt;-</span> muestra_3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">1</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>muestra_3m <span class="ot">&lt;-</span> muestra_3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">2</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -383,7 +379,7 @@ mean in group 1 mean in group 2
 </div>
 </div>
 <p><strong>Paso 3</strong>: Cálculo del valor t</p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-6_a4628356527f89c6c3851f7175e9dab1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>te <span class="ot">&lt;-</span> dif_medias<span class="sc">/</span>ee</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>te</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -391,7 +387,7 @@ mean in group 1 mean in group 2
 </div>
 </div>
 <p><strong>Paso 4</strong>: Fijamos un <span class="math inline">\(\alpha\)</span> y se busca el valor crítico de t asociado al <span class="math inline">\(\alpha\)</span>. En este caso utilizaremos el valor usual de <span class="math inline">\(\alpha = 0.05\)</span>.</p>
-<div class="cell" data-hash="07-practico_cache/html/unnamed-chunk-7_b0284b4a14fe192d7c8e3feab0c2cd6b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">df=</span><span class="dv">9</span>,<span class="at">lower.tail =</span> F)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

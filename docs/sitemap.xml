@@ -2,35 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://correlacional.netlify.app/assignment/08-practico.html</loc>
-    <lastmod>2023-11-07T11:58:23.509Z</lastmod>
+    <lastmod>2024-08-11T16:02:27.468Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/03-practico.html</loc>
-    <lastmod>2023-09-25T18:18:40.387Z</lastmod>
+    <lastmod>2024-08-11T15:55:09.220Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/10-practico.html</loc>
-    <lastmod>2023-11-20T02:26:27.904Z</lastmod>
+    <lastmod>2024-08-11T15:58:26.106Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/11-practico.html</loc>
-    <lastmod>2023-11-09T13:27:00.328Z</lastmod>
+    <lastmod>2024-08-11T15:54:55.800Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/06-practico.html</loc>
-    <lastmod>2023-10-10T17:29:24.235Z</lastmod>
+    <lastmod>2024-08-11T15:55:05.488Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/07-practico.html</loc>
-    <lastmod>2023-11-07T11:57:53.164Z</lastmod>
+    <lastmod>2024-08-11T15:55:03.860Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/01-practico.html</loc>
-    <lastmod>2023-08-21T22:27:09.694Z</lastmod>
+    <lastmod>2024-08-11T15:55:21.945Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/syllabus.html</loc>
-    <lastmod>2024-08-10T16:58:06.151Z</lastmod>
+    <lastmod>2024-08-11T12:30:21.627Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/resource/install.html</loc>
@@ -45,52 +45,60 @@
     <lastmod>2023-08-01T14:16:17.253Z</lastmod>
   </url>
   <url>
-    <loc>https://correlacional.netlify.app/content/10-content.html</loc>
-    <lastmod>2023-11-20T01:21:09.680Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/08-content.html</loc>
-    <lastmod>2023-10-23T02:37:46.787Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/06-content.html</loc>
-    <lastmod>2023-10-02T01:43:30.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/04-content.html</loc>
-    <lastmod>2023-08-28T21:18:28.287Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/02-content.html</loc>
-    <lastmod>2023-08-21T22:27:09.694Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/assignment/index.html</loc>
-    <lastmod>2024-08-10T16:35:51.644Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/01-content.html</loc>
-    <lastmod>2023-08-21T22:27:09.694Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/03-content.html</loc>
-    <lastmod>2023-08-21T22:27:09.694Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/05-content.html</loc>
-    <lastmod>2023-09-04T01:46:49.080Z</lastmod>
-  </url>
-  <url>
-    <loc>https://correlacional.netlify.app/content/07-content.html</loc>
-    <lastmod>2023-10-16T02:13:05.805Z</lastmod>
+    <loc>https://correlacional.netlify.app/content/foro-clases.html</loc>
+    <lastmod>2024-08-12T01:02:12.814Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/content/09-content.html</loc>
-    <lastmod>2023-11-13T00:43:00.929Z</lastmod>
+    <lastmod>2024-08-11T15:45:02.959Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/07-content.html</loc>
+    <lastmod>2024-08-11T15:44:26.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/05-content.html</loc>
+    <lastmod>2024-08-11T15:43:51.214Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/03-content.html</loc>
+    <lastmod>2024-08-11T15:43:37.442Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/01-content.html</loc>
+    <lastmod>2024-08-11T12:33:37.548Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/assignment/foro-practicos.html</loc>
+    <lastmod>2024-08-11T16:10:20.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/assignment/index.html</loc>
+    <lastmod>2024-08-11T16:08:55.319Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/02-content.html</loc>
+    <lastmod>2024-08-11T15:43:44.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/04-content.html</loc>
+    <lastmod>2024-08-11T15:43:20.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/06-content.html</loc>
+    <lastmod>2024-08-11T15:44:12.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/08-content.html</loc>
+    <lastmod>2024-08-11T15:44:46.019Z</lastmod>
+  </url>
+  <url>
+    <loc>https://correlacional.netlify.app/content/10-content.html</loc>
+    <lastmod>2024-08-11T15:45:26.503Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/content/index.html</loc>
-    <lastmod>2023-08-21T22:27:09.694Z</lastmod>
+    <lastmod>2024-08-11T11:40:44.171Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/news/2023-01-09_welcome.html</loc>
@@ -106,11 +114,11 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/schedule.html</loc>
-    <lastmod>2024-08-10T16:12:07.746Z</lastmod>
+    <lastmod>2024-08-12T00:55:59.924Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/index.html</loc>
-    <lastmod>2024-08-10T15:43:08.593Z</lastmod>
+    <lastmod>2024-08-11T15:48:48.435Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/example/cace.html</loc>
@@ -118,15 +126,15 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/02-practico.html</loc>
-    <lastmod>2023-08-28T21:18:28.283Z</lastmod>
+    <lastmod>2024-08-11T15:53:17.633Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/09-practico.html</loc>
-    <lastmod>2023-11-28T16:52:03.247Z</lastmod>
+    <lastmod>2024-08-11T15:54:59.280Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/05-practico.html</loc>
-    <lastmod>2023-09-26T21:33:28.776Z</lastmod>
+    <lastmod>2024-08-11T15:55:06.688Z</lastmod>
   </url>
   <url>
     <loc>https://correlacional.netlify.app/files/reporte_notas/reporte_notas.html</loc>
@@ -134,6 +142,6 @@
   </url>
   <url>
     <loc>https://correlacional.netlify.app/assignment/04-practico.html</loc>
-    <lastmod>2023-09-25T18:18:40.391Z</lastmod>
+    <lastmod>2024-08-11T15:55:08.048Z</lastmod>
   </url>
 </urlset>

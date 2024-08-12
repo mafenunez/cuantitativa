@@ -2,10 +2,9 @@
 title: "Inferencia 3: Pruebas de hipótesis"
 date: "2023-10-17"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto   
+  cache: true 
 ---
 
 

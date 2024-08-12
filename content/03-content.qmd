@@ -2,10 +2,8 @@
 title: "Asociación 2: Correlación de Pearson"
 date: "2023-08-21"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto   
 ---
 
 # Documento de presentación

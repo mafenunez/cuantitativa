@@ -2,10 +2,10 @@
 title: "Inferencia 1: Curva normal"
 date: "2023-09-08"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto
+  cache: true 
+
 ---
 
 # Objetivo de la práctica

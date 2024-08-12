@@ -179,10 +179,6 @@ window.Quarto = {
 <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../trabajos.qmd"> 
-<span class="menu-text">Trabajos</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../resource/index.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
@@ -217,7 +213,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#reporte-de-progreso" id="toc-reporte-de-progreso" class="nav-link" data-scroll-target="#reporte-de-progreso">Reporte de progreso</a></li>
   <li><a href="#video-de-práctica" id="toc-video-de-práctica" class="nav-link" data-scroll-target="#video-de-práctica">Video de práctica</a></li>
-  <li><a href="#foro" id="toc-foro" class="nav-link" data-scroll-target="#foro">Foro</a></li>
   </ul>
 </nav>
     </div>
@@ -268,13 +263,13 @@ window.Quarto = {
 <li>con 8 niveles de educación (ej: desde basica incompleta=1, hasta postgrado=8), y</li>
 <li>12 niveles de rangos de ingreso (ej: desde menos de 100.000=1 hasta más de 10.000.000=12)</li>
 </ul>
-<div class="cell" data-hash="02-practico_cache/html/ex1_data_8a42a2ac4af69eced611634550ff8e4b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>) <span class="co"># identificador de cada caso</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>educ <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">8</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ing  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">11</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(id,educ,ing)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="02-practico_cache/html/unnamed-chunk-1_49f9cf79926e345fe1f862e8eadfab3b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kbl</span>(data, <span class="at">escape=</span>F, <span class="at">full_width =</span> F)  <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">kable_paper</span>(<span class="st">"hover"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -341,7 +336,7 @@ Correlación=r &amp;= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)
 &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar{y})^{2}}}
 \end{align*}\]</span></p>
 <p>Para obtener el coeficiente de correlación directamente en R se utiliza la función <code>cor()</code> :</p>
-<div class="cell" data-hash="02-practico_cache/html/ex0_cor_021d62bdfc379b4361c1596c99f7263d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(data<span class="sc">$</span>educ, data<span class="sc">$</span>ing)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9512367</code></pre>
@@ -365,7 +360,7 @@ Correlación=r &amp;= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)
 <li><span class="math inline">\((x_i - \bar{x})²\)</span> : dif_m_educ2</li>
 <li><span class="math inline">\((y_i - \bar{y})²\)</span> : dif_m_ing2</li>
 </ul>
-<div class="cell" data-hash="02-practico_cache/html/unnamed-chunk-2_54718681172931c13cf86fe39acf5910">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>dif_m_educ <span class="ot">&lt;-</span> data<span class="sc">$</span>educ<span class="sc">-</span><span class="fu">mean</span>(data<span class="sc">$</span>educ)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>dif_m_ing <span class="ot">&lt;-</span> data<span class="sc">$</span>ing<span class="sc">-</span><span class="fu">mean</span>(data<span class="sc">$</span>ing)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>dif_xy <span class="ot">&lt;-</span>  data<span class="sc">$</span>dif_m_educ<span class="sc">*</span>data<span class="sc">$</span>dif_m_ing</span>
@@ -373,7 +368,7 @@ Correlación=r &amp;= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>dif_m_ing2 <span class="ot">&lt;-</span> (data<span class="sc">$</span>dif_m_ing)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>En nuestra base de datos:</p>
-<div class="cell" data-hash="02-practico_cache/html/unnamed-chunk-3_f959ae04ec3f5c3a745f2ab02c6e427d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kbl</span>(data, <span class="at">digits =</span> <span class="dv">3</span>,<span class="at">full_width =</span> F)  <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">kable_paper</span>(<span class="st">"hover"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -478,7 +473,7 @@ Correlación=r &amp;= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)
 </div>
 </div>
 <p>Y obtenemos la suma de cada una de las tres últimas columnas, que es lo que se necesita para reemplazar en la fórmula de la correlación:</p>
-<div class="cell" data-hash="02-practico_cache/html/unnamed-chunk-4_356936b479dceb8d24a6b34a30dc5e2a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(data<span class="sc">$</span>dif_xy); <span class="fu">sum</span>(data<span class="sc">$</span>dif_m_educ2);<span class="fu">sum</span>(data<span class="sc">$</span>dif_m_ing2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 51.625</code></pre>
@@ -498,7 +493,7 @@ r &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar
 &amp;= 0.951
 \end{align*}\]</span></p>
 <p>Y comprobamos con la función <code>cor()</code> de R, que nos entrega la correlación de Pearson:</p>
-<div class="cell" data-hash="02-practico_cache/html/ex1_cor_1f61dff665645bdce3151d69a7062f62">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(data<span class="sc">$</span>educ, data<span class="sc">$</span>ing)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9512367</code></pre>
@@ -510,7 +505,7 @@ r &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar
 <h2 class="anchored" data-anchor-id="diagrama-de-dispersión-nube-de-puntos-o-scatterplot">Diagrama de dispersión (nube de puntos o scatterplot)</h2>
 <p>Siempre es recomendable acompañar el valor de la correlación con una exploración gráfica de la distribución bivariada de los datos. El gráfico o diagrama de dispersión es una buena herramienta, ya que muestra la forma, la dirección y la fuerza de la relación entre dos variables cuantitativas.</p>
 <p>Este tipo de gráfico lo podemos realizar usando la librería <code>ggplot2</code>.</p>
-<div class="cell" data-hash="02-practico_cache/html/ex1_plot1_7053d9ec4a42b1017415243de35eda83">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggplot2)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x=</span>educ, <span class="at">y=</span>ing)) <span class="sc">+</span> </span>
@@ -531,7 +526,7 @@ r &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar
 <h2 class="anchored" data-anchor-id="el-cuarteto-de-anscombe-y-las-limitaciones-de-la-correlación-lineal">El cuarteto de Anscombe y las limitaciones de la correlación lineal</h2>
 <p>Ahora, revisaremos un muy buen ejemplo de la importancia de la exploración gráfica de los datos mediante un ejemplo de Anscombe (1973), que permite visualizar las limitaciones del coeficiente de correlación.</p>
 <p>Primero, crearemos la base de datos:</p>
-<div class="cell" data-hash="02-practico_cache/html/ex2_data_81e128b9155bcc90df128f16041deaab">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">7</span>, <span class="dv">5</span>),</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y1 =</span> <span class="fu">c</span>(<span class="fl">8.04</span>, <span class="fl">6.95</span>, <span class="fl">7.58</span>, <span class="fl">8.81</span>, <span class="fl">8.33</span>, <span class="fl">9.96</span>, <span class="fl">7.24</span>, <span class="fl">4.26</span>, <span class="fl">10.84</span>, <span class="fl">4.82</span>, <span class="fl">5.68</span>),</span>
@@ -544,7 +539,7 @@ r &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculamos la correlación pares de datos</p>
-<div class="cell" data-hash="02-practico_cache/html/ex2_cor_9207881497f19cd1202a6494a964b563">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8164205</code></pre>
@@ -564,7 +559,7 @@ r &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar
 </div>
 <p>Podemos observar que los valores de las correlaciones son equivalentes, por lo tanto podríamos pensar que todos los pares de columnas se encuentran correlacionados de manera similar.</p>
 <p>Pero, ¿será suficiente con esa información? Pasemos a revisar los gráficos de dispersión de cada par de variables.</p>
-<div class="cell" data-hash="02-practico_cache/html/ex2_plot_fd979acd0614ae913c17c80721bc7fd6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"red"</span>, </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
@@ -624,11 +619,6 @@ r &amp;= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar
 <section id="video-de-práctica" class="level1">
 <h1>Video de práctica</h1>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/xAzHypJaO1U" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
-<section id="foro" class="level1">
-<h1>Foro</h1>
-<script src="https://giscus.app/client.js" data-repo="cursos-metodos-facso/correlacional" data-repo-id="R_kgDOKCMXJQ" data-category="Q&amp;A" data-category-id="DIC_kwDOKCMXJc4CYd9S" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="es" crossorigin="anonymous" async="">
-</script>
 
 
 </section>

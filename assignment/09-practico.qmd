@@ -2,10 +2,9 @@
 title: "Reportes dinámicos 3"
 date: "2023-11-07"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto 
+  cache: true 
 ---
 
 ```{r librerias1, echo=FALSE, warning=FALSE, message=FALSE, collapse=TRUE}

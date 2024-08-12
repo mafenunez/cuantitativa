@@ -2,10 +2,10 @@
 title: "Inferencia 2: Intervalos de confianza"
 date: "2023-10-06"
 lang: es
-website:
-  comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+execute:
+  freeze: auto      
+  cache: true 
+  
 ---
 
 # Objetivo de la práctica

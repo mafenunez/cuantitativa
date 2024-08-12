@@ -150,10 +150,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../trabajos.qmd"> 
-<span class="menu-text">Trabajos</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../resource/index.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
@@ -360,14 +356,14 @@ knitr::opts_chunk$set(echo = TRUE,
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">pais</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">1</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">2</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">3</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">4</th>
+<th style="text-align: left;">pais</th>
+<th style="text-align: right;">1</th>
+<th style="text-align: right;">2</th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">4</th>
 </tr>
 </thead>
 <tbody>
@@ -478,8 +474,6 @@ knitr::opts_chunk$set(echo = TRUE,
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <p>Ahora tenemos una tabla, pero es muy simple y poco presentable. Especifiquemos opciones de formato:</p>
