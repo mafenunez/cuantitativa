@@ -8,9 +8,9 @@ Para poder participar en el foro hay que abir una cuenta en [Github](https://git
 # ¿Cuándo usar este foro?
 
 
-![](/files/img/resurgence.gif){fig-align="center"}
+![](/files/img/resurgence.gif){fig-align="center" width=50%}
 
-Muchas veces sucede que los códigos de análisis no resultan, muchas veces esto se debe a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.
+Muchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a  errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.
 
 Cuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:
 
