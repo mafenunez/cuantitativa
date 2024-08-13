@@ -70,12 +70,12 @@ class: animated, fadeIn
 ---
 class: inverse
 
-## **.black[Objetivos de la sesión de hoy]**
+## **.orange[Objetivos de la sesión de hoy]**
 <br>
 
 ### 1. Recordar y nivelar aprendizajes previos a este curso, fundamentalmente respecto al manejo de datos, medición y varianza
 
-### 2. Introducción a probablidad e inferencia
+### 2. Introducción a probablidad, distribuciones muestrales e inferencia
 
 
 ---
