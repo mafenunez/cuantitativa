@@ -73,8 +73,8 @@ website:
           contents:
             - text: "Introducción"
               file: content/01-content.qmd
-            # - text: "Asociación 1: Bases"
-            #   file: content/02-content.qmd
+            - text: "Inferencia 1"
+              file: content/02-content.qmd
             # - text: "Asociación 2: Pearson"
             #   file: content/03-content.qmd
             # - text: "Asociación 3: Tamaños, Spearman & Matrices"
@@ -123,6 +123,8 @@ website:
             #   file: assignment/11-practico.qmd
         - text: "Foro Prácticos"
           file: assignment/foro-practicos.qmd
+        - text: "Consola R Online"
+          file: assignment/consola.qmd  
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>

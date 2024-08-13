@@ -1,42 +1,30 @@
----
-title: "Estadística Correlacional"
-author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2024"
-output:
-  xaringan::moon_reader:
-    css: "css/custom_2020.css"
-    includes:
-      after_body: "insert-logo.html"     
-    lib_dir: libs
-    nature:
-      ratio: '16:9'
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      beforeInit: "libs/macros.js"
-    seal: false # esto omite title slide automática
----
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Correlacional</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="css/custom_2020.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
 class: front
 
 
-```{r setup, include=FALSE, cache = FALSE}
-require("knitr")
-options(htmltools.dir.version = FALSE)
-pacman::p_load(RefManageR)
-# bib <- ReadBib("../../bib/electivomultinivel.bib", check = FALSE)
-opts_chunk$set(warning=FALSE,
-             message=FALSE,
-             echo=TRUE,
-             cache = FALSE, fig.width=10, fig.height=8)
-pacman::p_load(flipbookr, tidyverse)
-```
 
 
 
-```{r xaringanExtra, include=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
-xaringanExtra::use_scribble()
-```
+
+
 
 .pull-left-wide[
 # Estadística Correlacional]
@@ -58,8 +46,8 @@ xaringanExtra::use_scribble()
 .pull-right-narrow[
 .center[
 .content-block-gray[
-## .curso[Sesión 2:] 
-# .black[Bases]]
+## .curso[Inferencia 1:] 
+## .black[Datos, probabilidad y distribuciones muestrales]]
 ]
 ]
 ---
@@ -71,7 +59,7 @@ class: animated, fadeIn
 class: inverse
 
 ## **.black[Objetivos de la sesión de hoy]**
-<br>
+&lt;br&gt;
 
 ### 1. Recordar y nivelar aprendizajes previos a este curso, fundamentalmente respecto al manejo de datos, medición y varianza
 
@@ -88,8 +76,8 @@ class: inverse right
 .pull-right-wide[
 # .black[Contenidos]
 
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 
 ## Bases
 
@@ -106,8 +94,8 @@ class: inverse right
 .pull-right-wide[
 # .black[Contenidos]
 
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 
 ## .yellow[Bases]
 
@@ -144,7 +132,7 @@ class: inverse right
 ---
 # Medir: requisitos básicos
 
-<br>
+&lt;br&gt;
 
 - **Exhaustividad**: el mayor número de categorías significativas.
   - Ej: ¿Qué categorías se deben considerar para población migrante?
@@ -168,7 +156,7 @@ class: inverse right
 
 - Una variable representa cualquier cosa o propiedad que varia y a la cuál se le asigna un valor. Es decir:
 
-- $Variable \neq Constante$
+- `\(Variable \neq Constante\)`
 
 - Pueden ser visibles o no visibles/latentes. (Ej: peso / inteligencia)
 
@@ -197,6 +185,8 @@ Descripción básica de una variable:
 
 ---
 class: inverse middle center
+
+Pregunta de tendencia central:
 
 # ¿Puede la mayoría ganar menos ingresos que el promedio?
 
@@ -251,7 +241,7 @@ class: middle
 
 .pull-left[
 #  Desviación Estándar
-<br>
+&lt;br&gt;
 ![:scale 120%](img/desviacion_estandar.png)
 ]
 
@@ -272,8 +262,8 @@ class: inverse right
 .pull-right-wide[
 # .black[Contenidos]
 
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 
 ## Bases
 
@@ -319,12 +309,6 @@ Cuando se analizan datos, 2 cosas principales
 
 
 
----
-class: middle
-# Motivación: 
-
-
-[![](https://observatorio.ministeriodesarrollosocial.gob.cl/images/casen_2022.svg)](https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Presentacion%20de%20resultados%20Casen%202022.pdf)
 ---
 
 .pull-left-narrow[
@@ -396,10 +380,10 @@ Menos Adictas al Estudio de la Cartografía, las Generaciones Siguientes entendi
 
 |                     	| Población (parámetro)  	| Muestra (estadístico)  	|
 |---------------------	|------------	|---------	|
-| Promedio            	|  $\mu$           	|   $\bar{x}$           	|
-| Varianza            	|        $\sigma²$      	|  $s²$                  	|
-| Desviación estándar 	|        $\sigma$        	| $s$                    	|
-| Correlación 	|        $\rho$        	| $r$                    	|
+| Promedio            	|  `\(\mu\)`           	|   `\(\bar{x}\)`           	|
+| Varianza            	|        `\(\sigma²\)`      	|  `\(s²\)`                  	|
+| Desviación estándar 	|        `\(\sigma\)`        	| `\(s\)`                    	|
+| Correlación 	|        `\(\rho\)`        	| `\(r\)`                    	|
 
 
 ---
@@ -478,21 +462,25 @@ Tenemos 1 dado, cuál es la probabilidad de que salga 3 al lanzarlo?
 
 - Espacio muestral S= conjunto de todos los resultados posibles
 
-$$S=\{1,2,3,4,5,6\}$$
+`$$S=\{1,2,3,4,5,6\}$$`
 
 - N del espacio muestral= 6 sucesos posibles
 
 - Probabilidad de que salga 3 al tirar el dado= 
-$\frac{1}{6}=0.166$
+`\(\frac{1}{6}=0.166\)`
 
 ---
-class: inverse middle right
+class: inverse right
 
-Un **modelo de probabilidad** para un fenómeno aleatorio consiste en un espacio muestral S y una asignación de probabilidades P.
+###Un **.yellow[modelo de probabilidad]** para un fenómeno aleatorio consiste en un espacio muestral .black[S] y una asignación de probabilidades .black[P].
 
-El **espacio muestral $S$** es el conjunto de todos los resultados posibles de un fenómeno aleatorio. 
+--
 
-Un **suceso** es un conjunto de resultados. P asigna un número P(A) a un suceso A como su probabilidad.
+### El **.yellow[espacio muestral .black[S] ]** es el conjunto de todos los resultados posibles de un fenómeno aleatorio. 
+
+--
+
+### Un **.yellow[suceso]** es un conjunto de resultados. .black[P] asigna un número .black[P(A)] a un suceso .black[A] como su probabilidad.
 
 ---
 # Reglas modelo de probabilidad
@@ -518,7 +506,7 @@ Ejercicio:
   
   - ... y con 6
 
--> [link](https://academo.org/demos/dice-roll-statistics/)
+-&gt; [link](https://academo.org/demos/dice-roll-statistics/)
 ]
 
 ---
@@ -544,86 +532,88 @@ Ejercicio:
 ]
 
 .pull-right[
-<br>
+&lt;br&gt;
  Eventos posibles (espacio muestral S) = 6 = (1,2,3,4,5,6)
 
 
-\begin{align*}
-P(x)\geq4&=P(4)+P(5)+P(6) \\
-&=0.1\overline{6}+0.1\overline{6}+0.1\overline{6} \\
-&=0.5
-\end{align*}
+`\begin{align*}
+P(x)\geq4&amp;=P(4)+P(5)+P(6) \\
+&amp;=0.1\overline{6}+0.1\overline{6}+0.1\overline{6} \\
+&amp;=0.5
+\end{align*}`
 ]
 
 ---
 # Sucesos con distinta probabilidad
 
-Ej: suma de 3 dados al azar repetidos
+Ej: suma de 2 dados al azar repetidos
 .center[
-![](img/3dice.png)
+![](img/2dice.png)
 ]
 
 ---
+# Distribución muestral del promedio
 
-.pull-left[
-## Histograma
-Frecuencias o probabilidad de cada evento
+- si extraemos repetidamente 2 dados, y obtenemos su **promedio**, el gráfico de frecuencias tenderá a una forma acampanada
 
-```{r echo=FALSE}
-#make this example reproducible
-set.seed(0)
+- esto ocurre simplemente porque la probabilidad de valores extremos (como promedio 1 o promedio 6) es mucho menor que la de obtener valores centrales
 
-#define data
-data <- data.frame(x=rnorm(1000))
-
-#create histogram and overlay normal curve
-ggplot(data, aes(x)) +
-  geom_histogram(aes(y = ..density..), fill='lightgray', col='black')
-
-```
-
-]
-
-.pull-right[
-## Curvas de densidad
-
-Modelo matemático de la distribución
-
-```{r echo=FALSE}
-#make this example reproducible
-set.seed(0)
-
-#define data
-data <- data.frame(x=rnorm(1000))
-
-#create histogram and overlay normal curve
-ggplot(data, aes(x)) +
-  geom_histogram(aes(y = ..density..), fill='lightgray', col='black')+
-    stat_function(fun = dnorm, args = list(mean=mean(data$x), sd=sd(data$x)))
-
-```
-
-
-]
-
+- por lo tanto, podemos aproximarnos al promedio de la población mediante el **promedio de los promedios** de muchas muestras 
 
 ---
+class: inverse middle center
 
-# ASISTENCIA
+ahora ... 
 
-.pull-left[
+# ¿Cómo estimar el promedio de los promedios .yellow[con una sola muestra]?
 
-![:scale 90%](img/qr-correlacional-asistencia.png)
+# 🤔
+
+---
+class: inverse
+
+# .yellow[Próxima clase]
+
+## -&gt; Error estándar y distribución normal ... o cómo estimar el promedio de los promedios con una sola muestra
+
+---
+# Y tarea: 
+
+.pre[
+
+``` r
+# Generar todas las combinaciones posibles de dos dados
+dado1 &lt;- rep(1:6, each = 6)
+dado2 &lt;- rep(1:6, times = 6)
+
+# Calcular la suma y el promedio para cada combinación
+suma &lt;- dado1 + dado2
+promedio &lt;- suma / 2
+
+# Crear un data frame con los resultados
+resultados &lt;- data.frame(dado1, dado2, suma, promedio)
+
+# Mostrar el data frame
+print(resultados)
+
+
+# Cargar la librería para gráficos
+library(ggplot2)
+
+# Gráfico de frecuencias para la suma
+ggplot(resultados, aes(x = suma)) +
+  geom_bar() +
+  labs(title = "Gráfico de Frecuencias de la Suma", x = "Suma", y = "Frecuencia")
+
+# Gráfico de frecuencias para los promedios
+ggplot(resultados, aes(x = promedio)) +
+  geom_bar() +
+  labs(title = "Gráfico de Frecuencias de los Promedios", x = "Promedio", y = "Frecuencia")
+```
 ]
 
-.pull-right[
-<br>
-<br>
-<br>
-<br>
-<br>
-bit.ly/correlacional-asistencia
-]
+
+
 ---
 class: front
 
@@ -632,14 +622,14 @@ class: front
 
 .pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
 
-## Asociación, inferencia y reporte
+## Inferencia, asociación y reporte
 
 ----
 .pull-left[
 
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 2do Sem 2023 
+## 2do Sem 2024
 ## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
 ]
     
@@ -649,3 +639,168 @@ class: front
 
 
 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url("img/logo-correlacional-transp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
