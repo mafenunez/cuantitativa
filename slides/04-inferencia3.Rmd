@@ -1,0 +1,125 @@
+
+
+
+---
+# Intervalos y probabilidad
+
+.pull-left-narrow[
+.medium[
+
+- Nuestro promedio muestral $\bar{x}$ posee una distribución normal con una desviación estandar = SE (error estándar)
+
+- Esto nos permite estimar probabilidades basados en los valores de la curva normal
+
+]
+]
+.pull-right-wide[
+.center[![:scale 95%](https://multivariada.netlify.app/slides/images/normal.png)]]
+
+---
+# Intervalos de confianza
+
+.pull-left-wide[
+.center[![:scale 85%](https://multivariada.netlify.app/slides/images/normal.png)]]
+
+
+.pull-right-narrow[
+.medium[
+
+- Por ejemplo, un intervalo de confianza de $\bar{x}\pm1.96SE$ abarca aproximadamente el 95% de los valores probables
+
+- En este caso, puedo decir que el promedio se encuentra en un rango de valores con un .red[nivel de confianza] de 95%
+
+
+]
+]
+
+---
+## Ejemplo: intervalo de confianza para un promedio
+----
+.pull-left[
+.content-box-green[
+- Tenemos:
+
+  - promedio de ingresos: 800.000
+  
+  - desviación estándar: 100.000
+  
+  - N muestral: 1.600
+]]
+
+.pull-right[
+
+\begin{align*}
+SE&=\frac{s}{\sqrt{N}} \\\\
+&=\frac{100.000}{\sqrt{1.600}} \\\\
+&=\frac{100.000}{40}=2.500
+\end{align*}
+]
+
+---
+
+- Tenemos: $SE=2.500$,  $\bar{x}_{ingresos}=800.000$
+
+- Con estos valores podemos construir un rango de probabilidad basado en la curva normal, sumando y restando errores estándar
+
+- Por ejemplo, $\bar{x}{\color{red}\pm}1.96SE$ abarcan el 95% de los valores alrededor del promedio
+  - $800.000 - (1.96*2.500) = 800.000 - 4.900={\color{red}{795.100}}$ 
+  - $800.000 + (1.96*2.500) = 800.000 + 4.900={\color{red}{804.900}}$
+  
+- Por lo tanto, podemos decir .red[con un 95% de confianza]  que el promedio de ingresos se encuentra entre 795.100 y 804.900
+ 
+---
+
+# ¿Confianza en qué?
+
+- bajo esta lógica, la confianza está en que si tuvieramos la posibilidad de extraer múltiples muestras, el 95% de las veces nuestro intervalo contendría el promedio
+
+- o que existe un 5% de probabilidad de error, es decir, que el promedio de la muestra no sea el de la población
+
+- o que las chances de error son 1 de 20 
+
+---
+class: roja
+
+# Un .yellow[intervalo de confianza] (IC o CI) es la mejor estimación del rango de un estadístico en la población (parámetro poblacional) con una muestra aleatoria
+
+---
+.center[
+![:scale 50%](img/intervalos.png)
+]
+---
+class: inverse middle
+
+
+## ¿De qué depende el .red[tamaño] del intervalo de confianza?
+
+## ¿Cómo se establece el .red[nivel de confianza] del intervalo?
+
+---
+## ¿De qué depende el tamaño del intervalo de confianza?
+
+- recordemos que el intervalo de confianza se elabora sumando y restando errores estándar al promedio
+
+$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
+--
+
+- dado que el tamaño muestral (N) se encuentra en el denominador del $SE$, a mayor N, menor será el $SE$ y menor el intervalo de confianza
+
+- esto tiene implicancias directas en el cálculo del tamaño muestral
+
+---
+# ¿De qué depende el nivel de confianza?
+
+- en estadística inferencial, la confianza se asocia a un nivel de probabilidad de error
+
+- la probabilidad de error a aceptar no es un criterio estadístico, es convencional
+
+- por convención, se acepta como estadísticamente significativa una probabilidad de error menor al 5%, asociada a un intervalo de confianza de $\pm1.96SE$ (usando la distribución $Z$)
+
+
+---
+# Recomendaciones
+
+Ver [simulación de intervalo de confianza para promedio muestral](https://shiny.rit.albany.edu/stat/confidence/)
+

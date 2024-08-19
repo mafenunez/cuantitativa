@@ -33,7 +33,6 @@ withr::with_dir(here::here(), {
 
 **Profesor**
 
-
 <div class="image-cropper">
   <img src="https://ucampus.uchile.cl/d/r/usuario/ff/ffd4a9d15a5239c0a425a58a798889c8/perfil/bf49d6261628eb095bcaec76eda1e0d1.jpg    " alt="avatar" class="profile-pic">
 </div>
@@ -70,7 +69,15 @@ withr::with_dir(here::here(), {
 
 **Ayudantes**
 
-(por definir)
+- Victoria Arias
+- Jesús Díaz
+- Javiera González
+- Antonia Jiménez
+- Sophia Karoussis
+- Cristóbal Mejías
+- María Fernanda Núñez
+- Luis Ríos
+- Fernanda Zúñiga
 
 :::
 
@@ -94,6 +101,7 @@ Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/con
 
 
 :::
+
 
 ### Versiones previas del curso:
 

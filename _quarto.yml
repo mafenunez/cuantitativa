@@ -44,7 +44,8 @@ website:
     pinned: true
     background: "#0f6070"
     right:
-      - syllabus.qmd
+      - text: "Informaciones"
+        file: news/index.qmd    
       - schedule.qmd
       - text: "Clases"
         file: content/index.qmd
@@ -54,8 +55,7 @@ website:
 #        file: trabajos.qmd
       - text: "Recursos"
         file: resource/index.qmd
-      # - text: "Noticias"
-      #   file: news/index.qmd
+      - syllabus.qmd
       - icon: cloud-fill
         href: "https://rstudio.cloud"
         aria-label: RStudio.cloud
@@ -75,8 +75,8 @@ website:
               file: content/01-content.qmd
             - text: "Inferencia 1"
               file: content/02-content.qmd
-            # - text: "Asociación 2: Pearson"
-            #   file: content/03-content.qmd
+            - text: "Inferencia 2"
+              file: content/03-content.qmd
             # - text: "Asociación 3: Tamaños, Spearman & Matrices"
             #   file: content/04-content.qmd
             # - text: "Inferencia 1"

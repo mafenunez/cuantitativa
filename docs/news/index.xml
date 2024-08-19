@@ -10,10 +10,10 @@
 <atom:link href="https://correlacional.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.5.55</generator>
-<lastBuildDate>Mon, 07 Aug 2023 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 19 Aug 2024 04:00:00 GMT</lastBuildDate>
 <item>
-  <title>Bienvenid_s a clases!</title>
-  <link>https://correlacional.netlify.app/news/2023-01-09_welcome.html</link>
+  <title>Prácticos parten próxima semana (Martes 27)</title>
+  <link>https://correlacional.netlify.app/news/2024-08-19_cambio-practico.html</link>
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
@@ -21,18 +21,18 @@
 
 
 
-<p>Hola a todos!</p>
+<p>Inicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se modifica, el práctico es el próximo <strong>martes 27</strong>.</p>
 
 
 
  ]]></description>
-  <category>comenzando</category>
-  <guid>https://correlacional.netlify.app/news/2023-01-09_welcome.html</guid>
-  <pubDate>Mon, 07 Aug 2023 04:00:00 GMT</pubDate>
+  <category>info</category>
+  <guid>https://correlacional.netlify.app/news/2024-08-19_cambio-practico.html</guid>
+  <pubDate>Mon, 19 Aug 2024 04:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Informaciones de la semana</title>
-  <link>https://correlacional.netlify.app/news/2023-08-14_infos.html</link>
+  <title>Informaciones por acá</title>
+  <link>https://correlacional.netlify.app/news/2024-08-19_inicio.html</link>
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
@@ -40,7 +40,7 @@
 
 
 
-<p>Actualizaciones sitio web:</p>
+<p>Estimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.</p>
 <ul>
 <li></li>
 </ul>
@@ -49,8 +49,8 @@
 
  ]]></description>
   <category>info</category>
-  <guid>https://correlacional.netlify.app/news/2023-08-14_infos.html</guid>
-  <pubDate>Mon, 07 Aug 2023 04:00:00 GMT</pubDate>
+  <guid>https://correlacional.netlify.app/news/2024-08-19_inicio.html</guid>
+  <pubDate>Mon, 19 Aug 2024 04:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

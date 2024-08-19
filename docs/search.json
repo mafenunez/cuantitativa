@@ -231,11 +231,11 @@
     "text": "Programación de sesiones\nVisitar la página de Planificación."
   },
   {
-    "objectID": "news/2023-08-14_infos.html",
-    "href": "news/2023-08-14_infos.html",
-    "title": "Informaciones de la semana",
+    "objectID": "news/2024-08-19_inicio.html",
+    "href": "news/2024-08-19_inicio.html",
+    "title": "Informaciones por acá",
     "section": "",
-    "text": "← News\n\n\n\n\nActualizaciones sitio web:"
+    "text": "← News\n\n\n\n\nEstimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes."
   },
   {
     "objectID": "example/index.html",
@@ -279,9 +279,14 @@
   {
     "objectID": "content/03-content.html",
     "href": "content/03-content.html",
-    "title": "Asociación 2: Correlación de Pearson",
+    "title": "Inferencia 2: Curva normal y error estándar",
     "section": "",
-    "text": "Documento de presentación\n\n\n\n\nForo"
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 2"
+    ]
   },
   {
     "objectID": "content/01-content.html",
@@ -365,7 +370,7 @@
   {
     "objectID": "content/04-content.html",
     "href": "content/04-content.html",
-    "title": "Asociación 3: Tamaño de efecto, otros coeficientes de correlación y matrices",
+    "title": "Inferencia 2: Distribución normal y error estándars",
     "section": "",
     "text": "Documento de presentación"
   },
@@ -402,11 +407,11 @@
     ]
   },
   {
-    "objectID": "news/2023-01-09_welcome.html",
-    "href": "news/2023-01-09_welcome.html",
-    "title": "Bienvenid_s a clases!",
+    "objectID": "news/2024-08-19_cambio-practico.html",
+    "href": "news/2024-08-19_cambio-practico.html",
+    "title": "Prácticos parten próxima semana (Martes 27)",
     "section": "",
-    "text": "← News\n\n\n\n\nHola a todos!"
+    "text": "← News\n\n\n\n\nInicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se modifica, el práctico es el próximo martes 27."
   },
   {
     "objectID": "resource/index.html",
@@ -467,23 +472,23 @@
   {
     "objectID": "news/index.html",
     "href": "news/index.html",
-    "title": "Noticias",
+    "title": "Informaciones",
     "section": "",
-    "text": "Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\nlunes agosto 7, 2023 at 12:00 AM\n\n\nBienvenid_s a clases!\n\n\ncomenzando\n\n\n\n\nlunes agosto 7, 2023 at 12:00 AM\n\n\nInformaciones de la semana\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes. ::: {.grid}\n\n\n RSS\n\n\n\n\n\n\n\n\n\n:::"
+    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
   },
   {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Planificación",
     "section": "",
-    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\n\nPráctico: Inferencia 1\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nIntervalos de confianza\n\n*Richtey cap 8: Intervalos de confianza\n\n\nMartes 27\nTest de hipótesis\n\n*Richtey cap 9: Prueba de hipótesis\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n\n\nMartes 3\n\nPráctico Inferencia 2\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
+    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n\n\nMartes 3\n\nPráctico Inferencia 2\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
   },
   {
     "objectID": "schedule.html#forma-general-de-funcionamiento",
     "href": "schedule.html#forma-general-de-funcionamiento",
     "title": "Planificación",
     "section": "",
-    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\n\nPráctico: Inferencia 1\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nIntervalos de confianza\n\n*Richtey cap 8: Intervalos de confianza\n\n\nMartes 27\nTest de hipótesis\n\n*Richtey cap 9: Prueba de hipótesis\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n\n\nMartes 3\n\nPráctico Inferencia 2\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
+    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n\n\nMartes 3\n\nPráctico Inferencia 2\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
   },
   {
     "objectID": "schedule.html#exámenes-finales-escritos-en-sala",
@@ -497,7 +502,7 @@
     "href": "index.html",
     "title": "\n            Estadística Correlacional\n        ",
     "section": "",
-    "text": "Estadística Correlacional\n        \n        \n            Inferencia, asociación y reporte\n        \n        \n            SOC01019 • Segundo Semestre 2024Departamento de Sociología, Facultad de Ciencias SocialesUniversidad de Chile\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEquipo docente\nProfesor\n\n\n\nProf. Juan Carlos Castillo\n\n   325 Sociología FACSO, Universidad de Chile\n   juancastillov@uchile.cl\n   Agendar reunión\n\nApoyos docentes\n\n\n\nDaniela Olivares\n\n   danielaolivarescollio@gmail.com\n   Agendar reunión\n\n\n\n\nAndreas Laffert\n\n   andreas.laffert@ug.uchile.cl\n   Agendar reunión\n\nAyudantes\n(por definir)\n\n\nSesiones\n\n   Lunes 10:15-11:45 - Aulario C/6\n   Martes 8:30-10:00 Aulario C7/C8 & FACSO 345\n\n\n\nContacto\nE-mail es la mejor manera de ponerse en contacto conmigo y con el equipo docente del curso.\nPara resolver dudas puntuales se recomienda el uso de los foros de clases y de las Guías prácticas.\n\n\n\n\nVersiones previas del curso:\n\n2023"
+    "text": "Estadística Correlacional\n        \n        \n            Inferencia, asociación y reporte\n        \n        \n            SOC01019 • Segundo Semestre 2024Departamento de Sociología, Facultad de Ciencias SocialesUniversidad de Chile\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEquipo docente\nProfesor\n\n\n\nProf. Juan Carlos Castillo\n\n   325 Sociología FACSO, Universidad de Chile\n   juancastillov@uchile.cl\n   Agendar reunión\n\nApoyos docentes\n\n\n\nDaniela Olivares\n\n   danielaolivarescollio@gmail.com\n   Agendar reunión\n\n\n\n\nAndreas Laffert\n\n   andreas.laffert@ug.uchile.cl\n   Agendar reunión\n\nAyudantes\n\nVictoria Arias\nJesús Díaz\nJaviera González\nAntonia Jiménez\nSophia Karoussis\nCristóbal Mejías\nMaría Fernanda Núñez\nLuis Ríos\nFernanda Zúñiga\n\n\n\nSesiones\n\n   Lunes 10:15-11:45 - Aulario C/6\n   Martes 8:30-10:00 Aulario C7/C8 & FACSO 345\n\n\n\nContacto\nE-mail es la mejor manera de ponerse en contacto conmigo y con el equipo docente del curso.\nPara resolver dudas puntuales se recomienda el uso de los foros de clases y de las Guías prácticas.\n\n\n\n\nVersiones previas del curso:\n\n2023"
   },
   {
     "objectID": "example/cace.html",
