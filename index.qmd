@@ -102,6 +102,12 @@ Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/con
 
 :::
 
+# Informaciones
+
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-eeeb3484-3a54-43d9-9cee-eccbb77bd207" data-elfsight-app-lazy></div>
+
+-> ir a [página de Informaciones](/news/index.qmd)
 
 ### Versiones previas del curso:
 
