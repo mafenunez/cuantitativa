@@ -1,15 +1,16 @@
 ---
-title: "Inferencia 3: "Intervalos de confianza"
+title: "Inferencia 3 - Intervalos de confianza"
 date: "2024-08-20"
 lang: es
 execute:
-  freeze: auto   
-
+  freeze: auto 
 ---
 
 # Documento de presentación
 
-<iframe src=/slides/04_inferencia3.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/04-inferencia3.html height="550" width=100% allowfullscreen="true">
 </iframe> 
+
+
 
 

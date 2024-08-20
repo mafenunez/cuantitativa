@@ -270,45 +270,27 @@
     "text": "Documento de presentación"
   },
   {
-    "objectID": "content/05-content.html",
-    "href": "content/05-content.html",
-    "title": "Inferencia 1 - Introducción: Probabilidades y curva normal",
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Inferencia 3 - Intervalos de confianza",
     "section": "",
-    "text": "Documento de presentación"
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 3: Intervalos de confianza"
+    ]
   },
   {
-    "objectID": "content/03-content.html",
-    "href": "content/03-content.html",
-    "title": "Inferencia 2: Curva normal y error estándar",
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 2"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Presentación",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Introducción"
-    ]
-  },
-  {
-    "objectID": "assignment/foro-practicos.html",
-    "href": "assignment/foro-practicos.html",
-    "title": "Foro prácticos",
-    "section": "",
-    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
-    "crumbs": [
-      "Prácticos",
-      "Foro Prácticos"
+      "Inferencia 1"
     ]
   },
   {
@@ -356,23 +338,39 @@
     ]
   },
   {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
+    "objectID": "assignment/foro-practicos.html",
+    "href": "assignment/foro-practicos.html",
+    "title": "Foro prácticos",
+    "section": "",
+    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
+    "crumbs": [
+      "Prácticos",
+      "Foro Prácticos"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Presentación",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Inferencia 2: Curva normal y error estándar",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 1"
+      "Inferencia 2"
     ]
-  },
-  {
-    "objectID": "content/04-content.html",
-    "href": "content/04-content.html",
-    "title": "Inferencia 2: Distribución normal y error estándars",
-    "section": "",
-    "text": "Documento de presentación"
   },
   {
     "objectID": "content/06-content.html",
