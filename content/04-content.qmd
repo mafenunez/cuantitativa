@@ -1,6 +1,6 @@
 ---
-title: "Inferencia 2: Distribución normal y error estándars"
-date: "2024-08-19"
+title: "Inferencia 3: "Intervalos de confianza"
+date: "2024-08-20"
 lang: es
 execute:
   freeze: auto   
@@ -9,7 +9,7 @@ execute:
 
 # Documento de presentación
 
-<iframe src=/slides/03_inferencia2.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/04_inferencia3.html height="550" width=100% allowfullscreen="true">
 </iframe> 
 
 

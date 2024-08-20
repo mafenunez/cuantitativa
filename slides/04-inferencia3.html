@@ -1,40 +1,27 @@
----
-title: "Estadística Correlacional"
-author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2024"
-output:
-  xaringan::moon_reader:
-    css: "css/custom_2020.css"
-    includes:
-      after_body: "insert-logo.html"     
-    lib_dir: libs
-    nature:
-      ratio: '16:9'
-      highlightStyle: dracula
-      highlightLines: true
-      countIncrementalSlides: false
-      beforeInit: "libs/macros.js"
-    seal: false # esto omite title slide automática
----
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Correlacional</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs-2.21/header-attrs.js"></script>
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="css/custom_2020.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
 class: front
 
 
-```{r setup, include=FALSE, cache = FALSE}
-library(knitr)
-opts_chunk$set(warning=FALSE,
-             message=FALSE,
-             echo=TRUE,
-             comment = "",
-             cache = TRUE, fig.width=10, fig.height=8)
-pacman::p_load(flipbookr, tidyverse, kableExtra)
-```
 
 
 
-```{r xaringanExtra, include=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
-xaringanExtra::use_scribble()
-```
+
+
 
 .pull-left-wide[
 # Estadística Correlacional]
@@ -80,7 +67,7 @@ class: animated, fadeIn
 .pull-right[
 ### Error estándar
 
-$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
+`$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$`
 
 ]
 
@@ -90,7 +77,7 @@ $$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
 .pull-left[
 ### Desviación estándar
 
-# $\sigma=\sqrt{\frac{\Sigma(x_i-\bar{X})²}{N-1}}$
+# `\(\sigma=\sqrt{\frac{\Sigma(x_i-\bar{X})²}{N-1}}\)`
 
 Magnitud que expresa la dispersión en torno al promedio en la escala de la variable
 ]
@@ -98,7 +85,7 @@ Magnitud que expresa la dispersión en torno al promedio en la escala de la vari
 .pull-right[
 ### Error estándar (del promedio)
 
-## $$\sigma_{\bar{X}}=SE=\frac{s}{\sqrt{N}}$$
+## `$$\sigma_{\bar{X}}=SE=\frac{s}{\sqrt{N}}$$`
 
 .medium[Magnitud que equivale a la desviación estándar de los promedios  de varias muestras]
 ]
@@ -124,7 +111,7 @@ class: inverse bottom right
 
 - El error estándar, por su asociación a las áreas de la curva normal, se relaciona con **niveles de probabilidad**
 
-- Si sumo y resto error(es) estándar al promedio puedo construir un rango de valores probables en que se encuentra el parametro poblacional -> **intervalo de confianza**
+- Si sumo y resto error(es) estándar al promedio puedo construir un rango de valores probables en que se encuentra el parametro poblacional -&gt; **intervalo de confianza**
 
 
 - Por ejemplo, si tengo un promedio=10 y SE=1, puedo decir que aproximadamente el 68% de los casos se encuentran en el **intervalo** entre 9 y 11 (basado en distribución normal)
@@ -229,11 +216,11 @@ class: inverse middle
 
 - recordemos que el intervalo de confianza se elabora sumando y restando errores estándar al promedio
 
-$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
+`$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$`
 
 --
 
-- dado que el tamaño muestral (N) se encuentra en el denominador del $SE$, a mayor N, menor será el $SE$ y menor el intervalo de confianza
+- dado que el tamaño muestral (N) se encuentra en el denominador del `\(SE\)`, a mayor N, menor será el `\(SE\)` y menor el intervalo de confianza
 
 - esto tiene implicancias directas en el cálculo del tamaño muestral
 
@@ -247,7 +234,7 @@ $$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
 
 3. Aplicar fórmula:
 
-$$\bar{X}\pm Z*\frac{\sigma}{\sqrt{N}}$$ 
+`$$\bar{X}\pm Z*\frac{\sigma}{\sqrt{N}}$$` 
 
 
 ---
@@ -256,7 +243,7 @@ $$\bar{X}\pm Z*\frac{\sigma}{\sqrt{N}}$$
 .pull-left-narrow[
 .medium[
 
-- Nuestro promedio muestral $\bar{x}$ posee una distribución normal con una desviación estandar = SE (error estándar)
+- Nuestro promedio muestral `\(\bar{x}\)` posee una distribución normal con una desviación estandar = SE (error estándar)
 
 - Esto nos permite estimar probabilidades basados en los valores de la curva normal
 
@@ -301,7 +288,7 @@ Por lo tanto, para un 95% será algo menos que +/- 2ds ... pero cuánto específ
 Recordemos que al calcular el puntaje Z, el resultado se expresa en desviaciones estándar de la curva normal, lo que puede ser transformado a percentiles.
 
 
-Por lo tanto, se puede hacer la operación inversa -> a que puntaje Z corresponde un determinado percentil
+Por lo tanto, se puede hacer la operación inversa -&gt; a que puntaje Z corresponde un determinado percentil
 ]
 
 .pull-right[
@@ -313,12 +300,24 @@ Por lo tanto, se puede hacer la operación inversa -> a que puntaje Z correspond
 
 - Para hacer la equivalencia entre puntajes Z y percentiles vamos a una tabla de puntajes Z ... o directamente en R:
 
-```{r}
+
+``` r
 qnorm(0.025) # límite inferior
+```
+
+```
+[1] -1.959964
+```
+
+``` r
 qnorm(0.975) # límite superior
 ```
 
-Y aproximando: $\pm{1.96}$. Por lo tanto:
+```
+[1] 1.959964
+```
+
+Y aproximando: `\(\pm{1.96}\)`. Por lo tanto:
 
 ---
 class: inverse middle center
@@ -341,7 +340,7 @@ class: inverse middle center
 
 - El valor de Z que deja el 2.5% de probabilidad en la cola izquierda y el 2.5% en la derecha es aproximadamente ±1.96
 
-- Un intervalo de confianza de $\bar{x}\pm1.96SE$ abarca aproximadamente el 95% de los valores probables
+- Un intervalo de confianza de `\(\bar{x}\pm1.96SE\)` abarca aproximadamente el 95% de los valores probables
 
 - En este caso, puedo decir que el promedio se encuentra en un rango de valores con un .red[nivel de confianza] de 95%
 
@@ -364,22 +363,22 @@ class: inverse middle center
 
 .pull-right[
 
-\begin{align*}
-SE&=\frac{s}{\sqrt{N}} \\\\
-&=\frac{100.000}{\sqrt{1.600}} \\\\
-&=\frac{100.000}{40}=2.500
-\end{align*}
+`\begin{align*}
+SE&amp;=\frac{s}{\sqrt{N}} \\\\
+&amp;=\frac{100.000}{\sqrt{1.600}} \\\\
+&amp;=\frac{100.000}{40}=2.500
+\end{align*}`
 ]
 
 ---
 
-- Tenemos: $SE=2.500$,  $\bar{x}_{ingresos}=800.000$
+- Tenemos: `\(SE=2.500\)`,  `\(\bar{x}_{ingresos}=800.000\)`
 
 - Con estos valores podemos construir un rango de probabilidad basado en la curva normal, sumando y restando errores estándar
 
-- $\bar{X}{\color{red}\pm}1.96SE$ abarcan el 95% de los valores alrededor del promedio
-  - $800.000 - (1.96*2.500) = 800.000 - 4.900={\color{red}{795.100}}$ 
-  - $800.000 + (1.96*2.500) = 800.000 + 4.900={\color{red}{804.900}}$
+- `\(\bar{X}{\color{red}\pm}1.96SE\)` abarcan el 95% de los valores alrededor del promedio
+  - `\(800.000 - (1.96*2.500) = 800.000 - 4.900={\color{red}{795.100}}\)` 
+  - `\(800.000 + (1.96*2.500) = 800.000 + 4.900={\color{red}{804.900}}\)`
   
 - Por lo tanto, podemos decir .red[con un 95% de confianza]  que el promedio de ingresos se encuentra entre 795.100 y 804.900
  
@@ -397,19 +396,31 @@ SE&=\frac{s}{\sqrt{N}} \\\\
 
 Estimando valores Z para límites de intervalo de confianza al 99%:
 
-```{r}
+
+``` r
 qnorm(0.005) # límite inferior
+```
+
+```
+[1] -2.575829
+```
+
+``` r
 qnorm(0.995) # límite superior
+```
+
+```
+[1] 2.575829
 ```
 
 ---
 # Generalizando:
 
 - Para un intervalo de confianza al 95%: 
-# $\bar{X}\pm1.96SE$
+# `\(\bar{X}\pm1.96SE\)`
 
 - Para un intervalo de confianza al 99%: 
-# $\bar{X}\pm2.58SE$
+# `\(\bar{X}\pm2.58SE\)`
 
 ---
 ## Mismo ejemplo, pero al 99% de confianza
@@ -427,20 +438,20 @@ qnorm(0.995) # límite superior
 
 .pull-right[
 
-\begin{align*}
-SE&=\frac{s}{\sqrt{N}} \\\\
-&=\frac{100.000}{\sqrt{1.600}} \\\\
-&=\frac{100.000}{40}=2.500
-\end{align*}
+`\begin{align*}
+SE&amp;=\frac{s}{\sqrt{N}} \\\\
+&amp;=\frac{100.000}{\sqrt{1.600}} \\\\
+&amp;=\frac{100.000}{40}=2.500
+\end{align*}`
 ]
 
 ---
 
-- Tenemos: $SE=2.500$,  $\bar{x}_{ingresos}=800.000$
+- Tenemos: `\(SE=2.500\)`,  `\(\bar{x}_{ingresos}=800.000\)`
 
-- $\bar{X}{\color{red}\pm}2.58SE$ abarcan el 99% de los valores alrededor del promedio
-  - $800.000 - (2.58*2.500) = 800.000 - 6.450={\color{red}{793.550}}$ 
-  - $800.000 + (2.58*2.500) = 800.000 + 6.450={\color{red}{806.450}}$
+- `\(\bar{X}{\color{red}\pm}2.58SE\)` abarcan el 99% de los valores alrededor del promedio
+  - `\(800.000 - (2.58*2.500) = 800.000 - 6.450={\color{red}{793.550}}\)` 
+  - `\(800.000 + (2.58*2.500) = 800.000 + 6.450={\color{red}{806.450}}\)`
   
 - Por lo tanto, podemos decir .red[con un 99% de confianza]  que el promedio de ingresos se encuentra entre 793.550 y 806.450
 
@@ -448,9 +459,9 @@ SE&=\frac{s}{\sqrt{N}} \\\\
 ---
 # Comparando intervalos:
 
-- 95% de confianza: $800.000\pm4.900=[795.100 - 804.900]$ 
+- 95% de confianza: `\(800.000\pm4.900=[795.100 - 804.900]\)` 
 
-- 99% de confianza: $800.000\pm6.450=[793.550 - 806.450]$ 
+- 99% de confianza: `\(800.000\pm6.450=[793.550 - 806.450]\)` 
 
 Por lo tanto, a mayor nivel de confianza, mayor es el intervalo, pero disminuye la precisión o aumenta el **margen de error**
 
@@ -466,9 +477,9 @@ Por lo tanto, a mayor nivel de confianza, mayor es el intervalo, pero disminuye 
 
 - Para nuestro intervalo al 95%, el margen de error equivale a qué porcentaje es 4.900 en relación al total. Aplicando regla de 3 para porcentajes:
 
-$Margen-error_{95}=\frac{4.900*100}{800.000}=0.612$
+`\(Margen-error_{95}=\frac{4.900*100}{800.000}=0.612\)`
 
-- Por lo tanto, el margen de error en este caso es de $\pm{0.6}\%$
+- Por lo tanto, el margen de error en este caso es de `\(\pm{0.6}\%\)`
 
 ---
 class: inverse
@@ -510,3 +521,168 @@ class: front
     
 
 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "dracula",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url("img/logo-correlacional-transp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

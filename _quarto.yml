@@ -77,8 +77,8 @@ website:
               file: content/02-content.qmd
             - text: "Inferencia 2"
               file: content/03-content.qmd
-            # - text: "Asociación 3: Tamaños, Spearman & Matrices"
-            #   file: content/04-content.qmd
+            - text: "Inferencia 3: Intervalos de confianza"
+              file: content/04-content.qmd
             # - text: "Inferencia 1"
             #   file: content/05-content.qmd
             # - text: "Inferencia 2"
