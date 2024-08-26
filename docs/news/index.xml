@@ -6,36 +6,33 @@
       version="2.0">
 <channel>
 <title>Noticias y mensajes importantes Estadística Correlacional</title>
-<link>https://correlacional.netlify.app/news/</link>
+<link>https://correlacional.netlify.app/news/index.html</link>
 <atom:link href="https://correlacional.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.5.55</generator>
+<generator>quarto-1.3.450</generator>
 <lastBuildDate>Fri, 23 Aug 2024 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Sesión práctica martes 27 de agosto</title>
-  <link>https://correlacional.netlify.app/news/2024-08-23_primera-sesion-practica.html</link>
+  <link>https://correlacional.netlify.app/news/2024-08-23_primera-practica.html</link>
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
 
 
 
-
 <p>Algunas informaciones importantes:</p>
-<ul>
-<li><p>El próximo martes 27 de agosto tendremos nuestra primera sesión práctica del curso.</p></li>
-<li><p>En esta instancia contaremos con el equipo docente completo y ayudantes.</p></li>
-<li><p>Aquellas personas que, por diversos motivos, no puedan contar con un computador personal para las sesiones del curso, les pedimos encarecidamente que rellenen este formulario: https://forms.gle/iGVJjAWRGYh9GGpZ8 Esta información nos permitirá ir organizando el uso de computadores de la sala de computación.</p></li>
-<li><p>Nos dividiremos en dos grupos: una parte del curso en las salas C7 y C8 del aulario C (idealmente quienes dispongan de computador) y otra parte en la sala 345 de computación del edificio nuevo de Facso (para quienes no puedan contar con un computador).</p></li>
-<li><p>Dentro de la próxima semana les enviaremos un correo respecto a la asignación de ayudantes para el asesoramiento en las unidades 1 y 2 del curso.</p></li>
-</ul>
+<p>-El próximo martes 27 de agosto tendremos nuestra primera sesión práctica del curso.</p>
+<p>-En esta instancia contaremos con el equipo docente completo y ayudantes.</p>
+<p>-Aquellas personas que, por diversos motivos, no puedan contar con un computador personal para las sesiones del curso, les pedimos encarecidamente que rellenen este formulario: https://forms.gle/iGVJjAWRGYh9GGpZ8 Esta información nos permitirá ir organizando el uso de computadores de la sala de computación.</p>
+<p>-Nos dividiremos en dos grupos: una parte del curso en las salas C7 y C8 del aulario C (idealmente quienes dispongan de computador) y otra parte en la sala 345 de computación del edificio nuevo de Facso (para quienes no puedan contar con un computador).</p>
+<p>-Dentro de la próxima semana les enviaremos un correo respecto a la asignación de ayudantes para el asesoramiento en las unidades 1 y 2 del curso.</p>
 
 
 
  ]]></description>
   <category>info</category>
   <category>mail-UCursos</category>
-  <guid>https://correlacional.netlify.app/news/2024-08-23_primera-sesion-practica.html</guid>
+  <guid>https://correlacional.netlify.app/news/2024-08-23_primera-practica.html</guid>
   <pubDate>Fri, 23 Aug 2024 04:00:00 GMT</pubDate>
   <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
 </item>
@@ -45,7 +42,6 @@
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
-
 
 
 
@@ -65,7 +61,6 @@
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
-
 
 
 
