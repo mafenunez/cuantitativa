@@ -9,7 +9,7 @@ execute:
 
 # Objetivo de la práctica
 
-El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, y el cálculo de intervalos de confianza.
+El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, además del cálculo de intervalos de confianza.
 
 En detalle, aprenderemos y recordaremos:
 
@@ -21,9 +21,9 @@ En detalle, aprenderemos y recordaremos:
 
 ## Librerías 
 
-Cargaremos algunas librerías que serán necesarias en esta guía práctica:
+Cargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:
 
-```{r}
+```{r, warning=FALSE}
 library(pacman)
 pacman::p_load(tidyverse, # para sintaxis
                ggplot2,   # para gráficos
@@ -58,7 +58,7 @@ hist(vector, main = "Histograma del Vector", xlab = "Valor", ylab = "Frecuencia"
 ```
 
 ```{r}
-boxplot(vector, main = "Diagrama de Caja del Vector aleatorio", ylab = "Valor", col = "cyan4")
+boxplot(vector, main = "Diagrama de Caja del Vector aleatorio", ylab = "Valor", col = "cyan3")
 ```
 
 Ahora, calculamos la media y la desviación estándar del vector:
@@ -73,7 +73,7 @@ cat("Desviación Estándar:", desv_estandar, "\n")
 
 La media, que es una medida de tendencia central, nos presenta un valor que resume nuestros datos aproximándonos al "centro" de la distribución. Y la desviación estándar es una medida de dispersión que nos presenta un valor que resume qué tan "dispersos" se encuentran nuestros datos. 
 
-En el caso del vector, que creamos con datos aleatorios, la media $\bar{x} = 5,18$ nos muestra que el promedio de los datos se encuentra en torno a 5,2. 
+En el caso de nuestro vector, creado con datos aleatorios, la media $\bar{x} = 5,18$ nos muestra que el promedio de los datos se encuentra en torno a 5,2. 
 
 Ahora, recordemos la fórmula de la desviación estándar:
 
@@ -82,8 +82,11 @@ s = \sqrt{\frac{\sum_{i=1}^{n} (x_i-\bar{x})^2 }{n-1}}
 $$
 
 Donde: 
+
 - \( n \) es el tamaño del vector,
+
 - \( x_i \) son los valores individuales del vector,
+
 - \( \bar{x} \) es la media del vector.
 
 La desviación estándar corresponde, entonces, a un promedio de lo que cada valor se aleja del promedio del vector. En el caso de nuestro vector, $s = 1,82$ nos muestra que en promedio los datos se alejan 1,82 puntos del promedio. 
@@ -91,20 +94,19 @@ La desviación estándar corresponde, entonces, a un promedio de lo que cada val
 
 ::: callout-note
 
-Antes de comenzar, recordemos que...
+Antes de seguir, recordemos que...
 
 Llamamos **inferencia estadística** al ejercicio de extrapolar determinadas estimaciones (estadísticos) de una muestra a una población más grande (parámetros). En concreto, es el proceso de realizar conclusiones o predicciones sobre una población a partir de una muestra o subconjunto de esa población. 
 
 ![](../files/INFERENCIA.jpg)
 
 La **probabilidad de error** indica en qué medida nos estamos equivocando (o estamos dispuestos a estar equivocados) en tratar de extrapolar una estimación muestral a la población.
-
 :::
 
 
 # 2. Probabilidad
 
-Para pensar en la idea de probabilidad realicemos la tarea propuesta en la Clase 2.
+Para pensar en la idea de probabilidad realicemos la tarea propuesta en la [Clase de Inferencia 1](/content/02-content.html). En esta tarea se buscaba generar los resultados posibles al lanzar dos dados:
 
 ```{r}
 # Generar todas las combinaciones posibles de dos dados
