@@ -239,11 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#intervalos-de-confianza" id="toc-intervalos-de-confianza" class="nav-link" data-scroll-target="#intervalos-de-confianza">4. Intervalos de confianza</a>
   <ul class="collapse">
-  <li><a href="#cálculo-de-intervalos-de-confianza" id="toc-cálculo-de-intervalos-de-confianza" class="nav-link" data-scroll-target="#cálculo-de-intervalos-de-confianza">4.1. Cálculo de intervalos de confianza</a>
-  <ul class="collapse">
-  <li><a href="#intervalos-de-confianza-sin-ponderador" id="toc-intervalos-de-confianza-sin-ponderador" class="nav-link" data-scroll-target="#intervalos-de-confianza-sin-ponderador">4.1.1. Intervalos de confianza sin ponderador</a></li>
-  <li><a href="#intervalos-de-confianza-con-ponderador" id="toc-intervalos-de-confianza-con-ponderador" class="nav-link" data-scroll-target="#intervalos-de-confianza-con-ponderador">4.1.2. Intervalos de confianza con ponderador</a></li>
-  </ul></li>
+  <li><a href="#cálculo-de-intervalos-de-confianza" id="toc-cálculo-de-intervalos-de-confianza" class="nav-link" data-scroll-target="#cálculo-de-intervalos-de-confianza">4.1. Cálculo de intervalos de confianza</a></li>
   </ul></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
@@ -262,32 +258,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="objetivo-de-la-práctica" class="level1">
 <h1>Objetivo de la práctica</h1>
-<p>El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, y el cálculo de intervalos de confianza.</p>
+<p>El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, además del cálculo de intervalos de confianza.</p>
 <p>En detalle, aprenderemos y recordaremos:</p>
 <ol type="1">
-<li>Los conceptos de promedio y dispersión</li>
+<li>Los conceptos de promedio y desviación estándar</li>
 <li>Qué es la probabilidad y su aplicación para estadística</li>
 <li>Qué es la distribución normal</li>
 <li>Cómo calcular e interpretar intervalos de confianza</li>
 </ol>
 <section id="librerías" class="level2">
 <h2 class="anchored" data-anchor-id="librerías">Librerías</h2>
-<p>Cargaremos algunas librerías que serán necesarias en esta guía práctica:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-1_e1313fadd6f51af5f74d94d7952fc411">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'pacman' was built under R version 4.3.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># para sintaxis</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               ggplot2,   <span class="co"># para gráficos</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               car,       <span class="co"># para recodificar</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               psych,     <span class="co"># para analizar datos</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               sjmisc,    <span class="co"># para analizar datos</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>               srvyr,     <span class="co"># para estimación de IC y ponderadores</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>               Publish)   <span class="co"># para IC)    </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())       <span class="co"># para limpar el entonrno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-1_502a94a4fa0ca35b029e8a5df2a186f1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># para sintaxis</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               ggplot2,   <span class="co"># para gráficos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               car,       <span class="co"># para recodificar</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               psych,     <span class="co"># para analizar datos</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               sjmisc,    <span class="co"># para analizar datos</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               srvyr,     <span class="co"># para estimación de IC y ponderadores</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               Publish)   <span class="co"># para IC)    </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())       <span class="co"># para limpar el entonrno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -296,9 +289,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El <em>promedio</em> y la <em>desviación estándar</em> son conceptos fundamentales para continuar hacia la estadística inferencial. Repasemos estos conceptos mediante un ejercicio con datos simulados.</p>
 <p>Primero, generaremos un vector de 100 valores aleatorios con <span class="math inline">\(\mu = 5\)</span> y <span class="math inline">\(\sigma = 2\)</span>, y lo visualizaremos con la función <code>print</code>.</p>
 <div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-2_56f3994e42070a184d0ca5732b5a529e">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Fijar la semilla para reproducibilidad</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vector) <span class="co"># Ver el vector generado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Fijar la semilla para reproducibilidad</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vector) <span class="co"># Ver el vector generado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 3.8790487 4.5396450 8.1174166 5.1410168 5.2585755 8.4301300 5.9218324
   [8] 2.4698775 3.6262943 4.1086761 7.4481636 5.7196277 5.8015429 5.2213654
@@ -318,40 +311,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>¿Cómo se vería la distribución de este vector aleatorio? Primero realizaremos un gráfico de histograma con la función <code>hist</code> y luego uno de cajas con la función <code>boxplot</code>.</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-3_f5e53ff303690ce56c68cbbc7f59185c">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(vector, <span class="at">main =</span> <span class="st">"Histograma del Vector"</span>, <span class="at">xlab =</span> <span class="st">"Valor"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>, <span class="at">col =</span> <span class="st">"cyan4"</span>, <span class="at">border =</span> <span class="st">"black"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-3_99b63d00e2682f4c6523eee030afcecc">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(vector,<span class="at">main=</span><span class="st">"Histograma del Vector"</span>,<span class="at">xlab=</span><span class="st">"Valor"</span>,<span class="at">ylab=</span><span class="st">"Frecuencia"</span>,<span class="at">col=</span><span class="st">"cyan4"</span>,<span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="01-practico_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-4_53628cd86eb448b32f9da3327a895bb4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(vector, <span class="at">main =</span> <span class="st">"Diagrama de Caja del Vector aleatorio"</span>, <span class="at">ylab =</span> <span class="st">"Valor"</span>, <span class="at">col =</span> <span class="st">"cyan4"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-4_9efd73073333596a398286d0c942421d">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(vector,<span class="at">main=</span><span class="st">"Diagrama de Caja del Vector aleatorio"</span>,<span class="at">ylab=</span><span class="st">"Valor"</span>,<span class="at">col=</span><span class="st">"cyan3"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="01-practico_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Ahora, calculamos la media y la desviación estándar del vector:</p>
 <div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-5_627732ada7b390b9c6a78d1d6b2025fb">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>desv_estandar <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media:"</span>, media, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>desv_estandar <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media:"</span>, media, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Media: 5.180812 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Desviación Estándar:"</span>, desv_estandar, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Desviación Estándar:"</span>, desv_estandar, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Desviación Estándar: 1.825632 </code></pre>
 </div>
 </div>
-<p>La media, que es una medida de tendencia central, nos presenta un valor que resume nuestros datos aproximándonos al “centro” de la distribución. Y la desviación estándar es una medida de dispersión que nos presenta un valor que resume qué tan “dispersos” se encuentran nuestros datos.</p>
-<p>En el caso del vector, que creamos con datos aleatorios, la media <span class="math inline">\(\bar{x} = 5,18\)</span> nos muestra que el promedio de los datos se encuentra en torno a 5,2.</p>
+<p>La media, que es una medida de tendencia central, nos presenta un valor que resume nuestros datos aproximándonos al “centro” de la distribución. Y la desviación estándar es una medida de dispersión que nos presenta un valor que resume nuestros datos en cuanto a qué tan “dispersos” se encuentran.</p>
+<p>En el caso de nuestro vector, creado con datos aleatorios, la media <span class="math inline">\(\bar{x} = 5,18\)</span> nos muestra que el promedio de los datos se encuentra en torno a 5,2.</p>
 <p>Ahora, recordemos la fórmula de la desviación estándar:</p>
 <p><span class="math display">\[
-s = \sqrt{\frac{\sum_{i=1}^{n} (x_i-\bar{x})^2 }{n-1}}
+s = \sqrt{\frac{\sum_{i=1}^{n} (x_i-\bar{x})^2 }{N-1}}
 \]</span></p>
-<p>Donde: - ( n ) es el tamaño del vector, - ( x_i ) son los valores individuales del vector, - ( {x} ) es la media del vector.</p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(N\)</span> es el tamaño del vector,</p></li>
+<li><p><span class="math inline">\(x_i\)</span> son los valores individuales del vector,</p></li>
+<li><p><span class="math inline">\(\bar{x}\)</span> es la media del vector.</p></li>
+</ul>
 <p>La desviación estándar corresponde, entonces, a un promedio de lo que cada valor se aleja del promedio del vector. En el caso de nuestro vector, <span class="math inline">\(s = 1,82\)</span> nos muestra que en promedio los datos se alejan 1,82 puntos del promedio.</p>
+<p>La desviación estándar es un concepto clave para Inferencia Estadística.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -362,7 +361,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Antes de comenzar, recordemos que…</p>
+<p>Antes de seguir, recordemos que…</p>
 <p>Llamamos <strong>inferencia estadística</strong> al ejercicio de extrapolar determinadas estimaciones (estadísticos) de una muestra a una población más grande (parámetros). En concreto, es el proceso de realizar conclusiones o predicciones sobre una población a partir de una muestra o subconjunto de esa población.</p>
 <p><img src="../files/INFERENCIA.jpg" class="img-fluid"></p>
 <p>La <strong>probabilidad de error</strong> indica en qué medida nos estamos equivocando (o estamos dispuestos a estar equivocados) en tratar de extrapolar una estimación muestral a la población.</p>
@@ -371,21 +370,21 @@ Nota
 </section>
 <section id="probabilidad" class="level1">
 <h1>2. Probabilidad</h1>
-<p>Para pensar en la idea de probabilidad realicemos la tarea propuesta en la Clase 2.</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-6_26eb44cdadb9b7dd77ea2de8bd79358e">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar todas las combinaciones posibles de dos dados</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dado1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">6</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>dado2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">times =</span> <span class="dv">6</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la suma y el promedio para cada combinación</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>suma <span class="ot">&lt;-</span> dado1 <span class="sc">+</span> dado2</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>promedio <span class="ot">&lt;-</span> suma <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un data frame con los resultados</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dado1, dado2, suma, promedio)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el data frame</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para pensar en la idea de probabilidad realicemos la tarea propuesta en la <a href="../content/02-content.html">Clase de Inferencia 1</a>. En esta tarea se buscaba generar los resultados posibles al lanzar dos dados. Primero se busca sumar los resultados entregados por ambos dados, y luego promediar los resultados:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-6_f0c42c6081668717ed15ac0074763020">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar todas las combinaciones posibles de dos dados</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dado1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dado2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">times =</span> <span class="dv">6</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la suma y el promedio para cada combinación</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>suma <span class="ot">&lt;-</span> dado1 <span class="sc">+</span> dado2</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>promedio <span class="ot">&lt;-</span> suma <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un data frame con los resultados</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dado1, dado2, suma, promedio)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el data frame</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   dado1 dado2 suma promedio
 1      1     1    2      1.0
@@ -425,24 +424,56 @@ Nota
 35     6     5   11      5.5
 36     6     6   12      6.0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de frecuencias para la suma</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resultados, <span class="fu">aes</span>(<span class="at">x =</span> suma)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cyan4"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Frecuencias de la Suma"</span>, <span class="at">x =</span> <span class="st">"Suma"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esto se puede observar de manera gráfica de la siguiente forma:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-7_c28f5e0f073df0c1e180f4d1fd4ecc27">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de frecuencias para la suma</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resultados, <span class="fu">aes</span>(<span class="at">x =</span> suma)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cyan4"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Frecuencias de la Suma"</span>, <span class="at">x =</span> <span class="st">"Suma"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="01-practico_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-practico_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de frecuencias para los promedios</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resultados, <span class="fu">aes</span>(<span class="at">x =</span> promedio)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cyan3"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Frecuencias de los Promedios"</span>, <span class="at">x =</span> <span class="st">"Promedio"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de frecuencias para los promedios</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resultados, <span class="fu">aes</span>(<span class="at">x =</span> promedio)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cyan3"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Frecuencias de los Promedios"</span>, <span class="at">x =</span> <span class="st">"Promedio"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="01-practico_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+<p><img src="01-practico_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>La ocurrencia de algunos eventos (como la suma o promedio de dos dados) tienen una probabilidad determinada, lo que genera una distribución teórica de probabilidad</p>
-<p>Si repito un evento aleatorio (ej: sacar muestras repetidas de dos dados y promediarlos) obtengo la distribución empírica de probabilidad (de frecuencias de los eventos)</p>
-<p>De acuerdo con la ley de los grandes números, el promedio empírico convergerá al teórico a medida que aumenta el número de repeticiones</p>
+<p>¿Y cuál es la probabilidad de ocurrencia de cada resultaado?</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-8_b795c30f1d4526169250ecac0633a275">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular las frecuencias de cada promedio</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tabla_frecuencias <span class="ot">&lt;-</span> <span class="fu">table</span>(resultados<span class="sc">$</span>promedio)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la probabilidad de ocurrencia de cada promedio</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>probabilidades <span class="ot">&lt;-</span> tabla_frecuencias <span class="sc">/</span> <span class="fu">sum</span>(tabla_frecuencias)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear la tabla final con valores de promedios y sus probabilidades</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>tabla_final <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Promedio =</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(probabilidades)), </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Probabilidad =</span> <span class="fu">as.numeric</span>(probabilidades))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la tabla final</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tabla_final)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Promedio Probabilidad
+1       1.0   0.02777778
+2       1.5   0.05555556
+3       2.0   0.08333333
+4       2.5   0.11111111
+5       3.0   0.13888889
+6       3.5   0.16666667
+7       4.0   0.13888889
+8       4.5   0.11111111
+9       5.0   0.08333333
+10      5.5   0.05555556
+11      6.0   0.02777778</code></pre>
+</div>
+</div>
+<p>La ocurrencia de algunos eventos (como la suma o promedio de dos dados) tienen una probabilidad determinada, lo que genera una distribución teórica de probabilidad.</p>
+<p>Si repito un evento aleatorio (ej: sacar muestras repetidas de dos dados y promediarlos) obtengo la distribución empírica de probabilidad (de frecuencias de los eventos).</p>
+<p>De acuerdo con la <em>ley de los grandes números</em>, el promedio empírico convergerá al teórico a medida que aumenta el número de repeticiones. Eso podemos observarlo:</p>
 </section>
 <section id="distribución-normal" class="level1">
 <h1>3. Distribución Normal</h1>
@@ -466,11 +497,11 @@ Nota
 <li>La desviación estandar expresa su dispersión.</li>
 <li>Establece áreas o <em>proporciones</em> bajo la curva en base a desviaciones estándar del promedio.</li>
 </ul>
-<p><img src="../slides/img/norm2.png" class="img-fluid"></p>
 </section>
 <section id="distribución-normal-estándar" class="level2">
 <h2 class="anchored" data-anchor-id="distribución-normal-estándar">3.3. Distribución Normal Estándar</h2>
 <p>La distribución normal estándar es una distribución normal con una media de 0 y una desviación estándar de 1.</p>
+<p><img src="../slides/img/norm2.png" class="img-fluid"></p>
 </section>
 <section id="puntaje-z-y-estandarización-de-variables" class="level2">
 <h2 class="anchored" data-anchor-id="puntaje-z-y-estandarización-de-variables">3.4. Puntaje Z y estandarización de variables</h2>
@@ -481,16 +512,16 @@ Nota
 <h2 class="anchored" data-anchor-id="cálculo-de-probabilidades-con-puntaje-z">3.5. Cálculo de probabilidades con puntaje z</h2>
 <p>Los valores estandarizados o puntajes Z además nos permiten conocer probabilidades.</p>
 <p>Con R es posible generar un conjunto de datos simulados con una distribución normal.</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-7_636263c542ccb0971137b2cef066ab29">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-9_1157b6c007155867c7cc32fb7efc7de8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">length=</span><span class="dv">1000</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y_values <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x_values)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_values,y_values,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">xlab=</span><span class="st">"Valor Z"</span>,<span class="at">ylab=</span><span class="st">"Probabilidad"</span>,<span class="at">main=</span><span class="st">"Distribución Normal"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="01-practico_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-practico_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Podemos preguntar qué parte de la curva cae por debajo de un valor particular. Por ejemplo, preguntaremos sobre el valor 0 antes de ejecutar el código. Piense ¿cuál debería ser la respuesta?</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-8_2835ce36c748a4bde74a1d94980c13e9">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-10_cc1115c8fc41a8c3182ceee1f6ed43a8">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
@@ -501,16 +532,16 @@ Nota
 <p>Porque como la distribución normal estándar es simétrica al rededor de cero, la probabilidad de que sea menor o igual a cero es 0.5, es decir, el 50% de la distribución está por debajo de cero y el otro 50% está por encima de cero.</p>
 </blockquote>
 <p>Eso lo podemos ver en el gráfico:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-9_55fbcb1b0662fc98ac7171270f0c6068">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-11_883bbd07f8840d91736dc42eb58f3d59">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_values,y_values,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">xlab=</span><span class="st">"Valor Z"</span>,<span class="at">ylab=</span><span class="st">"Probabilidad"</span>,<span class="at">main=</span><span class="st">"Distribución Normal"</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="01-practico_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-practico_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Ahora probemos los valores Z de +1,96 y -1,96.</p>
-<p>Sabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico = 0,05 para una prueba de hipótesis de dos colas (sobre la cual aprenderemos más en las próximas semanas).</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-10_7a3347770aa75ab6efbec7b1ed71fa67">
+<p>Sabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico <span class="math inline">\(\alpha = 0,05\)</span> para una prueba de hipótesis de dos colas.</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-12_585e97c6c2addf3b15367f1645605441">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">1.96</span>, <span class="at">lower.tail=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9750021</code></pre>
@@ -519,11 +550,11 @@ Nota
 <p>La respuesta nos dice lo que ya sabemos: el 97,5% de la distribución normal ocurre por debajo del valor z de 1,96.</p>
 <p>Podemos agregar una línea al gráfico para mostrar dónde se usaría <code>abline</code>.</p>
 <p>El 97,5% de la distribución queda por debajo de esta línea.</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-11_253bf36f954a62902591ac49ad97298c">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-13_07c801517fb153543f1834117cb6ee58">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_values, y_values, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">"Z value"</span>, <span class="at">ylab=</span><span class="st">"Probability"</span>, <span class="at">main=</span><span class="st">"Normal Distribution"</span>) <span class="sc">+</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fl">1.96</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="01-practico_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="01-practico_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>integer(0)</code></pre>
@@ -551,8 +582,10 @@ Nota
 <p><strong>Nivel de significacncia</strong>: Corresponde a la probabilidad de que el intervalo calculado a partir de la muestra no comprenda el parámetro de la población (<span class="math inline">\(\alpha\)</span>).</p>
 </div>
 </div>
+<section id="cálculo-de-intervalos-de-confianza" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-de-intervalos-de-confianza">4.1. Cálculo de intervalos de confianza</h2>
 <p>En el caso de nuestro vector aleatorio, un intervalo de confianza para la media se puede calcular de la siguiente manera:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-12_800bcf6919dacbc969e3b11bdf0e977e">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-14_a986fb0b3675ee7b2c0a97f065fe7fe7">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular un intervalo de confianza para la media</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>intervalo_confianza <span class="ot">&lt;-</span> <span class="fu">t.test</span>(vector)<span class="sc">$</span>conf.int  <span class="co"># Intervalo de confianza del 95% para la media</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>intervalo_confianza</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -562,10 +595,8 @@ attr(,"conf.level")
 [1] 0.95</code></pre>
 </div>
 </div>
-<section id="cálculo-de-intervalos-de-confianza" class="level2">
-<h2 class="anchored" data-anchor-id="cálculo-de-intervalos-de-confianza">4.1. Cálculo de intervalos de confianza</h2>
-<p>Ahora calculemos intervalos de confianza para casos reales. Carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos <a href="https://www.ine.gob.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos">ESI</a> para ocupados:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-13_f9daaf707aa197fc7a85e1966fca6507">
+<p>También podemos calcular intervalos de confianza para casos reales. Carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos <a href="https://www.ine.gob.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos">ESI</a> para ocupados:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-15_2e4433abfe486448ac92a7a43d3e1046">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/esi-2021-ocupados.rdata"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -578,16 +609,14 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Recordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo, como veremos a continuación.</p>
+<p>Recordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo.</p>
+<p>En esta guía practicaa trabajaremos sin factores de expansión o ponderadores.</p>
 </div>
 </div>
-<section id="intervalos-de-confianza-sin-ponderador" class="level3">
-<h3 class="anchored" data-anchor-id="intervalos-de-confianza-sin-ponderador">4.1.1. Intervalos de confianza sin ponderador</h3>
-<p>Podemos calcular intervalos de confianza con muestras representativas sin ponderadores o factores de expansión. Supongamos que es el caso.</p>
 <section id="ic-para-medias" class="level4">
 <h4 class="anchored" data-anchor-id="ic-para-medias">IC para Medias</h4>
 <p>Calculemos un intervalo de confianza para la media de ingresos de personas ocupadas:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-14_f737fa0ad5823880ddd99ccef79dc799">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-16_a13d6a6b6c54f433805af22638158e15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(esi<span class="sc">$</span>ing_t_p)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   vars     n     mean       sd   median  trimmed      mad min      max
@@ -596,104 +625,14 @@ X1    1 37124 586360.4 697362.9 405347.7 474473.1 255411.6   0 38206253
 X1 38206253   12   402.32 3619.36</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-15_7993f70202c30d427f143f3f4cc5cf31">
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-17_7b1f70944cb8bcbb6542f1c6ae3a8369">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Publish<span class="sc">::</span><span class="fu">ci.mean</span>(esi<span class="sc">$</span>ing_t_p, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> mean      CI-95%               
  586360.41 [579266.37;593454.45]</code></pre>
 </div>
 </div>
-<p>Al no aplicar factores de expansión, contamos con una media de ingresos de $586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre $579.266 y $593.454.</p>
-</section>
-<section id="ic-para-proporciones" class="level4">
-<h4 class="anchored" data-anchor-id="ic-para-proporciones">IC para Proporciones</h4>
-<p>Para calcular un intervalo de confianza para la proporción por la variable sexo, usamos:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-16_b684697a56541061134d6b5f1d8fc0d5">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(esi<span class="sc">$</span>sexo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;numeric&gt; 
-# total N=37124 valid N=37124 mean=1.44 sd=0.50
-
-Value |     N | Raw % | Valid % | Cum. %
-----------------------------------------
-    1 | 20806 | 56.04 |   56.04 |  56.04
-    2 | 16318 | 43.96 |   43.96 | 100.00
- &lt;NA&gt; |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">20806</span>, <span class="at">n =</span> <span class="dv">37124</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    1-sample proportions test with continuity correction
-
-data:  20806 out of 37124, null probability 0.5
-X-squared = 542.32, df = 1, p-value &lt; 0.00000000000000022
-alternative hypothesis: true p is not equal to 0.5
-95 percent confidence interval:
- 0.5553777 0.5655019
-sample estimates:
-        p 
-0.5604461 </code></pre>
-</div>
-</div>
-<p>En este caso, sabemos que el total de las personas ocupadas de la muestra son n=37.124, y que la cantidad de hombres son 20.806, correspondientes al 56% como estimación puntual. También podemos sostener con un 95% que la proporción de hombres en la población se encuentra entre 55.54% y 56.6%.</p>
-</section>
-</section>
-<section id="intervalos-de-confianza-con-ponderador" class="level3">
-<h3 class="anchored" data-anchor-id="intervalos-de-confianza-con-ponderador">4.1.2. Intervalos de confianza con ponderador</h3>
-<p>Para muestras complejas que cuentan con ponderador (o factor de expansión) también podemos hacer este ejercicio.</p>
-<p>Primero, es necesario identificar la variable de factor de expansión o ponderador:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-17_22abaaac1c425de54c9288d3d1151b6d">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>esi_pond <span class="ot">&lt;-</span> esi <span class="sc">%&gt;%</span> <span class="fu">as_survey_design</span>(<span class="at">ids =</span> <span class="dv">1</span>, <span class="co"># indica conglomerados de muestreo; ~0 o ~1 cuando no hay</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">strata =</span> estrato, <span class="co"># indica efecto de diseño muestral</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">weights =</span> fact_cal_esi) <span class="co"># indica el ponderador</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">survey.lonely.psu =</span> <span class="st">"certainty"</span>) <span class="co"># seteamos para que ids no moleste</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="ic-para-medias-1" class="level4">
-<h4 class="anchored" data-anchor-id="ic-para-medias-1">IC para Medias</h4>
-<p>Ahora, teniendo en consideración el factor de expansión, podemos señalar que:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-18_d886ac7f1f97a3e9df0afd3d4af01172">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>esi_pond <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">survey_mean</span>(ing_t_p, <span class="at">vartype =</span> <span class="st">"ci"</span>, <span class="at">levels =</span> <span class="fl">0.95</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="co"># usamos funcion survey_mean</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-    media media_low media_upp
-    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 681039.   666563.   695516.</code></pre>
-</div>
-</div>
-<p>El promedio de ingresos de personas ocupadas ponderado en la población corresponde a $681.039 como estimación puntual, pero que es posible afirmar con un 95% de confianza que el parámetro poblacional se encuentra entre $666.562 y $695.516.</p>
-</section>
-<section id="ic-para-proporciones-1" class="level4">
-<h4 class="anchored" data-anchor-id="ic-para-proporciones-1">IC para Proporciones</h4>
-<p>Finalmente, si calculamos la proporción de hombres ocupados en la población considerando el factor de expansión:</p>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-19_f126ef3290ca86bd9bcf70f08c9ee969">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(esi<span class="sc">$</span>sexo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;numeric&gt; 
-# total N=37124 valid N=37124 mean=1.44 sd=0.50
-
-Value |     N | Raw % | Valid % | Cum. %
-----------------------------------------
-    1 | 20806 | 56.04 |   56.04 |  56.04
-    2 | 16318 | 43.96 |   43.96 | 100.00
- &lt;NA&gt; |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-</div>
-<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-20_c70d3d71c65230ed1610b4ad3a3b542b">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>esi_pond <span class="sc">%&gt;%</span> </span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> <span class="co"># agrupamos por sexo</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop =</span> <span class="fu">survey_prop</span>(<span class="at">vartype =</span> <span class="st">"ci"</span>, <span class="at">levels =</span> <span class="fl">0.95</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-   sexo  prop prop_low prop_upp
-  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1     1 0.582    0.575    0.590
-2     2 0.418    0.410    0.425</code></pre>
-</div>
-</div>
-<p>Tenemos que, con un 95% de conafianza, podemos afirmar que la proporción de hombre ocupados se encuentra entre el 57% y 58%.</p>
-</section>
+<p>Contamos con una media de ingresos de $586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre $579.266 y $593.454.</p>
 </section>
 </section>
 </section>
