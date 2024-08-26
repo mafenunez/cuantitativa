@@ -2,6 +2,7 @@
 title: "Informaciones por acá"
 date: "2024-08-19"
 categories: [info]
+image: /files/logo-correlacional.png
 ---
 
 Estimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.
