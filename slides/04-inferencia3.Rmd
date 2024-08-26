@@ -31,9 +31,12 @@ pacman::p_load(flipbookr, tidyverse, kableExtra)
 
 
 
+
 ```{r xaringanExtra, include=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+xaringanExtra::use_xaringan_extra(c("animate_css"))
 xaringanExtra::use_scribble()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_search(show_icon = TRUE)
 ```
 
 .pull-left-wide[

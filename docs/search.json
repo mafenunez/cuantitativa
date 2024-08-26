@@ -270,27 +270,50 @@
     "text": "Documento de presentación"
   },
   {
-    "objectID": "content/04-content.html",
-    "href": "content/04-content.html",
-    "title": "Inferencia 3 - Intervalos de confianza",
-    "section": "",
-    "text": "Documento de presentación",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 3: Intervalos de confianza"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
+    "objectID": "content/05-content.html",
+    "href": "content/05-content.html",
+    "title": "Inferencia 4 - Test de hipótesis",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 1"
+      "Inferencia 4"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Inferencia 2: Curva normal y error estándar",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 2"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Presentación",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "assignment/foro-practicos.html",
+    "href": "assignment/foro-practicos.html",
+    "title": "Foro prácticos",
+    "section": "",
+    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
+    "crumbs": [
+      "Prácticos",
+      "Foro Prácticos"
     ]
   },
   {
@@ -338,38 +361,27 @@
     ]
   },
   {
-    "objectID": "assignment/foro-practicos.html",
-    "href": "assignment/foro-practicos.html",
-    "title": "Foro prácticos",
-    "section": "",
-    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
-    "crumbs": [
-      "Prácticos",
-      "Foro Prácticos"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Presentación",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Introducción"
-    ]
-  },
-  {
-    "objectID": "content/03-content.html",
-    "href": "content/03-content.html",
-    "title": "Inferencia 2: Curva normal y error estándar",
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 2"
+      "Inferencia 1"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Inferencia 3 - Intervalos de confianza",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 3"
     ]
   },
   {
@@ -479,14 +491,14 @@
     "href": "schedule.html",
     "title": "Planificación",
     "section": "",
-    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n\n\nMartes 3\n\nPráctico Inferencia 2\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
+    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\nMontoya: Los conceptos de especificación y falsación\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nMartes 3\n\nPráctico Inferencia 2\n\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
   },
   {
     "objectID": "schedule.html#forma-general-de-funcionamiento",
     "href": "schedule.html#forma-general-de-funcionamiento",
     "title": "Planificación",
     "section": "",
-    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n\n\nMartes 3\n\nPráctico Inferencia 2\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
+    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\nMontoya: Los conceptos de especificación y falsación\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nMartes 3\n\nPráctico Inferencia 2\n\n\n\nLunes 9\nEvaluación 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación y covarianza\n\n\n\n\nMartes 24\nInferencia en correlación de Pearson\n\n\n\n\nLunes 30\nCorrelación con ordinales\n\n\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y tamaños de efecto en correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
   },
   {
     "objectID": "schedule.html#exámenes-finales-escritos-en-sala",
