@@ -1,6 +1,6 @@
 ---
-title: "Reportes dinámicos con RMarkdown"
-date: "2023-08-11"
+title: "Distribución Normal e Intervalos de Confianza"
+date: "2024-08-27"
 lang: es
 execute:
   freeze: auto
@@ -9,257 +9,309 @@ execute:
 
 # Objetivo de la práctica
 
-El objetivo de esta guía práctica es familiarizarnos con las herramientas fundamentales para crear documentos dinámicos que nos permitan combinar texto y análisis (código) en un único reporte utilizando RMarkdown.
+El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, además del cálculo de intervalos de confianza.
 
-En detalle, aprenderemos:
+En detalle, aprenderemos y recordaremos:
 
-1.  Qué es la reproducibilidad y un flujo de trabajo reproducible
-2.  Qué es escritura abierta con Markdown
-3.  Qué es RMarkdown y cómo generar reportes dinámicos
+1.  Los conceptos de promedio y desviación estándar
+2.  Qué es la probabilidad y su aplicación para estadística
+3.  Qué es la distribución normal 
+4.  Cómo calcular e interpretar intervalos de confianza
 
-# 1. Reproducibilidad
 
-La **reproducibilidad** en ciencias sociales es esencial para garantizar resultados confiables y evitar casualidades. Imagina presentar hallazgos emocionantes en una conferencia y que te pidan que demuestres cómo llegaste a esos resultados. ¡La reproducibilidad se convierte en tu mejor amiga o peor enemiga en ese momento!
+## Librerías 
 
-![](../files/flujo-herramientas.png)
+Cargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:
 
-Cuando un estudio es reproducible, **significa que has detallado claramente tu proceso de investigación para que cualquiera pueda seguirlo y obtener los *mismos resultados***. Esto no solo genera confianza en tu trabajo, sino que permite a otros construir sobre tus hallazgos y contribuir al conocimiento colectivo.
+```{r, warning=FALSE}
+library(pacman)
+pacman::p_load(tidyverse, # para sintaxis
+               ggplot2,   # para gráficos
+               car,       # para recodificar
+               psych,     # para analizar datos
+               sjmisc,    # para analizar datos
+               srvyr,     # para estimación de IC y ponderadores
+               Publish)   # para IC)    
 
-![](../files/reproducibility.jpg)
-
-¿Cómo organizamos **un proyecto reproducible**? lo primero es definir una estructura de proyecto autocontenido:
-
-1.  En este curso trabajaremos con un flujo de trabajo reproducible, basado en el sistema [IPO](https://lisa-coes.com/ipo-repro/). **IPO** es un protocolo de estructura digital de carpetas que permite organizar, procesar y documentar los datos de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.
-
-```{r echo=FALSE, warning=FALSE, out.width="75%", fig.align='center'}
-knitr::include_graphics("../files/ipo.png", error = FALSE)
-
+options(scipen = 999) # para desactivar notacion cientifica
+rm(list = ls())       # para limpar el entonrno de trabajo
 ```
 
-2.  ¿Y cómo lo hacemos? Mediante los **Rproject**. Estos [ya los conocemos](https://descriptiva-facso.netlify.app/content/01-content), y son la raíz de nuestro proyecto que articula o abraza (como un pulpo) los demás componentes.
 
-```{r echo=FALSE, warning=FALSE, out.width="75%", fig.align='center'}
-knitr::include_graphics("../files/ipo-rproj.png", error = FALSE)
+# 1. Promedio y desviación estándar
 
+El *promedio* y la *desviación estándar* son conceptos fundamentales para continuar hacia la estadística inferencial. Repasemos estos conceptos mediante un ejercicio con datos simulados.
+
+Primero, generaremos un vector de 100 valores aleatorios con $\mu = 5$ y $\sigma = 2$, y lo visualizaremos con la función `print`.
+
+```{r}
+set.seed(123) # Fijar la semilla para reproducibilidad
+vector <- rnorm(100, mean = 5, sd = 2)
+print(vector) # Ver el vector generado
 ```
 
-# 2. Escritura abierta (Markdown)
 
-Probablemente, el programa que más se ha utilizado para la escritura sea Microsoft Word, desde pregrado hasta el mundo profesional.
+¿Cómo se vería la distribución de este vector aleatorio? Primero realizaremos un gráfico de histograma con la función `hist` y luego uno de cajas con la función `boxplot`. 
 
-![](../files/word.png)
+```{r}
+hist(vector,main="Histograma del Vector",xlab="Valor",ylab="Frecuencia",col="cyan4",border="black")
+```
 
-Aunque útil, este procesador de texto **tiene diversas barreas**, ya sea de *pago/licencias*, problemas de *versionamiento* (difícil saber quién hizo qué) y no permiten *reproducibilidad* (tenemos que copiar y pegar). Aquí entra el **texto plano**.
+```{r}
+boxplot(vector,main="Diagrama de Caja del Vector aleatorio",ylab="Valor",col="cyan3")
+```
+
+Ahora, calculamos la media y la desviación estándar del vector:
+
+```{r}
+media <- mean(vector)
+desv_estandar <- sd(vector)
+
+cat("Media:", media, "\n")
+cat("Desviación Estándar:", desv_estandar, "\n")
+```
+
+La media, que es una medida de tendencia central, nos presenta un valor que resume nuestros datos aproximándonos al "centro" de la distribución. Y la desviación estándar es una medida de dispersión que nos presenta un valor que resume nuestros datos en cuanto a qué tan "dispersos" se encuentran. 
+
+En el caso de nuestro vector, creado con datos aleatorios, la media $\bar{x} = 5,18$ nos muestra que el promedio de los datos se encuentra en torno a 5,2. 
+
+Ahora, recordemos la fórmula de la desviación estándar:
+
+$$
+s = \sqrt{\frac{\sum_{i=1}^{n} (x_i-\bar{x})^2 }{N-1}}
+$$
+
+Donde: 
+
+- $N$ es el tamaño del vector,
+
+- $x_i$ son los valores individuales del vector,
+
+- $\bar{x}$ es la media del vector.
+
+La desviación estándar corresponde, entonces, a un promedio de lo que cada valor se aleja del promedio del vector. En el caso de nuestro vector, $s = 1,82$ nos muestra que en promedio los datos se alejan 1,82 puntos del promedio. 
+
+La desviación estándar es un concepto clave para Inferencia Estadística.
+
 
 ::: callout-note
-El texto plano:
 
--   es un tipo de texto que se puede leer independiente del lector que use
--   es abierto y gratuito
--   permite combinar texto y análisis en un solo documento *(reproducibilidad)*
--   foco en el contenido, luego el formato
--   distintas opciones de salida (pdf, html, word, etc.)
+Antes de seguir, recordemos que...
+
+Llamamos **inferencia estadística** al ejercicio de extrapolar determinadas estimaciones (estadísticos) de una muestra a una población más grande (parámetros). En concreto, es el proceso de realizar conclusiones o predicciones sobre una población a partir de una muestra o subconjunto de esa población. 
+
+![](../files/INFERENCIA.jpg)
+
+La **probabilidad de error** indica en qué medida nos estamos equivocando (o estamos dispuestos a estar equivocados) en tratar de extrapolar una estimación muestral a la población.
 :::
 
-[Markdown](https://daringfireball.net/projects/markdown/) es una clase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Por ejemplo, poder hacer cursivas, negritas, incorporar links, etc.
 
-## Formatos básicos de Markdown
+# 2. Probabilidad
 
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| Escribe...                                        | ...o...              | ...para obtener                                                                |
-+===================================================+======================+================================================================================+
-|     Algo de texto en el párrafo.                  |                      | Algo de texto.                                                                 |
-|                                                   |                      |                                                                                |
-|     Más texto                                     |                      | Algo de texto en el párrafo. Siempre utilizando espacios para dividir párrafos |
-|     espacio entre lineas.                         |                      |                                                                                |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `` `*Cursivas*` ``                                | `` `_Cursivas_` ``   | *Cursivas*                                                                     |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `` `**Negrita**` ``                               | `` `__Negrita__` ``  | **Negrita**                                                                    |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `# Título 1`                                      |                      | # Título 1                                                                     |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `## Título 2`                                     |                      | ## Título 2                                                                    |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `### Título 3`                                    |                      | ### Título 3                                                                   |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| (puedes llegar hasta un título N° 6 con `######`) |                      |                                                                                |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `` `[Link text](http://www.example.com)` ``       |                      | [Link text](http://www.example.com)                                            |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `` `![Image caption](/path/to/image.png)` ``      |                      | ![Class logo](/files/img-144.png){alt="Class logo"}                            |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| \` \`\`\`Inline code\`\`\` \` with backticks      |                      | `Inline code` with backticks                                                   |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-| `> Citas`                                         |                      | > Citas                                                                        |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-|     - Cosas en                                    |     * Cosas en       | -   Cosas en                                                                   |
-|     - listas                                      |     * listas         |                                                                                |
-|     - desordenadas                                |     * desordenadas   | -   listas                                                                     |
-|                                                   |                      |                                                                                |
-|                                                   |                      | -   desordenadas                                                               |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-|     1. Cosas en                                   |     1) Cosas en      | 1.  Cosas en                                                                   |
-|     2. listas                                     |     2) listas        |                                                                                |
-|     3. ordenadas                                  |     3) ordenadas     | 2.  listas                                                                     |
-|                                                   |                      |                                                                                |
-|                                                   |                      | 3.  ordenadas                                                                  |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
-|     Línea horizontal                              |     Línea horizontal | Línea horizontal                                                               |
-|                                                   |                      |                                                                                |
-|     ---                                           |     ***              | ------------------------------------------------------------------------       |
-+---------------------------------------------------+----------------------+--------------------------------------------------------------------------------+
+Para pensar en la idea de probabilidad realicemos la tarea propuesta en la [Clase de Inferencia 1](/content/02-content.html). En esta tarea se buscaba generar los resultados posibles al lanzar dos dados. Primero se busca sumar los resultados entregados por ambos dados, y luego promediar los resultados:
 
-# 3. Documentos dinámicos (RMarkdown)
+```{r}
+# Generar todas las combinaciones posibles de dos dados
+dado1 <- rep(1:6, each = 6)
+dado2 <- rep(1:6, times = 6)
 
-[R Markdown](https://rmarkdown.rstudio.com/) es un lenguaje que combina texto plano (Markdown) y código (R). Al mezclar ambos mundos en un solo documento *.Rmd*, permite la integración simúltanea de texto y análisis (código) a nuestros reportes. Esto es lo que se conoce como **documentos dinámicos**.
+# Calcular la suma y el promedio para cada combinación
+suma <- dado1 + dado2
+promedio <- suma / 2
 
-Por ejemplo, este sitio web está escrito con `R Markdown`, lo que nos permite demostrar cómo combinar código de `R` (gráficos, tablas y otros resultados) con `texto plano`, *generando documentos reproducibles.*
+# Crear un data frame con los resultados
+resultados <- data.frame(dado1, dado2, suma, promedio)
 
-```{r echo=FALSE, warning=FALSE, out.width="20%", fig.align='center'}
-knitr::include_graphics("../files/rm-logo.png", error = FALSE)
-
+# Mostrar el data frame
+print(resultados)
 ```
 
-En el ambiente de RStudio, `R Markdown` es una librería de R que provee de una serie de herramientas para generar documentos dinámicos y publicarlos.
+Esto se puede observar de manera gráfica de la siguiente forma:
 
-¡Veamos cómo se hace!
+```{r}
+# Gráfico de frecuencias para la suma
+ggplot(resultados, aes(x = suma)) +
+  geom_bar(fill = "cyan4", color = "black") +
+  labs(title = "Gráfico de Frecuencias de la Suma", x = "Suma", y = "Frecuencia")
 
-# 4. Generación de reporte
-
-### Paso 1: Instalar librerías
-
-El primero paso para inciar un documento `R Markdown` en R Studio es instalar (o actualizar según sea el caso) la librería asociada. Al instalarla, también se descargan otras dependencias que permiten trabajar y publicar con `RMarkdown` (como knitr y también tinitex, que permite generación documentos pdf vía Latex).
-
-Pero primero, llamemos a un viejo conocido: el paquete `pacman`.
-
-```{r eval=FALSE, include=TRUE}
-install.packages("pacman") # en caso de no tener pacman instalado
-library(pacman)
+# Gráfico de frecuencias para los promedios
+ggplot(resultados, aes(x = promedio)) +
+  geom_bar(fill = "cyan3", color = "black") +
+  labs(title = "Gráfico de Frecuencias de los Promedios", x = "Promedio", y = "Frecuencia")
 ```
 
-Ahora, instalemos las librerías para generar nuestro archivo .Rmd
+¿Y cuál es la probabilidad de ocurrencia de cada resultaado?
 
-```{r eval=FALSE, include=TRUE}
-pacman::p_load(rmarkdown,
-               knitr)
+```{r}
+# Calcular las frecuencias de cada promedio
+tabla_frecuencias <- table(resultados$promedio)
+
+# Calcular la probabilidad de ocurrencia de cada promedio
+probabilidades <- tabla_frecuencias / sum(tabla_frecuencias)
+
+# Crear la tabla final con valores de promedios y sus probabilidades
+tabla_final <- data.frame(Promedio = as.numeric(names(probabilidades)), 
+                          Probabilidad = as.numeric(probabilidades))
+
+# Mostrar la tabla final
+print(tabla_final)
 ```
 
-### Paso 2: Crear un nuevo archivo en Rmarkdown
+La ocurrencia de algunos eventos (como la suma o promedio de dos dados) tienen una probabilidad determinada, lo que genera una distribución teórica de probabilidad.
 
-1.  Una vez cargados los paquetes deben dirigirse a `File > New File > R Markdown`.
+Si repito un evento aleatorio (ej: sacar muestras repetidas de dos dados y promediarlos) obtengo la distribución empírica de probabilidad (de frecuencias de los eventos).
 
-2.  Luego deben darle un título, poner su nombre y especificar un formato de salida, ya sea en **HTML**, **PDF** o **Word**.
+De acuerdo con la *ley de los grandes números*, el promedio empírico convergerá al teórico a medida que aumenta el número de repeticiones. Eso podemos observarlo:
 
-![](../files/rm-jc.gif)
 
-3.  Se creará un archivo con un *YAML* , donde se especifican opciones generales del documento entre tres guiones (---); y un chunk, o trozo de código.
+# 3. Distribución Normal
 
-![](../files/YAML.png)
+## 3.1. Curvas de distribución
 
-El *YAML* es muy importante, y consta de tres partes mínimas: título, autor y opción de formato de salida. [Hay más opciones](https://bookdown.org/yihui/rmarkdown/) que iremos viendo durante el curso.
+Por **distribución** nos referimos al conjunto de todos los valores posibles de una variable y las frecuencias (o probabilidades) con las que se producen.
 
-4.  Ahora, ya pueden comenzar a escribir sus informes en `RMarkdown`. Veamos otras configuraciones.
+Existen **distribuciones empíricas** y **distribuciones teóricas**, en donde:
 
-### Paso 3: Crear el archivo con formato desde el .Rmd
+- las primeras reflejan la distribución de los valores que asume la variable en un grupo _concreto_ a partir de una observación. 
+- las segundas son una _función matématica_ que expresan la distribución de un conjunto de números mediante su _probabilidad de ocurencia_.
 
-Para generar el documento, en la salida que especifiquemos, presionamos el botón de `Knitr`. El `Knitear` permite *compilar* el documento *tejiendo o uniendo* el contenido de manera **secuencial**. Combinará el texto plano y el código de R (en chunks) a partir de las instrucciones que le dimos en el *YAML*.
+Estas últimas son también llamadas **curvas de distribución**.
 
-![](../files/knit-button.png)
 
-Al `knitear` el documento, le estamos dando la instrucción a R de que pase este archivo Markdown (.md) por un convertidor universal llamado [pandoc](https://pandoc.org/). En la práctica, este proceso se le conoce como *renderizar*.
+## 3.2. Distribución Normal 
 
-![](../files/pandoc.png)
+Es una distribución teórica que corresponde a una curva que representa la distribución de los casos de la población en torno al promedio y con una varianza conocida.
 
-El resultado aparece en el visor (Viewer) de R, o se puede seleccionar otra opción de visualización desde la rueda de configuración al lado del botón `knitr`.
+- Simétricas y con un solo punto de elevación
+- La pendiente es más fuerte cerca del centro, y se suaviza hacia los extremos
+- Coinciden al centro el promedio, la mediana y la moda
+- La desviación estandar expresa su dispersión.
+- Establece áreas o *proporciones* bajo la curva en base a desviaciones estándar del promedio.
 
-![](../files/render.png)
 
-El documento queda grabado como archivo (ej: probando.html) en el mismo directorio del archivo .Rmd
+## 3.3. Distribución Normal Estándar
 
-### Paso 4: Opciones de chunks
+La distribución normal estándar es una distribución normal con una media de 0 y una desviación estándar de 1. 
 
-La manera en que integramos código de R en un archivo `RMarkdown` es mediante `chunks`, que son *trozos* de código dentro de nuestra hoja. Estos permiten hacer análisis estadísticos dentro del documento visualizando los resultados en el documento final.
+![](../slides/img/norm2.png)
 
-Los chunks se ven así dentro del .Rmd:
+## 3.4. Puntaje Z y estandarización de variables
 
-    `r ''````{r}
-    # El codigo va aquí
+Al estandarizar las variables (como en la Curva Normal Estándar) lo que hacemos es expresar el valor de una distribución en términos de desviaciones estándar basados en la distribución normal. Esto nos permite comparar distribuciones distintas.
 
-    ````
+Al valor estandarizado lo llamamos **puntaje Z**, y corresponde a la cantidad de desviaciones estándar que nos alejamos del promedio (para cada variable con la que trabajemos).
 
-#### 4.1 Añadir Chunks
 
-Hay tres formas de insertar chunks:
+## 3.5. Cálculo de probabilidades con puntaje z
 
-1.  Pulsar `⌘⌥I` en macOS o `Control + Alt + I` en Windows
+Los valores estandarizados o puntajes Z además nos permiten conocer probabilidades.
 
-2.  Pulsa el botón "Insert" en la parte superior de la ventana del editor
+Con R es posible generar un conjunto de datos simulados con una distribución normal.
 
-```{r insert, echo=FALSE, out.width="40%"}
-knitr::include_graphics("../files/insertchunk.png", error = FALSE)
+```{r}
+x_values <- seq(-4,4,length=1000)
+y_values <- dnorm(x_values)
+plot(x_values,y_values,type="l",xlab="Valor Z",ylab="Probabilidad",main="Distribución Normal")
 ```
 
-3.  Escribirlo manualmente (no recomendado)
+Podemos preguntar qué parte de la curva cae por debajo de un valor particular. Por ejemplo, preguntaremos sobre el valor 0 antes de ejecutar el código. Piense ¿cuál debería ser la respuesta?
 
-#### 4.2 Nombrar chunks
-
-Se puede añadir nombres a los chunks para hacer más fácil la navegación por el documento. Si no incluyes un nombre, el chunk seguirá apareciendo, pero no sabrás lo que hace.
-
-```{r chunk-toc, echo=FALSE, out.width="40%"}
-knitr::include_graphics("../files/chunk-toc.png", error = FALSE)
+```{r}
+pnorm(q = 0)
 ```
 
-Para añadir un nombre, inclúyelo inmediatamente después de la `{r` en la primera línea del chunk. Los nombres no pueden contener espacios, pero sí guiones bajos y guiones.
+Por tanto, la probabilidad (en una curva normal estándar) de obtener un valor igual o menor a 0 es de 0.5, es decir, del 50%, pero ¿por qué? 
 
-Importante: **Todos los nombres de chunk de tu documento deben ser únicos.**
+> Porque como la distribución normal estándar es simétrica al rededor de cero, la probabilidad de que sea menor o igual a cero es 0.5, es decir, el 50% de la distribución está por debajo de cero y el otro 50% está por encima de cero.
 
-    `r ''````{r nombre-chunk}
-    # El codigo va aquí
+Eso lo podemos ver en el gráfico:
 
-    ````
-
-#### 4.3 Opciones de chunks
-
-Hay distintas opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la [Guía de referencia de RMarkdown](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) o en el [sitio web de **knitr**](https://yihui.org/knitr/options/).
-
-Las opciones van dentro de la sección `{r}` del chunk:
-
-    `r ''````{r nombre-chunk, message = F, echo = F}
-    # El codigo va aquí
-
-    ````
-
-Las opciones de chunk más comunes son estas:
-
--   `echo=FALSE`: El código no se muestra en el documento final, pero los resultados si
-
--   `message=FALSE`: Se omiten los mensajes que genera R (como todas las notas que aparecen después de cargar un paquete)
-
--   `warning=FALSE`: Se omiten las advertencias que genera R
-
--   `include=FALSE`: El chunk se sigue ejecutando, pero el código y los resultados no se incluyen en el documento final
-
-Atajos de configuración de chunk: dar clic en el pequeño icono de engranaje en la esquina superior derecha de cualquier chunk:
-
-```{r chunk-options, echo=FALSE, out.width="70%"}
-knitr::include_graphics("../files/chunk-options.png", error = FALSE)
+```{r}
+plot(x_values,y_values,type="l",xlab="Valor Z",ylab="Probabilidad",main="Distribución Normal")
+abline(v=0)
 ```
+
+Ahora probemos los valores Z de +1,96 y -1,96.
+
+Sabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico $\alpha = 0,05$ para una prueba de hipótesis de dos colas.
+
+```{r}
+pnorm(q = 1.96, lower.tail=TRUE)
+```
+
+La respuesta nos dice lo que ya sabemos: el 97,5% de la distribución normal ocurre por debajo del valor z de 1,96.
+
+Podemos agregar una línea al gráfico para mostrar dónde se usaría `abline`.
+
+El 97,5% de la distribución queda por debajo de esta línea.
+
+```{r}
+plot(x_values, y_values, type="l", lty=1, xlab="Z value", ylab="Probability", main="Normal Distribution") +
+abline(v = 1.96)
+```
+
+# 4. Intervalos de confianza
+
+Un intervalo de confianza es un rango dentro del cual es probable que se encuentre un parámetro poblacional con un nivel de confianza específico. Además, proporciona información sobre la precisión de nuestras estimaciones.
+
+Como vimos en la [sesión 4](/content/04-content.html) el promedio de la muestra $\bar{x}$ se distruye normal, con un error estándar $SE$, lo que nos permite estimar probabilidades basándonos en la curva normal. 
+
+Por ejemplo, si nos desviamos $\pm1.96SE$ desde la media abarcaremos aproximadamente el 95% de los valores probables.
+
+![](https://multivariada.netlify.app/slides/images/normal.png)
+
+
+::: callout-note 
+**Nivel de confianza**: Corresponde a la probabilidad de que la muestra elegida produzca un intervalo que incluya el parámetro que se está estimando ($1-\alpha$).
+
+**Nivel de significacncia**: Corresponde a la probabilidad de que el intervalo calculado a partir de la muestra no comprenda el parámetro de la población ($\alpha$).
+::: 
+
+
+## 4.1. Cálculo de intervalos de confianza
+
+En el caso de nuestro vector aleatorio, un intervalo de confianza para la media se puede calcular de la siguiente manera:
+
+```{r}
+# Calcular un intervalo de confianza para la media
+intervalo_confianza <- t.test(vector)$conf.int  # Intervalo de confianza del 95% para la media
+intervalo_confianza
+```
+
+También podemos calcular intervalos de confianza para casos reales. Carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos [ESI](https://www.ine.gob.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos) para ocupados:
+
+```{r}
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/esi-2021-ocupados.rdata"))
+```
+
+::: callout-note 
+Recordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo.
+
+En esta guía practicaa trabajaremos sin factores de expansión o ponderadores.
+::: 
+
+
+#### IC para Medias
+
+Calculemos un intervalo de confianza para la media de ingresos de personas ocupadas:
+
+```{r}
+psych::describe(esi$ing_t_p)
+```
+
+```{r}
+Publish::ci.mean(esi$ing_t_p, alpha = 0.05)
+```
+
+Contamos con una media de ingresos de \$586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre \$579.266 y \$593.454.
+
 
 # Resumen
 
-Hoy aprendimos a generar documentos dinámicos con RMarkdown. En detalle, aprendímos:
+Hoy pudimos aprender y recordar:
 
-1.  Qué es la reproducibilidad y un flujo de trabajo reproducible
-2.  Qué es escritura abierta con Markdown
-3.  Qué es RMarkdown y cómo generar reportes dinámicos
-
-# Reporte de progreso
-
-Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/fnoKAgHHtgAkfFiN6). El plazo para contestarlo es hasta el día viernes de la semana en la que se publica la práctica correspondiente.
-
-# Video de práctica
-
-{{< video https://youtu.be/i8wkxc7049Q >}}
-
+1.  Los conceptos de promedio y dispersión
+2.  Qué es la probabilidad y su aplicación para estadística
+3.  Qué es la distribución normal 
+4.  Cómo calcular e interpretar intervalos de confianza
 

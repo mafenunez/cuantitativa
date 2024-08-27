@@ -45,7 +45,7 @@ website:
     background: "#0f6070"
     right:
       - text: "Informaciones"
-        file: news/index.qmd    
+        file: news/index.qmd
       - schedule.qmd
       - text: "Clases"
         file: content/index.qmd
@@ -68,7 +68,7 @@ website:
       background: dark
       contents:
         - text: "Descripción"
-          file: content/index.qmd      
+          file: content/index.qmd
         - section: "Presentaciones"
           contents:
             - text: "Introducción"
@@ -96,11 +96,11 @@ website:
     - title: "Prácticos"
       contents:
         - text: "Descripción"
-          file: assignment/index.qmd  
+          file: assignment/index.qmd
         - section: "Guías"
           contents:
-            # - text: "1: Reportes dinámicos 1"
-            #   file: assignment/01-practico.qmd
+            - text: "1: Curva Normal e Intervalos de Confianza"
+              file: assignment/01-practico.qmd
             # - text: "2: Cálculo y reporte de correlación"
             #   file: assignment/02-practico.qmd
             # - text: "3: Matrices de correlación y tamaños de efecto"
@@ -124,7 +124,7 @@ website:
         - text: "Foro Prácticos"
           file: assignment/foro-practicos.qmd
         - text: "Consola R Online"
-          file: assignment/consola.qmd  
+          file: assignment/consola.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>

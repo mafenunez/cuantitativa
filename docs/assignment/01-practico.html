@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Reportes dinámicos con RMarkdown – Estadística Correlacional</title>
+<title>Estadística Correlacional - Distribución Normal e Intervalos de Confianza</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -82,13 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
@@ -97,102 +91,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "resultado adicional en este documento",
     "search-more-matches-text": "resultados adicionales en este documento",
     "search-clear-button-title": "Borrar",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
     "search-submit-button-title": "Enviar",
     "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="Reportes dinámicos con RMarkdown – Estadística Correlacional">
+<meta property="og:title" content="Estadística Correlacional - Distribución Normal e Intervalos de Confianza">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
-<meta property="og:site_name" content="Estadística Correlacional">
+<meta property="og:site-name" content="Estadística Correlacional">
 <meta property="og:locale" content="es">
 <meta property="og:image:height" content="533">
 <meta property="og:image:width" content="466">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Estadística Correlacional</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../news/index.html"> 
-<span class="menu-text">Informaciones</span></a>
+    <a class="nav-link" href="../news/index.html" rel="" target="">
+ <span class="menu-text">Informaciones</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
-<span class="menu-text">Planificación</span></a>
+    <a class="nav-link" href="../schedule.html" rel="" target="">
+ <span class="menu-text">Planificación</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/index.html"> 
-<span class="menu-text">Clases</span></a>
+    <a class="nav-link" href="../content/index.html" rel="" target="">
+ <span class="menu-text">Clases</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../assignment/index.html"> 
-<span class="menu-text">Prácticos</span></a>
+    <a class="nav-link active" href="../assignment/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resource/index.html"> 
-<span class="menu-text">Recursos</span></a>
+    <a class="nav-link" href="../resource/index.html" rel="" target="">
+ <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html"> 
-<span class="menu-text">Programa</span></a>
+    <a class="nav-link" href="../syllabus.html" rel="" target="">
+ <span class="menu-text">Programa</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://rstudio.cloud"> <i class="bi bi-cloud-fill" role="img" aria-label="RStudio.cloud">
+    <a class="nav-link" href="https://rstudio.cloud" rel="" target=""><i class="bi bi-cloud-fill" role="img" aria-label="RStudio.cloud">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignment/01-practico.html">Guías</a></li><li class="breadcrumb-item"><a href="../assignment/01-practico.html">1: Curva Normal e Intervalos de Confianza</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descripción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Guías</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/01-practico.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1: Curva Normal e Intervalos de Confianza</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/foro-practicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foro Prácticos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/consola.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Consola R Online</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#objetivo-de-la-práctica" id="toc-objetivo-de-la-práctica" class="nav-link active" data-scroll-target="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
-  <li><a href="#reproducibilidad" id="toc-reproducibilidad" class="nav-link" data-scroll-target="#reproducibilidad">1. Reproducibilidad</a></li>
-  <li><a href="#escritura-abierta-markdown" id="toc-escritura-abierta-markdown" class="nav-link" data-scroll-target="#escritura-abierta-markdown">2. Escritura abierta (Markdown)</a>
+  <li><a href="#objetivo-de-la-práctica" id="toc-objetivo-de-la-práctica" class="nav-link active" data-scroll-target="#objetivo-de-la-práctica">Objetivo de la práctica</a>
   <ul class="collapse">
-  <li><a href="#formatos-básicos-de-markdown" id="toc-formatos-básicos-de-markdown" class="nav-link" data-scroll-target="#formatos-básicos-de-markdown">Formatos básicos de Markdown</a></li>
+  <li><a href="#librerías" id="toc-librerías" class="nav-link" data-scroll-target="#librerías">Librerías</a></li>
   </ul></li>
-  <li><a href="#documentos-dinámicos-rmarkdown" id="toc-documentos-dinámicos-rmarkdown" class="nav-link" data-scroll-target="#documentos-dinámicos-rmarkdown">3. Documentos dinámicos (RMarkdown)</a></li>
-  <li><a href="#generación-de-reporte" id="toc-generación-de-reporte" class="nav-link" data-scroll-target="#generación-de-reporte">4. Generación de reporte</a>
+  <li><a href="#promedio-y-desviación-estándar" id="toc-promedio-y-desviación-estándar" class="nav-link" data-scroll-target="#promedio-y-desviación-estándar">1. Promedio y desviación estándar</a></li>
+  <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link" data-scroll-target="#probabilidad">2. Probabilidad</a></li>
+  <li><a href="#distribución-normal" id="toc-distribución-normal" class="nav-link" data-scroll-target="#distribución-normal">3. Distribución Normal</a>
   <ul class="collapse">
-  <li><a href="#paso-1-instalar-librerías" id="toc-paso-1-instalar-librerías" class="nav-link" data-scroll-target="#paso-1-instalar-librerías">Paso 1: Instalar librerías</a></li>
-  <li><a href="#paso-2-crear-un-nuevo-archivo-en-rmarkdown" id="toc-paso-2-crear-un-nuevo-archivo-en-rmarkdown" class="nav-link" data-scroll-target="#paso-2-crear-un-nuevo-archivo-en-rmarkdown">Paso 2: Crear un nuevo archivo en Rmarkdown</a></li>
-  <li><a href="#paso-3-crear-el-archivo-con-formato-desde-el-.rmd" id="toc-paso-3-crear-el-archivo-con-formato-desde-el-.rmd" class="nav-link" data-scroll-target="#paso-3-crear-el-archivo-con-formato-desde-el-.rmd">Paso 3: Crear el archivo con formato desde el .Rmd</a></li>
-  <li><a href="#paso-4-opciones-de-chunks" id="toc-paso-4-opciones-de-chunks" class="nav-link" data-scroll-target="#paso-4-opciones-de-chunks">Paso 4: Opciones de chunks</a></li>
+  <li><a href="#curvas-de-distribución" id="toc-curvas-de-distribución" class="nav-link" data-scroll-target="#curvas-de-distribución">3.1. Curvas de distribución</a></li>
+  <li><a href="#distribución-normal-1" id="toc-distribución-normal-1" class="nav-link" data-scroll-target="#distribución-normal-1">3.2. Distribución Normal</a></li>
+  <li><a href="#distribución-normal-estándar" id="toc-distribución-normal-estándar" class="nav-link" data-scroll-target="#distribución-normal-estándar">3.3. Distribución Normal Estándar</a></li>
+  <li><a href="#puntaje-z-y-estandarización-de-variables" id="toc-puntaje-z-y-estandarización-de-variables" class="nav-link" data-scroll-target="#puntaje-z-y-estandarización-de-variables">3.4. Puntaje Z y estandarización de variables</a></li>
+  <li><a href="#cálculo-de-probabilidades-con-puntaje-z" id="toc-cálculo-de-probabilidades-con-puntaje-z" class="nav-link" data-scroll-target="#cálculo-de-probabilidades-con-puntaje-z">3.5. Cálculo de probabilidades con puntaje z</a></li>
+  </ul></li>
+  <li><a href="#intervalos-de-confianza" id="toc-intervalos-de-confianza" class="nav-link" data-scroll-target="#intervalos-de-confianza">4. Intervalos de confianza</a>
+  <ul class="collapse">
+  <li><a href="#cálculo-de-intervalos-de-confianza" id="toc-cálculo-de-intervalos-de-confianza" class="nav-link" data-scroll-target="#cálculo-de-intervalos-de-confianza">4.1. Cálculo de intervalos de confianza</a></li>
   </ul></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
-  <li><a href="#reporte-de-progreso" id="toc-reporte-de-progreso" class="nav-link" data-scroll-target="#reporte-de-progreso">Reporte de progreso</a></li>
-  <li><a href="#video-de-práctica" id="toc-video-de-práctica" class="nav-link" data-scroll-target="#video-de-práctica">Video de práctica</a></li>
   </ul>
 </nav>
     </div>
@@ -200,61 +249,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title display-7">Reportes dinámicos con RMarkdown</h1>
+<h1 class="title display-7">Distribución Normal e Intervalos de Confianza</h1>
 
 <div class="date-block bg-assignment text-white p-2">
-  <p class="date">Completar hasta as 11:59 PM del viernes, 11 de agosto de 2023</p>
+  <p class="date">Completar hasta as 11:59 PM del martes, 27 de agosto de 2024</p>
 </div>
 </header>
 
-
 <section id="objetivo-de-la-práctica" class="level1">
 <h1>Objetivo de la práctica</h1>
-<p>El objetivo de esta guía práctica es familiarizarnos con las herramientas fundamentales para crear documentos dinámicos que nos permitan combinar texto y análisis (código) en un único reporte utilizando RMarkdown.</p>
-<p>En detalle, aprenderemos:</p>
+<p>El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, además del cálculo de intervalos de confianza.</p>
+<p>En detalle, aprenderemos y recordaremos:</p>
 <ol type="1">
-<li>Qué es la reproducibilidad y un flujo de trabajo reproducible</li>
-<li>Qué es escritura abierta con Markdown</li>
-<li>Qué es RMarkdown y cómo generar reportes dinámicos</li>
+<li>Los conceptos de promedio y desviación estándar</li>
+<li>Qué es la probabilidad y su aplicación para estadística</li>
+<li>Qué es la distribución normal</li>
+<li>Cómo calcular e interpretar intervalos de confianza</li>
 </ol>
-</section>
-<section id="reproducibilidad" class="level1">
-<h1>1. Reproducibilidad</h1>
-<p>La <strong>reproducibilidad</strong> en ciencias sociales es esencial para garantizar resultados confiables y evitar casualidades. Imagina presentar hallazgos emocionantes en una conferencia y que te pidan que demuestres cómo llegaste a esos resultados. ¡La reproducibilidad se convierte en tu mejor amiga o peor enemiga en ese momento!</p>
-<p><img src="../files/flujo-herramientas.png" class="img-fluid"></p>
-<p>Cuando un estudio es reproducible, <strong>significa que has detallado claramente tu proceso de investigación para que cualquiera pueda seguirlo y obtener los <em>mismos resultados</em></strong>. Esto no solo genera confianza en tu trabajo, sino que permite a otros construir sobre tus hallazgos y contribuir al conocimiento colectivo.</p>
-<p><img src="../files/reproducibility.jpg" class="img-fluid"></p>
-<p>¿Cómo organizamos <strong>un proyecto reproducible</strong>? lo primero es definir una estructura de proyecto autocontenido:</p>
-<ol type="1">
-<li>En este curso trabajaremos con un flujo de trabajo reproducible, basado en el sistema <a href="https://lisa-coes.com/ipo-repro/">IPO</a>. <strong>IPO</strong> es un protocolo de estructura digital de carpetas que permite organizar, procesar y documentar los datos de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../files/ipo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ol start="2" type="1">
-<li>¿Y cómo lo hacemos? Mediante los <strong>Rproject</strong>. Estos <a href="https://descriptiva-facso.netlify.app/content/01-content">ya los conocemos</a>, y son la raíz de nuestro proyecto que articula o abraza (como un pulpo) los demás componentes.</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../files/ipo-rproj.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
-</figure>
-</div>
-</div>
+<section id="librerías" class="level2">
+<h2 class="anchored" data-anchor-id="librerías">Librerías</h2>
+<p>Cargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-1_502a94a4fa0ca35b029e8a5df2a186f1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># para sintaxis</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               ggplot2,   <span class="co"># para gráficos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               car,       <span class="co"># para recodificar</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               psych,     <span class="co"># para analizar datos</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               sjmisc,    <span class="co"># para analizar datos</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               srvyr,     <span class="co"># para estimación de IC y ponderadores</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               Publish)   <span class="co"># para IC)    </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())       <span class="co"># para limpar el entonrno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="escritura-abierta-markdown" class="level1">
-<h1>2. Escritura abierta (Markdown)</h1>
-<p>Probablemente, el programa que más se ha utilizado para la escritura sea Microsoft Word, desde pregrado hasta el mundo profesional.</p>
-<p><img src="../files/word.png" class="img-fluid"></p>
-<p>Aunque útil, este procesador de texto <strong>tiene diversas barreas</strong>, ya sea de <em>pago/licencias</em>, problemas de <em>versionamiento</em> (difícil saber quién hizo qué) y no permiten <em>reproducibilidad</em> (tenemos que copiar y pegar). Aquí entra el <strong>texto plano</strong>.</p>
+</section>
+<section id="promedio-y-desviación-estándar" class="level1">
+<h1>1. Promedio y desviación estándar</h1>
+<p>El <em>promedio</em> y la <em>desviación estándar</em> son conceptos fundamentales para continuar hacia la estadística inferencial. Repasemos estos conceptos mediante un ejercicio con datos simulados.</p>
+<p>Primero, generaremos un vector de 100 valores aleatorios con <span class="math inline">\(\mu = 5\)</span> y <span class="math inline">\(\sigma = 2\)</span>, y lo visualizaremos con la función <code>print</code>.</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-2_56f3994e42070a184d0ca5732b5a529e">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Fijar la semilla para reproducibilidad</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vector) <span class="co"># Ver el vector generado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 3.8790487 4.5396450 8.1174166 5.1410168 5.2585755 8.4301300 5.9218324
+  [8] 2.4698775 3.6262943 4.1086761 7.4481636 5.7196277 5.8015429 5.2213654
+ [15] 3.8883177 8.5738263 5.9957010 1.0667657 6.4027118 4.0544172 2.8643526
+ [22] 4.5640502 2.9479911 3.5422175 3.7499215 1.6266134 6.6755741 5.3067462
+ [29] 2.7237261 7.5076298 5.8529284 4.4098570 6.7902513 6.7562670 6.6431622
+ [36] 6.3772805 6.1078353 4.8761766 4.3880747 4.2390580 3.6105860 4.5841654
+ [43] 2.4692073 9.3379119 7.4159240 2.7537828 4.1942303 4.0666893 6.5599302
+ [50] 4.8332619 5.5066370 4.9429065 4.9142591 7.7372046 4.5484580 8.0329412
+ [57] 1.9024944 6.1692275 5.2477085 5.4318831 5.7592790 3.9953531 4.3335852
+ [64] 2.9628492 2.8564175 5.6070573 5.8964196 5.1060085 6.8445349 9.1001694
+ [71] 4.0179377 0.3816622 7.0114770 3.5815985 3.6239828 7.0511427 4.4304540
+ [78] 2.5585646 5.3626070 4.7222173 5.0115284 5.7705608 4.2586799 6.2887531
+ [85] 4.5590269 5.6635639 7.1936780 5.8703630 4.3481368 7.2976152 6.9870077
+ [92] 6.0967939 5.4774635 3.7441878 7.7213049 3.7994808 9.3746660 8.0652213
+ [99] 4.5285993 2.9471582</code></pre>
+</div>
+</div>
+<p>¿Cómo se vería la distribución de este vector aleatorio? Primero realizaremos un gráfico de histograma con la función <code>hist</code> y luego uno de cajas con la función <code>boxplot</code>.</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-3_99b63d00e2682f4c6523eee030afcecc">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(vector,<span class="at">main=</span><span class="st">"Histograma del Vector"</span>,<span class="at">xlab=</span><span class="st">"Valor"</span>,<span class="at">ylab=</span><span class="st">"Frecuencia"</span>,<span class="at">col=</span><span class="st">"cyan4"</span>,<span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-practico_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-4_9efd73073333596a398286d0c942421d">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(vector,<span class="at">main=</span><span class="st">"Diagrama de Caja del Vector aleatorio"</span>,<span class="at">ylab=</span><span class="st">"Valor"</span>,<span class="at">col=</span><span class="st">"cyan3"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-practico_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ahora, calculamos la media y la desviación estándar del vector:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-5_627732ada7b390b9c6a78d1d6b2025fb">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>desv_estandar <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media:"</span>, media, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Media: 5.180812 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Desviación Estándar:"</span>, desv_estandar, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Desviación Estándar: 1.825632 </code></pre>
+</div>
+</div>
+<p>La media, que es una medida de tendencia central, nos presenta un valor que resume nuestros datos aproximándonos al “centro” de la distribución. Y la desviación estándar es una medida de dispersión que nos presenta un valor que resume nuestros datos en cuanto a qué tan “dispersos” se encuentran.</p>
+<p>En el caso de nuestro vector, creado con datos aleatorios, la media <span class="math inline">\(\bar{x} = 5,18\)</span> nos muestra que el promedio de los datos se encuentra en torno a 5,2.</p>
+<p>Ahora, recordemos la fórmula de la desviación estándar:</p>
+<p><span class="math display">\[
+s = \sqrt{\frac{\sum_{i=1}^{n} (x_i-\bar{x})^2 }{N-1}}
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(N\)</span> es el tamaño del vector,</p></li>
+<li><p><span class="math inline">\(x_i\)</span> son los valores individuales del vector,</p></li>
+<li><p><span class="math inline">\(\bar{x}\)</span> es la media del vector.</p></li>
+</ul>
+<p>La desviación estándar corresponde, entonces, a un promedio de lo que cada valor se aleja del promedio del vector. En el caso de nuestro vector, <span class="math inline">\(s = 1,82\)</span> nos muestra que en promedio los datos se alejan 1,82 puntos del promedio.</p>
+<p>La desviación estándar es un concepto clave para Inferencia Estadística.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -265,282 +361,290 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El texto plano:</p>
+<p>Antes de seguir, recordemos que…</p>
+<p>Llamamos <strong>inferencia estadística</strong> al ejercicio de extrapolar determinadas estimaciones (estadísticos) de una muestra a una población más grande (parámetros). En concreto, es el proceso de realizar conclusiones o predicciones sobre una población a partir de una muestra o subconjunto de esa población.</p>
+<p><img src="../files/INFERENCIA.jpg" class="img-fluid"></p>
+<p>La <strong>probabilidad de error</strong> indica en qué medida nos estamos equivocando (o estamos dispuestos a estar equivocados) en tratar de extrapolar una estimación muestral a la población.</p>
+</div>
+</div>
+</section>
+<section id="probabilidad" class="level1">
+<h1>2. Probabilidad</h1>
+<p>Para pensar en la idea de probabilidad realicemos la tarea propuesta en la <a href="../content/02-content.html">Clase de Inferencia 1</a>. En esta tarea se buscaba generar los resultados posibles al lanzar dos dados. Primero se busca sumar los resultados entregados por ambos dados, y luego promediar los resultados:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-6_f0c42c6081668717ed15ac0074763020">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar todas las combinaciones posibles de dos dados</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dado1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">6</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dado2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">times =</span> <span class="dv">6</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la suma y el promedio para cada combinación</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>suma <span class="ot">&lt;-</span> dado1 <span class="sc">+</span> dado2</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>promedio <span class="ot">&lt;-</span> suma <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un data frame con los resultados</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dado1, dado2, suma, promedio)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar el data frame</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dado1 dado2 suma promedio
+1      1     1    2      1.0
+2      1     2    3      1.5
+3      1     3    4      2.0
+4      1     4    5      2.5
+5      1     5    6      3.0
+6      1     6    7      3.5
+7      2     1    3      1.5
+8      2     2    4      2.0
+9      2     3    5      2.5
+10     2     4    6      3.0
+11     2     5    7      3.5
+12     2     6    8      4.0
+13     3     1    4      2.0
+14     3     2    5      2.5
+15     3     3    6      3.0
+16     3     4    7      3.5
+17     3     5    8      4.0
+18     3     6    9      4.5
+19     4     1    5      2.5
+20     4     2    6      3.0
+21     4     3    7      3.5
+22     4     4    8      4.0
+23     4     5    9      4.5
+24     4     6   10      5.0
+25     5     1    6      3.0
+26     5     2    7      3.5
+27     5     3    8      4.0
+28     5     4    9      4.5
+29     5     5   10      5.0
+30     5     6   11      5.5
+31     6     1    7      3.5
+32     6     2    8      4.0
+33     6     3    9      4.5
+34     6     4   10      5.0
+35     6     5   11      5.5
+36     6     6   12      6.0</code></pre>
+</div>
+</div>
+<p>Esto se puede observar de manera gráfica de la siguiente forma:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-7_c28f5e0f073df0c1e180f4d1fd4ecc27">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de frecuencias para la suma</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resultados, <span class="fu">aes</span>(<span class="at">x =</span> suma)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cyan4"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Frecuencias de la Suma"</span>, <span class="at">x =</span> <span class="st">"Suma"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-practico_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de frecuencias para los promedios</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resultados, <span class="fu">aes</span>(<span class="at">x =</span> promedio)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"cyan3"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de Frecuencias de los Promedios"</span>, <span class="at">x =</span> <span class="st">"Promedio"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-practico_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>¿Y cuál es la probabilidad de ocurrencia de cada resultaado?</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-8_b795c30f1d4526169250ecac0633a275">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular las frecuencias de cada promedio</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tabla_frecuencias <span class="ot">&lt;-</span> <span class="fu">table</span>(resultados<span class="sc">$</span>promedio)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la probabilidad de ocurrencia de cada promedio</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>probabilidades <span class="ot">&lt;-</span> tabla_frecuencias <span class="sc">/</span> <span class="fu">sum</span>(tabla_frecuencias)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear la tabla final con valores de promedios y sus probabilidades</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>tabla_final <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Promedio =</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(probabilidades)), </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Probabilidad =</span> <span class="fu">as.numeric</span>(probabilidades))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la tabla final</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tabla_final)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Promedio Probabilidad
+1       1.0   0.02777778
+2       1.5   0.05555556
+3       2.0   0.08333333
+4       2.5   0.11111111
+5       3.0   0.13888889
+6       3.5   0.16666667
+7       4.0   0.13888889
+8       4.5   0.11111111
+9       5.0   0.08333333
+10      5.5   0.05555556
+11      6.0   0.02777778</code></pre>
+</div>
+</div>
+<p>La ocurrencia de algunos eventos (como la suma o promedio de dos dados) tienen una probabilidad determinada, lo que genera una distribución teórica de probabilidad.</p>
+<p>Si repito un evento aleatorio (ej: sacar muestras repetidas de dos dados y promediarlos) obtengo la distribución empírica de probabilidad (de frecuencias de los eventos).</p>
+<p>De acuerdo con la <em>ley de los grandes números</em>, el promedio empírico convergerá al teórico a medida que aumenta el número de repeticiones. Eso podemos observarlo:</p>
+</section>
+<section id="distribución-normal" class="level1">
+<h1>3. Distribución Normal</h1>
+<section id="curvas-de-distribución" class="level2">
+<h2 class="anchored" data-anchor-id="curvas-de-distribución">3.1. Curvas de distribución</h2>
+<p>Por <strong>distribución</strong> nos referimos al conjunto de todos los valores posibles de una variable y las frecuencias (o probabilidades) con las que se producen.</p>
+<p>Existen <strong>distribuciones empíricas</strong> y <strong>distribuciones teóricas</strong>, en donde:</p>
 <ul>
-<li>es un tipo de texto que se puede leer independiente del lector que use</li>
-<li>es abierto y gratuito</li>
-<li>permite combinar texto y análisis en un solo documento <em>(reproducibilidad)</em></li>
-<li>foco en el contenido, luego el formato</li>
-<li>distintas opciones de salida (pdf, html, word, etc.)</li>
+<li>las primeras reflejan la distribución de los valores que asume la variable en un grupo <em>concreto</em> a partir de una observación.</li>
+<li>las segundas son una <em>función matématica</em> que expresan la distribución de un conjunto de números mediante su <em>probabilidad de ocurencia</em>.</li>
 </ul>
-</div>
-</div>
-<p><a href="https://daringfireball.net/projects/markdown/">Markdown</a> es una clase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Por ejemplo, poder hacer cursivas, negritas, incorporar links, etc.</p>
-<section id="formatos-básicos-de-markdown" class="level2">
-<h2 class="anchored" data-anchor-id="formatos-básicos-de-markdown">Formatos básicos de Markdown</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Escribe…</th>
-<th>…o…</th>
-<th>…para obtener</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><pre><code>Algo de texto en el párrafo.
-
-Más texto
-espacio entre lineas.</code></pre></td>
-<td></td>
-<td><p>Algo de texto.</p>
-<p>Algo de texto en el párrafo. Siempre utilizando espacios para dividir párrafos</p></td>
-</tr>
-<tr class="even">
-<td><code>`*Cursivas*`</code></td>
-<td><code>`_Cursivas_`</code></td>
-<td><em>Cursivas</em></td>
-</tr>
-<tr class="odd">
-<td><code>`**Negrita**`</code></td>
-<td><code>`__Negrita__`</code></td>
-<td><strong>Negrita</strong></td>
-</tr>
-<tr class="even">
-<td><code># Título 1</code></td>
-<td></td>
-<td><h1 id="título-1">Título 1</h1></td>
-</tr>
-<tr class="odd">
-<td><code>## Título 2</code></td>
-<td></td>
-<td><h2 id="título-2" class="anchored">Título 2</h2></td>
-</tr>
-<tr class="even">
-<td><code>### Título 3</code></td>
-<td></td>
-<td><h3 id="título-3" class="anchored">Título 3</h3></td>
-</tr>
-<tr class="odd">
-<td>(puedes llegar hasta un título N° 6 con <code>######</code>)</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><code>`[Link text](http://www.example.com)`</code></td>
-<td></td>
-<td><a href="http://www.example.com">Link text</a></td>
-</tr>
-<tr class="odd">
-<td><code>`![Image caption](/path/to/image.png)`</code></td>
-<td></td>
-<td><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../files/img-144.png" class="img-fluid figure-img"></p>
-<figcaption>Class logo</figcaption>
-</figure>
-</div></td>
-</tr>
-<tr class="even">
-<td>` ```Inline code``` ` with backticks</td>
-<td></td>
-<td><code>Inline code</code> with backticks</td>
-</tr>
-<tr class="odd">
-<td><code>&gt; Citas</code></td>
-<td></td>
-<td><blockquote class="blockquote">
-<p>Citas</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>- Cosas en
-- listas
-- desordenadas</code></pre></td>
-<td><pre><code>* Cosas en
-* listas
-* desordenadas</code></pre></td>
-<td><ul>
-<li><p>Cosas en</p></li>
-<li><p>listas</p></li>
-<li><p>desordenadas</p></li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td><pre><code>1. Cosas en
-2. listas
-3. ordenadas</code></pre></td>
-<td><pre><code>1) Cosas en
-2) listas
-3) ordenadas</code></pre></td>
-<td><ol type="1">
-<li><p>Cosas en</p></li>
-<li><p>listas</p></li>
-<li><p>ordenadas</p></li>
-</ol></td>
-</tr>
-<tr class="even">
-<td><pre><code>Línea horizontal
-
----</code></pre></td>
-<td><pre><code>Línea horizontal
-
-***</code></pre></td>
-<td><p>Línea horizontal</p>
-<hr></td>
-</tr>
-</tbody>
-</table>
+<p>Estas últimas son también llamadas <strong>curvas de distribución</strong>.</p>
 </section>
-</section>
-<section id="documentos-dinámicos-rmarkdown" class="level1">
-<h1>3. Documentos dinámicos (RMarkdown)</h1>
-<p><a href="https://rmarkdown.rstudio.com/">R Markdown</a> es un lenguaje que combina texto plano (Markdown) y código (R). Al mezclar ambos mundos en un solo documento <em>.Rmd</em>, permite la integración simúltanea de texto y análisis (código) a nuestros reportes. Esto es lo que se conoce como <strong>documentos dinámicos</strong>.</p>
-<p>Por ejemplo, este sitio web está escrito con <code>R Markdown</code>, lo que nos permite demostrar cómo combinar código de <code>R</code> (gráficos, tablas y otros resultados) con <code>texto plano</code>, <em>generando documentos reproducibles.</em></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../files/rm-logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>En el ambiente de RStudio, <code>R Markdown</code> es una librería de R que provee de una serie de herramientas para generar documentos dinámicos y publicarlos.</p>
-<p>¡Veamos cómo se hace!</p>
-</section>
-<section id="generación-de-reporte" class="level1">
-<h1>4. Generación de reporte</h1>
-<section id="paso-1-instalar-librerías" class="level3">
-<h3 class="anchored" data-anchor-id="paso-1-instalar-librerías">Paso 1: Instalar librerías</h3>
-<p>El primero paso para inciar un documento <code>R Markdown</code> en R Studio es instalar (o actualizar según sea el caso) la librería asociada. Al instalarla, también se descargan otras dependencias que permiten trabajar y publicar con <code>RMarkdown</code> (como knitr y también tinitex, que permite generación documentos pdf vía Latex).</p>
-<p>Pero primero, llamemos a un viejo conocido: el paquete <code>pacman</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacman"</span>) <span class="co"># en caso de no tener pacman instalado</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Ahora, instalemos las librerías para generar nuestro archivo .Rmd</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(rmarkdown,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>               knitr)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="paso-2-crear-un-nuevo-archivo-en-rmarkdown" class="level3">
-<h3 class="anchored" data-anchor-id="paso-2-crear-un-nuevo-archivo-en-rmarkdown">Paso 2: Crear un nuevo archivo en Rmarkdown</h3>
-<ol type="1">
-<li><p>Una vez cargados los paquetes deben dirigirse a <code>File &gt; New File &gt; R Markdown</code>.</p></li>
-<li><p>Luego deben darle un título, poner su nombre y especificar un formato de salida, ya sea en <strong>HTML</strong>, <strong>PDF</strong> o <strong>Word</strong>.</p></li>
-</ol>
-<p><img src="../files/rm-jc.gif" class="img-fluid"></p>
-<ol start="3" type="1">
-<li>Se creará un archivo con un <em>YAML</em> , donde se especifican opciones generales del documento entre tres guiones (—); y un chunk, o trozo de código.</li>
-</ol>
-<p><img src="../files/YAML.png" class="img-fluid"></p>
-<p>El <em>YAML</em> es muy importante, y consta de tres partes mínimas: título, autor y opción de formato de salida. <a href="https://bookdown.org/yihui/rmarkdown/">Hay más opciones</a> que iremos viendo durante el curso.</p>
-<ol start="4" type="1">
-<li>Ahora, ya pueden comenzar a escribir sus informes en <code>RMarkdown</code>. Veamos otras configuraciones.</li>
-</ol>
-</section>
-<section id="paso-3-crear-el-archivo-con-formato-desde-el-.rmd" class="level3">
-<h3 class="anchored" data-anchor-id="paso-3-crear-el-archivo-con-formato-desde-el-.rmd">Paso 3: Crear el archivo con formato desde el .Rmd</h3>
-<p>Para generar el documento, en la salida que especifiquemos, presionamos el botón de <code>Knitr</code>. El <code>Knitear</code> permite <em>compilar</em> el documento <em>tejiendo o uniendo</em> el contenido de manera <strong>secuencial</strong>. Combinará el texto plano y el código de R (en chunks) a partir de las instrucciones que le dimos en el <em>YAML</em>.</p>
-<p><img src="../files/knit-button.png" class="img-fluid"></p>
-<p>Al <code>knitear</code> el documento, le estamos dando la instrucción a R de que pase este archivo Markdown (.md) por un convertidor universal llamado <a href="https://pandoc.org/">pandoc</a>. En la práctica, este proceso se le conoce como <em>renderizar</em>.</p>
-<p><img src="../files/pandoc.png" class="img-fluid"></p>
-<p>El resultado aparece en el visor (Viewer) de R, o se puede seleccionar otra opción de visualización desde la rueda de configuración al lado del botón <code>knitr</code>.</p>
-<p><img src="../files/render.png" class="img-fluid"></p>
-<p>El documento queda grabado como archivo (ej: probando.html) en el mismo directorio del archivo .Rmd</p>
-</section>
-<section id="paso-4-opciones-de-chunks" class="level3">
-<h3 class="anchored" data-anchor-id="paso-4-opciones-de-chunks">Paso 4: Opciones de chunks</h3>
-<p>La manera en que integramos código de R en un archivo <code>RMarkdown</code> es mediante <code>chunks</code>, que son <em>trozos</em> de código dentro de nuestra hoja. Estos permiten hacer análisis estadísticos dentro del documento visualizando los resultados en el documento final.</p>
-<p>Los chunks se ven así dentro del .Rmd:</p>
-<pre><code># El codigo va aquí
-
-````</code></pre>
-<section id="añadir-chunks" class="level4">
-<h4 class="anchored" data-anchor-id="añadir-chunks">4.1 Añadir Chunks</h4>
-<p>Hay tres formas de insertar chunks:</p>
-<ol type="1">
-<li><p>Pulsar <code>⌘⌥I</code> en macOS o <code>Control + Alt + I</code> en Windows</p></li>
-<li><p>Pulsa el botón “Insert” en la parte superior de la ventana del editor</p></li>
-</ol>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="../files/insertchunk.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ol start="3" type="1">
-<li>Escribirlo manualmente (no recomendado)</li>
-</ol>
-</section>
-<section id="nombrar-chunks" class="level4">
-<h4 class="anchored" data-anchor-id="nombrar-chunks">4.2 Nombrar chunks</h4>
-<p>Se puede añadir nombres a los chunks para hacer más fácil la navegación por el documento. Si no incluyes un nombre, el chunk seguirá apareciendo, pero no sabrás lo que hace.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="../files/chunk-toc.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Para añadir un nombre, inclúyelo inmediatamente después de la <code>{r</code> en la primera línea del chunk. Los nombres no pueden contener espacios, pero sí guiones bajos y guiones.</p>
-<p>Importante: <strong>Todos los nombres de chunk de tu documento deben ser únicos.</strong></p>
-<pre><code>```{r nombre-chunk}
-# El codigo va aquí
-
-````</code></pre>
-</section>
-<section id="opciones-de-chunks" class="level4">
-<h4 class="anchored" data-anchor-id="opciones-de-chunks">4.3 Opciones de chunks</h4>
-<p>Hay distintas opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">Guía de referencia de RMarkdown</a> o en el <a href="https://yihui.org/knitr/options/">sitio web de <strong>knitr</strong></a>.</p>
-<p>Las opciones van dentro de la sección <code>{r}</code> del chunk:</p>
-<pre><code>```{r nombre-chunk, message = F, echo = F}
-# El codigo va aquí
-
-````</code></pre>
-<p>Las opciones de chunk más comunes son estas:</p>
+<section id="distribución-normal-1" class="level2">
+<h2 class="anchored" data-anchor-id="distribución-normal-1">3.2. Distribución Normal</h2>
+<p>Es una distribución teórica que corresponde a una curva que representa la distribución de los casos de la población en torno al promedio y con una varianza conocida.</p>
 <ul>
-<li><p><code>echo=FALSE</code>: El código no se muestra en el documento final, pero los resultados si</p></li>
-<li><p><code>message=FALSE</code>: Se omiten los mensajes que genera R (como todas las notas que aparecen después de cargar un paquete)</p></li>
-<li><p><code>warning=FALSE</code>: Se omiten las advertencias que genera R</p></li>
-<li><p><code>include=FALSE</code>: El chunk se sigue ejecutando, pero el código y los resultados no se incluyen en el documento final</p></li>
+<li>Simétricas y con un solo punto de elevación</li>
+<li>La pendiente es más fuerte cerca del centro, y se suaviza hacia los extremos</li>
+<li>Coinciden al centro el promedio, la mediana y la moda</li>
+<li>La desviación estandar expresa su dispersión.</li>
+<li>Establece áreas o <em>proporciones</em> bajo la curva en base a desviaciones estándar del promedio.</li>
 </ul>
-<p>Atajos de configuración de chunk: dar clic en el pequeño icono de engranaje en la esquina superior derecha de cualquier chunk:</p>
-<div class="cell">
+</section>
+<section id="distribución-normal-estándar" class="level2">
+<h2 class="anchored" data-anchor-id="distribución-normal-estándar">3.3. Distribución Normal Estándar</h2>
+<p>La distribución normal estándar es una distribución normal con una media de 0 y una desviación estándar de 1.</p>
+<p><img src="../slides/img/norm2.png" class="img-fluid"></p>
+</section>
+<section id="puntaje-z-y-estandarización-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="puntaje-z-y-estandarización-de-variables">3.4. Puntaje Z y estandarización de variables</h2>
+<p>Al estandarizar las variables (como en la Curva Normal Estándar) lo que hacemos es expresar el valor de una distribución en términos de desviaciones estándar basados en la distribución normal. Esto nos permite comparar distribuciones distintas.</p>
+<p>Al valor estandarizado lo llamamos <strong>puntaje Z</strong>, y corresponde a la cantidad de desviaciones estándar que nos alejamos del promedio (para cada variable con la que trabajemos).</p>
+</section>
+<section id="cálculo-de-probabilidades-con-puntaje-z" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-de-probabilidades-con-puntaje-z">3.5. Cálculo de probabilidades con puntaje z</h2>
+<p>Los valores estandarizados o puntajes Z además nos permiten conocer probabilidades.</p>
+<p>Con R es posible generar un conjunto de datos simulados con una distribución normal.</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-9_1157b6c007155867c7cc32fb7efc7de8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y_values <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x_values)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_values,y_values,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">xlab=</span><span class="st">"Valor Z"</span>,<span class="at">ylab=</span><span class="st">"Probabilidad"</span>,<span class="at">main=</span><span class="st">"Distribución Normal"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="../files/chunk-options.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
+<p><img src="01-practico_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Podemos preguntar qué parte de la curva cae por debajo de un valor particular. Por ejemplo, preguntaremos sobre el valor 0 antes de ejecutar el código. Piense ¿cuál debería ser la respuesta?</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-10_cc1115c8fc41a8c3182ceee1f6ed43a8">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
 </div>
+</div>
+<p>Por tanto, la probabilidad (en una curva normal estándar) de obtener un valor igual o menor a 0 es de 0.5, es decir, del 50%, pero ¿por qué?</p>
+<blockquote class="blockquote">
+<p>Porque como la distribución normal estándar es simétrica al rededor de cero, la probabilidad de que sea menor o igual a cero es 0.5, es decir, el 50% de la distribución está por debajo de cero y el otro 50% está por encima de cero.</p>
+</blockquote>
+<p>Eso lo podemos ver en el gráfico:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-11_883bbd07f8840d91736dc42eb58f3d59">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_values,y_values,<span class="at">type=</span><span class="st">"l"</span>,<span class="at">xlab=</span><span class="st">"Valor Z"</span>,<span class="at">ylab=</span><span class="st">"Probabilidad"</span>,<span class="at">main=</span><span class="st">"Distribución Normal"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-practico_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ahora probemos los valores Z de +1,96 y -1,96.</p>
+<p>Sabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico <span class="math inline">\(\alpha = 0,05\)</span> para una prueba de hipótesis de dos colas.</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-12_585e97c6c2addf3b15367f1645605441">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">1.96</span>, <span class="at">lower.tail=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9750021</code></pre>
+</div>
+</div>
+<p>La respuesta nos dice lo que ya sabemos: el 97,5% de la distribución normal ocurre por debajo del valor z de 1,96.</p>
+<p>Podemos agregar una línea al gráfico para mostrar dónde se usaría <code>abline</code>.</p>
+<p>El 97,5% de la distribución queda por debajo de esta línea.</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-13_07c801517fb153543f1834117cb6ee58">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_values, y_values, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">"Z value"</span>, <span class="at">ylab=</span><span class="st">"Probability"</span>, <span class="at">main=</span><span class="st">"Normal Distribution"</span>) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fl">1.96</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-practico_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>integer(0)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="intervalos-de-confianza" class="level1">
+<h1>4. Intervalos de confianza</h1>
+<p>Un intervalo de confianza es un rango dentro del cual es probable que se encuentre un parámetro poblacional con un nivel de confianza específico. Además, proporciona información sobre la precisión de nuestras estimaciones.</p>
+<p>Como vimos en la <a href="../content/04-content.html">sesión 4</a> el promedio de la muestra <span class="math inline">\(\bar{x}\)</span> se distruye normal, con un error estándar <span class="math inline">\(SE\)</span>, lo que nos permite estimar probabilidades basándonos en la curva normal.</p>
+<p>Por ejemplo, si nos desviamos <span class="math inline">\(\pm1.96SE\)</span> desde la media abarcaremos aproximadamente el 95% de los valores probables.</p>
+<p><img src="https://multivariada.netlify.app/slides/images/normal.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Nivel de confianza</strong>: Corresponde a la probabilidad de que la muestra elegida produzca un intervalo que incluya el parámetro que se está estimando (<span class="math inline">\(1-\alpha\)</span>).</p>
+<p><strong>Nivel de significacncia</strong>: Corresponde a la probabilidad de que el intervalo calculado a partir de la muestra no comprenda el parámetro de la población (<span class="math inline">\(\alpha\)</span>).</p>
+</div>
+</div>
+<section id="cálculo-de-intervalos-de-confianza" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-de-intervalos-de-confianza">4.1. Cálculo de intervalos de confianza</h2>
+<p>En el caso de nuestro vector aleatorio, un intervalo de confianza para la media se puede calcular de la siguiente manera:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-14_a986fb0b3675ee7b2c0a97f065fe7fe7">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular un intervalo de confianza para la media</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>intervalo_confianza <span class="ot">&lt;-</span> <span class="fu">t.test</span>(vector)<span class="sc">$</span>conf.int  <span class="co"># Intervalo de confianza del 95% para la media</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>intervalo_confianza</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.818567 5.543057
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>También podemos calcular intervalos de confianza para casos reales. Carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos <a href="https://www.ine.gob.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos">ESI</a> para ocupados:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-15_2e4433abfe486448ac92a7a43d3e1046">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/esi-2021-ocupados.rdata"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo.</p>
+<p>En esta guía practicaa trabajaremos sin factores de expansión o ponderadores.</p>
+</div>
+</div>
+<section id="ic-para-medias" class="level4">
+<h4 class="anchored" data-anchor-id="ic-para-medias">IC para Medias</h4>
+<p>Calculemos un intervalo de confianza para la media de ingresos de personas ocupadas:</p>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-16_a13d6a6b6c54f433805af22638158e15">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(esi<span class="sc">$</span>ing_t_p)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   vars     n     mean       sd   median  trimmed      mad min      max
+X1    1 37124 586360.4 697362.9 405347.7 474473.1 255411.6   0 38206253
+      range skew kurtosis      se
+X1 38206253   12   402.32 3619.36</code></pre>
+</div>
+</div>
+<div class="cell" data-hash="01-practico_cache/html/unnamed-chunk-17_7b1f70944cb8bcbb6542f1c6ae3a8369">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Publish<span class="sc">::</span><span class="fu">ci.mean</span>(esi<span class="sc">$</span>ing_t_p, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> mean      CI-95%               
+ 586360.41 [579266.37;593454.45]</code></pre>
+</div>
+</div>
+<p>Contamos con una media de ingresos de $586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre $579.266 y $593.454.</p>
 </section>
 </section>
 </section>
 <section id="resumen" class="level1">
 <h1>Resumen</h1>
-<p>Hoy aprendimos a generar documentos dinámicos con RMarkdown. En detalle, aprendímos:</p>
+<p>Hoy pudimos aprender y recordar:</p>
 <ol type="1">
-<li>Qué es la reproducibilidad y un flujo de trabajo reproducible</li>
-<li>Qué es escritura abierta con Markdown</li>
-<li>Qué es RMarkdown y cómo generar reportes dinámicos</li>
+<li>Los conceptos de promedio y dispersión</li>
+<li>Qué es la probabilidad y su aplicación para estadística</li>
+<li>Qué es la distribución normal</li>
+<li>Cómo calcular e interpretar intervalos de confianza</li>
 </ol>
-</section>
-<section id="reporte-de-progreso" class="level1">
-<h1>Reporte de progreso</h1>
-<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/fnoKAgHHtgAkfFiN6">aquí</a>. El plazo para contestarlo es hasta el día viernes de la semana en la que se publica la práctica correspondiente.</p>
-</section>
-<section id="video-de-práctica" class="level1">
-<h1>Video de práctica</h1>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/i8wkxc7049Q" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
 </section>
@@ -581,7 +685,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -613,50 +728,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/correlacional\.netlify\.app");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -666,17 +742,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -688,130 +755,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -855,7 +799,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -881,32 +824,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -969,18 +886,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.jc-castillo.com">Juan Castillo</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
-</div>   
+    <div class="nav-footer-left">Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.jc-castillo.com">Juan Castillo</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">
-<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/cursos-metodos-facso/correlacional">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
-</div>
+    <div class="nav-footer-right">Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/cursos-metodos-facso/correlacional">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
   </div>
 </footer>
-
 
 
 
