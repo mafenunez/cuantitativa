@@ -8,7 +8,7 @@
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Práctico 2: Intentando rechazar – Estadística Correlacional</title>
+<title>Inferencia 3: Pruebas de hipótesis – Estadística Correlacional</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,24 +58,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="..//files/logo-correlacional-transp.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//files/logo-correlacional-transp.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -134,7 +134,7 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Práctico 2: Intentando rechazar – Estadística Correlacional">
+<meta property="og:title" content="Inferencia 3: Pruebas de hipótesis – Estadística Correlacional">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site_name" content="Estadística Correlacional">
@@ -150,7 +150,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Estadística Correlacional</span>
     </a>
   </div>
@@ -161,27 +161,27 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../news/index.html"> 
+    <a class="nav-link" href="../../news/index.html"> 
 <span class="menu-text">Informaciones</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../schedule.html"> 
+    <a class="nav-link" href="../../schedule.html"> 
 <span class="menu-text">Planificación</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/index.html"> 
+    <a class="nav-link" href="../../content/index.html"> 
 <span class="menu-text">Clases</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../assignment/index.html"> 
+    <a class="nav-link" href="../../assignment/index.html"> 
 <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resource/index.html"> 
+    <a class="nav-link" href="../../resource/index.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html"> 
+    <a class="nav-link" href="../../syllabus.html"> 
 <span class="menu-text">Programa</span></a>
   </li>  
   <li class="nav-item compact">
@@ -205,14 +205,12 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link active" data-scroll-target="#ejercicio-1">Ejercicio 1</a>
-  <ul class="collapse">
-  <li><a href="#formulación-de-hipótesis" id="toc-formulación-de-hipótesis" class="nav-link" data-scroll-target="#formulación-de-hipótesis">1. Formulación de hipótesis</a></li>
-  <li><a href="#pasos-2-3-y-4-de-una-vez-con-r" id="toc-pasos-2-3-y-4-de-una-vez-con-r" class="nav-link" data-scroll-target="#pasos-2-3-y-4-de-una-vez-con-r">Pasos 2, 3 y 4 de una vez con R</a></li>
-  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación">5. Interpretación</a></li>
-  </ul></li>
-  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2">Ejercicio 2</a></li>
-  <li><a href="#ejercicio-3" id="toc-ejercicio-3" class="nav-link" data-scroll-target="#ejercicio-3">Ejercicio 3</a></li>
+  <li><a href="#objetivo-de-la-práctica" id="toc-objetivo-de-la-práctica" class="nav-link active" data-scroll-target="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+  <li><a href="#test-de-hipótesis-para-diferencia-de-medias" id="toc-test-de-hipótesis-para-diferencia-de-medias" class="nav-link" data-scroll-target="#test-de-hipótesis-para-diferencia-de-medias">Test de hipótesis para diferencia de medias</a></li>
+  <li><a href="#cálculo-paso-a-paso-de-estadístico-t" id="toc-cálculo-paso-a-paso-de-estadístico-t" class="nav-link" data-scroll-target="#cálculo-paso-a-paso-de-estadístico-t">Cálculo paso a paso de estadístico t</a></li>
+  <li><a href="#reporte-de-progreso" id="toc-reporte-de-progreso" class="nav-link" data-scroll-target="#reporte-de-progreso">Reporte de progreso</a></li>
+  <li><a href="#video-de-práctica" id="toc-video-de-práctica" class="nav-link" data-scroll-target="#video-de-práctica">Video de práctica</a></li>
+  <li><a href="#foro" id="toc-foro" class="nav-link" data-scroll-target="#foro">Foro</a></li>
   </ul>
 </nav>
     </div>
@@ -220,38 +218,122 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title display-7">Práctico 2: Intentando rechazar</h1>
+<h1 class="title display-7">Inferencia 3: Pruebas de hipótesis</h1>
 
 <div class="date-block bg-assignment text-white p-2">
-  <p class="date">Sesión del martes, 3 de septiembre de 2024</p>
+  <p class="date">Sesión del martes, 17 de octubre de 2023</p>
 </div>
 </header>
 
 
-<p><img src="https://correlacional.netlify.app/slides/img/rechazar_meme.png" class="img-fluid"></p>
-<p>En este práctico vamos a realizar una serie de ejercicios de inferencia, tomando como base todos los contenidos de la <strong>Unidad 1</strong></p>
-<section id="ejercicio-1" class="level1">
-<h1>Ejercicio 1</h1>
-<p>Este ejercicio está basado en un ejemplo de clases, y está desarrollado para que sirva de ejemplo a los siguientes ejercicios que deben ser desarrollados de manera autónoma.</p>
-<p>La pregunta de investigaciónwa: ¿Es el salario de los hombres mayor que el de las mujeres? Para poder contrastar esta hipótesis vamos a hacer un subset de datos de la CASEN 2022 de 1500 casos:</p>
+<section id="objetivo-de-la-práctica" class="level1">
+<h1>Objetivo de la práctica</h1>
+<p>El objetivo de esta guía práctica es continuar profundizando en la inferencia estadística, en particular en contráste de hipótesis de diferencia de medias. Este tema se desarrolló en la <a href="../../content/07-content.html">sesión 7</a>.</p>
+</section>
+<section id="test-de-hipótesis-para-diferencia-de-medias" class="level1">
+<h1>Test de hipótesis para diferencia de medias</h1>
+<p>Primero, carguemos las librerías necesarias:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(sjmisc, haven, dplyr, stargazer, kableExtra)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../slides/casen2022_inf2.Rdata"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>) <span class="co"># para evitar notación en los ceros</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>) <span class="co"># para fijar el resultado aleatorio</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>casen_1500 <span class="ot">&lt;-</span>  <span class="co">#objeto generado con 1500 casos</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  casen2022_inf <span class="sc">%&gt;%</span> <span class="co"># a partir de esta base de datos (CASEN completa)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(salario,sexo)  <span class="sc">%&gt;%</span> <span class="co"># seleccion de variabls</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1500</span>) <span class="co"># número de casos a seleccionar</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>casen_1500 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(casen_1500) <span class="co"># quitar valores perdidos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,  <span class="co"># colección de paquetes para manipulación de datos</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               car,        <span class="co"># para recodificar</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               psych,      <span class="co"># para analizar datos</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               sjmisc,     <span class="co"># para analizar datos</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              <span class="co"># srvyr,      # para estimación de IC y ponderadores</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Publish,    # para IC</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               kableExtra) <span class="co"># para presentación de tablas</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>::: <strong>Los # en el código</strong> En este código y siguientes aparecen varios #, que son una función de comentarios en R. No son necesarios para que el código funcione, pero son útiles en este caso para poder explicar que función cumple cada sección del código. Todo lo que aparece a la derecha de un # no es leído por el programa. :::</p>
-<p>Generamos tabla para visualizar la distribución de los datos</p>
+<p>Vamos a testear la siguiente hipótesis:</p>
+<ul>
+<li><span class="math inline">\(H_a\)</span>: existen diferencias de edad entre hombres y mujeres</li>
+</ul>
+<p>Y su correspondiente hipótesis nula:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: no existen diferencias de edad entre hombres y mujeres</li>
+</ul>
+<p>Generación de datos (muestra_3) y descriptivos:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>casen_1500<span class="sc">%&gt;%</span> <span class="co"># se especifica la base de datos</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">group_by</span>(<span class="at">sexo=</span>sjlabelled<span class="sc">::</span><span class="fu">as_label</span>(sexo)) <span class="sc">%&gt;%</span> <span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Obs.=</span><span class="fu">n</span>(),<span class="at">Promedio=</span><span class="fu">mean</span>(salario, <span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">SD=</span><span class="fu">sd</span>(salario, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co"># se agregan las operaciones a presentar en la tabla</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(, <span class="at">format =</span> <span class="st">"markdown"</span>) <span class="co"># se genera la tabla</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">edad=</span><span class="fu">c</span>(<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">23</span>,<span class="dv">32</span>,<span class="dv">24</span>,<span class="dv">25</span>,<span class="dv">29</span>,<span class="dv">31</span>,<span class="dv">32</span>,<span class="dv">31</span>),</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sexo=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(muestra_3<span class="sc">$</span>edad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 29.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>muestra_3<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(muestra_3<span class="sc">$</span>sexo)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media=</span><span class="fu">mean</span>(edad)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sexo  media
+  &lt;fct&gt; &lt;dbl&gt;
+1 1      32.3
+2 2      25.2</code></pre>
+</div>
+</div>
+<p>Gráfico descriptivo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media=</span><span class="fu">mean</span>(edad)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>sexo, <span class="at">y=</span>media)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">25</span>,<span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Medias de edad para hombres y mujeres, muestra 3"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> <span class="st">"Sexo"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="st">"Media edad"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-practico_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Prueba t de diferencia de medias:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(edad <span class="sc">~</span> sexo,<span class="at">data=</span>muestra_3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  edad by sexo
+t = 4.8799, df = 4.33, p-value = 0.006658
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+  3.171534 10.995133
+sample estimates:
+mean in group 1 mean in group 2 
+       32.33333        25.25000 </code></pre>
+</div>
+</div>
+<p>Lo principal en este output es el <strong>valor p</strong>, que es la probabilidad de error de rechazar la hipótesis nula. En este caso, <span class="math inline">\(p = 0.006658\)</span>, que es menor a un nivel de confianza convencional como <span class="math inline">\(\alpha = 0.05\)</span>, incluso es menor que un nivel más exigente como el <span class="math inline">\(\alpha = 0.01\)</span>. Por lo tanto, rechazamos la hipótesis nula de igualdad de medias con un 99% de confianza, hay suficiente evidencia estadística para sostener que el promedio de edad de hombres y mujeres es diferente.</p>
+</section>
+<section id="cálculo-paso-a-paso-de-estadístico-t" class="level1">
+<h1>Cálculo paso a paso de estadístico t</h1>
+<p>En esta última sección se realizará el cálculo paso a paso del estadístico <span class="math inline">\(t\)</span> del ejemplo anterior para demostrar cómo se origina la información que aparece en el output de R.</p>
+<p>Recordemos la fórmula de t:</p>
+<p><span class="math inline">\(t=\frac{(\bar{x}_1-\bar{x}_2)}{\sqrt{\frac{s_1²}{\sqrt{n_1}}+\frac{s_2²}{\sqrt{n_2}} }}\)</span></p>
+<p>Donde en la parte superior se encuentra la diferencia de medias entre dos grupos, y en la inferior el error estándar de t.</p>
+<p>Pasos:</p>
+<ol type="1">
+<li>Se calcula la diferencia de medias</li>
+<li>Se calcula el error estándar de la diferencia de medias</li>
+<li>Cálculo del valor t</li>
+<li>Se fija un <span class="math inline">\(\alpha\)</span> (usualmente 0.05) para rechazar <span class="math inline">\(H_0\)</span>, y se busca el valor crítico asociado a este <span class="math inline">\(\alpha\)</span> (en una tabla de valores t, o en R)</li>
+<li>Si nuestro t es superior al valor crítico, se rechaza <span class="math inline">\(H_0\)</span></li>
+</ol>
+<p><strong>Paso 1</strong>: Calculamos la diferencia de medias <span class="math inline">\((\bar{x}_1-\bar{x}_2)\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>muestra_3 <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">group_by</span>(<span class="at">sexo=</span>sjlabelled<span class="sc">::</span><span class="fu">as_label</span>(sexo)) <span class="sc">%&gt;%</span> <span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Obs.=</span><span class="fu">n</span>(),<span class="at">Promedio=</span><span class="fu">mean</span>(edad, <span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">SD=</span><span class="fu">sd</span>(edad, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co"># se agregan las operaciones a presentar en la tabla</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"markdown"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -264,83 +346,73 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1. Hombre</td>
-<td style="text-align: right;">782</td>
-<td style="text-align: right;">746620.7</td>
-<td style="text-align: right;">828509.6</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">32.33333</td>
+<td style="text-align: right;">1.505545</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2. Mujer</td>
-<td style="text-align: right;">662</td>
-<td style="text-align: right;">605775.6</td>
-<td style="text-align: right;">478087.6</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">25.25000</td>
+<td style="text-align: right;">2.629956</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<p>Ahora vamos con los <a href="https://correlacional.netlify.app/slides/05-inferencia4.html#33">5 pasos de la inferencia</a></p>
-<section id="formulación-de-hipótesis" class="level2">
-<h2 class="anchored" data-anchor-id="formulación-de-hipótesis">1. Formulación de hipótesis</h2>
-<p>El primer aspecto a establecer es el tipo de hipótesis a formular: ¿Direccional o no direccional? En este caso, la pregunta indica una direccionalidad (“mayor que”), por lo tanto corresponde a una hipótesis direccional. Si hubiera sido una pregunta que hiciera referencia simplemente a diferencias (“¿Es el salario de los hombres distinto al de las mujeres?) correspondería a una hipótesis no direccional.</p>
-<p>La hipótesis general es que el salario de los hombres es mayor que el de las mujeres. Pasando a lenguaje de hipótesis, esto se plantea como:</p>
-<p>Hipótesis alternativa:</p>
-<ul>
-<li><span class="math inline">\(H_A\)</span>: Promedio salarial hombres ( <span class="math inline">\(\bar{X}_{hombres}\)</span>) - Promedio salarial mujeres ( <span class="math inline">\(\bar{X}_{mujeres}\)</span>) &gt; 0</li>
-</ul>
-<p>Hipótesis nula:</p>
-<ul>
-<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\bar{X}_{hombres} - \bar{X}_{mujeres} \leq 0\)</span></li>
-</ul>
-</section>
-<section id="pasos-2-3-y-4-de-una-vez-con-r" class="level2">
-<h2 class="anchored" data-anchor-id="pasos-2-3-y-4-de-una-vez-con-r">Pasos 2, 3 y 4 de una vez con R</h2>
-<p>En clases vimos que los pasos 2, 3 y 4 corresponden a:</p>
-<ol start="2" type="1">
-<li><p>Obtener error estándar y estadístico de prueba empírico correspondiente (ej: Z o t)</p></li>
-<li><p>Establecer la probabilidad de error <span class="math inline">\(\alpha\)</span> (usualmente 0.05) y obtener valor crítico (teórico) de la prueba correspondiente</p></li>
-<li><p>Cálculo de intervalo de confianza / contraste valores empírico/crítico</p></li>
-</ol>
-<p>Esta secuencia de pasos tiene un sentido pedagógico para poder entender cómo finalmente se llega a interpretar el contraste de hipótesis en el paso 5. Pero en análisis de datos, luego de establecer las hipótesis nos vamos directamente al código que nos permite obtener de una vez toda la información de los pasos 2, 3 y 4:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_ej1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  salario <span class="sc">~</span> sexo, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> casen_1500, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative=</span><span class="st">"greater"</span>, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal=</span><span class="cn">TRUE</span>, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>test_ej1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dif_medias <span class="ot">&lt;-</span> <span class="fl">32.333</span> <span class="sc">-</span> <span class="fl">25.250</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dif_medias</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-    Two Sample t-test
-
-data:  salario by sexo
-t = 3.8631, df = 1442, p-value = 0.00005846
-alternative hypothesis: true difference in means between group 1 and group 2 is greater than 0
-95 percent confidence interval:
- 80836.78      Inf
-sample estimates:
-mean in group 1 mean in group 2 
-       746620.7        605775.6 </code></pre>
+<pre><code>[1] 7.083</code></pre>
 </div>
 </div>
-<p>También podemos visualizarlo en una tabla más amable:</p>
+<p><strong>Paso 2</strong>: Calculamos el error estándar de la diferencia de medias: <span class="math inline">\(\sqrt{\frac{s_1²}{\sqrt{n_1}}+\frac{s_2²}{\sqrt{n_2}}}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(rempsyc, broom)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tabla_ej1 <span class="ot">&lt;-</span> <span class="fu">tidy</span>(test_ej1)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#nice_table(tabla_ej1, broom = "t.test") # no funciona al renderizar en Quarto, si en R ... es un issue por lo visto, algunos foros de esto</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>muestra_3h <span class="ot">&lt;-</span> muestra_3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>muestra_3m <span class="ot">&lt;-</span> muestra_3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="dv">2</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>s_h <span class="ot">&lt;-</span> <span class="fu">sd</span>(muestra_3h<span class="sc">$</span>edad)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>n_h <span class="ot">&lt;-</span> <span class="fu">length</span>(muestra_3h<span class="sc">$</span>edad)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>s_m <span class="ot">&lt;-</span> <span class="fu">sd</span>(muestra_3m<span class="sc">$</span>edad)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>n_m <span class="ot">&lt;-</span> <span class="fu">length</span>(muestra_3m<span class="sc">$</span>edad)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ee <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((s_h<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>n_h <span class="sc">+</span> (s_m<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>n_m)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ee</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.451532</code></pre>
 </div>
+</div>
+<p><strong>Paso 3</strong>: Cálculo del valor t</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>te <span class="ot">&lt;-</span> dif_medias<span class="sc">/</span>ee</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>te</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.879673</code></pre>
+</div>
+</div>
+<p><strong>Paso 4</strong>: Fijamos un <span class="math inline">\(\alpha\)</span> y se busca el valor crítico de t asociado al <span class="math inline">\(\alpha\)</span>. En este caso utilizaremos el valor usual de <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">df=</span><span class="dv">9</span>,<span class="at">lower.tail =</span> F)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.262157</code></pre>
+</div>
+</div>
+<p><strong>Paso 5</strong>: test de hipótesis</p>
+<p>Según la distribución t, el valor crítico para poder rechazar <span class="math inline">\(H_0\)</span> con un 95% de confianza es 2.26. El t calculado con información de la muestra (o t empírico) es 4.87. Este valor es superior al t crítico, por lo tanto se rechaza <span class="math inline">\(H_0\)</span> con un 95% de confianza, o una probabilidad de error p&lt;0.05.</p>
 </section>
-<section id="interpretación" class="level2">
-<h2 class="anchored" data-anchor-id="interpretación">5. Interpretación</h2>
+<section id="reporte-de-progreso" class="level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/r9dSoZgk7qee5PUT6">aquí</a>. El plazo para contestarlo es hasta el día martes de la semana siguiente a la que se publica la guía práctica.</p>
 </section>
+<section id="video-de-práctica" class="level1">
+<h1>Video de práctica</h1>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/R8QKg9vEYyU" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="ejercicio-2" class="level1">
-<h1>Ejercicio 2</h1>
-</section>
-<section id="ejercicio-3" class="level1">
-<h1>Ejercicio 3</h1>
+<section id="foro" class="level1">
+<h1>Foro</h1>
+<script src="https://giscus.app/client.js" data-repo="cursos-metodos-facso/correlacional" data-repo-id="R_kgDOKCMXJQ" data-category="Q&amp;A" data-category-id="DIC_kwDOKCMXJc4CYd9S" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="es" crossorigin="anonymous" async="">
+</script>
 
 
 </section>

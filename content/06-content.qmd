@@ -1,6 +1,6 @@
 ---
-title: "Inferencia 2 - Error e intervalos de confianza"
-date: "2023-10-02"
+title: "Inferencia 5 - Prueba t + hipótesis direccionales"
+date: "2024-09-02"
 lang: es
 execute:
   freeze: auto 
@@ -8,7 +8,7 @@ execute:
 
 # Documento de presentación
 
-<iframe src=/slides/06-inferencia2.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/06-inferencia5.html height="550" width=100% allowfullscreen="true">
 </iframe> 
 
 
