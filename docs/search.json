@@ -1,281 +1,87 @@
 [
   {
-    "objectID": "assignment/08-practico.html",
-    "href": "assignment/08-practico.html",
-    "title": "Inferencia 4: Pruebas de hipótesis II",
+    "objectID": "files/reporte_notas/reporte_notas.html",
+    "href": "files/reporte_notas/reporte_notas.html",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
     "section": "",
-    "text": "El objetivo de esta guía práctica es profundizar en la inferencia estadóstica, particularmente en el contraste de hipótesis de diferencias entre dos grupos.\nEn detalle, aprenderemos:\n\nAplicar pruebas de hipótesis direccionales.\nAplicar inferencia estadística a proporciones.\nEmplear la correlación en contexto de inferencia.\n\n\n\nEn esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta de Caracterización Socioeconómica (CASEN) del año 2022, elaborada por el Ministerio de Desarrollo Social y Familia. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  CASEN 20222. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos CASEN 2022.\n\n\n\nEn inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado que obtenemos en nuestra muestra es un efecto real/extensible a la población o un error de muestreo. Aquí recomendamos una lista de cinco pasos lógicos para enfrentarnos a la inferencia estadística:\n\n\n\n\nPaso\n\n\nDetalle\n\n\n\n\n1\n\n\nFormula \\(H_0\\) y \\(H_A\\) y estipula la dirección de la prueba\n\n\n\n\n2\n\n\nCalcula el error estándar (SE)\n\n\n\n\n3\n\n\nCalcula el valor estimado de la prueba (ej: Z o t)\n\n\n\n\n4\n\n\nEspecifica el valor crítico de la prueba\n\n\n\n\n5\n\n\nContrasta el valor estimado con el valor crítico e intrepreta los resultados\n\n\n\nAdemás de estos 5 pasos también existe la posibilidad de calcular un intervalo de confianza, que acompañe la precisión de nuestra estimación."
+    "text": "pacman::p_load(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )\n\n\n\n [1] \"N\"            \"Persona\"      \"p1-a\"         \"p1-b\"         \"p2\"          \n [6] \"p3\"           \"p4\"           \"p5\"           \"pje\"          \"Nota 60%\"    \n[11] \"corrector/a\"  \"decimas\"      \"nota_final\"   \"Recorrección\" \"...15\"       \n[16] \"...16\"       \n\n\n\nload(\"prueba1.Rdata\")\n\n\n\n\n\n# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Cálculo Pearson\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Interpretación Pearson\")\nprueba1$p2 &lt;- set_label(x = prueba1$p2, \n                         label = \"Limitación Pearson\")\nprueba1$p3 &lt;- set_label(x = prueba1$p3, \n                         label = \"Coeficiente determinación\")\nprueba1$p4 &lt;- set_label(x = prueba1$p4, \n                         label = \"Spearman\")\nprueba1$p5 &lt;- set_label(x = prueba1$p5, \n                         label = \"Perdidos matrices\")\n\n\n\n\n\nprueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nCálculo Pearson\n79\n1.78\n1.29\n3 (0-3)\n\n\n3\np1b\nInterpretación Pearson\n79\n1.66\n0.78\n3 (0-3)\n\n\n4\np2\nLimitación Pearson\n79\n1.53\n0.69\n2 (0-2)\n\n\n5\np3\nCoeficiente determinación\n79\n1.50\n0.64\n2 (0-2)\n\n\n6\np4\nSpearman\n79\n1.39\n0.81\n2 (0-2)\n\n\n7\np5\nPerdidos matrices\n79\n0.99\n0.89\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n79\n4.54\n1.40\n6 (1-7)\n\n\n\n\n\n\n\n\n\nhist(prueba1$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat)\n\nx &lt;categorical&gt; \n# total N=88 valid N=79 mean=2.23 sd=1.13\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 30 | 34.09 |   37.97 |  37.97\n4.0-5.0     | 14 | 15.91 |   17.72 |  55.70\n5.0-6.0     | 22 | 25.00 |   27.85 |  83.54\n6.0-7.0     | 13 | 14.77 |   16.46 | 100.00\n&lt;NA&gt;        |  9 | 10.23 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)\n\n\n\n\n\ntab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nCálculo Pearson\nInterpretación Pearson\nLimitación Pearson\nCoeficiente determinación\nSpearman\nPerdidos matrices\nnota_final\n\n\nCálculo Pearson\n \n \n \n \n \n \n \n\n\nInterpretación Pearson\n0.405***\n \n \n \n \n \n \n\n\nLimitación Pearson\n0.211\n0.153\n \n \n \n \n \n\n\nCoeficiente determinación\n0.271*\n0.407***\n0.267*\n \n \n \n \n\n\nSpearman\n0.229*\n0.203\n0.375***\n0.197\n \n \n \n\n\nPerdidos matrices\n0.063\n0.127\n0.435***\n0.095\n0.277*\n \n \n\n\nnota_final\n0.696***\n0.627***\n0.619***\n0.524***\n0.583***\n0.539***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nplot_scatter(prueba1, p1a, p1b)\n\n\n\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 79\nalpha: 0.634"
   },
   {
-    "objectID": "assignment/08-practico.html#recursos-de-la-práctica",
-    "href": "assignment/08-practico.html#recursos-de-la-práctica",
-    "title": "Inferencia 4: Pruebas de hipótesis II",
+    "objectID": "files/reporte_notas/reporte_notas.html#librerías-datos",
+    "href": "files/reporte_notas/reporte_notas.html#librerías-datos",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
     "section": "",
-    "text": "En esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta de Caracterización Socioeconómica (CASEN) del año 2022, elaborada por el Ministerio de Desarrollo Social y Familia. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  CASEN 20222. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos CASEN 2022."
+    "text": "pacman::p_load(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )\n\n\n\n [1] \"N\"            \"Persona\"      \"p1-a\"         \"p1-b\"         \"p2\"          \n [6] \"p3\"           \"p4\"           \"p5\"           \"pje\"          \"Nota 60%\"    \n[11] \"corrector/a\"  \"decimas\"      \"nota_final\"   \"Recorrección\" \"...15\"       \n[16] \"...16\"       \n\n\n\nload(\"prueba1.Rdata\")"
   },
   {
-    "objectID": "assignment/08-practico.html#cinco-pasos-para-la-inferencia-estadística",
-    "href": "assignment/08-practico.html#cinco-pasos-para-la-inferencia-estadística",
-    "title": "Inferencia 4: Pruebas de hipótesis II",
+    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados",
+    "href": "files/reporte_notas/reporte_notas.html#etiquetados",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
     "section": "",
-    "text": "En inferencia, las pruebas de hipótesis nos ayudan a determinar si el resultado que obtenemos en nuestra muestra es un efecto real/extensible a la población o un error de muestreo. Aquí recomendamos una lista de cinco pasos lógicos para enfrentarnos a la inferencia estadística:\n\n\n\n\nPaso\n\n\nDetalle\n\n\n\n\n1\n\n\nFormula \\(H_0\\) y \\(H_A\\) y estipula la dirección de la prueba\n\n\n\n\n2\n\n\nCalcula el error estándar (SE)\n\n\n\n\n3\n\n\nCalcula el valor estimado de la prueba (ej: Z o t)\n\n\n\n\n4\n\n\nEspecifica el valor crítico de la prueba\n\n\n\n\n5\n\n\nContrasta el valor estimado con el valor crítico e intrepreta los resultados\n\n\n\nAdemás de estos 5 pasos también existe la posibilidad de calcular un intervalo de confianza, que acompañe la precisión de nuestra estimación."
+    "text": "# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Cálculo Pearson\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Interpretación Pearson\")\nprueba1$p2 &lt;- set_label(x = prueba1$p2, \n                         label = \"Limitación Pearson\")\nprueba1$p3 &lt;- set_label(x = prueba1$p3, \n                         label = \"Coeficiente determinación\")\nprueba1$p4 &lt;- set_label(x = prueba1$p4, \n                         label = \"Spearman\")\nprueba1$p5 &lt;- set_label(x = prueba1$p5, \n                         label = \"Perdidos matrices\")"
   },
   {
-    "objectID": "assignment/03-practico.html",
-    "href": "assignment/03-practico.html",
-    "title": "Matrices de correlación y tamaños de efecto",
+    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
+    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
     "section": "",
-    "text": "El objetivo de esta guía práctica es conocer maneras de reportar coeficientes de correlación y cómo interpretar sus tamaños de efecto en ciencias sociales. Además, nos introduciremos en el tratamiento de valores perdidos y otras medidas de correlación entre variables.\nEn detalle, aprenderemos:\n\nCómo reportar y presentar matrices de correlación.\nInterpretar el tamaño de efecto de una correlación.\nTratamiento de casos perdidos.\nQué es y cómo calcular la correlación de Spearman.\nQué es el coeficiente de determinación \\(R^2\\).\n\n\n\n\n\n\n\nNota\n\n\n\n¿Qué era la correlación?\nLa correlación es una medida de asociación entre variables, que describe el sentido (dirección) y fuerza de la asociación.\nEn otras palabras, nos permite conocer cómo y cuánto se relaciona la variación de una variable, con la variación de otra variable.\n\n\n\n\nEn esta práctica trabajaremos con un subconjunto de datos previamente procesados del Estudio Longitudinal Social de Chile (ELSOC) del año 2016, elaborado por COES. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  ELSOC 2016. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ELSOC 2016."
+    "text": "prueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nCálculo Pearson\n79\n1.78\n1.29\n3 (0-3)\n\n\n3\np1b\nInterpretación Pearson\n79\n1.66\n0.78\n3 (0-3)\n\n\n4\np2\nLimitación Pearson\n79\n1.53\n0.69\n2 (0-2)\n\n\n5\np3\nCoeficiente determinación\n79\n1.50\n0.64\n2 (0-2)\n\n\n6\np4\nSpearman\n79\n1.39\n0.81\n2 (0-2)\n\n\n7\np5\nPerdidos matrices\n79\n0.99\n0.89\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n79\n4.54\n1.40\n6 (1-7)"
   },
   {
-    "objectID": "assignment/03-practico.html#recursos-de-la-práctica",
-    "href": "assignment/03-practico.html#recursos-de-la-práctica",
-    "title": "Matrices de correlación y tamaños de efecto",
+    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
+    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
     "section": "",
-    "text": "En esta práctica trabajaremos con un subconjunto de datos previamente procesados del Estudio Longitudinal Social de Chile (ELSOC) del año 2016, elaborado por COES. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  ELSOC 2016. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ELSOC 2016."
+    "text": "hist(prueba1$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat)\n\nx &lt;categorical&gt; \n# total N=88 valid N=79 mean=2.23 sd=1.13\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 30 | 34.09 |   37.97 |  37.97\n4.0-5.0     | 14 | 15.91 |   17.72 |  55.70\n5.0-6.0     | 22 | 25.00 |   27.85 |  83.54\n6.0-7.0     | 13 | 14.77 |   16.46 | 100.00\n&lt;NA&gt;        |  9 | 10.23 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)"
   },
   {
-    "objectID": "assignment/03-practico.html#tratamiento-de-casos-perdidos",
-    "href": "assignment/03-practico.html#tratamiento-de-casos-perdidos",
-    "title": "Matrices de correlación y tamaños de efecto",
-    "section": "Tratamiento de casos perdidos",
-    "text": "Tratamiento de casos perdidos\nTrabajar con datos a menudo implica enfrentar valores perdidos (NA), lo que puede ser un gran desafío. Estos valores indican la ausencia de un valor en una base de datos. Los valores perdidos pueden originarse por diversas razones, como el sesgo de no respuesta en encuestas, errores en la entrada de datos o simplemente la falta de información para ciertas variables.\n\n\n\n\n\n\nX1\nX2\nX3\nX4\n\n\n\n\nNA\n4\n1\nHola\n\n\n7\n1\n4\nNo soy un NA\n\n\n8\nNA\n2\nNA\n\n\n9\nNA\n9\nAmo R\n\n\n3\n3\n6\nNA\n\n\n\n\n\n\n\n\nLa presencia de valores perdidos puede tener un impacto considerable en la precisión y confiabilidad de los análisis estadísticos, lo que a su vez puede conducir a resultados sesgados y conclusiones incorrectas.\nExisten varias formas de tratar valores perdidos, que van desde enfoques simples hasta métodos más complejos, como la imputación. En esta ocasión, nos centraremos en las dos estrategias más comunes:\n\ntrabajar exclusivamente con casos completos (listwise) o\nretener los casos con valores perdidos, pero excluyéndolos al calcular estadísticas (pairwise).\n\n\na) Analísis con casos completos: listwise deletion\nEste enfoque es uno de los más conocidos: implica remover completamente las observaciones que tienen valores perdidos en cualquier variable de interés. En otras palabras, si una fila/caso en un conjunto de datos tiene al menos un valor faltante en alguna de las variables que estás considerando, se eliminará por completo.\nEn R, esto podemos hacerlo con la función na.omit. Para hacer esto, sigamos estos pasos:\n\nrespaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos)-\ncontamos el número de casos con el comando dim.\ncontamos cuántos y en dónde tenemos casos perdidos.\nborramos los casos perdidos con na.omit.\ncontamos nuevamente con dim para asegurarnos que se borraron.\n\n\nproc_elsoc_original &lt;- proc_elsoc\ndim(proc_elsoc)\n\n[1] 2927    7\n\n\n\nsum(is.na(proc_elsoc))\n\n[1] 81\n\n\n\ncolSums(is.na(proc_elsoc))\n\nmesfuerzo  mtalento       ess    edcine      sexo      edad    pmerit \n       18        20        12         2         0         0        29 \n\n\n\nproc_elsoc &lt;- na.omit(proc_elsoc)\ndim(proc_elsoc)\n\n[1] 2887    7\n\n\nAhora nos quedamos con 2887 observaciones sin casos perdidos.\nAunque simple de implementar, con este enfoque podemos perder información importante, especialmente si los valores perdidos no se distribuyen aleatoriamente.\n\nSiempre hay que intentar rescatar la mayor cantidad de casos posibles. Por lo tanto, si un listwise genera más de un 10% de casos perdidos se debe detectar qué variables esta produciendo esta pérdida e intentar recuperar datos. Puedes revisar un ejemplo aquí.\n\n\n\nb) Retener pero excluir: pairwise deletion\nA diferencia del anterior, este es un enfoque en el que las observaciones se utilizan para el análisis siempre que tengan datos disponibles para las variables específicas que se están analizando. En lugar de eliminar toda una fila si falta un valor, se eliminan solo los valores faltantes en las variables que se están analizando en ese momento.\nPara hacer esto en R debemos siempre verificar e indicar en nuestro código si queremos (o no) remover los NA para realizar los análisis.\n\nmean(proc_elsoc_original$pmerit); mean(proc_elsoc$edad); mean(proc_elsoc$ess)\n\n[1] NA\n\n\n[1] 45.98337\n\n\n[1] 4.333564\n\nmean(proc_elsoc_original$pmerit, na.rm = TRUE); mean(proc_elsoc$edad, na.rm = TRUE); mean(proc_elsoc$ess, na.rm = TRUE)\n\n[1] 2.653899\n\n\n[1] 45.98337\n\n\n[1] 4.333564\n\n\nCon el primer código no obtuvimos información sustantiva en ciertas variables, pero con el segundo sí al remover los NA solo de dicha variable para un cálculo determinado."
-  },
-  {
-    "objectID": "assignment/10-practico.html",
-    "href": "assignment/10-practico.html",
-    "title": "Asociación con categóricas",
+    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
+    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
     "section": "",
-    "text": "El objetivo de esta guía práctica es introducirnos en técnicas de asociación entre variables categóricas, aplicando lo apredendido hasta ahora sobre inferencia estadística.\nEn detalle, aprenderemos:\n\nGenerar y analizar tablas de contingencia (o cruzadas)\nEstimar e interpretar la prueba de Chi-cuadrado\nAplicar coeficientes de correlación entre variables categóricas\n\n\n\nEn esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta de Caracterización Socioeconómica (CASEN) del año 2022, elaborada por el Ministerio de Desarrollo Social y Familia. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  CASEN 20222. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos CASEN 2022."
+    "text": "tab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nCálculo Pearson\nInterpretación Pearson\nLimitación Pearson\nCoeficiente determinación\nSpearman\nPerdidos matrices\nnota_final\n\n\nCálculo Pearson\n \n \n \n \n \n \n \n\n\nInterpretación Pearson\n0.405***\n \n \n \n \n \n \n\n\nLimitación Pearson\n0.211\n0.153\n \n \n \n \n \n\n\nCoeficiente determinación\n0.271*\n0.407***\n0.267*\n \n \n \n \n\n\nSpearman\n0.229*\n0.203\n0.375***\n0.197\n \n \n \n\n\nPerdidos matrices\n0.063\n0.127\n0.435***\n0.095\n0.277*\n \n \n\n\nnota_final\n0.696***\n0.627***\n0.619***\n0.524***\n0.583***\n0.539***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nplot_scatter(prueba1, p1a, p1b)\n\n\n\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 79\nalpha: 0.634"
   },
   {
-    "objectID": "assignment/10-practico.html#recursos-de-la-práctica",
-    "href": "assignment/10-practico.html#recursos-de-la-práctica",
-    "title": "Asociación con categóricas",
-    "section": "",
-    "text": "En esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta de Caracterización Socioeconómica (CASEN) del año 2022, elaborada por el Ministerio de Desarrollo Social y Familia. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  CASEN 20222. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos CASEN 2022."
+    "objectID": "files/reporte_notas/reporte_notas.html#datos",
+    "href": "files/reporte_notas/reporte_notas.html#datos",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "Datos",
+    "text": "Datos\n\nload(\"prueba2.Rdata\")"
   },
   {
-    "objectID": "assignment/01-practico.html",
-    "href": "assignment/01-practico.html",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "",
-    "text": "El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, además del cálculo de intervalos de confianza.\nEn detalle, aprenderemos y recordaremos:\n\nLos conceptos de promedio y desviación estándar\nQué es la probabilidad y su aplicación para estadística\nQué es la distribución normal\nCómo calcular e interpretar intervalos de confianza\n\n\n\nCargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:\n\nlibrary(pacman)\npacman::p_load(tidyverse, # para sintaxis\n               ggplot2,   # para gráficos\n               car,       # para recodificar\n               psych,     # para analizar datos\n               sjmisc,    # para analizar datos\n               srvyr,     # para estimación de IC y ponderadores\n               Publish)   # para IC)    \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls())       # para limpar el entonrno de trabajo",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
+    "objectID": "files/reporte_notas/reporte_notas.html#adecuación-preguntas",
+    "href": "files/reporte_notas/reporte_notas.html#adecuación-preguntas",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "Adecuación preguntas",
+    "text": "Adecuación preguntas\nLa prueba tiene dos formas: A y B, la única diferencia es en el orden de las preguntas, la forma A parte por la pregunta sobre identificación con la izquierda, mientras que en la forma B la primera pregunta es la de CASEN. Para poder realizar un correcto análisis de las preguntas vamos a adaptar la forma B a la A.\n\nfrq(prueba2$forma)\n\nx &lt;character&gt; \n# total N=87 valid N=72 mean=1.50 sd=0.50\n\nValue |  N | Raw % | Valid % | Cum. %\n-------------------------------------\nA     | 36 | 41.38 |      50 |     50\nB     | 36 | 41.38 |      50 |    100\n&lt;NA&gt;  | 15 | 17.24 |    &lt;NA&gt; |   &lt;NA&gt;\n\nA &lt;- subset(prueba2, subset = prueba2$forma==\"A\")\nB &lt;- subset(prueba2, subset = prueba2$forma==\"B\")\ndim(A)\n\n[1] 36  8\n\ndim(B)\n\n[1] 36  8\n\ndescr(B, show = \"mean\")\n\n\n## Basic descriptive statistics\n\n        var mean\n        p1a 1.33\n        p1b 1.36\n        p1c 1.31\n        p2a 1.39\n        p2b 1.28\n        p2c 1.32\n nota_final 4.58\n\nB &lt;- B %&gt;% rename(\"p1a\"=\"p2a\", \n                  \"p1b\"=\"p2b\",\n                  \"p1c\"=\"p2c\",\n                  \"p2a\"=\"p1a\",\n                  \"p2b\"=\"p1b\",\n                  \"p2c\"=\"p1c\")\n\ndescr(B, show = \"mean\")\n\n\n## Basic descriptive statistics\n\n        var mean\n        p2a 1.33\n        p2b 1.36\n        p2c 1.31\n        p1a 1.39\n        p1b 1.28\n        p1c 1.32\n nota_final 4.58\n\nprueba2 &lt;- rbind(A,B)"
   },
   {
-    "objectID": "assignment/01-practico.html#librerías",
-    "href": "assignment/01-practico.html#librerías",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "",
-    "text": "Cargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:\n\nlibrary(pacman)\npacman::p_load(tidyverse, # para sintaxis\n               ggplot2,   # para gráficos\n               car,       # para recodificar\n               psych,     # para analizar datos\n               sjmisc,    # para analizar datos\n               srvyr,     # para estimación de IC y ponderadores\n               Publish)   # para IC)    \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls())       # para limpar el entonrno de trabajo",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
+    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados-1",
+    "href": "files/reporte_notas/reporte_notas.html#etiquetados-1",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "Etiquetados",
+    "text": "Etiquetados\n\n# Label variables\n\nprueba2$p1a &lt;- set_label(x = prueba2$p1a, \n                         label = \"H1 promedio direccional\")\nprueba2$p1b &lt;- set_label(x = prueba2$p1b, \n                         label = \"Prueba promedios\")\nprueba2$p1c &lt;- set_label(x = prueba2$p1c, \n                         label = \"Rechazo H0\")\nprueba2$p2a &lt;- set_label(x = prueba2$p2a, \n                         label = \"H1 proporcion no direccional\")\nprueba2$p2b &lt;- set_label(x = prueba2$p2b, \n                         label = \"Error tipo 1\")\nprueba2$p2c &lt;- set_label(x = prueba2$p2c, \n                         label = \"Intervalo confianza\")"
   },
   {
-    "objectID": "assignment/01-practico.html#curvas-de-distribución",
-    "href": "assignment/01-practico.html#curvas-de-distribución",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "3.1. Curvas de distribución",
-    "text": "3.1. Curvas de distribución\nPor distribución nos referimos al conjunto de todos los valores posibles de una variable y las frecuencias (o probabilidades) con las que se producen.\nExisten distribuciones empíricas y distribuciones teóricas, en donde:\n\nlas primeras reflejan la distribución de los valores que asume la variable en un grupo concreto a partir de una observación.\nlas segundas son una función matématica que expresan la distribución de un conjunto de números mediante su probabilidad de ocurencia.\n\nEstas últimas son también llamadas curvas de distribución.",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
+    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva-1",
+    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva-1",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "Tabla descriptiva",
+    "text": "Tabla descriptiva\n\nprueba2 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nH1 promedio direccional\n72\n1.36\n0.63\n2 (0-2)\n\n\n3\np1b\nPrueba promedios\n72\n1.24\n0.86\n2 (0-2)\n\n\n4\np1c\nRechazo H0\n72\n1.27\n0.70\n2 (0-2)\n\n\n5\np2a\nH1 proporcion no direccional\n72\n1.26\n0.68\n2 (0-2)\n\n\n6\np2b\nError tipo 1\n72\n1.27\n0.79\n2 (0-2)\n\n\n7\np2c\nIntervalo confianza\n72\n1.14\n0.72\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n72\n4.37\n1.23\n5.6 (1.4-7)"
   },
   {
-    "objectID": "assignment/01-practico.html#distribución-normal-1",
-    "href": "assignment/01-practico.html#distribución-normal-1",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "3.2. Distribución Normal",
-    "text": "3.2. Distribución Normal\nEs una distribución teórica que corresponde a una curva que representa la distribución de los casos de la población en torno al promedio y con una varianza conocida.\n\nSimétricas y con un solo punto de elevación\nLa pendiente es más fuerte cerca del centro, y se suaviza hacia los extremos\nCoinciden al centro el promedio, la mediana y la moda\nLa desviación estandar expresa su dispersión.\nEstablece áreas o proporciones bajo la curva en base a desviaciones estándar del promedio.",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
+    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos-1",
+    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos-1",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "Gráficos descriptivos",
+    "text": "Gráficos descriptivos\n\nhist(prueba2$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba2$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba2 &lt;- prueba2 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba2$notas_cat)\n\nx &lt;categorical&gt; \n# total N=72 valid N=72 mean=2.06 sd=1.02\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 28 | 38.89 |   38.89 |  38.89\n4.0-5.0     | 19 | 26.39 |   26.39 |  65.28\n5.0-6.0     | 18 | 25.00 |   25.00 |  90.28\n6.0-7.0     |  7 |  9.72 |    9.72 | 100.00\n&lt;NA&gt;        |  0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba2 &lt;- prueba2 %&gt;% dplyr::select(-notas_cat)"
   },
   {
-    "objectID": "assignment/01-practico.html#distribución-normal-estándar",
-    "href": "assignment/01-practico.html#distribución-normal-estándar",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "3.3. Distribución Normal Estándar",
-    "text": "3.3. Distribución Normal Estándar\nLa distribución normal estándar es una distribución normal con una media de 0 y una desviación estándar de 1.",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
-  },
-  {
-    "objectID": "assignment/01-practico.html#puntaje-z-y-estandarización-de-variables",
-    "href": "assignment/01-practico.html#puntaje-z-y-estandarización-de-variables",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "3.4. Puntaje Z y estandarización de variables",
-    "text": "3.4. Puntaje Z y estandarización de variables\nAl estandarizar las variables (como en la Curva Normal Estándar) lo que hacemos es expresar el valor de una distribución en términos de desviaciones estándar basados en la distribución normal. Esto nos permite comparar distribuciones distintas.\nAl valor estandarizado lo llamamos puntaje Z, y corresponde a la cantidad de desviaciones estándar que nos alejamos del promedio (para cada variable con la que trabajemos).",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
-  },
-  {
-    "objectID": "assignment/01-practico.html#cálculo-de-probabilidades-con-puntaje-z",
-    "href": "assignment/01-practico.html#cálculo-de-probabilidades-con-puntaje-z",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "3.5. Cálculo de probabilidades con puntaje z",
-    "text": "3.5. Cálculo de probabilidades con puntaje z\nLos valores estandarizados o puntajes Z además nos permiten conocer probabilidades.\nCon R es posible generar un conjunto de datos simulados con una distribución normal.\n\nx_values &lt;- seq(-4,4,length=1000)\ny_values &lt;- dnorm(x_values)\nplot(x_values,y_values,type=\"l\",xlab=\"Valor Z\",ylab=\"Probabilidad\",main=\"Distribución Normal\")\n\n\n\n\n\n\n\n\nPodemos preguntar qué parte de la curva cae por debajo de un valor particular. Por ejemplo, preguntaremos sobre el valor 0 antes de ejecutar el código. Piense ¿cuál debería ser la respuesta?\n\npnorm(q = 0)\n\n[1] 0.5\n\n\nPor tanto, la probabilidad (en una curva normal estándar) de obtener un valor igual o menor a 0 es de 0.5, es decir, del 50%, pero ¿por qué?\n\nPorque como la distribución normal estándar es simétrica al rededor de cero, la probabilidad de que sea menor o igual a cero es 0.5, es decir, el 50% de la distribución está por debajo de cero y el otro 50% está por encima de cero.\n\nEso lo podemos ver en el gráfico:\n\nplot(x_values,y_values,type=\"l\",xlab=\"Valor Z\",ylab=\"Probabilidad\",main=\"Distribución Normal\")\nabline(v=0)\n\n\n\n\n\n\n\n\nAhora probemos los valores Z de +1,96 y -1,96.\nSabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico \\(\\alpha = 0,05\\) para una prueba de hipótesis de dos colas.\n\npnorm(q = 1.96, lower.tail=TRUE)\n\n[1] 0.9750021\n\n\nLa respuesta nos dice lo que ya sabemos: el 97,5% de la distribución normal ocurre por debajo del valor z de 1,96.\nPodemos agregar una línea al gráfico para mostrar dónde se usaría abline.\nEl 97,5% de la distribución queda por debajo de esta línea.\n\nplot(x_values, y_values, type=\"l\", lty=1, xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\") +\nabline(v = 1.96)\n\n\n\n\n\n\n\n\ninteger(0)",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
-  },
-  {
-    "objectID": "assignment/01-practico.html#cálculo-de-intervalos-de-confianza",
-    "href": "assignment/01-practico.html#cálculo-de-intervalos-de-confianza",
-    "title": "Distribución Normal e Intervalos de Confianza",
-    "section": "4.1. Cálculo de intervalos de confianza",
-    "text": "4.1. Cálculo de intervalos de confianza\nEn el caso de nuestro vector aleatorio, un intervalo de confianza para la media se puede calcular de la siguiente manera:\n\n# Calcular un intervalo de confianza para la media\nintervalo_confianza &lt;- t.test(vector)$conf.int  # Intervalo de confianza del 95% para la media\nintervalo_confianza\n\n[1] 4.818567 5.543057\nattr(,\"conf.level\")\n[1] 0.95\n\n\nTambién podemos calcular intervalos de confianza para casos reales. Carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos ESI para ocupados:\n\nload(url(\"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/esi-2021-ocupados.rdata\"))\n\n\n\n\n\n\n\nNota\n\n\n\nRecordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo.\nEn esta guía practicaa trabajaremos sin factores de expansión o ponderadores.\n\n\n\nIC para Medias\nCalculemos un intervalo de confianza para la media de ingresos de personas ocupadas:\n\npsych::describe(esi$ing_t_p)\n\n   vars     n     mean       sd   median  trimmed      mad min      max\nX1    1 37124 586360.4 697362.9 405347.7 474473.1 255411.6   0 38206253\n      range skew kurtosis      se\nX1 38206253   12   402.32 3619.36\n\n\n\nPublish::ci.mean(esi$ing_t_p, alpha = 0.05)\n\n mean      CI-95%               \n 586360.41 [579266.37;593454.45]\n\n\nContamos con una media de ingresos de $586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre $579.266 y $593.454.",
-    "crumbs": [
-      "Prácticos",
-      "Guías",
-      "1: Curva Normal e Intervalos de Confianza"
-    ]
-  },
-  {
-    "objectID": "assignment/09-practico.html",
-    "href": "assignment/09-practico.html",
-    "title": "Reportes dinámicos 3",
-    "section": "",
-    "text": "El objetivo de esta guía práctica es explicar el formato del informe de los trabajos del curso. Ya que la elaboración de los informes incluye analisis en R, la idea es poder aprovechar los recursos existentes para poder realizar escritura y análisis en un mismo documento. La base de esto son los prácticos sobre Reportes Dinámicos 1 y Reportes Dinámicos 2, donde se describieron las estructura de carpetas y archivos, así como también el lenfuage RMarkdown, que permite vincular análisis en R con escritura en Markdown.\nPara facilitar el desarrollo de los trabajos en este entorno ponemos a disposición una carpeta que se puede bajar aquí. Esta carpeta está basada en el protocolo IPO, mencionado en el práctico Reportes Dinámicos 1, con la siguente estructura de archivos y carpetas:\n\ninput: insumos, libro de códigos\ninput/img: imágenes\ninput/data: base de datos original\nprocesamiento: archivos de sintaxis .R\noutput: bases de datos procesada, informes, tablas, gráficos\n\n\nDonde el flujo de trabajo es el siguiente:\n\nEn detalle, aprenderemos los siguientes contenidos:\n\nCreación y organización de un informe en Quarto\nGeneración y presentación de tablas y gráficos en Quarto.\nCómo autoreferenciar elementos dentro un documento Quarto.\n\nPara los ejemplos de esta plantilla utilizaremos la encuesta ELSOC, pero como sabemos, el trabajo se realiza con la encuesta CASEN."
-  },
-  {
-    "objectID": "assignment/09-practico.html#crear-un-documento-quarto",
-    "href": "assignment/09-practico.html#crear-un-documento-quarto",
-    "title": "Reportes dinámicos 3",
-    "section": "Crear un documento Quarto",
-    "text": "Crear un documento Quarto\nPara generar un documento Quarto hacemos lo siguiente:"
-  },
-  {
-    "objectID": "assignment/09-practico.html#encabezado-o-yaml",
-    "href": "assignment/09-practico.html#encabezado-o-yaml",
-    "title": "Reportes dinámicos 3",
-    "section": "Encabezado o YAML",
-    "text": "Encabezado o YAML\nPara comenzar, definiremos los elementos que van en el encabezado (front matter o YAML), al menos debemos especificar:\n\nTítulo\nSubtítulo\nAutores\nFecha\nIdioma\n\n\nCon ese YAML el encabezado se ve de la siguiente forma:"
-  },
-  {
-    "objectID": "assignment/09-practico.html#apartados-y-subapartados",
-    "href": "assignment/09-practico.html#apartados-y-subapartados",
-    "title": "Reportes dinámicos 3",
-    "section": "Apartados y subapartados",
-    "text": "Apartados y subapartados\nPara los títulos de los apartados deben poner un # antes del nombre, y para los subapartados cada vez más pequeños dos o más #.\nPor ejemplo, si ponemos:\n# Variables\n## Descripción de variables\nLos apartados y subapartados diferirán en su tamaño y se verán de esta forma."
-  },
-  {
-    "objectID": "assignment/09-practico.html#insertar-imágenes",
-    "href": "assignment/09-practico.html#insertar-imágenes",
-    "title": "Reportes dinámicos 3",
-    "section": "Insertar imágenes",
-    "text": "Insertar imágenes\nSi quisiéramos poner una imagen, lo ideal es llamarla desde la web:\n\nRecordemos que si no queremos que se vea un chunk, en las options debemos poner echo=FALSE.\n\n\ninclude_graphics(\"https://www.desarrollosocialyfamilia.gob.cl/storage/image/banner-saludmental.png\")\n\n\n\n\n\n\n\n\nO desde la carpeta local ![](../input/img/nombre_imagen.extension) o con:\n\ninclude_graphics(\"../files/banner-saludmental.png\")"
-  },
-  {
-    "objectID": "assignment/09-practico.html#carga-de-librerías",
-    "href": "assignment/09-practico.html#carga-de-librerías",
-    "title": "Reportes dinámicos 3",
-    "section": "Carga de librerías",
-    "text": "Carga de librerías\nLas librerías que utilizaremos en esta guía práctica son:\n\nlibrary(pacman)\npacman::p_load(tidyverse,   # manipulacion datos\n               sjPlot,      # tablas\n               confintr,    # IC\n               gginference, # visualizacion \n               rempsyc,     # reporte\n               broom,       # varios\n               sjmisc,      # para descriptivos\n               knitr)       # para       \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo"
-  },
-  {
-    "objectID": "assignment/09-practico.html#carga-de-datos",
-    "href": "assignment/09-practico.html#carga-de-datos",
-    "title": "Reportes dinámicos 3",
-    "section": "Carga de datos",
-    "text": "Carga de datos\nComo señalamos antes, cargaremos los datos del Estudio Longitudinal Social de Chile (ELSOC) para ejemplificar. En esta guía práctica llamaremos los datos desde la web, pero en la carpeta del proyecto se encuentran alojados en la carpeta input/data, y se llama de la siguiente forma:\nload(\"input/data/ELSOC_Long.RData\")\nPero, para llamar la base de datos desde la web:\n\nload(url(\"https://dataverse.harvard.edu/api/access/datafile/7245118\"))"
-  },
-  {
-    "objectID": "assignment/09-practico.html#limpieza-de-datos",
-    "href": "assignment/09-practico.html#limpieza-de-datos",
-    "title": "Reportes dinámicos 3",
-    "section": "Limpieza de datos",
-    "text": "Limpieza de datos\nRealizaremos un tratamiento simple de los casos:\n\n# Filtrar casos y seleccionar variables\ndata &lt;- elsoc_long_2016_2022.2 %&gt;% \n  filter(ola==1) %&gt;%\n  select(sexo=m0_sexo,edad=m0_edad,nedu=m01,\n         s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09)\n\n# remover NA's\ndata &lt;- data %&gt;% \n  set_na(., na = c(-888, -999)) %&gt;% \n  na.omit()\n\n# crear variable nueva \ndata &lt;- data %&gt;% \n  rowwise() %&gt;%\n  mutate(sint_depresivos = mean(c(s11_01,s11_02,s11_03,s11_04,s11_05,s11_06,s11_07,s11_08,s11_09))) %&gt;% \n  ungroup()"
-  },
-  {
-    "objectID": "assignment/09-practico.html#guardar-base-de-datos-resultante",
-    "href": "assignment/09-practico.html#guardar-base-de-datos-resultante",
-    "title": "Reportes dinámicos 3",
-    "section": "Guardar base de datos resultante",
-    "text": "Guardar base de datos resultante\nGuardamos la base de datos procesada en la carpeta de output, con\nsaveRDS(data, \"output/data.Rdata\")"
-  },
-  {
-    "objectID": "assignment/09-practico.html#introducción",
-    "href": "assignment/09-practico.html#introducción",
-    "title": "Reportes dinámicos 3",
-    "section": "Introducción",
-    "text": "Introducción\n\nEn este apartado pueden poner su introducción, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nEn este ejemplo daremos una mirada a la salud mental, y exploraremos posibles asociaciones con la edad, sexo y nivel educacional."
-  },
-  {
-    "objectID": "assignment/09-practico.html#variables",
-    "href": "assignment/09-practico.html#variables",
-    "title": "Reportes dinámicos 3",
-    "section": "Variables",
-    "text": "Variables\n\nEn este apartado pueden poner sus variables, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nA continuación, en nuestro ejemplo describiremos las variables necesarias para responder a nuestro objetivo."
-  },
-  {
-    "objectID": "assignment/09-practico.html#descripción-de-variables",
-    "href": "assignment/09-practico.html#descripción-de-variables",
-    "title": "Reportes dinámicos 3",
-    "section": "Descripción de variables",
-    "text": "Descripción de variables\nEn este ejemplo, se seleccionaron las variables:\n\nsexo: sexo del encuestado, con nivel de medición nominal\nedad: edad del encuestado, con nivel de medición intervalar\nnedu: nivel educativo del encuestado, con nivel de medición ordinal\n\nY las variables del módulo de Salud y Bienestar, referentes a Estado de ánimo: sintomatología depresiva, con nivel de medición ordinal, los ítems son los siguientes:\n\nFrecuencia: Poco interés o alegría\nFrecuencia: Decaimiento, pesadez o desesperanza\nFrecuencia: Dificultad para dormir o exceso de sueño\nFrecuencia: Cansancio o sensación de falta de energía\nFrecuencia: Apetito disminuido o aumentado\nFrecuencia: Dificultad para concentrarse\nFrecuencia: Mala opinión de sí mismo\nFrecuencia: Enlentecimiento físico\nFrecuencia: Pensamiento de muerte o dañarse\n\n\nPodemos caargar los datos en nuestro informe sin que se vea poniendo la option echo=FALSE: data &lt;-readRDS(\"output/data.RData\").\n\n\ntab1 &lt;- data %&gt;%\n  group_by(sexo) %&gt;% # agrupamos por sexo\n  summarise(n = n()) %&gt;% # contamos por categ de respuesta\n  mutate(prop = round((n / sum(n)) * 100, 2)) # porcentaje\n \npm &lt;- as.numeric(tab1[2,3])\nph &lt;- as.numeric(tab1[1,3])\n\ntabla1 &lt;- tab1 %&gt;% \n  kableExtra::kable(format = \"html\",\n                    align = \"c\",\n                    col.names = c(\"Sexo\", \"n\", \"Proporción\"),\n                    caption = \"Tabla 1. Distribución de sexo\") %&gt;% \n  kableExtra::kable_classic(full_width = FALSE, position = \"center\", font_size = 14) %&gt;% \n  kableExtra::add_footnote(label = \"Fuente: Elaboración propia en base a ELSOC 2016.\")\n\nEn la Tabla 1 podemos ver que la proporción de mujeres que responde la encuesta corresponde a 60.12%, mientras que la propoción de hombres corresponde a 39.88%.\n\ntabla1\n\n\n\nTabla 1: Distribución de sexo\n\n\n\n\nTabla 1. Distribución de sexo\n\n\nSexo\nn\nProporción\n\n\n\n\n1\n1151\n39.88\n\n\n2\n1735\n60.12\n\n\n\na Fuente: Elaboración propia en base a ELSOC 2016.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEn las options del chunk desde el que llamamos a la tabla le ponemos tbl-nombre tabla para etiquetarla, y luego en el texto ponemos @tbl-nombre-tabla para referenciarla. También, cuando queremos llamar un valor, es necesario asignarlo a un objeto, y en el texto lo llamamos con:"
-  },
-  {
-    "objectID": "assignment/09-practico.html#análisis",
-    "href": "assignment/09-practico.html#análisis",
-    "title": "Reportes dinámicos 3",
-    "section": "Análisis",
-    "text": "Análisis\n\nEn este apartado pueden poner sus análisis, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nEn nuestro ejemplo, analizaremos la correlación entre algunas variables.\n\ncor_edad_dep &lt;- cor(data$edad, data$sint_depresivos)\ncor_nedu_dep &lt;- cor(data$nedu, data$sint_depresivos)\ncor_nedu_edad &lt;- cor(data$nedu, data$edad)\n\n\ng1 &lt;- data %&gt;% \n  group_by(nedu) %&gt;% \n  summarise(sint_dep = mean(sint_depresivos, na.rm = T),\n            edad=mean(edad, na.rm = T))\n\ngrafico1 &lt;- ggplot(data = g1,\n       mapping = aes(x = sint_dep, y = edad, label = nedu)) +\n  geom_point() +\n  geom_smooth(method = \"lm\",colour = \"black\",fill=\"lightblue\",size=0.5) + \n  labs(x = \"Sintomatología depresiva\",\n       y = \"Edad\",\n       caption = \"Fuente: Elaboración propia en base a ELSOC 2026\") +\n  theme_bw()\n\nEn la Figura 1 es posible apreciar… La correlación entre la edad y el promedio de la sintomatología depresiva corresponde a 0.0176236.\n\ngrafico1\n\n\n\n\n\n\n\nFigura 1: Correlación entre edad y sintomatología depresiva\n\n\n\n\n\n\nEn las options del chunk desde el que llamamos a la figura le ponemos fig-nombre figura para etiquetarla, y luego en el texto ponemos @fig-nombre-figura para referenciarla."
-  },
-  {
-    "objectID": "assignment/09-practico.html#conclusiones",
-    "href": "assignment/09-practico.html#conclusiones",
-    "title": "Reportes dinámicos 3",
-    "section": "Conclusiones",
-    "text": "Conclusiones\n\nEn este apartado pueden poner sus conclusiones, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nAquí redactamos algunas conclusiones."
-  },
-  {
-    "objectID": "assignment/09-practico.html#bibliografía",
-    "href": "assignment/09-practico.html#bibliografía",
-    "title": "Reportes dinámicos 3",
-    "section": "Bibliografía",
-    "text": "Bibliografía\n\nEn este apartado pueden poner su bibliografía, de acuerdo con la pauta del trabajo que se encuentra disponible en el enlace.\n\nPonemos un - para generar un listado.\n\nCOES (2023). Radiografía del Cambio Social: Análisis de Resultados Longitudinales ELSOC 2016-2022. Presentación de Resultados COES. Marzo, Santiago de Chile.\nR Core Team (2023). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/."
-  },
-  {
-    "objectID": "assignment/02-practico.html",
-    "href": "assignment/02-practico.html",
-    "title": "Práctico 2: Intentando rechazar",
-    "section": "",
-    "text": "En este práctico vamos a realizar una serie de ejercicios de inferencia, tomando como base todos los contenidos de la Unidad 1"
-  },
-  {
-    "objectID": "assignment/02-practico.html#diagrama-de-dispersión-nube-de-puntos-o-scatterplot",
-    "href": "assignment/02-practico.html#diagrama-de-dispersión-nube-de-puntos-o-scatterplot",
-    "title": "Cálculo y reporte de correlación",
-    "section": "Diagrama de dispersión (nube de puntos o scatterplot)",
-    "text": "Diagrama de dispersión (nube de puntos o scatterplot)\nSiempre es recomendable acompañar el valor de la correlación con una exploración gráfica de la distribución bivariada de los datos. El gráfico o diagrama de dispersión es una buena herramienta, ya que muestra la forma, la dirección y la fuerza de la relación entre dos variables cuantitativas.\nEste tipo de gráfico lo podemos realizar usando la librería ggplot2.\n\npacman::p_load(ggplot2)\nplot1 &lt;- ggplot(data, \n                aes(x=educ, y=ing)) + \n                geom_point(colour = \"red\", \n                size = 5)\nplot1\n\n\n\n\n\n\n\n\nEn el gráfico podemos ver como se crea una nube de puntos en las intersecciones de los valores para ambas variables de cada caso."
-  },
-  {
-    "objectID": "assignment/02-practico.html#el-cuarteto-de-anscombe-y-las-limitaciones-de-la-correlación-lineal",
-    "href": "assignment/02-practico.html#el-cuarteto-de-anscombe-y-las-limitaciones-de-la-correlación-lineal",
-    "title": "Cálculo y reporte de correlación",
-    "section": "El cuarteto de Anscombe y las limitaciones de la correlación lineal",
-    "text": "El cuarteto de Anscombe y las limitaciones de la correlación lineal\nAhora, revisaremos un muy buen ejemplo de la importancia de la exploración gráfica de los datos mediante un ejemplo de Anscombe (1973), que permite visualizar las limitaciones del coeficiente de correlación.\nPrimero, crearemos la base de datos:\n\nanscombe &lt;- data.frame(\n  x1 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),\n  y1 = c(8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68),\n  x2 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),\n  y2 = c(9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74),\n  x3 = c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5),\n  y3 = c(7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73),\n  x4 = c(8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8),\n  y4 = c(6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89)\n)\n\nCalculamos la correlación pares de datos\n\ncor(anscombe$x1, anscombe$y1)\n\n[1] 0.8164205\n\ncor(anscombe$x2, anscombe$y2)\n\n[1] 0.8162365\n\ncor(anscombe$x3, anscombe$y3)\n\n[1] 0.8162867\n\ncor(anscombe$x4, anscombe$y4)\n\n[1] 0.8165214\n\n\nPodemos observar que los valores de las correlaciones son equivalentes, por lo tanto podríamos pensar que todos los pares de columnas se encuentran correlacionados de manera similar.\nPero, ¿será suficiente con esa información? Pasemos a revisar los gráficos de dispersión de cada par de variables.\n\nggplot(anscombe, aes(x = x1, y = y1)) +\n  geom_point(colour = \"red\", \n             size = 5) +\n  geom_smooth(method = \"lm\", se = FALSE, color=\"blue\", size=0.5) +\n  labs(title = \"Caso I\")\n\n\n\n\n\n\n\nggplot(anscombe, aes(x = x2, y = y2)) +\n  geom_point(colour = \"green\", \n             size = 5) +\n  geom_smooth(method = \"lm\", se = FALSE, color=\"blue\", size=0.5) +\n  labs(title = \"Caso II\")\n\n\n\n\n\n\n\nggplot(anscombe, aes(x = x3, y = y3)) +\n  geom_point(colour = \"yellow\", \n             size = 5) +\n  geom_smooth(method = \"lm\", se = FALSE, color=\"blue\", size=0.5) +\n  labs(title = \"Caso III\")\n\n\n\n\n\n\n\nggplot(anscombe, aes(x = x4, y = y4)) +\n  geom_point(colour = \"orange\", \n             size = 5) +\n  geom_smooth(method = \"lm\", se = FALSE, color=\"blue\", size=0.5) +\n  labs(title = \"Caso IV\")\n\n\n\n\n\n\n\n\nComo vemos, con distintas distribuciones las correlaciones pueden ser las mismas, principalmente porque Pearson es una medida que solo captura relaciones lineales (rectas), además de verse influido fuertemente por valores extremos. Por lo mismo, es relevante siempre una buena visualización de la distribución bivariada de los datos como complemento al cálculo del coeficiente de correlación."
+    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones-1",
+    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones-1",
+    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "section": "Preguntas y asociaciones",
+    "text": "Preguntas y asociaciones\n\nprueba2 &lt;- prueba2 %&gt;% dplyr::select(-forma)\ntab_corr(prueba2,\n         triangle = \"lower\")\n\n\n\n\n \nH1 promedio direccional\nPrueba promedios\nRechazo H0\nH1 proporcion no direccional\nError tipo 1\nIntervalo confianza\nnota_final\n\n\nH1 promedio direccional\n \n \n \n \n \n \n \n\n\nPrueba promedios\n0.295*\n \n \n \n \n \n \n\n\nRechazo H0\n0.397***\n0.488***\n \n \n \n \n \n\n\nH1 proporcion no direccional\n0.108\n0.094\n-0.060\n \n \n \n \n\n\nError tipo 1\n-0.204\n0.039\n0.031\n-0.039\n \n \n \n\n\nIntervalo confianza\n0.047\n0.206\n0.308**\n0.169\n0.351**\n \n \n\n\nnota_final\n0.469***\n0.677***\n0.650***\n0.370**\n0.404***\n0.631***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba2 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 72\nalpha: 0.513"
   },
   {
     "objectID": "example/cace.html",
@@ -325,6 +131,13 @@
     "title": "Complier average treatment effects",
     "section": "Finding the CACE/LATE with IV/2SLS",
     "text": "Finding the CACE/LATE with IV/2SLS\nDoing that is super tedious though! What if there was an easier way to find the effect of the bed net program for just the compliers? We can do this with IV/2SLS regression by using assignment to treatment as an instrument.\nAssignment to treatment works as an instrument because it’s (1) relevant, since being told to use bed nets is probably highly correlated with using bed nets, (2) exclusive, since the only way that being told to use bed nets can cause changes in health is through the actual use of the bed nets, and (3) exogenous, since being told to use bed nets probably isn’t related to other things that cause health.\nHere’s a 2SLS regression with assignment to treatment as the instrument:\n\n\nCode\nmodel_2sls &lt;- iv_robust(health ~ bed_net | treatment, data = bed_nets)\ntidy(model_2sls)\n##             term estimate std.error statistic   p.value conf.low conf.high   df outcome\n## 1    (Intercept)    38.12    0.5151     74.01 0.000e+00    37.11     39.13 1998  health\n## 2 bed_netBed net    14.43    1.2538     11.51 1.038e-29    11.97     16.89 1998  health\n\n\nThe coefficient for bed_net is identical to the CACE that we found manually! Instrumental variables are helpful for isolated program effects to only compliers when you’re dealing with noncompliance."
+  },
+  {
+    "objectID": "news/2024-08-28_asignacion_ayudantes1.html",
+    "href": "news/2024-08-28_asignacion_ayudantes1.html",
+    "title": "Asignación asesorías ayudantes",
+    "section": "",
+    "text": "← News\n\n\n\n\nDurante las dos primeras unidades del curso l_s estudiantes están asignados a un/a ayudante para consultas y/o apoyo con los contenidos del curso. Sus ayudantes se contactarán con uds. para indicarles la forma y momentos de asesoría, también pueden ser contactados directamente mediante el correo de UCursos.\n\n\n\n\n\nAyudante\nEstudiante\n\n\n\n\nAntonia Jiménez F.\nAlarcón Riveros, Milen Valentina\n\n\n\nArriagada Rodríguez, Javiera Ignacia\n\n\n\nCelpa Bugueño, Álvaro Giovanni\n\n\n\nDíaz Devia, Eduardo Ignacio\n\n\n\nHernández Osses, Antonia Margarita\n\n\n\nHuerta Carrasco, Rodrigo Javier\n\n\n\nKovacevic Ardiles, Ruby Mladenka\n\n\n\nNavarro Sánchez, Camila Alexandra\n\n\n\nPadilla Maureira, Belén Monserrat\n\n\n\nZanca Garrido, Andrés Ignacio\n\n\nCristóbal Mejías G.\nAntil Contreras, Ana Paula\n\n\n\nBeroíza Aguilar, Benjamín Daniel David\n\n\n\nFuentes Fernández, Víctor Javier\n\n\n\nOlmos Jara, Vicente Martín\n\n\n\nRaccagni Mancilla, Matilda Isidora\n\n\n\nRendic Gomez, Andres Nicolas\n\n\n\nVásquez Campos, Fernanda María José\n\n\n\nVega Villanueva, Martina Alejandra\n\n\nFernanda Zúñiga M.\nÁlvarez Cárdenas, Javiera Ignacia\n\n\n\nCastro Rojas, Joel Wilson\n\n\n\nDuclos González, Gaspar\n\n\n\nFaúndez Ramírez, Jennifer Paola\n\n\n\nGonzález Núñez, Bastián Antonio\n\n\n\nGuzmán Reyes, Pablo Antonio\n\n\n\nMontecinos Quintanilla, Valentina Antonia\n\n\n\nSantos Chavarría, Catalina Paz\n\n\nIsmael Aguayo\nBustos Pérez, Benjamín Alfredo\n\n\n\nCastillo Rojas, Anahi Constanza\n\n\n\nChateau Vives, Manuela\n\n\n\nMaldonado Acevedo, Agustín Eduardo\n\n\n\nMorales Verdugo, Javiera Catalina\n\n\n\nRivera Valenzuela, Luis Felipe\n\n\n\nSalas Aguilar, Maximiliano Alonso\n\n\n\nThumala Raposo, Daniel\n\n\n\nTsukame Díaz, Amalia Victoria\n\n\nJaviera González\nBuzio Aranda, Martina Javiera\n\n\n\nCantillana Olave, Muriel Noelia\n\n\n\nFerrel Higuera, Benjamin Tomas Alexandre\n\n\n\nFigueroa Tengner, Nino\n\n\n\nMancilla Chaparro, Benjamín Patricio\n\n\n\nMansilla Fuentes, Violeta Del Rosario\n\n\n\nOuterbridge Ortega, Nicolás Eduardo\n\n\n\nRojas Murúa, Vicente Ignacio de Jesús\n\n\n\nRojas Santander, Matías Nicolás\n\n\n\nVillatoro Cepeda, Martina Alejandra\n\n\nJesús Díaz M.\nArias Acuña, Antonio Domingo\n\n\n\nConsuegra Erazo, Lucas Andrés\n\n\n\nJiménez Miranda, Constanza María\n\n\n\nJiménez Morales, Rosita Monserrat\n\n\n\nJullian Corral, Maite Ayelen\n\n\n\nMuñoz Caniuqueo, Ignacio Benjamín\n\n\n\nOsorio Huerta, Francisca Andrea\n\n\n\nPlaza Spate, Cristóbal Ignacio\n\n\n\nVenegas Moya, Alonso Elessar\n\n\nLuis Rios\nBalmaceda Yankovic, Bianca\n\n\n\nCaballero Salazar, Amador\n\n\n\nCanales Llanquitrú, Carla Jacqueline\n\n\n\nGaete Morgado, Paulina Andrea\n\n\n\nGatica Pailacura, Carolina Paz\n\n\n\nMartin Gerdes, Bastián Javier\n\n\n\nMena Rojas, Martín Elías\n\n\n\nValencia Almendras, Isidora Paz\n\n\n\nVásquez Olivares, Catalina Ignacia\n\n\nMaría Fernanda Núñez G.\nCalderón Guajardo, Elisa Amanda\n\n\n\nFlores Fuentes, Matías Gabriel\n\n\n\nGallo Novoa, Emilia Antonia\n\n\n\nLagos Zúñiga, Martina Jacinta\n\n\n\nLatorre González, Camila Ignacia\n\n\n\nPoblete Duarte, José Patricio\n\n\n\nRoa Neira, Carla Denisse\n\n\n\nSilva Díaz, Catalina Rosario\n\n\n\nVargas Olivares, Andrés Ignacio\n\n\nSophia Karoussis P.\nBascuñán Soto, Marta del Carmen\n\n\n\nBerríos Puentes, Rocío Belén\n\n\n\nFerran Villagra, Catalina Sofía\n\n\n\nGuerrero Tapia, Daniela Sofía\n\n\n\nPalma Valladares, Elisa Victoria\n\n\n\nPeña Gaete, Micaela Fabiana\n\n\n\nRobledo Dávila, Martina Elisa\n\n\n\nSuárez Urbina, Rocío Belén\n\n\n\nVega Gandolfo, Felipe Ignacio\n\n\nVictoria Arias O.\nCanales Calderón, Fernanda Paz\n\n\n\nCarrasco Gomberoff, Benjamín Eitan\n\n\n\nIbarra Domínguez, Asunción Rebeca\n\n\n\nIsla Hernández, Paz Magdalena\n\n\n\nNúñez Pérez, Joaquín Emilio\n\n\n\nReyes Aqueveque, Valeria Patricia\n\n\n\nRivera Sepúlveda, Sofía Belén\n\n\n\nSanta Cruz Claro, Amalia Magdalena\n\n\n\nSoto Ortega, Martina Paz\n\n\n\n\n\n\n\nPor dudas, comentarios o cambios respecto a esta asignación escribir a Andreas Laffert (Apoyo Docente) por UCursos."
   },
   {
     "objectID": "syllabus.html",
@@ -692,7 +505,7 @@
     "href": "news/index.html",
     "title": "Informaciones",
     "section": "",
-    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\nviernes agosto 23, 2024 at 12:00 AM\n\n\nSesión práctica martes 27 de agosto\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
+    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\njueves agosto 29, 2024 at 12:00 AM\n\n\nAsignación asesorías ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\nviernes agosto 23, 2024 at 12:00 AM\n\n\nSesión práctica martes 27 de agosto\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
   },
   {
     "objectID": "schedule.html",
@@ -727,7 +540,7 @@
     "href": "index.html#últimas-informaciones",
     "title": "\n            Estadística Correlacional\n        ",
     "section": "Últimas informaciones",
-    "text": "Últimas informaciones\n\n\n\n\n\n\n\n\n\n\nSesión práctica martes 27 de agosto\n\n\n\n\n\n\n\n\n\nAug 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformaciones por acá\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n-&gt; ir a página de Informaciones"
+    "text": "Últimas informaciones\n\n\n\n\n\n\n\n\n\n\nAsignación asesorías ayudantes\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSesión práctica martes 27 de agosto\n\n\n\n\n\n\n\n\n\nAug 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformaciones por acá\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n-&gt; ir a página de Informaciones"
   },
   {
     "objectID": "index.html#versiones-previas-del-curso",
@@ -737,181 +550,13 @@
     "text": "Versiones previas del curso:\n\n2023"
   },
   {
-    "objectID": "assignment/07-practico.html",
-    "href": "assignment/07-practico.html",
-    "title": "Inferencia 3: Pruebas de hipótesis",
+    "objectID": "assignment/02-practico.html",
+    "href": "assignment/02-practico.html",
+    "title": "Práctico 2: Intentando rechazar",
     "section": "",
-    "text": "Objetivo de la práctica\nEl objetivo de esta guía práctica es continuar profundizando en la inferencia estadística, en particular en contráste de hipótesis de diferencia de medias. Este tema se desarrolló en la sesión 7.\n\n\nTest de hipótesis para diferencia de medias\nPrimero, carguemos las librerías necesarias:\n\nlibrary(pacman)\npacman::p_load(tidyverse,  # colección de paquetes para manipulación de datos\n               car,        # para recodificar\n               psych,      # para analizar datos\n               sjmisc,     # para analizar datos\n              # srvyr,      # para estimación de IC y ponderadores\n              # Publish,    # para IC\n               kableExtra) # para presentación de tablas\n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo\n\nVamos a testear la siguiente hipótesis:\n\n\\(H_a\\): existen diferencias de edad entre hombres y mujeres\n\nY su correspondiente hipótesis nula:\n\n\\(H_0\\): no existen diferencias de edad entre hombres y mujeres\n\nGeneración de datos (muestra_3) y descriptivos:\n\nmuestra_3 &lt;- data.frame(edad=c(33,35,23,32,24,25,29,31,32,31),\n                        sexo=c(1,1,2,1,2,2,2,1,1,1))\n\nmean(muestra_3$edad)\n\n[1] 29.5\n\nmuestra_3$sexo &lt;- as.factor(muestra_3$sexo)\n\nmuestra_3 %&gt;% \n  group_by(sexo) %&gt;% \n  summarise(media=mean(edad)) \n\n# A tibble: 2 × 2\n  sexo  media\n  &lt;fct&gt; &lt;dbl&gt;\n1 1      32.3\n2 2      25.2\n\n\nGráfico descriptivo:\n\nmuestra_3 %&gt;% \n  group_by(sexo) %&gt;% \n  summarise(media=mean(edad)) %&gt;% \n  ggplot(aes(x=sexo, y=media)) +\n  geom_point() +\n  ylim(25,35) +\n  labs(title = \"Medias de edad para hombres y mujeres, muestra 3\",\n                   x = \"Sexo\",\n                   y = \"Media edad\")\n\n\n\n\n\n\n\n\nPrueba t de diferencia de medias:\n\nt.test(edad ~ sexo,data=muestra_3)\n\n\n    Welch Two Sample t-test\n\ndata:  edad by sexo\nt = 4.8799, df = 4.33, p-value = 0.006658\nalternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0\n95 percent confidence interval:\n  3.171534 10.995133\nsample estimates:\nmean in group 1 mean in group 2 \n       32.33333        25.25000 \n\n\nLo principal en este output es el valor p, que es la probabilidad de error de rechazar la hipótesis nula. En este caso, \\(p = 0.006658\\), que es menor a un nivel de confianza convencional como \\(\\alpha = 0.05\\), incluso es menor que un nivel más exigente como el \\(\\alpha = 0.01\\). Por lo tanto, rechazamos la hipótesis nula de igualdad de medias con un 99% de confianza, hay suficiente evidencia estadística para sostener que el promedio de edad de hombres y mujeres es diferente.\n\n\nCálculo paso a paso de estadístico t\nEn esta última sección se realizará el cálculo paso a paso del estadístico \\(t\\) del ejemplo anterior para demostrar cómo se origina la información que aparece en el output de R.\nRecordemos la fórmula de t:\n\\(t=\\frac{(\\bar{x}_1-\\bar{x}_2)}{\\sqrt{\\frac{s_1²}{\\sqrt{n_1}}+\\frac{s_2²}{\\sqrt{n_2}} }}\\)\nDonde en la parte superior se encuentra la diferencia de medias entre dos grupos, y en la inferior el error estándar de t.\nPasos:\n\nSe calcula la diferencia de medias\nSe calcula el error estándar de la diferencia de medias\nCálculo del valor t\nSe fija un \\(\\alpha\\) (usualmente 0.05) para rechazar \\(H_0\\), y se busca el valor crítico asociado a este \\(\\alpha\\) (en una tabla de valores t, o en R)\nSi nuestro t es superior al valor crítico, se rechaza \\(H_0\\)\n\nPaso 1: Calculamos la diferencia de medias \\((\\bar{x}_1-\\bar{x}_2)\\)\n\nmuestra_3 %&gt;%\n   dplyr::group_by(sexo=sjlabelled::as_label(sexo)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label\n  dplyr::summarise(Obs.=n(),Promedio=mean(edad, na.rm=TRUE),SD=sd(edad, na.rm=TRUE)) %&gt;% # se agregan las operaciones a presentar en la tabla\n  kable(format = \"markdown\")\n\n\n\n\nsexo\nObs.\nPromedio\nSD\n\n\n\n\n1\n6\n32.33333\n1.505545\n\n\n2\n4\n25.25000\n2.629956\n\n\n\n\ndif_medias &lt;- 32.333 - 25.250\ndif_medias\n\n[1] 7.083\n\n\nPaso 2: Calculamos el error estándar de la diferencia de medias: \\(\\sqrt{\\frac{s_1²}{\\sqrt{n_1}}+\\frac{s_2²}{\\sqrt{n_2}}}\\)\n\nmuestra_3h &lt;- muestra_3 %&gt;% filter(sexo==1)\nmuestra_3m &lt;- muestra_3 %&gt;% filter(sexo==2)\n  \ns_h &lt;- sd(muestra_3h$edad)\nn_h &lt;- length(muestra_3h$edad)\ns_m &lt;- sd(muestra_3m$edad)\nn_m &lt;- length(muestra_3m$edad)\n\nee &lt;- sqrt((s_h^2)/n_h + (s_m^2)/n_m)\nee\n\n[1] 1.451532\n\n\nPaso 3: Cálculo del valor t\n\nte &lt;- dif_medias/ee\nte\n\n[1] 4.879673\n\n\nPaso 4: Fijamos un \\(\\alpha\\) y se busca el valor crítico de t asociado al \\(\\alpha\\). En este caso utilizaremos el valor usual de \\(\\alpha = 0.05\\).\n\ntt &lt;- qt(0.05/2,df=9,lower.tail = F)\ntt\n\n[1] 2.262157\n\n\nPaso 5: test de hipótesis\nSegún la distribución t, el valor crítico para poder rechazar \\(H_0\\) con un 95% de confianza es 2.26. El t calculado con información de la muestra (o t empírico) es 4.87. Este valor es superior al t crítico, por lo tanto se rechaza \\(H_0\\) con un 95% de confianza, o una probabilidad de error p&lt;0.05.\n\n\nReporte de progreso\nCompletar el reporte de progreso correspondiente a esta práctica aquí. El plazo para contestarlo es hasta el día martes de la semana siguiente a la que se publica la guía práctica.\n\n\nVideo de práctica\n\n\n\nForo"
+    "text": "En este práctico vamos a realizar una serie de ejercicios de inferencia, tomando como base todos los contenidos de la Unidad 1"
   },
   {
-    "objectID": "assignment/06-practico.html",
-    "href": "assignment/06-practico.html",
-    "title": "Inferencia 2: Intervalos de confianza",
-    "section": "",
-    "text": "El objetivo de esta guía práctica es continuar profundizando en la inferencia estadística, revisando algunos de sus conceptos clave como distribución muestral, error estándar, y la definición y aplicaciones de los intervalos de confianza.\nEn detalle, aprenderemos:\n\nQué es una distribución muestral.\nQué es el error estándar.\nQué son y cómo calcular intervalos de conafianza."
-  },
-  {
-    "objectID": "assignment/06-practico.html#qué-es-la-inferencia-estadística",
-    "href": "assignment/06-practico.html#qué-es-la-inferencia-estadística",
-    "title": "Inferencia 2: Intervalos de confianza",
-    "section": "¿Qué es la inferencia estadística?",
-    "text": "¿Qué es la inferencia estadística?\nLa inferencia estadística es el proceso de realizar conclusiones o predicciones sobre una población a partir de una muestra o subconjunto representativo de esa población. En concreto, llamamos inferencia al ejercicio de extrapolar determinados valores de una muestra, llamados estadísticos, para estimar un parámetro de la población.\n\nUn concepto central en todo esto es la probabilidad de error, es decir, en qué medida nos estamos equivocando (o estamos dispuestos a estar equivocados) al tratar de extrapolar una estimación muestral a la población."
-  },
-  {
-    "objectID": "assignment/06-practico.html#qué-es-una-distribución",
-    "href": "assignment/06-practico.html#qué-es-una-distribución",
-    "title": "Inferencia 2: Intervalos de confianza",
-    "section": "¿Qué es una distribución?",
-    "text": "¿Qué es una distribución?\nRecordemos que por distribución nos referimos al conjunto de todos los valores posibles de una variable y las frecuencias (o probabilidades) con las que se producen.\nExisten distribuciones empíricas y distribuciones teóricas, en donde:\n\nlas primeras reflejan la distribución de los valores que asume la variable en un grupo concreto a partir de una observación.\nlas segundas son una función matématica que expresan la distribución de un conjunto de números mediante su probabilidad de ocurencia.\n\nComo vimos en el práctico 4, una de las distribuciones teóricas más conocidas es la distribución normal estándar."
-  },
-  {
-    "objectID": "assignment/06-practico.html#cálculo-de-intervalos-de-confianza",
-    "href": "assignment/06-practico.html#cálculo-de-intervalos-de-confianza",
-    "title": "Inferencia 2: Intervalos de confianza",
-    "section": "Cálculo de intervalos de confianza",
-    "text": "Cálculo de intervalos de confianza\nAhora ¡Manos a la obra!\nCalculemos intervalos de confianza. Primero, carguemos las librerías necesarias:\n\nlibrary(pacman)\npacman::p_load(tidyverse, # colección de paquetes para manipulación de datos\n               car,       # para recodificar\n               psych,     # para analizar datos\n               sjmisc,    # para analizar datos\n               srvyr,     # para estimación de IC y ponderadores\n               Publish)   # para IC\n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo\n\ny también carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos ESI para ocupados:\n\nload(url(\"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/esi-2021-ocupados.rdata\"))\n\n\n\n\n\n\n\nNota\n\n\n\nRecordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo, como veremos a continuación.\n\n\n\nIntervalos de confianza sin ponderador\nPodemos calcular intervalos de confianza con muestras representativas sin ponderadores o factores de expansión. Supongamos que es el caso.\n\nIC para Medias\nCalculemos un intervalo de confianza para la media de ingresos de personas ocupadas:\n\npsych::describe(esi$ing_t_p)\n\n   vars     n     mean       sd   median  trimmed      mad min      max\nX1    1 37124 586360.4 697362.9 405347.7 474473.1 255411.6   0 38206253\n      range skew kurtosis      se\nX1 38206253   12   402.32 3619.36\n\n\n\nPublish::ci.mean(esi$ing_t_p, alpha = 0.05)\n\n mean      CI-95%               \n 586360.41 [579266.37;593454.45]\n\n\nAl no aplicar factores de expansión, contamos con una media de ingresos de $586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre $579.266 y $593.454.\n\n\nIC para Proporciones\nPara calcular un intervalo de confianza para la proporción por la variable sexo, usamos:\n\nsjmisc::frq(esi$sexo)\n\nx &lt;numeric&gt; \n# total N=37124 valid N=37124 mean=1.44 sd=0.50\n\nValue |     N | Raw % | Valid % | Cum. %\n----------------------------------------\n    1 | 20806 | 56.04 |   56.04 |  56.04\n    2 | 16318 | 43.96 |   43.96 | 100.00\n &lt;NA&gt; |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprop.test(x = 20806, n = 37124, conf.level = 0.95)\n\n\n    1-sample proportions test with continuity correction\n\ndata:  20806 out of 37124, null probability 0.5\nX-squared = 542.32, df = 1, p-value &lt; 0.00000000000000022\nalternative hypothesis: true p is not equal to 0.5\n95 percent confidence interval:\n 0.5553777 0.5655019\nsample estimates:\n        p \n0.5604461 \n\n\nEn este caso, sabemos que el total de las personas ocupadas de la muestra son n=37.124, y que la cantidad de hombres son 20.806, correspondientes al 56% como estimación puntual. También podemos sostener con un 95% que la proporción de hombres en la población se encuentra entre 55.54% y 56.6%.\n\n\n\nIntervalos de confianza con ponderador\nPara muestras complejas que cuentan con ponderador (o factor de expansión) también podemos hacer este ejercicio.\nPrimero, es necesario identificar la variable de factor de expansión o ponderador:\n\nesi_pond &lt;- esi %&gt;% as_survey_design(ids = 1, # indica conglomerados de muestreo; ~0 o ~1 cuando no hay\n                                     strata = estrato, # indica efecto de diseño muestral\n                                     weights = fact_cal_esi) # indica el ponderador\n\noptions(survey.lonely.psu = \"certainty\") # seteamos para que ids no moleste\n\n\nIC para Medias\nAhora, teniendo en consideración el factor de expansión, podemos señalar que:\n\nesi_pond %&gt;% \n  summarise(media = survey_mean(ing_t_p, vartype = \"ci\", levels = 0.95, na.rm=TRUE)) # usamos funcion survey_mean\n\n# A tibble: 1 × 3\n    media media_low media_upp\n    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 681039.   666563.   695516.\n\n\nEl promedio de ingresos de personas ocupadas ponderado en la población corresponde a $681.039 como estimación puntual, pero que es posible afirmar con un 95% de confianza que el parámetro poblacional se encuentra entre $666.562 y $695.516.\n\n\nIC para Proporciones\nFinalmente, si calculamos la proporción de hombres ocupados en la población considerando el factor de expansión:\n\nsjmisc::frq(esi$sexo)\n\nx &lt;numeric&gt; \n# total N=37124 valid N=37124 mean=1.44 sd=0.50\n\nValue |     N | Raw % | Valid % | Cum. %\n----------------------------------------\n    1 | 20806 | 56.04 |   56.04 |  56.04\n    2 | 16318 | 43.96 |   43.96 | 100.00\n &lt;NA&gt; |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\n\n\nesi_pond %&gt;% \n  group_by(sexo) %&gt;% # agrupamos por sexo\n  summarise(prop = survey_prop(vartype = \"ci\", levels = 0.95, na.rm = TRUE))\n\n# A tibble: 2 × 4\n   sexo  prop prop_low prop_upp\n  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1     1 0.582    0.575    0.590\n2     2 0.418    0.410    0.425\n\n\nTenemos que, con un 95% de conafianza, podemos afirmar que la proporción de hombre ocupados se encuentra entre el 57% y 58%."
-  },
-  {
-    "objectID": "assignment/11-practico.html",
-    "href": "assignment/11-practico.html",
-    "title": "Bonus track: Trabajando con CASEN y EBS",
-    "section": "",
-    "text": "En este guía práctica se presentan recomendaciones para trabajar de manera más eficiente con la Encuesta CASEN 2022. Además, se presenta el código para poder vincular la Encuesta de Bienestar Social (EBS) con la Encuesta CASEN en Pandemia 2020 para aquellos grupos que quieran utilizar ambas fuentes de información."
-  },
-  {
-    "objectID": "assignment/11-practico.html#paso-1.-descargar-ambas-bases",
-    "href": "assignment/11-practico.html#paso-1.-descargar-ambas-bases",
-    "title": "Bonus track: Trabajando con CASEN y EBS",
-    "section": "Paso 1. Descargar ambas bases",
-    "text": "Paso 1. Descargar ambas bases\nEste paso ya lo hicimos antes, solo que ahora debemos descargar dos bases de datos distintas. La documentación asociada a estas bases de datos y la descripción de las variables que contienen, se encuentra disponible en el Libro de Códigos elaborados para dicha finalidad, el que puede ser descargado conjuntamente con la bases de datos.\nIngresamos a la página del Observatorio Social del MDSF y en la pestaña de “Encuestas” elegimos Encuesta de Bienestar y CASEN en Pandemia, respectivamente. Luego, en la pestaña “Bases de datos” descargamos la base en alguno de los dos formatos disponibles (.sav de SPSS o .dta de Stata). También se recomienda descargar el Libro de Códigos respectivo y manuales metodológicos asociados.\nAmbas bases de datos las alojamos en la carpeta local input &gt; datos de nuestro proyecto."
-  },
-  {
-    "objectID": "assignment/11-practico.html#paso-2.-procesamiento-en-r-1",
-    "href": "assignment/11-practico.html#paso-2.-procesamiento-en-r-1",
-    "title": "Bonus track: Trabajando con CASEN y EBS",
-    "section": "Paso 2. Procesamiento en R",
-    "text": "Paso 2. Procesamiento en R\nAl igual que con CASEN 2022, la CASEN en Pandemia 2020 es una base de datos pesada, por lo que se recomienda realizar primero el paso 2 de la sección anterior, seleccionando las variables de interés y filtrando los casos que correspondan de ser el caso. Recuerda que, una vez terminado este paso, borra la CASEN en Pandemia 2020 original para ahorrar memoria en nuestro ordenador.\nComencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.\n\npacman::p_load(tidyverse, # Manipulacion datos\n               haven, # Importar datos\n               sjmisc, # Descriptivos\n               sjlabelled) # Etiquetas\n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls()) # para limpiar el entorno de trabajo\n\nLuego, importamos nuestra CASEN 2020 recortada y la EBS 2021.\n\nload(file = \"output/datos/casen2020_recorte.RData\")\nebs &lt;- haven::read_dta(file = \"input/datos/Base de datos EBS 2021 STATA.dta\")\n\nComo mencionamos antes, debemos renombrar las variables folio e id_persona de la base CASEN 2020 recortada para poder unirla con la EBS 2021.\n\ncasen &lt;- casen %&gt;%\n  rename(folio_casen = folio,\n         id_persona_casen = id_persona)\n\nnames(casen) # verificamos\n\n [1] \"folio_casen\"      \"id_persona_casen\" \"id_vivienda\"      \"region\"          \n [5] \"hogar\"            \"expr\"             \"expp\"             \"expc\"            \n [9] \"varstrat\"         \"varunit\"          \"sexo\"             \"y1\"              \n\n\nPara unir ambas bases de datos, usaremos la función left_join() del paquete dplyr. En esta función, ponemos a la izquierda la base de datos a la que queremos que se le agrege información y a la derecha la base de datos desde la cual proviene la información. Además, debemos proveer un argumento que indica el nombre de las variables que servivarán como llave (es decir, que están presentes en ambas bases).\n\ndatos_proc &lt;- left_join(ebs, casen, by = c(\"folio_casen\", \"id_persona_casen\")) # unimos\n\ndatos_proc %&gt;% \n  head() # verificamos\n\n# A tibble: 6 × 263\n  folio  folio_casen id_persona_casen region.x      provincia comuna     zona   \n  &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt; &lt;dbl+lbl&gt;     &lt;dbl+lbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+l&gt;\n1 10002 110110010301              118 1 [1 Región … 11 [11 I… 1101 [Iqu… 1 [Urb…\n2 10003 110110020301              409 1 [1 Región … 11 [11 I… 1101 [Iqu… 1 [Urb…\n3 10004 110110030201              454 1 [1 Región … 11 [11 I… 1101 [Iqu… 1 [Urb…\n4 10008 110110031801             1050 1 [1 Región … 11 [11 I… 1101 [Iqu… 1 [Urb…\n5 10009 110110040501             1121 1 [1 Región … 11 [11 I… 1101 [Iqu… 1 [Urb…\n6 10013 110110060201             1510 1 [1 Región … 11 [11 I… 1101 [Iqu… 1 [Urb…\n# ℹ 256 more variables: sexo.x &lt;dbl+lbl&gt;, fexp &lt;dbl&gt;, p1 &lt;dbl+lbl&gt;,\n#   p2 &lt;dbl+lbl&gt;, p3 &lt;dbl+lbl&gt;, p4 &lt;dbl+lbl&gt;, p11 &lt;dbl+lbl&gt;, p12 &lt;dbl+lbl&gt;,\n#   l0 &lt;dbl&gt;, l1 &lt;dbl&gt;, l2 &lt;dbl+lbl&gt;, l3 &lt;dbl&gt;, l4_1 &lt;dbl+lbl&gt;, l4_2 &lt;dbl+lbl&gt;,\n#   l4_3 &lt;dbl+lbl&gt;, l4_4 &lt;dbl+lbl&gt;, l4_5 &lt;dbl+lbl&gt;, l4_6 &lt;dbl+lbl&gt;,\n#   l5 &lt;dbl+lbl&gt;, l6 &lt;dbl+lbl&gt;, l7 &lt;dbl+lbl&gt;, l8 &lt;dbl+lbl&gt;, l9 &lt;dbl+lbl&gt;,\n#   l10a &lt;dbl+lbl&gt;, l10b &lt;dbl+lbl&gt;, l11 &lt;dbl+lbl&gt;, l12 &lt;dbl+lbl&gt;,\n#   tramoebs1 &lt;dbl+lbl&gt;, disc &lt;dbl+lbl&gt;, neduc_ebs &lt;dbl+lbl&gt;, a1 &lt;dbl+lbl&gt;, …\n\n\nPor último, verificamos que se mantenga la cantidad de casos original de la EBS como mencionamos antes.\n\ndim(datos_proc) \n\n[1] 10921   263\n\n\nMantenemos 10.921 personas.\nAhora que ya tenemos una base final con información de la EBS y CASEN 2020, podemos continuar con los demás procesamientos necesarios para nuestra investigación."
-  },
-  {
-    "objectID": "assignment/05-practico.html",
-    "href": "assignment/05-practico.html",
-    "title": "Reportes dinámicos 2",
-    "section": "",
-    "text": "El objetivo de esta guía práctica es aprender cómo crear y mostrar tablas y gráficos en documentos dinámicos mediante R Markdown. Además, aprenderemos cómo autoreferenciar elementos dentro de nuestro documento Rmd.\nEn detalle, aprenderemos:\n\nGeneración y presentación de tablas en R Markdown.\nGeneración y presentación de gráficos en R Markdown.\nCómo autoreferenciar elementos dentro un documento R Markdown.\n\n\n\nEn esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuestas realizadas en diferentes países por el Latin American Public Opinion Proyect (LAPOP) en su ola del 2018. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  LAPOP 2018. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos LAPOP 2018."
-  },
-  {
-    "objectID": "assignment/05-practico.html#recursos-de-la-práctica",
-    "href": "assignment/05-practico.html#recursos-de-la-práctica",
-    "title": "Reportes dinámicos 2",
-    "section": "",
-    "text": "En esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuestas realizadas en diferentes países por el Latin American Public Opinion Proyect (LAPOP) en su ola del 2018. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  LAPOP 2018. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos LAPOP 2018."
-  },
-  {
-    "objectID": "assignment/05-practico.html#chunks",
-    "href": "assignment/05-practico.html#chunks",
-    "title": "Reportes dinámicos 2",
-    "section": "Chunks",
-    "text": "Chunks\nPara integrar código de R en un archivo RMarkdown usamos los chunks, que son trozos de código dentro de nuestra hoja. Estos permiten hacer análisis dentro del documento visualizando los resultados en el documento final.\nLos chunks se ven así dentro del .Rmd:\n```{r}\n# El codigo va aquí\n\n```\n\nInsertar chunks\nHay tres formas de insertar chunks:\n\nPulsar ⌘⌥I en macOS o Control + Alt + I en Windows\nPulsa el botón “Insert” en la parte superior de la ventana del editor\n\n\n\n\n\n\n\n\n\n\n\nEscribirlo manualmente (no recomendado)\n\n\n\nNombre de chunk\nPara añadir un nombre, inclúyelo inmediatamente después de la {r en la primera línea del chunk. Los nombres no pueden contener espacios, pero sí guiones bajos y guiones.\nImportante: Todos los nombres de chunk de tu documento deben ser únicos.\n```{r nombre-chunk}\n# El codigo va aquí\n\n```\n\n\nOpciones de chunk\nHay distintas opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la Guía de referencia de RMarkdown o en el sitio web de knitr.\nLas opciones van dentro de la sección {r} del chunk:\n```{r nombre-chunk, message = FALSE, echo = TRUE}\n# El codigo va aquí\n\n```\nOtra forma de hacerlo es configurar las opciones generales de todos los chunks que hagamos al inicio del documento:\n```{r setup, include = FALSE}\nknitr::opts_chunk$set(echo = TRUE, \n                      message = FALSE, \n                      warning = FALSE)\n\n```\nDe esta manera ya no es necesario indicar en cada chunk las opciones, y se aplicaran las configuraciones generales que indicamos al comienzo."
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html",
-    "href": "files/reporte_notas/reporte_notas.html",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "pacman::p_load(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )\n\n\n\n [1] \"N\"            \"Persona\"      \"p1-a\"         \"p1-b\"         \"p2\"          \n [6] \"p3\"           \"p4\"           \"p5\"           \"pje\"          \"Nota 60%\"    \n[11] \"corrector/a\"  \"decimas\"      \"nota_final\"   \"Recorrección\" \"...15\"       \n[16] \"...16\"       \n\n\n\nload(\"prueba1.Rdata\")\n\n\n\n\n\n# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Cálculo Pearson\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Interpretación Pearson\")\nprueba1$p2 &lt;- set_label(x = prueba1$p2, \n                         label = \"Limitación Pearson\")\nprueba1$p3 &lt;- set_label(x = prueba1$p3, \n                         label = \"Coeficiente determinación\")\nprueba1$p4 &lt;- set_label(x = prueba1$p4, \n                         label = \"Spearman\")\nprueba1$p5 &lt;- set_label(x = prueba1$p5, \n                         label = \"Perdidos matrices\")\n\n\n\n\n\nprueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nCálculo Pearson\n79\n1.78\n1.29\n3 (0-3)\n\n\n3\np1b\nInterpretación Pearson\n79\n1.66\n0.78\n3 (0-3)\n\n\n4\np2\nLimitación Pearson\n79\n1.53\n0.69\n2 (0-2)\n\n\n5\np3\nCoeficiente determinación\n79\n1.50\n0.64\n2 (0-2)\n\n\n6\np4\nSpearman\n79\n1.39\n0.81\n2 (0-2)\n\n\n7\np5\nPerdidos matrices\n79\n0.99\n0.89\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n79\n4.54\n1.40\n6 (1-7)\n\n\n\n\n\n\n\n\n\nhist(prueba1$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat)\n\nx &lt;categorical&gt; \n# total N=88 valid N=79 mean=2.23 sd=1.13\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 30 | 34.09 |   37.97 |  37.97\n4.0-5.0     | 14 | 15.91 |   17.72 |  55.70\n5.0-6.0     | 22 | 25.00 |   27.85 |  83.54\n6.0-7.0     | 13 | 14.77 |   16.46 | 100.00\n&lt;NA&gt;        |  9 | 10.23 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)\n\n\n\n\n\ntab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nCálculo Pearson\nInterpretación Pearson\nLimitación Pearson\nCoeficiente determinación\nSpearman\nPerdidos matrices\nnota_final\n\n\nCálculo Pearson\n \n \n \n \n \n \n \n\n\nInterpretación Pearson\n0.405***\n \n \n \n \n \n \n\n\nLimitación Pearson\n0.211\n0.153\n \n \n \n \n \n\n\nCoeficiente determinación\n0.271*\n0.407***\n0.267*\n \n \n \n \n\n\nSpearman\n0.229*\n0.203\n0.375***\n0.197\n \n \n \n\n\nPerdidos matrices\n0.063\n0.127\n0.435***\n0.095\n0.277*\n \n \n\n\nnota_final\n0.696***\n0.627***\n0.619***\n0.524***\n0.583***\n0.539***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nplot_scatter(prueba1, p1a, p1b)\n\n\n\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 79\nalpha: 0.634"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#librerías-datos",
-    "href": "files/reporte_notas/reporte_notas.html#librerías-datos",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "pacman::p_load(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )\n\n\n\n [1] \"N\"            \"Persona\"      \"p1-a\"         \"p1-b\"         \"p2\"          \n [6] \"p3\"           \"p4\"           \"p5\"           \"pje\"          \"Nota 60%\"    \n[11] \"corrector/a\"  \"decimas\"      \"nota_final\"   \"Recorrección\" \"...15\"       \n[16] \"...16\"       \n\n\n\nload(\"prueba1.Rdata\")"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados",
-    "href": "files/reporte_notas/reporte_notas.html#etiquetados",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Cálculo Pearson\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Interpretación Pearson\")\nprueba1$p2 &lt;- set_label(x = prueba1$p2, \n                         label = \"Limitación Pearson\")\nprueba1$p3 &lt;- set_label(x = prueba1$p3, \n                         label = \"Coeficiente determinación\")\nprueba1$p4 &lt;- set_label(x = prueba1$p4, \n                         label = \"Spearman\")\nprueba1$p5 &lt;- set_label(x = prueba1$p5, \n                         label = \"Perdidos matrices\")"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
-    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "prueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nCálculo Pearson\n79\n1.78\n1.29\n3 (0-3)\n\n\n3\np1b\nInterpretación Pearson\n79\n1.66\n0.78\n3 (0-3)\n\n\n4\np2\nLimitación Pearson\n79\n1.53\n0.69\n2 (0-2)\n\n\n5\np3\nCoeficiente determinación\n79\n1.50\n0.64\n2 (0-2)\n\n\n6\np4\nSpearman\n79\n1.39\n0.81\n2 (0-2)\n\n\n7\np5\nPerdidos matrices\n79\n0.99\n0.89\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n79\n4.54\n1.40\n6 (1-7)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
-    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "hist(prueba1$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat)\n\nx &lt;categorical&gt; \n# total N=88 valid N=79 mean=2.23 sd=1.13\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 30 | 34.09 |   37.97 |  37.97\n4.0-5.0     | 14 | 15.91 |   17.72 |  55.70\n5.0-6.0     | 22 | 25.00 |   27.85 |  83.54\n6.0-7.0     | 13 | 14.77 |   16.46 | 100.00\n&lt;NA&gt;        |  9 | 10.23 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
-    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "tab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nCálculo Pearson\nInterpretación Pearson\nLimitación Pearson\nCoeficiente determinación\nSpearman\nPerdidos matrices\nnota_final\n\n\nCálculo Pearson\n \n \n \n \n \n \n \n\n\nInterpretación Pearson\n0.405***\n \n \n \n \n \n \n\n\nLimitación Pearson\n0.211\n0.153\n \n \n \n \n \n\n\nCoeficiente determinación\n0.271*\n0.407***\n0.267*\n \n \n \n \n\n\nSpearman\n0.229*\n0.203\n0.375***\n0.197\n \n \n \n\n\nPerdidos matrices\n0.063\n0.127\n0.435***\n0.095\n0.277*\n \n \n\n\nnota_final\n0.696***\n0.627***\n0.619***\n0.524***\n0.583***\n0.539***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nplot_scatter(prueba1, p1a, p1b)\n\n\n\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 79\nalpha: 0.634"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#datos",
-    "href": "files/reporte_notas/reporte_notas.html#datos",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Datos",
-    "text": "Datos\n\nload(\"prueba2.Rdata\")"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#adecuación-preguntas",
-    "href": "files/reporte_notas/reporte_notas.html#adecuación-preguntas",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Adecuación preguntas",
-    "text": "Adecuación preguntas\nLa prueba tiene dos formas: A y B, la única diferencia es en el orden de las preguntas, la forma A parte por la pregunta sobre identificación con la izquierda, mientras que en la forma B la primera pregunta es la de CASEN. Para poder realizar un correcto análisis de las preguntas vamos a adaptar la forma B a la A.\n\nfrq(prueba2$forma)\n\nx &lt;character&gt; \n# total N=87 valid N=72 mean=1.50 sd=0.50\n\nValue |  N | Raw % | Valid % | Cum. %\n-------------------------------------\nA     | 36 | 41.38 |      50 |     50\nB     | 36 | 41.38 |      50 |    100\n&lt;NA&gt;  | 15 | 17.24 |    &lt;NA&gt; |   &lt;NA&gt;\n\nA &lt;- subset(prueba2, subset = prueba2$forma==\"A\")\nB &lt;- subset(prueba2, subset = prueba2$forma==\"B\")\ndim(A)\n\n[1] 36  8\n\ndim(B)\n\n[1] 36  8\n\ndescr(B, show = \"mean\")\n\n\n## Basic descriptive statistics\n\n        var mean\n        p1a 1.33\n        p1b 1.36\n        p1c 1.31\n        p2a 1.39\n        p2b 1.28\n        p2c 1.32\n nota_final 4.58\n\nB &lt;- B %&gt;% rename(\"p1a\"=\"p2a\", \n                  \"p1b\"=\"p2b\",\n                  \"p1c\"=\"p2c\",\n                  \"p2a\"=\"p1a\",\n                  \"p2b\"=\"p1b\",\n                  \"p2c\"=\"p1c\")\n\ndescr(B, show = \"mean\")\n\n\n## Basic descriptive statistics\n\n        var mean\n        p2a 1.33\n        p2b 1.36\n        p2c 1.31\n        p1a 1.39\n        p1b 1.28\n        p1c 1.32\n nota_final 4.58\n\nprueba2 &lt;- rbind(A,B)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados-1",
-    "href": "files/reporte_notas/reporte_notas.html#etiquetados-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Etiquetados",
-    "text": "Etiquetados\n\n# Label variables\n\nprueba2$p1a &lt;- set_label(x = prueba2$p1a, \n                         label = \"H1 promedio direccional\")\nprueba2$p1b &lt;- set_label(x = prueba2$p1b, \n                         label = \"Prueba promedios\")\nprueba2$p1c &lt;- set_label(x = prueba2$p1c, \n                         label = \"Rechazo H0\")\nprueba2$p2a &lt;- set_label(x = prueba2$p2a, \n                         label = \"H1 proporcion no direccional\")\nprueba2$p2b &lt;- set_label(x = prueba2$p2b, \n                         label = \"Error tipo 1\")\nprueba2$p2c &lt;- set_label(x = prueba2$p2c, \n                         label = \"Intervalo confianza\")"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva-1",
-    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Tabla descriptiva",
-    "text": "Tabla descriptiva\n\nprueba2 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nH1 promedio direccional\n72\n1.36\n0.63\n2 (0-2)\n\n\n3\np1b\nPrueba promedios\n72\n1.24\n0.86\n2 (0-2)\n\n\n4\np1c\nRechazo H0\n72\n1.27\n0.70\n2 (0-2)\n\n\n5\np2a\nH1 proporcion no direccional\n72\n1.26\n0.68\n2 (0-2)\n\n\n6\np2b\nError tipo 1\n72\n1.27\n0.79\n2 (0-2)\n\n\n7\np2c\nIntervalo confianza\n72\n1.14\n0.72\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n72\n4.37\n1.23\n5.6 (1.4-7)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos-1",
-    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Gráficos descriptivos",
-    "text": "Gráficos descriptivos\n\nhist(prueba2$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba2$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba2 &lt;- prueba2 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba2$notas_cat)\n\nx &lt;categorical&gt; \n# total N=72 valid N=72 mean=2.06 sd=1.02\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 28 | 38.89 |   38.89 |  38.89\n4.0-5.0     | 19 | 26.39 |   26.39 |  65.28\n5.0-6.0     | 18 | 25.00 |   25.00 |  90.28\n6.0-7.0     |  7 |  9.72 |    9.72 | 100.00\n&lt;NA&gt;        |  0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba2 &lt;- prueba2 %&gt;% dplyr::select(-notas_cat)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones-1",
-    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Preguntas y asociaciones",
-    "text": "Preguntas y asociaciones\n\nprueba2 &lt;- prueba2 %&gt;% dplyr::select(-forma)\ntab_corr(prueba2,\n         triangle = \"lower\")\n\n\n\n\n \nH1 promedio direccional\nPrueba promedios\nRechazo H0\nH1 proporcion no direccional\nError tipo 1\nIntervalo confianza\nnota_final\n\n\nH1 promedio direccional\n \n \n \n \n \n \n \n\n\nPrueba promedios\n0.295*\n \n \n \n \n \n \n\n\nRechazo H0\n0.397***\n0.488***\n \n \n \n \n \n\n\nH1 proporcion no direccional\n0.108\n0.094\n-0.060\n \n \n \n \n\n\nError tipo 1\n-0.204\n0.039\n0.031\n-0.039\n \n \n \n\n\nIntervalo confianza\n0.047\n0.206\n0.308**\n0.169\n0.351**\n \n \n\n\nnota_final\n0.469***\n0.677***\n0.650***\n0.370**\n0.404***\n0.631***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba2 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 72\nalpha: 0.513"
-  },
-  {
-    "objectID": "assignment/04-practico.html",
-    "href": "assignment/04-practico.html",
-    "title": "Inferencia 1: Curva normal",
-    "section": "",
-    "text": "Objetivo de la práctica\nEl objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z.\nEn detalle, aprenderemos:\n\nQué es la inferencia estadística.\nQué es la distribución normal y cómo interpretarla.\nCómo calcular probabilidades asociadas con valores Z en R.\n\n\n\n¿Qué es la inferencia estadística?\nEn estadística, llamamos inferencia al ejercicio de extrapolar determinadas estimaciones (estadístico) de una muestra a una población más grande (parámetro). En concreto, es el proceso de realizar conclusiones o predicciones sobre una población a partir de una muestra o subconjunto de esa población.\n\nUn concepto central en todo esto es la probabilidad de error, es decir, en qué medida nos estamos equivocando (o estamos dispuestos a estar equivocados) en tratar de extrapolar una estimación muestral a la población.\n\n\nDistribución normal\n\n\n\n\n\n\nNota\n\n\n\nRecordemos que por distribución nos referimos al conjunto de todos los valores posibles de una variable y las frecuencias (o probabilidades) con las que se producen.\n\n\nExisten distribuciones empíricas y distribuciones teóricas, en donde:\n\nlas primeras reflejan la distribución de los valores que asume la variable en un grupo concreto a partir de una observación.\nlas segundas son una función matématica que expresan la distribución de un conjunto de números mediante su probabilidad de ocurencia.\n\nPara empezar, veamos una de las distribuciones teóricas más conocidas: la distribución normal estándar. La distribución normal estándar:\n\nes una distribución normal con una media de 0 y una desviación estándar de 1.\nsimétricas y con un solo punto de elevación\nla media se sitúa al centro, y la desviación estandar expresa su dispersión\nla pendiente es más fuerte cerca del centro, y se suaviza hacia los extremos\nlos puntos en los que tiene lugar este cambio de curvatura se hallan a una distancia σ, a ambos lados de la media µ.\n\nCon R es posible generar un conjunto de datos simulados con una distribución normal.\n\nx.values &lt;- seq(-4,4, length = 1000)\ny.values &lt;- dnorm(x.values)\nplot(x.values, y.values, type=\"l\", xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\")\n\n\n\n\n\n\n\n\n¿Qué estamos haciendo en cada una de las 3 líneas de código? ¿Qué variables se crearon y cómo nos aseguramos de que los datos generados siguieran una distribución normal? Pensemos un poco…\nAhora podemos preguntar qué parte de la curva cae por debajo de un valor particular. Por ejemplo, preguntaremos sobre el valor 0 antes de ejecutar el código. Piense ¿cuál debería ser la respuesta?\n\npnorm(q = 0)\n\n[1] 0.5\n\n\nTenemos que la probabilidad (en una curva normal estándar) de obtener un valor igual o menor a 0 es de 0.5, es decir, del 50%, pero ¿por qué?\n\nPorque como la distribución normal es simétrica alrededor de cero, la probabilidad de que sea menor o igual a cero es 0.5, es decir, el 50% de la distribución está por debajo de cero y el otro 50% está por encima de cero.\n\n\n\n\n:scale 65%\n\n\nEsto es posible mediante la relación entre las áreas bajo la curva normal y las probabilidades.\n\n\nProbabilidades asociadas con valores z\n\n\n\n\n\n\nNota\n\n\n\nLa puntuación Z es una medida que se utiliza para expresar la posición relativa de un valor con respecto a la media en una distribución normal. La puntuación Z mide cuántas desviaciones estándar está un valor por encima o por debajo de la media.\n\n\nEn los ejemplos siguientes, usaremos valores Z de + 1,96 y -1,96 porque sabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico = 0,05 para una prueba de hipótesis de dos colas (sobre la cual aprenderemos más en las próximas semanas).\n\npnorm(q = 1.96, lower.tail=TRUE)\n\n[1] 0.9750021\n\n\nLa respuesta nos dice lo que ya sabemos: el 97,5% de la distribución normal ocurre por debajo del valor z de 1,96.\nPodemos agregar una línea al gráfico para mostrar dónde se usaría abline.\nEl 97,5% de la distribución queda por debajo de esta línea.\n\nplot(x.values, y.values, type=\"l\", lty=1, xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\") +\nabline(v = 1.96)\n\n\n\n\n\n\n\n\ninteger(0)\n\n\n¿Y si lo hacemos hacia la cola izquierda o inferior de la distribución?\n\npnorm(q = -1.96, lower.tail = TRUE)\n\n[1] 0.0249979\n\n\nTenemos que, hacia el extremo inferior de la distribución, el valor z -1,96 marca el 2,5% inferior de la distribución normal estándar.\n\nplot(x.values, y.values, type=\"l\", lty=1, xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\") +\nabline(v = -1.96)\n\n\n\n\n\n\n\n\ninteger(0)\n\n\n\nEjercicio 1\nUtilice la función abline() para agregar líneas en el puntaje z apropiado para demostrar el clásico 68-95-99.7 de esta curva normal estándar.\n\nplot(x.values, y.values, type=\"l\", lty=1, xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\") +\nabline(v = 1) +\nabline(v = -1) +\nabline(v = 2) +\nabline(v = -2) +\nabline(v = 3) +\nabline(v = -3)\n\n\n\n\n\n\n\n\ninteger(0)\n\n\nComo se discutió en clases, también podemos hacer lo contrario: decidir primero cuánta probabilidad queremos (percentil) y luego calcular qué valores críticos están asociados con esas probabilidades. Esto utiliza la función qnorm. Si queremos saber qué valor z marca la probabilidad p del 2,5% inferior de una distribución normal estándar, usaríamos:\n\nqnorm(p = 0.025)\n\n[1] -1.959964\n\n\nEsto nos dice que el valor z de -1,96 marca el 2,5% inferior de la distribución normal estándar. Para determinar el valor z que marca el 2,5% superior de la distribución, escribo:\n\nqnorm(p = 0.975)\n\n[1] 1.959964\n\n\n\n\nEjercicio 2\nHasta ahora hemos demostrado todo con una distribución normal estándar. Pero la mayoría de las curvas normales no son normales estándar.\nGenere una curva (como hicimos anteriormente para la distribución normal estándar) y trácela con una media de 20 y una desviación estándar de 1,65.\n\nx.values &lt;- seq(10,30, length = 1000)\ny.values &lt;- dnorm(x.values, mean = 20, sd = 1.65) # indico media y sd\nplot(x.values, y.values, type=\"l\", lty=1, xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\")\n\n\n\n\n\n\n\n\nAhora, identifique el valor en el que el 97,5% de la distribución cae por debajo de este valor. Esto lo hicimos antes con qnorm.\n\nqnorm(p = .975, mean = 20, sd = 1.65)\n\n[1] 23.23394\n\n\nTenemos que el 97,5% de los valores estarán por debajo de 23,2.\n\n\n\nEjercicio de aplicación\nAhora que hemos generado distribuciones normales, echemos un vistazo a algunos datos y compárelos con la distribución normal. Utilizaremos un conjunto de datos desde internet, con mediciones de 247 hombres y 260 mujeres, la mayoría de los cuales eran considerados adultos jóvenes sanos.P uede encontrar una clave para los nombres de las variables aquí, pero nos centraremos en solo tres columnas: peso en kg (wgt), altura en cm (hgt) y sexo (1 = hombre; 0 = mujer).\n\nload(url(\"http://www.openintro.org/stat/data/bdims.RData\"))\n\nSeparemos estos datos en dos conjuntos, uno de hombres y otro de mujeres con la función subset\n\nmdims &lt;- subset(bdims, sex == 1)\nfdims &lt;- subset(bdims, sex == 0)\n\n\nEjercicio 1\nHaz un histograma de la altura de los hombres y un histograma de la altura de las mujeres. ¿Cómo compararía los diversos aspectos de las dos distribuciones?\n\nhist(mdims$hgt, xlim = c(150,200))\n\n\n\n\n\n\n\nhist(fdims$hgt, xlim = c(140,190))\n\n\n\n\n\n\n\n\n\n\nEjercicio 2\nscale es una función en R y se puede aplicar a cualquier vector numérico (lista de números en R). Genere los dos histogramas siguientes, esta vez graficando scale() de las estaturas y determine cómo la versión escalada de las alturas corresponde a las alturas originales. ¿Qué calcula la escala para cada punto?\n\nhist(scale(mdims$hgt))\n\n\n\n\n\n\n\nhist(scale(fdims$hgt))\n\n\n\n\n\n\n\n\n\n\nEjercicio 3\nNos gustaría comparar la distribución de estaturas en este conjunto de datos con la distribución normal. Para cada uno de los histogramas de alturas (sin escalar), trace una curva normal en la parte superior del histograma.\n\nCalcule la media y la desviación estándar para las alturas femeninas y guárdelas como variables, fhgtmean y fhgtsd, respectivamente.\nDetermine la lista de valores de x (el rango del eje X) y guarde este vector. Puede hacer fácilmente una lista de números usando la función seq() como lo hemos hecho antes, o teniendo el límite inferior:límite superior. Por ejemplo, para generar un vector (lista de números) del 1 al 10 y guardarlo como one_ten, usaría one_ten &lt;- 1:10.\nComo arriba, use dnorm() para tomar la lista de valores de x y encontrar el valor de y correspondiente si fuera una distribución normal perfecta. Guarde este vector como la variable y.\nVuelva a trazar su histograma y luego, en la siguiente línea, use lines(x = x, y = y, col = \"blue\") para dibujar una distribución normal encima.\n\n\nfhgtmean &lt;- mean(fdims$hgt)\nfhgtsd   &lt;- sd(fdims$hgt)\nhist(fdims$hgt, probability = TRUE, ylim = c(0, .07))\nx &lt;- 140:190\ny &lt;- dnorm(x = x, mean = fhgtmean, sd = fhgtsd)\nlines(x = x, y = y, col = \"blue\")\n\n\n\n\n\n\n\n\nSegún este gráfico, ¿parece que los datos siguen una distribución casi normal? Haz lo mismo con las estaturas masculinas.\n\nRespuesta: En general, sí, consideraría que estos valores siguen una distribución casi normal ya que el histograma se ajusta bastante bien a la curva.\n\nObserve que la forma del histograma es una forma de determinar si los datos parecen estar distribuidos casi normalmente, pero puede resultar frustrante decidir qué tan cerca está el histograma de la curva. Un enfoque alternativo implica construir una gráfica de probabilidad normal, también llamada gráfica Q-Q por “quantil-quantil”. Ejecute ambas líneas juntas.\n\nqqnorm(fdims$hgt)\nqqline(fdims$hgt)\n\n\n\n\n\n\n\n\nUn QQ plot nos muestra en el eje x los cuantiles teóricos de la distribución en términos de desviaciones estandar, y en el eje y los valores de la variable. La distribución de los puntos en una línea recta es una indicación de que los datos se distribuyen normalmente.\nVeamos otro ejemplo de otra variable de la base de datos:\n\nhist(fdims$che.de)\n\n\n\n\n\n\n\nqqnorm(fdims$che.de)\nqqline(fdims$che.de)\n\n\n\n\n\n\n\n\nUna vez que decidimos que una variable se distribuyte de forma normal, podemos responder todo tipo de preguntas sobre esa variable relacionadas con la probabilidad. Tomemos, por ejemplo, la pregunta: “¿Cuál es la probabilidad de que una mujer adulta joven elegida al azar mida más 182 cm?”\nSi suponemos que las alturas de las mujeres se distribuyen normalmente (una aproximación muy cercana también está bien), podemos encontrar esta probabilidad calculando una puntuación Z y consultando una tabla Z (también llamada tabla de probabilidad normal).\nEn R, esto se hace en un solo paso con la función pnorm (como hicimos anteriormente para la distribución normal estándar).\n\npnorm(q = 182, mean = fhgtmean, sd = fhgtsd)\n\n[1] 0.9955656\n\n\nObtenemos la proporción de mujeres que está bajo esa estatura, es decir 99,6%. Si queremos saber la proporción de mujeres que está sobre esa estatura:\n\n1 - pnorm(q = 182, mean = fhgtmean, sd = fhgtsd)\n\n[1] 0.004434387\n\n\nEn este caso, el 0,4% de las mujeres se encontraría sobre esa estatura.\nPodemos también hacer la operación inversa, es decir, a qué valor (estatura) corresponde un porcentaje o probabilidad basada en una distribución normal. Para ello utilizamos la función qnorm. Por ejemplo, para la probabilidad que calculamos más arriba para una altura de 182cm en las mujeres:\n\nqnorm(.9955656, fhgtmean, fhgtsd)\n\n[1] 182\n\n\n\n\n\nReporte de progreso\nCompletar el reporte de progreso correspondiente a esta práctica aquí. El plazo para contestarlo es hasta el día viernes de la semana en la que se publica la práctica correspondiente.\n\n\nVideo de práctica\n\n\n\nForo"
-  },
-  {
-
-    "objectID": "news/2024-08-28_asignacion_ayudantes1.html",
-    "href": "news/2024-08-28_asignacion_ayudantes1.html",
-    "title": "Asignación asesorías ayudantes",
-    "section": "",
-    "text": "← News\n\n\n\n\nEstudiantes,\nLa asignación de ayudantes para asesorías individuales durantes las Unidades 1 y 2 del curso se detalla en la siguiente tabla.\n\n\n\n\n\n\nAyudante\nEstudiante\n\n\n\n\nAntonia Jiménez F.\nAlarcón Riveros, Milen Valentina\n\n\n\nArriagada Rodríguez, Javiera Ignacia\n\n\n\nCelpa Bugueño, Álvaro Giovanni\n\n\n\nDíaz Devia, Eduardo Ignacio\n\n\n\nHernández Osses, Antonia Margarita\n\n\n\nHuerta Carrasco, Rodrigo Javier\n\n\n\nKovacevic Ardiles, Ruby Mladenka\n\n\n\nNavarro Sánchez, Camila Alexandra\n\n\n\nPadilla Maureira, Belén Monserrat\n\n\n\nZanca Garrido, Andrés Ignacio\n\n\nCristóbal Mejías G.\nAntil Contreras, Ana Paula\n\n\n\nBeroíza Aguilar, Benjamín Daniel David\n\n\n\nFuentes Fernández, Víctor Javier\n\n\n\nOlmos Jara, Vicente Martín\n\n\n\nRaccagni Mancilla, Matilda Isidora\n\n\n\nRendic Gomez, Andres Nicolas\n\n\n\nVásquez Campos, Fernanda María José\n\n\n\nVega Villanueva, Martina Alejandra\n\n\nFernanda Zúñiga M.\nÁlvarez Cárdenas, Javiera Ignacia\n\n\n\nCastro Rojas, Joel Wilson\n\n\n\nDuclos González, Gaspar\n\n\n\nFaúndez Ramírez, Jennifer Paola\n\n\n\nGonzález Núñez, Bastián Antonio\n\n\n\nGuzmán Reyes, Pablo Antonio\n\n\n\nMontecinos Quintanilla, Valentina Antonia\n\n\n\nSantos Chavarría, Catalina Paz\n\n\nIsmael Aguayo\nBustos Pérez, Benjamín Alfredo\n\n\n\nCastillo Rojas, Anahi Constanza\n\n\n\nChateau Vives, Manuela\n\n\n\nMaldonado Acevedo, Agustín Eduardo\n\n\n\nMorales Verdugo, Javiera Catalina\n\n\n\nRivera Valenzuela, Luis Felipe\n\n\n\nSalas Aguilar, Maximiliano Alonso\n\n\n\nThumala Raposo, Daniel\n\n\n\nTsukame Díaz, Amalia Victoria\n\n\nJaviera González\nBuzio Aranda, Martina Javiera\n\n\n\nCantillana Olave, Muriel Noelia\n\n\n\nFerrel Higuera, Benjamin Tomas Alexandre\n\n\n\nFigueroa Tengner, Nino\n\n\n\nMancilla Chaparro, Benjamín Patricio\n\n\n\nMansilla Fuentes, Violeta Del Rosario\n\n\n\nOuterbridge Ortega, Nicolás Eduardo\n\n\n\nRojas Murúa, Vicente Ignacio de Jesús\n\n\n\nRojas Santander, Matías Nicolás\n\n\n\nVillatoro Cepeda, Martina Alejandra\n\n\nJesús Díaz M.\nArias Acuña, Antonio Domingo\n\n\n\nConsuegra Erazo, Lucas Andrés\n\n\n\nJiménez Miranda, Constanza María\n\n\n\nJiménez Morales, Rosita Monserrat\n\n\n\nJullian Corral, Maite Ayelen\n\n\n\nMuñoz Caniuqueo, Ignacio Benjamín\n\n\n\nOsorio Huerta, Francisca Andrea\n\n\n\nPlaza Spate, Cristóbal Ignacio\n\n\n\nVenegas Moya, Alonso Elessar\n\n\nLuis Rios\nBalmaceda Yankovic, Bianca\n\n\n\nCaballero Salazar, Amador\n\n\n\nCanales Llanquitrú, Carla Jacqueline\n\n\n\nGaete Morgado, Paulina Andrea\n\n\n\nGatica Pailacura, Carolina Paz\n\n\n\nMartin Gerdes, Bastián Javier\n\n\n\nMena Rojas, Martín Elías\n\n\n\nValencia Almendras, Isidora Paz\n\n\n\nVásquez Olivares, Catalina Ignacia\n\n\nMaría Fernanda Núñez G.\nCalderón Guajardo, Elisa Amanda\n\n\n\nFlores Fuentes, Matías Gabriel\n\n\n\nGallo Novoa, Emilia Antonia\n\n\n\nLagos Zúñiga, Martina Jacinta\n\n\n\nLatorre González, Camila Ignacia\n\n\n\nPoblete Duarte, José Patricio\n\n\n\nRoa Neira, Carla Denisse\n\n\n\nSilva Díaz, Catalina Rosario\n\n\n\nVargas Olivares, Andrés Ignacio\n\n\nSophia Karoussis P.\nBascuñán Soto, Marta del Carmen\n\n\n\nBerríos Puentes, Rocío Belén\n\n\n\nFerran Villagra, Catalina Sofía\n\n\n\nGuerrero Tapia, Daniela Sofía\n\n\n\nPalma Valladares, Elisa Victoria\n\n\n\nPeña Gaete, Micaela Fabiana\n\n\n\nRobledo Dávila, Martina Elisa\n\n\n\nSuárez Urbina, Rocío Belén\n\n\n\nVega Gandolfo, Felipe Ignacio\n\n\nVictoria Arias O.\nCanales Calderón, Fernanda Paz\n\n\n\nCarrasco Gomberoff, Benjamín Eitan\n\n\n\nIbarra Domínguez, Asunción Rebeca\n\n\n\nIsla Hernández, Paz Magdalena\n\n\n\nNúñez Pérez, Joaquín Emilio\n\n\n\nReyes Aqueveque, Valeria Patricia\n\n\n\nRivera Sepúlveda, Sofía Belén\n\n\n\nSanta Cruz Claro, Amalia Magdalena\n\n\n\nSoto Ortega, Martina Paz\n\n\n\n\n\n\n\n\nPor dudas, comentarios o cambios respecto a esta asignación escribir a Andreas Laffert (Apoyo Docente) por UCursos."
-
     "objectID": "assignment/02-practico.html#formulación-de-hipótesis",
     "href": "assignment/02-practico.html#formulación-de-hipótesis",
     "title": "Práctico 2: Intentando rechazar",
@@ -931,5 +576,101 @@
     "title": "Práctico 2: Intentando rechazar",
     "section": "5. Interpretación",
     "text": "5. Interpretación"
+  },
+  {
+    "objectID": "assignment/01-practico.html",
+    "href": "assignment/01-practico.html",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "",
+    "text": "El objetivo de esta guía práctica es introducirnos en la inferencia estadística, revisando los conceptos y aplicaciones de la curva normal y las probabilidades bajo esta con puntajes Z, además del cálculo de intervalos de confianza.\nEn detalle, aprenderemos y recordaremos:\n\nLos conceptos de promedio y desviación estándar\nQué es la probabilidad y su aplicación para estadística\nQué es la distribución normal\nCómo calcular e interpretar intervalos de confianza\n\n\n\nCargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:\n\nlibrary(pacman)\npacman::p_load(tidyverse, # para sintaxis\n               ggplot2,   # para gráficos\n               car,       # para recodificar\n               psych,     # para analizar datos\n               sjmisc,    # para analizar datos\n               srvyr,     # para estimación de IC y ponderadores\n               Publish)   # para IC)    \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls())       # para limpar el entonrno de trabajo",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#librerías",
+    "href": "assignment/01-practico.html#librerías",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "",
+    "text": "Cargaremos algunas librerías que serán necesarias en las diferentes partes de esta guía práctica:\n\nlibrary(pacman)\npacman::p_load(tidyverse, # para sintaxis\n               ggplot2,   # para gráficos\n               car,       # para recodificar\n               psych,     # para analizar datos\n               sjmisc,    # para analizar datos\n               srvyr,     # para estimación de IC y ponderadores\n               Publish)   # para IC)    \n\noptions(scipen = 999) # para desactivar notacion cientifica\nrm(list = ls())       # para limpar el entonrno de trabajo",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#curvas-de-distribución",
+    "href": "assignment/01-practico.html#curvas-de-distribución",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "3.1. Curvas de distribución",
+    "text": "3.1. Curvas de distribución\nPor distribución nos referimos al conjunto de todos los valores posibles de una variable y las frecuencias (o probabilidades) con las que se producen.\nExisten distribuciones empíricas y distribuciones teóricas, en donde:\n\nlas primeras reflejan la distribución de los valores que asume la variable en un grupo concreto a partir de una observación.\nlas segundas son una función matématica que expresan la distribución de un conjunto de números mediante su probabilidad de ocurencia.\n\nEstas últimas son también llamadas curvas de distribución.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#distribución-normal-1",
+    "href": "assignment/01-practico.html#distribución-normal-1",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "3.2. Distribución Normal",
+    "text": "3.2. Distribución Normal\nEs una distribución teórica que corresponde a una curva que representa la distribución de los casos de la población en torno al promedio y con una varianza conocida.\n\nSimétricas y con un solo punto de elevación\nLa pendiente es más fuerte cerca del centro, y se suaviza hacia los extremos\nCoinciden al centro el promedio, la mediana y la moda\nLa desviación estandar expresa su dispersión.\nEstablece áreas o proporciones bajo la curva en base a desviaciones estándar del promedio.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#distribución-normal-estándar",
+    "href": "assignment/01-practico.html#distribución-normal-estándar",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "3.3. Distribución Normal Estándar",
+    "text": "3.3. Distribución Normal Estándar\nLa distribución normal estándar es una distribución normal con una media de 0 y una desviación estándar de 1.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#puntaje-z-y-estandarización-de-variables",
+    "href": "assignment/01-practico.html#puntaje-z-y-estandarización-de-variables",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "3.4. Puntaje Z y estandarización de variables",
+    "text": "3.4. Puntaje Z y estandarización de variables\nAl estandarizar las variables (como en la Curva Normal Estándar) lo que hacemos es expresar el valor de una distribución en términos de desviaciones estándar basados en la distribución normal. Esto nos permite comparar distribuciones distintas.\nAl valor estandarizado lo llamamos puntaje Z, y corresponde a la cantidad de desviaciones estándar que nos alejamos del promedio (para cada variable con la que trabajemos).",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#cálculo-de-probabilidades-con-puntaje-z",
+    "href": "assignment/01-practico.html#cálculo-de-probabilidades-con-puntaje-z",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "3.5. Cálculo de probabilidades con puntaje z",
+    "text": "3.5. Cálculo de probabilidades con puntaje z\nLos valores estandarizados o puntajes Z además nos permiten conocer probabilidades.\nCon R es posible generar un conjunto de datos simulados con una distribución normal.\n\nx_values &lt;- seq(-4,4,length=1000)\ny_values &lt;- dnorm(x_values)\nplot(x_values,y_values,type=\"l\",xlab=\"Valor Z\",ylab=\"Probabilidad\",main=\"Distribución Normal\")\n\n\n\n\n\n\n\n\nPodemos preguntar qué parte de la curva cae por debajo de un valor particular. Por ejemplo, preguntaremos sobre el valor 0 antes de ejecutar el código. Piense ¿cuál debería ser la respuesta?\n\npnorm(q = 0)\n\n[1] 0.5\n\n\nPor tanto, la probabilidad (en una curva normal estándar) de obtener un valor igual o menor a 0 es de 0.5, es decir, del 50%, pero ¿por qué?\n\nPorque como la distribución normal estándar es simétrica al rededor de cero, la probabilidad de que sea menor o igual a cero es 0.5, es decir, el 50% de la distribución está por debajo de cero y el otro 50% está por encima de cero.\n\nEso lo podemos ver en el gráfico:\n\nplot(x_values,y_values,type=\"l\",xlab=\"Valor Z\",ylab=\"Probabilidad\",main=\"Distribución Normal\")\nabline(v=0)\n\n\n\n\n\n\n\n\nAhora probemos los valores Z de +1,96 y -1,96.\nSabemos que estos valores aproximados marcan el 2,5% superior e inferior de la distribución normal estándar. Esto corresponde a un alfa típico \\(\\alpha = 0,05\\) para una prueba de hipótesis de dos colas.\n\npnorm(q = 1.96, lower.tail=TRUE)\n\n[1] 0.9750021\n\n\nLa respuesta nos dice lo que ya sabemos: el 97,5% de la distribución normal ocurre por debajo del valor z de 1,96.\nPodemos agregar una línea al gráfico para mostrar dónde se usaría abline.\nEl 97,5% de la distribución queda por debajo de esta línea.\n\nplot(x_values, y_values, type=\"l\", lty=1, xlab=\"Z value\", ylab=\"Probability\", main=\"Normal Distribution\") +\nabline(v = 1.96)\n\n\n\n\n\n\n\n\ninteger(0)",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
+  },
+  {
+    "objectID": "assignment/01-practico.html#cálculo-de-intervalos-de-confianza",
+    "href": "assignment/01-practico.html#cálculo-de-intervalos-de-confianza",
+    "title": "Distribución Normal e Intervalos de Confianza",
+    "section": "4.1. Cálculo de intervalos de confianza",
+    "text": "4.1. Cálculo de intervalos de confianza\nEn el caso de nuestro vector aleatorio, un intervalo de confianza para la media se puede calcular de la siguiente manera:\n\n# Calcular un intervalo de confianza para la media\nintervalo_confianza &lt;- t.test(vector)$conf.int  # Intervalo de confianza del 95% para la media\nintervalo_confianza\n\n[1] 4.818567 5.543057\nattr(,\"conf.level\")\n[1] 0.95\n\n\nTambién podemos calcular intervalos de confianza para casos reales. Carguemos la base de datos que utilizaremos, que corresponde a un subset de la Encuesta Suplementaria de ingresos ESI para ocupados:\n\nload(url(\"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/esi-2021-ocupados.rdata\"))\n\n\n\n\n\n\n\nNota\n\n\n\nRecordemos que podemos contar con bases de datos que tengan factor de expansión (ponderador) o no. Esta distinción se presenta cuando trabajamos con muestras simples o complejas. Al trabajar con muestras complejas debemos identificar cuál es la variable del ponderador e incorporarla en nuestro cálculo.\nEn esta guía practicaa trabajaremos sin factores de expansión o ponderadores.\n\n\n\nIC para Medias\nCalculemos un intervalo de confianza para la media de ingresos de personas ocupadas:\n\npsych::describe(esi$ing_t_p)\n\n   vars     n     mean       sd   median  trimmed      mad min      max\nX1    1 37124 586360.4 697362.9 405347.7 474473.1 255411.6   0 38206253\n      range skew kurtosis      se\nX1 38206253   12   402.32 3619.36\n\n\n\nPublish::ci.mean(esi$ing_t_p, alpha = 0.05)\n\n mean      CI-95%               \n 586360.41 [579266.37;593454.45]\n\n\nContamos con una media de ingresos de $586.360 como estimación puntual. Pero también podemos decir que con un 95% de confianza el parámetro poblacional se encontrará entre $579.266 y $593.454.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "1: Curva Normal e Intervalos de Confianza"
+    ]
   }
 ]

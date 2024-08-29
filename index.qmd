@@ -54,11 +54,12 @@ withr::with_dir(here::here(), {
 **Apoyos docentes**
 
 <div class="image-cropper">
-  <img src="https://static.u-cursos.cl/r/usuario/af/af4bf2025223c7ec26f2b05853a831e8/datos_usuario/av_611aa760e705a.jpg" alt="avatar" class="profile-pic">
+  <img src= /files/img/Martin-Venegas.png
+  alt="avatar" class="profile-pic">
 </div>
 
 
-*Daniela Olivares*
+*Martín Venegas*
 
 - {{< fa envelope >}} &nbsp; {{< var other2.email >}}
 - {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var other2.appointment_url >}})
@@ -84,6 +85,8 @@ withr::with_dir(here::here(), {
 - María Fernanda Núñez
 - Luis Ríos
 - Fernanda Zúñiga
+- Ismael Aguayo
+- Franco Acevedo
 
 :::
 

@@ -6,9 +6,8 @@ lang: es
 image: /files/logo-correlacional.png
 ---
 
-Estudiantes,
+Durante las dos primeras unidades del curso l_s estudiantes están asignados a un/a ayudante para consultas y/o apoyo con los contenidos del curso. Sus ayudantes se contactarán con uds. para indicarles la forma y momentos de asesoría, también pueden ser contactados directamente mediante el correo de UCursos.
 
-La asignación de ayudantes para asesorías individuales durantes las Unidades 1 y 2 del curso se detalla en la siguiente tabla.
 
 ```{r}
 #| echo: false
