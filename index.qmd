@@ -30,17 +30,18 @@ withr::with_dir(here::here(), {
 })
 ```
 
-::: {.home}
+:::: {.columns}
 
-::: {.grid .course-details}
+:::: {style="background-color: #BDCDCD"}
 
-::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 ### Equipo docente
+::: {.column width="40%"}
+
 
 **Profesor**
 
 <div class="image-cropper">
-  <img src="https://ucampus.uchile.cl/d/r/usuario/ff/ffd4a9d15a5239c0a425a58a798889c8/perfil/bf49d6261628eb095bcaec76eda1e0d1.jpg    " alt="avatar" class="profile-pic">
+  <img src="https://ucampus.uchile.cl/d/r/usuario/ff/ffd4a9d15a5239c0a425a58a798889c8/perfil/bf49d6261628eb095bcaec76eda1e0d1.jpg" alt="avatar" class="profile-pic">
 </div>
 
 
@@ -51,65 +52,86 @@ withr::with_dir(here::here(), {
 - {{< fa envelope >}} &nbsp; {{< var instructor.email >}}
 - {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var instructor.appointment_url >}})
 
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="38%"}
+
 **Apoyos docentes**
 
 <div class="image-cropper">
-  <img src= /files/img/Martin-Venegas.png
-  alt="avatar" class="profile-pic">
+  <img src="/slides/img/martin.png" alt="avatar" class="profile-pic">
 </div>
-
 
 *Martín Venegas*
 
 - {{< fa envelope >}} &nbsp; {{< var other2.email >}}
-- {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var other2.appointment_url >}})
 
 <div class="image-cropper">
-  <img src="https://static.u-cursos.cl/r/usuario/5b/5b662afdc07fea74ce535d3c5e29712e/datos_usuario/av_6121add2d12f1.jpg" alt="avatar" class="profile-pic">
+  <img src="https://ucampus.uchile.cl/d/r/usuario/5b/5b662afdc07fea74ce535d3c5e29712e/perfil/f812fd6a269ed14b58c1e61866f47274.jpg" alt="avatar" class="profile-pic">
 </div>
 
 
 *Andreas Laffert*
 
 - {{< fa envelope >}} &nbsp; {{< var other.email >}}
-- {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var other.appointment_url >}})
+
+:::
+
+:::: {.columns}
 
 **Ayudantes**
+
+::: {.column width="32%"}
 
 - Victoria Arias
 - Jesús Díaz
 - Javiera González
 - Antonia Jiménez
+:::
+
+::: {.column width="32%"}
 - Sophia Karoussis
 - Cristóbal Mejías
 - María Fernanda Núñez
 - Luis Ríos
+:::
+
+::: {.column width="32%"}
 - Fernanda Zúñiga
 - Ismael Aguayo
 - Franco Acevedo
-
 :::
 
-::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+::::
+::::
+
+:::: {.columns}
+
+::: {.column width="40%"}
 ### Sesiones
 
 - {{< fa university >}} &nbsp; **Lunes 10:15-11:45** - Aulario C/6
 
 - {{< fa university >}} &nbsp; **Martes 8:30-10:00** Aulario C7/C8 & FACSO 345
+:::
+
+::: {.column width="10%"}
 
 :::
 
-::: {.g-col-12 .g-col-md-4 .contact-policy}
+::: {.column width="38%"}
 ### Contacto
 
 {{< var instructor.contact_policy >}}
 Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/content/foro-clases.qmd) y de las [Guías prácticas](/assignment/foro-practicos.qmd).
 :::
 
-:::
+::::
 
-
-:::
 
 ## Últimas informaciones
 
@@ -117,8 +139,6 @@ Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/con
 :::
 
 -> ir a [página de Informaciones](/news/index.qmd)
-
-
 
 
 ## Versiones previas del curso:
