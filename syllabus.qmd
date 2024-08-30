@@ -140,7 +140,6 @@ El curso tendrá tres instancias de evaluación:
 - Evaluación 3: Reporte de aplicación - trabajo grupal (30%= 20% reporte escrito + 10% poster)
 
 
-
 La nota ponderada de las evaluaciones equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
 
 Las evaluaciones se distribuyen en el semestre de la siguiente manera:
@@ -155,6 +154,23 @@ Las evaluaciones se distribuyen en el semestre de la siguiente manera:
 
 :::
 
+::: {.callout-note appearance="simple"}
+
+## Sobre las pruebas
+
+- Las evaluaciones de las unidades 1 y 2 son en la sala de clases y se realizan de manera individual. 
+
+- Hay preguntas sobre conceptos, y principalmente cálculos e interpretación
+
+- Entra toda la materia de la unidad, lo visto en clase y los textos obligatorios. 
+
+- Todo lo que se requiere para realizar los ejercicios de la prueba está en la prueba, no requiere aprenderse las fórmulas de memoria ni tampoco valores específicos (ej: valores críticos de rechazo)
+
+- La prueba comenzará puntual, no se puede ingresar ni salir de la sala una vez comenzada la evaluación.
+
+- Si alguien tiene alguna emergencia y necesita salir podrá contar con la compañía y apoyo de algun_ de l_s ayudantes en sala. 
+  
+:::
 
 ## Inasistencias y atraso en entregas
 
@@ -207,8 +223,12 @@ Levin, J. & Levin, W. (1997). Fundamentos de Estadística en la Investigación S
   - espacio para resolver dudas individualmente al final de la clase
   - reuniones con equipo docente, para lo cual se deben inscribir previamente en la página inicial de este sitio
   - foros, disponibles tanto para las [clases](/content/foro-clases.qmd) como para los [prácticos](/assignment/foro-practicos.qmd).
+  - mentorías con ayudantes asignados
   
 - También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de “l_s cabr_s” o “l_s chiquill_s”, que si bien puede intentar transmitir cercanía finalmente expresan minimización de la contraparte. Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo están siendo, se solicita reportar para solucionar la situación.
+
+- No se responderán mensajes fuera del horario laboral (incluyendo por supuesto fines de semana).
+
 
 ## Programación de sesiones
 
