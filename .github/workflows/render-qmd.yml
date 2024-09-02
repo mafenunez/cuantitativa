@@ -17,7 +17,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y r-base
-        R -e 'install.packages(c("rmarkdown", "knitr"), repos="http://cran.rstudio.com/")'
+        mkdir -p ~/.R/library
+        R -e 'install.packages(c("rmarkdown", "knitr"), lib="~/R/library", repos="http://cran.rstudio.com/")'
 
     - name: Set up Quarto
       run: |
@@ -25,6 +26,8 @@ jobs:
         sudo dpkg -i quarto-1.3.340-linux-amd64.deb
 
     - name: Render all QMD files
+      env:
+        R_LIBS_USER: ~/R/library
       run: quarto render --to html
     
     - name: Deploy to GitHub Pages
