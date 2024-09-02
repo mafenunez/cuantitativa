@@ -245,78 +245,96 @@
     "text": "Programación de sesiones\nVisitar la página de Planificación."
   },
   {
-    "objectID": "news/2024-08-23_primera-practica.html",
-    "href": "news/2024-08-23_primera-practica.html",
-    "title": "Sesión práctica martes 27 de agosto",
+    "objectID": "news/2024-09-02_equipo docente y ayudantes.html",
+    "href": "news/2024-09-02_equipo docente y ayudantes.html",
+    "title": "Equipo docente y ayudantes",
     "section": "",
-    "text": "← News\n\n\n\n\nAlgunas informaciones importantes:\n-El próximo martes 27 de agosto tendremos nuestra primera sesión práctica del curso.\n-En esta instancia contaremos con el equipo docente completo y ayudantes.\n-Aquellas personas que, por diversos motivos, no puedan contar con un computador personal para las sesiones del curso, les pedimos encarecidamente que rellenen este formulario: https://forms.gle/iGVJjAWRGYh9GGpZ8 Esta información nos permitirá ir organizando el uso de computadores de la sala de computación.\n-Nos dividiremos en dos grupos: una parte del curso en las salas C7 y C8 del aulario C (idealmente quienes dispongan de computador) y otra parte en la sala 345 de computación del edificio nuevo de Facso (para quienes no puedan contar con un computador).\n-Dentro de la próxima semana les enviaremos un correo respecto a la asignación de ayudantes para el asesoramiento en las unidades 1 y 2 del curso."
+    "text": "← News\n\n\n\n\n2 actualizaciones respecto del equipo a cargo del curso:\n\ncomo se informó por UCursos, la apoyo docente Daniela Olivares no seguirá en su rol a partir de este mes de Septiembre, y se suma al equipo Martín Venegas como nuevo apoyo docente. Martín también es sociólogo UChile y actualmente trabaja en el INE. Bienvenido!\nse completa el equipo de ayudantes luego de la segunda ronda de postulaciones, son 11 en total y pueden ver sus nombres en la página inicial del curso."
   },
   {
-    "objectID": "news/2024-08-19_cambio-practico.html",
-    "href": "news/2024-08-19_cambio-practico.html",
-    "title": "Prácticos parten próxima semana (Martes 27)",
+    "objectID": "news/2024-08-19_inicio.html",
+    "href": "news/2024-08-19_inicio.html",
+    "title": "Informaciones por acá",
     "section": "",
-    "text": "← News\n\n\n\n\nInicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se modifica, el práctico es el próximo martes 27."
+    "text": "← News\n\n\n\n\nEstimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes."
   },
   {
-    "objectID": "content/index.html",
-    "href": "content/index.html",
-    "title": "Clases",
+    "objectID": "example/index.html",
+    "href": "example/index.html",
+    "title": "Code examples",
     "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones. Los documentos son en formato html (no son ppt), producidos con Xaringan. Para verlos en pantalla completa presionar F sobre el documento, y para una vista general de todas las slides presionar O.\nTambién a la izquierda hay un link al Foro para hacer preguntas relacionadas con las clases.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.",
+    "text": "Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.\nMany sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You’ll notice me make all sorts of little errors, which is totally normal—everyone does!"
+  },
+  {
+    "objectID": "content/foro-clases.html",
+    "href": "content/foro-clases.html",
+    "title": "Foro clases",
+    "section": "",
+    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre los contenidos del curso vistos en clases. Para poder participar en el foro hay que abir una cuenta en Github",
     "crumbs": [
       "Clases",
-      "Descripción"
+      "Foro Clases"
     ]
   },
   {
-    "objectID": "content/10-content.html",
-    "href": "content/10-content.html",
-    "title": "Cierre",
+    "objectID": "content/09-content.html",
+    "href": "content/09-content.html",
+    "title": "Asociación con variables categóricas",
     "section": "",
     "text": "Documento de presentación"
   },
   {
-    "objectID": "content/08-content.html",
-    "href": "content/08-content.html",
-    "title": "Inferencia 4 - Hipótesis direccionales y proporciones",
+    "objectID": "content/07-content.html",
+    "href": "content/07-content.html",
+    "title": "Inferencia 3 - Hipótesis y prueba t",
     "section": "",
     "text": "Documento de presentación"
   },
   {
-    "objectID": "content/06-content.html",
-    "href": "content/06-content.html",
-    "title": "Inferencia 5 - Prueba t + hipótesis direccionales",
-    "section": "",
-    "text": "Documento de presentación",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 5"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html",
-    "href": "content/04-content.html",
-    "title": "Inferencia 3 - Intervalos de confianza",
+    "objectID": "content/05-content.html",
+    "href": "content/05-content.html",
+    "title": "Inferencia 4 - Test de hipótesis",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 3"
+      "Inferencia 4"
     ]
   },
   {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Inferencia 2: Curva normal y error estándar",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 1"
+      "Inferencia 2"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Presentación",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "assignment/foro-practicos.html",
+    "href": "assignment/foro-practicos.html",
+    "title": "Foro prácticos",
+    "section": "",
+    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
+    "crumbs": [
+      "Prácticos",
+      "Foro Prácticos"
     ]
   },
   {
@@ -364,90 +382,79 @@
     ]
   },
   {
-    "objectID": "assignment/foro-practicos.html",
-    "href": "assignment/foro-practicos.html",
-    "title": "Foro prácticos",
-    "section": "",
-    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
-    "crumbs": [
-      "Prácticos",
-      "Foro Prácticos"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Presentación",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Introducción"
-    ]
-  },
-  {
-    "objectID": "content/03-content.html",
-    "href": "content/03-content.html",
-    "title": "Inferencia 2: Curva normal y error estándar",
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 2"
+      "Inferencia 1"
     ]
   },
   {
-    "objectID": "content/05-content.html",
-    "href": "content/05-content.html",
-    "title": "Inferencia 4 - Test de hipótesis",
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Inferencia 3 - Intervalos de confianza",
     "section": "",
     "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Inferencia 4"
+      "Inferencia 3"
     ]
   },
   {
-    "objectID": "content/07-content.html",
-    "href": "content/07-content.html",
-    "title": "Inferencia 3 - Hipótesis y prueba t",
+    "objectID": "content/06-content.html",
+    "href": "content/06-content.html",
+    "title": "Inferencia 5 - Prueba t + hipótesis direccionales",
     "section": "",
-    "text": "Documento de presentación"
-  },
-  {
-    "objectID": "content/09-content.html",
-    "href": "content/09-content.html",
-    "title": "Asociación con variables categóricas",
-    "section": "",
-    "text": "Documento de presentación"
-  },
-  {
-    "objectID": "content/foro-clases.html",
-    "href": "content/foro-clases.html",
-    "title": "Foro clases",
-    "section": "",
-    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre los contenidos del curso vistos en clases. Para poder participar en el foro hay que abir una cuenta en Github",
+    "text": "Documento de presentación",
     "crumbs": [
       "Clases",
-      "Foro Clases"
+      "Presentaciones",
+      "Inferencia 5"
     ]
   },
   {
-    "objectID": "example/index.html",
-    "href": "example/index.html",
-    "title": "Code examples",
+    "objectID": "content/08-content.html",
+    "href": "content/08-content.html",
+    "title": "Inferencia 4 - Hipótesis direccionales y proporciones",
     "section": "",
-    "text": "Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.\nMany sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You’ll notice me make all sorts of little errors, which is totally normal—everyone does!"
+    "text": "Documento de presentación"
   },
   {
-    "objectID": "news/2024-08-19_inicio.html",
-    "href": "news/2024-08-19_inicio.html",
-    "title": "Informaciones por acá",
+    "objectID": "content/10-content.html",
+    "href": "content/10-content.html",
+    "title": "Cierre",
     "section": "",
-    "text": "← News\n\n\n\n\nEstimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes."
+    "text": "Documento de presentación"
+  },
+  {
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Clases",
+    "section": "",
+    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones. Los documentos son en formato html (no son ppt), producidos con Xaringan. Para verlos en pantalla completa presionar F sobre el documento, y para una vista general de todas las slides presionar O.\nTambién a la izquierda hay un link al Foro para hacer preguntas relacionadas con las clases.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.",
+    "crumbs": [
+      "Clases",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "news/2024-08-19_cambio-practico.html",
+    "href": "news/2024-08-19_cambio-practico.html",
+    "title": "Prácticos parten próxima semana (Martes 27)",
+    "section": "",
+    "text": "← News\n\n\n\n\nInicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se modifica, el práctico es el próximo martes 27."
+  },
+  {
+    "objectID": "news/2024-08-23_primera-practica.html",
+    "href": "news/2024-08-23_primera-practica.html",
+    "title": "Sesión práctica martes 27 de agosto",
+    "section": "",
+    "text": "← News\n\n\n\n\nAlgunas informaciones importantes:\n-El próximo martes 27 de agosto tendremos nuestra primera sesión práctica del curso.\n-En esta instancia contaremos con el equipo docente completo y ayudantes.\n-Aquellas personas que, por diversos motivos, no puedan contar con un computador personal para las sesiones del curso, les pedimos encarecidamente que rellenen este formulario: https://forms.gle/iGVJjAWRGYh9GGpZ8 Esta información nos permitirá ir organizando el uso de computadores de la sala de computación.\n-Nos dividiremos en dos grupos: una parte del curso en las salas C7 y C8 del aulario C (idealmente quienes dispongan de computador) y otra parte en la sala 345 de computación del edificio nuevo de Facso (para quienes no puedan contar con un computador).\n-Dentro de la próxima semana les enviaremos un correo respecto a la asignación de ayudantes para el asesoramiento en las unidades 1 y 2 del curso."
   },
   {
     "objectID": "resource/index.html",
@@ -510,7 +517,7 @@
     "href": "news/index.html",
     "title": "Informaciones",
     "section": "",
-    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\njueves agosto 29, 2024 at 12:00 AM\n\n\nAsignación asesorías ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\nviernes agosto 23, 2024 at 12:00 AM\n\n\nSesión práctica martes 27 de agosto\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
+    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\nlunes septiembre 2, 2024 at 12:00 AM\n\n\nEquipo docente y ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\njueves agosto 29, 2024 at 12:00 AM\n\n\nAsignación asesorías ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\nviernes agosto 23, 2024 at 12:00 AM\n\n\nSesión práctica martes 27 de agosto\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
   },
   {
     "objectID": "schedule.html",
@@ -545,7 +552,7 @@
     "href": "index.html#últimas-informaciones",
     "title": "\n            Estadística Correlacional\n        ",
     "section": "Últimas informaciones",
-    "text": "Últimas informaciones\n\n\n\n\n\n\n\n\n\n\nAsignación asesorías ayudantes\n\n\n\n\n\n\n\n\n\nAug 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSesión práctica martes 27 de agosto\n\n\n\n\n\n\n\n\n\nAug 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformaciones por acá\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n-&gt; ir a página de Informaciones"
+    "text": "Últimas informaciones\n\n\n\n\n\n\n\n\n\n\nEquipo docente y ayudantes\n\n\n\n\n\n\n\n\n\nSep 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsignación asesorías ayudantes\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSesión práctica martes 27 de agosto\n\n\n\n\n\n\n\n\n\nAug 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformaciones por acá\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n-&gt; ir a página de Informaciones"
   },
   {
     "objectID": "index.html#versiones-previas-del-curso",

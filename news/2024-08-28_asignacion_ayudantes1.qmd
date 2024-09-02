@@ -1,6 +1,6 @@
 ---
 title: "Asignación asesorías ayudantes"
-date: today
+date: 08-29-2024
 categories: [info, mail-UCursos]
 lang: es
 image: /files/logo-correlacional.png
