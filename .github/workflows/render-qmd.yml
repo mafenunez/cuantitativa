@@ -15,22 +15,31 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Reset repository state
+      run: |
+        git reset --hard
+        git clean -fdx
     
     - name: Set up Quarto
       run: |
         wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.3.340/quarto-1.3.340-linux-amd64.deb
         sudo dpkg -i quarto-1.3.340-linux-amd64.deb
     
-    - name: Disable Jekyll
-      run: echo "" > .nojekyll
-
     - name: Render modified QMD files
       run: |
-        git diff --name-only HEAD^ HEAD | grep '.qmd$' | xargs -I {} quarto render {}
-
+        CHANGED_FILES=$(git diff --name-only HEAD^ HEAD | grep '.qmd$')
+        if [ -z "$CHANGED_FILES" ]; then
+          echo "No QMD files changed."
+        else
+          echo "$CHANGED_FILES" | xargs -I {} quarto render {}
+        fi
+    
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site
+        publish_dir: ./docs
