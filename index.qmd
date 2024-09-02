@@ -138,7 +138,7 @@ Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/con
 ::: {#informaciones}
 :::
 
--> ir a [página de Informaciones](/news/index.qmd)
+-> ir a la [página de Informaciones](/news/index.qmd)
 
 
 ## Versiones previas del curso:
