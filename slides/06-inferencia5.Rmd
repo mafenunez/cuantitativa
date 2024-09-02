@@ -93,7 +93,7 @@ class: inverse
 - hipótesis direccionales (por ejemplo, mayor o menor qué)
 
 ---
-class: inverse botom right
+class: inverse bottom right
 
 # Prueba t
 
@@ -108,18 +108,23 @@ class: inverse botom right
   - ahora se apoyan los cambios más graduales que antes (comparación en el tiempo)
   
 ---
-
-(sociología y método comparativo)
+class: inverse right middle
+.large["_la sociología comparada no es una rama especial de la sociología, sino que
+es la sociología misma en tanto deja de ser puramente descriptiva y aspira
+a dar razón de los hechos_"]
+<br>
+.right[Durkheim (1895), Les règles de la méthode sociologique, op. cit., p. 137]
 
 ---
-# Comparación de medias
+# Comparación de **medias**  ( $\bar{X}$)
 
-- en análisis cuantitativo, buena parte de las hipótesis comparativas remiten a comparaciones entre promedios
+- en análisis cuantitativo, buena parte de las hipótesis comparativas remiten a comparaciones entre **promedios o medias**
 
-  - ej. clase anterior: el promedio salarial de los hombres es mayor que el de las mujeres
-  
-- la clase anterior construimos un intervalo de confianza para contrastar esta hipótesis, y para eso utilizamos prueba Z ... lo que no corresponde, pero solo fue a modo de simplificación:
+  - ej. (clase anterior): el promedio salarial de los hombres es mayor que el de las mujeres
 
+--
+
+- la clase anterior realizamos una prueba Z para diferencia de medias solo a modo de simplificación, quedando pendiente el aplicar la prueba correspondiente: .large[_**t**_] 
 ---
 # Del ejemplo de la clase anterior (sub muestra CASEN)
 
@@ -139,32 +144,30 @@ casen_350%>% # se especifica la base de datos
   kable(, format = "markdown") # se genera la tabla
 ```
 
-Diferencia salarial = 654.585-604.420=**50.165**
+.right[Diferencia salarial = 654.585-604.420=**50.165**]
 
 ---
 # Generación de intervalo (con Z)
 
 \begin{align*}
-\bar{x}_1-\bar{x}_2 &\pm t_{\alpha/2}*SE_{\bar{x_1}-\bar{x_2}} \\\\
-50165 &\pm 1.96*50561 \\\\
-50165 &\pm 99099.56 \\\\
+\bar{x}_1-\bar{x}_2 &\pm t_{\alpha/2}*SE_{\bar{x_1}-\bar{x_2}} \\
+50165 &\pm 1.96*50561 \\
+50165 &\pm 99099.56 \\
 CI[-49287.48&;149617.63]
 \end{align*}
 
-Asumiendo que el valor Z para un error $\alfa$ de 0.5 (o 95% de confianza) es de **1.96**
+Asumiendo que el **valor crítico** Z para un error $\alpha$ de 0.5 (o 95% de confianza) es de **1.96**
 
-El valor de la prueba (en este caso Z) que se define para un determinado nivel de error se denomina **valor crítico**
-
-Para diferencia de medias necesitamos un valor crítico más preciso que el que nos da $Z$, que se denomina el valor $t$.
+Para diferencia de medias necesitamos un valor crítico más preciso que el que nos da $Z$, que se denomina el valor .large[_**t**_] .
 
 ---
 # $t$ y valores críticos
 
-- la distribución t es similar a Z
+- la distribución $t$ es similar a $Z$
 
-- se basa en la distribución normal, pero con ajuste para muestras pequeñas y para cuando no conocemos la desviación estándar de la población
+- se basa en la **distribución normal**, pero con **ajuste para muestras pequeñas** y para cuando no conocemos la desviación estándar de la población
 
-- por lo tanto, la forma de la distribucion varía según el tamaño muestral, asociado al concepto de **grados de libertad** 
+- por lo tanto, la **forma de la distribución** varía según el tamaño muestral, asociado al concepto de **grados de libertad** 
 
 ---
 class: middle, center
@@ -173,9 +176,11 @@ class: middle, center
 
 ---
 .pull-left[
-## Cálculo de valor crítico en Z y t
-![](img/confidence-interval.png)
+## Cálculo de valor crítico en Z
 Recordemos el cáĺculo de valores críticos en Z para construir un intervalo de confianza al 95% (clase Inferencia 3):
+![](img/confidence-interval.png)
+
+
 ]
 
 .pull-right[
@@ -212,7 +217,7 @@ CI[-49287.48&;149617.63]
 
 - el tamaño muestral se asocia al concepto de **grados de libertad**
 
-- la pregunta a responder es: ¿cuál es el valor crítico de $t$ para una probabilidad de error $\alpha$ y grados de libertad $N-2$?
+- la pregunta a responder es: **¿cuál es el valor crítico de $t$ para una probabilidad de error $\alpha$ y grados de libertad $N-2$?**
 
 ---
 .pull-left[
@@ -263,14 +268,25 @@ CI[-49288.49&\ ;149618.5]
 \end{align*}
 
 ---
+class: roja middle
+
+- La prueba **.yellow[_t_**] de diferencia de medias considera el **.yellow[tamaño muestral**] (expresado en grados de libertad) para el cálculo del valor crítico
+
+- **.yellow[_t_**] se aproxima a Z a medida que aumenta el tamaño muestral 
+
+- en muestras más pequeñas, **.yellow[_t_**] aumenta el nivel de exigencia al establecer valores críticos más altos que Z para poder rechazar la .yellow[hipótesis nula]
+
+---
 # Prueba $t$ y test de hipótesis
 
 .pull-left[
 .medium[
-- además de la construcción de intervalos, otra forma más tradicional de contraste de hipótesis para diferencia de medias es la prueba $t$
+- además de la construcción de **intervalos**, otra forma más tradicional de test de hipótesis para diferencia de medias es la **prueba $t$**
 
-- la prueba $t$ consiste en el contraste de un _valor crítico_ de $t$  con un _valor empírico_ $t$ (o simplemente $t$) con la siguiente fórmula: 
+- la prueba $t$ consiste en el contraste de un **_valor crítico_** de $t$  con un **_valor empírico_** (o estadísitico) $t$ calculado con datos de nuestra muestra: 
 ]]
+
+--
 
 .pull-right[
 ## $t=\frac{(\bar{x}_1-\bar{x}_2)}{\sqrt{\frac{s_1²}{\sqrt{n_1}}+\frac{s_2²}{\sqrt{n_2}} }}$
@@ -278,32 +294,35 @@ CI[-49288.49&\ ;149618.5]
 El denominador es el .red[error estándar de la diferencia de promedios] (que vimos la clase pasada)]
 
 ---
-
-.pull-left-narrow[Este t se compara con un valor crítico (teórico) de t asociado a una probabilidad de error $\alpha$, ej: 0.05
-
-Si el t empírico es igual o superior al crítico se rechaza $H_0$ ]
-
-.pull-right-wide[
+.pull-left-wide[
+<br>
 ![](https://multivariada.netlify.app/slides/07-inferencia/imagen4.png)
 ]
+
+
+.pull-right-narrow[El valor $t$ calculado se compara con el valor crítico (teórico) de t asociado a una probabilidad de error $\alpha$, ej: 0.05
+
+La **prueba _t_** es la comparación o contraste entre ambos valores. Si el t empírico es igual o superior al crítico se rechaza $H_0$ ]
+
 
 ---
 # En nuestro ejemplo:
 
-Para una diferencia de salarios de 50165, un error estándar de 50561
+Para una diferencia de salarios de 50.165 y un error estándar de 50.561:
 
 ## $t=\frac{(\bar{x}_1-\bar{x}_2)}{\sqrt{\frac{s_1²}{\sqrt{n_1}}+\frac{s_2²}{\sqrt{n_2}} }}=\frac{50165}{50561}=0.9921$
 
-Este valor $t$ (empírico) se contrasta con el valor crítico correspondiente a un 5% de probabilidad de error 
+Este valor $t$ (empírico) se contrasta con el valor $t$ crítico correspondiente a un 5% de probabilidad de error 
 
 ---
+# Prueba t
 
-En este contraste se compara el valor estimado del estadístico de prueba y sus valores críticos:
+Contrastando ahora el valor calculado con el valor crítico:
 
-$$t_{cri}= -1.96 < t_{est}=0.992 < t_{cri}= 1.96$$
-Por lo tanto, nuestro valor estimado queda fuera de la zona de rechazo de la hipótesis nula. 
+$$t_{crtitico}= -1.96 < t_{calculado}=0.992 < t_{critico}= 1.96$$
+- Por lo tanto, nuestro valor estimado queda fuera de la zona de rechazo de la hipótesis nula: la diferencia de medias no es estadísiticamente distinta de 0. 
 
-En consecuencia, con un nivel de confianza de 95% no podemos afirmar que existen diferencias salariales entre hombres y mujeres
+- En consecuencia, con un nivel de confianza de 95% no podemos afirmar que existen diferencias salariales entre hombres y mujeres
 
 ---
 
@@ -334,16 +353,32 @@ El gráfico muestra nuestro valor estimado de t fuera de la zona de rechazo (zon
 ]
 
 ---
-# $t$ y $p$
+class: roja
 
-- el cálculo de $t$ (estimado) nos da un valor en la curva, que puede ser transformado al valor de probabilidad de área bajo la curva (tal como en Z)
+- La prueba t consiste en un contraste entre el estadístico t (calculado a partir de nuestra muestra) y el valor crítico t para un nivel de error definido (usualmente 5%) 
+
+--
+
+- Si el valor del estadísitico t no sobrepasa el valor crítico t, entonces no se logra rechazar la hipótesis nula, y no se puede afirmar que existen diferencias de medias en la población
+
+--
+
+- Si el estadísitico t es superior al valor crítico, se rechaza la hipótesis nula
+
+--
+
+- La prueba t es la forma más tradicional de contrastar hipótesis de diferencia de medias, y se puede complementar con intervalos de confianza
+
+---
+# $t$ y probabilidad de error $p$
+
+- el cálculo de $t$ (estimado) nos da un valor que puede ser transformado a un valor de área bajo la curva (tal como en Z)
 
 - _cual es la probabilidad de error (valor p) de un $t$ específico?_
 
-- esto también se puede ver en una tabla de valores $t$ y sus respectivas probabilidades
+- hay que recordar que tanto Z como t tienen promedio 0 y son simétricas, y por lo tanto el 0 divide el área de la curva en 0.5
 
-- y en  R ...
-
+- 0.5 es la mayor probabilidad de error (=azar total), y a medida que se aleja del 0.5 disminuye la probabilidad de error
 ---
 
 
@@ -367,10 +402,16 @@ En nuestro ejemplo:
 
 - La probabilidad de error del $t$ estimado es de 0.322. 
 
-- Esto quiere decir es que en la estimación de esta diferencia de medias, nos estamos equivocando aproximadamente un tercio de las veces
+- Esto quiere decir es que en la estimación de esta diferencia de medias, nos estamos equivocando aproximadamente un tercio de las veces (lejos del nivel convencional de rechazo de $H_0$ de 0.05)
 
-- Esta probabilidad está lejos del límite convencional de probabilidad de error  de 0.05, por lo que se rechaza la hipótesis nula
+---
+# _p_ y mayores niveles de confianza
 
+- La obtención del valor $p$ podría también entregar información para rechazar $H_0$ con un mayor nivel de confianza al establecido
+
+- Si bien el p<0.05 es aceptado, en el caso que el p sea menor a 0.01 o 0.001, se reporta por convención el valor p menor 
+
+- Usualmente en los trabajos de investigación esto se representa con asteriscos: $^{\ast}p<0.05$, $^{\ast\ast}p<0.01$, y $^{\ast\ast\ast}p<0.01$  
 ---
 class: inverse, middle, center
 
@@ -383,9 +424,9 @@ Entonces, se logra rechazar la hipótesis nula cuando:
 
 - el intervalo de confianza no contiene el 0
 
-- ### $t_{estimado} > t_{crítico}$
+- ### $t_{calculado} > t_{crítico}$
 
-- ### $p_{estimado} < p_{crítico}$, 
+- ### $p_{calculado} < p_{crítico}$ 
 
 
   - o en términos generales convencionales, p<0.05
@@ -590,12 +631,30 @@ directional2
 ]
 
 ---
+class: inverse
 
-Más como esto: Práctico 2 (o _intentando rechazar_)
+## Resumen
+
+- t para diferencia de medias y ajuste por tamaño muestral / grados de libertad
+
+- prueba t por contraste entre valor del estadístico calculado (o t empírico) y el valor crítico para un nivel de confianza
+
+- valores p y reporte para valores convencionales menores a 0.05, 0.01o 0.001
+
+- hipótesis direccionales y no direccionales
+
 
 ---
 
-# Pendientes: hipótesis para proporciones, se verá en la próxima unidad en asociación entre variables categóricas
+# Pendiente:
+
+- hipótesis para proporciones, se verá en la próxima unidad en asociación entre variables categóricas
+
+
+---
+# Recomendaciones:
+
+- [Visualización interactiva de pruepa t y valor p](https://www.vipinajayakumar.com/an-interactive-explanation-of-the-statistical-t-test-used-to-compare-sample-means.html) 
 
 
 ---

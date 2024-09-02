@@ -288,7 +288,12 @@
     "href": "content/06-content.html",
     "title": "Inferencia 5 - Prueba t + hipótesis direccionales",
     "section": "",
-    "text": "Documento de presentación"
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 5"
+    ]
   },
   {
     "objectID": "content/04-content.html",
