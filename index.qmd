@@ -32,7 +32,7 @@ withr::with_dir(here::here(), {
 
 :::: {.columns}
 
-:::: {style="background-color: #BDCDCD"}
+:::: {style="background-color: #FFFFFF"}
 
 ### Equipo docente
 ::: {.column width="40%"}
