@@ -32,7 +32,7 @@ withr::with_dir(here::here(), {
 
 :::: {.columns}
 
-:::: {style="background-color: #FFFFFF"}
+:::: {style="background-color: #E1F2F2"}
 
 ### Equipo docente
 ::: {.column width="40%"}
@@ -75,7 +75,7 @@ withr::with_dir(here::here(), {
 </div>
 
 
-*Andreas Laffert*
+*Andreas Laffert T.*
 
 - {{< fa envelope >}} &nbsp; {{< var other.email >}}
 
