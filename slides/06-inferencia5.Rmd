@@ -654,7 +654,7 @@ class: inverse
 ---
 # Recomendaciones:
 
-- [Visualización interactiva de pruepa t y valor p](https://www.vipinajayakumar.com/an-interactive-explanation-of-the-statistical-t-test-used-to-compare-sample-means.html) 
+- [Visualización interactiva de prueba t y valor p](https://www.vipinajayakumar.com/an-interactive-explanation-of-the-statistical-t-test-used-to-compare-sample-means.html) 
 
 
 ---

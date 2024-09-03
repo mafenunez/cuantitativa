@@ -14,13 +14,9 @@ knitr::opts_chunk$set(warning = F,
 ```
 # Objetivo de la práctica
 
-El objetivo de esta guía práctica es realizar una serie de ejercicios de inferencia estadística, tomando como base todos los contenidos de la **Unidad 1**.
+El objetivo de esta guía práctica es realizar una serie de ejercicios de inferencia estadística, tomando como base todos los contenidos de la **Unidad 1**. En particular, se abordan pruebas de hipótesis para diferencias de medias y direccionales utilizando la prueba **_t_**
 
-En detalle, aprenderemos:
-
-1.  Aplicar pruebas de hipótesis de diferencia de medias.
-2.  Aplicar pruebas de hipótesis direccionales.
-3.  Aplicar e interpretar los pasos de inferencia estadística.
+La guía tiene **3 ejercicios**. El primero de ellos es un ejemplo, y los ejercicios 2 y 3 se desarrollan de manera autónoma en la sala (también puede ser en grupo). 
 
 ## Recursos de la práctica
 
@@ -209,8 +205,10 @@ test_ej1
 También podemos visualizarlo en una tabla más amable.
 
 ```{r}
+library(flextable)
+library(rempsyc)
 stats.table <- tidy(test_ej1, conf_int = T)
-rempsyc::nice_table(stats.table, broom = "t.test")
+nice_table(stats.table, broom = "t.test")
 ```
 
 Visualicemos la distribución de esta prueba y su zona de rechazo.
