@@ -10,7 +10,51 @@
 <atom:link href="https://correlacional.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Mon, 02 Sep 2024 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 04 Sep 2024 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Taller Centro IDEA</title>
+  <link>https://correlacional.netlify.app/news/2024-09-04_taller_centro_idea.html</link>
+  <description><![CDATA[ 
+
+<div class="back-nav"><a href="../news/">← News</a></div>
+
+
+
+
+<p>El centro IDEA está ofreciendo una instancia de tutorías específica para la Unidad I (Inferencia) este viernes 6 de septiembre a las 12:00:</p>
+<p><img src="https://correlacional.netlify.app/files/img/afichetaller1.jpeg" class="img-fluid"></p>
+
+
+
+ ]]></description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-09-04_taller_centro_idea.html</guid>
+  <pubDate>Wed, 04 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/img/afichetaller1.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Cambios en evaluación 1</title>
+  <link>https://correlacional.netlify.app/news/2024-09-03_cambios evaluacion 1.html</link>
+  <description><![CDATA[ 
+
+<div class="back-nav"><a href="../news/">← News</a></div>
+
+
+
+
+<p>En el plan original la Evaluación 1 y la Evaluación 2 se componían de dos partes cada una: teórica (30%) y práctica (5%) (ver <a href="../syllabus#evaluación">sección de evaluación en el programa del curso</a>). Dado que en esta primera unidad ha sido principalmente teórica y tendremos solo dos instancias prácticas, vamos a traspasar el 5% de la evaluación práctica a la evaluación 2, que tendrá por lo tanto un 10% de evaluación práctica además del 30% de evaluación teórica.</p>
+<p>La evaluación 1 se llevará a cabo el día Martes 10 de Septiembre a las 8:30. El día lunes 9 vamos a realizar un repaso general de la Unidad 1 y ejercicios para preparar la prueba.</p>
+
+
+
+ ]]></description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-09-03_cambios evaluacion 1.html</guid>
+  <pubDate>Tue, 03 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
 <item>
   <title>Equipo docente y ayudantes</title>
   <link>https://correlacional.netlify.app/news/2024-09-02_equipo docente y ayudantes.html</link>
