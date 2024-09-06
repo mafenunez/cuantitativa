@@ -133,10 +133,10 @@ El semestre comienza con clases lectivas, y posteriormente se integran elementos
 
 ## Evaluación
 
-El curso tendrá tres instancias de evaluación:
+El curso tendrá tres instancias de evaluación **(actualizado)**:
 
-- Evaluación 1: Inferencia (35% = 30% teórico + 5% práctico).
-- Evaluación 2: Asociación (35% = 30% teórico + 5% práctico)
+- Evaluación 1: Inferencia (30%, teórico) 
+- Evaluación 2: Asociación (40% = 30% teórico + 10% práctico)
 - Evaluación 3: Reporte de aplicación - trabajo grupal (30%= 20% reporte escrito + 10% poster)
 
 
