@@ -83,8 +83,8 @@ website:
               file: content/05-content.qmd
             - text: "Inferencia 5"
               file: content/06-content.qmd
-            # - text: "Inferencia 3"
-            #   file: content/07-content.qmd
+            - text: "Ejercicio Inferencia"
+              file: content/07-content.qmd
             # - text: "Inferencia 4"
             #   file: content/08-content.qmd
             # - text: "Asociación con categóricas"

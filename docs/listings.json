@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/news/index.html",
+    "listing": "/index.html",
     "items": [
       "/news/2024-09-04_taller_centro_idea.html",
       "/news/2024-09-03_cambios evaluacion 1.html",
@@ -12,7 +12,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/news/index.html",
     "items": [
       "/news/2024-09-04_taller_centro_idea.html",
       "/news/2024-09-03_cambios evaluacion 1.html",

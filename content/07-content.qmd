@@ -1,15 +1,44 @@
 ---
-title: "Inferencia 3 - Hipótesis y prueba t"
-date: "2023-10-16"
+title: "Ejercicio de repaso general Unidad 1"
+date: "2024-09-09"
 lang: es
 execute:
   freeze: auto 
+format: 
+  html:
+    code-fold: true
+    code-download: true
 ---
 
-# Documento de presentación
+# Ejercicio de inferencia
 
-<iframe src=/slides/07-inferencia.html height="550" width=100% allowfullscreen="true">
-</iframe> 
+A Ud. se le ha solicitado estimar el promedio de salarios en la población, así como también si existen diferencias salariales entre quienes han completado la educación superior en institutos técnico-profesionales (IP) y  quienes lo han hecho en instituciones universitarias. Para ello se le ha proporcionado la siguiente información:
+  
+  - Datos: Encuesta de Ingresos, muestra aleatoria N=900 casos
+  - Promedio salarios: 850.000, desviación estándar 300.000
+  - Salario promedio técnico-profesional: 1.200.000, desviación estandar 180.000
+  - Salario promedio universitario: 1.500.000, desviación estándar 270.000
+  
+Además de esto, se le han proporcionado los siguientes valores para realizar  inferencia estadística:
+  
+  - valor crítico z para el promedio con un $\alpha$ de 5% (0,05)= 1,96, y con un $\alpha$ de 1% (0,01)= 2,58
+  - valor crítico t para diferencia de medias con  un $\alpha$ de 5% (0,05) y grados de libertad 898 (N-2)= 1,96; y con un $\alpha$ de 1% (0,01)= 2,58
+  - Error estándar del promedio:
+    - $$\sigma_{\bar{X}}=\frac{s\ (desv.\ estandar)}{\sqrt{N} (tamaño\ muestral)}$$
+  - Error estándar de la diferencia de medias salariales para esta muestra= 15000
 
 
+```{r}
+# Generación de los datos
+options(scipen = 999)
 
+# Establecer la semilla para garantizar la reproducibilidad
+set.seed(281217)  
+
+# Parámetros actualizados
+n <- 900  # Tamaño de la muestra
+promedio_salarios <- 850000;desviacion_estandar_salarios <- 300000  # Desviación estándar de los salarios
+
+# Generar la muestra con la nueva semilla y parámetros
+ingresos <- rnorm(n, mean = promedio_salarios, sd = desviacion_estandar_salarios)
+```
