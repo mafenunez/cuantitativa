@@ -4,16 +4,13 @@
     <title>Estadística Correlacional</title>
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view/tile-view.js"></script>
-    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <script src="libs/fabric/fabric.min.js"></script>
-    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
-    <script src="libs/kePrint/kePrint.js"></script>
-    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/custom_2020.css" type="text/css" />
   </head>
   <body>
@@ -27,35 +24,72 @@ class: front
 
 
 
-
 .pull-left-wide[
 # Estadística Correlacional]
 
 .pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
 
-## Asociación, inferencia y reporte
+## Inferencia, asociación y reporte
+
 
 ----
 .pull-left[
 
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 2do Sem 2023 
-## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
+## 2do Sem 2024
+## [.orange[correlacional.netlify.app]](https:/correlacional.netlify.app)
 ]
 
 
 .pull-right-narrow[
 .center[
 .content-block-gray[
-## Sesión 3: 
-# .orange[Correlación de Pearson]]
+## .gray[Sesión 8:] 
+## .curso[Asociación y covarianza]]
 ]
 ]
+
 ---
 
 layout: true
 class: animated, fadeIn
+
+
+---
+class: middle
+
+.pull-left[
+.content-box-red[
+## Hasta ahora (Unidad 1)
+
+- Probabilidad, teorema central del límite, error estándar, hipótesis, **diferencias entre grupos**
+]
+]
+
+--
+
+.pull-right[
+.content-box-green[
+## Ahora (Unidad 2)
+
+- Asociación: ¿en qué medida dos fenómenos (sociales) se encuentran **vinculados**?
+]
+]
+
+---
+class: inverse middle center
+
+# ¿Por qué es importante estudiar **.yellow[asociación]** en ciencias sociales? 
+
+
+---
+# Ejemplo: ranking y privados en la educación superior
+
+&lt;br&gt;
+
+## [https://observablehq.com/@elaval/perfil-de-carreras-segun-origen-escolar](https://observablehq.com/@elaval/perfil-de-carreras-segun-origen-escolar)
+
 
 
 ---
@@ -76,67 +110,7 @@ class: middle center
 # Lectura: Moore 97-131 Análisis de relaciones
 
 ---
-class: roja right
-
-# Contenidos
-
-.pull-left-narrow[
-]
-
-.pull-right-wide[
-
-## .yellow[1- Resumen sesión anterior]
-
-## 2- Covarianza y correlación: Cálculo e interpretación
-
-## 3- Limitaciones
-
-]
-
----
-# Sobre el sentido general del curso
-En este curso vamos a aprender tres cosas principales:
-
-1. **Inferencia**: los resultados que encontramos en nuestra muestra, ¿se encuentran también en la población de la cual proviene la muestra?
-
-2. **Asociación** entre variables: tamaño y significación estadística
-
-3. **Reporte y reproducibilidad**
-
-
----
-# Conceptos básicos (estadística descriptiva)
-
-- Datos
-
-- Variables
-  - tipos
-  - niveles de medición
-
-- Tendencia central
-- Varianza y desviación estándar = medidas de dispersión
-
-
----
-class: roja right
-
-# Contenidos
-
-.pull-left-narrow[
-]
-
-.pull-right-wide[
-
-## 1- Resumen sesión anterior
-
-## 2- .yellow[Covarianza y correlación: Cálculo e interpretación]
-
-## 3- Limitaciones
-
-]
-
----
-# Siguiendo con ejemplo: educación e ingreso
+# Ejemplo minimalista: educación e ingreso
 
 - simulamos datos para
 
@@ -261,7 +235,7 @@ class: inverse middle center
 
 ---
 
-![](03_pearson_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](08-bivariada1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -277,7 +251,7 @@ mean(data$educ)
 ```
 
 ```
-## [1] 5.125
+[1] 5.125
 ```
 
 
@@ -469,7 +443,7 @@ sum(data$dif_m_educ2)
 ```
 
 ```
-## [1] 36.875
+[1] 36.875
 ```
 ]
 ]
@@ -493,7 +467,7 @@ var(data$educ)
 ```
 
 ```
-## [1] 5.267857
+[1] 5.267857
 ```
 ]
 ]
@@ -510,7 +484,7 @@ mean(data$ing)
 ```
 
 ```
-## [1] 5.375
+[1] 5.375
 ```
 
 
@@ -522,7 +496,7 @@ sum(data$dif_m_ing2)
 ```
 
 ```
-## [1] 79.875
+[1] 79.875
 ```
 ]]
 
@@ -542,7 +516,7 @@ var(data$ing)
 ```
 
 ```
-## [1] 11.41071
+[1] 11.41071
 ```
 ]
 ]
@@ -556,7 +530,7 @@ class: inverse
 .content-box-gray[
 ###- .black[Indica la dispersion (variabilidad) de los datos en torno al promedio]
 
-###- .black[Permite establecer relaciones entre variables:] .red[covarianza]
+###- .black[Permite cuantificar relaciones entre variables:] .red[covarianza]
 ]
 ---
 # Asociación 
@@ -643,7 +617,7 @@ plot1 &lt;- ggplot(data,
 ]]
 
 .pull-right-wide[
-![](03_pearson_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](08-bivariada1_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -652,7 +626,7 @@ plot1 &lt;- ggplot(data,
 
 .pull-left-wide[
 
-![](03_pearson_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](08-bivariada1_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right-narrow[
@@ -668,14 +642,14 @@ plot1 &lt;- ggplot(data,
 ## Hacia la covarianza
 
 .pull-left[
-![](03_pearson_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](08-bivariada1_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 .center[
 ### Educación
 ]
 
 ]
 .pull-right[
-![](03_pearson_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](08-bivariada1_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 .center[
 ### Ingreso
 ]
@@ -817,7 +791,7 @@ sum(data$dif_xy)
 ```
 
 ```
-## [1] 51.625
+[1] 51.625
 ```
 ]
 ]
@@ -838,7 +812,7 @@ cov(data$educ,data$ing)
 ```
 
 ```
-## [1] 7.375
+[1] 7.375
 ```
 
 ---
@@ -856,7 +830,7 @@ class: inverse center
 
 --
 
-#### .red[Su valor no es interpretable directamente]
+#### .yellow[Su valor no es interpretable directamente]
 
 
 ---
@@ -877,7 +851,7 @@ class: inverse center
 ]
 
 ---
-# Correlación producto-momento (Pearson)
+# Correlación producto-momento (Pearson): _r_
 
 `\begin{align*}
 Covarianza = cov(x,y) &amp;= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}\\
@@ -887,7 +861,7 @@ Correlación=r &amp;= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)
 \end{align*}`
 
 ---
-## Cálculo correlación
+## Cálculo correlación r de Pearson
 
 .pull-left[
 .small[
@@ -974,15 +948,15 @@ sum(data$dif_xy); sum(data$dif_m_educ2);sum(data$dif_m_ing2)
 ```
 
 ```
-## [1] 51.625
+[1] 51.625
 ```
 
 ```
-## [1] 36.875
+[1] 36.875
 ```
 
 ```
-## [1] 79.875
+[1] 79.875
 ```
 
 ]
@@ -1012,7 +986,7 @@ cor(data$educ,data$ing)
 ```
 
 ```
-## [1] 0.9512367
+[1] 0.9512367
 ```
 ]
 
@@ -1065,33 +1039,23 @@ class: middle center
 ]
 
 ---
-class: roja right
-
-# Contenidos
-
-.pull-left-narrow[
-]
-
-.pull-right-wide[
-
-## 1- Resumen sesión anterior
-
-## 2- Covarianza y correlación: Cálculo e interpretación
-
-## 3- .yellow[Limitaciones]
-
-]
-
----
-# Limitaciones
+# Limitaciones correlación
 
 - medida de asociación .roja[lineal] entre variables
 
+--
+
 - no captura apropiadamente asociaciones no lineales
+
+--
 
 - posee supuestos distribucionales de x e y (distribución normal)
 
+--
+
 - sensible a valores extremos
+
+--
 
 - un mismo coeficiente puede reflejar distintas distribuciones bivariadas
 
@@ -1101,16 +1065,15 @@ class: roja right
 ]
 
 ---
-class: bottom right 
+class: inverse
 
-class: roja
+#Resumen
 
-## Próxima clase:
+### - Asociación, explicación y ciencias sociales
 
-# Correlación 3: Matrices y tamaños de efecto
+### - Varianza y covarianza
 
-### Además: Otros coeficientes de correlación, datos perdidos y coeficiente de determinación
-- Lectura obligatoria: [.yellow[Field 205-244 Correlation]](https://correlacional.netlify.app/files/textos/Field-correlation.pdf)
+### - Pearson: asociación en un número en rango fijo
 
 ---
 class: middle
@@ -1127,23 +1090,6 @@ class: middle
 
 
 ---
-
-# ASISTENCIA
-
-.pull-left[
-
-![:scale 90%](img/qr-correlacional-asistencia.png)
-]
-
-.pull-right[
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-bit.ly/correlacional-asistencia
-]
----
 class: front
 
 .pull-left-wide[
@@ -1151,14 +1097,14 @@ class: front
 
 .pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
 
-## Asociación, inferencia y reporte
+## inferencia, asociación y reporte
 
 ----
 .pull-left[
 
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 2do Sem 2023 
+## 2do Sem 2024
 ## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
 ]
     

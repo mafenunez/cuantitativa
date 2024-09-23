@@ -134,7 +134,7 @@ Para este ejercicio consideramos la siguiente información proporcionada arriba:
 
 Con esta información ya podemos calcular la diferencia de promedios de la muestra:
 
-$\bar{X}_{salario-universitario}-\bar{X}_{salario-tecnico}=1500000-1200000=300000$
+$\bar{X}_{salario-universitario}-\bar{X}_{salario-técnico}=1500000-1200000=300000$
 
 La pregunta ahora es: ¿existe esta diferencia de promedios en la población?
 

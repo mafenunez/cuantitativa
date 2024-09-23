@@ -1,7 +1,7 @@
 ---
 title: "Estadística Correlacional"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2023"
+date: "2do Sem 2024"
 output:
   xaringan::moon_reader:
     css: "css/custom_2020.css"
@@ -19,23 +19,23 @@ output:
 class: front
 
 
-```{r setup, include=FALSE, cache = FALSE}
-require("knitr")
-options(htmltools.dir.version = FALSE)
-pacman::p_load(RefManageR)
-# bib <- ReadBib("../../bib/electivomultinivel.bib", check = FALSE)
+```{r setup, echo=FALSE, cache = FALSE}
+library(knitr)
 opts_chunk$set(warning=FALSE,
              message=FALSE,
              echo=TRUE,
-             cache = FALSE, fig.width=10, fig.height=8)
-pacman::p_load(flipbookr, tidyverse, kableExtra)
+             comment = "",
+             cache = TRUE, fig.width=10, fig.height=8)
+pacman::p_load(tidyverse, kableExtra)
 ```
 
 
-
-```{r xaringanExtra, include=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_animate_css()
+xaringanExtra::use_animate_all("fade")
 xaringanExtra::use_scribble()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_search(show_icon = TRUE)
 ```
 
 .pull-left-wide[
@@ -43,29 +43,67 @@ xaringanExtra::use_scribble()
 
 .pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
 
-## Asociación, inferencia y reporte
+## Inferencia, asociación y reporte
+
 
 ----
 .pull-left[
 
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 2do Sem 2023 
-## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
+## 2do Sem 2024
+## [.orange[correlacional.netlify.app]](https:/correlacional.netlify.app)
 ]
 
 
 .pull-right-narrow[
 .center[
 .content-block-gray[
-## Sesión 3: 
-# .orange[Correlación de Pearson]]
+## .gray[Sesión 8:] 
+## .curso[Asociación y covarianza]]
 ]
 ]
+
 ---
 
 layout: true
 class: animated, fadeIn
+
+
+---
+class: middle
+
+.pull-left[
+.content-box-red[
+## Hasta ahora (Unidad 1)
+
+- Probabilidad, teorema central del límite, error estándar, hipótesis, **diferencias entre grupos**
+]
+]
+
+--
+
+.pull-right[
+.content-box-green[
+## Ahora (Unidad 2)
+
+- Asociación: ¿en qué medida dos fenómenos (sociales) se encuentran **vinculados**?
+]
+]
+
+---
+class: inverse middle center
+
+# ¿Por qué es importante estudiar **.yellow[asociación]** en ciencias sociales? 
+
+
+---
+# Ejemplo: ranking y privados en la educación superior
+
+<br>
+
+## [https://observablehq.com/@elaval/perfil-de-carreras-segun-origen-escolar](https://observablehq.com/@elaval/perfil-de-carreras-segun-origen-escolar)
+
 
 
 ---
@@ -86,67 +124,7 @@ class: middle center
 # Lectura: Moore 97-131 Análisis de relaciones
 
 ---
-class: roja right
-
-# Contenidos
-
-.pull-left-narrow[
-]
-
-.pull-right-wide[
-
-## .yellow[1- Resumen sesión anterior]
-
-## 2- Covarianza y correlación: Cálculo e interpretación
-
-## 3- Limitaciones
-
-]
-
----
-# Sobre el sentido general del curso
-En este curso vamos a aprender tres cosas principales:
-
-1. **Inferencia**: los resultados que encontramos en nuestra muestra, ¿se encuentran también en la población de la cual proviene la muestra?
-
-2. **Asociación** entre variables: tamaño y significación estadística
-
-3. **Reporte y reproducibilidad**
-
-
----
-# Conceptos básicos (estadística descriptiva)
-
-- Datos
-
-- Variables
-  - tipos
-  - niveles de medición
-
-- Tendencia central
-- Varianza y desviación estándar = medidas de dispersión
-
-
----
-class: roja right
-
-# Contenidos
-
-.pull-left-narrow[
-]
-
-.pull-right-wide[
-
-## 1- Resumen sesión anterior
-
-## 2- .yellow[Covarianza y correlación: Cálculo e interpretación]
-
-## 3- Limitaciones
-
-]
-
----
-# Siguiendo con ejemplo: educación e ingreso
+# Ejemplo minimalista: educación e ingreso
 
 - simulamos datos para
 
@@ -353,7 +331,7 @@ class: inverse
 .content-box-gray[
 ###- .black[Indica la dispersion (variabilidad) de los datos en torno al promedio]
 
-###- .black[Permite establecer relaciones entre variables:] .red[covarianza]
+###- .black[Permite cuantificar relaciones entre variables:] .red[covarianza]
 ]
 ---
 # Asociación 
@@ -560,7 +538,7 @@ class: inverse center
 
 --
 
-#### .red[Su valor no es interpretable directamente]
+#### .yellow[Su valor no es interpretable directamente]
 
 
 ---
@@ -581,7 +559,7 @@ class: inverse center
 ]
 
 ---
-# Correlación producto-momento (Pearson)
+# Correlación producto-momento (Pearson): _r_
 
 \begin{align*}
 Covarianza = cov(x,y) &= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}\\
@@ -591,7 +569,7 @@ Correlación=r &= \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)\sig
 \end{align*}
 
 ---
-## Cálculo correlación
+## Cálculo correlación r de Pearson
 
 .pull-left[
 .small[
@@ -686,33 +664,23 @@ class: middle center
 ]
 
 ---
-class: roja right
-
-# Contenidos
-
-.pull-left-narrow[
-]
-
-.pull-right-wide[
-
-## 1- Resumen sesión anterior
-
-## 2- Covarianza y correlación: Cálculo e interpretación
-
-## 3- .yellow[Limitaciones]
-
-]
-
----
-# Limitaciones
+# Limitaciones correlación
 
 - medida de asociación .roja[lineal] entre variables
 
+--
+
 - no captura apropiadamente asociaciones no lineales
+
+--
 
 - posee supuestos distribucionales de x e y (distribución normal)
 
+--
+
 - sensible a valores extremos
+
+--
 
 - un mismo coeficiente puede reflejar distintas distribuciones bivariadas
 
@@ -722,16 +690,15 @@ class: roja right
 ]
 
 ---
-class: bottom right 
+class: inverse
 
-class: roja
+#Resumen
 
-## Próxima clase:
+### - Asociación, explicación y ciencias sociales
 
-# Correlación 3: Matrices y tamaños de efecto
+### - Varianza y covarianza
 
-### Además: Otros coeficientes de correlación, datos perdidos y coeficiente de determinación
-- Lectura obligatoria: [.yellow[Field 205-244 Correlation]](https://correlacional.netlify.app/files/textos/Field-correlation.pdf)
+### - Pearson: asociación en un número en rango fijo
 
 ---
 class: middle
@@ -748,23 +715,6 @@ class: middle
 
 
 ---
-
-# ASISTENCIA
-
-.pull-left[
-
-![:scale 90%](img/qr-correlacional-asistencia.png)
-]
-
-.pull-right[
-<br>
-<br>
-<br>
-<br>
-<br>
-bit.ly/correlacional-asistencia
-]
----
 class: front
 
 .pull-left-wide[
@@ -772,14 +722,14 @@ class: front
 
 .pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
 
-## Asociación, inferencia y reporte
+## inferencia, asociación y reporte
 
 ----
 .pull-left[
 
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 2do Sem 2023 
+## 2do Sem 2024
 ## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
 ]
     
