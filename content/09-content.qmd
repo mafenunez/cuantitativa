@@ -1,6 +1,6 @@
 ---
-title: "Asociación con variables categóricas"
-date: "2023-11-13"
+title: "Inferencia en correlación y magnitud del coeficiente"
+date: "2024-09-24"
 lang: es
 execute:
   freeze: auto 
@@ -8,7 +8,7 @@ execute:
 
 # Documento de presentación
 
-<iframe src=/slides/09-categoricas.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/09-bivariada2.html height="550" width=100% allowfullscreen="true">
 </iframe> 
 
 

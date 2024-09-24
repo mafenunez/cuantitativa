@@ -255,9 +255,14 @@
   {
     "objectID": "content/09-content.html",
     "href": "content/09-content.html",
-    "title": "Asociación con variables categóricas",
+    "title": "Inferencia en correlación y magnitud del coeficiente",
     "section": "",
-    "text": "Documento de presentación"
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Bivariada 2"
+    ]
   },
   {
     "objectID": "content/06-content.html",
