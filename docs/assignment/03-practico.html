@@ -253,55 +253,52 @@ window.Quarto = {
 <h1>Preparación datos</h1>
 <p>Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># Manipulacion datos</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               sjPlot, <span class="co"># Graficos</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               kableExtra, <span class="co">#Tablas</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               broom, <span class="co"># Manipulacion</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               gtools) <span class="co"># Manipulacion</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    tidyverse, <span class="co"># Manipulacion datos</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    sjPlot, <span class="co"># Graficos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    kableExtra, <span class="co"># Tablas</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    broom, <span class="co"># Manipulacion</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    gtools</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>) <span class="co"># Manipulacion</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Cargamos los datos directamente desde internet (por esta vez).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://dataverse.harvard.edu/api/access/datafile/6160180"</span>)) <span class="co"># Cargar bbdd pública de ELSOC</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Procesemos la bbdd quedandonos solo con algunas variables de interés</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> elsoc_2021 <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    idencuesta, region, comuna,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    estrato<span class="sc">:</span>fact_exp02,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> m0_sexo, <span class="at">edad =</span> m0_edad, <span class="at">educ =</span> m01,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hrs_trabajo =</span> m12, <span class="at">hrs_cuidado =</span> m17, </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ing_per =</span> m13, <span class="at">ing_per_justo =</span> m15, <span class="at">ing_hog =</span> m29,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mesfuerzo =</span> c18_09, <span class="at">mtalento =</span> c18_10, <span class="at">ess =</span> d01_01,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">satis_demo =</span> c01, <span class="at">frec_marcha =</span> c08_02</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(sexo<span class="sc">:</span>ess, <span class="sc">~</span> <span class="fu">if_else</span>(. <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">666</span>, <span class="sc">-</span><span class="dv">777</span>, <span class="sc">-</span><span class="dv">888</span>, <span class="sc">-</span><span class="dv">999</span>), <span class="cn">NA</span>, .)), <span class="co"># Recodificar a NA</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pmerit =</span> (mesfuerzo <span class="sc">+</span> mtalento) <span class="sc">/</span> <span class="dv">2</span> <span class="co"># Crear nueva variable</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">pmerit =</span> <span class="st">"Promedio entre percepción de meritocracia por esfuerzo y talento"</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> elsoc_2021 <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        idencuesta, region, comuna,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">edad =</span> m0_edad, <span class="at">educ =</span> m01,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">hrs_trabajo =</span> m12, <span class="at">ing_per =</span> m13,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">mesfuerzo =</span> c18_09, <span class="at">mtalento =</span> c18_10, <span class="at">ess =</span> d01_01,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">satis_demo =</span> c01, <span class="at">frec_marcha =</span> c08_02</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">across</span>(edad<span class="sc">:</span>ess, <span class="sc">~</span> <span class="fu">if_else</span>(. <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">666</span>, <span class="sc">-</span><span class="dv">777</span>, <span class="sc">-</span><span class="dv">888</span>, <span class="sc">-</span><span class="dv">999</span>), <span class="cn">NA</span>, .)), <span class="co"># Recodificar a NA</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">pmerit =</span> (mesfuerzo <span class="sc">+</span> mtalento) <span class="sc">/</span> <span class="dv">2</span> <span class="co"># Crear nueva variable</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">pmerit =</span> <span class="st">"Promedio entre percepción de meritocracia por esfuerzo y talento"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A continuación, exploramos la base de datos <code>proc_elsoc</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(proc_elsoc) <span class="co"># Nombre de columnas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "idencuesta"    "region"        "comuna"        "estrato"      
- [5] "ponderador01"  "ponderador02"  "fact_exp01"    "fact_exp02"   
- [9] "sexo"          "edad"          "educ"          "hrs_trabajo"  
-[13] "hrs_cuidado"   "ing_per"       "ing_per_justo" "ing_hog"      
-[17] "mesfuerzo"     "mtalento"      "ess"           "satis_demo"   
-[21] "frec_marcha"   "pmerit"       </code></pre>
+<pre><code> [1] "idencuesta"  "region"      "comuna"      "edad"        "educ"       
+ [6] "hrs_trabajo" "ing_per"     "mesfuerzo"   "mtalento"    "ess"        
+[11] "satis_demo"  "frec_marcha" "pmerit"     </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(proc_elsoc) <span class="co"># Dimensiones</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2740   22</code></pre>
+<pre><code>[1] 2740   13</code></pre>
 </div>
 </div>
-<p>Contamos con 22 variables (columnas) y 2740 observaciones (filas).</p>
+<p>Contamos con 13 variables (columnas) y 2740 observaciones (filas).</p>
 </section>
 <section id="correlación-de-pearson" class="level1">
 <h1>Correlación de Pearson</h1>
@@ -463,11 +460,12 @@ Hipótesis en correlación
 </ul>
 <p>Obtengamos el coeficiente de correlación <span class="math inline">\(r\)</span> de Pearson entre el nivel educacional alcanzado (<code>educ</code>) y el estatus social subjetivo (<code>ess</code>) de las personas en Chile en 2021. Para esto usaremos solamente observaciones completas (<em>listwise</em>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cor_results <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(proc_elsoc<span class="sc">$</span>educ, proc_elsoc<span class="sc">$</span>ess, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"pearson"</span>, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>cor_results</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cor_results <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(proc_elsoc<span class="sc">$</span>educ, proc_elsoc<span class="sc">$</span>ess,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">"complete.obs"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>cor_results</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -486,23 +484,31 @@ sample estimates:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stats.table <span class="ot">&lt;-</span> <span class="fu">tidy</span>(cor_results)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>stats.table <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">estimate =</span> <span class="fu">round</span>(estimate, <span class="dv">2</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">statistic =</span> <span class="fu">round</span>(statistic, <span class="dv">2</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ic_95 =</span> <span class="fu">paste0</span>(<span class="st">"["</span>, <span class="fu">round</span>(conf.low, <span class="dv">2</span>), <span class="st">","</span>, <span class="fu">round</span>(conf.high,<span class="dv">2</span>), <span class="st">"]"</span>),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">stars =</span> gtools<span class="sc">::</span><span class="fu">stars.pval</span>(p.value),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p_value =</span> <span class="fu">case_when</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> p.value <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">~</span> <span class="st">"&lt; 0.05"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                      p.value <span class="sc">&lt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> p.value <span class="sc">&gt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">"&lt; 0.01"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                                      p.value <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">"&lt; 0.001"</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                                      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">""</span>),</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">p_value =</span> <span class="fu">paste0</span>(p_value, stars)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(estimate, statistic, p_value, parameter, method, alternative, ic_95) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Estimación"</span>, <span class="st">"t"</span>, <span class="st">"p-value"</span>, <span class="st">"df"</span>, <span class="st">"Método"</span>, <span class="st">"Alternativa"</span>, <span class="st">"95% IC"</span>),</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">booktabs =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>), </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                              <span class="at">full_width =</span> T, </span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                              <span class="at">latex_options =</span> <span class="st">"hold_position"</span>, </span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                              <span class="at">position =</span> <span class="st">"center"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>stats.table <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimate =</span> <span class="fu">round</span>(estimate, <span class="dv">2</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">statistic =</span> <span class="fu">round</span>(statistic, <span class="dv">2</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ic_95 =</span> <span class="fu">paste0</span>(<span class="st">"["</span>, <span class="fu">round</span>(conf.low, <span class="dv">2</span>), <span class="st">","</span>, <span class="fu">round</span>(conf.high, <span class="dv">2</span>), <span class="st">"]"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">stars =</span> gtools<span class="sc">::</span><span class="fu">stars.pval</span>(p.value),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">p_value =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> p.value <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">~</span> <span class="st">"&lt; 0.05"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&lt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> p.value <span class="sc">&gt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">"&lt; 0.01"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">"&lt; 0.001"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">""</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">p_value =</span> <span class="fu">paste0</span>(p_value, stars)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(estimate, statistic, p_value, parameter, method, alternative, ic_95) <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Estimación"</span>, <span class="st">"t"</span>, <span class="st">"p-value"</span>, <span class="st">"df"</span>, <span class="st">"Método"</span>, <span class="st">"Alternativa"</span>, <span class="st">"95% IC"</span>),</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">booktabs =</span> T</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">full_width =</span> T,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">latex_options =</span> <span class="st">"hold_position"</span>,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
@@ -641,9 +647,10 @@ Value |                                 Label |    N | Raw % | Valid % | Cum. %
 </div>
 <p>Ahora, calculemos el coeficiente de correlación de Spearman con <code>cor.test</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(proc_elsoc<span class="sc">$</span>mesfuerzo, proc_elsoc<span class="sc">$</span>mtalento, </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">use =</span> <span class="st">"complete.obs"</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"spearman"</span>) <span class="co">#especificamos metodo spearman</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(proc_elsoc<span class="sc">$</span>mesfuerzo, proc_elsoc<span class="sc">$</span>mtalento,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">"complete.obs"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"spearman"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>) <span class="co"># especificamos metodo spearman</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Spearman's rank correlation rho

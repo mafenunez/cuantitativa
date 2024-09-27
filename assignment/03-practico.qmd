@@ -52,15 +52,13 @@ load(url("https://dataverse.harvard.edu/api/access/datafile/6160180")) # Cargar 
 proc_elsoc <- elsoc_2021 %>%
     select(
         idencuesta, region, comuna,
-        estrato:fact_exp02,
-        sexo = m0_sexo, edad = m0_edad, educ = m01,
-        hrs_trabajo = m12, hrs_cuidado = m17,
-        ing_per = m13, ing_per_justo = m15, ing_hog = m29,
+        edad = m0_edad, educ = m01,
+        hrs_trabajo = m12, ing_per = m13,
         mesfuerzo = c18_09, mtalento = c18_10, ess = d01_01,
         satis_demo = c01, frec_marcha = c08_02
     ) %>%
     mutate(
-        across(sexo:ess, ~ if_else(. %in% c(-666, -777, -888, -999), NA, .)), # Recodificar a NA
+        across(edad:ess, ~ if_else(. %in% c(-666, -777, -888, -999), NA, .)), # Recodificar a NA
         pmerit = (mesfuerzo + mtalento) / 2 # Crear nueva variable
     ) %>%
     labelled::set_variable_labels(
