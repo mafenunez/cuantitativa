@@ -19,11 +19,9 @@ El objetivo de esta guía práctica es introducirnos al cálculo e interpretaci�
 
 La guía tiene **3 ejercicios**. El primero de ellos es un ejemplo, y los ejercicios 2 y 3 se desarrollan de manera autónoma en la sala (también puede ser en grupo). 
 
-
 ## Recursos de la práctica
 
 En esta práctica trabajaremos con un subconjunto de datos previamente procesados del Estudio Longitudinal Social de Chile (ELSOC) del año 2016, elaborado por [COES](https://coes.cl/encuesta-panel/). Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace: [{{< fa table >}} `ELSOC 2016`](https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData). Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ELSOC 2016.
-
 
 # Preparación datos
 
@@ -48,7 +46,6 @@ load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2
 
 ```
 
-
 A continuación, exploramos la base de datos **proc_elsoc**.
 
 ```{r exploracion, echo=TRUE, message=FALSE, warning=FALSE}
@@ -70,7 +67,7 @@ En otras palabras, nos permite conocer cómo y cuánto se relaciona la variació
 
 :::
 
-La correlación producto-momento de Pearson es una medida estandarizada de covarianza que nos muestra la asociación lineal (sentido y fuerza) entre dos variables continuas. 
+La correlación producto-momento de Pearson es una medida estandarizada de covarianza que nos muestra la asociación **lineal** (sentido y fuerza) entre dos variables continuas. 
 
 $$
 Correlacion = r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {(n-1)\sigma_x \sigma_y }
@@ -88,14 +85,13 @@ Cuanto más cercano esté el valor de r a 1 o -1, más fuerte será la correlaci
 
 ![](../slides/img/scatters3.png)
 
-
 Para obtener el coeficiente de correlación directamente en R se utiliza la función `cor()` :
 
 ```{r ex0_cor, warning=FALSE}
 cor(x = proc_elsoc$mesfuerzo, y = proc_elsoc$mtalento, use = "complete.obs")
 ```
 
-Tenemos que la correlación entre la variable de `mesfuerzo` y `mtalento` es de 0.69. 
+Tenemos que la correlación entre la variable de `mesfuerzo` (percepción de meritocracia asociada al esfuerzo) y `mtalento` (percepción de meritocracia asociada al talento) es de 0.69. 
 
 Siempre es recomendable acompañar el valor de la correlación con una exploración gráfica de la distribución bivariada de los datos. El gráfico o diagrama de dispersión es una buena herramienta, ya que muestra la forma, la dirección y la fuerza de la relación entre dos variables cuantitativas.
 
@@ -217,8 +213,7 @@ Formulemos nuestra hipótesis:
 
 - $H_{A}$: $cor(educ,ess)$ $\neq$ $0$
 
-Obtengamos el coeficiente de correlación $r$ de Pearson entre el nivel educacional alcanzado y el estatus social subjetivo de las personas en Chile en 2016. Para esto usaremos solamente observaciones completas (_listwise_).
-
+Obtengamos el coeficiente de correlación $r$ de Pearson entre el nivel educacional alcanzado (`educ`) y el estatus social subjetivo (`ess`) de las personas en Chile en 2016. Para esto usaremos solamente observaciones completas (_listwise_).
 
 ```{r, echo=TRUE}
 
@@ -288,11 +283,64 @@ Con esto, podemos decir que el 8% de la variabilidad del estatus social subjetiv
 
 # Limitaciones de la correlación de Pearson
 
-Aqui completar MARTIN
+El coeficiente de correlación de Pearson tiene una serie de limitaciones:
 
-- no captura relaciones no lineales bien
+- medida de asociación lineal entre variables
+- no captura apropiadamente asociaciones no lineales
+- posee supuestos distribucionales de x e y (distribución normal)
 - sensible a valores extremos
-- una correlacion puede reflejar distribuciones de asociacion distintas (Anscombe)
+- un mismo coeficiente puede reflejar distintas distribuciones bivariadas
+
+Una buena forma de ejemplificar la limitación de que un mismo coeficiente puede reflejar distintas distribuciones es el cuarteto de Anscombe. Este es una demostración respecto a la importancia de visualizar los datos y fue realizada por el estadístico Francis John Anscombe en 1973. El cuarteto de Anscombe comprende cuatro conjunto de datos, todos con las mismas propiedades estadísticas (media, mediana y varianza), pero con diferencias claras en su distribución.
+
+```{r, echo = FALSE}
+
+library(ggplot2)
+library(datasets)
+library(dplyr)
+
+# Crear un dataframe con los nombres de las series y calcular los coeficientes de correlación
+df_anscombe <- data.frame(
+  x = c(anscombe$x1, anscombe$x2, anscombe$x3, anscombe$x4),
+  y = c(anscombe$y1, anscombe$y2, anscombe$y3, anscombe$y4),
+  dataset = rep(c("I", "II", "III", "IV"), each = nrow(anscombe))
+)
+
+# Calcular el coeficiente de correlación por grupo
+correlations <- df_anscombe %>%
+  group_by(dataset) %>%
+  summarise(correlation = cor(x, y))
+
+# Unir los coeficientes de correlación con el dataframe
+df_anscombe <- df_anscombe %>%
+  left_join(correlations, by = "dataset")
+
+# Graficar usando ggplot2
+ggplot(df_anscombe, aes(x = x, y = y, color = dataset)) +
+  geom_point(size = 2) + 
+  geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +  # Línea de regresión
+  facet_wrap(~ dataset, ncol = 2) +  # Crear un gráfico por cada dataset
+  theme_minimal() +
+  labs(title = "Cuarteto de Anscombe",
+       subtitle = "Mismo coeficiente de correlación, pero diferentes patrones",
+       x = "X",
+       y = "Y") +
+  geom_text(aes(label = paste("r = ", round(correlation, 2))), 
+            x = 15, y = 5, size = 4, hjust = 1, color = "black") +  # Añadir correlación en cada panel
+  scale_color_manual(values = c("I" = "red", "II" = "blue", "III" = "green", "IV" = "orange")) +  # Colores diferentes
+  theme(
+    aspect.ratio = 1,  # Ajustar la relación de aspecto para hacer los paneles más pequeños
+    panel.spacing = unit(0.5, "lines"),  # Reducir el espacio entre paneles
+    plot.title = element_text(size = 14),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "none"
+  )
+
+```
+
+Al tener las mismas propiedades estadísticas, los cuatro conjunto de datos dan por resultado el mismo coeficiente de correlación ($r = 0.82$). Tomando los criterios de Cohen (1988) sabemos que esto significa que las variables tienen una asociación lineal fuerte y positiva. Por lo demás, al tener el mismo coeficiente de correlación, esperaríamos que las distribuciones de los datos fueran más o menos parecidas. Sin embargo, esto es justamente lo que nos invita a reflexionar la demostración de Anscombe: **que distintos conjuntos de datos tengan el mismo coeficiente de correlación, no significa que tengan la misma distribución bivariada.**
+
+La demostración del cuarteto de Anscombre nos recuerda la importancia de acompañar los reportes de estadísticos (p.ej el coeficiente de correlación) con visualizaciones de datos.
 
 # Otros tipos de correlación: Spearman
 
@@ -304,7 +352,6 @@ Cuando queremos conocer la asociación entre variables que son ordinales y/o cua
 - Es alta cuando las observaciones tienen un ranking similar.
 
 En R calcularlo es sencillo, pero _debemos tener en cuenta que las variables que relacionemos tengan un orden de rango similar_: por ejemplo, que el valor más bajo sea el rango más bajo y que el valor más alto sea el rango más alto. 
-
 
 Tomemos por ejemplo las variables `mesfuerzo` y `mtalento`.
 
@@ -330,4 +377,15 @@ Ahora conocemos el valor del coeficiente mediante al argumento `rho`, que es igu
 
 # Ejercicios
 
-MARTIN
+## Ejercicio 1
+
+A partir de la base de datos de `proc_elsoc` responda la siguiente pregunta **_¿en qué medida la edad de las personas está asociadas a sus percepciones sobre la meritocracia?_** Para responder esta pregunta siga los siguientes pasos:
+
+1. Calcule el coeficiente de correlación $r$ entre las variables `edad` y `pmerit`. `pmerit` es una variable que promedia las variables de `mesfuerzo` y `mtalento`
+2. Interprete el tamaño de efecto del coeficiente siguiendo los criterios de Cohen (1988).
+3. Reporte el sentido de la dirección de la correlación
+4. Interprete la significancia estadística del coeficiente
+5. Visualice la relación entre las variables con un gráfico de dispersión y comente.
+
+## Ejercicio 2
+¿Spearman? Comentario Martín: Aquí me queda la duda, yo utilizaría `mesfuerzo` y `mtalento` para hacer el ejemplo de Spearman y buscaría otra variable numerica en ELSOC original para hacer el ejemplo de Pearson (probablemente ingresos)
