@@ -1,0 +1,480 @@
+---
+title: "Estadística Correlacional"
+author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
+date: "2do Sem 2024"
+output:
+  xaringan::moon_reader:
+    css: "css/custom_2020.css"
+    includes:
+      after_body: "insert-logo.html"     
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: dracula
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+    seal: false # esto omite title slide automática
+---
+class: front
+
+
+```{r setup, echo=FALSE, cache = FALSE}
+library(knitr)
+opts_chunk$set(warning=FALSE,
+             message=FALSE,
+             echo=TRUE,
+             comment = "",
+             cache = TRUE, fig.width=10, fig.height=8)
+pacman::p_load(tidyverse, kableExtra, flipbookr)
+```
+
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_animate_css()
+xaringanExtra::use_animate_all("fade")
+xaringanExtra::use_scribble()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_search(show_icon = TRUE)
+```
+
+.pull-left-wide[
+# Estadística Correlacional]
+
+.pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
+
+## Inferencia, asociación y reporte
+
+
+----
+.pull-left[
+
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 2do Sem 2024
+## [.orange[correlacional.netlify.app]](https:/correlacional.netlify.app)
+]
+
+
+.pull-right-narrow[
+.center[
+.content-block-gray[
+## .gray[Sesión 10:] 
+## .curso[Correlación en ordinales. Matrices.]]
+]
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+---
+class: roja right
+
+# .black[Contenidos]
+
+.pull-left-narrow[
+]
+
+.pull-right-wide[
+
+### 1- Resumen sesión anterior
+
+### 2- Magnitud de la correlación
+
+### .yellow[3- Otros coeficientes de correlación]
+
+### 4- Matrices de correlación
+
+]
+
+
+---
+# Coeficiente de correlación de Spearman 
+
+  - se utiliza para variables ordinales y/o cuando se se violan supuestos de distribución normal
+  
+  - es equivalente a la correlación de Pearson del ranking de las observaciones analizadas 
+  
+  - es alta cuando las observaciones tienen un ranking similar
+  
+
+---
+# Cálculo Spearman
+
+- se le asigna un número de ranking a cada valor 
+
+- el valor más bajo obtiene el mayor ranking, y el más alto el menor
+
+- en caso de valores repetidos se produce un "empate", y entonces el ranking se promedia.
+
+---
+# Ejemplo: variable Educación
+
+.medium[
+.pull-left-narrow[
+```{r}
+data$educ
+```
+
+Como estos valores están ordenados de menor a mayor, entonces en principio los valores de ranking serían:
+
+`8 7 6 5 4 3 2 1`.
+]
+
+.pull-right-wide[
+
+<br>
+<br>
+
+Pero, hay un par de empates
+
+  - el valor 4 está repetido y corresponden a los ranking 6 y 5, por lo tanto a ambos se les asigna el promedio de estos rankings: 5,5
+
+  - lo mismo sucede con el valor 8 en los rankings 2 y 1, por lo tanto a ambos se les asigna el valor 1,5 ]
+
+]
+
+```{r, include=FALSE}
+data_spr <- data %>% select (educ, ing) %>% mutate(., educ_rank=c(8,7,5.5,5.5,4,3,1.5,1.5)) %>% mutate(., ing_rank=c(8,6.5,6.5,4,5,3,2,1))
+```
+
+---
+
+`r chunk_reveal(chunk_name="spearman")`
+
+```{r spearman, include=FALSE, echo=F}
+data %>% 
+  select (educ, ing) %>% 
+  mutate(., educ_rank=c(8,7,5.5,5.5,4,3,1.5,1.5)) %>% 
+  mutate(., ing_rank=c(8,6.5,6.5,4,5,3,2,1))
+
+cor(data_spr$educ_rank, data_spr$ing_rank)
+```
+
+
+---
+Cálculo directo en `R`:
+
+```{r}
+cor.test(data$educ, data$ing, "two.sided", "spearman")
+```
+
+
+---
+# Coeficiente de correlación Tau de Kendall
+
+.pull-left[
+- Recomendado cuando hay un set de datos pequeños y/o cuando hay mucha repetición de observaciones en el mismo ranking
+
+- Se basa en una comparación de pares de observaciones concordantes y discordantes 
+
+]
+
+--
+
+.pull-right[
+
+En `R`:
+
+.small[
+```{r echo=TRUE}
+cor.test(data$educ, data$ing,
+         "two.sided", 
+         "kendall")
+```
+]
+]
+
+---
+class: inverse 
+## Recomendaciones generales
+
+- Pearson es el coeficiente de correlación por defecto
+
+- En caso de datos en escala de medición ordinal se puede aplicar Spearman (aunque Pearson es también aceptado en este contexto).
+
+- Kendall se reporta en casos muy específicos donde hay un set de datos pequeños y repetición de observaciones en el mismo ranking ("empates")
+
+
+---
+class: roja right
+
+# .black[Contenidos]
+
+.pull-left-narrow[
+]
+
+.pull-right-wide[
+
+### 1- Resumen sesión anterior
+
+### 2- Magnitud de la correlación
+
+### 3- Otros coeficientes de correlación
+
+### .yellow[4- Matrices de correlación]
+
+]
+
+
+---
+# Matriz de correlación
+
+- una matriz de correlación se conforma cuando se representa simultaneamente más de un par de asociaciones bivariadas
+
+- por ejemplo, si agregamos la variable edad a nuestra base de datos:
+
+```{r}
+data$edad <- c(50, 65, 27, 15, 40, 22, 25, 38)
+```
+
+Tenemos .red[3 variables], y por lo tanto los siguentes pares de correlaciones posibles: ingreso-educación, ingreso-edad, y educación-edad
+
+
+---
+
+`r chunk_reveal(chunk_name="matriz1")`
+
+```{r matriz1, include=FALSE, echo=F}
+cor_mat <- data %>% 
+  select(educ, ing, edad)   %>%
+  cor(.)
+cor_mat
+round(cor_mat, 3)
+sjPlot::tab_corr(cor_mat)
+```
+
+
+---
+# Matriz de correlaciones
+
+- tabla de doble entrada donde las variables se presentan tanto en las filas como en las columnas
+
+- el coeficiente de correlación correspondiente al par de variables aparece en la intersección de las columnas
+
+- existe información redundante
+
+  - las correlaciones se repiten, dado que las variables se intersectan dos veces en la tabla
+  - la diagonal tiene solo unos (1), ya que es la correlación de la variable consigo misma
+
+---
+
+`r chunk_reveal(chunk_name="matriz2", title="# Ajustando tabla sjPlot::tab_corr" )`
+
+```{r matriz2, include=FALSE, echo=F}
+
+sjPlot::tab_corr(cor_mat,
+  triangle = "lower",
+  title = "Tabla de correlaciones del ejemplo"
+  )
+```
+
+---
+
+`r chunk_reveal(chunk_name="matriz3", title="# Matriz con librería  corrplot")`
+
+```{r matriz3, eval = F, echo = F}
+library(corrplot)
+corrplot(cor_mat) 
+```
+
+---
+
+`r chunk_reveal(chunk_name="matriz31", title="# Matriz con librería  corrplot")`
+
+```{r matriz31, eval = F, echo = F}
+corrplot(cor_mat,
+  method = 'number')
+```
+
+---
+
+`r chunk_reveal(chunk_name="matriz4", title="# corrplot")`
+
+```{r matriz4, eval = F, echo = F, fig.width=2, fig.height=2}
+corrplot(cor_mat, 
+  method = 'number', 
+  type = 'lower', 
+  number.cex = 3,
+  tl.cex = 3,
+  diag = FALSE)
+```
+
+---
+
+`r chunk_reveal(chunk_name="matriz5", title="# corrplot.mixed")`
+
+```{r matriz5, eval = F, echo = F, fig.width=2, fig.height=2}
+corrplot.mixed(cor_mat, 
+  lower = "number",
+  upper = "circle",
+  number.cex = 3,
+  tl.cex = 3,
+  diag = "n")
+```
+
+---
+
+`r chunk_reveal(chunk_name="matriz6", title="# corrplot.mixed")`
+
+```{r matriz6, eval = F, echo = F, fig.width=2, fig.height=2}
+corrplot(cor_mat, 
+  type = "lower",
+  addCoef.col = 'white',
+  number.cex = 3,
+  tl.cex = 3,
+  diag = FALSE)
+```
+
+---
+
+`r chunk_reveal(chunk_name="matriz7", title="# corrplot.mixed")`
+
+```{r matriz7, eval = F, echo = F, fig.width=2, fig.height=2}
+corrplot(cor_mat, 
+  type = "lower",
+  addCoef.col = 'white',
+  number.cex = 3,
+  tl.cex = 3,
+  diag = FALSE,
+  method = 'square')
+```
+
+---
+# Consideraciones sobre casos perdidos 
+
+- Cuando hay casos perdidos en las variables, ¿cuál es el número de casos de la matriz de correlaciones? 
+
+- Las correlaciones bivariadas se calculan con información completa, por lo tanto si hay un dato perdido en una de las variables se elimina el caso completo
+
+- Algunas funciones lo hacen de manera automática, en otras hay que especificarlo previamente
+
+---
+# Ejemplo
+
+Agreguemos un caso perdido (NA en R) a una de nuestras variables
+
+```{r}
+data$edad
+data$edad <-replace(data$edad, data$edad==15, NA)
+data$edad
+```
+
+---
+.medium[
+```{r}
+cormat_NA <- data %>% select(educ, ing, edad) %>% cor(.)
+round(cormat_NA,3)
+```
+```{r}
+cormat_listwise <- data %>% select(educ, ing, edad) %>% 
+  cor(., use = "complete.obs")
+round(cormat_listwise, 3)
+```
+]
+
+
+---
+# Eliminación de casos perdidos por lista (o listwise)
+
+- las correlaciones bivariadas requieren eliminación de casos perdidos tipo listwise, es decir, si hay un dato perdido en una variable se pierde el caso completo
+
+- Para conocer el número de casos con que se calculó la matriz:
+
+.medium[
+```{r}
+sum(complete.cases(data))
+```
+]
+
+Por lo tanto, en el cálculo se perdió el caso o fila completa de la base (de 8 casos) que tenía el caso perdido.
+
+---
+# Eliminación de casos perdidos por pares (o pairwise)
+
+- en el caso de las matrices de correlaciones es posible tomar la opción .red[pairwise] para casos perdidos
+
+- pairwise quiere decir que se eliminan los casos perdidos solo cuando afectan al cálculo de un par específico.
+
+- en el caso de nuestro ejemplo, si consideramos listwise todas las correlaciones tienen 7 casos, pero con pairwise la correlación entre educación e ingreso mantendría 8 casos.
+
+- por lo tanto, pairwise permite mayor rescate de información y mayor N en el cálculo de matrices de correlaciones
+
+---
+# Opción pairwise en correlación en R
+
+```{r}
+data %>% select(educ, ing, edad) %>% 
+  cor(., use = "pairwise")
+```
+En este caso vemos una leve variación en el coeficiente comprometido (educ-ing) comparando listwise con pairwise
+
+
+---
+# Número de casos pairwise
+```{r}
+data %>% select(educ,ing,edad) %>% psych::pairwiseCount() 
+```
+Se indica que en las correlaciones con edad se utilizaron 7 casos, mientras en la correlación entre ingreso y educación se utilizan 8 casos con el método pairwise
+
+
+---
+class: inverse
+## _Resumen_
+
+.medium[
+
+### - Correlación de Spearman: apropiada para variables ordinales, equivale a la correlación de Pearson del ranking de las variables
+
+### - Matriz de correlaciones: forma tradicional de reporte de asociaciones de las variables de una investigación, importante considerar tratamiento de datos perdidos (listwise o pairwise)
+]
+
+---
+class: front
+
+.pull-left-wide[
+# Estadística Correlacional]
+
+.pull-right-narrow[![:scale 85%](img/logo-correlacional-transp.png)]
+
+## Inferencia, Asociación y reporte
+
+----
+.pull-left[
+
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 2do Sem 2024
+## [.orange[correlacional.netlify.com]](https://encuestas-sociales.netlify.com)
+]
+    
+
+
+<!-- adjust font size in this css code chunk for flipbook, currently 80 -->
+
+```{css, eval = FALSE, echo = FALSE}
+.remark-code{line-height: 1.5; font-size: 80%}
+
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+code.r.hljs.remark-code{
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+code.r.hljs.remark-code:hover{
+  overflow-x:visible;
+  width: 500px;
+  border-style: solid;
+}
+```
+
+
+
+

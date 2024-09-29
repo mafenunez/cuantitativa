@@ -1,6 +1,6 @@
 ---
-title: "Cierre"
-date: "2023-11-20"
+title: "Ordinales y matrices"
+date: "2024-09-30"
 lang: es
 execute:
   freeze: auto 
@@ -8,7 +8,7 @@ execute:
 
 # Documento de presentación
 
-<iframe src=/slides/10-cierre.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/10-bivariada3.html height="550" width=100% allowfullscreen="true">
 </iframe> 
 
 
