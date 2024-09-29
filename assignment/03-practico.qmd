@@ -1,5 +1,5 @@
 ---
-title: "Práctico 3: Correlación"
+title: "Práctico 3: Correlación de Pearson"
 date: "2024-10-01"
 lang: es
 execute:
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 El propósito de esta guía es introducir el coeficiente de correlación de Pearson como una herramienta para la investigación, enfocándonos en su aplicación en R. A lo largo del ejercicio, aprenderemos a:
 
 1. Preparar los datos,
-2. Estimar el coeficiente en R,
+2. Estimar el coeficiente de Pearson en R,
 3. Interpretar el tamaño del efecto, 
 4. Visualizar la relación entre variables mediante gráficos,
 5. Aplicar la correlación en inferencia estadística,
@@ -33,16 +33,15 @@ Utilizaremos un ejemplo que desarrollaremos progresivamente para ilustrar cada p
 
 En esta práctica trabajaremos con los datos del Estudio Longitudinal Social de Chile (ELSOC) del año 2021, elaborado por [COES](https://coes.cl/encuesta-panel/). Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace: [{{< fa table >}} `ELSOC 2021`](https://dataverse.harvard.edu/file.xhtml?fileId=6160180&version=1.0). Desde allí, se puede descargar el archivo que contiene la base de datos ELSOC 2021.
 
-# 1. Preparación datos
+# 1. Preparación de datos
 
 Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.
 
 ```{r librerias, echo=TRUE, message=FALSE, warning=FALSE, collapse=TRUE}
-pacman::p_load(
-    tidyverse, # Manipulacion datos
-    sjPlot, # Graficos
-    rstatix
-)
+pacman::p_load(tidyverse, # Manipulacion datos
+               sjPlot, # Graficos
+               rstatix, # Test estadísticos
+               broom) # Tablas
 
 options(scipen = 999) # para desactivar notacion cientifica
 rm(list = ls()) # para limpiar el entorno de trabajo
@@ -55,38 +54,55 @@ Cargamos los datos directamente desde internet.
 # Cargar bbdd pública de ELSOC
 load(url("https://dataverse.harvard.edu/api/access/datafile/6160180"))
 
-# Procesemos la bbdd quedandonos solo con algunas variables de interés
-proc_elsoc <- elsoc_2021 %>%
-    select(
-        idencuesta,
-        ing_per = m13, ing_per_just = m15,
-        edad = m0_edad, mesfuerzo = c18_09, mtalento = c18_10
-    ) %>%
-    mutate(
-        across(ing_per:mtalento, ~ if_else(. %in% c(-666, -777, -888, -999), NA, .)), # Recodificar a NA
-        pmerit = (mesfuerzo + mtalento) / 2 # Crear nueva variable
-    ) %>%
-    labelled::set_variable_labels(
-        pmerit = "Promedio entre percepción de meritocracia por esfuerzo y talento"
-    )
-
 ```
 
-A continuación, exploramos la base de datos `proc_elsoc`.
+A continuación, exploramos la base de datos `elsoc_2021`.
 
 ```{r exploracion, echo=TRUE, message=FALSE, warning=FALSE}
 
-names(proc_elsoc) # Nombre de columnas
-dim(proc_elsoc) # Dimensiones
+names(elsoc_2021) # Nombre de columnas
+dim(elsoc_2021) # Dimensiones
 
 ```
 
 ```{r include = F}
-rows <- NROW(proc_elsoc)
-cols <- NCOL(proc_elsoc)
+rows <- NROW(elsoc_2021)
+cols <- NCOL(elsoc_2021)
 ```
 
 Contamos con `r cols` variables (columnas) y `r rows` observaciones (filas).
+
+Ahora, realizaremos un pequeño procesamiento de nuestros datos con `dplyr` y `sjlabelled`, todo de una vez mediante el uso de pipes `%>%`. Para recordar los pasos para el procesamiento de datos, revisar el [curso anterior](https://descriptiva-facso.netlify.app/assignment/03-practico).
+
+```{r proc, echo=TRUE, message=FALSE, warning=FALSE}
+# Procesemos la bbdd quedandonos solo con algunas variables de interés
+proc_elsoc <- elsoc_2021 %>%
+    dplyr::select(
+        idencuesta,
+        ing_per = m13, 
+        ing_per_just = m15,
+        edad = m0_edad, 
+        mesfuerzo = c18_09, 
+        mtalento = c18_10
+    ) %>%  # seleccionamos
+    dplyr::mutate(
+        across(ing_per:mtalento, ~ if_else(. %in% c(-666, -777, -888, -999), NA, .)), # Recodificar a NA
+        pmerit = (mesfuerzo + mtalento) / 2 # Crear nueva variable
+    ) %>% # recodificamos y transformamos
+    labelled::set_variable_labels(
+        pmerit = "Promedio entre percepción de meritocracia por esfuerzo y talento"
+    ) # etiquetamos
+
+```
+
+Veamos cómo quedó nuetras base procesada `proc_elsoc`
+
+```{r head, echo=TRUE}
+
+head(proc_elsoc)
+
+```
+
 
 # 2. Correlación de Pearson
 
@@ -126,11 +142,15 @@ Para poner a prueba esta hipótesis, utilizaremos las variables `ing_per` (ingre
 En R, el coeficiente de correlación de Pearson se obtiene con la función `cor()` :
 
 ```{r ex0_cor, warning=FALSE}
-cor(x = proc_elsoc$ing_per, y = proc_elsoc$ing_per_just, use = "complete.obs")
+cor(x = proc_elsoc$ing_per, 
+    y = proc_elsoc$ing_per_just, 
+    use = "complete.obs")
 ```
 
 ```{r, include=FALSE, warning=FALSE}
-r_coef <- cor(x = proc_elsoc$ing_per, y = proc_elsoc$ing_per_just, use = "complete.obs")
+r_coef <- cor(x = proc_elsoc$ing_per, 
+              y = proc_elsoc$ing_per_just, 
+              use = "complete.obs")
 r_coef <- round(r_coef, 2)
 ```
 
@@ -229,18 +249,25 @@ _El coeficiente de correlación de Pearson entre los ingresos reales y los ingre
 Siempre es recomendable acompañar el valor de la correlación con una exploración gráfica de la distribución bivariada de los datos. El **gráfico o diagrama de dispersión** es una buena herramienta, ya que muestra la forma, la dirección y la fuerza de la relación entre dos variables cuantitativas.
 
 ```{r, echo=TRUE, warning=FALSE}
-sjPlot::plot_scatter(data = proc_elsoc, x = ing_per, y = ing_per_just)
+sjPlot::plot_scatter(data = proc_elsoc, 
+                     x = ing_per,
+                     y = ing_per_just)
 ```
 
 ```{r, include=FALSE, echo=TRUE, warning=FALSE}
 
 maximo <- max(proc_elsoc$ing_per_just, na.rm = T)
 
-proc_elsoc2 <- proc_elsoc %>% filter(!ing_per_just %in% maximo)
+proc_elsoc2 <- proc_elsoc %>% 
+    dplyr::filter(!ing_per_just %in% maximo)
 
-sjPlot::plot_scatter(data = proc_elsoc2, x = ing_per, y = ing_per_just)
+sjPlot::plot_scatter(data = proc_elsoc2, 
+                     x = ing_per, 
+                     y = ing_per_just)
 
-cor(x = proc_elsoc2$ing_per, y = proc_elsoc2$ing_per_just, use = "complete.obs")
+cor(x = proc_elsoc2$ing_per, 
+    y = proc_elsoc2$ing_per_just, 
+    use = "complete.obs")
 ```
 
 A raíz del gráfico observamos que: 
@@ -248,7 +275,7 @@ A raíz del gráfico observamos que:
 - existe un patrón positivo en los datos, en tanto los puntos están juntos y muestran una tendencia ascendente
 - existen datos que se alejan del patrón y se podrían considerar extremos
 
-::: callout-note
+::: callout-tip
 #### Recurso
 En el siguiente [enlace](https://rpsychologist.com/correlation/) pueden visualizar la correlación para dos variables cambiando la fuerza y el sentido de esta, al mismo tiempo que les permite observar la varianza compartida entre ambas variables.
 :::
@@ -279,10 +306,10 @@ Volvamos a calcular el coeficiente para estas dos variables. Anteriormente utili
 
 ```{r, echo=TRUE}
 
-cor_results <- cor.test(proc_elsoc$ing_per, proc_elsoc$ing_per_just,
-    method = "pearson",
-    use = "complete.obs" # Considerar solo datos completos (listwise)
-)
+cor_results <- cor.test(x = proc_elsoc$ing_per, 
+                        y = proc_elsoc$ing_per_just,
+                        method = "pearson",
+                        use = "complete.obs") # Considerar solo datos completos (listwise)
 
 cor_results
 ```
@@ -353,15 +380,24 @@ Con esto, podemos decir que el 21.7% de la variabilidad del ingreso real es comp
 
 Como vimos en clases, el coeficiente de correlación de Pearson tiene una serie de limitaciones. Veamos como se reflejan algunas de estas en la práctica.
 
-Para ejemplificar, tomaremos una de las limitaciones más conocidas: **el coeficiente de correlación de Pearson es sensible a valores extremos**.
+Para ejemplificar, tomaremos dos de las limitaciones más conocidas: **(a) el coeficiente de correlación de Pearson es sensible a valores extremos; (b) puede reflejar distribuciones bivariadas distintas**.
+
+## (a) Valores extremos
 
 Anteriormente, observamos valores extremos en el diagrama de dispersión de nuestro ejemplo.
 
 ```{r, echo=TRUE, warning=FALSE}
-sjPlot::plot_scatter(data = proc_elsoc, x = ing_per, y = ing_per_just) +
+sjPlot::plot_scatter(data = proc_elsoc, 
+                     x = ing_per, 
+                     y = ing_per_just) +
     geom_text(aes(label = "← Ingresos = 750.000 e Ingresos justos = 50.000.000"),
-        x = 5500000, y = 50100000, size = 3, hjust = 1, color = "black"
-    )
+                 x = 5500000, 
+                 y = 50100000, 
+                 size = 3, 
+                 hjust = 1, 
+                 color = "black"
+                 )
+
 ```
 
 Vemos que el punto más extremo en el _eje y_ corresponde a un caso que reporta que sus ingresos mensuales son de $750.000 y los ingresos que considera merecer son $50.000.000 ¿Cambiaría el coeficiente si eliminamos este valor de la base de datos?
@@ -374,17 +410,23 @@ La decisión de eliminar uno o más de valores específicos de una base de datos
 
 ```{r, echo=TRUE, warning=FALSE}
 # Encuentra el punto con el valor máximo de ing_per_just
-max_ing_per_just <- proc_elsoc %>% filter(ing_per_just == max(ing_per_just, na.rm = T))
+max_ing_per_just <- proc_elsoc %>% 
+    dplyr::filter(ing_per_just == max(ing_per_just, na.rm = T))
 
 # Excluye este caso de proc_elsoc
-proc_elsoc2 <- proc_elsoc %>% filter(!idencuesta %in% max_ing_per_just$idencuesta)
+proc_elsoc2 <- proc_elsoc %>% 
+    dplyr::filter(!idencuesta %in% max_ing_per_just$idencuesta)
 
 # Calcular coeficiente
-cor(x = proc_elsoc2$ing_per, y = proc_elsoc2$ing_per_just, use = "complete.obs")
+cor(x = proc_elsoc2$ing_per, 
+    y = proc_elsoc2$ing_per_just, 
+    use = "complete.obs")
 ```
 
 ```{r, include=FALSE}
-r_coef2 <- cor(x = proc_elsoc2$ing_per, y = proc_elsoc2$ing_per_just, use = "complete.obs")
+r_coef2 <- cor(x = proc_elsoc2$ing_per, 
+               y = proc_elsoc2$ing_per_just, 
+               use = "complete.obs")
 r_coef2 <- round(r_coef2, 2)
 ```
 
@@ -393,17 +435,18 @@ Vemos ahora que el coeficente de correlación entre los ingresos reales y los in
 Visualicemos nuevamente sin este caso extremo:
 
 ```{r, echo=TRUE, warning=FALSE}
-sjPlot::plot_scatter(data = proc_elsoc2, x = ing_per, y = ing_per_just)
+sjPlot::plot_scatter(data = proc_elsoc2, 
+                     x = ing_per, 
+                     y = ing_per_just)
 ```
 
 Al eliminar este caso extremo, se facilita la identificación del patrón subyacente en la relación entre las variables, revelando una asociación positiva fuerte. Este caso, que mostraba una gran discrepancia entre los ingresos reales y los ingresos percibidos como justos, estaba afectando significativamente el análisis, reduciendo el coeficiente de correlación a casi la mitad de su valor original. 
 
-Esto ilustra cómo un solo valor atípico puede distorsionar nuestras conclusiones sobre la fuerza y dirección de la relación entre dos variables.
+Esto **ilustra cómo un solo valor atípico puede distorsionar nuestras conclusiones sobre la fuerza y dirección de la relación entre dos variables**.
 
-::: callout-note
-#### ¿Sabías?
+## (b) Distintas distribuciones
 
-Una de las limitaciones más conocidas del coeficiente de correlación es que un mismo valor puede representar distintas distribuciones de datos. El mejor ejemplo de esta limitación es el cuarteto de Anscombe, que muestra cuatro conjuntos de datos con las mismas propiedades estadísticas (media, mediana y varianza), pero con distribuciones muy diferentes.
+Otra de las limitaciones más conocidas del coeficiente de correlación es que un mismo valor puede representar distintas distribuciones de datos. El mejor ejemplo de esta limitación es el cuarteto de Anscombe, que muestra cuatro conjuntos de datos con las mismas propiedades estadísticas (media, mediana y varianza), pero con distribuciones muy diferentes.
 
 ```{r, echo = FALSE}
 
@@ -456,7 +499,7 @@ ggplot(df_anscombe, aes(x = x, y = y, color = dataset)) +
 A pesar de tener las mismas propiedades estadísticas, los cuatro conjuntos producen el mismo coeficiente de correlación ($r = 0.82$). Esto podría llevarnos a esperar que las distribuciones sean similares, pero el cuarteto de Anscombe demuestra lo contrario: **el mismo coeficiente de correlación no implica que los conjuntos de datos tengan una distribución bivariada similar.**
 
 Este ejemplo subraya la importancia de complementar los análisis estadísticos (como el coeficiente de correlación) con visualizaciones de los datos para tener una mejor comprensión de las relaciones entre las variables.
-:::
+
 
 # Ejercicio autónomo
 
