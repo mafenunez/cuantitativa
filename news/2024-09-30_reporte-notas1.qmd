@@ -31,6 +31,7 @@ La pauta de evaluación se puede revisar [aquí](/files/documentos/PautaPrueba1.
   - argumento y puntaje esperado
   - foto de la pregunta
 
+Solicitudes hasta el miércoles 2 de Octubre 12PM, las solicitudes responderán hasta el lunes 7 de Octubre.
 
 # Librerías, datos y ajustes 
 

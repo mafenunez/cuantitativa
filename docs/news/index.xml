@@ -21,10 +21,26 @@
 
 
 
-<section id="prueba-1" class="level1">
-<h1>Prueba 1</h1>
-<section id="librerías-datos" class="level2">
-<h2 class="anchored" data-anchor-id="librerías-datos">Librerías &amp; datos</h2>
+<p>Este reporte realiza un análisis de la Evaluación 1 sobre la Unidad 1: Inferencia estadística</p>
+<section id="pauta-y-recorrecciones" class="level1">
+<h1>Pauta y recorrecciones</h1>
+<p>La pauta de evaluación se puede revisar <a href="../files/documentos/PautaPrueba1.pdf">aquí</a></p>
+<section id="solicitudes-de-recorrección" class="level2">
+<h2 class="anchored" data-anchor-id="solicitudes-de-recorrección">Solicitudes de recorrección</h2>
+<ul>
+<li>Enviar correo a apoyo docente <a href="mailto:%20martin.venegas@ug.uchile.cl">Martín Venegas, martin.venegas@ug.uchile.cl</a>, quien estará coordinando estas solicitudes</li>
+<li>En el correo:
+<ul>
+<li>mencionar pregunta a corregir</li>
+<li>argumento y puntaje esperado</li>
+<li>foto de la pregunta</li>
+</ul></li>
+</ul>
+<p>Solicitudes hasta el miércoles 2 de Octubre 12PM, las solicitudes responderán hasta el lunes 7 de Octubre.</p>
+</section>
+</section>
+<section id="librerías-datos-y-ajustes" class="level1">
+<h1>Librerías, datos y ajustes</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">pacman<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -39,7 +55,6 @@ font-style: inherit;">p_load</span>(tidyverse, sjmisc, sjPlot, kableExtra, sjlab
 [11] "Asistida"    "Justificada" "asist_total"</code></pre>
 </div>
 </div>
-</section>
 <section id="etiquetados" class="level2">
 <h2 class="anchored" data-anchor-id="etiquetados">Etiquetados</h2>
 <div class="cell">
@@ -193,6 +208,9 @@ background-color: null;
 font-style: inherit;">"Asistencia Registrada"</span>)</span></code></pre></div>
 </div>
 </section>
+</section>
+<section id="descriptivos" class="level1">
+<h1>Descriptivos</h1>
 <section id="tabla-descriptiva" class="level2">
 <h2 class="anchored" data-anchor-id="tabla-descriptiva">Tabla descriptiva</h2>
 <div class="cell">
@@ -493,8 +511,9 @@ background-color: null;
 font-style: inherit;">-</span>notas_cat)</span></code></pre></div>
 </div>
 </section>
-<section id="preguntas-y-asociaciones" class="level2">
-<h2 class="anchored" data-anchor-id="preguntas-y-asociaciones">Preguntas y asociaciones</h2>
+</section>
+<section id="preguntas-y-asociaciones" class="level1">
+<h1>Preguntas y asociaciones</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1109,7 +1128,6 @@ alpha: 0.753</code></pre>
 </div>
 
 
-</section>
 </section>
 
  ]]></description>
