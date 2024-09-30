@@ -1,87 +1,80 @@
 [
   {
-    "objectID": "files/reporte_notas/reporte_notas.html",
-    "href": "files/reporte_notas/reporte_notas.html",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "assignment/03-practico.html",
+    "href": "assignment/03-practico.html",
+    "title": "Práctico 3: Correlación de Pearson",
     "section": "",
-    "text": "pacman::p_load(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )\n\n\n\n [1] \"N\"            \"Persona\"      \"p1-a\"         \"p1-b\"         \"p2\"          \n [6] \"p3\"           \"p4\"           \"p5\"           \"pje\"          \"Nota 60%\"    \n[11] \"corrector/a\"  \"decimas\"      \"nota_final\"   \"Recorrección\" \"...15\"       \n[16] \"...16\"       \n\n\n\nload(\"prueba1.Rdata\")\n\n\n\n\n\n# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Cálculo Pearson\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Interpretación Pearson\")\nprueba1$p2 &lt;- set_label(x = prueba1$p2, \n                         label = \"Limitación Pearson\")\nprueba1$p3 &lt;- set_label(x = prueba1$p3, \n                         label = \"Coeficiente determinación\")\nprueba1$p4 &lt;- set_label(x = prueba1$p4, \n                         label = \"Spearman\")\nprueba1$p5 &lt;- set_label(x = prueba1$p5, \n                         label = \"Perdidos matrices\")\n\n\n\n\n\nprueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nCálculo Pearson\n79\n1.78\n1.29\n3 (0-3)\n\n\n3\np1b\nInterpretación Pearson\n79\n1.66\n0.78\n3 (0-3)\n\n\n4\np2\nLimitación Pearson\n79\n1.53\n0.69\n2 (0-2)\n\n\n5\np3\nCoeficiente determinación\n79\n1.50\n0.64\n2 (0-2)\n\n\n6\np4\nSpearman\n79\n1.39\n0.81\n2 (0-2)\n\n\n7\np5\nPerdidos matrices\n79\n0.99\n0.89\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n79\n4.54\n1.40\n6 (1-7)\n\n\n\n\n\n\n\n\n\nhist(prueba1$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat)\n\nx &lt;categorical&gt; \n# total N=88 valid N=79 mean=2.23 sd=1.13\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 30 | 34.09 |   37.97 |  37.97\n4.0-5.0     | 14 | 15.91 |   17.72 |  55.70\n5.0-6.0     | 22 | 25.00 |   27.85 |  83.54\n6.0-7.0     | 13 | 14.77 |   16.46 | 100.00\n&lt;NA&gt;        |  9 | 10.23 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)\n\n\n\n\n\ntab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nCálculo Pearson\nInterpretación Pearson\nLimitación Pearson\nCoeficiente determinación\nSpearman\nPerdidos matrices\nnota_final\n\n\nCálculo Pearson\n \n \n \n \n \n \n \n\n\nInterpretación Pearson\n0.405***\n \n \n \n \n \n \n\n\nLimitación Pearson\n0.211\n0.153\n \n \n \n \n \n\n\nCoeficiente determinación\n0.271*\n0.407***\n0.267*\n \n \n \n \n\n\nSpearman\n0.229*\n0.203\n0.375***\n0.197\n \n \n \n\n\nPerdidos matrices\n0.063\n0.127\n0.435***\n0.095\n0.277*\n \n \n\n\nnota_final\n0.696***\n0.627***\n0.619***\n0.524***\n0.583***\n0.539***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nplot_scatter(prueba1, p1a, p1b)\n\n\n\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 79\nalpha: 0.634"
+    "text": "El propósito de esta guía es introducir el coeficiente de correlación de Pearson como una herramienta para la investigación, enfocándonos en su aplicación en R. A lo largo del ejercicio, aprenderemos a:\n\nPreparar los datos,\nEstimar el coeficiente de Pearson en R,\nInterpretar el tamaño del efecto,\nVisualizar la relación entre variables mediante gráficos,\nAplicar la correlación en inferencia estadística,\nEl rol del coeficiente de determinación, y\nReconocer una las principales limitaciones del coeficiente de Pearson.\n\nUtilizaremos un ejemplo que desarrollaremos progresivamente para ilustrar cada paso. Al finalizar, se propondrá un ejercicio autónomo que deberá resolverse de manera individual o grupal, aplicando los conceptos vistos en clases y en esta guía.\n\n\nEn esta práctica trabajaremos con los datos del Estudio Longitudinal Social de Chile (ELSOC) del año 2021, elaborado por COES. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace:  ELSOC 2021. Desde allí, se puede descargar el archivo que contiene la base de datos ELSOC 2021."
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#librerías-datos",
-    "href": "files/reporte_notas/reporte_notas.html#librerías-datos",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "assignment/03-practico.html#recursos-de-la-práctica",
+    "href": "assignment/03-practico.html#recursos-de-la-práctica",
+    "title": "Práctico 3: Correlación de Pearson",
     "section": "",
-    "text": "pacman::p_load(googlesheets4, dplyr, sjmisc,sjPlot, kableExtra, sjlabelled )\n\n\n\n [1] \"N\"            \"Persona\"      \"p1-a\"         \"p1-b\"         \"p2\"          \n [6] \"p3\"           \"p4\"           \"p5\"           \"pje\"          \"Nota 60%\"    \n[11] \"corrector/a\"  \"decimas\"      \"nota_final\"   \"Recorrección\" \"...15\"       \n[16] \"...16\"       \n\n\n\nload(\"prueba1.Rdata\")"
+    "text": "En esta práctica trabajaremos con los datos del Estudio Longitudinal Social de Chile (ELSOC) del año 2021, elaborado por COES. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace:  ELSOC 2021. Desde allí, se puede descargar el archivo que contiene la base de datos ELSOC 2021."
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados",
-    "href": "files/reporte_notas/reporte_notas.html#etiquetados",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "assignment/03-practico.html#recordemos",
+    "href": "assignment/03-practico.html#recordemos",
+    "title": "Práctico 3: Correlación de Pearson",
+    "section": "Recordemos…",
+    "text": "Recordemos…\nEl coeficiente de correlación de Pearson es una medida estandarizada de covarianza que nos muestra la asociación lineal (sentido y fuerza) entre dos variables continuas. En otras palabras, nos permite conocer cómo y cuánto se relaciona la variación de una variable, con la variación de otra variable.\nSus valores oscilan entre -1 y 1, donde:\n\n\\(r\\) = 1: Correlación positiva perfecta. Cuando una variable aumenta, la otra también aumenta.\n\\(r\\) = -1: Correlación negativa perfecta. Cuando una variable aumenta, la otra disminuye.\n\\(r\\) = 0: No hay correlación lineal entre las variables. No hay una relación lineal discernible entre los cambios en las variables.\n\nCuanto más cercano esté el valor de \\(r\\) a 1 o -1, más fuerte será la correlación. Cuanto más cercano esté a 0, más débil será la correlación.\n\n\n\n\n\n\n\nFormula de la correlación\n\n\n\n\\[\nCorrelacion = r = \\frac{\\sum_{i=1}^{n}(x_i - \\bar{x})(y_i - \\bar{y})} {(n-1)\\sigma_x \\sigma_y }\n\\]"
+  },
+  {
+    "objectID": "assignment/03-practico.html#a-valores-extremos",
+    "href": "assignment/03-practico.html#a-valores-extremos",
+    "title": "Práctico 3: Correlación de Pearson",
+    "section": "(a) Valores extremos",
+    "text": "(a) Valores extremos\nAnteriormente, observamos valores extremos en el diagrama de dispersión de nuestro ejemplo.\n\nsjPlot::plot_scatter(data = proc_elsoc, \n                     x = ing_per, \n                     y = ing_per_just) +\n    geom_text(aes(label = \"← Ingresos = 750.000 e Ingresos justos = 50.000.000\"),\n                 x = 5500000, \n                 y = 50100000, \n                 size = 3, \n                 hjust = 1, \n                 color = \"black\"\n                 )\n\n\n\n\n\n\n\n\nVemos que el punto más extremo en el eje y corresponde a un caso que reporta que sus ingresos mensuales son de $750.000 y los ingresos que considera merecer son $50.000.000 ¿Cambiaría el coeficiente si eliminamos este valor de la base de datos?\n\n\n\n\n\n\nSobre eliminar valores…\n\n\n\nLa decisión de eliminar uno o más de valores específicos de una base de datos debe estar justificada. Generalmente, estas decisiones están basadas en posibles errores técnicos con el dato, por ejemplo, un error de digitación.\n\n\n\n# Encuentra el punto con el valor máximo de ing_per_just\nmax_ing_per_just &lt;- proc_elsoc %&gt;% \n    dplyr::filter(ing_per_just == max(ing_per_just, na.rm = T))\n\n# Excluye este caso de proc_elsoc\nproc_elsoc2 &lt;- proc_elsoc %&gt;% \n    dplyr::filter(!idencuesta %in% max_ing_per_just$idencuesta)\n\n# Calcular coeficiente\ncor(x = proc_elsoc2$ing_per, \n    y = proc_elsoc2$ing_per_just, \n    use = \"complete.obs\")\n\n[1] 0.8479801\n\n\nVemos ahora que el coeficente de correlación entre los ingresos reales y los ingresos considerados justos es de 0.85.\nVisualicemos nuevamente sin este caso extremo:\n\nsjPlot::plot_scatter(data = proc_elsoc2, \n                     x = ing_per, \n                     y = ing_per_just)\n\n\n\n\n\n\n\n\nAl eliminar este caso extremo, se facilita la identificación del patrón subyacente en la relación entre las variables, revelando una asociación positiva fuerte. Este caso, que mostraba una gran discrepancia entre los ingresos reales y los ingresos percibidos como justos, estaba afectando significativamente el análisis, reduciendo el coeficiente de correlación a casi la mitad de su valor original.\nEsto ilustra cómo un solo valor atípico puede distorsionar nuestras conclusiones sobre la fuerza y dirección de la relación entre dos variables."
+  },
+  {
+    "objectID": "assignment/03-practico.html#b-distintas-distribuciones",
+    "href": "assignment/03-practico.html#b-distintas-distribuciones",
+    "title": "Práctico 3: Correlación de Pearson",
+    "section": "(b) Distintas distribuciones",
+    "text": "(b) Distintas distribuciones\nOtra de las limitaciones más conocidas del coeficiente de correlación es que un mismo valor puede representar distintas distribuciones de datos. El mejor ejemplo de esta limitación es el cuarteto de Anscombe, que muestra cuatro conjuntos de datos con las mismas propiedades estadísticas (media, mediana y varianza), pero con distribuciones muy diferentes.\n\n\n\n\n\n\n\n\n\nA pesar de tener las mismas propiedades estadísticas, los cuatro conjuntos producen el mismo coeficiente de correlación (\\(r = 0.82\\)). Esto podría llevarnos a esperar que las distribuciones sean similares, pero el cuarteto de Anscombe demuestra lo contrario: el mismo coeficiente de correlación no implica que los conjuntos de datos tengan una distribución bivariada similar.\nEste ejemplo subraya la importancia de complementar los análisis estadísticos (como el coeficiente de correlación) con visualizaciones de los datos para tener una mejor comprensión de las relaciones entre las variables."
+  },
+  {
+    "objectID": "news/2024-09-30_reporte-notas1.html",
+    "href": "news/2024-09-30_reporte-notas1.html",
+    "title": "Reporte Evaluación 1",
     "section": "",
-    "text": "# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Cálculo Pearson\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Interpretación Pearson\")\nprueba1$p2 &lt;- set_label(x = prueba1$p2, \n                         label = \"Limitación Pearson\")\nprueba1$p3 &lt;- set_label(x = prueba1$p3, \n                         label = \"Coeficiente determinación\")\nprueba1$p4 &lt;- set_label(x = prueba1$p4, \n                         label = \"Spearman\")\nprueba1$p5 &lt;- set_label(x = prueba1$p5, \n                         label = \"Perdidos matrices\")"
+    "text": "← News\nEste reporte realiza un análisis de la Evaluación 1 sobre la Unidad 1: Inferencia estadística"
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
-    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "prueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nCálculo Pearson\n79\n1.78\n1.29\n3 (0-3)\n\n\n3\np1b\nInterpretación Pearson\n79\n1.66\n0.78\n3 (0-3)\n\n\n4\np2\nLimitación Pearson\n79\n1.53\n0.69\n2 (0-2)\n\n\n5\np3\nCoeficiente determinación\n79\n1.50\n0.64\n2 (0-2)\n\n\n6\np4\nSpearman\n79\n1.39\n0.81\n2 (0-2)\n\n\n7\np5\nPerdidos matrices\n79\n0.99\n0.89\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n79\n4.54\n1.40\n6 (1-7)"
+    "objectID": "news/2024-09-30_reporte-notas1.html#librerías-datos",
+    "href": "news/2024-09-30_reporte-notas1.html#librerías-datos",
+    "title": "Reporte Evaluación 1",
+    "section": "Librerías & datos",
+    "text": "Librerías & datos\n\npacman::p_load(tidyverse, sjmisc, sjPlot, kableExtra, sjlabelled, readxl, here)\n\n\n\n [1] \"Nº\"          \"Persona\"     \"1a\"          \"1b\"          \"1c\"         \n [6] \"2a\"          \"2b\"          \"2c\"          \"Puntos\"      \"Nota\"       \n[11] \"Asistida\"    \"Justificada\" \"asist_total\""
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
-    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "hist(prueba1$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat)\n\nx &lt;categorical&gt; \n# total N=88 valid N=79 mean=2.23 sd=1.13\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 30 | 34.09 |   37.97 |  37.97\n4.0-5.0     | 14 | 15.91 |   17.72 |  55.70\n5.0-6.0     | 22 | 25.00 |   27.85 |  83.54\n6.0-7.0     | 13 | 14.77 |   16.46 | 100.00\n&lt;NA&gt;        |  9 | 10.23 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
-    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "",
-    "text": "tab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nCálculo Pearson\nInterpretación Pearson\nLimitación Pearson\nCoeficiente determinación\nSpearman\nPerdidos matrices\nnota_final\n\n\nCálculo Pearson\n \n \n \n \n \n \n \n\n\nInterpretación Pearson\n0.405***\n \n \n \n \n \n \n\n\nLimitación Pearson\n0.211\n0.153\n \n \n \n \n \n\n\nCoeficiente determinación\n0.271*\n0.407***\n0.267*\n \n \n \n \n\n\nSpearman\n0.229*\n0.203\n0.375***\n0.197\n \n \n \n\n\nPerdidos matrices\n0.063\n0.127\n0.435***\n0.095\n0.277*\n \n \n\n\nnota_final\n0.696***\n0.627***\n0.619***\n0.524***\n0.583***\n0.539***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nplot_scatter(prueba1, p1a, p1b)\n\n\n\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 79\nalpha: 0.634"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#datos",
-    "href": "files/reporte_notas/reporte_notas.html#datos",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Datos",
-    "text": "Datos\n\nload(\"prueba2.Rdata\")"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#adecuación-preguntas",
-    "href": "files/reporte_notas/reporte_notas.html#adecuación-preguntas",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
-    "section": "Adecuación preguntas",
-    "text": "Adecuación preguntas\nLa prueba tiene dos formas: A y B, la única diferencia es en el orden de las preguntas, la forma A parte por la pregunta sobre identificación con la izquierda, mientras que en la forma B la primera pregunta es la de CASEN. Para poder realizar un correcto análisis de las preguntas vamos a adaptar la forma B a la A.\n\nfrq(prueba2$forma)\n\nx &lt;character&gt; \n# total N=87 valid N=72 mean=1.50 sd=0.50\n\nValue |  N | Raw % | Valid % | Cum. %\n-------------------------------------\nA     | 36 | 41.38 |      50 |     50\nB     | 36 | 41.38 |      50 |    100\n&lt;NA&gt;  | 15 | 17.24 |    &lt;NA&gt; |   &lt;NA&gt;\n\nA &lt;- subset(prueba2, subset = prueba2$forma==\"A\")\nB &lt;- subset(prueba2, subset = prueba2$forma==\"B\")\ndim(A)\n\n[1] 36  8\n\ndim(B)\n\n[1] 36  8\n\ndescr(B, show = \"mean\")\n\n\n## Basic descriptive statistics\n\n        var mean\n        p1a 1.33\n        p1b 1.36\n        p1c 1.31\n        p2a 1.39\n        p2b 1.28\n        p2c 1.32\n nota_final 4.58\n\nB &lt;- B %&gt;% rename(\"p1a\"=\"p2a\", \n                  \"p1b\"=\"p2b\",\n                  \"p1c\"=\"p2c\",\n                  \"p2a\"=\"p1a\",\n                  \"p2b\"=\"p1b\",\n                  \"p2c\"=\"p1c\")\n\ndescr(B, show = \"mean\")\n\n\n## Basic descriptive statistics\n\n        var mean\n        p2a 1.33\n        p2b 1.36\n        p2c 1.31\n        p1a 1.39\n        p1b 1.28\n        p1c 1.32\n nota_final 4.58\n\nprueba2 &lt;- rbind(A,B)"
-  },
-  {
-    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados-1",
-    "href": "files/reporte_notas/reporte_notas.html#etiquetados-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "news/2024-09-30_reporte-notas1.html#etiquetados",
+    "href": "news/2024-09-30_reporte-notas1.html#etiquetados",
+    "title": "Reporte Evaluación 1",
     "section": "Etiquetados",
-    "text": "Etiquetados\n\n# Label variables\n\nprueba2$p1a &lt;- set_label(x = prueba2$p1a, \n                         label = \"H1 promedio direccional\")\nprueba2$p1b &lt;- set_label(x = prueba2$p1b, \n                         label = \"Prueba promedios\")\nprueba2$p1c &lt;- set_label(x = prueba2$p1c, \n                         label = \"Rechazo H0\")\nprueba2$p2a &lt;- set_label(x = prueba2$p2a, \n                         label = \"H1 proporcion no direccional\")\nprueba2$p2b &lt;- set_label(x = prueba2$p2b, \n                         label = \"Error tipo 1\")\nprueba2$p2c &lt;- set_label(x = prueba2$p2c, \n                         label = \"Intervalo confianza\")"
+    "text": "Etiquetados\n\n# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Intervalo de Confianza\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Error tipo II\")\nprueba1$p1c &lt;- set_label(x = prueba1$p1c, \n                         label = \"Rechazo H0 valor p\")\nprueba1$p2a &lt;- set_label(x = prueba1$p2a, \n                         label = \"Formulación hipótesis\")\nprueba1$p2b &lt;- set_label(x = prueba1$p2b, \n                         label = \"Contraste de prueba t\")\nprueba1$p2c &lt;- set_label(x = prueba1$p2c, \n                         label = \"Intervalo confianza de prueba t\")\nprueba1$nota &lt;- set_label(x = prueba1$nota, \n                         label = \"Nota final\")\nprueba1$asistida &lt;- set_label(x = prueba1$asistida, \n                         label = \"Asistencia Efectiva\")\nprueba1$asist_total &lt;- set_label(x = prueba1$asist_total, \n                         label = \"Asistencia Registrada\")"
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva-1",
-    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "news/2024-09-30_reporte-notas1.html#tabla-descriptiva",
+    "href": "news/2024-09-30_reporte-notas1.html#tabla-descriptiva",
+    "title": "Reporte Evaluación 1",
     "section": "Tabla descriptiva",
-    "text": "Tabla descriptiva\n\nprueba2 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n2\np1a\nH1 promedio direccional\n72\n1.36\n0.63\n2 (0-2)\n\n\n3\np1b\nPrueba promedios\n72\n1.24\n0.86\n2 (0-2)\n\n\n4\np1c\nRechazo H0\n72\n1.27\n0.70\n2 (0-2)\n\n\n5\np2a\nH1 proporcion no direccional\n72\n1.26\n0.68\n2 (0-2)\n\n\n6\np2b\nError tipo 1\n72\n1.27\n0.79\n2 (0-2)\n\n\n7\np2c\nIntervalo confianza\n72\n1.14\n0.72\n2 (0-2)\n\n\n1\nnota_final\nnota_final\n72\n4.37\n1.23\n5.6 (1.4-7)"
+    "text": "Tabla descriptiva\n\nprueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n4\np1a\nIntervalo de Confianza\n70\n0.55\n0.30\n1 (0-1)\n\n\n5\np1b\nError tipo II\n70\n0.31\n0.45\n1 (0-1)\n\n\n6\np1c\nRechazo H0 valor p\n70\n0.81\n0.70\n2 (0-2)\n\n\n7\np2a\nFormulación hipótesis\n70\n1.47\n0.69\n2 (0-2)\n\n\n8\np2b\nContraste de prueba t\n70\n2.59\n1.32\n4 (0-4)\n\n\n9\np2c\nIntervalo confianza de prueba t\n70\n1.26\n0.74\n2 (0-2)\n\n\n3\nnota\nNota final\n70\n4.50\n1.43\n6 (1-7)\n\n\n2\nasistida\nAsistencia Efectiva\n70\n10.16\n1.86\n8 (4-12)\n\n\n1\nasist_total\nAsistencia Registrada\n70\n10.24\n1.81\n8 (4-12)"
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos-1",
-    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "news/2024-09-30_reporte-notas1.html#gráficos-descriptivos",
+    "href": "news/2024-09-30_reporte-notas1.html#gráficos-descriptivos",
+    "title": "Reporte Evaluación 1",
     "section": "Gráficos descriptivos",
-    "text": "Gráficos descriptivos\n\nhist(prueba2$nota_final)\n\n\n\n\n\n\n\nplot_frq(data = prueba2$nota_final,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba2 &lt;- prueba2 %&gt;%  mutate(notas_cat=cut(nota_final, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba2$notas_cat)\n\nx &lt;categorical&gt; \n# total N=72 valid N=72 mean=2.06 sd=1.02\n\nValue       |  N | Raw % | Valid % | Cum. %\n-------------------------------------------\nMenor a 4.0 | 28 | 38.89 |   38.89 |  38.89\n4.0-5.0     | 19 | 26.39 |   26.39 |  65.28\n5.0-6.0     | 18 | 25.00 |   25.00 |  90.28\n6.0-7.0     |  7 |  9.72 |    9.72 | 100.00\n&lt;NA&gt;        |  0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;\n\nprueba2 &lt;- prueba2 %&gt;% dplyr::select(-notas_cat)"
+    "text": "Gráficos descriptivos\n\nhist(prueba1$nota)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat, out=\"browser\", show.na = FALSE, title = \"Rangos de notas\")\n\n\nRangos de notas\n\n\nval\nfrq\nraw.prc\nvalid.prc\ncum.prc\n\n\n\nMenor a 4.0\n25\n35.71\n35.71\n35.71\n\n\n\n4.0-5.0\n14\n20.00\n20.00\n55.71\n\n\n\n5.0-6.0\n24\n34.29\n34.29\n90.00\n\n\n\n6.0-7.0\n7\n10.00\n10.00\n100.00\n\n\n\ntotal N=70 · valid N=63 · x̄=2.19 · σ=1.04\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)"
   },
   {
-    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones-1",
-    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones-1",
-    "title": "Reporte Notas - Estadística Correlacional 2023",
+    "objectID": "news/2024-09-30_reporte-notas1.html#preguntas-y-asociaciones",
+    "href": "news/2024-09-30_reporte-notas1.html#preguntas-y-asociaciones",
+    "title": "Reporte Evaluación 1",
     "section": "Preguntas y asociaciones",
-    "text": "Preguntas y asociaciones\n\nprueba2 &lt;- prueba2 %&gt;% dplyr::select(-forma)\ntab_corr(prueba2,\n         triangle = \"lower\")\n\n\n\n\n \nH1 promedio direccional\nPrueba promedios\nRechazo H0\nH1 proporcion no direccional\nError tipo 1\nIntervalo confianza\nnota_final\n\n\nH1 promedio direccional\n \n \n \n \n \n \n \n\n\nPrueba promedios\n0.295*\n \n \n \n \n \n \n\n\nRechazo H0\n0.397***\n0.488***\n \n \n \n \n \n\n\nH1 proporcion no direccional\n0.108\n0.094\n-0.060\n \n \n \n \n\n\nError tipo 1\n-0.204\n0.039\n0.031\n-0.039\n \n \n \n\n\nIntervalo confianza\n0.047\n0.206\n0.308**\n0.169\n0.351**\n \n \n\n\nnota_final\n0.469***\n0.677***\n0.650***\n0.370**\n0.404***\n0.631***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba2 %&gt;% dplyr::select(-nota_final)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 6\nSample units: 72\nalpha: 0.513"
+    "text": "Preguntas y asociaciones\n\ntab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nIntervalo de Confianza\nError tipo II\nRechazo H0 valor p\nFormulación hipótesis\nContraste de prueba t\nIntervalo confianza de prueba t\nNota final\nAsistencia Efectiva\nAsistencia Registrada\n\n\nIntervalo de Confianza\n \n \n \n \n \n \n \n \n \n\n\nError tipo II\n0.337**\n \n \n \n \n \n \n \n \n\n\nRechazo H0 valor p\n0.271*\n0.399***\n \n \n \n \n \n \n \n\n\nFormulación hipótesis\n0.180\n0.202\n0.014\n \n \n \n \n \n \n\n\nContraste de prueba t\n0.243*\n0.244*\n0.214\n0.485***\n \n \n \n \n \n\n\nIntervalo confianza de prueba t\n0.275*\n0.280*\n0.405***\n0.281*\n0.590***\n \n \n \n \n\n\nNota final\n0.453***\n0.525***\n0.544***\n0.592***\n0.849***\n0.772***\n \n \n \n\n\nAsistencia Efectiva\n0.278*\n-0.048\n0.117\n0.355**\n0.352**\n0.382**\n0.398***\n \n \n\n\nAsistencia Registrada\n0.316**\n0.006\n0.106\n0.380**\n0.382**\n0.377**\n0.427***\n0.980***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nggplot(prueba1, aes(x = asist_total, y = nota)) + \n  geom_jitter(width = 0.2, color = \"red\", size = 4) + \n  labs(title = \"Relación entre asistencia y notas en Evaluación 1 (r=0.43)\") + \n  labs(x = \"Asistencia\", y = \"Nota\") + \n  theme(axis.title = element_text(size = 12),        # Tamaño de las etiquetas de los ejes\n        axis.text = element_text(size = 12)) +       # Tamaño del texto de los ejes\n  theme(aspect.ratio = 1/1.5) +\n  theme(plot.title = element_text(size = 12,         # Tamaño del título\n                                  face = \"bold\",     # Tipo de letra (negrita)\n                                  hjust = 0.5)) +\n  scale_x_continuous(breaks = seq(1, 12, by = 1), limits = c(1, 12)) +   # Ajuste del eje de asistencia\n  scale_y_continuous(breaks = seq(1, 7, by = 1), limits = c(1, 7))       # Ajuste del eje de notas de 1 a 7\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(asist_total_cat=cut(asist_total, breaks=c(-Inf,7,8,9,10,11,Inf), labels=c(\"Menos de 8\",\"8\",\"9\",\"10\",\"11\",\"12\")))\n\nfrq(prueba1$asist_total_cat, out=\"browser\", show.na = FALSE, title = \"Asistencia\")\n\n\nAsistencia\n\n\nval\nfrq\nraw.prc\nvalid.prc\ncum.prc\n\n\n\nMenos de 8\n6\n8.57\n8.57\n8.57\n\n\n\n8\n4\n5.71\n5.71\n14.29\n\n\n\n9\n10\n14.29\n14.29\n28.57\n\n\n\n10\n11\n15.71\n15.71\n44.29\n\n\n\n11\n19\n27.14\n27.14\n71.43\n\n\n\n12\n20\n28.57\n28.57\n100.00\n\n\n\ntotal N=70 · valid N=50 · x̄=4.33 · σ=1.58\n\n\n\n\n\n\nprueba1 %&gt;% # se especifica la base de datos\n  dplyr::select(asist_total_cat, nota)  %&gt;% # se seleccionan las variables\n  dplyr::group_by(Asistencia=sjlabelled::as_label(asist_total_cat)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label\n  dplyr::summarise(Obs.=n(),Promedio=round(mean(nota),2),SD=round(sd(nota),2)) %&gt;% # se agregan las operaciones a presentar en la tabla\n  kable(, format = \"markdown\") # se genera la tabla\n\n\n\n\nAsistencia\nObs.\nPromedio\nSD\n\n\n\n\nMenos de 8\n6\n2.98\n1.63\n\n\n8\n4\n3.40\n0.20\n\n\n9\n10\n4.33\n1.46\n\n\n10\n11\n4.46\n1.56\n\n\n11\n19\n4.62\n1.44\n\n\n12\n20\n5.16\n0.98\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-asist_total_cat)\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 8\nSample units: 70\nalpha: 0.753"
   },
   {
     "objectID": "assignment/02-practico.html",
@@ -144,25 +137,40 @@
     ]
   },
   {
-    "objectID": "content/07-content-b.html",
-    "href": "content/07-content-b.html",
+    "objectID": "content/07-content.html",
+    "href": "content/07-content.html",
     "title": "Ejercicio de repaso general Unidad 1",
     "section": "",
-    "text": "A Ud. se le ha solicitado estimar el promedio de salarios en la población, así como también si existen diferencias salariales entre quienes han completado la educación superior en institutos técnico-profesionales (IP) y quienes lo han hecho en instituciones universitarias. Para ello se le ha proporcionado la siguiente información:\n\nDatos: Encuesta de Ingresos, muestra aleatoria N=900 casos\nPromedio salarios: 850.000, desviación estándar 300.000\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\n\nAdemás de esto, se le han proporcionado los siguientes valores para realizar inferencia estadística:\n\nvalor crítico z para el promedio con un \\(\\alpha\\) de 5% (0,05)= 1,96, y con un \\(\\alpha\\) de 1% (0,01)= 2,58\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96; y con un \\(\\alpha\\) de 1% (0,01)= 2,58\nError estándar del promedio:\n\n\\[\\sigma_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\n\nError estándar de la diferencia de medias salariales para esta muestra= 15000\n\n\n\nCódigo\n# Generación de los datos\noptions(scipen = 999)\n\n# Establecer la semilla para garantizar la reproducibilidad\nset.seed(281217)  \n\n# Parámetros actualizados\nn &lt;- 900  # Tamaño de la muestra\npromedio_salarios &lt;- 850000;desviacion_estandar_salarios &lt;- 300000  # Desviación estándar de los salarios\n\n# Generar la muestra con la nueva semilla y parámetros\ningresos &lt;- rnorm(n, mean = promedio_salarios, sd = desviacion_estandar_salarios)\n\n\n\n\n\nTengo que el promedio de salarios de la muestra es: 900.000\nPromedio de salarios de la población: \\(X\\)?\n\nNo podemos dar un valor certero para el promedio poblacional, pero si un rango probable de valores.\n\n\n¿Qué tipo de aproximación de test de hipótesis corresponde en este caso? Recordemos las dos aproximaciones principales para test de hipótesis: a) contraste con valor crítico, y b) generación de intervalo de confianza. En general se pueden aplicar siempre las dos, pero su pertinencia es distinta según lo que se esté estimando:\n\nen este caso (estimación del promedio) se podría realizar la alternativa de contraste con valor crítico, que nos permitiría rechazar (o no) la hipótesis nula de que el promedio es cero en la población.\nya que la alternativa anterior no es muy informativa en este caso, en la estimación puntual de parámetros (como el promedio) se prefiere utilizar un rango de probabilidad, expresado en un intervalo de confianza.\n\nPor lo tanto, en este caso lo que es más pertinente es la alternativa b: estimación de un intervalo de confianza\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (el promedio es igual a 0 en la población):\n\\[H_{0}: \\bar{X}_{salarios}=0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salarios} \\neq 0\\]\n\n\n\nEl error estándar (SE, por Standard Error) del promedio es:\n\\[SE_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\nReemplazando:\n\\[SE_{\\bar{X}}=\\frac{300000}{\\sqrt{900}}=\\frac{300000}{30}=10000\\]\n\n\nCódigo\nerror_estandar &lt;- desviacion_estandar_salarios / sqrt(n)\nerror_estandar\n\n\n[1] 10000\n\n\n\n\n\nEsta informació fue proporcionada en el enunciado: \\(\\alpha=5%\\), valor crítico= 1,96\n\n\n\nRecordar fórmula del intervalo de 95% de confianza para el promedio:\n\\[\\begin{align*}\n\\bar{x} &\\pm Z_{\\alpha/2}*SE_{\\bar{x}} \\\\\\\\\n850000 &\\pm 1.96*10000 \\\\\\\\\n850000 &\\pm 19600 \\\\\\\\\nCI[830400&;869600]\n\\end{align*}\\]\nEn R:\n\n\nCódigo\n# Calcular el intervalo de confianza al 95%\nz_95 &lt;- 1.96  # Valor z para el 95% de confianza\nlimite_inferior &lt;- promedio_salarios - z_95 * error_estandar\nlimite_superior &lt;- promedio_salarios + z_95 * error_estandar\n\n# Mostrar los resultados\ncat(\"Intervalo de confianza al 95%: [\", round(limite_inferior, 2), \", \", round(limite_superior, 2), \"]\\n\")\n\n\nIntervalo de confianza al 95%: [ 830400 ,  869600 ]\n\n\n\n\n\nUtilizando una muestra de 900 individuos, se estimó el promedio de ingresos en $850,000 con una desviación estándar de $300,000. El error estándar para esta estimación es $10,000, y el intervalo de confianza al 95%, calculado con estos parámetros, se extiende de $830,400 a $869,600. Este intervalo refleja que, con un 95% de confianza, se puede afirmar que el promedio verdadero de ingresos en la población se encuentra dentro de este rango, asumiendo una distribución normal de los ingresos.\n\n\n\n\n\nPara este ejercicio consideramos la siguiente información proporcionada arriba:\n\nN de cada grupo: 900\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96\nerror estándar de la diferencia de medias= 15000\n\nCon esta información ya podemos calcular la diferencia de promedios de la muestra:\n\\(\\bar{X}_{salario-universitario}-\\bar{X}_{salario-tecnico}=1500000-1200000=300000\\)\nLa pregunta ahora es: ¿existe esta diferencia de promedios en la población?\n\n\nPara el caso anterior de la estimación del promedio hablamos de dos aproximaciones: a) contraste con valor crítico, y b) intervalo de confianza. En este caso (estimación de diferencias de promedio) tradicionalmente se utiliza el contraste con valor crítico, ya que lo central es poder establecer si existen o no diferencias en la población. Complementariamente, también se puede entregar información del intervalo de confianza.\nPor lo tanto, en este caso lo que es más pertinente es la alternativa a: contraste con valor crítico, pero también es recomendable agregar la información del intervalo de confianza.\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (no hay diferencias de promedios entre grupos):\n\\[H_{0}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto}= 0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto} \\neq 0\\]\n\n\n\nEl error estándar de la diferencias de promedios es:\n\\[SE=\\sqrt{\\frac{\\sigma_{diff}}{n_a}+\\frac{\\sigma_{diff}}{n_b}}\\]\nLa información sobre el resultado de este cálculo se nos entrega inicialmente y es igual a 15000\nCon esto podemos calcular el valor del t empírico:\n\\(t=\\frac{diferenciamedias}{se_{diferenciamedias}} \\frac{(\\bar{x}_1-\\bar{x}_2)}{se_{(\\bar{x}_1-\\bar{x}_2)}}\\)\nCon nuestros datos:\n\\(t=\\frac{300000}{15000}=20\\)\n\n\n\n\nProporcionado en el enunciado\n\n\n\n\nt empírico= 20 &gt; t critico=1,96\nIntervalo al 95% de confianza:\n\\[\\begin{align*}\n\\bar{x}_1-\\bar{x}_2 &\\pm t_{\\alpha/2}*SE_{\\bar{x_1}-\\bar{x_2}} \\\\\\\\\n300000 &\\pm 1.96*15000 \\\\\\\\\n300000 &\\pm 29400 \\\\\\\\\nCI[270600&\\ ;329400]\n\\end{align*}\\]\n\n\n\nSe llevó a cabo una prueba t para evaluar las diferencias salariales entre graduados de institutos técnicos-profesionales y universidades, utilizando un tamaño de muestra de 900 para cada grupo. La diferencia de medias observada fue de $750,000, con un error estándar fijo de $15,000 para esta diferencia. El análisis resultó en un valor t de 50.00, indicando una diferencia estadísticamente significativa entre los dos grupos (p &lt; .01). Este valor t refleja que los graduados universitarios tienen un ingreso promedio significativamente mayor en comparación con los graduados de institutos técnicos-profesionales. Estos resultados sugieren una marcada disparidad salarial en función del nivel educativo alcanzado, subrayando la importancia de las decisiones educativas en las trayectorias de ingresos de los individuos."
+    "text": "A Ud. se le ha solicitado estimar el promedio de salarios en la población, así como también si existen diferencias salariales entre quienes han completado la educación superior en institutos técnico-profesionales (IP) y quienes lo han hecho en instituciones universitarias. Para ello se le ha proporcionado la siguiente información:\n\nDatos: Encuesta de Ingresos, muestra aleatoria N=900 casos\nPromedio salarios: 850.000, desviación estándar 300.000\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\n\nAdemás de esto, se le han proporcionado los siguientes valores para realizar inferencia estadística:\n\nvalor crítico z para el promedio con un \\(\\alpha\\) de 5% (0,05)= 1,96, y con un \\(\\alpha\\) de 1% (0,01)= 2,58\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96; y con un \\(\\alpha\\) de 1% (0,01)= 2,58\nError estándar del promedio:\n\n\\[\\sigma_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\n\nError estándar de la diferencia de medias salariales para esta muestra= 15000\n\n\n\nCódigo\n# Generación de los datos\noptions(scipen = 999)\n\n# Establecer la semilla para garantizar la reproducibilidad\nset.seed(281217)  \n\n# Parámetros actualizados\nn &lt;- 900  # Tamaño de la muestra\npromedio_salarios &lt;- 850000;desviacion_estandar_salarios &lt;- 300000  # Desviación estándar de los salarios\n\n# Generar la muestra con la nueva semilla y parámetros\ningresos &lt;- rnorm(n, mean = promedio_salarios, sd = desviacion_estandar_salarios)\n\n\n\n\n\nTengo que el promedio de salarios de la muestra es: 900.000\nPromedio de salarios de la población: \\(X\\)?\n\nNo podemos dar un valor certero para el promedio poblacional, pero si un rango probable de valores.\n\n\n¿Qué tipo de aproximación de test de hipótesis corresponde en este caso? Recordemos las dos aproximaciones principales para test de hipótesis: a) contraste con valor crítico, y b) generación de intervalo de confianza. En general se pueden aplicar siempre las dos, pero su pertinencia es distinta según lo que se esté estimando:\n\nen este caso (estimación del promedio) se podría realizar la alternativa de contraste con valor crítico, que nos permitiría rechazar (o no) la hipótesis nula de que el promedio es cero en la población.\nya que la alternativa anterior no es muy informativa en este caso, en la estimación puntual de parámetros (como el promedio) se prefiere utilizar un rango de probabilidad, expresado en un intervalo de confianza.\n\nPor lo tanto, en este caso lo que es más pertinente es la alternativa b: estimación de un intervalo de confianza\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (el promedio es igual a 0 en la población):\n\\[H_{0}: \\bar{X}_{salarios}=0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salarios} \\neq 0\\]\n\n\n\nEl error estándar (SE, por Standard Error) del promedio es:\n\\[SE_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\nReemplazando:\n\\[SE_{\\bar{X}}=\\frac{300000}{\\sqrt{900}}=\\frac{300000}{30}=10000\\]\n\n\nCódigo\nerror_estandar &lt;- desviacion_estandar_salarios / sqrt(n)\nerror_estandar\n\n\n[1] 10000\n\n\n\n\n\nEsta informació fue proporcionada en el enunciado: \\(\\alpha=5%\\), valor crítico= 1,96\n\n\n\nRecordar fórmula del intervalo de 95% de confianza para el promedio:\n\\[\\begin{align*}\n\\bar{x} &\\pm Z_{\\alpha/2}*SE_{\\bar{x}} \\\\\\\\\n850000 &\\pm 1.96*10000 \\\\\\\\\n850000 &\\pm 19600 \\\\\\\\\nCI[830400&;869600]\n\\end{align*}\\]\nEn R:\n\n\nCódigo\n# Calcular el intervalo de confianza al 95%\nz_95 &lt;- 1.96  # Valor z para el 95% de confianza\nlimite_inferior &lt;- promedio_salarios - z_95 * error_estandar\nlimite_superior &lt;- promedio_salarios + z_95 * error_estandar\n\n# Mostrar los resultados\ncat(\"Intervalo de confianza al 95%: [\", round(limite_inferior, 2), \", \", round(limite_superior, 2), \"]\\n\")\n\n\nIntervalo de confianza al 95%: [ 830400 ,  869600 ]\n\n\n\n\n\nUtilizando una muestra de 900 individuos, se estimó el promedio de ingresos en $850,000 con una desviación estándar de $300,000. El error estándar para esta estimación es $10,000, y el intervalo de confianza al 95%, calculado con estos parámetros, se extiende de $830,400 a $869,600. Este intervalo refleja que, con un 95% de confianza, se puede afirmar que el promedio verdadero de ingresos en la población se encuentra dentro de este rango, asumiendo una distribución normal de los ingresos.\n\n\n\n\n\nPara este ejercicio consideramos la siguiente información proporcionada arriba:\n\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96\nerror estándar de la diferencia de medias= 15000\n\nCon esta información ya podemos calcular la diferencia de promedios de la muestra:\n\\(\\bar{X}_{salario-universitario}-\\bar{X}_{salario-técnico}=1500000-1200000=300000\\)\nLa pregunta ahora es: ¿existe esta diferencia de promedios en la población?\n\n\nPara el caso anterior de la estimación del promedio hablamos de dos aproximaciones: a) contraste con valor crítico, y b) intervalo de confianza. En este caso (estimación de diferencias de promedio) tradicionalmente se utiliza el contraste con valor crítico, ya que lo central es poder establecer si existen o no diferencias en la población. Complementariamente, también se puede entregar información del intervalo de confianza.\nPor lo tanto, en este caso lo que es más pertinente es la alternativa a: contraste con valor crítico, pero también es recomendable agregar la información del intervalo de confianza.\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (no hay diferencias de promedios entre grupos):\n\\[H_{0}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto}= 0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto} \\neq 0\\]\n\n\n\nEl error estándar de la diferencias de promedios es:\n\\[SE=\\sqrt{\\frac{\\sigma_{diff}}{n_a}+\\frac{\\sigma_{diff}}{n_b}}\\]\nLa información sobre el resultado de este cálculo se nos entrega inicialmente y es igual a 15000\nCon esto podemos calcular el valor del t empírico:\n\\(t=\\frac{diferenciamedias}{se_{diferenciamedias}} \\frac{(\\bar{x}_1-\\bar{x}_2)}{se_{(\\bar{x}_1-\\bar{x}_2)}}\\)\nCon nuestros datos:\n\\(t=\\frac{300000}{15000}=20\\)\n\n\n\n\nProporcionado en el enunciado\n\n\n\n\nt empírico= 20 &gt; t critico=1,96\nIntervalo al 95% de confianza:\n\\[\\begin{align*}\n\\bar{x}_1-\\bar{x}_2 &\\pm t_{\\alpha/2}*SE_{\\bar{x_1}-\\bar{x_2}} \\\\\\\\\n300000 &\\pm 1.96*15000 \\\\\\\\\n300000 &\\pm 29400 \\\\\\\\\nCI[270600&\\ ;329400]\n\\end{align*}\\]\n\n\n\nSe llevó a cabo una prueba t para evaluar las diferencias salariales entre graduados de institutos técnicos-profesionales y universidades, utilizando un tamaño de muestra de 900 para cada grupo. La diferencia de medias observada fue de $750,000, con un error estándar fijo de $15,000 para esta diferencia. El análisis resultó en un valor t de 50.00, indicando una diferencia estadísticamente significativa entre los dos grupos (p &lt; .01). Este valor t refleja que los graduados universitarios tienen un ingreso promedio significativamente mayor en comparación con los graduados de institutos técnicos-profesionales. Estos resultados sugieren una marcada disparidad salarial en función del nivel educativo alcanzado, subrayando la importancia de las decisiones educativas en las trayectorias de ingresos de los individuos.",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Ejercicio Inferencia"
+    ]
   },
   {
-    "objectID": "content/07-content-b.html#a.-estimación-del-promedio-de-salarios-de-la-población",
-    "href": "content/07-content-b.html#a.-estimación-del-promedio-de-salarios-de-la-población",
+    "objectID": "content/07-content.html#a.-estimación-del-promedio-de-salarios-de-la-población",
+    "href": "content/07-content.html#a.-estimación-del-promedio-de-salarios-de-la-población",
     "title": "Ejercicio de repaso general Unidad 1",
     "section": "",
-    "text": "Tengo que el promedio de salarios de la muestra es: 900.000\nPromedio de salarios de la población: \\(X\\)?\n\nNo podemos dar un valor certero para el promedio poblacional, pero si un rango probable de valores.\n\n\n¿Qué tipo de aproximación de test de hipótesis corresponde en este caso? Recordemos las dos aproximaciones principales para test de hipótesis: a) contraste con valor crítico, y b) generación de intervalo de confianza. En general se pueden aplicar siempre las dos, pero su pertinencia es distinta según lo que se esté estimando:\n\nen este caso (estimación del promedio) se podría realizar la alternativa de contraste con valor crítico, que nos permitiría rechazar (o no) la hipótesis nula de que el promedio es cero en la población.\nya que la alternativa anterior no es muy informativa en este caso, en la estimación puntual de parámetros (como el promedio) se prefiere utilizar un rango de probabilidad, expresado en un intervalo de confianza.\n\nPor lo tanto, en este caso lo que es más pertinente es la alternativa b: estimación de un intervalo de confianza\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (el promedio es igual a 0 en la población):\n\\[H_{0}: \\bar{X}_{salarios}=0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salarios} \\neq 0\\]\n\n\n\nEl error estándar (SE, por Standard Error) del promedio es:\n\\[SE_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\nReemplazando:\n\\[SE_{\\bar{X}}=\\frac{300000}{\\sqrt{900}}=\\frac{300000}{30}=10000\\]\n\n\nCódigo\nerror_estandar &lt;- desviacion_estandar_salarios / sqrt(n)\nerror_estandar\n\n\n[1] 10000\n\n\n\n\n\nEsta informació fue proporcionada en el enunciado: \\(\\alpha=5%\\), valor crítico= 1,96\n\n\n\nRecordar fórmula del intervalo de 95% de confianza para el promedio:\n\\[\\begin{align*}\n\\bar{x} &\\pm Z_{\\alpha/2}*SE_{\\bar{x}} \\\\\\\\\n850000 &\\pm 1.96*10000 \\\\\\\\\n850000 &\\pm 19600 \\\\\\\\\nCI[830400&;869600]\n\\end{align*}\\]\nEn R:\n\n\nCódigo\n# Calcular el intervalo de confianza al 95%\nz_95 &lt;- 1.96  # Valor z para el 95% de confianza\nlimite_inferior &lt;- promedio_salarios - z_95 * error_estandar\nlimite_superior &lt;- promedio_salarios + z_95 * error_estandar\n\n# Mostrar los resultados\ncat(\"Intervalo de confianza al 95%: [\", round(limite_inferior, 2), \", \", round(limite_superior, 2), \"]\\n\")\n\n\nIntervalo de confianza al 95%: [ 830400 ,  869600 ]\n\n\n\n\n\nUtilizando una muestra de 900 individuos, se estimó el promedio de ingresos en $850,000 con una desviación estándar de $300,000. El error estándar para esta estimación es $10,000, y el intervalo de confianza al 95%, calculado con estos parámetros, se extiende de $830,400 a $869,600. Este intervalo refleja que, con un 95% de confianza, se puede afirmar que el promedio verdadero de ingresos en la población se encuentra dentro de este rango, asumiendo una distribución normal de los ingresos."
+    "text": "Tengo que el promedio de salarios de la muestra es: 900.000\nPromedio de salarios de la población: \\(X\\)?\n\nNo podemos dar un valor certero para el promedio poblacional, pero si un rango probable de valores.\n\n\n¿Qué tipo de aproximación de test de hipótesis corresponde en este caso? Recordemos las dos aproximaciones principales para test de hipótesis: a) contraste con valor crítico, y b) generación de intervalo de confianza. En general se pueden aplicar siempre las dos, pero su pertinencia es distinta según lo que se esté estimando:\n\nen este caso (estimación del promedio) se podría realizar la alternativa de contraste con valor crítico, que nos permitiría rechazar (o no) la hipótesis nula de que el promedio es cero en la población.\nya que la alternativa anterior no es muy informativa en este caso, en la estimación puntual de parámetros (como el promedio) se prefiere utilizar un rango de probabilidad, expresado en un intervalo de confianza.\n\nPor lo tanto, en este caso lo que es más pertinente es la alternativa b: estimación de un intervalo de confianza\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (el promedio es igual a 0 en la población):\n\\[H_{0}: \\bar{X}_{salarios}=0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salarios} \\neq 0\\]\n\n\n\nEl error estándar (SE, por Standard Error) del promedio es:\n\\[SE_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\nReemplazando:\n\\[SE_{\\bar{X}}=\\frac{300000}{\\sqrt{900}}=\\frac{300000}{30}=10000\\]\n\n\nCódigo\nerror_estandar &lt;- desviacion_estandar_salarios / sqrt(n)\nerror_estandar\n\n\n[1] 10000\n\n\n\n\n\nEsta informació fue proporcionada en el enunciado: \\(\\alpha=5%\\), valor crítico= 1,96\n\n\n\nRecordar fórmula del intervalo de 95% de confianza para el promedio:\n\\[\\begin{align*}\n\\bar{x} &\\pm Z_{\\alpha/2}*SE_{\\bar{x}} \\\\\\\\\n850000 &\\pm 1.96*10000 \\\\\\\\\n850000 &\\pm 19600 \\\\\\\\\nCI[830400&;869600]\n\\end{align*}\\]\nEn R:\n\n\nCódigo\n# Calcular el intervalo de confianza al 95%\nz_95 &lt;- 1.96  # Valor z para el 95% de confianza\nlimite_inferior &lt;- promedio_salarios - z_95 * error_estandar\nlimite_superior &lt;- promedio_salarios + z_95 * error_estandar\n\n# Mostrar los resultados\ncat(\"Intervalo de confianza al 95%: [\", round(limite_inferior, 2), \", \", round(limite_superior, 2), \"]\\n\")\n\n\nIntervalo de confianza al 95%: [ 830400 ,  869600 ]\n\n\n\n\n\nUtilizando una muestra de 900 individuos, se estimó el promedio de ingresos en $850,000 con una desviación estándar de $300,000. El error estándar para esta estimación es $10,000, y el intervalo de confianza al 95%, calculado con estos parámetros, se extiende de $830,400 a $869,600. Este intervalo refleja que, con un 95% de confianza, se puede afirmar que el promedio verdadero de ingresos en la población se encuentra dentro de este rango, asumiendo una distribución normal de los ingresos.",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Ejercicio Inferencia"
+    ]
   },
   {
-    "objectID": "content/07-content-b.html#estimación-de-diferencia-de-medias",
-    "href": "content/07-content-b.html#estimación-de-diferencia-de-medias",
+    "objectID": "content/07-content.html#estimación-de-diferencia-de-medias",
+    "href": "content/07-content.html#estimación-de-diferencia-de-medias",
     "title": "Ejercicio de repaso general Unidad 1",
     "section": "",
-    "text": "Para este ejercicio consideramos la siguiente información proporcionada arriba:\n\nN de cada grupo: 900\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96\nerror estándar de la diferencia de medias= 15000\n\nCon esta información ya podemos calcular la diferencia de promedios de la muestra:\n\\(\\bar{X}_{salario-universitario}-\\bar{X}_{salario-tecnico}=1500000-1200000=300000\\)\nLa pregunta ahora es: ¿existe esta diferencia de promedios en la población?\n\n\nPara el caso anterior de la estimación del promedio hablamos de dos aproximaciones: a) contraste con valor crítico, y b) intervalo de confianza. En este caso (estimación de diferencias de promedio) tradicionalmente se utiliza el contraste con valor crítico, ya que lo central es poder establecer si existen o no diferencias en la población. Complementariamente, también se puede entregar información del intervalo de confianza.\nPor lo tanto, en este caso lo que es más pertinente es la alternativa a: contraste con valor crítico, pero también es recomendable agregar la información del intervalo de confianza.\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (no hay diferencias de promedios entre grupos):\n\\[H_{0}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto}= 0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto} \\neq 0\\]\n\n\n\nEl error estándar de la diferencias de promedios es:\n\\[SE=\\sqrt{\\frac{\\sigma_{diff}}{n_a}+\\frac{\\sigma_{diff}}{n_b}}\\]\nLa información sobre el resultado de este cálculo se nos entrega inicialmente y es igual a 15000\nCon esto podemos calcular el valor del t empírico:\n\\(t=\\frac{diferenciamedias}{se_{diferenciamedias}} \\frac{(\\bar{x}_1-\\bar{x}_2)}{se_{(\\bar{x}_1-\\bar{x}_2)}}\\)\nCon nuestros datos:\n\\(t=\\frac{300000}{15000}=20\\)\n\n\n\n\nProporcionado en el enunciado\n\n\n\n\nt empírico= 20 &gt; t critico=1,96\nIntervalo al 95% de confianza:\n\\[\\begin{align*}\n\\bar{x}_1-\\bar{x}_2 &\\pm t_{\\alpha/2}*SE_{\\bar{x_1}-\\bar{x_2}} \\\\\\\\\n300000 &\\pm 1.96*15000 \\\\\\\\\n300000 &\\pm 29400 \\\\\\\\\nCI[270600&\\ ;329400]\n\\end{align*}\\]\n\n\n\nSe llevó a cabo una prueba t para evaluar las diferencias salariales entre graduados de institutos técnicos-profesionales y universidades, utilizando un tamaño de muestra de 900 para cada grupo. La diferencia de medias observada fue de $750,000, con un error estándar fijo de $15,000 para esta diferencia. El análisis resultó en un valor t de 50.00, indicando una diferencia estadísticamente significativa entre los dos grupos (p &lt; .01). Este valor t refleja que los graduados universitarios tienen un ingreso promedio significativamente mayor en comparación con los graduados de institutos técnicos-profesionales. Estos resultados sugieren una marcada disparidad salarial en función del nivel educativo alcanzado, subrayando la importancia de las decisiones educativas en las trayectorias de ingresos de los individuos."
+    "text": "Para este ejercicio consideramos la siguiente información proporcionada arriba:\n\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96\nerror estándar de la diferencia de medias= 15000\n\nCon esta información ya podemos calcular la diferencia de promedios de la muestra:\n\\(\\bar{X}_{salario-universitario}-\\bar{X}_{salario-técnico}=1500000-1200000=300000\\)\nLa pregunta ahora es: ¿existe esta diferencia de promedios en la población?\n\n\nPara el caso anterior de la estimación del promedio hablamos de dos aproximaciones: a) contraste con valor crítico, y b) intervalo de confianza. En este caso (estimación de diferencias de promedio) tradicionalmente se utiliza el contraste con valor crítico, ya que lo central es poder establecer si existen o no diferencias en la población. Complementariamente, también se puede entregar información del intervalo de confianza.\nPor lo tanto, en este caso lo que es más pertinente es la alternativa a: contraste con valor crítico, pero también es recomendable agregar la información del intervalo de confianza.\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (no hay diferencias de promedios entre grupos):\n\\[H_{0}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto}= 0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto} \\neq 0\\]\n\n\n\nEl error estándar de la diferencias de promedios es:\n\\[SE=\\sqrt{\\frac{\\sigma_{diff}}{n_a}+\\frac{\\sigma_{diff}}{n_b}}\\]\nLa información sobre el resultado de este cálculo se nos entrega inicialmente y es igual a 15000\nCon esto podemos calcular el valor del t empírico:\n\\(t=\\frac{diferenciamedias}{se_{diferenciamedias}} \\frac{(\\bar{x}_1-\\bar{x}_2)}{se_{(\\bar{x}_1-\\bar{x}_2)}}\\)\nCon nuestros datos:\n\\(t=\\frac{300000}{15000}=20\\)\n\n\n\n\nProporcionado en el enunciado\n\n\n\n\nt empírico= 20 &gt; t critico=1,96\nIntervalo al 95% de confianza:\n\\[\\begin{align*}\n\\bar{x}_1-\\bar{x}_2 &\\pm t_{\\alpha/2}*SE_{\\bar{x_1}-\\bar{x_2}} \\\\\\\\\n300000 &\\pm 1.96*15000 \\\\\\\\\n300000 &\\pm 29400 \\\\\\\\\nCI[270600&\\ ;329400]\n\\end{align*}\\]\n\n\n\nSe llevó a cabo una prueba t para evaluar las diferencias salariales entre graduados de institutos técnicos-profesionales y universidades, utilizando un tamaño de muestra de 900 para cada grupo. La diferencia de medias observada fue de $750,000, con un error estándar fijo de $15,000 para esta diferencia. El análisis resultó en un valor t de 50.00, indicando una diferencia estadísticamente significativa entre los dos grupos (p &lt; .01). Este valor t refleja que los graduados universitarios tienen un ingreso promedio significativamente mayor en comparación con los graduados de institutos técnicos-profesionales. Estos resultados sugieren una marcada disparidad salarial en función del nivel educativo alcanzado, subrayando la importancia de las decisiones educativas en las trayectorias de ingresos de los individuos.",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Ejercicio Inferencia"
+    ]
   },
   {
     "objectID": "index.html",
@@ -176,7 +184,7 @@
     "href": "index.html#últimas-informaciones",
     "title": "\n            Estadística Correlacional\n        ",
     "section": "Últimas informaciones",
-    "text": "Últimas informaciones\n\n\n\n\n\n\n\n\n\n\nTaller Centro IDEA\n\n\n\n\n\n\n\n\n\nSep 4, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCambios en evaluación 1\n\n\n\n\n\n\n\n\n\nSep 3, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEquipo docente y ayudantes\n\n\n\n\n\n\n\n\n\nSep 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsignación asesorías ayudantes\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSesión práctica martes 27 de agosto\n\n\n\n\n\n\n\n\n\nAug 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformaciones por acá\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n-&gt; ir a la página de Informaciones del sitio."
+    "text": "Últimas informaciones\n\n\n\n\n\n\n\n\nReporte Evaluación 1\n\n\n\n\n\n\n\n\n\nSep 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTaller Centro IDEA\n\n\n\n\n\n\n\n\n\nSep 4, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCambios en evaluación 1\n\n\n\n\n\n\n\n\n\nSep 3, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEquipo docente y ayudantes\n\n\n\n\n\n\n\n\n\nSep 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsignación asesorías ayudantes\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSesión práctica martes 27 de agosto\n\n\n\n\n\n\n\n\n\nAug 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformaciones por acá\n\n\n\n\n\n\n\n\n\nAug 19, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n-&gt; ir a la página de Informaciones del sitio."
   },
   {
     "objectID": "index.html#versiones-previas-del-curso",
@@ -190,14 +198,14 @@
     "href": "schedule.html",
     "title": "Planificación",
     "section": "",
-    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\nMontoya: Los conceptos de especificación y falsación\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nMartes 3\n\nPráctico Inferencia 2\n\n\n\nLunes 9\nRepaso Unidad 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación, covarianza y correlación\n\nMoore 97-131 Análisis de relaciones\nPiovani - The historical construction of correlation\n\n\nMartes 24\nMagnitud de la correlación y contraste de hipótesis\n\nPardo 307 - 330 Relación lineal\nHuck 183 - 203 Statistical Inferences Concerning Bivariate Correlation Coefﬁcients\n\n\nLunes 30\nCoeficientes de correlación para variables ordinales\n\nField 223 -233 Spearman, Kendall y otros\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y reporte de correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
+    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\nMontoya: Los conceptos de especificación y falsación\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nMartes 3\n\nPráctico Inferencia 2\n\n\n\nLunes 9\nRepaso Unidad 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación, covarianza y correlación\n\nMoore 97-131 Análisis de relaciones\nPiovani - The historical construction of correlation\n\n\nMartes 24\nMagnitud de la correlación y contraste de hipótesis\n\nPardo 307 - 330 Relación lineal\nHuck 183 - 203 Statistical Inferences Concerning Bivariate Correlation Coefﬁcients\n\n\nLunes 30\nCorrelación con variables ordinales y matrices de correlación\n\nField 223 -233 Spearman, Kendall y otros\n\n\nMartes 1\n\nPráctico. Bivariada 1\n\n\n\nLunes 7\nAsociación con categóricas 1\n\n\n\n\nMartes 8\n\nPráctico: Bivariada 2\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Bivariada 3\n\n\n\nLunes 21\nRepaso Unidad 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
   },
   {
     "objectID": "schedule.html#forma-general-de-funcionamiento",
     "href": "schedule.html#forma-general-de-funcionamiento",
     "title": "Planificación",
     "section": "",
-    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\nMontoya: Los conceptos de especificación y falsación\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nMartes 3\n\nPráctico Inferencia 2\n\n\n\nLunes 9\nRepaso Unidad 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación, covarianza y correlación\n\nMoore 97-131 Análisis de relaciones\nPiovani - The historical construction of correlation\n\n\nMartes 24\nMagnitud de la correlación y contraste de hipótesis\n\nPardo 307 - 330 Relación lineal\nHuck 183 - 203 Statistical Inferences Concerning Bivariate Correlation Coefﬁcients\n\n\nLunes 30\nCoeficientes de correlación para variables ordinales\n\nField 223 -233 Spearman, Kendall y otros\n\n\nMartes 1\n\nPráctico. Guía 1 Bivariada\n\n\n\nLunes 7\nMatrices y reporte de correlación\n\n\n\n\nMartes 8\nAsociación con categóricas 1\n\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Guía 2 Bivariada\n\n\n\nLunes 21\nEvaluación 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
+    "text": "Este curso se compone de tres actividades principales:\n\n Clases lectivas presenciales: donde en base a las lecturas correspondientes a esa semana se presentará un resumen de los contenidos principales y se resolverán dudas.\n Guías prácticas: actividades con énfasis en el manejo de software para análisis y reporte de los resultados. Estas instancias serán conducidas guiadas por los apoyos docentes del curso.\n Lecturas: los temas del curso se acompañan de lecturas, las que se encuentras a disposición en esta página.\n\nLas actividades semanales se resumen en el siguiente esquema:\n\nEn cuanto a la metodología, el curso comienza con clases lectivas y desarrollo autónomo de guías prácticas, y en la última unidad se realizará un trabajo grupal práctico de aplicación de los contenidos.\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nLunes 12\n1. Presentación\n\nLeer detalladamente programa del curso\n\n\n\n\n\n\n\n\n\n\n Agosto \n Clases\n Prácticos\n Lecturas\n\n\nMartes 13\nDatos, probabilidad y distribuciones muestrales\n\n*Pardo cap 2 Conceptos previos\nRichtey 1-21 : La imaginación estadística\n\n\nLunes 19\nError estándar y distribución normal\n\n*Richtey cap 6\nPardo cap 6 Probabilidad y distribución normal\n\n\nMartes 20\nIntervalos de confianza\n\n*Richtey cap 7 Probabilidad y distribuciones muestrales\n\n\nLunes 26\nTest de hipótesis\n\n*Richtey cap 8: Intervalos de confianza\n*Richtey cap 9: Prueba de hipótesis\nMontoya: Los conceptos de especificación y falsación\n\n\nMartes 27\n\nPráctico: Inferencia 1\n\n\n\n Septiembre \n\n\n\n\n\nLunes 2\nHipótesis para una y dos muestras\n\n*Richtey cap 10: Hipótesis de una muestra\n*Richtey cap 11: Hipótesis de dos muestras (prueba t)\n\n\nMartes 3\n\nPráctico Inferencia 2\n\n\n\nLunes 9\nRepaso Unidad 1\n\n\n\n\nMartes 10\nEvaluación 1\n\n\n\n\n\n\n\n\n\n\nLunes 23\nAsociación, covarianza y correlación\n\nMoore 97-131 Análisis de relaciones\nPiovani - The historical construction of correlation\n\n\nMartes 24\nMagnitud de la correlación y contraste de hipótesis\n\nPardo 307 - 330 Relación lineal\nHuck 183 - 203 Statistical Inferences Concerning Bivariate Correlation Coefﬁcients\n\n\nLunes 30\nCorrelación con variables ordinales y matrices de correlación\n\nField 223 -233 Spearman, Kendall y otros\n\n\nMartes 1\n\nPráctico. Bivariada 1\n\n\n\nLunes 7\nAsociación con categóricas 1\n\n\n\n\nMartes 8\n\nPráctico: Bivariada 2\n\n\n\nLunes 14\nAsociación con categóricas 2\n\n\n\n\nMartes 15\n\nPráctico: Bivariada 3\n\n\n\nLunes 21\nRepaso Unidad 2\n\n\n\n\nMartes 22\nEvaluación 2\n\n\n\n\nLunes 28\nSemana receso\n\n\n\n\nMartes 29\nSemana receso\n\n\n\n\n\n\n\n\n\n\nLunes 4\nSeminario encuestas\n\n\n\n\nMartes 5\n\nDefinición de grupos y temas\n\n\n\nLunes 11\nEscritura de reportes de investigación\n\n\n\n\nMartes 12\n\nReportes dinámicos y\nPlantilla trabajo final\n\n\n\nLunes 18\nVisualización de datos 1\n\n\n\n\nMartes 19\n\nVisualización 1\n\n\n\nLunes 25\nVisualización de datos 2\n\n\n\n\nMartes 26\n\nVisualización 2 y elaboración de poster\n\n\n\nLunes 25\nPresentación de poster de investigación\n\n\n\n\nMartes 26\nPruebas recuperativas\n\n\n\n\nViernes 29\nEntrega de trabajo final grupal"
   },
   {
     "objectID": "schedule.html#exámenes-finales-escritos-en-sala",
@@ -211,236 +219,7 @@
     "href": "news/index.html",
     "title": "Informaciones",
     "section": "",
-    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\nmiércoles septiembre 4, 2024 at 12:00 AM\n\n\nTaller Centro IDEA\n\n\ninfo, mail-UCursos\n\n\n\n\nmartes septiembre 3, 2024 at 12:00 AM\n\n\nCambios en evaluación 1\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes septiembre 2, 2024 at 12:00 AM\n\n\nEquipo docente y ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\njueves agosto 29, 2024 at 12:00 AM\n\n\nAsignación asesorías ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\nviernes agosto 23, 2024 at 12:00 AM\n\n\nSesión práctica martes 27 de agosto\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
-  },
-  {
-    "objectID": "news/2024-09-04_taller_centro_idea.html",
-    "href": "news/2024-09-04_taller_centro_idea.html",
-    "title": "Taller Centro IDEA",
-    "section": "",
-    "text": "← News\n\n\n\n\nEl centro IDEA está ofreciendo una instancia de tutorías específica para la Unidad I (Inferencia) este viernes 6 de septiembre a las 12:00:"
-  },
-  {
-    "objectID": "news/2024-09-02_equipo docente y ayudantes.html",
-    "href": "news/2024-09-02_equipo docente y ayudantes.html",
-    "title": "Equipo docente y ayudantes",
-    "section": "",
-    "text": "← News\n\n\n\n\n2 actualizaciones respecto del equipo a cargo del curso:\n\ncomo se informó por UCursos, la apoyo docente Daniela Olivares no seguirá en su rol a partir de este mes de Septiembre, y se suma al equipo Martín Venegas como nuevo apoyo docente. Martín también es sociólogo UChile y actualmente trabaja en el INE. Bienvenido!\nse completa el equipo de ayudantes luego de la segunda ronda de postulaciones, son 11 en total y pueden ver sus nombres en la página inicial del curso."
-  },
-  {
-    "objectID": "news/2024-08-19_inicio.html",
-    "href": "news/2024-08-19_inicio.html",
-    "title": "Informaciones por acá",
-    "section": "",
-    "text": "← News\n\n\n\n\nEstimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes."
-  },
-  {
-    "objectID": "example/index.html",
-    "href": "example/index.html",
-    "title": "Code examples",
-    "section": "",
-    "text": "Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.\nMany sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You’ll notice me make all sorts of little errors, which is totally normal—everyone does!"
-  },
-  {
-    "objectID": "content/foro-clases.html",
-    "href": "content/foro-clases.html",
-    "title": "Foro clases",
-    "section": "",
-    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre los contenidos del curso vistos en clases. Para poder participar en el foro hay que abir una cuenta en Github",
-    "crumbs": [
-      "Clases",
-      "Foro Clases"
-    ]
-  },
-  {
-    "objectID": "content/09-content.html",
-    "href": "content/09-content.html",
-    "title": "Inferencia en correlación y magnitud del coeficiente",
-    "section": "",
-    "text": "Documento de presentación",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Bivariada 2"
-    ]
-  },
-  {
-    "objectID": "content/06-content.html",
-    "href": "content/06-content.html",
-    "title": "Inferencia 5 - Prueba t + hipótesis direccionales",
-    "section": "",
-    "text": "Documento de presentación",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 5"
-    ]
-  },
-  {
-    "objectID": "content/04-content.html",
-    "href": "content/04-content.html",
-    "title": "Inferencia 3 - Intervalos de confianza",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 3"
-    ]
-  },
-  {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 1"
-    ]
-  },
-  {
-    "objectID": "assignment/index.html",
-    "href": "assignment/index.html",
-    "title": "Prácticos",
-    "section": "",
-    "text": "Las clases se acompañan de guías de trabajo con énfasis en la aplicación práctica mediante el uso de software estadístico.\nLas guías se encontrarán disponibles en esta página (link a la izquierda). Habrá dos guías para la Unidad 1 (Inferencia), y 2 para la Unidad 2 (Asociación). La unidad 3 será eminentemente práctica y de aplicación.\nLas guías son desarrolladas de manera autónoma, y cada dos semanas los días martes habrá un espacio práctico de revisión de las guías y de consultas. Para ello se espera que quienes puedan traigan su computador a la sala, y quienes no tienen lo podrán hacer simultáneamente en la sala de computación 345.\nEn las prácticas vamos a trabajar con el software R, Versión 4.4.1.",
-    "crumbs": [
-      "Prácticos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "assignment/index.html#descripción",
-    "href": "assignment/index.html#descripción",
-    "title": "Prácticos",
-    "section": "",
-    "text": "Las clases se acompañan de guías de trabajo con énfasis en la aplicación práctica mediante el uso de software estadístico.\nLas guías se encontrarán disponibles en esta página (link a la izquierda). Habrá dos guías para la Unidad 1 (Inferencia), y 2 para la Unidad 2 (Asociación). La unidad 3 será eminentemente práctica y de aplicación.\nLas guías son desarrolladas de manera autónoma, y cada dos semanas los días martes habrá un espacio práctico de revisión de las guías y de consultas. Para ello se espera que quienes puedan traigan su computador a la sala, y quienes no tienen lo podrán hacer simultáneamente en la sala de computación 345.\nEn las prácticas vamos a trabajar con el software R, Versión 4.4.1.",
-    "crumbs": [
-      "Prácticos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "assignment/index.html#trabajo-con-software-r",
-    "href": "assignment/index.html#trabajo-con-software-r",
-    "title": "Prácticos",
-    "section": "Trabajo con software R",
-    "text": "Trabajo con software R\nPara los análisis estadísticos de este curso usamos el programa R, en parte porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.\nEl carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.\nPara minimizar estos posibles problemas en este curso, vamos a:\n\ntrabajar con la misma y última versión de R\nevitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variables",
-    "crumbs": [
-      "Prácticos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
-    "href": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
-    "title": "Prácticos",
-    "section": "Sobre errores y consultas sobre problemas con R y ejecución de código",
-    "text": "Sobre errores y consultas sobre problemas con R y ejecución de código\nEn caso de preguntas sobre las clases hacerlas en Foro prácticos\n\nInstalación de R & RStudio\nPara esta versión del curso vamos a trabajar con el programa R Version 4.4.1 y con RStudio, que ofrece un entorno más amigable para trabajar con R.\nPara instalar R: ir a https://cran.r-project.org/index.html y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)\nPara instalar RStudio: ir a https://rstudio.com/products/rstudio/ y bajar/instalar RStudio desktop, Open Source License (libre).\nEn caso de dudas se puede revisar el siguiente video tutorial de instalación de R & RStudio, preparado por Julio Iturra (apoyo docente) del curso Estadística Multivariada 2020:\n\n\n\n\n\nSi por alguna razón se prefiere trabajar sin descargar, también se puede utilizar RCloud, abajo un tutorial preparado por Valentina Andrade para el curso de Estadística Multivariada:\n\n\n\n\n\n\nSobre el trabajo en hojas de código en RStudio\n\nEl trabajo de análisis en RStudio se efectua en una hoja de código (o R script o sintaxis, o para los usuarios de Stata la do-file), que es donde se anotan los comandos y funciones. Para abrir una hoja, en RStudio ir a File &gt; New File &gt; R Script (o ctrl+shift+N),y aparecerá un panel con una pestaña “Untitled” (sin título). Esta es la hoja de código donde se anotan los comandos.\nLos contenidos de las hojas de código son básicamente 2:\n\ncomandos o funciones: se escriben en la hoja, y para ejecutarlos se debe posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o Consola.\ntexto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo #\n\nPara grabar nuestra hoja de código y así respaldar nuestros análisis, File &gt; Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R",
-    "crumbs": [
-      "Prácticos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "assignment/foro-practicos.html",
-    "href": "assignment/foro-practicos.html",
-    "title": "Foro prácticos",
-    "section": "",
-    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
-    "crumbs": [
-      "Prácticos",
-      "Foro Prácticos"
-    ]
-  },
-  {
-    "objectID": "content/01-content.html",
-    "href": "content/01-content.html",
-    "title": "Presentación",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Introducción"
-    ]
-  },
-  {
-    "objectID": "content/03-content.html",
-    "href": "content/03-content.html",
-    "title": "Inferencia 2: Curva normal y error estándar",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 2"
-    ]
-  },
-  {
-    "objectID": "content/05-content.html",
-    "href": "content/05-content.html",
-    "title": "Inferencia 4 - Test de hipótesis",
-    "section": "",
-    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Inferencia 4"
-    ]
-  },
-  {
-    "objectID": "content/08-content.html",
-    "href": "content/08-content.html",
-    "title": "Bivariada 1 - Asociación y covarianza",
-    "section": "",
-    "text": "Documento de presentación",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Bivariada 1"
-    ]
-  },
-  {
-    "objectID": "content/10-content.html",
-    "href": "content/10-content.html",
-    "title": "Cierre",
-    "section": "",
-    "text": "Documento de presentación"
-  },
-  {
-    "objectID": "content/index.html",
-    "href": "content/index.html",
-    "title": "Clases",
-    "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones. Los documentos son en formato html (no son ppt), producidos con Xaringan. Para verlos en pantalla completa presionar F sobre el documento, y para una vista general de todas las slides presionar O.\nTambién a la izquierda hay un link al Foro para hacer preguntas relacionadas con las clases.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.",
-    "crumbs": [
-      "Clases",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "news/2024-08-19_cambio-practico.html",
-    "href": "news/2024-08-19_cambio-practico.html",
-    "title": "Prácticos parten próxima semana (Martes 27)",
-    "section": "",
-    "text": "← News\n\n\n\n\nInicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se modifica, el práctico es el próximo martes 27."
-  },
-  {
-    "objectID": "news/2024-08-23_primera-practica.html",
-    "href": "news/2024-08-23_primera-practica.html",
-    "title": "Sesión práctica martes 27 de agosto",
-    "section": "",
-    "text": "← News\n\n\n\n\nAlgunas informaciones importantes:\n-El próximo martes 27 de agosto tendremos nuestra primera sesión práctica del curso.\n-En esta instancia contaremos con el equipo docente completo y ayudantes.\n-Aquellas personas que, por diversos motivos, no puedan contar con un computador personal para las sesiones del curso, les pedimos encarecidamente que rellenen este formulario: https://forms.gle/iGVJjAWRGYh9GGpZ8 Esta información nos permitirá ir organizando el uso de computadores de la sala de computación.\n-Nos dividiremos en dos grupos: una parte del curso en las salas C7 y C8 del aulario C (idealmente quienes dispongan de computador) y otra parte en la sala 345 de computación del edificio nuevo de Facso (para quienes no puedan contar con un computador).\n-Dentro de la próxima semana les enviaremos un correo respecto a la asignación de ayudantes para el asesoramiento en las unidades 1 y 2 del curso."
-  },
-  {
-    "objectID": "news/2024-09-03_cambios evaluacion 1.html",
-    "href": "news/2024-09-03_cambios evaluacion 1.html",
-    "title": "Cambios en evaluación 1",
-    "section": "",
-    "text": "← News\n\n\n\n\nEn el plan original la Evaluación 1 y la Evaluación 2 se componían de dos partes cada una: teórica (30%) y práctica (5%) (ver sección de evaluación en el programa del curso). Dado que en esta primera unidad ha sido principalmente teórica y tendremos solo dos instancias prácticas, vamos a traspasar el 5% de la evaluación práctica a la evaluación 2, que tendrá por lo tanto un 10% de evaluación práctica además del 30% de evaluación teórica.\nLa evaluación 1 se llevará a cabo el día Martes 10 de Septiembre a las 8:30. El día lunes 9 vamos a realizar un repaso general de la Unidad 1 y ejercicios para preparar la prueba."
+    "text": "Acá las principales informaciones y actualizaciones del curso.\n\n\n   \n     \n     \n       Ordenar por\n       Por defecto\n         \n          Fecha - Menos reciente\n        \n         \n          Fecha - Más reciente\n        \n         \n          Título\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nFecha\n\n\nTítulo\n\n\nCategorías\n\n\n\n\n\n\nlunes septiembre 30, 2024 at 12:00 AM\n\n\nReporte Evaluación 1\n\n\ninfo, mail-UCursos\n\n\n\n\nmiércoles septiembre 4, 2024 at 12:00 AM\n\n\nTaller Centro IDEA\n\n\ninfo, mail-UCursos\n\n\n\n\nmartes septiembre 3, 2024 at 12:00 AM\n\n\nCambios en evaluación 1\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes septiembre 2, 2024 at 12:00 AM\n\n\nEquipo docente y ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\njueves agosto 29, 2024 at 12:00 AM\n\n\nAsignación asesorías ayudantes\n\n\ninfo, mail-UCursos\n\n\n\n\nviernes agosto 23, 2024 at 12:00 AM\n\n\nSesión práctica martes 27 de agosto\n\n\ninfo, mail-UCursos\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nPrácticos parten próxima semana (Martes 27)\n\n\ninfo\n\n\n\n\nlunes agosto 19, 2024 at 12:00 AM\n\n\nInformaciones por acá\n\n\ninfo\n\n\n\n\n\nNo hay resultados\n\n\n\n\n\n\n\n\nSuscribirse!\n\n\n\nPuedes usar un lector de feeds como Feedly o un servicio RSS-to-email como Blogtrottr para suscribirte a cualquiera de estos mensajes.\n\n\n\n\n\n RSS"
   },
   {
     "objectID": "resource/index.html",
@@ -499,16 +278,238 @@
     "text": "Bases de datos\n\nBases de datos para trabajos o investigación"
   },
   {
-    "objectID": "content/07-content.html",
-    "href": "content/07-content.html",
-    "title": "Ejercicio de repaso general Unidad 1",
+    "objectID": "news/2024-09-03_cambios evaluacion 1.html",
+    "href": "news/2024-09-03_cambios evaluacion 1.html",
+    "title": "Cambios en evaluación 1",
     "section": "",
-    "text": "A Ud. se le ha solicitado estimar el promedio de salarios en la población, así como también si existen diferencias salariales entre quienes han completado la educación superior en institutos técnico-profesionales (IP) y quienes lo han hecho en instituciones universitarias. Para ello se le ha proporcionado la siguiente información:\n\nDatos: Encuesta de Ingresos, muestra aleatoria N=900 casos\nPromedio salarios: 850.000, desviación estándar 300.000\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\n\nAdemás de esto, se le han proporcionado los siguientes valores para realizar inferencia estadística:\n\nvalor crítico z para el promedio con un \\(\\alpha\\) de 5% (0,05)= 1,96, y con un \\(\\alpha\\) de 1% (0,01)= 2,58\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96; y con un \\(\\alpha\\) de 1% (0,01)= 2,58\nError estándar del promedio:\n\n\\[\\sigma_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\n\nError estándar de la diferencia de medias salariales para esta muestra= 15000\n\n\n\nCódigo\n# Generación de los datos\noptions(scipen = 999)\n\n# Establecer la semilla para garantizar la reproducibilidad\nset.seed(281217)  \n\n# Parámetros actualizados\nn &lt;- 900  # Tamaño de la muestra\npromedio_salarios &lt;- 850000;desviacion_estandar_salarios &lt;- 300000  # Desviación estándar de los salarios\n\n# Generar la muestra con la nueva semilla y parámetros\ningresos &lt;- rnorm(n, mean = promedio_salarios, sd = desviacion_estandar_salarios)\n\n\n\n\n\nTengo que el promedio de salarios de la muestra es: 900.000\nPromedio de salarios de la población: \\(X\\)?\n\nNo podemos dar un valor certero para el promedio poblacional, pero si un rango probable de valores.\n\n\n¿Qué tipo de aproximación de test de hipótesis corresponde en este caso? Recordemos las dos aproximaciones principales para test de hipótesis: a) contraste con valor crítico, y b) generación de intervalo de confianza. En general se pueden aplicar siempre las dos, pero su pertinencia es distinta según lo que se esté estimando:\n\nen este caso (estimación del promedio) se podría realizar la alternativa de contraste con valor crítico, que nos permitiría rechazar (o no) la hipótesis nula de que el promedio es cero en la población.\nya que la alternativa anterior no es muy informativa en este caso, en la estimación puntual de parámetros (como el promedio) se prefiere utilizar un rango de probabilidad, expresado en un intervalo de confianza.\n\nPor lo tanto, en este caso lo que es más pertinente es la alternativa b: estimación de un intervalo de confianza\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (el promedio es igual a 0 en la población):\n\\[H_{0}: \\bar{X}_{salarios}=0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salarios} \\neq 0\\]\n\n\n\nEl error estándar (SE, por Standard Error) del promedio es:\n\\[SE_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\nReemplazando:\n\\[SE_{\\bar{X}}=\\frac{300000}{\\sqrt{900}}=\\frac{300000}{30}=10000\\]\n\n\nCódigo\nerror_estandar &lt;- desviacion_estandar_salarios / sqrt(n)\nerror_estandar\n\n\n[1] 10000\n\n\n\n\n\nEsta informació fue proporcionada en el enunciado: \\(\\alpha=5%\\), valor crítico= 1,96\n\n\n\nRecordar fórmula del intervalo de 95% de confianza para el promedio:\n\\[\\begin{align*}\n\\bar{x} &\\pm Z_{\\alpha/2}*SE_{\\bar{x}} \\\\\\\\\n850000 &\\pm 1.96*10000 \\\\\\\\\n850000 &\\pm 19600 \\\\\\\\\nCI[830400&;869600]\n\\end{align*}\\]\nEn R:\n\n\nCódigo\n# Calcular el intervalo de confianza al 95%\nz_95 &lt;- 1.96  # Valor z para el 95% de confianza\nlimite_inferior &lt;- promedio_salarios - z_95 * error_estandar\nlimite_superior &lt;- promedio_salarios + z_95 * error_estandar\n\n# Mostrar los resultados\ncat(\"Intervalo de confianza al 95%: [\", round(limite_inferior, 2), \", \", round(limite_superior, 2), \"]\\n\")\n\n\nIntervalo de confianza al 95%: [ 830400 ,  869600 ]\n\n\n\n\n\nUtilizando una muestra de 900 individuos, se estimó el promedio de ingresos en $850,000 con una desviación estándar de $300,000. El error estándar para esta estimación es $10,000, y el intervalo de confianza al 95%, calculado con estos parámetros, se extiende de $830,400 a $869,600. Este intervalo refleja que, con un 95% de confianza, se puede afirmar que el promedio verdadero de ingresos en la población se encuentra dentro de este rango, asumiendo una distribución normal de los ingresos.\n\n\n\n\n\nPara este ejercicio consideramos la siguiente información proporcionada arriba:\n\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96\nerror estándar de la diferencia de medias= 15000\n\nCon esta información ya podemos calcular la diferencia de promedios de la muestra:\n\\(\\bar{X}_{salario-universitario}-\\bar{X}_{salario-técnico}=1500000-1200000=300000\\)\nLa pregunta ahora es: ¿existe esta diferencia de promedios en la población?\n\n\nPara el caso anterior de la estimación del promedio hablamos de dos aproximaciones: a) contraste con valor crítico, y b) intervalo de confianza. En este caso (estimación de diferencias de promedio) tradicionalmente se utiliza el contraste con valor crítico, ya que lo central es poder establecer si existen o no diferencias en la población. Complementariamente, también se puede entregar información del intervalo de confianza.\nPor lo tanto, en este caso lo que es más pertinente es la alternativa a: contraste con valor crítico, pero también es recomendable agregar la información del intervalo de confianza.\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (no hay diferencias de promedios entre grupos):\n\\[H_{0}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto}= 0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto} \\neq 0\\]\n\n\n\nEl error estándar de la diferencias de promedios es:\n\\[SE=\\sqrt{\\frac{\\sigma_{diff}}{n_a}+\\frac{\\sigma_{diff}}{n_b}}\\]\nLa información sobre el resultado de este cálculo se nos entrega inicialmente y es igual a 15000\nCon esto podemos calcular el valor del t empírico:\n\\(t=\\frac{diferenciamedias}{se_{diferenciamedias}} \\frac{(\\bar{x}_1-\\bar{x}_2)}{se_{(\\bar{x}_1-\\bar{x}_2)}}\\)\nCon nuestros datos:\n\\(t=\\frac{300000}{15000}=20\\)\n\n\n\n\nProporcionado en el enunciado\n\n\n\n\nt empírico= 20 &gt; t critico=1,96\nIntervalo al 95% de confianza:\n\\[\\begin{align*}\n\\bar{x}_1-\\bar{x}_2 &\\pm t_{\\alpha/2}*SE_{\\bar{x_1}-\\bar{x_2}} \\\\\\\\\n300000 &\\pm 1.96*15000 \\\\\\\\\n300000 &\\pm 29400 \\\\\\\\\nCI[270600&\\ ;329400]\n\\end{align*}\\]\n\n\n\nSe llevó a cabo una prueba t para evaluar las diferencias salariales entre graduados de institutos técnicos-profesionales y universidades, utilizando un tamaño de muestra de 900 para cada grupo. La diferencia de medias observada fue de $750,000, con un error estándar fijo de $15,000 para esta diferencia. El análisis resultó en un valor t de 50.00, indicando una diferencia estadísticamente significativa entre los dos grupos (p &lt; .01). Este valor t refleja que los graduados universitarios tienen un ingreso promedio significativamente mayor en comparación con los graduados de institutos técnicos-profesionales. Estos resultados sugieren una marcada disparidad salarial en función del nivel educativo alcanzado, subrayando la importancia de las decisiones educativas en las trayectorias de ingresos de los individuos.",
+    "text": "← News\n\n\n\n\nEn el plan original la Evaluación 1 y la Evaluación 2 se componían de dos partes cada una: teórica (30%) y práctica (5%) (ver sección de evaluación en el programa del curso). Dado que en esta primera unidad ha sido principalmente teórica y tendremos solo dos instancias prácticas, vamos a traspasar el 5% de la evaluación práctica a la evaluación 2, que tendrá por lo tanto un 10% de evaluación práctica además del 30% de evaluación teórica.\nLa evaluación 1 se llevará a cabo el día Martes 10 de Septiembre a las 8:30. El día lunes 9 vamos a realizar un repaso general de la Unidad 1 y ejercicios para preparar la prueba."
+  },
+  {
+    "objectID": "news/2024-08-23_primera-practica.html",
+    "href": "news/2024-08-23_primera-practica.html",
+    "title": "Sesión práctica martes 27 de agosto",
+    "section": "",
+    "text": "← News\n\n\n\n\nAlgunas informaciones importantes:\n-El próximo martes 27 de agosto tendremos nuestra primera sesión práctica del curso.\n-En esta instancia contaremos con el equipo docente completo y ayudantes.\n-Aquellas personas que, por diversos motivos, no puedan contar con un computador personal para las sesiones del curso, les pedimos encarecidamente que rellenen este formulario: https://forms.gle/iGVJjAWRGYh9GGpZ8 Esta información nos permitirá ir organizando el uso de computadores de la sala de computación.\n-Nos dividiremos en dos grupos: una parte del curso en las salas C7 y C8 del aulario C (idealmente quienes dispongan de computador) y otra parte en la sala 345 de computación del edificio nuevo de Facso (para quienes no puedan contar con un computador).\n-Dentro de la próxima semana les enviaremos un correo respecto a la asignación de ayudantes para el asesoramiento en las unidades 1 y 2 del curso."
+  },
+  {
+    "objectID": "news/2024-08-19_cambio-practico.html",
+    "href": "news/2024-08-19_cambio-practico.html",
+    "title": "Prácticos parten próxima semana (Martes 27)",
+    "section": "",
+    "text": "← News\n\n\n\n\nInicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se modifica, el práctico es el próximo martes 27."
+  },
+  {
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Clases",
+    "section": "",
+    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones. Los documentos son en formato html (no son ppt), producidos con Xaringan. Para verlos en pantalla completa presionar F sobre el documento, y para una vista general de todas las slides presionar O.\nTambién a la izquierda hay un link al Foro para hacer preguntas relacionadas con las clases.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.",
+    "crumbs": [
+      "Clases",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "content/10-content.html",
+    "href": "content/10-content.html",
+    "title": "Ordinales y matrices",
+    "section": "",
+    "text": "Documento de presentación",
     "crumbs": [
       "Clases",
       "Presentaciones",
-      "Ejercicio Inferencia"
+      "Bivariada 3"
     ]
+  },
+  {
+    "objectID": "content/08-content.html",
+    "href": "content/08-content.html",
+    "title": "Bivariada 1 - Asociación y covarianza",
+    "section": "",
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Bivariada 1"
+    ]
+  },
+  {
+    "objectID": "content/05-content.html",
+    "href": "content/05-content.html",
+    "title": "Inferencia 4 - Test de hipótesis",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 4"
+    ]
+  },
+  {
+    "objectID": "content/03-content.html",
+    "href": "content/03-content.html",
+    "title": "Inferencia 2: Curva normal y error estándar",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 2"
+    ]
+  },
+  {
+    "objectID": "content/01-content.html",
+    "href": "content/01-content.html",
+    "title": "Presentación",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "assignment/foro-practicos.html",
+    "href": "assignment/foro-practicos.html",
+    "title": "Foro prácticos",
+    "section": "",
+    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre llas guías prácticas. Para poder participar en el foro hay que abir una cuenta en Github\n\n¿Cuándo usar este foro?\n\n\n\n\n\nMuchas veces sucede que los códigos de análisis no resultan, lo que puede deberse a errores menores en la escritura de código, otras a versiones de librerías, y la mayoría a que R es algo mañoso.\nCuando hay un error o el código no corre lo importante es evitar que la frustración lleve a desmotivarse o tirar el computador por la ventana. Por eso se sugiere:\n\nintentar resolverlo por no más de 10 minutos: en este tiempo revisar bien el material disponible y lo que hay en la web. Un lugar clásico donde se discuten problemas de código es Stack overflow.\nsi no se logra solucionar entonces se sugiere encarecidamente usar el foro al final de esta página, ya que nos sirve para dejar la respuesta disponible para otr_s compañer_s que pueden tener la misma duda (generalmente es así)\n\n\n\n¿Cómo preguntar?\n\nDesripción general del problema, código y error que ocurre\nSi con esta información no basta para solucionar el problema, entonces se le podrá solicitar información adicionales, tales como el archivo de código y la información de la versión de las librerías que aparece al ejecutar el comando sessionInfo()\n\n\n\nForo prácticos",
+    "crumbs": [
+      "Prácticos",
+      "Foro Prácticos"
+    ]
+  },
+  {
+    "objectID": "assignment/index.html",
+    "href": "assignment/index.html",
+    "title": "Prácticos",
+    "section": "",
+    "text": "Las clases se acompañan de guías de trabajo con énfasis en la aplicación práctica mediante el uso de software estadístico.\nLas guías se encontrarán disponibles en esta página (link a la izquierda). Habrá dos guías para la Unidad 1 (Inferencia), y 2 para la Unidad 2 (Asociación). La unidad 3 será eminentemente práctica y de aplicación.\nLas guías son desarrolladas de manera autónoma, y cada dos semanas los días martes habrá un espacio práctico de revisión de las guías y de consultas. Para ello se espera que quienes puedan traigan su computador a la sala, y quienes no tienen lo podrán hacer simultáneamente en la sala de computación 345.\nEn las prácticas vamos a trabajar con el software R, Versión 4.4.1.",
+    "crumbs": [
+      "Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "assignment/index.html#descripción",
+    "href": "assignment/index.html#descripción",
+    "title": "Prácticos",
+    "section": "",
+    "text": "Las clases se acompañan de guías de trabajo con énfasis en la aplicación práctica mediante el uso de software estadístico.\nLas guías se encontrarán disponibles en esta página (link a la izquierda). Habrá dos guías para la Unidad 1 (Inferencia), y 2 para la Unidad 2 (Asociación). La unidad 3 será eminentemente práctica y de aplicación.\nLas guías son desarrolladas de manera autónoma, y cada dos semanas los días martes habrá un espacio práctico de revisión de las guías y de consultas. Para ello se espera que quienes puedan traigan su computador a la sala, y quienes no tienen lo podrán hacer simultáneamente en la sala de computación 345.\nEn las prácticas vamos a trabajar con el software R, Versión 4.4.1.",
+    "crumbs": [
+      "Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "assignment/index.html#trabajo-con-software-r",
+    "href": "assignment/index.html#trabajo-con-software-r",
+    "title": "Prácticos",
+    "section": "Trabajo con software R",
+    "text": "Trabajo con software R\nPara los análisis estadísticos de este curso usamos el programa R, en parte porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.\nEl carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.\nPara minimizar estos posibles problemas en este curso, vamos a:\n\ntrabajar con la misma y última versión de R\nevitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variables",
+    "crumbs": [
+      "Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
+    "href": "assignment/index.html#sobre-errores-y-consultas-sobre-problemas-con-r-y-ejecución-de-código",
+    "title": "Prácticos",
+    "section": "Sobre errores y consultas sobre problemas con R y ejecución de código",
+    "text": "Sobre errores y consultas sobre problemas con R y ejecución de código\nEn caso de preguntas sobre las clases hacerlas en Foro prácticos\n\nInstalación de R & RStudio\nPara esta versión del curso vamos a trabajar con el programa R Version 4.4.1 y con RStudio, que ofrece un entorno más amigable para trabajar con R.\nPara instalar R: ir a https://cran.r-project.org/index.html y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)\nPara instalar RStudio: ir a https://rstudio.com/products/rstudio/ y bajar/instalar RStudio desktop, Open Source License (libre).\nEn caso de dudas se puede revisar el siguiente video tutorial de instalación de R & RStudio, preparado por Julio Iturra (apoyo docente) del curso Estadística Multivariada 2020:\n\n\n\n\n\nSi por alguna razón se prefiere trabajar sin descargar, también se puede utilizar RCloud, abajo un tutorial preparado por Valentina Andrade para el curso de Estadística Multivariada:\n\n\n\n\n\n\nSobre el trabajo en hojas de código en RStudio\n\nEl trabajo de análisis en RStudio se efectua en una hoja de código (o R script o sintaxis, o para los usuarios de Stata la do-file), que es donde se anotan los comandos y funciones. Para abrir una hoja, en RStudio ir a File &gt; New File &gt; R Script (o ctrl+shift+N),y aparecerá un panel con una pestaña “Untitled” (sin título). Esta es la hoja de código donde se anotan los comandos.\nLos contenidos de las hojas de código son básicamente 2:\n\ncomandos o funciones: se escriben en la hoja, y para ejecutarlos se debe posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o Consola.\ntexto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo #\n\nPara grabar nuestra hoja de código y así respaldar nuestros análisis, File &gt; Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R",
+    "crumbs": [
+      "Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Inferencia 1: Datos, probabilidad y distribuciones muestrales",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 1"
+    ]
+  },
+  {
+    "objectID": "content/04-content.html",
+    "href": "content/04-content.html",
+    "title": "Inferencia 3 - Intervalos de confianza",
+    "section": "",
+    "text": "Documento de presentación\n\n\n\n\nLink al Foro de Clases",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 3"
+    ]
+  },
+  {
+    "objectID": "content/06-content.html",
+    "href": "content/06-content.html",
+    "title": "Inferencia 5 - Prueba t + hipótesis direccionales",
+    "section": "",
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Inferencia 5"
+    ]
+  },
+  {
+    "objectID": "content/09-content.html",
+    "href": "content/09-content.html",
+    "title": "Inferencia en correlación y magnitud del coeficiente",
+    "section": "",
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Bivariada 2"
+    ]
+  },
+  {
+    "objectID": "content/foro-clases.html",
+    "href": "content/foro-clases.html",
+    "title": "Foro clases",
+    "section": "",
+    "text": "Foro para compartir dudas, aclaraciones, sugerencias sobre los contenidos del curso vistos en clases. Para poder participar en el foro hay que abir una cuenta en Github",
+    "crumbs": [
+      "Clases",
+      "Foro Clases"
+    ]
+  },
+  {
+    "objectID": "example/index.html",
+    "href": "example/index.html",
+    "title": "Code examples",
+    "section": "",
+    "text": "Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.\nMany sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You’ll notice me make all sorts of little errors, which is totally normal—everyone does!"
+  },
+  {
+    "objectID": "news/2024-08-19_inicio.html",
+    "href": "news/2024-08-19_inicio.html",
+    "title": "Informaciones por acá",
+    "section": "",
+    "text": "← News\n\n\n\n\nEstimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes."
+  },
+  {
+    "objectID": "news/2024-09-02_equipo docente y ayudantes.html",
+    "href": "news/2024-09-02_equipo docente y ayudantes.html",
+    "title": "Equipo docente y ayudantes",
+    "section": "",
+    "text": "← News\n\n\n\n\n2 actualizaciones respecto del equipo a cargo del curso:\n\ncomo se informó por UCursos, la apoyo docente Daniela Olivares no seguirá en su rol a partir de este mes de Septiembre, y se suma al equipo Martín Venegas como nuevo apoyo docente. Martín también es sociólogo UChile y actualmente trabaja en el INE. Bienvenido!\nse completa el equipo de ayudantes luego de la segunda ronda de postulaciones, son 11 en total y pueden ver sus nombres en la página inicial del curso."
+  },
+  {
+    "objectID": "news/2024-09-04_taller_centro_idea.html",
+    "href": "news/2024-09-04_taller_centro_idea.html",
+    "title": "Taller Centro IDEA",
+    "section": "",
+    "text": "← News\n\n\n\n\nEl centro IDEA está ofreciendo una instancia de tutorías específica para la Unidad I (Inferencia) este viernes 6 de septiembre a las 12:00:"
   },
   {
     "objectID": "syllabus.html",
@@ -672,6 +673,48 @@
     "text": "Finding the CACE/LATE with IV/2SLS\nDoing that is super tedious though! What if there was an easier way to find the effect of the bed net program for just the compliers? We can do this with IV/2SLS regression by using assignment to treatment as an instrument.\nAssignment to treatment works as an instrument because it’s (1) relevant, since being told to use bed nets is probably highly correlated with using bed nets, (2) exclusive, since the only way that being told to use bed nets can cause changes in health is through the actual use of the bed nets, and (3) exogenous, since being told to use bed nets probably isn’t related to other things that cause health.\nHere’s a 2SLS regression with assignment to treatment as the instrument:\n\n\nCode\nmodel_2sls &lt;- iv_robust(health ~ bed_net | treatment, data = bed_nets)\ntidy(model_2sls)\n##             term estimate std.error statistic   p.value conf.low conf.high   df outcome\n## 1    (Intercept)    38.12    0.5151     74.01 0.000e+00    37.11     39.13 1998  health\n## 2 bed_netBed net    14.43    1.2538     11.51 1.038e-29    11.97     16.89 1998  health\n\n\nThe coefficient for bed_net is identical to the CACE that we found manually! Instrumental variables are helpful for isolated program effects to only compliers when you’re dealing with noncompliance."
   },
   {
+    "objectID": "files/reporte_notas/reporte_notas.html",
+    "href": "files/reporte_notas/reporte_notas.html",
+    "title": "Reporte Notas Prueba 1 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "pacman::p_load(tidyverse, sjmisc, sjPlot, kableExtra, sjlabelled, readxl, here)\n\n\n\n [1] \"Nº\"          \"Persona\"     \"1a\"          \"1b\"          \"1c\"         \n [6] \"2a\"          \"2b\"          \"2c\"          \"Puntos\"      \"Nota\"       \n[11] \"Asistida\"    \"Justificada\" \"asist_total\"\n\n\n\n\n\n\n# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Intervalo de Confianza\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Error tipo II\")\nprueba1$p1c &lt;- set_label(x = prueba1$p1c, \n                         label = \"Rechazo H0 valor p\")\nprueba1$p2a &lt;- set_label(x = prueba1$p2a, \n                         label = \"Formulación hipótesis\")\nprueba1$p2b &lt;- set_label(x = prueba1$p2b, \n                         label = \"Contraste de prueba t\")\nprueba1$p2c &lt;- set_label(x = prueba1$p2c, \n                         label = \"Intervalo confianza de prueba t\")\nprueba1$nota &lt;- set_label(x = prueba1$nota, \n                         label = \"Nota final\")\nprueba1$asistida &lt;- set_label(x = prueba1$asistida, \n                         label = \"Asistencia Efectiva\")\nprueba1$asist_total &lt;- set_label(x = prueba1$asist_total, \n                         label = \"Asistencia Registrada\")\n\n\n\n\n\nprueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n4\np1a\nIntervalo de Confianza\n70\n0.55\n0.30\n1 (0-1)\n\n\n5\np1b\nError tipo II\n70\n0.31\n0.45\n1 (0-1)\n\n\n6\np1c\nRechazo H0 valor p\n70\n0.81\n0.70\n2 (0-2)\n\n\n7\np2a\nFormulación hipótesis\n70\n1.47\n0.69\n2 (0-2)\n\n\n8\np2b\nContraste de prueba t\n70\n2.59\n1.32\n4 (0-4)\n\n\n9\np2c\nIntervalo confianza de prueba t\n70\n1.26\n0.74\n2 (0-2)\n\n\n3\nnota\nNota final\n70\n4.50\n1.43\n6 (1-7)\n\n\n2\nasistida\nAsistencia Efectiva\n70\n10.16\n1.86\n8 (4-12)\n\n\n1\nasist_total\nAsistencia Registrada\n70\n10.24\n1.81\n8 (4-12)\n\n\n\n\n\n\n\n\n\nhist(prueba1$nota)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat, out=\"browser\", show.na = FALSE, title = \"Rangos de notas\")\n\n\nRangos de notas\n\n\nval\nfrq\nraw.prc\nvalid.prc\ncum.prc\n\n\n\nMenor a 4.0\n25\n35.71\n35.71\n35.71\n\n\n\n4.0-5.0\n14\n20.00\n20.00\n55.71\n\n\n\n5.0-6.0\n24\n34.29\n34.29\n90.00\n\n\n\n6.0-7.0\n7\n10.00\n10.00\n100.00\n\n\n\ntotal N=70 · valid N=63 · x̄=2.19 · σ=1.04\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)\n\n\n\n\n\ntab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nIntervalo de Confianza\nError tipo II\nRechazo H0 valor p\nFormulación hipótesis\nContraste de prueba t\nIntervalo confianza de prueba t\nNota final\nAsistencia Efectiva\nAsistencia Registrada\n\n\nIntervalo de Confianza\n \n \n \n \n \n \n \n \n \n\n\nError tipo II\n0.337**\n \n \n \n \n \n \n \n \n\n\nRechazo H0 valor p\n0.271*\n0.399***\n \n \n \n \n \n \n \n\n\nFormulación hipótesis\n0.180\n0.202\n0.014\n \n \n \n \n \n \n\n\nContraste de prueba t\n0.243*\n0.244*\n0.214\n0.485***\n \n \n \n \n \n\n\nIntervalo confianza de prueba t\n0.275*\n0.280*\n0.405***\n0.281*\n0.590***\n \n \n \n \n\n\nNota final\n0.453***\n0.525***\n0.544***\n0.592***\n0.849***\n0.772***\n \n \n \n\n\nAsistencia Efectiva\n0.278*\n-0.048\n0.117\n0.355**\n0.352**\n0.382**\n0.398***\n \n \n\n\nAsistencia Registrada\n0.316**\n0.006\n0.106\n0.380**\n0.382**\n0.377**\n0.427***\n0.980***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nggplot(prueba1, aes(x = asist_total, y = nota)) + \n  geom_jitter(width = 0.2, color = \"red\", size = 4) + \n  labs(title = \"Relación entre asistencia y notas en Evaluación 1 (r=0.43)\") + \n  labs(x = \"Asistencia\", y = \"Nota\") + \n  theme(axis.title = element_text(size = 12),        # Tamaño de las etiquetas de los ejes\n        axis.text = element_text(size = 12)) +       # Tamaño del texto de los ejes\n  theme(aspect.ratio = 1/1.5) +\n  theme(plot.title = element_text(size = 12,         # Tamaño del título\n                                  face = \"bold\",     # Tipo de letra (negrita)\n                                  hjust = 0.5)) +\n  scale_x_continuous(breaks = seq(1, 12, by = 1), limits = c(1, 12)) +   # Ajuste del eje de asistencia\n  scale_y_continuous(breaks = seq(1, 7, by = 1), limits = c(1, 7))       # Ajuste del eje de notas de 1 a 7\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(asist_total_cat=cut(asist_total, breaks=c(-Inf,7,8,9,10,11,Inf), labels=c(\"Menos de 8\",\"8\",\"9\",\"10\",\"11\",\"12\")))\n\nfrq(prueba1$asist_total_cat, out=\"browser\", show.na = FALSE, title = \"Asistencia\")\n\n\nAsistencia\n\n\nval\nfrq\nraw.prc\nvalid.prc\ncum.prc\n\n\n\nMenos de 8\n6\n8.57\n8.57\n8.57\n\n\n\n8\n4\n5.71\n5.71\n14.29\n\n\n\n9\n10\n14.29\n14.29\n28.57\n\n\n\n10\n11\n15.71\n15.71\n44.29\n\n\n\n11\n19\n27.14\n27.14\n71.43\n\n\n\n12\n20\n28.57\n28.57\n100.00\n\n\n\ntotal N=70 · valid N=50 · x̄=4.33 · σ=1.58\n\n\n\n\n\n\nprueba1 %&gt;% # se especifica la base de datos\n  dplyr::select(asist_total_cat, nota)  %&gt;% # se seleccionan las variables\n  dplyr::group_by(Asistencia=sjlabelled::as_label(asist_total_cat)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label\n  dplyr::summarise(Obs.=n(),Promedio=round(mean(nota),2),SD=round(sd(nota),2)) %&gt;% # se agregan las operaciones a presentar en la tabla\n  kable(, format = \"markdown\") # se genera la tabla\n\n\n\n\nAsistencia\nObs.\nPromedio\nSD\n\n\n\n\nMenos de 8\n6\n2.98\n1.63\n\n\n8\n4\n3.40\n0.20\n\n\n9\n10\n4.33\n1.46\n\n\n10\n11\n4.46\n1.56\n\n\n11\n19\n4.62\n1.44\n\n\n12\n20\n5.16\n0.98\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-asist_total_cat)\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 8\nSample units: 70\nalpha: 0.753"
+  },
+  {
+    "objectID": "files/reporte_notas/reporte_notas.html#librerías-datos",
+    "href": "files/reporte_notas/reporte_notas.html#librerías-datos",
+    "title": "Reporte Notas Prueba 1 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "pacman::p_load(tidyverse, sjmisc, sjPlot, kableExtra, sjlabelled, readxl, here)\n\n\n\n [1] \"Nº\"          \"Persona\"     \"1a\"          \"1b\"          \"1c\"         \n [6] \"2a\"          \"2b\"          \"2c\"          \"Puntos\"      \"Nota\"       \n[11] \"Asistida\"    \"Justificada\" \"asist_total\""
+  },
+  {
+    "objectID": "files/reporte_notas/reporte_notas.html#etiquetados",
+    "href": "files/reporte_notas/reporte_notas.html#etiquetados",
+    "title": "Reporte Notas Prueba 1 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "# Label variables\n\nprueba1$p1a &lt;- set_label(x = prueba1$p1a, \n                         label = \"Intervalo de Confianza\")\nprueba1$p1b &lt;- set_label(x = prueba1$p1b, \n                         label = \"Error tipo II\")\nprueba1$p1c &lt;- set_label(x = prueba1$p1c, \n                         label = \"Rechazo H0 valor p\")\nprueba1$p2a &lt;- set_label(x = prueba1$p2a, \n                         label = \"Formulación hipótesis\")\nprueba1$p2b &lt;- set_label(x = prueba1$p2b, \n                         label = \"Contraste de prueba t\")\nprueba1$p2c &lt;- set_label(x = prueba1$p2c, \n                         label = \"Intervalo confianza de prueba t\")\nprueba1$nota &lt;- set_label(x = prueba1$nota, \n                         label = \"Nota final\")\nprueba1$asistida &lt;- set_label(x = prueba1$asistida, \n                         label = \"Asistencia Efectiva\")\nprueba1$asist_total &lt;- set_label(x = prueba1$asist_total, \n                         label = \"Asistencia Registrada\")"
+  },
+  {
+    "objectID": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
+    "href": "files/reporte_notas/reporte_notas.html#tabla-descriptiva",
+    "title": "Reporte Notas Prueba 1 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "prueba1 %&gt;% descr(., show = c(\"label\",\"range\", \"mean\", \"sd\", \"n\"))%&gt;% kable(.,\"markdown\", digits=2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar\nlabel\nn\nmean\nsd\nrange\n\n\n\n\n4\np1a\nIntervalo de Confianza\n70\n0.55\n0.30\n1 (0-1)\n\n\n5\np1b\nError tipo II\n70\n0.31\n0.45\n1 (0-1)\n\n\n6\np1c\nRechazo H0 valor p\n70\n0.81\n0.70\n2 (0-2)\n\n\n7\np2a\nFormulación hipótesis\n70\n1.47\n0.69\n2 (0-2)\n\n\n8\np2b\nContraste de prueba t\n70\n2.59\n1.32\n4 (0-4)\n\n\n9\np2c\nIntervalo confianza de prueba t\n70\n1.26\n0.74\n2 (0-2)\n\n\n3\nnota\nNota final\n70\n4.50\n1.43\n6 (1-7)\n\n\n2\nasistida\nAsistencia Efectiva\n70\n10.16\n1.86\n8 (4-12)\n\n\n1\nasist_total\nAsistencia Registrada\n70\n10.24\n1.81\n8 (4-12)"
+  },
+  {
+    "objectID": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
+    "href": "files/reporte_notas/reporte_notas.html#gráficos-descriptivos",
+    "title": "Reporte Notas Prueba 1 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "hist(prueba1$nota)\n\n\n\n\n\n\n\nplot_frq(data = prueba1$nota,type = \"hist\",show.mean = T)\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(notas_cat=cut(nota, breaks=c(-Inf,4,5,6, Inf), labels=c(\"Menor a 4.0\",\"4.0-5.0\",\"5.0-6.0\",\"6.0-7.0\")))\n\nfrq(prueba1$notas_cat, out=\"browser\", show.na = FALSE, title = \"Rangos de notas\")\n\n\nRangos de notas\n\n\nval\nfrq\nraw.prc\nvalid.prc\ncum.prc\n\n\n\nMenor a 4.0\n25\n35.71\n35.71\n35.71\n\n\n\n4.0-5.0\n14\n20.00\n20.00\n55.71\n\n\n\n5.0-6.0\n24\n34.29\n34.29\n90.00\n\n\n\n6.0-7.0\n7\n10.00\n10.00\n100.00\n\n\n\ntotal N=70 · valid N=63 · x̄=2.19 · σ=1.04\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-notas_cat)"
+  },
+  {
+    "objectID": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
+    "href": "files/reporte_notas/reporte_notas.html#preguntas-y-asociaciones",
+    "title": "Reporte Notas Prueba 1 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "tab_corr(prueba1,\n         triangle = \"lower\")\n\n\n\n\n \nIntervalo de Confianza\nError tipo II\nRechazo H0 valor p\nFormulación hipótesis\nContraste de prueba t\nIntervalo confianza de prueba t\nNota final\nAsistencia Efectiva\nAsistencia Registrada\n\n\nIntervalo de Confianza\n \n \n \n \n \n \n \n \n \n\n\nError tipo II\n0.337**\n \n \n \n \n \n \n \n \n\n\nRechazo H0 valor p\n0.271*\n0.399***\n \n \n \n \n \n \n \n\n\nFormulación hipótesis\n0.180\n0.202\n0.014\n \n \n \n \n \n \n\n\nContraste de prueba t\n0.243*\n0.244*\n0.214\n0.485***\n \n \n \n \n \n\n\nIntervalo confianza de prueba t\n0.275*\n0.280*\n0.405***\n0.281*\n0.590***\n \n \n \n \n\n\nNota final\n0.453***\n0.525***\n0.544***\n0.592***\n0.849***\n0.772***\n \n \n \n\n\nAsistencia Efectiva\n0.278*\n-0.048\n0.117\n0.355**\n0.352**\n0.382**\n0.398***\n \n \n\n\nAsistencia Registrada\n0.316**\n0.006\n0.106\n0.380**\n0.382**\n0.377**\n0.427***\n0.980***\n \n\n\nComputed correlation used pearson-method with listwise-deletion.\n\n\n\n\n\n\nggplot(prueba1, aes(x = asist_total, y = nota)) + \n  geom_jitter(width = 0.2, color = \"red\", size = 4) + \n  labs(title = \"Relación entre asistencia y notas en Evaluación 1 (r=0.43)\") + \n  labs(x = \"Asistencia\", y = \"Nota\") + \n  theme(axis.title = element_text(size = 12),        # Tamaño de las etiquetas de los ejes\n        axis.text = element_text(size = 12)) +       # Tamaño del texto de los ejes\n  theme(aspect.ratio = 1/1.5) +\n  theme(plot.title = element_text(size = 12,         # Tamaño del título\n                                  face = \"bold\",     # Tipo de letra (negrita)\n                                  hjust = 0.5)) +\n  scale_x_continuous(breaks = seq(1, 12, by = 1), limits = c(1, 12)) +   # Ajuste del eje de asistencia\n  scale_y_continuous(breaks = seq(1, 7, by = 1), limits = c(1, 7))       # Ajuste del eje de notas de 1 a 7\n\n\n\n\n\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;%  mutate(asist_total_cat=cut(asist_total, breaks=c(-Inf,7,8,9,10,11,Inf), labels=c(\"Menos de 8\",\"8\",\"9\",\"10\",\"11\",\"12\")))\n\nfrq(prueba1$asist_total_cat, out=\"browser\", show.na = FALSE, title = \"Asistencia\")\n\n\nAsistencia\n\n\nval\nfrq\nraw.prc\nvalid.prc\ncum.prc\n\n\n\nMenos de 8\n6\n8.57\n8.57\n8.57\n\n\n\n8\n4\n5.71\n5.71\n14.29\n\n\n\n9\n10\n14.29\n14.29\n28.57\n\n\n\n10\n11\n15.71\n15.71\n44.29\n\n\n\n11\n19\n27.14\n27.14\n71.43\n\n\n\n12\n20\n28.57\n28.57\n100.00\n\n\n\ntotal N=70 · valid N=50 · x̄=4.33 · σ=1.58\n\n\n\n\n\n\nprueba1 %&gt;% # se especifica la base de datos\n  dplyr::select(asist_total_cat, nota)  %&gt;% # se seleccionan las variables\n  dplyr::group_by(Asistencia=sjlabelled::as_label(asist_total_cat)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label\n  dplyr::summarise(Obs.=n(),Promedio=round(mean(nota),2),SD=round(sd(nota),2)) %&gt;% # se agregan las operaciones a presentar en la tabla\n  kable(, format = \"markdown\") # se genera la tabla\n\n\n\n\nAsistencia\nObs.\nPromedio\nSD\n\n\n\n\nMenos de 8\n6\n2.98\n1.63\n\n\n8\n4\n3.40\n0.20\n\n\n9\n10\n4.33\n1.46\n\n\n10\n11\n4.46\n1.56\n\n\n11\n19\n4.62\n1.44\n\n\n12\n20\n5.16\n0.98\n\n\n\n\nprueba1 &lt;- prueba1 %&gt;% dplyr::select(-asist_total_cat)\n\nConsistencia interna\n\npacman::p_load(ltm)\n\npreguntas &lt;- prueba1 %&gt;% dplyr::select(-nota)\ncronbach.alpha(na.omit(preguntas))\n\n\nCronbach's alpha for the 'na.omit(preguntas)' data-set\n\nItems: 8\nSample units: 70\nalpha: 0.753"
+  },
+  {
     "objectID": "assignment/01-practico.html",
     "href": "assignment/01-practico.html",
     "title": "Distribución Normal e Intervalos de Confianza",
@@ -768,27 +811,10 @@
     ]
   },
   {
-    "objectID": "content/07-content.html#a.-estimación-del-promedio-de-salarios-de-la-población",
-    "href": "content/07-content.html#a.-estimación-del-promedio-de-salarios-de-la-población",
-    "title": "Ejercicio de repaso general Unidad 1",
-    "section": "",
-    "text": "Tengo que el promedio de salarios de la muestra es: 900.000\nPromedio de salarios de la población: \\(X\\)?\n\nNo podemos dar un valor certero para el promedio poblacional, pero si un rango probable de valores.\n\n\n¿Qué tipo de aproximación de test de hipótesis corresponde en este caso? Recordemos las dos aproximaciones principales para test de hipótesis: a) contraste con valor crítico, y b) generación de intervalo de confianza. En general se pueden aplicar siempre las dos, pero su pertinencia es distinta según lo que se esté estimando:\n\nen este caso (estimación del promedio) se podría realizar la alternativa de contraste con valor crítico, que nos permitiría rechazar (o no) la hipótesis nula de que el promedio es cero en la población.\nya que la alternativa anterior no es muy informativa en este caso, en la estimación puntual de parámetros (como el promedio) se prefiere utilizar un rango de probabilidad, expresado en un intervalo de confianza.\n\nPor lo tanto, en este caso lo que es más pertinente es la alternativa b: estimación de un intervalo de confianza\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (el promedio es igual a 0 en la población):\n\\[H_{0}: \\bar{X}_{salarios}=0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salarios} \\neq 0\\]\n\n\n\nEl error estándar (SE, por Standard Error) del promedio es:\n\\[SE_{\\bar{X}}=\\frac{s\\ (desv.\\ estandar)}{\\sqrt{N} (tamaño\\ muestral)}\\]\nReemplazando:\n\\[SE_{\\bar{X}}=\\frac{300000}{\\sqrt{900}}=\\frac{300000}{30}=10000\\]\n\n\nCódigo\nerror_estandar &lt;- desviacion_estandar_salarios / sqrt(n)\nerror_estandar\n\n\n[1] 10000\n\n\n\n\n\nEsta informació fue proporcionada en el enunciado: \\(\\alpha=5%\\), valor crítico= 1,96\n\n\n\nRecordar fórmula del intervalo de 95% de confianza para el promedio:\n\\[\\begin{align*}\n\\bar{x} &\\pm Z_{\\alpha/2}*SE_{\\bar{x}} \\\\\\\\\n850000 &\\pm 1.96*10000 \\\\\\\\\n850000 &\\pm 19600 \\\\\\\\\nCI[830400&;869600]\n\\end{align*}\\]\nEn R:\n\n\nCódigo\n# Calcular el intervalo de confianza al 95%\nz_95 &lt;- 1.96  # Valor z para el 95% de confianza\nlimite_inferior &lt;- promedio_salarios - z_95 * error_estandar\nlimite_superior &lt;- promedio_salarios + z_95 * error_estandar\n\n# Mostrar los resultados\ncat(\"Intervalo de confianza al 95%: [\", round(limite_inferior, 2), \", \", round(limite_superior, 2), \"]\\n\")\n\n\nIntervalo de confianza al 95%: [ 830400 ,  869600 ]\n\n\n\n\n\nUtilizando una muestra de 900 individuos, se estimó el promedio de ingresos en $850,000 con una desviación estándar de $300,000. El error estándar para esta estimación es $10,000, y el intervalo de confianza al 95%, calculado con estos parámetros, se extiende de $830,400 a $869,600. Este intervalo refleja que, con un 95% de confianza, se puede afirmar que el promedio verdadero de ingresos en la población se encuentra dentro de este rango, asumiendo una distribución normal de los ingresos.",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Ejercicio Inferencia"
-    ]
-  },
-  {
-    "objectID": "content/07-content.html#estimación-de-diferencia-de-medias",
-    "href": "content/07-content.html#estimación-de-diferencia-de-medias",
-    "title": "Ejercicio de repaso general Unidad 1",
-    "section": "",
-    "text": "Para este ejercicio consideramos la siguiente información proporcionada arriba:\n\nSalario promedio técnico-profesional: 1.200.000, desviación estandar 180.000\nSalario promedio universitario: 1.500.000, desviación estándar 270.000\nvalor crítico t para diferencia de medias con un \\(\\alpha\\) de 5% (0,05) y grados de libertad 898 (N-2)= 1,96\nerror estándar de la diferencia de medias= 15000\n\nCon esta información ya podemos calcular la diferencia de promedios de la muestra:\n\\(\\bar{X}_{salario-universitario}-\\bar{X}_{salario-técnico}=1500000-1200000=300000\\)\nLa pregunta ahora es: ¿existe esta diferencia de promedios en la población?\n\n\nPara el caso anterior de la estimación del promedio hablamos de dos aproximaciones: a) contraste con valor crítico, y b) intervalo de confianza. En este caso (estimación de diferencias de promedio) tradicionalmente se utiliza el contraste con valor crítico, ya que lo central es poder establecer si existen o no diferencias en la población. Complementariamente, también se puede entregar información del intervalo de confianza.\nPor lo tanto, en este caso lo que es más pertinente es la alternativa a: contraste con valor crítico, pero también es recomendable agregar la información del intervalo de confianza.\n\n\n\nLos 5 pasos de la inferencia en esta caso son los siguientes:\n\n\nContrastamos la hipótesis nula (no hay diferencias de promedios entre grupos):\n\\[H_{0}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto}= 0\\]\nEn referencia a la siguiente hipótesis alternativa:\n\\[H_{a}: \\bar{X}_{salariouniversidad} -  \\bar{X}_{salarioinstituto} \\neq 0\\]\n\n\n\nEl error estándar de la diferencias de promedios es:\n\\[SE=\\sqrt{\\frac{\\sigma_{diff}}{n_a}+\\frac{\\sigma_{diff}}{n_b}}\\]\nLa información sobre el resultado de este cálculo se nos entrega inicialmente y es igual a 15000\nCon esto podemos calcular el valor del t empírico:\n\\(t=\\frac{diferenciamedias}{se_{diferenciamedias}} \\frac{(\\bar{x}_1-\\bar{x}_2)}{se_{(\\bar{x}_1-\\bar{x}_2)}}\\)\nCon nuestros datos:\n\\(t=\\frac{300000}{15000}=20\\)\n\n\n\n\nProporcionado en el enunciado\n\n\n\n\nt empírico= 20 &gt; t critico=1,96\nIntervalo al 95% de confianza:\n\\[\\begin{align*}\n\\bar{x}_1-\\bar{x}_2 &\\pm t_{\\alpha/2}*SE_{\\bar{x_1}-\\bar{x_2}} \\\\\\\\\n300000 &\\pm 1.96*15000 \\\\\\\\\n300000 &\\pm 29400 \\\\\\\\\nCI[270600&\\ ;329400]\n\\end{align*}\\]\n\n\n\nSe llevó a cabo una prueba t para evaluar las diferencias salariales entre graduados de institutos técnicos-profesionales y universidades, utilizando un tamaño de muestra de 900 para cada grupo. La diferencia de medias observada fue de $750,000, con un error estándar fijo de $15,000 para esta diferencia. El análisis resultó en un valor t de 50.00, indicando una diferencia estadísticamente significativa entre los dos grupos (p &lt; .01). Este valor t refleja que los graduados universitarios tienen un ingreso promedio significativamente mayor en comparación con los graduados de institutos técnicos-profesionales. Estos resultados sugieren una marcada disparidad salarial en función del nivel educativo alcanzado, subrayando la importancia de las decisiones educativas en las trayectorias de ingresos de los individuos.",
-    "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Ejercicio Inferencia"
-    ]
+    "objectID": "news/2024-09-30_reporte-notas1.html#solicitudes-de-recorrección",
+    "href": "news/2024-09-30_reporte-notas1.html#solicitudes-de-recorrección",
+    "title": "Reporte Evaluación 1",
+    "section": "Solicitudes de recorrección",
+    "text": "Solicitudes de recorrección\n\nEnviar correo a apoyo docente Martín Venegas, martin.venegas@ug.uchile.cl, quien estará coordinando estas solicitudes\nEn el correo:\n\nmencionar pregunta a corregir\nargumento y puntaje esperado\nfoto de la pregunta"
   }
 ]

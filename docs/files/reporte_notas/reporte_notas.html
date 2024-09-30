@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Estadística Correlacional - Reporte Notas Prueba 1 - Estadística Correlacional 2024</title>
+<title>Reporte Notas Prueba 1 - Estadística Correlacional 2024 – Estadística Correlacional</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Estadística Correlacional - Reporte Notas Prueba 1 - Estadística Correlacional 2024">
+<meta property="og:title" content="Reporte Notas Prueba 1 - Estadística Correlacional 2024 – Estadística Correlacional">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site_name" content="Estadística Correlacional">
 <meta property="og:locale" content="es">
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -223,8 +223,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Nº"      "Persona" "1a"      "1b"      "1c"      "2a"      "2b"     
- [8] "2c"      "Puntos"  "Nota"   </code></pre>
+<pre><code> [1] "Nº"          "Persona"     "1a"          "1b"          "1c"         
+ [6] "2a"          "2b"          "2c"          "Puntos"      "Nota"       
+[11] "Asistida"    "Justificada" "asist_total"</code></pre>
 </div>
 </div>
 </section>
@@ -245,9 +246,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Contraste de prueba t"</span>)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>p2c <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>p2c, </span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Intervalo confianza de prueba t"</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>nota <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>nota, </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Nota final"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>nota <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>nota, </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Nota final"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>asistida <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>asistida, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Asistencia Efectiva"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>prueba1<span class="sc">$</span>asist_total <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> prueba1<span class="sc">$</span>asist_total, </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label =</span> <span class="st">"Asistencia Registrada"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tabla-descriptiva" class="level2">
@@ -255,7 +259,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="sc">%&gt;%</span> <span class="fu">descr</span>(., <span class="at">show =</span> <span class="fu">c</span>(<span class="st">"label"</span>,<span class="st">"range"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"n"</span>))<span class="sc">%&gt;%</span> <span class="fu">kable</span>(.,<span class="st">"markdown"</span>, <span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 17%">
+<col style="width: 45%">
+<col style="width: 4%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 12%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -269,67 +282,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2</td>
+<td style="text-align: left;">4</td>
 <td style="text-align: left;">p1a</td>
 <td style="text-align: left;">Intervalo de Confianza</td>
-<td style="text-align: right;">71</td>
+<td style="text-align: right;">70</td>
 <td style="text-align: right;">0.55</td>
 <td style="text-align: right;">0.30</td>
 <td style="text-align: left;">1 (0-1)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">3</td>
+<td style="text-align: left;">5</td>
 <td style="text-align: left;">p1b</td>
 <td style="text-align: left;">Error tipo II</td>
-<td style="text-align: right;">71</td>
+<td style="text-align: right;">70</td>
 <td style="text-align: right;">0.31</td>
 <td style="text-align: right;">0.45</td>
 <td style="text-align: left;">1 (0-1)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">4</td>
+<td style="text-align: left;">6</td>
 <td style="text-align: left;">p1c</td>
 <td style="text-align: left;">Rechazo H0 valor p</td>
-<td style="text-align: right;">71</td>
+<td style="text-align: right;">70</td>
 <td style="text-align: right;">0.81</td>
-<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">0.70</td>
 <td style="text-align: left;">2 (0-2)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">p2a</td>
-<td style="text-align: left;">Formulación hipótesis</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">1.47</td>
-<td style="text-align: right;">0.68</td>
-<td style="text-align: left;">2 (0-2)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">p2b</td>
-<td style="text-align: left;">Contraste de prueba t</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">2.59</td>
-<td style="text-align: right;">1.31</td>
-<td style="text-align: left;">4 (0-4)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">7</td>
-<td style="text-align: left;">p2c</td>
-<td style="text-align: left;">Intervalo confianza de prueba t</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">1.26</td>
-<td style="text-align: right;">0.73</td>
+<td style="text-align: left;">p2a</td>
+<td style="text-align: left;">Formulación hipótesis</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">1.47</td>
+<td style="text-align: right;">0.69</td>
 <td style="text-align: left;">2 (0-2)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">p2b</td>
+<td style="text-align: left;">Contraste de prueba t</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">2.59</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: left;">4 (0-4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">p2c</td>
+<td style="text-align: left;">Intervalo confianza de prueba t</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: left;">2 (0-2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
 <td style="text-align: left;">nota</td>
 <td style="text-align: left;">Nota final</td>
-<td style="text-align: right;">71</td>
+<td style="text-align: right;">70</td>
 <td style="text-align: right;">4.50</td>
-<td style="text-align: right;">1.42</td>
+<td style="text-align: right;">1.43</td>
 <td style="text-align: left;">6 (1-7)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">asistida</td>
+<td style="text-align: left;">Asistencia Efectiva</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">10.16</td>
+<td style="text-align: right;">1.86</td>
+<td style="text-align: left;">8 (4-12)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">asist_total</td>
+<td style="text-align: left;">Asistencia Registrada</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">10.24</td>
+<td style="text-align: right;">1.81</td>
+<td style="text-align: left;">8 (4-12)</td>
 </tr>
 </tbody>
 </table>
@@ -359,30 +390,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">notas_cat=</span><span class="fu">cut</span>(nota, <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>, <span class="cn">Inf</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Menor a 4.0"</span>,<span class="st">"4.0-5.0"</span>,<span class="st">"5.0-6.0"</span>,<span class="st">"6.0-7.0"</span>)))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(prueba1<span class="sc">$</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x &lt;categorical&gt; 
-# total N=71 valid N=71 mean=2.18 sd=1.03
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(prueba1<span class="sc">$</span>notas_cat, <span class="at">out=</span><span class="st">"browser"</span>, <span class="at">show.na =</span> <span class="cn">FALSE</span>, <span class="at">title =</span> <span class="st">"Rangos de notas"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Rangos de notas</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">val</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">frq</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">raw.prc</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">valid.prc</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">cum.prc</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Menor a 4.0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">25</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">35.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">35.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">35.71</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4.0-5.0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">20.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">20.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">55.71</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">5.0-6.0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">24</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">34.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">34.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">90.00</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">6.0-7.0</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">7</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">10.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">10.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">100.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td colspan="6" style="text-align: right; font-style: italic; border-top: double black;">total N=70 · valid N=63 · x̄=2.19 · σ=1.04</td>
+</tr>
+</tbody>
+</table>
 
-Value       |  N | Raw % | Valid % | Cum. %
--------------------------------------------
-Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
-4.0-5.0     | 15 | 21.13 |   21.13 |  56.34
-5.0-6.0     | 24 | 33.80 |   33.80 |  90.14
-6.0-7.0     |  7 |  9.86 |    9.86 | 100.00
-&lt;NA&gt;        |  0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>notas_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="preguntas-y-asociaciones" class="level2">
 <h2 class="anchored" data-anchor-id="preguntas-y-asociaciones">Preguntas y asociaciones</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_corr</span>(prueba1,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_corr</span>(prueba1,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">&nbsp;</td>
@@ -393,9 +463,13 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Contraste de prueba t</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Intervalo confianza de prueba t</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Nota final</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Asistencia Efectiva</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Asistencia Registrada</td>
 </tr>
 <tr class="even">
 <td style="font-style: italic">Intervalo de Confianza</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -413,11 +487,15 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="even">
 <td style="font-style: italic">Rechazo H0 valor p</td>
 <td style="text-align: center; padding: 0.2cm;">0.271<span style="vertical-align:super;font-size:0.8em;">*</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.399<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -433,6 +511,8 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="even">
 <td style="font-style: italic">Contraste de prueba t</td>
@@ -440,6 +520,8 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 <td style="text-align: center; padding: 0.2cm;">0.244<span style="vertical-align:super;font-size:0.8em;">*</span></td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">0.214<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm;">0.485<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -453,6 +535,8 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 <td style="text-align: center; padding: 0.2cm;">0.590<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="even">
 <td style="font-style: italic">Nota final</td>
@@ -463,17 +547,53 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 <td style="text-align: center; padding: 0.2cm;">0.849<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.772<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="odd">
-<td colspan="8" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
+<td style="font-style: italic">Asistencia Efectiva</td>
+<td style="text-align: center; padding: 0.2cm;">0.278<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.048<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.117<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.355<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.352<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.382<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.398<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Asistencia Registrada</td>
+<td style="text-align: center; padding: 0.2cm;">0.316<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.006<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.106<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.380<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.382<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.377<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.427<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.980<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td colspan="10" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_scatter</span>(prueba1, p2b, p2c)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prueba1, <span class="fu">aes</span>(<span class="at">x =</span> asist_total, <span class="at">y =</span> nota)) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación entre asistencia y notas en Evaluación 1 (r=0.43)"</span>) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Asistencia"</span>, <span class="at">y =</span> <span class="st">"Nota"</span>) <span class="sc">+</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),        <span class="co"># Tamaño de las etiquetas de los ejes</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span>       <span class="co"># Tamaño del texto de los ejes</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span><span class="sc">/</span><span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>,         <span class="co"># Tamaño del título</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">face =</span> <span class="st">"bold"</span>,     <span class="co"># Tipo de letra (negrita)</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)) <span class="sc">+</span>   <span class="co"># Ajuste del eje de asistencia</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="at">by =</span> <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))       <span class="co"># Ajuste del eje de notas de 1 a 7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -482,19 +602,148 @@ Menor a 4.0 | 25 | 35.21 |   35.21 |  35.21
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">asist_total_cat=</span><span class="fu">cut</span>(asist_total, <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="cn">Inf</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Menos de 8"</span>,<span class="st">"8"</span>,<span class="st">"9"</span>,<span class="st">"10"</span>,<span class="st">"11"</span>,<span class="st">"12"</span>)))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(prueba1<span class="sc">$</span>asist_total_cat, <span class="at">out=</span><span class="st">"browser"</span>, <span class="at">show.na =</span> <span class="cn">FALSE</span>, <span class="at">title =</span> <span class="st">"Asistencia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Asistencia</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">val</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">frq</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">raw.prc</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">valid.prc</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; padding: 0.2cm; border-bottom: 1px solid black;">cum.prc</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Menos de 8</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">8.57</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">8.57</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">8.57</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">8</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">5.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">5.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">14.29</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">9</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">14.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">14.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">28.57</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">15.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">15.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">44.29</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">27.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">27.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">71.43</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">28.57</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">28.57</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; border-bottom: 1px solid;">100.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td colspan="6" style="text-align: right; font-style: italic; border-top: double black;">total N=70 · valid N=50 · x̄=4.33 · σ=1.58</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="sc">%&gt;%</span> <span class="co"># se especifica la base de datos</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(asist_total_cat, nota)  <span class="sc">%&gt;%</span> <span class="co"># se seleccionan las variables</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(<span class="at">Asistencia=</span>sjlabelled<span class="sc">::</span><span class="fu">as_label</span>(asist_total_cat)) <span class="sc">%&gt;%</span> <span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Obs.=</span><span class="fu">n</span>(),<span class="at">Promedio=</span><span class="fu">round</span>(<span class="fu">mean</span>(nota),<span class="dv">2</span>),<span class="at">SD=</span><span class="fu">round</span>(<span class="fu">sd</span>(nota),<span class="dv">2</span>)) <span class="sc">%&gt;%</span> <span class="co"># se agregan las operaciones a presentar en la tabla</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(, <span class="at">format =</span> <span class="st">"markdown"</span>) <span class="co"># se genera la tabla</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Asistencia</th>
+<th style="text-align: right;">Obs.</th>
+<th style="text-align: right;">Promedio</th>
+<th style="text-align: right;">SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Menos de 8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">1.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3.40</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4.33</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4.46</td>
+<td style="text-align: right;">1.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">1.44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5.16</td>
+<td style="text-align: right;">0.98</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prueba1 <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>asist_total_cat)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Consistencia interna</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ltm)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>preguntas <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>nota)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(<span class="fu">na.omit</span>(preguntas))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ltm)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>preguntas <span class="ot">&lt;-</span> prueba1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>nota)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(<span class="fu">na.omit</span>(preguntas))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Cronbach's alpha for the 'na.omit(preguntas)' data-set
 
-Items: 6
-Sample units: 71
-alpha: 0.677</code></pre>
+Items: 8
+Sample units: 70
+alpha: 0.753</code></pre>
 </div>
 </div>
 
@@ -538,18 +787,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -581,7 +819,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/correlacional\.netlify\.app");
@@ -589,7 +849,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
