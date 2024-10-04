@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -212,21 +232,23 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#recursos-de-la-práctica" id="toc-recursos-de-la-práctica" class="nav-link" data-scroll-target="#recursos-de-la-práctica">Recursos de la práctica</a></li>
   </ul></li>
-  <li><a href="#preparación-de-datos" id="toc-preparación-de-datos" class="nav-link" data-scroll-target="#preparación-de-datos">1. Preparación de datos</a></li>
-  <li><a href="#entonces-qué-técnica-usar" id="toc-entonces-qué-técnica-usar" class="nav-link" data-scroll-target="#entonces-qué-técnica-usar">2. Entonces, ¿qué técnica usar?</a></li>
-  <li><a href="#correlación-de-spearman-y-kendall" id="toc-correlación-de-spearman-y-kendall" class="nav-link" data-scroll-target="#correlación-de-spearman-y-kendall">3. Correlación de Spearman y Kendall</a>
+  <li><a href="#datos-y-librerías" id="toc-datos-y-librerías" class="nav-link" data-scroll-target="#datos-y-librerías">2. Datos y librerías</a></li>
+  <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis">3. Análisis</a>
   <ul class="collapse">
-  <li><a href="#coeficiente-de-correlación-de-spearman" id="toc-coeficiente-de-correlación-de-spearman" class="nav-link" data-scroll-target="#coeficiente-de-correlación-de-spearman">Coeficiente de correlación de Spearman</a></li>
-  <li><a href="#coeficiente-de-correlación-tau-de-kendall" id="toc-coeficiente-de-correlación-tau-de-kendall" class="nav-link" data-scroll-target="#coeficiente-de-correlación-tau-de-kendall">Coeficiente de correlación Tau de Kendall</a></li>
-  </ul></li>
-  <li><a href="#tratamiento-de-casos-perdidos" id="toc-tratamiento-de-casos-perdidos" class="nav-link" data-scroll-target="#tratamiento-de-casos-perdidos">4. Tratamiento de casos perdidos</a>
+  <li><a href="#correlación-para-variables-ordinales" id="toc-correlación-para-variables-ordinales" class="nav-link" data-scroll-target="#correlación-para-variables-ordinales">3.1 Correlación para variables ordinales</a>
   <ul class="collapse">
-  <li><a href="#a-analísis-con-casos-completos-listwise-deletion" id="toc-a-analísis-con-casos-completos-listwise-deletion" class="nav-link" data-scroll-target="#a-analísis-con-casos-completos-listwise-deletion">a) Analísis con casos completos: listwise deletion</a></li>
-  <li><a href="#b-retener-pero-excluir-pairwise-deletion" id="toc-b-retener-pero-excluir-pairwise-deletion" class="nav-link" data-scroll-target="#b-retener-pero-excluir-pairwise-deletion">b) Retener pero excluir: pairwise deletion</a></li>
+  <li><a href="#coeficiente-de-correlación-de-spearman" id="toc-coeficiente-de-correlación-de-spearman" class="nav-link" data-scroll-target="#coeficiente-de-correlación-de-spearman">3.1.1 Coeficiente de correlación de Spearman</a></li>
+  <li><a href="#coeficiente-de-correlación-tau-de-kendall" id="toc-coeficiente-de-correlación-tau-de-kendall" class="nav-link" data-scroll-target="#coeficiente-de-correlación-tau-de-kendall">3.1.2 Coeficiente de correlación Tau de Kendall</a></li>
   </ul></li>
-  <li><a href="#matrices-de-correlación" id="toc-matrices-de-correlación" class="nav-link" data-scroll-target="#matrices-de-correlación">5. Matrices de correlación</a></li>
-  <li><a href="#baterías-e-índices" id="toc-baterías-e-índices" class="nav-link" data-scroll-target="#baterías-e-índices">6. Baterías e índices</a></li>
-  <li><a href="#respuesta-a-la-pregunta-de-investigación" id="toc-respuesta-a-la-pregunta-de-investigación" class="nav-link" data-scroll-target="#respuesta-a-la-pregunta-de-investigación">7. Respuesta a la pregunta de investigación</a>
+  <li><a href="#tratamiento-de-casos-perdidos" id="toc-tratamiento-de-casos-perdidos" class="nav-link" data-scroll-target="#tratamiento-de-casos-perdidos">3.2 Tratamiento de casos perdidos</a>
+  <ul class="collapse">
+  <li><a href="#analísis-con-casos-completos-listwise-deletion" id="toc-analísis-con-casos-completos-listwise-deletion" class="nav-link" data-scroll-target="#analísis-con-casos-completos-listwise-deletion">3.2.1 Analísis con casos completos: listwise deletion</a></li>
+  <li><a href="#retener-pero-excluir-pairwise-deletion" id="toc-retener-pero-excluir-pairwise-deletion" class="nav-link" data-scroll-target="#retener-pero-excluir-pairwise-deletion">3.2.2 Retener pero excluir: pairwise deletion</a></li>
+  </ul></li>
+  <li><a href="#matrices-de-correlación" id="toc-matrices-de-correlación" class="nav-link" data-scroll-target="#matrices-de-correlación">3.3 Matrices de correlación</a></li>
+  <li><a href="#baterías-e-índices" id="toc-baterías-e-índices" class="nav-link" data-scroll-target="#baterías-e-índices">3.4 Baterías e índices</a></li>
+  </ul></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">4. Conclusiones</a>
   <ul class="collapse">
   <li><a href="#pregunta-1" id="toc-pregunta-1" class="nav-link" data-scroll-target="#pregunta-1">Pregunta 1</a></li>
   <li><a href="#pregunta-2" id="toc-pregunta-2" class="nav-link" data-scroll-target="#pregunta-2">Pregunta 2</a></li>
@@ -257,22 +279,22 @@ window.Quarto = {
 <li>Tratamiento de casos perdidos</li>
 <li>Analizar baterías de indicadores y generar índices</li>
 </ol>
-<p>Utilizaremos un ejemplo que desarrollaremos progresivamente para ilustrar cada paso. Al finalizar, se propondrá un ejercicio autónomo que deberá resolverse de manera individual o grupal.</p>
+<p>En esta guía utilizaremos un ejemplo que desarrollaremos progresivamente para exponer los contenidos. Al final de esta guía se proporciona un ejercicio autónomo que deberá resolver de manera individual o grupal tomando como referencia el ejemplo aquí expuesto.</p>
 </section>
 <section id="pregunta-de-investigación" class="level1">
 <h1>1. Pregunta de investigación</h1>
-<p>El aumento de la desigualdad económica y la concentración de la riqueza se han vinculado al resurgimiento de diversos conflictos sociales a nivel global. En este contexto, varios estudios han explorado en qué medida los individuos perciben conflictos sociales entre grupos, especialmente aquellos organizados verticalmente, como ricos-pobres o trabajadores-empresarios (cf.&nbsp;Edlund &amp; Lindh, 2015; Hadler, 2015).</p>
-<p>La investigación ha demostrado que las percepciones de conflicto social se asocian tanto a desigualdades objetivas como subjetivas. Por un lado, en países más desiguales y entre personas de menor estatus socioeconómico, estas percepciones tienden a ser mayores (Edlund &amp; Lindh, 2015). Por otro lado, quienes se ubican en posiciones más bajas de la estructura social perciben más conflictos, siendo estas percepciones influenciadas por la percepción de desigualdad económica (Hadler, 2015; Hertel &amp; Schöneck, 2019).</p>
-<p>Sin embargo, en la literatura aún no se ha analizado cómo la percepción de desigualdad afecta las percepciones de conflicto social ni se ha examinado la consistencia de los indicadores utilizados para medirlas. Estas preguntas las responderemos estudiando el caso de Chile, un país que se caracteriza por sus altos niveles de desigualdad y concentración de la riqueza (Chancel, et al.&nbsp;2022).</p>
+<p>El aumento de la desigualdad económica y la concentración de la riqueza se han vinculado al resurgimiento de diversos conflictos sociales a nivel global. En este contexto, varios estudios han explorado en qué medida los individuos perciben conflictos sociales entre grupos, especialmente aquellos organizados verticalmente en la estructura social, como ricos-pobres o trabajadores-empresarios <span class="citation" data-cites="edlundDemocraticClassStruggle2015a hadlerSocialConflictPerception2017a">(<a href="#ref-edlundDemocraticClassStruggle2015a" role="doc-biblioref">Edlund &amp; Lindh, 2015</a>; <a href="#ref-hadlerSocialConflictPerception2017a" role="doc-biblioref">Hadler, 2017</a>)</span>.</p>
+<p>La investigación ha demostrado que las percepciones de conflicto social se asocian tanto a desigualdades objetivas como subjetivas. Por un lado, en países más desiguales y entre personas de menor estatus socioeconómico, estas percepciones tienden a ser mayores <span class="citation" data-cites="edlundDemocraticClassStruggle2015a">(<a href="#ref-edlundDemocraticClassStruggle2015a" role="doc-biblioref">Edlund &amp; Lindh, 2015</a>)</span>. Por otro lado, quienes se auto-ubican en las posiciones más bajas de la estructura social perciben más conflictos, a la vez que las creencias de vivir en una sociedad de clase media o mayormente igualitaria mediatiza el efecto que tienen diferentes factores tanto objetivos como subjetivos <span class="citation" data-cites="hadlerSocialConflictPerception2017a hertelConflictPerceptions272019a">(<a href="#ref-hadlerSocialConflictPerception2017a" role="doc-biblioref">Hadler, 2017</a>; <a href="#ref-hertelConflictPerceptions272019a" role="doc-biblioref">Hertel &amp; Schöneck, 2019</a>)</span> .</p>
+<p>Sin embargo, en la literatura aún no se ha analizado cómo la percepción de desigualdad afecta las percepciones de conflicto social ni se ha examinado la consistencia de los indicadores utilizados para medirlas. Estas preguntas las responderemos estudiando el caso de Chile, un país que se caracteriza por sus altos niveles de desigualdad económica y concentración de la riqueza <span class="citation" data-cites="chancelWorldInequalityReport2022">(<a href="#ref-chancelWorldInequalityReport2022" role="doc-biblioref">Chancel et&nbsp;al., 2022</a>)</span>.</p>
 <p><strong>Pregunta 1</strong>: <em>¿En qué medida se relacionan la percepción de desigualdad y la percepción de conflictos sociales en Chile?</em></p>
 <p><strong>Pregunta 2</strong>: <em>¿Cómo se relacionan los distintos indicadores utilizados para medir la percepción de conflictos sociales?</em></p>
 <section id="recursos-de-la-práctica" class="level2">
 <h2 class="anchored" data-anchor-id="recursos-de-la-práctica">Recursos de la práctica</h2>
-<p>En esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuesta del Modulo de Desigualdad Social de la <a href="https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2009">International Social Survey Programme (ISSP)</a> para Chile del año 2009. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace: <a href="https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/issp_2009_chile.RData"><i class="fa-solid fa-table" aria-label="table"></i> <code>ISSP Chile 2009</code></a>. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ISSP 2009 para Chile.</p>
+<p>En esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuesta del Módulo de Desigualdad Social de la <a href="https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2009">International Social Survey Programme (ISSP)</a> para Chile del año 2009. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace: <a href="https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/issp_2009_chile.RData"><i class="fa-solid fa-table" aria-label="table"></i> <code>ISSP Chile 2009</code></a>. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ISSP 2009 para Chile.</p>
 </section>
 </section>
-<section id="preparación-de-datos" class="level1">
-<h1>1. Preparación de datos</h1>
+<section id="datos-y-librerías" class="level1">
+<h1>2. Datos y librerías</h1>
 <p>Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># Manipulacion datos</span></span>
@@ -309,9 +331,8 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>proc_issp <span class="ot">&lt;-</span> issp <span class="sc">%&gt;%</span> <span class="co"># seleccionamos</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(educyrs,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  income,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  topbot,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                  perc_ineq,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">starts_with</span>(<span class="st">"conflict"</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  perc_ineq,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">starts_with</span>(<span class="st">"conflict"</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ahora, exploremos estadísticos descriptivos de nuestra base procesada <code>proc_issp</code></p>
 <div class="cell">
@@ -364,16 +385,6 @@ window.Quarto = {
 <td style="text-align: left;">9 (1-10)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">topbot</td>
-<td style="text-align: left;">Estatus social subjetivo</td>
-<td style="text-align: right;">1490</td>
-<td style="text-align: right;">0.9966777</td>
-<td style="text-align: right;">4.025503</td>
-<td style="text-align: right;">1.6599884</td>
-<td style="text-align: left;">9 (1-10)</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">7</td>
 <td style="text-align: left;">perc_ineq</td>
 <td style="text-align: left;">Percepción desigualdad</td>
@@ -383,7 +394,7 @@ window.Quarto = {
 <td style="text-align: right;">0.8271374</td>
 <td style="text-align: left;">4 (1-5)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2</td>
 <td style="text-align: left;">conflict_rp</td>
 <td style="text-align: left;">Conflictos: ricos - pobres</td>
@@ -393,7 +404,7 @@ window.Quarto = {
 <td style="text-align: right;">0.8665370</td>
 <td style="text-align: left;">3 (0-3)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">4</td>
 <td style="text-align: left;">conflict_wcmc</td>
 <td style="text-align: left;">Conflictos: clase trabajadora - clase media</td>
@@ -403,7 +414,7 @@ window.Quarto = {
 <td style="text-align: right;">0.8965377</td>
 <td style="text-align: left;">3 (0-3)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">conflict_mw</td>
 <td style="text-align: left;">Conflictos: directivos - trabajadores</td>
@@ -413,7 +424,7 @@ window.Quarto = {
 <td style="text-align: right;">0.8304120</td>
 <td style="text-align: left;">3 (0-3)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">3</td>
 <td style="text-align: left;">conflict_tb</td>
 <td style="text-align: left;">Conflictos: gente de arriba - gente de abajo</td>
@@ -427,10 +438,9 @@ window.Quarto = {
 </table>
 </div>
 </div>
-<p>Vamos con nuestros análisis para responder nuestras preguntas, pero antes…</p>
 </section>
-<section id="entonces-qué-técnica-usar" class="level1">
-<h1>2. Entonces, ¿qué técnica usar?</h1>
+<section id="análisis" class="level1">
+<h1>3. Análisis</h1>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -441,15 +451,15 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Entonces, ¿qué herrramienta usar?</strong></p>
 <p><strong>Pregunta 1</strong>: Dado que las variables de percepción de conflictos y percepción de desigualdad son de nivel de medición ordinal, podemos estimar su asociación con coeficientes de correlación para variables ordinales.</p>
 <p><strong>Pregunta 2</strong>: Podemos estimar una matriz de correlaciones entre las variables de percepción de conflictos tratando los casos pérdidos. Luego, podemos estimar la consistencia interna (alpha de Cronbach) para generar un índice promedio.</p>
 </div>
 </div>
-</section>
-<section id="correlación-de-spearman-y-kendall" class="level1">
-<h1>3. Correlación de Spearman y Kendall</h1>
-<section id="coeficiente-de-correlación-de-spearman" class="level2">
-<h2 class="anchored" data-anchor-id="coeficiente-de-correlación-de-spearman">Coeficiente de correlación de Spearman</h2>
+<section id="correlación-para-variables-ordinales" class="level2">
+<h2 class="anchored" data-anchor-id="correlación-para-variables-ordinales">3.1 Correlación para variables ordinales</h2>
+<section id="coeficiente-de-correlación-de-spearman" class="level3">
+<h3 class="anchored" data-anchor-id="coeficiente-de-correlación-de-spearman">3.1.1 Coeficiente de correlación de Spearman</h3>
 <p>Cuando queremos conocer la asociación entre variables que son ordinales y/o cuando nuestras variables no cumplen con los supuestos de distribución normal, podemos utilizar la correlación de Spearman.</p>
 <ul>
 <li>Emplea rangos en lugar de valores numéricos para evaluar la relación.</li>
@@ -503,8 +513,8 @@ sample estimates:
 </div>
 <p>Ahora conocemos el valor del coeficiente de Spearman mediante al argumento <code>rho</code>, que es igual a 0.12, siendo positivo y pequeño según los criterios de Cohen (1988).</p>
 </section>
-<section id="coeficiente-de-correlación-tau-de-kendall" class="level2">
-<h2 class="anchored" data-anchor-id="coeficiente-de-correlación-tau-de-kendall">Coeficiente de correlación Tau de Kendall</h2>
+<section id="coeficiente-de-correlación-tau-de-kendall" class="level3">
+<h3 class="anchored" data-anchor-id="coeficiente-de-correlación-tau-de-kendall">3.1.2 Coeficiente de correlación Tau de Kendall</h3>
 <p>Recomendado cuando hay un set de datos pequeños y/o cuando hay mucha repetición de observaciones en el mismo ranking. Se basa en una comparación de pares de observaciones concordantes y discordantes.</p>
 <p>Ahora, calculemos el coeficiente de correlación Tau de Kendall con cor.test.</p>
 <div class="cell">
@@ -525,8 +535,8 @@ sample estimates:
 <p><strong>¿PERO QUÉ HACER CON LOS CASOS PÉRDIDOS?</strong></p>
 </section>
 </section>
-<section id="tratamiento-de-casos-perdidos" class="level1">
-<h1>4. Tratamiento de casos perdidos</h1>
+<section id="tratamiento-de-casos-perdidos" class="level2">
+<h2 class="anchored" data-anchor-id="tratamiento-de-casos-perdidos">3.2 Tratamiento de casos perdidos</h2>
 <p>Trabajar con datos a menudo implica enfrentar valores perdidos (<code>NA</code>), lo que puede ser un gran desafío. Estos valores <em>indican la ausencia de un valor en una base de datos</em>. Los valores perdidos pueden originarse por diversas razones, como el sesgo de no respuesta en encuestas, errores en la entrada de datos o simplemente la falta de información para ciertas variables.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -535,10 +545,10 @@ sample estimates:
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ff3331 !important;">X1</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ff3331 !important;">X2</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ff3331 !important;">X3</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold; color: white !important; background-color: #ff3331 !important;">X4</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X1</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X2</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X3</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X4</th>
 </tr>
 </thead>
 <tbody>
@@ -546,31 +556,31 @@ sample estimates:
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">Hola</td>
+<td style="text-align: right; width: 4cm;">Hola</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">7</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: left;">No soy un NA</td>
+<td style="text-align: right; width: 4cm;">No soy un NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">8</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right; width: 4cm;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">9</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: left;">Amo R</td>
+<td style="text-align: right; width: 4cm;">Amo R</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">6</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right; width: 4cm;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -586,12 +596,12 @@ sample estimates:
 <li>trabajar exclusivamente con casos completos (listwise) o</li>
 <li>retener los casos con valores perdidos, pero excluyéndolos al calcular estadísticas (pairwise).</li>
 </ul>
-<section id="a-analísis-con-casos-completos-listwise-deletion" class="level3">
-<h3 class="anchored" data-anchor-id="a-analísis-con-casos-completos-listwise-deletion">a) Analísis con casos completos: listwise deletion</h3>
+<section id="analísis-con-casos-completos-listwise-deletion" class="level3">
+<h3 class="anchored" data-anchor-id="analísis-con-casos-completos-listwise-deletion">3.2.1 Analísis con casos completos: listwise deletion</h3>
 <p>Este enfoque es uno de los más conocidos: implica remover completamente las observaciones que tienen valores perdidos en cualquier variable de interés. En otras palabras, si una fila/caso en un conjunto de datos tiene al menos un valor faltante en alguna de las variables que estás considerando, se eliminará por completo.</p>
 <p>En R, esto podemos hacerlo con la función <code>na.omit</code>. Para hacer esto, sigamos estos pasos:</p>
 <ul>
-<li>respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos)-</li>
+<li>respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos)</li>
 <li>contamos el número de casos con el comando <code>dim</code>.</li>
 <li>contamos cuántos y en dónde tenemos casos perdidos.</li>
 <li>borramos los casos perdidos con <code>na.omit</code>.</li>
@@ -601,29 +611,29 @@ sample estimates:
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>proc_issp_original <span class="ot">&lt;-</span> proc_issp</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(proc_issp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1505    8</code></pre>
+<pre><code>[1] 1505    7</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(proc_issp))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 745</code></pre>
+<pre><code>[1] 730</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(proc_issp))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      educyrs        income        topbot     perc_ineq   conflict_rp 
-           54           359            15            13            67 
-conflict_wcmc   conflict_mw   conflict_tb 
-           79            78            80 </code></pre>
+<pre><code>      educyrs        income     perc_ineq   conflict_rp conflict_wcmc 
+           54           359            13            67            79 
+  conflict_mw   conflict_tb 
+           78            80 </code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>proc_issp <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(proc_issp)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(proc_issp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1021    8</code></pre>
+<pre><code>[1] 1025    7</code></pre>
 </div>
 </div>
 <p>Ahora nos quedamos con 1021 observaciones sin casos perdidos.</p>
@@ -632,8 +642,8 @@ conflict_wcmc   conflict_mw   conflict_tb
 <p>Siempre hay que intentar rescatar la mayor cantidad de casos posibles. Por lo tanto, si un listwise genera más de un 10% de casos perdidos se debe detectar qué variables esta produciendo esta pérdida e intentar recuperar datos. Puedes revisar un ejemplo <a href="https://multivariada.netlify.app/assignment/11-code/#recuperar-casos-perdidos-ejemplo-variable-ingresos">aquí.</a></p>
 </div>
 </section>
-<section id="b-retener-pero-excluir-pairwise-deletion" class="level3">
-<h3 class="anchored" data-anchor-id="b-retener-pero-excluir-pairwise-deletion">b) Retener pero excluir: pairwise deletion</h3>
+<section id="retener-pero-excluir-pairwise-deletion" class="level3">
+<h3 class="anchored" data-anchor-id="retener-pero-excluir-pairwise-deletion">3.2.2 Retener pero excluir: pairwise deletion</h3>
 <p>A diferencia del anterior, este es un enfoque en el que las observaciones se utilizan para el análisis siempre que tengan datos disponibles para las variables específicas que se están analizando. En lugar de eliminar toda una fila si falta un valor, se eliminan solo los valores faltantes en las variables que se están analizando en ese momento.</p>
 <p>Para hacer esto en R debemos siempre verificar e indicar en nuestro código si queremos (o no) remover los <code>NA</code> para realizar los análisis.</p>
 <div class="cell">
@@ -655,32 +665,30 @@ conflict_wcmc   conflict_mw   conflict_tb
 <p>Con el primer código no obtuvimos información sustantiva en ciertas variables, pero con el segundo sí al remover los <code>NA</code> solo de dicha variable para un cálculo determinado.</p>
 </section>
 </section>
-<section id="matrices-de-correlación" class="level1">
-<h1>5. Matrices de correlación</h1>
+<section id="matrices-de-correlación" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-de-correlación">3.3 Matrices de correlación</h2>
 <p>La correlación es una estimación de asociación de dos variables. Sin embargo, en los análisis de bases de datos usualmente se exploran asociaciones entre múltiples pares de variables, lo que genera una matriz de correlación. En una matriz, las variables se presentan en las filas y las columnas, y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.</p>
 <p>En su forma simple en R se aplica la función <code>cor</code> a la base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(proc_issp_original, <span class="at">use =</span> <span class="st">"complete.obs"</span>) </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                  educyrs       income      topbot   perc_ineq conflict_rp
-educyrs        1.00000000  0.429527855  0.40464701  0.05369064 -0.08653773
-income         0.42952785  1.000000000  0.31867065  0.05266991 -0.06233270
-topbot         0.40464701  0.318670648  1.00000000 -0.04046890 -0.09543086
-perc_ineq      0.05369064  0.052669910 -0.04046890  1.00000000  0.07244029
-conflict_rp   -0.08653773 -0.062332705 -0.09543086  0.07244029  1.00000000
-conflict_wcmc -0.13270803 -0.127695665 -0.10271518 -0.02023346  0.49981470
-conflict_mw   -0.00320080 -0.009719637 -0.08839869  0.09639380  0.49465050
-conflict_tb   -0.01935586 -0.006374423 -0.07742800  0.09545628  0.66631094
-              conflict_wcmc  conflict_mw  conflict_tb
-educyrs         -0.13270803 -0.003200800 -0.019355856
-income          -0.12769567 -0.009719637 -0.006374423
-topbot          -0.10271518 -0.088398687 -0.077427998
-perc_ineq       -0.02023346  0.096393796  0.095456283
-conflict_rp      0.49981470  0.494650501  0.666310943
-conflict_wcmc    1.00000000  0.448317804  0.413692854
-conflict_mw      0.44831780  1.000000000  0.524011301
-conflict_tb      0.41369285  0.524011301  1.000000000</code></pre>
+<pre><code>                   educyrs       income   perc_ineq conflict_rp conflict_wcmc
+educyrs        1.000000000  0.432514770  0.05504904 -0.08841474   -0.13352776
+income         0.432514770  1.000000000  0.05477385 -0.06418553   -0.12973731
+perc_ineq      0.055049043  0.054773853  1.00000000  0.06824227   -0.02485978
+conflict_rp   -0.088414736 -0.064185525  0.06824227  1.00000000    0.50032361
+conflict_wcmc -0.133527759 -0.129737308 -0.02485978  0.50032361    1.00000000
+conflict_mw   -0.002602596 -0.009135604  0.09567990  0.49448964    0.44732312
+conflict_tb   -0.021292335 -0.008221726  0.09164984  0.66745078    0.41433338
+               conflict_mw  conflict_tb
+educyrs       -0.002602596 -0.021292335
+income        -0.009135604 -0.008221726
+perc_ineq      0.095679896  0.091649843
+conflict_rp    0.494489639  0.667450775
+conflict_wcmc  0.447323122  0.414333385
+conflict_mw    1.000000000  0.524006738
+conflict_tb    0.524006738  1.000000000</code></pre>
 </div>
 </div>
 <p>Este es el reporte simple, pero no muy amigable a la vista. Para una versión más reportable, utilizamos la funcion <code>tab_corr</code>.</p>
@@ -691,22 +699,20 @@ conflict_tb      0.41369285  0.524011301  1.000000000</code></pre>
 <div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
 </colgroup>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">&nbsp;</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Nivel educativo</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Decil ingreso</td>
-<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Estatus social subjetivo</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Percepción desigualdad</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Conflictos: ricos - pobres</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Conflictos: clase trabajadora - clase<br>
@@ -724,12 +730,10 @@ abajo</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="odd">
 <td style="font-style: italic">Decil ingreso</td>
-<td style="text-align: center; padding: 0.2cm;">0.430<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">0.433<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -738,75 +742,59 @@ abajo</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="even">
-<td style="font-style: italic">Estatus social subjetivo</td>
-<td style="text-align: center; padding: 0.2cm;">0.405<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.319<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-</tr>
-<tr class="odd">
 <td style="font-style: italic">Percepción desigualdad</td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">0.054<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">0.053<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.040<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.055<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.055<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-</tr>
-<tr class="even">
-<td style="font-style: italic">Conflictos: ricos - pobres</td>
-<td style="text-align: center; padding: 0.2cm;">-0.087<span style="vertical-align:super;font-size:0.8em;">**</span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.062<span style="vertical-align:super;font-size:0.8em;">*</span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.095<span style="vertical-align:super;font-size:0.8em;">**</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.072<span style="vertical-align:super;font-size:0.8em;">*</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="odd">
+<td style="font-style: italic">Conflictos: ricos - pobres</td>
+<td style="text-align: center; padding: 0.2cm;">-0.088<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">-0.064<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.068<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
 <td style="font-style: italic">Conflictos: clase trabajadora - clase<br>
 media</td>
-<td style="text-align: center; padding: 0.2cm;">-0.133<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.128<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.103<span style="vertical-align:super;font-size:0.8em;">**</span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.020<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">-0.134<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">-0.130<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.025<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm;">0.500<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="font-style: italic">Conflictos: directivos - trabajadores</td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">-0.003<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.010<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.088<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.009<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm;">0.096<span style="vertical-align:super;font-size:0.8em;">**</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.495<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.448<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.494<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.447<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="font-style: italic">Conflictos: gente de arriba - gente de<br>
 abajo</td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.019<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.006<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.077<span style="vertical-align:super;font-size:0.8em;">*</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.095<span style="vertical-align:super;font-size:0.8em;">**</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.666<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.021<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.008<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.092<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.667<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.414<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.524<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="even">
-<td colspan="9" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
+<tr class="odd">
+<td colspan="8" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
 </tr>
 </tbody>
 </table>
@@ -823,22 +811,20 @@ abajo</td>
 <div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
 </colgroup>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">&nbsp;</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Nivel educativo</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Decil ingreso</td>
-<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Estatus social subjetivo</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Percepción desigualdad</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Conflictos: ricos - pobres</td>
 <td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Conflictos: clase trabajadora - clase<br>
@@ -849,7 +835,6 @@ abajo</td>
 </tr>
 <tr class="even">
 <td style="font-style: italic">Nivel educativo</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -867,13 +852,11 @@ abajo</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="even">
-<td style="font-style: italic">Estatus social subjetivo</td>
-<td style="text-align: center; padding: 0.2cm;">0.402<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.326<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="font-style: italic">Percepción desigualdad</td>
+<td style="text-align: center; padding: 0.2cm;">0.057<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.041<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -881,64 +864,49 @@ abajo</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="odd">
-<td style="font-style: italic">Percepción desigualdad</td>
-<td style="text-align: center; padding: 0.2cm;">0.057<span style="vertical-align:super;font-size:0.8em;">*</span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">0.041<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.034<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
-</tr>
-<tr class="even">
 <td style="font-style: italic">Conflictos: ricos - pobres</td>
 <td style="text-align: center; padding: 0.2cm;">-0.068<span style="vertical-align:super;font-size:0.8em;">*</span></td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">-0.057<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.094<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.087<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="font-style: italic">Conflictos: clase trabajadora - clase<br>
 media</td>
 <td style="text-align: center; padding: 0.2cm;">-0.139<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">-0.122<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.118<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">-0.025<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm;">0.518<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="font-style: italic">Conflictos: directivos - trabajadores</td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">-0.016<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">-0.005<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.079<span style="vertical-align:super;font-size:0.8em;">**</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.100<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.499<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.438<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="font-style: italic">Conflictos: gente de arriba - gente de<br>
 abajo</td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">-0.037<span style="vertical-align:super;font-size:0.8em;"></span></td>
 <td style="text-align: center; padding: 0.2cm; color: #999999;">0.007<span style="vertical-align:super;font-size:0.8em;"></span></td>
-<td style="text-align: center; padding: 0.2cm;">-0.076<span style="vertical-align:super;font-size:0.8em;">**</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.089<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.651<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.441<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.527<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
-<tr class="even">
-<td colspan="9" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with pairwise-deletion.</td>
+<tr class="odd">
+<td colspan="8" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with pairwise-deletion.</td>
 </tr>
 </tbody>
 </table>
@@ -972,8 +940,8 @@ abajo</td>
 </div>
 </div>
 </section>
-<section id="baterías-e-índices" class="level1">
-<h1>6. Baterías e índices</h1>
+<section id="baterías-e-índices" class="level2">
+<h2 class="anchored" data-anchor-id="baterías-e-índices">3.4 Baterías e índices</h2>
 <p>En la literatura sobre percepción de conflictos se suele utilizar un índice sumativo o promedio entre los distintos indicadores sobre conflictos percibidos: <code>conflict_rp</code>,<code>conflict_wcmc</code>,<code>conflict_mw</code>,<code>conflict_tb</code>.</p>
 <p>Entonces, para poder responder nuestras preguntas de investigación, primero generaremos una matriz de correlaciones entre estos indicadores, luego evaluaremos su consistencia y generaremos el índice <code>psci</code>. Finalmente, realizaremos un test de correlación para examinar la asociación entre <code>psci</code> y <code>perc_ineq</code>.</p>
 <div class="cell">
@@ -1020,15 +988,15 @@ media</td>
 </tr>
 <tr class="even">
 <td style="font-style: italic">Conflictos: directivos - trabajadores</td>
-<td style="text-align: center; padding: 0.2cm;">0.495<span style="vertical-align:super;font-size:0.8em;">***</span></td>
-<td style="text-align: center; padding: 0.2cm;">0.448<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.494<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.447<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
 </tr>
 <tr class="odd">
 <td style="font-style: italic">Conflictos: gente de arriba - gente de<br>
 abajo</td>
-<td style="text-align: center; padding: 0.2cm;">0.666<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.667<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.414<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">0.524<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 <td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
@@ -1046,7 +1014,7 @@ abajo</td>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>alpha_psci <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(M_psci)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>alpha_psci<span class="sc">$</span>total<span class="sc">$</span>raw_alpha</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8043218</code></pre>
+<pre><code>[1] 0.8044404</code></pre>
 </div>
 </div>
 <p>De acuerdo con este resultado, el alpha de Cronbach reflejado en el <code>raw_alpha</code> del output es superior al estandar de 0.6 en ciencias sociales, por lo que se sostiene su consistencia.</p>
@@ -1071,10 +1039,10 @@ abajo</td>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">dd</td>
-<td style="text-align: right;">1021</td>
+<td style="text-align: right;">1025</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1.584966</td>
-<td style="text-align: right;">0.6986975</td>
+<td style="text-align: right;">1.585122</td>
+<td style="text-align: right;">0.6986039</td>
 <td style="text-align: left;">3 (0-3)</td>
 </tr>
 </tbody>
@@ -1082,8 +1050,9 @@ abajo</td>
 </div>
 </div>
 </section>
-<section id="respuesta-a-la-pregunta-de-investigación" class="level1">
-<h1>7. Respuesta a la pregunta de investigación</h1>
+</section>
+<section id="conclusiones" class="level1">
+<h1>4. Conclusiones</h1>
 <section id="pregunta-1" class="level3">
 <h3 class="anchored" data-anchor-id="pregunta-1">Pregunta 1</h3>
 <p><em>¿En qué medida se relacionan la percepción de desigualdad y la percepción de conflictos sociales en Chile?</em></p>
@@ -1095,13 +1064,13 @@ abajo</td>
     Pearson's product-moment correlation
 
 data:  proc_issp$psci and proc_issp$perc_ineq
-t = 2.4371, df = 1019, p-value = 0.01497
+t = 2.3043, df = 1023, p-value = 0.02141
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.01484301 0.13683850
+ 0.01067288 0.13250704
 sample estimates:
-       cor 
-0.07612564 </code></pre>
+     cor 
+0.071858 </code></pre>
 </div>
 </div>
 <p>De acuerdo a este resultado, la correlación de Pearson entre la percepción de conflicto social y la percepción de desigualdad es positiva, muy pequeña y estadisticamente significativa (<span class="math inline">\(r\)</span> = 0.08, <span class="math inline">\(p\)</span> &lt; 0.05).</p>
@@ -1114,15 +1083,32 @@ sample estimates:
 </section>
 <section id="ejercicio-autónomo" class="level1">
 <h1>Ejercicio autónomo</h1>
-<p>A partir de la base de datos de <code>proc_issp</code> responda la siguiente pregunta <em>¿en qué medida la percepción de conflictos se asocia con el estatus socioeconomico de las personas</em> Para responder esta pregunta siga los siguientes pasos:</p>
+<p>A partir de la base de datos de <code>proc_issp</code> responda la siguiente pregunta <em>¿en qué medida la percepción de conflictos se asocia con el estatus socioeconomico de las personas?</em> Para responder esta pregunta siga los siguientes pasos:</p>
 <ol type="1">
-<li>Estime y reporte una matriz de correlación con las variables <code>income</code> y <code>educyrs</code>. Considere el tratamiento de casos perdidos</li>
-<li>Calcule el alpha de cronbach de la matriz del punto anterior</li>
-<li>Genere un índice promedio de estatus socioeconomico y llámelo <code>ses</code></li>
+<li>Estime y reporte una matriz de correlación con las variables <code>income</code> y <code>educyrs</code>. Considere el tratamiento de casos perdidos.</li>
+<li>Calcule el alpha de cronbach de la matriz del punto anterior.</li>
+<li>Genere un índice promedio de estatus socioeconomico a partir de las variables <code>income</code> y <code>educyrs</code>, y llámelo <code>ses</code>.</li>
 <li>Calcule el coeficiente de correlación de Pearson (<span class="math inline">\(r\)</span>) entre las variables <code>psci</code> y <code>ses</code>. Reporte e interprete sus resultados.</li>
 </ol>
+<section id="referencias" class="level4">
+<h4 class="anchored" data-anchor-id="referencias">Referencias</h4>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-chancelWorldInequalityReport2022" class="csl-entry" role="listitem">
+Chancel, L., Piketty, T., Saez, E., &amp; Zucman, G. (2022). <em>World Inequality Report 2022</em>.
+</div>
+<div id="ref-edlundDemocraticClassStruggle2015a" class="csl-entry" role="listitem">
+Edlund, J., &amp; Lindh, A. (2015). The <span>Democratic Class Struggle Revisited</span>: <span>The Welfare State</span>, <span>Social Cohesion</span> and <span>Political Conflict</span>. <em>Acta Sociologica</em>, <em>58</em>(4), 311-328. <a href="https://doi.org/10.1177/0001699315610176">https://doi.org/10.1177/0001699315610176</a>
+</div>
+<div id="ref-hadlerSocialConflictPerception2017a" class="csl-entry" role="listitem">
+Hadler, M. (2017). <em>Social <span>Conflict Perception Between Long-Term Inequality</span> and <span>Short-Term Turmoil</span></em>. <em>17</em>, 16.
+</div>
+<div id="ref-hertelConflictPerceptions272019a" class="csl-entry" role="listitem">
+Hertel, F. R., &amp; Schöneck, N. M. (2019). Conflict <span>Perceptions</span> across 27 <span>OECD Countries</span>: <span>The Roles</span> of <span>Socioeconomic Inequality</span> and <span>Collective Stratification Beliefs</span>. <em>Acta Sociologica</em>, 000169931984751. <a href="https://doi.org/10.1177/0001699319847515">https://doi.org/10.1177/0001699319847515</a>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
