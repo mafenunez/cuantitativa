@@ -312,7 +312,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar bbdd desde internet</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/issp_2009_chile.RData"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A continuación, exploramos la base de datos <code>issp</code>.</p>
+<p>A continuación, exploramos el subset de datos <code>issp</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(issp) <span class="co"># Nombre de columnas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -326,7 +326,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Contamos con 11 variables (columnas) y 1505 observaciones (filas).</p>
-<p>Ahora, realizaremos un pequeño procesamiento de nuestros datos con <code>dplyr</code>, todo de una vez mediante el uso de pipes <code>%&gt;%</code>. Para recordar los pasos para el procesamiento de datos, revisar el <a href="https://descriptiva-facso.netlify.app/assignment/03-practico">curso anterior</a>.</p>
+<p>Ahora, realizaremos un pequeño procesamiento de nuestros datos con <code>dplyr</code>, todo de una vez mediante el uso de pipes <code>%&gt;%</code>. Para recordar los pasos para el procesamiento de datos, revisar la guía práctica del <a href="https://descriptiva-facso.netlify.app/assignment/03-practico">curso de estadística descriptiva</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>proc_issp <span class="ot">&lt;-</span> issp <span class="sc">%&gt;%</span> <span class="co"># seleccionamos</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(educyrs,</span>
@@ -400,9 +400,9 @@ window.Quarto = {
 <td style="text-align: left;">Conflictos: ricos - pobres</td>
 <td style="text-align: right;">1438</td>
 <td style="text-align: right;">4.4518272</td>
-<td style="text-align: right;">1.613352</td>
+<td style="text-align: right;">2.613352</td>
 <td style="text-align: right;">0.8665370</td>
-<td style="text-align: left;">3 (0-3)</td>
+<td style="text-align: left;">3 (1-4)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4</td>
@@ -410,9 +410,9 @@ window.Quarto = {
 <td style="text-align: left;">Conflictos: clase trabajadora - clase media</td>
 <td style="text-align: right;">1426</td>
 <td style="text-align: right;">5.2491694</td>
-<td style="text-align: right;">1.289621</td>
+<td style="text-align: right;">2.289621</td>
 <td style="text-align: right;">0.8965377</td>
-<td style="text-align: left;">3 (0-3)</td>
+<td style="text-align: left;">3 (1-4)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1</td>
@@ -420,9 +420,9 @@ window.Quarto = {
 <td style="text-align: left;">Conflictos: directivos - trabajadores</td>
 <td style="text-align: right;">1427</td>
 <td style="text-align: right;">5.1827243</td>
-<td style="text-align: right;">1.714085</td>
+<td style="text-align: right;">2.714085</td>
 <td style="text-align: right;">0.8304120</td>
-<td style="text-align: left;">3 (0-3)</td>
+<td style="text-align: left;">3 (1-4)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
@@ -430,9 +430,9 @@ window.Quarto = {
 <td style="text-align: left;">Conflictos: gente de arriba - gente de abajo</td>
 <td style="text-align: right;">1425</td>
 <td style="text-align: right;">5.3156146</td>
-<td style="text-align: right;">1.661754</td>
+<td style="text-align: right;">2.661754</td>
 <td style="text-align: right;">0.9044854</td>
-<td style="text-align: left;">3 (0-3)</td>
+<td style="text-align: left;">3 (1-4)</td>
 </tr>
 </tbody>
 </table>
@@ -456,6 +456,73 @@ Nota
 <p><strong>Pregunta 2</strong>: Podemos estimar una matriz de correlaciones entre las variables de percepción de conflictos tratando los casos pérdidos. Luego, podemos estimar la consistencia interna (alpha de Cronbach) para generar un índice promedio.</p>
 </div>
 </div>
+<p>La manera en que se miden las variables de percepción de conflictos y percepción de desigualdad en la <a href="https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2009">ISSP 2009</a> para Chile es la siguiente:</p>
+<style>
+  table {
+    margin-left: auto; /* Ajustamos el margen izquierdo a automático */
+    margin-right: auto; /* Ajustamos el margen derecho a automático */
+    border-collapse: collapse;
+    width: 60%;
+    border: 2px solid black;
+  }
+  
+  th, td {
+    border: 1px solid #D3D3D3;
+    padding: 8px;
+    text-align: center;
+  }
+</style>
+<p><strong>Percepción de conflictos</strong>: <em>En todos los países hay diferencias o incluso conflictos entre diferentes grupos sociales. En su opinión, ¿Cuánto conflicto hay en Chile hoy en día entre…?</em></p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ítem</th>
+<th style="text-align: center;">Categorías de respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A. La gente pobre y la gente rica</td>
+<td style="text-align: center;">Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B. La clase trabajadora y la clase media</td>
+<td style="text-align: center;">Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C. La gerencia y los trabajadores</td>
+<td style="text-align: center;">Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D. La gente en el nivel más alto de la sociedad y la gente en el nivel más bajo</td>
+<td style="text-align: center;">Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Percepción de desigualdad</strong>: <em>Qué tan de acuerdo o en desacuerdo está UD. con las siguientes afirmaciones?</em></p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ítem</th>
+<th style="text-align: center;">Categorías de respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A. Las diferencias de ingreso en Chile son demasiado grandes</td>
+<td style="text-align: center;">Muy de acuerdo (1); De acuerdo (2); Ni de acuerdo ni en desacuerdo (3); En desacuerdo (4); Muy en desacuerdo (5)</td>
+</tr>
+</tbody>
+</table>
+<p>Todas estas variables fueron recodificadas inversamente para este ejercicio.</p>
 <section id="correlación-para-variables-ordinales" class="level2">
 <h2 class="anchored" data-anchor-id="correlación-para-variables-ordinales">3.1 Correlación para variables ordinales</h2>
 <section id="coeficiente-de-correlación-de-spearman" class="level3">
@@ -471,14 +538,14 @@ Nota
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(proc_issp<span class="sc">$</span>conflict_rp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Conflictos: ricos - pobres (x) &lt;numeric&gt; 
-# total N=1505 valid N=1438 mean=1.61 sd=0.87
+# total N=1505 valid N=1438 mean=2.61 sd=0.87
 
 Value |   N | Raw % | Valid % | Cum. %
 --------------------------------------
-    0 | 161 | 10.70 |   11.20 |  11.20
-    1 | 442 | 29.37 |   30.74 |  41.93
-    2 | 627 | 41.66 |   43.60 |  85.54
-    3 | 208 | 13.82 |   14.46 | 100.00
+    1 | 161 | 10.70 |   11.20 |  11.20
+    2 | 442 | 29.37 |   30.74 |  41.93
+    3 | 627 | 41.66 |   43.60 |  85.54
+    4 | 208 | 13.82 |   14.46 | 100.00
  &lt;NA&gt; |  67 |  4.45 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(proc_issp<span class="sc">$</span>perc_ineq)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -656,7 +723,7 @@ sample estimates:
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(proc_issp_original<span class="sc">$</span>conflict_rp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(proc_issp_original<span class="sc">$</span>perc_ineq, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.613352</code></pre>
+<pre><code>[1] 2.613352</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.188338</code></pre>
@@ -1041,9 +1108,9 @@ abajo</td>
 <td style="text-align: left;">dd</td>
 <td style="text-align: right;">1025</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1.585122</td>
+<td style="text-align: right;">2.585122</td>
 <td style="text-align: right;">0.6986039</td>
-<td style="text-align: left;">3 (0-3)</td>
+<td style="text-align: left;">3 (1-4)</td>
 </tr>
 </tbody>
 </table>
@@ -1073,7 +1140,7 @@ sample estimates:
 0.071858 </code></pre>
 </div>
 </div>
-<p>De acuerdo a este resultado, la correlación de Pearson entre la percepción de conflicto social y la percepción de desigualdad es positiva, muy pequeña y estadisticamente significativa (<span class="math inline">\(r\)</span> = 0.08, <span class="math inline">\(p\)</span> &lt; 0.05).</p>
+<p>De acuerdo a este resultado, la correlación de Pearson entre la percepción de conflicto social y la percepción de desigualdad es positiva, muy pequeña y estadisticamente significativa (<span class="math inline">\(r\)</span> = 0.07, <span class="math inline">\(p\)</span> &lt; 0.05).</p>
 </section>
 <section id="pregunta-2" class="level3">
 <h3 class="anchored" data-anchor-id="pregunta-2">Pregunta 2</h3>

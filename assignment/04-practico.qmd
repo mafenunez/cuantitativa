@@ -74,7 +74,7 @@ load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/
 
 ```
 
-A continuación, exploramos la base de datos `issp`.
+A continuación, exploramos el subset de datos `issp`.
 
 ```{r exploracion, echo=TRUE}
 
@@ -90,7 +90,7 @@ cols <- NCOL(issp)
 
 Contamos con `r cols` variables (columnas) y `r rows` observaciones (filas).
 
-Ahora, realizaremos un pequeño procesamiento de nuestros datos con `dplyr`, todo de una vez mediante el uso de pipes `%>%`. Para recordar los pasos para el procesamiento de datos, revisar el [curso anterior](https://descriptiva-facso.netlify.app/assignment/03-practico).
+Ahora, realizaremos un pequeño procesamiento de nuestros datos con `dplyr`, todo de una vez mediante el uso de pipes `%>%`. Para recordar los pasos para el procesamiento de datos, revisar la guía práctica del [curso de estadística descriptiva](https://descriptiva-facso.netlify.app/assignment/03-practico).
 
 ```{r proc, echo=TRUE, }
 
@@ -123,6 +123,41 @@ proc_issp %>%
 **Pregunta 2**: Podemos estimar una matriz de correlaciones entre las variables de percepción de conflictos tratando los casos pérdidos. Luego, podemos estimar la consistencia interna (alpha de Cronbach) para generar un índice promedio.
 
 :::
+
+La manera en que se miden las variables de percepción de conflictos y percepción de desigualdad en la [ISSP 2009](https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2009) para Chile es la siguiente:
+
+<style>
+  table {
+    margin-left: auto; /* Ajustamos el margen izquierdo a automático */
+    margin-right: auto; /* Ajustamos el margen derecho a automático */
+    border-collapse: collapse;
+    width: 60%;
+    border: 2px solid black;
+  }
+  
+  th, td {
+    border: 1px solid #D3D3D3;
+    padding: 8px;
+    text-align: center;
+  }
+</style>
+
+**Percepción de conflictos**: _En todos los países hay diferencias o incluso conflictos entre diferentes grupos sociales. En su opinión, ¿Cuánto conflicto hay en Chile hoy en día entre…?_
+
+| Ítem | Categorías de respuesta |
+|:------------:|:------------:|
+| A. La gente pobre y la gente rica  | Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4) |
+| B. La clase trabajadora y la clase media  | Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4) |
+| C. La gerencia y los trabajadores | Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4) |
+| D. La gente en el nivel más alto de la sociedad y la gente en el nivel más bajo | Conflictos muy fuertes (1); Conflictos fuertes (2); Conflictos no muy fuertes (3); No hay conflictos (4) |
+
+**Percepción de desigualdad**: _Qué tan de acuerdo o en desacuerdo está UD. con las siguientes afirmaciones?_
+
+| Ítem | Categorías de respuesta |
+|:------------:|:------------:|
+| A. Las diferencias de ingreso en Chile son demasiado grandes | Muy de acuerdo (1); De acuerdo (2); Ni de acuerdo ni en desacuerdo (3); En desacuerdo (4); Muy en desacuerdo (5) |
+
+Todas estas variables fueron recodificadas inversamente para este ejercicio. 
 
 ## 3.1 Correlación para variables ordinales
 
@@ -360,7 +395,7 @@ cor.test(proc_issp$psci, proc_issp$perc_ineq, method = "pearson", use = "complet
 
 ```
 
-De acuerdo a este resultado, la correlación de Pearson entre la percepción de conflicto social y la percepción de desigualdad es positiva, muy pequeña y estadisticamente significativa ($r$ = 0.08, $p$ < 0.05). 
+De acuerdo a este resultado, la correlación de Pearson entre la percepción de conflicto social y la percepción de desigualdad es positiva, muy pequeña y estadisticamente significativa ($r$ = 0.07, $p$ < 0.05). 
 
 ### Pregunta 2
 
