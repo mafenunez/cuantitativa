@@ -114,15 +114,6 @@ proc_issp %>%
 
 # 3. Análisis
 
-::: callout-note
-
-**Entonces, ¿qué herrramienta usar?**
-
-**Pregunta 1**: Dado que las variables de percepción de conflictos y percepción de desigualdad son de nivel de medición ordinal, podemos estimar su asociación con coeficientes de correlación para variables ordinales.
-
-**Pregunta 2**: Podemos estimar una matriz de correlaciones entre las variables de percepción de conflictos tratando los casos pérdidos. Luego, podemos estimar la consistencia interna (alpha de Cronbach) para generar un índice promedio.
-
-:::
 
 La manera en que se miden las variables de percepción de conflictos y percepción de desigualdad en la [ISSP 2009](https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2009) para Chile es la siguiente:
 
@@ -158,6 +149,18 @@ La manera en que se miden las variables de percepción de conflictos y percepci�
 | A. Las diferencias de ingreso en Chile son demasiado grandes | Muy de acuerdo (1); De acuerdo (2); Ni de acuerdo ni en desacuerdo (3); En desacuerdo (4); Muy en desacuerdo (5) |
 
 Todas estas variables fueron recodificadas inversamente para este ejercicio. 
+
+
+::: callout-note
+
+**Entonces, ¿qué herrramienta usar?**
+
+**Pregunta 1**: Dado que las variables de percepción de conflictos y percepción de desigualdad son de nivel de medición ordinal, podemos estimar su asociación con coeficientes de correlación para variables ordinales.
+
+**Pregunta 2**: Podemos estimar una matriz de correlaciones entre las variables de percepción de conflictos tratando los casos pérdidos. Luego, podemos estimar la consistencia interna (alpha de Cronbach) para generar un índice promedio.
+
+:::
+
 
 ## 3.1 Correlación para variables ordinales
 
