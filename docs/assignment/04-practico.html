@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Estadística Correlacional - Práctico 4: Matrices de correlación, casos pérdidos e índices</title>
+<title>Práctico 4: Matrices de correlación, casos pérdidos e índices – Estadística Correlacional</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -126,7 +126,7 @@ div.csl-indent {
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -156,7 +156,7 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Estadística Correlacional - Práctico 4: Matrices de correlación, casos pérdidos e índices">
+<meta property="og:title" content="Práctico 4: Matrices de correlación, casos pérdidos e índices – Estadística Correlacional">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site_name" content="Estadística Correlacional">
@@ -165,7 +165,7 @@ window.Quarto = {
 <meta property="og:image:width" content="466">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -177,7 +177,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -195,7 +195,7 @@ window.Quarto = {
 <span class="menu-text">Clases</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../assignment/index.html"> 
+    <a class="nav-link active" href="../assignment/index.html" aria-current="page"> 
 <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
@@ -213,14 +213,84 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignment/01-practico.html">Guías</a></li><li class="breadcrumb-item"><a href="../assignment/04-practico.html">4- Matrices de correlación, casos perdidos e índices</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descripción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guías</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/01-practico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1: Curva Normal e Intervalos de Confianza</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/02-practico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2: Test de hipótesis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/03-practico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: Correlación de Pearson</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/04-practico.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4- Matrices de correlación, casos perdidos e índices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/foro-practicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foro Prácticos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignment/consola.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Consola R Online</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -340,7 +410,7 @@ window.Quarto = {
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  sjmisc<span class="sc">::</span><span class="fu">descr</span>(<span class="at">show =</span> <span class="fu">c</span>(<span class="st">"label"</span>,<span class="st">"range"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"NA.prc"</span>, <span class="st">"n"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(.,<span class="st">"markdown"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 2%">
 <col style="width: 12%">
@@ -458,7 +528,7 @@ window.Quarto = {
   }
 </style>
 <p><strong>Percepción de conflictos</strong>: <em>En todos los países hay diferencias o incluso conflictos entre diferentes grupos sociales. En su opinión, ¿Cuánto conflicto hay en Chile hoy en día entre…?</em></p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -489,7 +559,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p><strong>Percepción de desigualdad</strong>: <em>Qué tan de acuerdo o en desacuerdo está UD. con las siguientes afirmaciones?</em></p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -607,15 +677,14 @@ sample estimates:
 <p>Trabajar con datos a menudo implica enfrentar valores perdidos (<code>NA</code>), lo que puede ser un gran desafío. Estos valores <em>indican la ausencia de un valor en una base de datos</em>. Los valores perdidos pueden originarse por diversas razones, como el sesgo de no respuesta en encuestas, errores en la entrada de datos o simplemente la falta de información para ciertas variables.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X1</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X2</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X3</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: #ce0200 !important;">X4</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: rgba(206, 2, 0, 255) !important;">X1</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: rgba(206, 2, 0, 255) !important;">X2</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: rgba(206, 2, 0, 255) !important;">X3</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold; color: white !important; background-color: rgba(206, 2, 0, 255) !important;">X4</th>
 </tr>
 </thead>
 <tbody>
@@ -654,7 +723,6 @@ sample estimates:
 </div>
 
 
-</div>
 </div>
 </div>
 <p>La presencia de valores perdidos puede tener un impacto considerable en la precisión y confiabilidad de los análisis estadísticos, lo que a su vez puede conducir a resultados sesgados y conclusiones incorrectas.</p>
@@ -763,8 +831,7 @@ conflict_tb    0.524006738  1.000000000</code></pre>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_corr</span>(proc_issp_original, </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -867,7 +934,6 @@ abajo</td>
 </table>
 </div>
 </div>
-</div>
 <p>La <strong>distinción</strong> entre <strong>listwise y pairwise es relevante al momento de estimar matricies de correlación</strong>, donde esta decisión debe estar claramente explicitada y fundamentada. En ejemplo de tabla anterior usamos <em>listwise</em> que es el argumento por defecto (y nos lo indica al final de la tabla).</p>
 <p>Veamos como hacerlo con <em>pairwise</em>:</p>
 <div class="cell">
@@ -875,8 +941,7 @@ abajo</td>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.deletion =</span> <span class="st">"pairwise"</span>, <span class="co"># espeficicamos tratamiento NA</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -979,7 +1044,6 @@ abajo</td>
 </table>
 </div>
 </div>
-</div>
 <p>Con esta mejor visualización, algunas observaciones sobre la matriz de correlaciones:</p>
 <ul>
 <li>En esta matriz las variables están representadas en las filas y en las columnas.</li>
@@ -1019,8 +1083,7 @@ abajo</td>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.deletion =</span> <span class="st">"listwise"</span>, <span class="co"># espeficicamos tratamiento NA</span></span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">triangle =</span> <span class="st">"lower"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -1075,7 +1138,6 @@ abajo</td>
 </table>
 </div>
 </div>
-</div>
 <p>Los ítems se correlacionan de manera positiva y con tamaños de efecto moderados y altos para las ciencias sociales. Con ello, podemos pasar a evaluar sus relaciones tienen consistencia interna.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>alpha_psci <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(M_psci)</span>
@@ -1092,7 +1154,7 @@ abajo</td>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">descr</span>(proc_issp<span class="sc">$</span>psci, <span class="at">show =</span> <span class="fu">c</span>(<span class="st">"range"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"NA.prc"</span>, <span class="st">"n"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(.,<span class="st">"markdown"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">var</th>
@@ -1214,18 +1276,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1257,7 +1308,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/correlacional\.netlify\.app");
@@ -1265,7 +1338,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
@@ -8,7 +8,7 @@
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Estadística Correlacional</title>
+<title>Desarrollo Ejercicio autónomo Práctico 3 – Estadística Correlacional</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,26 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//files/logo-correlacional-transp.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//files/logo-correlacional-transp.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -58,81 +56,23 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-informaciones .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-informaciones'] = new List('listing-informaciones', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Estadística Correlacional">
-<meta property="og:description" content="Inferencia, asociación y reporte">
+<meta property="og:title" content="Desarrollo Ejercicio autónomo Práctico 3 – Estadística Correlacional">
+<meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site_name" content="Estadística Correlacional">
 <meta property="og:locale" content="es">
@@ -147,38 +87,38 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Estadística Correlacional</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./news/index.html"> 
+    <a class="nav-link" href="../news/index.html"> 
 <span class="menu-text">Informaciones</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Planificación</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./content/index.html"> 
+    <a class="nav-link" href="../content/index.html"> 
 <span class="menu-text">Clases</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./assignment/index.html"> 
+    <a class="nav-link" href="../assignment/index.html"> 
 <span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resource/index.html"> 
+    <a class="nav-link" href="../resource/index.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text">Programa</span></a>
   </li>  
   <li class="nav-item compact">
@@ -194,354 +134,49 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<div class="grid title-block">
-    <div class="course-details-title-block g-col-12 g-col-sm-8 order-2 order-sm-1 text-center text-sm-start">
-        <h1 class="course-title">
-            Estadística Correlacional
-        </h1>
-        <div class="course-subtitle">
-            <p>Inferencia, asociación y reporte</p>
-        </div>
-        <div class="course-meta">
-            <p></p><p>SOC01019 • Segundo Semestre 2024<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile</p><p></p>
-        </div>
+<div class="back-nav"><a href="../news/">← News</a></div>
+
+<header id="title-block-header" class="news quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Desarrollo Ejercicio autónomo Práctico 3</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">info</div>
+    <div class="quarto-category">mail-UCursos</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Posted</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">lunes octubre 7, 2024 at 12:00 AM</p>
     </div>
-    <div class="g-col-12 g-col-sm-4 order-1 order-sm-2">
-      <div class="grid" style="--bs-columns: 5;">
-        <div class="g-col-1 g-col-sm-0"></div>
-        <div class="g-col-3 g-col-sm-5"><img src="./files/logo-correlacional.png" class="img-fluid"></div>
-        <div class="g-col-1 g-col-sm-0"></div>
-      </div>
-    </div>
-</div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<div class="columns">
-<section id="equipo-docente" class="level3" style="background-color: #E1F2F2">
-<h3 class="anchored" data-anchor-id="equipo-docente">Equipo docente</h3>
-<div class="column" style="width:40%;">
-<p><strong>Profesor</strong></p>
-<div class="image-cropper">
-<p><img src="https://ucampus.uchile.cl/d/r/usuario/ff/ffd4a9d15a5239c0a425a58a798889c8/perfil/bf49d6261628eb095bcaec76eda1e0d1.jpg" alt="avatar" class="profile-pic"></p>
-</div>
-<p><a href="https://www.jc-castillo.com">Prof.&nbsp;Juan Carlos Castillo</a></p>
-<ul>
-<li><i class="fa-solid fa-university" aria-label="university"></i> &nbsp; 325 Sociología FACSO, Universidad de Chile</li>
-<li><i class="fa-solid fa-envelope" aria-label="envelope"></i> &nbsp; <a href="mailto:juancastillov@uchile.cl">juancastillov@uchile.cl</a></li>
-<li><i class="fa-solid fa-calendar-check" aria-label="calendar-check"></i> &nbsp; <a href="https://calendly.com/juancastillov/horas-oficina">Agendar reunión</a></li>
-</ul>
-</div>
-<div class="column" style="width:10%;">
-
-</div>
-<div class="column" style="width:38%;">
-<p><strong>Apoyos docentes</strong></p>
-<div class="image-cropper">
-<p><img src="./slides/img/martin.png" alt="avatar" class="profile-pic"></p>
-</div>
-<p><em>Martín Venegas</em></p>
-<ul>
-<li><i class="fa-solid fa-envelope" aria-label="envelope"></i> &nbsp; <a href="mailto:martin.venegas@ug.uchile.cl">martin.venegas@ug.uchile.cl</a></li>
-</ul>
-<div class="image-cropper">
-<p><img src="https://ucampus.uchile.cl/d/r/usuario/5b/5b662afdc07fea74ce535d3c5e29712e/perfil/f812fd6a269ed14b58c1e61866f47274.jpg" alt="avatar" class="profile-pic"></p>
-</div>
-<p><em>Andreas Laffert T.</em></p>
-<ul>
-<li><i class="fa-solid fa-envelope" aria-label="envelope"></i> &nbsp; <a href="mailto:andreas.laffert@ug.uchile.cl">andreas.laffert@ug.uchile.cl</a></li>
-</ul>
-</div>
-<div class="columns">
-<p><strong>Ayudantes</strong></p><div class="column" style="width:32%;">
-<ul>
-<li>Victoria Arias</li>
-<li>Jesús Díaz</li>
-<li>Javiera González</li>
-<li>Antonia Jiménez</li>
-</ul>
-</div><div class="column" style="width:32%;">
-<ul>
-<li>Sophia Karoussis</li>
-<li>Cristóbal Mejías</li>
-<li>María Fernanda Núñez</li>
-<li>Luis Ríos</li>
-</ul>
-</div><div class="column" style="width:32%;">
-<ul>
-<li>Fernanda Zúñiga</li>
-<li>Ismael Aguayo</li>
-<li>Franco Acevedo</li>
-</ul>
-</div>
-</div>
-</section><div class="columns">
-<div class="column" style="width:40%;">
-<section id="sesiones" class="level3">
-<h3 class="anchored" data-anchor-id="sesiones">Sesiones</h3>
-<ul>
-<li><p><i class="fa-solid fa-university" aria-label="university"></i> &nbsp; <strong>Lunes 10:15-11:45</strong> - Aulario C/6</p></li>
-<li><p><i class="fa-solid fa-university" aria-label="university"></i> &nbsp; <strong>Martes 8:30-10:00</strong> Aulario C7/C8 &amp; FACSO 345</p></li>
-</ul>
-</section>
-</div><div class="column" style="width:10%;">
-
-</div><div class="column" style="width:38%;">
-<section id="contacto" class="level3">
-<h3 class="anchored" data-anchor-id="contacto">Contacto</h3>
-<p>E-mail es la mejor manera de ponerse en contacto conmigo y con el equipo docente del curso.</p>
-<p>Para resolver dudas puntuales se recomienda el uso de los foros de <a href="./content/foro-clases.html">clases</a> y de las <a href="./assignment/foro-practicos.html">Guías prácticas</a>.</p>
-</section>
-</div>
-</div><section id="últimas-informaciones" class="level2">
-<h2 class="anchored" data-anchor-id="últimas-informaciones">Últimas informaciones</h2>
-<div id="listing-informaciones" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="info,mail-UCursos" data-listing-date-sort="1728270000000" data-listing-file-modified-sort="1728329594274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
-<a href="./news/2024-10-07_Desarrollo ejercicio autonomo.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Desarrollo Ejercicio autónomo Práctico 3
-</h5>
-<div class="card-text listing-description">
-El ejericio autónomo del práctico 3 se encuentra desarrollado en la página correspondiente, link directo aquí
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Oct 7, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="info,mail-UCursos" data-listing-date-sort="1727665200000" data-listing-file-modified-sort="1727729764062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="876">
-<a href="./news/2024-09-30_reporte-notas1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="news/2024-09-30_reporte-notas1_files/figure-html/unnamed-chunk-5-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Reporte Evaluación 1
-</h5>
-<div class="card-text listing-description">
-Este reporte realiza un análisis de la Evaluación 1 sobre la Unidad 1: Inferencia estadística
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Sep 30, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="info,mail-UCursos" data-listing-date-sort="1725422400000" data-listing-file-modified-sort="1725474703012" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<a href="./news/2024-09-04_taller_centro_idea.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/img/afichetaller1.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Taller Centro IDEA
-</h5>
-<div class="card-text listing-description">
-El centro IDEA está ofreciendo una instancia de tutorías específica para la Unidad I (Inferencia) este viernes 6 de septiembre a las 12:00:
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Sep 4, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="info,mail-UCursos" data-listing-date-sort="1725336000000" data-listing-file-modified-sort="1725397666980" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="112">
-<a href="./news/2024-09-03_cambios evaluacion 1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Cambios en evaluación 1
-</h5>
-<div class="card-text listing-description">
-En el plan original la Evaluación 1 y la Evaluación 2 se componían de dos partes cada una: teórica (30%) y práctica (5%) (ver sección de evaluación en el programa del curso).…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Sep 3, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="info,mail-UCursos" data-listing-date-sort="1725249600000" data-listing-file-modified-sort="1725281801702" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="82">
-<a href="./news/2024-09-02_equipo docente y ayudantes.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Equipo docente y ayudantes
-</h5>
-<div class="card-text listing-description">
-2 actualizaciones respecto del equipo a cargo del curso:
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Sep 2, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="info,mail-UCursos" data-listing-date-sort="1724904000000" data-listing-file-modified-sort="1725281704592" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="240">
-<a href="./news/2024-08-28_asignacion_ayudantes1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Asignación asesorías ayudantes
-</h5>
-<div class="card-text listing-description">
-Durante las dos primeras unidades del curso l_s estudiantes están asignados a un/a ayudante para consultas y/o apoyo con los contenidos del curso. Sus ayudantes se…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Aug 29, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="info,mail-UCursos" data-listing-date-sort="1724385600000" data-listing-file-modified-sort="1724703986000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="134">
-<a href="./news/2024-08-23_primera-practica.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Sesión práctica martes 27 de agosto
-</h5>
-<div class="card-text listing-description">
-Algunas informaciones importantes:
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Aug 23, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="info" data-listing-date-sort="1724040000000" data-listing-file-modified-sort="1724701401000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="35">
-<a href="./news/2024-08-19_cambio-practico.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Prácticos parten próxima semana (Martes 27)
-</h5>
-<div class="card-text listing-description">
-Inicialmente en el programa estaba contemplado que esta semana el martes 20 comenzaba la primera sesión de prácticos, para lo cual debían traer sus computadores. Esto se…<strong></strong>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Aug 19, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="info" data-listing-date-sort="1724040000000" data-listing-file-modified-sort="1724701438000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="30">
-<a href="./news/2024-08-19_inicio.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./files/logo-correlacional.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Informaciones por acá
-</h5>
-<div class="card-text listing-description">
-Estimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Aug 19, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<p>-&gt; ir a la <a href="./news/index.html">página de Informaciones</a> del sitio.</p>
-</section><section id="versiones-previas-del-curso" class="level2">
-<h2 class="anchored" data-anchor-id="versiones-previas-del-curso">Versiones previas del curso:</h2>
-<ul>
-<li><a href="https://2023--correlacional.netlify.app/">2023</a></li>
-</ul>
+</header>
 
 
+<p>El ejericio autónomo del práctico 3 se encuentra desarrollado en la página correspondiente, link directo <a href="../assignment/03-practico.html">aquí</a></p>
 
-</section>
-</div>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -587,12 +222,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",

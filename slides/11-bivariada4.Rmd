@@ -177,7 +177,7 @@ t.test(y ~ x, var.equal=TRUE)
 
 - es equivalente a un test de diferencia de medias en términos de inferencia
 
-- en términos de valor es igual que una correlación de Pearson varía entre 0 y 1
+- en términos de valor es igual que una correlación de Pearson varía entre -1 y 1
 
 - el apellido de (punto) **biserial** se utiliza solo para dar cuenta que el nivel de medición de una de las variables es nominal, y se requieren consideraciones especiales en su interpretación
 
