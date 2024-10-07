@@ -510,3 +510,36 @@ A partir de la base de datos de `proc_elsoc` responda la siguiente pregunta _¿e
 3. Reporte el sentido de la dirección de la correlación
 4. Interprete la significancia estadística del coeficiente
 5. Visualice la relación entre las variables con un gráfico de dispersión y comente
+
+# Resolución ejercicio autónomo
+
+Formulemos nuestra hipótesis de manera formal:
+
+- $H_{0}$: $cor(edad, pmerit)$ $=$ $0$
+- $H_{A}$: $cor(edad, pmerit)$ $\neq$ $0$
+
+Para contestar los puntos 1,2,3 y 4 usaremos el comando `cor.test` para evaluar la correlación entre `edad` y `pmerit`.
+
+```{r re1, echo=TRUE}
+
+results_ej <- cor.test(x = proc_elsoc$edad, y = proc_elsoc$pmerit, method = "pearson", use = "complete.obs")
+
+results_ej
+
+```
+
+Con este output podemos sostener lo siguiente:
+
+> El coeficiente de correlación de Pearson entre la edad y el promedio de meritocracia es postivo, pequeño y estadísticamente significativo ($r$ = 0.11, $p$ < 0.05). Por tanto, con un 95% de confianza se puede rechazar la $H_{0}$ de no asociación entre variables, existiendo evidencia a favor de la $H_{A}$ sobre una asociación significativa entre la edad de las personas y su percepción de meritocracia.
+
+Para contestar el punto 5 usaremos el comando `plot_scatter` para visualizar la asociación entre `edad` y `pmerit`.
+
+```{r re2, echo=TRUE, results='asis'}
+#| label: fig-ej
+#| fig-cap: Scatterplot entre edad y percepción de meritocracia promedio
+sjPlot::plot_scatter(data = proc_elsoc, 
+                     x = edad, 
+                     y = pmerit)
+```
+
+De acuerdo con la @fig-ej, podemos observar que no existe un claro patrón de asociación entre la `edad` y `pmerit`. En detalle, la nube de puntos muestra una distribución bivariada muy dispersa, por lo que es posible sostener que no hay una asociación lineal suficientemente fuerte. Esto, se puede respaldar en el coeficiente de correlación que obtuvimos antes $r$ = 0.11, ya que si bien es positivo es de un tamaño de efecto muy pequeño según los criteriores de Cohen (1988).
