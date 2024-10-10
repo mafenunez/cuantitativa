@@ -23,9 +23,9 @@ El objetivo de esta guía práctica es introducir herramientas estadísticas par
 
 En detalle, aprenderemos a:
 
-1. Correlaciones para variables categóricas (nominales-ordinales)
-2. Tablas de contingencia
-3. Prueba de Chi cuadrado ($X^2$)
+1. Aplicar coeficientes de correlación entre variables categóricas (nominales-ordinales)
+2. Generar y analizar tablas de contingencia (o cruzadas)
+3.  Estimar e interpretar la prueba de Chi-cuadrado ($X^2$)
 
 En esta guía utilizaremos un ejemplo que desarrollaremos progresivamente para exponer los contenidos. Al final de esta guía se proporciona un ejercicio autónomo que deberá resolver de manera individual o grupal tomando como referencia el ejemplo aquí expuesto.
 
@@ -41,6 +41,9 @@ El estudio de las justificaciones de la violencia distingue si esta se ejerce po
 
 **Pregunta 2**: _¿En qué medida se relacionan el sentido de injusticia distributiva y la justificación de la violencia por el **control social** en Chile al año 2019?_
 
+> H2: A mayor sentido de injusticia distributiva, menor es la justificación de la violencia por el control social
+
+
 ## Recursos de la práctica
 
 En esta práctica trabajaremos con un subconjunto de datos previamente procesados de la [Encuesta Social Longitudinal de Chile (ELSOC)](https://coes.cl/encuesta-panel/) para Chile del año 2019. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace: [{{< fa table >}} `ELSOC 2019`](https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/elsoc2019_jv.RData). Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ELSOC 2019.
@@ -52,7 +55,11 @@ Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesa
 ```{r librerias, echo=TRUE, collapse=TRUE}
 pacman::p_load(tidyverse, # Manipulacion datos
                sjPlot, # Graficos y tablas
-               kableExtra) # Tablas
+               sjmisc, # Descriptivos
+               kableExtra, # Tablas
+               psych, # Estadísticos
+               broom) # Varios
+
 options(scipen = 999) # para desactivar notacion cientifica
 rm(list = ls()) # para limpiar el entorno de trabajo
 ```
@@ -150,7 +157,18 @@ La correlación punto biserial es una extensión del coeficiente de correlación
 - Esta diferenciación es importante ya que nos prevee de que hay que tener consideraciones con su interpretación, particularmente en lo que refiere al *sentido*
 - En lo que respecta a la *magnitud/tamaño* y la *inferencia*, sigue la misma lógica que hemos visto con la correlación de Pearson
 
-Para calcular este coeficiente en R utilizamos una función ya conocida: `cor.test()`. Probemoslo con las variables `jv_cambio_rec` y `sj_gerente`:
+Para calcular este coeficiente en R utilizamos una función ya conocida: `cor.test()`. Probemoslo con las variables `jv_cambio_rec` y `sj_gerente`.
+
+Primero, veamos la frecuencia de `jv_cambio_rec` y `sj_gerente`.
+
+
+```{r, echo = TRUE, warning = FALSE, collapse = TRUE}
+sjmisc::frq(proc_elsoc$jv_cambio_rec)
+
+mean(proc_elsoc$sj_gerente, na.rm = TRUE)
+```
+
+Obtengamos la correlación punto biserial entre justificación de la violencia por el cambio social y evaluación de justicia para gerentes.
 
 ```{r, warning=FALSE}
 cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$sj_gerente)
@@ -171,30 +189,43 @@ La correlación tetracórica también es una extensión del coeficiente de corre
 
 Veamos como vería una correlación tetracórica entre nuestras variables de estudio. En este caso, vamos a usar `jv_cambio` que ya es dicotomica (1 = Justifica, 0 = No justifica) y una versión recodificada del sentido de injusticia `sj_gerente_rec` (1 = Injusto, 0 = Justo)
 
+Primero, veamos las frecuencias entre `jv_cambio_rec` y `sj_gerente_rec`.
+
+```{r, echo = TRUE, warning = FALSE, collapse = TRUE}
+sjmisc::frq(proc_elsoc$jv_cambio_rec)
+
+sjmisc::frq(proc_elsoc$sj_gerente_rec)
+```
+
+Obtengamos la correlación tetracórica entre `jv_cambio_rec` y `sj_gerente_rec`.
+
 ```{r, warning=FALSE}
-cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$sj_gerente_rec)
+matriz <- proc_elsoc %>% 
+  dplyr::select(jv_cambio_rec, sj_gerente_rec) # creamos matriz con var de interes
+
+psych::tetrachoric(matriz, na.rm = T)
 ```
 
 ```{r, warning=FALSE, include=FALSE}
-rt <- round(cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$sj_gerente_rec)$estimate, 2)
+rt <- round(psych::tetrachoric(matriz, na.rm = T)$rho[2,1], 2)
 ```
 
-Vemos que la correlación entre el sentido de injusticia distributiva recodificado (`sj_gerente_rec`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es positiva, muy pequeña y estadísticamente significativa ($r$ = `r rpb`; _p < 0.05_).
+Vemos que la correlación entre el sentido de injusticia distributiva recodificado (`sj_gerente_rec`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es positiva, muy pequeña y estadísticamente significativa ($r$ = `r rt`; _p < 0.05_).
 
 ## 3.2 Tablas de contingencia
 
 Las tablas de contingencia son herramientas estadísticas utilizadas para resumir y analizar la relación entre dos o más variables categóricas. Estas tablas muestran la frecuencia de diferentes combinaciones de categorías de las variables, facilitando la visualización de patrones o asociaciones.
 
-Dicho de otra manera, podemos saber cuántos casos de una determinada categoría de la variable Y ocurren conjuntamente con una determinada categoría de la variable X. 
+Dicho de otra manera, podemos saber cuántos casos de una determinada categoría de la variable $Y$ ocurren conjuntamente con una determinada categoría de la variable $X$. 
 
-Veamos una tabla con nuestro ejemplo.
+Veamos una tabla con nuestro ejemplo usando el comando `sjtab`.
 
 ```{r, warning=FALSE}
 proc_elsoc %>%
-  sjtab(sj_gerente_rec,
+  sjPlot::sjtab(sj_gerente_rec,
         jv_cambio_rec,
-  show.row.prc=TRUE,
-  show.col.prc=TRUE
+        show.row.prc=TRUE, # porcentaje fila
+        show.col.prc=TRUE # porcentaje columna
   )
 ```
 
@@ -204,7 +235,7 @@ En esta tabla vemos que los porcentajes coloreados en azul corresponde a las fil
 
 - El 91.6% de quienes justifican la violencia por el cambio social consideran que los gerentes están justamente recompensados
 
-Ahora, ¿cómo sabemos si hay asociación? Repliquemos el ejemplo que vimos en clases, utilizando nuestras variables. Imaginemos que tenemos una base de datos con _n = 100_.
+Ahora, ¿cómo sabemos si hay asociación? Repliquemos el ejemplo que vimos en clases, utilizando nuestras variables. Imaginemos que tenemos una base de datos con _N = 100_.
 
 ```{r, warning=FALSE, include=FALSE}
 # Ejemplo de asociación perfecta
@@ -228,7 +259,7 @@ Una distribución con evidencia "perfecta" para nuestra hipótesis alternativa s
 
 ```{r, warning=FALSE}
 tab1 %>% 
-  kable(format = "html", align = 'r') %>% 
+  kable(format = "html", align = 'r', col.names = c("Sentido (in)justicia", "No justifica violencia", "Justifica violencia", "Total")) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>% 
   kableExtra::kable_styling(latex_options = "hold_position", position = "center")
 ```
@@ -237,26 +268,76 @@ En contraste, una distribución que representaría un caso perfecto de no asocia
 
 ```{r, warning=FALSE}
 tab2 %>% 
-  kable(format = "html", align = 'r') %>% 
+  kable(format = "html", align = 'r', col.names = c("Sentido (in)justicia", "No justifica violencia", "Justifica violencia", "Total")) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>% 
   kableExtra::kable_styling(latex_options = "hold_position", position = "center")
 ```
 
-## Chi cuadrado $X^2$
+## 3.3. Prueba de hipótesis con Chi cuadrado ($X^2$)
 
 Para determinar si existe una asociación significativa entre dos variables categóricas se utiliza la prueba de Chi-cudrado ($X^2$). Esta se basa en un test de diferencia, donde se compara nuestra tabla de contingencia y una tabla donde no existe asociación entre variables ($H_0$), que representa la hipótesis nula. **La lógica detrás es que si nuestra tabla es significativamente distinta de una tabla sin asociación, entonces podemos rechazar la hipóteis nula**.
+
+::: {.callout-tip}
+#### Prueba de Chi-cuadrado
+
+Contrastamos la _hipótesis nula_ (o de trabajo) de que las variables son idenpendientes entre ellas:
+$$  H_{0}: \pi_{fc} =  \pi_{f}\pi_{c} $$
+
+En relación a una _hipótesis alternativa_ sobre que las variables están relacionadas:
+$$  H_{A}:  \pi_{fc} \neq  \pi_{f}\pi_{c} $$
+:::
+
 
 En R, utilizamos la función `chisq.test()`:
 
 ```{r, warning=FALSE}
-chisq.test(proc_elsoc$sj_gerente_rec, proc_elsoc$jv_cambio_rec)
+chi_results <- chisq.test(proc_elsoc$sj_gerente_rec, proc_elsoc$jv_cambio_rec)
+
+chi_results
+```
+
+Obtuvimos nuestro resultado, pero no es muy amigable a la vista. Generemos una tabla de calidad para que sea reportable.
+
+```{r}
+#| label: tbl-chi
+#| echo: true
+#| warning: false
+
+stats.table <- tidy(chi_results)
+
+stats.table %>%
+    dplyr::mutate(
+        statistic = round(statistic, 2),
+        p_value = case_when(
+            p.value < 0.05 & p.value > 0.01 ~ "< 0.05*",
+            p.value < 0.01 & p.value > 0.001 ~ "< 0.01**",
+            p.value < 0.001 ~ "< 0.001***",
+            TRUE ~ ""
+        )
+    ) %>%
+    dplyr::select(statistic, p_value, parameter, method) %>%
+    kableExtra::kable(format = "html",
+        col.names = c("X2", "p-value", "df", "Método"),
+        booktabs = T,
+        caption = "Prueba de Chi-cuadrado entre justificación de la violencia por cambio social e injusticia distributiva"
+    ) %>%
+    kableExtra::kable_styling(
+        bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+        full_width = T,
+        latex_options = "hold_position",
+        position = "center"
+    ) %>% 
+    column_spec(4, width = "8cm")
 ```
 
 ```{r, warning=FALSE, include=F}
-xi <- chisq.test(proc_elsoc$sj_gerente_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]]
+xi <- round(chisq.test(proc_elsoc$sj_gerente_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]],3)
 ```
 
-A raíz de la prueba de $X^2$, vemos que existe evidencia para rechazar la hipótesis nula sobre no asociación, generando evidencia a favor de nuestra hipótesis alternativa sobre una asociación estadísticamente significativa entre el sentido de injusticia distributiva y la justificación de la violencia por el cambio social ($X^2$ = `r xi`, _p < 0.05_)
+A partir de estos resultados, podemos reportar lo siguiente:
+
+> A raíz de la prueba de $X^2$, vemos que existe evidencia para rechazar la hipótesis nula sobre no asociación, generando evidencia a favor de nuestra hipótesis alternativa sobre una asociación estadísticamente significativa entre el sentido de injusticia distributiva y la justificación de la violencia por el cambio social ($X^2$ = `r xi`, _p < 0.05_)
+
 
 # 4. Conclusiones
 
@@ -264,7 +345,9 @@ A raíz de la prueba de $X^2$, vemos que existe evidencia para rechazar la hipó
 
 **Pregunta 1**: _¿En qué medida se relacionan el sentido de injusticia distributiva y la justificación de la violencia por el **cambio social** en Chile al año 2019?_
 
-Para responder esta pregunta...
+Para responder esta pregunta debemos emplear la técnica de Chi-cuadrado $X^2$ para contrastar la hipótesis respecto a que existe una asoción entre el sentido de injusticia distributiva y la justificación de la violencia por el _cambio social_, ya que ambas variables son categóricas (nominales).
+
+De acuerdo con los resultados obtenidos en la @tbl-chi, existe una asociación estadísticamente significativa entre el sentido de injusticia distributiva y la justificación de la violencia por el cambio social ($X^2$ = `r xi`, _p < 0.05_). Con todo, podemos sostener que la justificación del uso de la violencia por motivos de cambio social se ve influida por el grado de injusticia distributiva en los ingresos. 
 
 # Ejercicio autónomo
 
