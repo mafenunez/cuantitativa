@@ -59,12 +59,14 @@ En esta práctica trabajaremos con un subconjunto de datos previamente procesado
 Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.
 
 ```{r librerias, echo=TRUE, collapse=TRUE}
-pacman::p_load(tidyverse, # Manipulacion datos
-               sjPlot, # Graficos y tablas
-               sjmisc, # Descriptivos
-               kableExtra, # Tablas
-               psych, # Estadísticos
-               broom) # Varios
+pacman::p_load(
+    tidyverse, # Manipulacion datos
+    sjPlot, # Graficos y tablas
+    sjmisc, # Descriptivos
+    kableExtra, # Tablas
+    psych, # Estadísticos
+    broom
+) # Varios
 
 options(scipen = 999) # para desactivar notacion cientifica
 rm(list = ls()) # para limpiar el entorno de trabajo
@@ -101,11 +103,12 @@ Ahora, realizaremos un pequeño procesamiento de nuestros datos con `dplyr`, tod
 
 proc_elsoc <- elsoc %>% # seleccionamos
     dplyr::select(
-      ingreso,
-      ingreso_rec,
-      educ,
-      educ_rec,
-      starts_with("jv"))
+        ingreso,
+        ingreso_rec,
+        educ,
+        educ_rec,
+        starts_with("jv")
+    )
 
 ```
 
@@ -113,10 +116,10 @@ Ahora, exploremos estadísticos descriptivos de nuestra base procesada `proc_els
 
 ```{r descr, echo=TRUE}
 
-proc_elsoc %>% 
-  select(ingreso, ingreso_rec, educ, educ_rec, jv_cambio, jv_cambio_rec, jv_control, jv_control_rec) %>% 
-  sjmisc::descr(show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
-  kable(.,"markdown")
+proc_elsoc %>%
+    select(ingreso, ingreso_rec, educ, educ_rec, jv_cambio, jv_cambio_rec, jv_control, jv_control_rec) %>%
+    sjmisc::descr(show = c("label", "range", "mean", "sd", "NA.prc", "n")) %>%
+    kable(., "markdown")
 
 ```
 
@@ -150,7 +153,7 @@ En [ELSOC 2019](https://www.gesis.org/en/issp/data-and-documentation/social-ineq
 Veamos sus frecuencias:
 
 ```{r}
-plot1 <- sjPlot::plot_frq(proc_elsoc$jv_cambio) +  coord_flip() + theme_minimal()
+plot1 <- sjPlot::plot_frq(proc_elsoc$jv_cambio) + coord_flip() + theme_minimal()
 plot2 <- sjPlot::plot_frq(proc_elsoc$jv_control) + coord_flip() + theme_minimal()
 
 plot1
@@ -215,14 +218,14 @@ sjmisc::frq(proc_elsoc$ingreso_rec)
 Obtengamos la correlación tetracórica entre `jv_cambio_rec` e `ingreso_rec`.
 
 ```{r, warning=FALSE}
-matriz <- proc_elsoc %>% 
-  dplyr::select(jv_cambio_rec, ingreso_rec) # creamos matriz con var de interes
+matriz <- proc_elsoc %>%
+    dplyr::select(jv_cambio_rec, ingreso_rec) # creamos matriz con var de interes
 
 psych::tetrachoric(matriz, na.rm = T)
 ```
 
 ```{r, warning=FALSE, include=FALSE}
-rt <- round(psych::tetrachoric(matriz, na.rm = T)$rho[2,1], 2)
+rt <- round(psych::tetrachoric(matriz, na.rm = T)$rho[2, 1], 2)
 ```
 
 Vemos que la correlación entre los ingresos recodificados (`ingreso_rec`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es positiva y muy pequeña ($r$ = `r rt`; _p < 0.05_).
@@ -237,11 +240,11 @@ Veamos una tabla con nuestro ejemplo usando el comando `sjtab`.
 
 ```{r, warning=FALSE}
 proc_elsoc %>%
-  sjPlot::sjtab(ingreso_rec,
+    sjPlot::sjtab(ingreso_rec,
         jv_cambio_rec,
-        show.row.prc=TRUE, # porcentaje fila
-        show.col.prc=TRUE # porcentaje columna
-  )
+        show.row.prc = TRUE, # porcentaje fila
+        show.col.prc = TRUE # porcentaje columna
+    )
 ```
 
 En esta tabla vemos que los porcentajes coloreados en azul corresponde a las filas y el verde el porcentaje que corresponde a las columnas. Utilizando esta información podemos decir, por ejemplo:
@@ -255,37 +258,37 @@ Ahora, ¿cómo sabemos si hay asociación? Repliquemos el ejemplo que vimos en c
 ```{r, warning=FALSE, include=FALSE}
 # Ejemplo de asociación perfecta
 tab1 <- data.frame(
-  "." = c("Menor a 800k", "Mayor a 800k", "Total"),
-  `No justifica` = c(0, 50, 50),
-  "Justifica" = c(50, 0, 50),
-  Total = c(50, 50, 100)
-  )
+    "." = c("Menor a 800k", "Mayor a 800k", "Total"),
+    `No justifica` = c(0, 50, 50),
+    "Justifica" = c(50, 0, 50),
+    Total = c(50, 50, 100)
+)
 
 # Ejemplo de no asociación
 tab2 <- data.frame(
-  "." = c("Menor a 800k", "Mayor a 800k", "Total"),
-  `No justifica` = c(25, 25, 50),
-  "Justifica" = c(25, 25, 50),
-  Total = c(50, 50, 100)
-  )
+    "." = c("Menor a 800k", "Mayor a 800k", "Total"),
+    `No justifica` = c(25, 25, 50),
+    "Justifica" = c(25, 25, 50),
+    Total = c(50, 50, 100)
+)
 ```
 
 Una distribución con evidencia "perfecta" para nuestra hipótesis alternativa se puede ver en la siguiente tabla:
 
 ```{r, warning=FALSE}
-tab1 %>% 
-  kable(format = "html", align = 'r', col.names = c("Ingreso", "No justifica violencia", "Justifica violencia", "Total")) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>% 
-  kableExtra::kable_styling(latex_options = "hold_position", position = "center")
+tab1 %>%
+    kable(format = "html", align = "r", col.names = c("Ingreso", "No justifica violencia", "Justifica violencia", "Total")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>%
+    kableExtra::kable_styling(latex_options = "hold_position", position = "center")
 ```
 
 En contraste, una distribución que representaría un caso perfecto de no asociación, se puede ver en la siguiente tabla:
 
 ```{r, warning=FALSE}
-tab2 %>% 
-  kable(format = "html", align = 'r', col.names = c("Sentido (in)justicia", "No justifica violencia", "Justifica violencia", "Total")) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>% 
-  kableExtra::kable_styling(latex_options = "hold_position", position = "center")
+tab2 %>%
+    kable(format = "html", align = "r", col.names = c("Sentido (in)justicia", "No justifica violencia", "Justifica violencia", "Total")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>%
+    kableExtra::kable_styling(latex_options = "hold_position", position = "center")
 ```
 
 ## 3.3. Prueba de hipótesis con Chi cuadrado ($X^2$)
@@ -330,7 +333,8 @@ stats.table %>%
         )
     ) %>%
     dplyr::select(statistic, p_value, parameter, method) %>%
-    kableExtra::kable(format = "html",
+    kableExtra::kable(
+        format = "html",
         col.names = c("X2", "p-value", "df", "Método"),
         booktabs = T,
         caption = "Prueba de Chi-cuadrado entre justificación de la violencia por cambio social e injusticia distributiva"
@@ -340,12 +344,12 @@ stats.table %>%
         full_width = T,
         latex_options = "hold_position",
         position = "center"
-    ) %>% 
+    ) %>%
     column_spec(4, width = "8cm")
 ```
 
 ```{r, warning=FALSE, include=F}
-xi <- round(chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]],3)
+xi <- round(chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]], 3)
 ```
 
 A partir de estos resultados, podemos reportar lo siguiente:
@@ -417,19 +421,19 @@ table(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)
 
 # Insertemos los datos a mano
 prop.test(
-  c(463, 77), # Conteo de exitos por grupo (Justifica x Menor a 800k y Justifica x Mayor a 800k)
-  c((1273 + 463), (199 + 77)) # Suma por grupo (Menor a 800k y Mayor a 800k)
-  )
+    c(463, 77), # Conteo de exitos por grupo (Justifica x Menor a 800k y Justifica x Mayor a 800k)
+    c((1273 + 463), (199 + 77)) # Suma por grupo (Menor a 800k y Mayor a 800k)
+)
 ```
 
 A raíz de la prueba de hipótesis de proporciones, podemos reportar lo siguiente:
 
-> Al 95% de congianza, no existe evidencia para rechazar la hipótesis nula de no diferencia en la proporción de personas que justifican la violencia por el cambio social entre ambas categorías de ingreso (_p > 0.05_). Es decir, no existen diferencias estadísticamente significativas en la proporción de personas que justifican la violencia por el cambio social entre quienes ganan más de 800k y menos de 800k.
+> Al 95% de confianza, no existe evidencia para rechazar la hipótesis nula de no diferencia en la proporción de personas que justifican la violencia por el cambio social entre ambas categorías de ingreso (_p > 0.05_). Es decir, no existen diferencias estadísticamente significativas en la proporción de personas que justifican la violencia por el cambio social entre quienes ganan más de 800k y menos de 800k.
 
 # 4. Conclusiones
 
 ```{r, warning=FALSE, include=F}
-xi <- round(chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]],3)
+xi <- round(chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]], 3)
 ```
 
 En el presente ejercicio indagamos en la _relación entre los ingresos de las personas y las justificaciones de la violencia por el cambio social en Chile al año 2019_. Considerando que las variables de estudio tenían un nivel de medición categórico nominal, utilizamos la técnica de Chi-cuadrado $X^2$ para el contraste de hipótesis.
