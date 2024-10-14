@@ -1,5 +1,5 @@
 ---
-title: "Ordinales y matrices"
+title: "Asociación con categóricas 1"
 date: "2024-10-07"
 lang: es
 execute:
