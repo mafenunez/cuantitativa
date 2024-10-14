@@ -25,23 +25,29 @@ En detalle, aprenderemos a:
 
 1. Aplicar coeficientes de correlación entre variables categóricas (nominales-ordinales)
 2. Generar y analizar tablas de contingencia (o cruzadas)
-3.  Estimar e interpretar la prueba de Chi-cuadrado ($X^2$)
+3. Estimar e interpretar la prueba de Chi-cuadrado ($X^2$)
+4. Interpretar medidas de magnitud para pruebas con variables categóricas
+5. Realizar pruebas de hipótesis para proporciones
 
 En esta guía utilizaremos un ejemplo que desarrollaremos progresivamente para exponer los contenidos. Al final de esta guía se proporciona un ejercicio autónomo que deberá resolver de manera individual o grupal tomando como referencia el ejemplo aquí expuesto.
 
 # 1. Pregunta de investigación
 
-La erradicación de la violencia es un objetivo compartido por múltiples países y organizaciones internacionales (World Health Organization, 2009, 2010, 2014). Sin embargo, la violencia no es un fenómeno que se pueda erradicar en el corto plazo, más bien es un fenómeno con el cual se debe coexistir planteando límites para su uso (Keane, 2004). Dicho de otra forma, coexistir con la violencia implica determinar las situaciones en que su uso estaría justificado. Las movilizaciones masivas del 2019 en Chile son un claro ejemplo de un evento donde distintos tipos de violencia fueron justificadas. Estas movilizaciones se caracterizaron por violaciones sistemáticas a los derechos humanos de parte de la policía (Amnistía Internacional, 2020), así como también por un alza en la cantidad de protesta violenta (Joignant et al., 2020). Ante este panorama, la violencia como forma de protesta tuvo un incremento en sus niveles de justificación, mientras que la justificación a la violencia policial disminuyó considerablemente (González et al., 2019). El ascenso en los niveles de justificación se torna especialmente relevante si se tiene en consideración que aquellos que justifican la violencia son más tendientes a ejercerla (Nunes et al., 2021), amenzando la convivencia pacífica al largo plazo (Gerber, Carvacho, et al., 2017). Ante esta problemática, se abren las interrogantes sobre ¿quienes y por qué justifican la violencia?
+La violencia es un fenómeno con el que se debe coexistir, estableciendo límites para su uso. Las movilizaciones de 2019 en Chile representan un ejemplo de un evento que aumentó la justificación de la violencia como protesta y redujo la justificación de la violencia policial, lo que plantea preguntas sobre quiénes y por qué justifican la violencia.
 
-El estudio de las justificaciones de la violencia distingue si esta se ejerce por el cambio social o por el control social. En la literatura empírica se han ofrecido tres explicaciones. La primera es que quienes pertenecen a grupos desaventajados tienden a justificar actos violentos que buscan generar algún cambio en las estructuras jerárquicas de la sociedad. La segunda es que quienes poseen ideologías más cercanas al autoritarismo o a la dominancia social, tienden a justificar más la violencia que mantiene el status quo. La tercera es que quienes perciben que son tratados de manera injusta de parte de las autoridades, las legitiman menos y, por ende, justifican menos la violencia que estas ejerzan. Esta última explicación es la que ha recibido más desarrollo en el último tiempo, relevando el rol que tiene sentir injusticia en el trato en la justificación de la violencia. Sin embargo, en este estudio se parte de la premisa que la justicia no es un concepto unidimensional, sino uno multidimensional. A raíz de ello, se propone integrar a la justicia distributiva como una dimensión relevante para explicar las dinámicas de la justificación de la violencia, en tanto es un motivador de la acción humana a nivel micro y macro (Liebig, 2016). La pregunta de investigación que guía el estudio es:
+El estudio de las justificaciones de la violencia distingue si esta se ejerce por el cambio social o por el control social. La violencia por el cambio social refiere a acciones que tengan por objetivo generar cambios en las estructuras jerarquicas de la sociedad, en tanto, la violencia por el control social refiere a aquellas acciones que tienen por objetivo mantener estas estructuras.
 
-**Pregunta 1**: _¿En qué medida se relacionan el sentido de injusticia distributiva y la justificación de la violencia por el **cambio social** en Chile al año 2019?_
+En la literatura, uno de los principales hallazgos es que personas que pertenecen a grupos desavantejados (ej. nivel socioeconómico) suelen justificar más la violencia por el cambio social y menos por el control social.
 
-> H1: A mayor sentido de injusticia distributiva, mayor es la justificación de la violencia por el cambio social
+Considerando estos antecedentes, plantearemos dos preguntas de investigación:
 
-**Pregunta 2**: _¿En qué medida se relacionan el sentido de injusticia distributiva y la justificación de la violencia por el **control social** en Chile al año 2019?_
+**Pregunta 1**: _¿En qué medida se relacionan los ingresos con la justificación de la violencia por el **cambio social** en Chile al año 2019?_
 
-> H2: A mayor sentido de injusticia distributiva, menor es la justificación de la violencia por el control social
+> H1: A mayores ingresos, menor es la justificación de la violencia por el cambio social
+
+**Pregunta 2**: _¿En qué medida se relacionan el el nivel educacional con la justificación de la violencia por el **control social** en Chile al año 2019?_
+
+> H2: A mayor nivel educacional, mayor es la justificación de la violencia por el control social
 
 
 ## Recursos de la práctica
@@ -95,9 +101,11 @@ Ahora, realizaremos un pequeño procesamiento de nuestros datos con `dplyr`, tod
 
 proc_elsoc <- elsoc %>% # seleccionamos
     dplyr::select(
-      starts_with("jv"),
-      starts_with("sj")
-      ) 
+      ingreso,
+      ingreso_rec,
+      educ,
+      educ_rec,
+      starts_with("jv"))
 
 ```
 
@@ -106,6 +114,7 @@ Ahora, exploremos estadísticos descriptivos de nuestra base procesada `proc_els
 ```{r descr, echo=TRUE}
 
 proc_elsoc %>% 
+  select(ingreso, ingreso_rec, educ, educ_rec, jv_cambio, jv_cambio_rec, jv_control, jv_control_rec) %>% 
   sjmisc::descr(show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
   kable(.,"markdown")
 
@@ -138,14 +147,20 @@ En [ELSOC 2019](https://www.gesis.org/en/issp/data-and-documentation/social-ineq
 | F05_03 Que Carabineros use la fuerza para reprimir una manifestación pacífica  | Nunca se justifica (1); Pocas veces se justifica (2); Algunas veces de justifica (3); Muchas veces se justifica (4); Siempre se justifica (5) |
 | F05_07 Que estudiantes tiren piedras a Carabineros en una marcha por la educación del país   | Nunca se justifica (1); Pocas veces se justifica (2); Algunas veces de justifica (3); Muchas veces se justifica (4); Siempre se justifica (5) |
 
+Veamos sus frecuencias:
+
+```{r}
+plot1 <- sjPlot::plot_frq(proc_elsoc$jv_cambio) +  coord_flip() + theme_minimal()
+plot2 <- sjPlot::plot_frq(proc_elsoc$jv_control) + coord_flip() + theme_minimal()
+
+plot1
+plot2
+```
+
 Originalmente, esta variable es ordinal, sin embargo, para efectos del ejemplo de este práctico, trabajaremos con la variable recodificada de la siguiente manera:
 
 - **Justifica (1)** = Pocas veces se justifica (2); Algunas veces de justifica (3); Muchas veces se justifica (4); Siempre se justifica (5)
 - **No justifica (0)** = Nunca se justifica (1)
-
-Por otro lado, el **sentido de injusticia distribuva** se mide con un indicador denominado _evaluación de injusticia_ (Jasso, 1980). Este representa cuanta justicia evalúan las personas en la distribución de recompensas de una situación. En este caso, representa la evalaución de qué tan justa es la distribución de ingresos de _un gerente hipótetico_, en tanto este representa el extremo mayor del espectro ocupacional. El indicador (en una versión simplificada) se lee de la siguiente manera:
-
-> A mayor valor, los gerentes están más injustamente sobrerecompensados (se evalúa más injusticia en su situación)
 
 ## 3.1 Correlación para variables nominales
 
@@ -157,51 +172,51 @@ La correlación punto biserial es una extensión del coeficiente de correlación
 - Esta diferenciación es importante ya que nos prevee de que hay que tener consideraciones con su interpretación, particularmente en lo que refiere al *sentido*
 - En lo que respecta a la *magnitud/tamaño* y la *inferencia*, sigue la misma lógica que hemos visto con la correlación de Pearson
 
-Para calcular este coeficiente en R utilizamos una función ya conocida: `cor.test()`. Probemoslo con las variables `jv_cambio_rec` y `sj_gerente`.
+Para calcular este coeficiente en R utilizamos una función ya conocida: `cor.test()`. Probemoslo con las variables `jv_cambio_rec` e `ingreso`.
 
-Primero, veamos la frecuencia de `jv_cambio_rec` y `sj_gerente`.
+Primero, veamos la frecuencia de `jv_cambio_rec` e `ingreso`.
 
 
 ```{r, echo = TRUE, warning = FALSE, collapse = TRUE}
 sjmisc::frq(proc_elsoc$jv_cambio_rec)
 
-mean(proc_elsoc$sj_gerente, na.rm = TRUE)
+mean(proc_elsoc$ingreso, na.rm = TRUE)
 ```
 
-Obtengamos la correlación punto biserial entre justificación de la violencia por el cambio social y evaluación de justicia para gerentes.
+Obtengamos la correlación punto biserial entre el ingreso y la justificación de la violencia por el cambio social.
 
 ```{r, warning=FALSE}
-cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$sj_gerente)
+cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$ingreso)
 ```
 
 ```{r, warning=FALSE, include=FALSE}
-rpb <- round(cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$sj_gerente)$estimate, 2)
+rpb <- round(cor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$ingreso)$estimate, 2)
 ```
 
-Vemos que la correlación entre el sentido de injusticia distributiva (`sj_gerente`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es positiva, pequeña y estadísticamente significativa ($r$ = `r rpb`; _p < 0.05_)
+Vemos que la correlación entre el sentido de injusticia distributiva (`ingreso`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es negativa, muy pequeña y no es estadísticamente significativa ($r$ = `r rpb`; _p > 0.05_)
 
 ### 3.1.2 Correlación tetracorica
 
-La correlación tetracórica también es una extensión del coeficiente de correlación de Pearson, con la diferencia de que se usa cuando amabs variables de estudio son nominales dicotomicas (2 valores).
+La correlación tetracórica también es una extensión del coeficiente de correlación de Pearson, con la diferencia de que se usa cuando ambas variables de estudio son nominales dicotomicas (2 valores).
 
 - Se calcula en base a la frecuencias de cada combinación de valores (00,01,10,11).
 - Supone que ambas variables son continuas y normalmente distribuidas antes de la categorización
 
-Veamos como vería una correlación tetracórica entre nuestras variables de estudio. En este caso, vamos a usar `jv_cambio` que ya es dicotomica (1 = Justifica, 0 = No justifica) y una versión recodificada del sentido de injusticia `sj_gerente_rec` (1 = Injusto, 0 = Justo)
+Veamos como vería una correlación tetracórica entre nuestras variables de estudio. En este caso, vamos a usar `jv_cambio_rec` que ya es dicotomica (1 = Justifica, 0 = No justifica) y una versión recodificada del ingreso `ingreso_rec`, la cual identifica aquellos entrevistados que tienen un ingreso mayor o menor a 800.000 pesos (1 = Mayor a 800k, 0 = Menor a 800k)
 
-Primero, veamos las frecuencias entre `jv_cambio_rec` y `sj_gerente_rec`.
+Primero, veamos las frecuencias entre `jv_cambio_rec` e `ingreso_rec`.
 
 ```{r, echo = TRUE, warning = FALSE, collapse = TRUE}
 sjmisc::frq(proc_elsoc$jv_cambio_rec)
 
-sjmisc::frq(proc_elsoc$sj_gerente_rec)
+sjmisc::frq(proc_elsoc$ingreso_rec)
 ```
 
-Obtengamos la correlación tetracórica entre `jv_cambio_rec` y `sj_gerente_rec`.
+Obtengamos la correlación tetracórica entre `jv_cambio_rec` e `ingreso_rec`.
 
 ```{r, warning=FALSE}
 matriz <- proc_elsoc %>% 
-  dplyr::select(jv_cambio_rec, sj_gerente_rec) # creamos matriz con var de interes
+  dplyr::select(jv_cambio_rec, ingreso_rec) # creamos matriz con var de interes
 
 psych::tetrachoric(matriz, na.rm = T)
 ```
@@ -210,7 +225,7 @@ psych::tetrachoric(matriz, na.rm = T)
 rt <- round(psych::tetrachoric(matriz, na.rm = T)$rho[2,1], 2)
 ```
 
-Vemos que la correlación entre el sentido de injusticia distributiva recodificado (`sj_gerente_rec`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es positiva, muy pequeña y estadísticamente significativa ($r$ = `r rt`; _p < 0.05_).
+Vemos que la correlación entre los ingresos recodificados (`ingreso_rec`) y la justificación de la violencia por el cambio social (`jv_cambio_rec`) es positiva y muy pequeña ($r$ = `r rt`; _p < 0.05_).
 
 ## 3.2 Tablas de contingencia
 
@@ -222,7 +237,7 @@ Veamos una tabla con nuestro ejemplo usando el comando `sjtab`.
 
 ```{r, warning=FALSE}
 proc_elsoc %>%
-  sjPlot::sjtab(sj_gerente_rec,
+  sjPlot::sjtab(ingreso_rec,
         jv_cambio_rec,
         show.row.prc=TRUE, # porcentaje fila
         show.col.prc=TRUE # porcentaje columna
@@ -231,27 +246,27 @@ proc_elsoc %>%
 
 En esta tabla vemos que los porcentajes coloreados en azul corresponde a las filas y el verde el porcentaje que corresponde a las columnas. Utilizando esta información podemos decir, por ejemplo:
 
-- El 25.8% de quienes consideran que los gerentes están injustamente recompensados justifica la violencia por el cambio social
+- <span style="color: #3F51B5;"> El 72.1% de quienes ganan más de 800k no justifica la violencia por el cambio social </span> 
 
-- El 91.6% de quienes justifican la violencia por el cambio social consideran que los gerentes están justamente recompensados
+- <span style="color: #4CAF50;"> El 13.5% de quienes no justifican la violencia por el cambio social ganan más de 800k </span>
 
 Ahora, ¿cómo sabemos si hay asociación? Repliquemos el ejemplo que vimos en clases, utilizando nuestras variables. Imaginemos que tenemos una base de datos con _N = 100_.
 
 ```{r, warning=FALSE, include=FALSE}
 # Ejemplo de asociación perfecta
 tab1 <- data.frame(
-  "." = c("Justo", "Injusto", "Total"),
-  `No justifica` = c(50, 0, 50),
-  "Justifica" = c(0, 50, 50),
-  Total = c(100, 100, 100)
+  "." = c("Menor a 800k", "Mayor a 800k", "Total"),
+  `No justifica` = c(0, 50, 50),
+  "Justifica" = c(50, 0, 50),
+  Total = c(50, 50, 100)
   )
 
 # Ejemplo de no asociación
 tab2 <- data.frame(
-  "." = c("Justo", "Injusto", "Total"),
+  "." = c("Menor a 800k", "Mayor a 800k", "Total"),
   `No justifica` = c(25, 25, 50),
   "Justifica" = c(25, 25, 50),
-  Total = c(100, 100, 100)
+  Total = c(50, 50, 100)
   )
 ```
 
@@ -259,7 +274,7 @@ Una distribución con evidencia "perfecta" para nuestra hipótesis alternativa s
 
 ```{r, warning=FALSE}
 tab1 %>% 
-  kable(format = "html", align = 'r', col.names = c("Sentido (in)justicia", "No justifica violencia", "Justifica violencia", "Total")) %>% 
+  kable(format = "html", align = 'r', col.names = c("Ingreso", "No justifica violencia", "Justifica violencia", "Total")) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>% 
   kableExtra::kable_styling(latex_options = "hold_position", position = "center")
 ```
@@ -280,18 +295,17 @@ Para determinar si existe una asociación significativa entre dos variables cate
 ::: {.callout-tip}
 #### Prueba de Chi-cuadrado
 
-Contrastamos la _hipótesis nula_ (o de trabajo) de que las variables son idenpendientes entre ellas:
+Contrastamos la _hipótesis nula_ (o de trabajo) de que las variables son independientes entre ellas:
 $$  H_{0}: \pi_{fc} =  \pi_{f}\pi_{c} $$
 
 En relación a una _hipótesis alternativa_ sobre que las variables están relacionadas:
 $$  H_{A}:  \pi_{fc} \neq  \pi_{f}\pi_{c} $$
 :::
 
-
 En R, utilizamos la función `chisq.test()`:
 
 ```{r, warning=FALSE}
-chi_results <- chisq.test(proc_elsoc$sj_gerente_rec, proc_elsoc$jv_cambio_rec)
+chi_results <- chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)
 
 chi_results
 ```
@@ -331,43 +345,104 @@ stats.table %>%
 ```
 
 ```{r, warning=FALSE, include=F}
-xi <- round(chisq.test(proc_elsoc$sj_gerente_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]],3)
+xi <- round(chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]],3)
 ```
 
 A partir de estos resultados, podemos reportar lo siguiente:
 
-> A raíz de la prueba de $X^2$, vemos que existe evidencia para rechazar la hipótesis nula sobre no asociación, generando evidencia a favor de nuestra hipótesis alternativa sobre una asociación estadísticamente significativa entre el sentido de injusticia distributiva y la justificación de la violencia por el cambio social ($X^2$ = `r xi`, _p < 0.05_)
+> A raíz de la prueba de $X^2$, vemos que no existe evidencia para rechazar la hipótesis nula sobre no asociación. Por ende, la asociación entre los ingresos y la justificación de la violencia por el cambio social no es estadísticamente significativa ($X^2$ = `r xi`, _p > 0.05_)
 
+## 3.4. Tamaño de efecto con Phi y V de Cramer
+
+## Estadístico Phi (Φ)
+
+El estadístico Phi mide la asociación entre dos variables categóricas en una tabla de contingencia de 2x2. La fórmula es:
+
+$$
+\Phi = \sqrt{\frac{\chi^2}{n}}
+$$
+
+donde:
+
+- $\chi^2$ es el valor del estadístico chi-cuadrado,
+- $n$ es el tamaño total de la muestra.
+
+El valor de $\Phi$ varía entre -1 y 1. Un valor de 0 indica ausencia de asociación, mientras que valores cercanos a -1 o 1 indican una asociación más fuerte.
+
+## V de Cramer
+
+El V de Cramer es una extensión del estadístico Phi para tablas de contingencia mayores de 2x2. Su fórmula es:
+
+$$
+V = \sqrt{\frac{\chi^2}{n(k-1)}}
+$$
+
+donde:
+
+-  $\chi^2$ es el valor del chi-cuadrado,
+-  $n$ es el tamaño de la muestra,
+-  $k$ es el número de filas o columnas, el que sea menor.
+
+Los valores de $V$ también varían entre 0 y 1, donde 0 indica ausencia de asociación, y valores cercanos a 1 indican una asociación más fuerte.
+
+En nuestro ejemplo, nuestra tabla de contingencia es de 2x2, por ende, debemos usar el estadístico Phi. En R lo podemos calcular directamente siguiendo la formula:
+
+```{r}
+
+# Guardar el test de chi cuadrado
+chi_result <- chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)
+n <- na.omit(proc_elsoc %>% select(ingreso_rec, jv_cambio_rec)) %>% nrow()
+
+# Cálculo de Phi
+phi <- sqrt(chi_result$statistic / n)
+phi
+
+```
+
+ Con un valor de `r round(phi[[1]], 3)`, vemos que la magnitud de la asociación entre las variables es muy baja.
+
+# 3.5 Test de proporciones
+
+El test de proporciones es una prueba estadística que se utiliza para comparar las proporciones de éxito (o cualquier categoría de interés) entre dos o más grupos. Es especialmente útil cuando se trabaja con variables categóricas binarias (por ejemplo, sí/no, éxito/fallo) y queremos verificar si las proporciones de estas categorías son significativamente diferentes entre los grupos.
+
+Este test evalúa la hipótesis nula de que las proporciones en diferentes grupos son iguales frente a la hipótesis alternativa de que al menos una de las proporciones es diferente.
+
+En este caso, nos puede ser de utilidad si queremos conocer si la proporción de personas que justifican la violencia por el cambio social es estadísticamente diferente entre quienes tienen ingresos mayores a 800k y quienes tienen ingresos menores a 800k.
+
+Esto se prueba en R de la siguiente manera:
+
+```{r}
+# Veamos el conteo por categorías
+table(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)
+
+# Insertemos los datos a mano
+prop.test(
+  c(463, 77), # Conteo de exitos por grupo (Justifica x Menor a 800k y Justifica x Mayor a 800k)
+  c((1273 + 463), (199 + 77)) # Suma por grupo (Menor a 800k y Mayor a 800k)
+  )
+```
+
+A raíz de la prueba de hipótesis de proporciones, podemos reportar lo siguiente:
+
+> Al 95% de congianza, no existe evidencia para rechazar la hipótesis nula de no diferencia en la proporción de personas que justifican la violencia por el cambio social entre ambas categorías de ingreso (_p > 0.05_). Es decir, no existen diferencias estadísticamente significativas en la proporción de personas que justifican la violencia por el cambio social entre quienes ganan más de 800k y menos de 800k.
 
 # 4. Conclusiones
 
-### Pregunta 1
+```{r, warning=FALSE, include=F}
+xi <- round(chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)$statistic[[1]],3)
+```
 
-**Pregunta 1**: _¿En qué medida se relacionan el sentido de injusticia distributiva y la justificación de la violencia por el **cambio social** en Chile al año 2019?_
+En el presente ejercicio indagamos en la _relación entre los ingresos de las personas y las justificaciones de la violencia por el cambio social en Chile al año 2019_. Considerando que las variables de estudio tenían un nivel de medición categórico nominal, utilizamos la técnica de Chi-cuadrado $X^2$ para el contraste de hipótesis.
 
-Para responder esta pregunta debemos emplear la técnica de Chi-cuadrado $X^2$ para contrastar la hipótesis respecto a que existe una asoción entre el sentido de injusticia distributiva y la justificación de la violencia por el _cambio social_, ya que ambas variables son categóricas (nominales).
+La hipótesis planteada inicialmente sugería que los ingresos podrían estar asociados con las actitudes hacia la justificación de la violencia como una forma de cambio social. Sin embargo, los resultados de la prueba $X^2$, como se muestra en la @tbl-chi, indican que **no** existe una asociación estadísticamente significativa entre estas variables ($X^2$ = `r xi`, _p > 0.05_).
 
-De acuerdo con los resultados obtenidos en la @tbl-chi, existe una asociación estadísticamente significativa entre el sentido de injusticia distributiva y la justificación de la violencia por el cambio social ($X^2$ = `r xi`, _p < 0.05_). Con todo, podemos sostener que la justificación del uso de la violencia por motivos de cambio social se ve influida por el grado de injusticia distributiva en los ingresos. 
+Esto significa que, según los datos analizados, los ingresos no parecen ser un factor que influya en la justificación de la violencia para el cambio social. En otras palabras, las personas con diferentes niveles de ingresos no muestran diferenciasen sus actitudes hacia la justificación de la violencia. Por lo tanto, no podemos concluir que los ingresos estén relacionados con la justificación de la violencia en el contexto del cambio social en Chile en 2019.
 
 # Ejercicio autónomo
 
-A partir de la base de datos de `proc_elsoc` responda la pregunta 2 planteada al inicio de este ejercicio. Es decir: _¿En qué medida se relacionan el sentido de injusticia distributiva y la justificación de la violencia por el **control social** en Chile al año 2019?_
+A partir de la base de datos de `proc_elsoc` responda la pregunta 2 planteada al inicio de este ejercicio. Es decir: _¿En qué medida se relacionan el nivel educacional y la justificación de la violencia por el **control social** en Chile al año 2019?_
 
-1. Estime la correlación adecauda para `sj_gerente` y `jv_control_rec`.
-2. Presente en una tabla de contingencia entre las variables `sj_gerente_rec` y `jv_control_rec`.
-3. Calcule el estadístico de Chi cuadrado ($X^2$) entre las variables `sj_gerente_rec` y `jv_control_rec`.
-4. Interprete los resultados obtenidos. Responda la pregunta de investigación a raíz de los calculos desarrolaldos.
-
-
-#### Referencias
-
-Amnistía Internacional. (2020). Ojos sobre Chile. Amnistía Internacional.
-Gerber, M., González, R., Carvacho, H., Jiménez-Moya, G., & Jackson, J. (2017). On the justification of intergroup violence: The roles of procedural justice, police legitimacy and group identity in attitudes towards violence among indigenous people. Psychology of Violence, 8(3), 379–389. https://doi.org/10.1037/vio0000177
-González, R., Bargsted, M., Carvacho, H., Miranda, D., Cerda, E., Mella, M., & Plaza, A. (2019). Radiografía del cambio social: Análisis de Resultados Longitudinales Estudio Longitudinal Social de Chile. Centro de Estudios de Conflicto y Cohesión Social.
-Jasso, G. (1980). A New Theory of Distributive Justice. American Sociological Review, 45(1), 3–32. https://doi.org/https://www.jstor.org/stable/2095239 JSTOR
-Joignant, A., Garretón, M., Somma, N. M., & Campos, T. (2020). Informe Anual: Observatorio de Conflictos 2020. Centro de Estudios de Conflicto y Cohesión Social COES. https://doi.org/10.13140/RG.2.2.20137.83048
-Keane, J. (2004). Violence and Democracy (1st ed.). Cambridge University press.
-Liebig, S., & Sauer, C. (2016). Sociology of justice. Handbook of social justice theory and research, 37-59.
-World Health Organization. (2009). Changing cultural and social norms that support violence.
-World Health Organization. (2010). Violence prevention: the evidence.
-World Health Organization. (2014). Global Status Report on Violence Prevention 2014.
+1. Estime la correlación adecuada para `educ` y `jv_control_rec`.
+2. Presente en una tabla de contingencia entre las variables `educ_rec` y `jv_control_rec`.
+3. Calcule el estadístico de Chi cuadrado ($X^2$) entre las variables `educ_rec` y `jv_control_rec`.
+4. Interprete los resultados obtenidos. Responda la pregunta de investigación a raíz de los calculos desarrollados.
