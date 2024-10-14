@@ -972,5 +972,101 @@
       "Guías",
       "3: Correlación de Pearson"
     ]
+  },
+  {
+    "objectID": "assignment/05-practico.html",
+    "href": "assignment/05-practico.html",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "",
+    "text": "El objetivo de esta guía práctica es introducir herramientas estadísticas para el análisis de relación entre variables categóricas (nominales).\nEn detalle, aprenderemos a:\n\nAplicar coeficientes de correlación entre variables categóricas (nominales-ordinales)\nGenerar y analizar tablas de contingencia (o cruzadas)\nEstimar e interpretar la prueba de Chi-cuadrado (\\(X^2\\))\nInterpretar medidas de magnitud para pruebas con variables categóricas\nRealizar pruebas de hipótesis para proporciones\n\nEn esta guía utilizaremos un ejemplo que desarrollaremos progresivamente para exponer los contenidos. Al final de esta guía se proporciona un ejercicio autónomo que deberá resolver de manera individual o grupal tomando como referencia el ejemplo aquí expuesto.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#recursos-de-la-práctica",
+    "href": "assignment/05-practico.html#recursos-de-la-práctica",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "Recursos de la práctica",
+    "text": "Recursos de la práctica\nEn esta práctica trabajaremos con un subconjunto de datos previamente procesados de la Encuesta Social Longitudinal de Chile (ELSOC) para Chile del año 2019. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también es posible acceder a la misma información a través del siguiente enlace:  ELSOC 2019. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos ELSOC 2019.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#correlación-para-variables-nominales",
+    "href": "assignment/05-practico.html#correlación-para-variables-nominales",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "3.1 Correlación para variables nominales",
+    "text": "3.1 Correlación para variables nominales\n\n3.1.1 Correlación punto biserial\nLa correlación punto biserial es una extensión del coeficiente de correlación de Pearson y se utiliza cuando una de las variables de estudio tienen un nivel de medición intervalar y la otra un nivel de medición nominal.\n\nEl nombre de punto biserial es una forma de diferenciarla de la correlación de Pearson\nEsta diferenciación es importante ya que nos prevee de que hay que tener consideraciones con su interpretación, particularmente en lo que refiere al sentido\nEn lo que respecta a la magnitud/tamaño y la inferencia, sigue la misma lógica que hemos visto con la correlación de Pearson\n\nPara calcular este coeficiente en R utilizamos una función ya conocida: cor.test(). Probemoslo con las variables jv_cambio_rec e ingreso.\nPrimero, veamos la frecuencia de jv_cambio_rec e ingreso.\n\nsjmisc::frq(proc_elsoc$jv_cambio_rec)\n## Justificación de la violencia por el cambio social (binario) (x) &lt;numeric&gt; \n## # total N=3417 valid N=3405 mean=0.25 sd=0.43\n## \n## Value |        Label |    N | Raw % | Valid % | Cum. %\n## ------------------------------------------------------\n##     0 | No justifica | 2554 | 74.74 |   75.01 |  75.01\n##     1 |    Justifica |  851 | 24.90 |   24.99 | 100.00\n##  &lt;NA&gt; |         &lt;NA&gt; |   12 |  0.35 |    &lt;NA&gt; |   &lt;NA&gt;\n\nmean(proc_elsoc$ingreso, na.rm = TRUE)\n## [1] 537927.2\n\nObtengamos la correlación punto biserial entre el ingreso y la justificación de la violencia por el cambio social.\n\ncor.test(proc_elsoc$jv_cambio_rec, proc_elsoc$ingreso)\n\n\n    Pearson's product-moment correlation\n\ndata:  proc_elsoc$jv_cambio_rec and proc_elsoc$ingreso\nt = -0.51503, df = 2010, p-value = 0.6066\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.05515929  0.03222920\nsample estimates:\n        cor \n-0.01148698 \n\n\nVemos que la correlación entre el sentido de injusticia distributiva (ingreso) y la justificación de la violencia por el cambio social (jv_cambio_rec) es negativa, muy pequeña y no es estadísticamente significativa (\\(r\\) = -0.01; p &gt; 0.05)\n\n\n3.1.2 Correlación tetracorica\nLa correlación tetracórica también es una extensión del coeficiente de correlación de Pearson, con la diferencia de que se usa cuando ambas variables de estudio son nominales dicotomicas (2 valores).\n\nSe calcula en base a la frecuencias de cada combinación de valores (00,01,10,11).\nSupone que ambas variables son continuas y normalmente distribuidas antes de la categorización\n\nVeamos como vería una correlación tetracórica entre nuestras variables de estudio. En este caso, vamos a usar jv_cambio_rec que ya es dicotomica (1 = Justifica, 0 = No justifica) y una versión recodificada del ingreso ingreso_rec, la cual identifica aquellos entrevistados que tienen un ingreso mayor o menor a 800.000 pesos (1 = Mayor a 800k, 0 = Menor a 800k)\nPrimero, veamos las frecuencias entre jv_cambio_rec e ingreso_rec.\n\nsjmisc::frq(proc_elsoc$jv_cambio_rec)\n## Justificación de la violencia por el cambio social (binario) (x) &lt;numeric&gt; \n## # total N=3417 valid N=3405 mean=0.25 sd=0.43\n## \n## Value |        Label |    N | Raw % | Valid % | Cum. %\n## ------------------------------------------------------\n##     0 | No justifica | 2554 | 74.74 |   75.01 |  75.01\n##     1 |    Justifica |  851 | 24.90 |   24.99 | 100.00\n##  &lt;NA&gt; |         &lt;NA&gt; |   12 |  0.35 |    &lt;NA&gt; |   &lt;NA&gt;\n\nsjmisc::frq(proc_elsoc$ingreso_rec)\n## Ingresos mayores a 800.000 (binario) (x) &lt;numeric&gt; \n## # total N=3417 valid N=2018 mean=0.14 sd=0.34\n## \n## Value |        Label |    N | Raw % | Valid % | Cum. %\n## ------------------------------------------------------\n##     0 | Menor a 800k | 1742 | 50.98 |   86.32 |  86.32\n##     1 | Mayor a 800k |  276 |  8.08 |   13.68 | 100.00\n##  &lt;NA&gt; |         &lt;NA&gt; | 1399 | 40.94 |    &lt;NA&gt; |   &lt;NA&gt;\n\nObtengamos la correlación tetracórica entre jv_cambio_rec e ingreso_rec.\n\nmatriz &lt;- proc_elsoc %&gt;%\n    dplyr::select(jv_cambio_rec, ingreso_rec) # creamos matriz con var de interes\n\npsych::tetrachoric(matriz, na.rm = T)\n\nCall: psych::tetrachoric(x = matriz, na.rm = T)\ntetrachoric correlation \n              jv_c_ ingr_\njv_cambio_rec 1.00       \ningreso_rec   0.02  1.00 \n\n with tau of \njv_cambio_rec   ingreso_rec \n         0.67          1.09 \n\n\nVemos que la correlación entre los ingresos recodificados (ingreso_rec) y la justificación de la violencia por el cambio social (jv_cambio_rec) es positiva y muy pequeña (\\(r\\) = 0.02; p &lt; 0.05).",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#tablas-de-contingencia",
+    "href": "assignment/05-practico.html#tablas-de-contingencia",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "3.2 Tablas de contingencia",
+    "text": "3.2 Tablas de contingencia\nLas tablas de contingencia son herramientas estadísticas utilizadas para resumir y analizar la relación entre dos o más variables categóricas. Estas tablas muestran la frecuencia de diferentes combinaciones de categorías de las variables, facilitando la visualización de patrones o asociaciones.\nDicho de otra manera, podemos saber cuántos casos de una determinada categoría de la variable \\(Y\\) ocurren conjuntamente con una determinada categoría de la variable \\(X\\).\nVeamos una tabla con nuestro ejemplo usando el comando sjtab.\n\nproc_elsoc %&gt;%\n    sjPlot::sjtab(ingreso_rec,\n        jv_cambio_rec,\n        show.row.prc = TRUE, # porcentaje fila\n        show.col.prc = TRUE # porcentaje columna\n    )\n\n\n \n Ingresos mayores a800.000 (binario)\n Justificación de laviolencia por elcambio social(binario)\n Total\n \n \n\n No justifica\n Justifica\n \n \n \nMenor a 800k\n127373.3 %86.5 %\n46326.7 %85.7 %\n1736100 %86.3 % \n\n \n \nMayor a 800k\n19972.1 %13.5 %\n7727.9 %14.3 %\n276100 %13.7 % \n\n \n \nTotal\n147273.2 %100 %\n54026.8 %100 %\n2012100 %100 % \n\nχ2=0.126 · df=1 · &phi=0.010 · p=0.723 \n\n \n\n\n\nEn esta tabla vemos que los porcentajes coloreados en azul corresponde a las filas y el verde el porcentaje que corresponde a las columnas. Utilizando esta información podemos decir, por ejemplo:\n\n El 72.1% de quienes ganan más de 800k no justifica la violencia por el cambio social \n El 13.5% de quienes no justifican la violencia por el cambio social ganan más de 800k \n\nAhora, ¿cómo sabemos si hay asociación? Repliquemos el ejemplo que vimos en clases, utilizando nuestras variables. Imaginemos que tenemos una base de datos con N = 100.\nUna distribución con evidencia “perfecta” para nuestra hipótesis alternativa se puede ver en la siguiente tabla:\n\ntab1 %&gt;%\n    kable(format = \"html\", align = \"r\", col.names = c(\"Ingreso\", \"No justifica violencia\", \"Justifica violencia\", \"Total\")) %&gt;%\n    kable_styling(bootstrap_options = c(\"striped\", \"hover\", \"condensed\", \"responsive\"), full_width = T) %&gt;%\n    kableExtra::kable_styling(latex_options = \"hold_position\", position = \"center\")\n\n\n\n\n\nIngreso\nNo justifica violencia\nJustifica violencia\nTotal\n\n\n\n\nMenor a 800k\n0\n50\n50\n\n\nMayor a 800k\n50\n0\n50\n\n\nTotal\n50\n50\n100\n\n\n\n\n\n\n\n\nEn contraste, una distribución que representaría un caso perfecto de no asociación, se puede ver en la siguiente tabla:\n\ntab2 %&gt;%\n    kable(format = \"html\", align = \"r\", col.names = c(\"Sentido (in)justicia\", \"No justifica violencia\", \"Justifica violencia\", \"Total\")) %&gt;%\n    kable_styling(bootstrap_options = c(\"striped\", \"hover\", \"condensed\", \"responsive\"), full_width = T) %&gt;%\n    kableExtra::kable_styling(latex_options = \"hold_position\", position = \"center\")\n\n\n\n\n\nSentido (in)justicia\nNo justifica violencia\nJustifica violencia\nTotal\n\n\n\n\nMenor a 800k\n25\n25\n50\n\n\nMayor a 800k\n25\n25\n50\n\n\nTotal\n50\n50\n100",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#prueba-de-hipótesis-con-chi-cuadrado-x2",
+    "href": "assignment/05-practico.html#prueba-de-hipótesis-con-chi-cuadrado-x2",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "3.3. Prueba de hipótesis con Chi cuadrado (\\(X^2\\))",
+    "text": "3.3. Prueba de hipótesis con Chi cuadrado (\\(X^2\\))\nPara determinar si existe una asociación significativa entre dos variables categóricas se utiliza la prueba de Chi-cudrado (\\(X^2\\)). Esta se basa en un test de diferencia, donde se compara nuestra tabla de contingencia y una tabla donde no existe asociación entre variables (\\(H_0\\)), que representa la hipótesis nula. La lógica detrás es que si nuestra tabla es significativamente distinta de una tabla sin asociación, entonces podemos rechazar la hipóteis nula.\n\n\n\n\n\n\nPrueba de Chi-cuadrado\n\n\n\nContrastamos la hipótesis nula (o de trabajo) de que las variables son independientes entre ellas: \\[  H_{0}: \\pi_{fc} =  \\pi_{f}\\pi_{c} \\]\nEn relación a una hipótesis alternativa sobre que las variables están relacionadas: \\[  H_{A}:  \\pi_{fc} \\neq  \\pi_{f}\\pi_{c} \\]\n\n\nEn R, utilizamos la función chisq.test():\n\nchi_results &lt;- chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)\n\nchi_results\n\n\n    Pearson's Chi-squared test with Yates' continuity correction\n\ndata:  proc_elsoc$ingreso_rec and proc_elsoc$jv_cambio_rec\nX-squared = 0.1257, df = 1, p-value = 0.7229\n\n\nObtuvimos nuestro resultado, pero no es muy amigable a la vista. Generemos una tabla de calidad para que sea reportable.\n\nstats.table &lt;- tidy(chi_results)\n\nstats.table %&gt;%\n    dplyr::mutate(\n        statistic = round(statistic, 2),\n        p_value = case_when(\n            p.value &lt; 0.05 & p.value &gt; 0.01 ~ \"&lt; 0.05*\",\n            p.value &lt; 0.01 & p.value &gt; 0.001 ~ \"&lt; 0.01**\",\n            p.value &lt; 0.001 ~ \"&lt; 0.001***\",\n            TRUE ~ \"\"\n        )\n    ) %&gt;%\n    dplyr::select(statistic, p_value, parameter, method) %&gt;%\n    kableExtra::kable(\n        format = \"html\",\n        col.names = c(\"X2\", \"p-value\", \"df\", \"Método\"),\n        booktabs = T,\n        caption = \"Prueba de Chi-cuadrado entre justificación de la violencia por cambio social e injusticia distributiva\"\n    ) %&gt;%\n    kableExtra::kable_styling(\n        bootstrap_options = c(\"striped\", \"hover\", \"condensed\", \"responsive\"),\n        full_width = T,\n        latex_options = \"hold_position\",\n        position = \"center\"\n    ) %&gt;%\n    column_spec(4, width = \"8cm\")\n\n\n\nTabla 1: Prueba de Chi-cuadrado entre justificación de la violencia por cambio social e injusticia distributiva\n\n\n\n\n\n\n\nX2\np-value\ndf\nMétodo\n\n\n\n\n0.13\n\n1\nPearson's Chi-squared test with Yates' continuity correction\n\n\n\n\n\n\n\n\n\n\n\nA partir de estos resultados, podemos reportar lo siguiente:\n\nA raíz de la prueba de \\(X^2\\), vemos que no existe evidencia para rechazar la hipótesis nula sobre no asociación. Por ende, la asociación entre los ingresos y la justificación de la violencia por el cambio social no es estadísticamente significativa (\\(X^2\\) = 0.126, p &gt; 0.05)",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#tamaño-de-efecto-con-phi-y-v-de-cramer",
+    "href": "assignment/05-practico.html#tamaño-de-efecto-con-phi-y-v-de-cramer",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "3.4. Tamaño de efecto con Phi y V de Cramer",
+    "text": "3.4. Tamaño de efecto con Phi y V de Cramer",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#estadístico-phi-φ",
+    "href": "assignment/05-practico.html#estadístico-phi-φ",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "Estadístico Phi (Φ)",
+    "text": "Estadístico Phi (Φ)\nEl estadístico Phi mide la asociación entre dos variables categóricas en una tabla de contingencia de 2x2. La fórmula es:\n\\[\n\\Phi = \\sqrt{\\frac{\\chi^2}{n}}\n\\]\ndonde:\n\n\\(\\chi^2\\) es el valor del estadístico chi-cuadrado,\n\\(n\\) es el tamaño total de la muestra.\n\nEl valor de \\(\\Phi\\) varía entre -1 y 1. Un valor de 0 indica ausencia de asociación, mientras que valores cercanos a -1 o 1 indican una asociación más fuerte.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
+  },
+  {
+    "objectID": "assignment/05-practico.html#v-de-cramer",
+    "href": "assignment/05-practico.html#v-de-cramer",
+    "title": "Práctico 5: Asociación entre categóricas",
+    "section": "V de Cramer",
+    "text": "V de Cramer\nEl V de Cramer es una extensión del estadístico Phi para tablas de contingencia mayores de 2x2. Su fórmula es:\n\\[\nV = \\sqrt{\\frac{\\chi^2}{n(k-1)}}\n\\]\ndonde:\n\n\\(\\chi^2\\) es el valor del chi-cuadrado,\n\\(n\\) es el tamaño de la muestra,\n\\(k\\) es el número de filas o columnas, el que sea menor.\n\nLos valores de \\(V\\) también varían entre 0 y 1, donde 0 indica ausencia de asociación, y valores cercanos a 1 indican una asociación más fuerte.\nEn nuestro ejemplo, nuestra tabla de contingencia es de 2x2, por ende, debemos usar el estadístico Phi. En R lo podemos calcular directamente siguiendo la formula:\n\n# Guardar el test de chi cuadrado\nchi_result &lt;- chisq.test(proc_elsoc$ingreso_rec, proc_elsoc$jv_cambio_rec)\nn &lt;- na.omit(proc_elsoc %&gt;% select(ingreso_rec, jv_cambio_rec)) %&gt;% nrow()\n\n# Cálculo de Phi\nphi &lt;- sqrt(chi_result$statistic / n)\nphi\n\n  X-squared \n0.007904267 \n\n\nCon un valor de 0.008, vemos que la magnitud de la asociación entre las variables es muy baja.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "5: Asociación entre categóricas"
+    ]
   }
 ]
