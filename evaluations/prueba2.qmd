@@ -1,0 +1,86 @@
+---
+title: "Evaluación 2 - Estadística Correlacional 2024 "
+date: "2024-10-22"
+lang: es
+execute:
+  freeze: auto
+  cache: false 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    warning = F,
+    error = F,
+    message = F
+)
+```
+
+```{r paquetes, include=FALSE}
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               sjmisc, 
+               sjPlot, 
+               kableExtra,
+               sjlabelled,
+               naniar)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r datos, include=FALSE}
+
+```
+
+# Primera sección
+
+Imagine que ud. es parte de un equipo que está investigando la relación entre X e Y. En concreto, la revisión de antecedentes llevó a la siguiente pregunta de investigación: ¿en qué medida X afecta a Y? La hipótesis de investigación del equipo es que a mayor X, menor Y. Cómo sociólogo experto en manejo de datos y análisis cuantitativo, se le ha encargado escribir el reporte de resultados de la investigación.
+
+Para esta tarea, ud. cuenta con los datos de DATA los cuales corresponden a DESCRIPCIÓN DATA. Para la investigación debe utilizar las variables X1… e Y1….
+
+A raíz de esta información, responda las siguientes preguntas:
+
+
+## Pregunta 1.1
+
+Escoja un tipo de coeficiente de correlación (Pearson, Spearman o Kendall) y justifique metodológicamente su elección (1p). 
+
+## Pregunta 1.2 
+
+Utilice el software R para calcular el coeficiente de correlación escogido. Interprete sus resultados tanto en términos de magnitud del coeficiente, así cómo también en términos de significancia estadística (2p).
+
+## Pregunta 1.3 
+
+Visualice la relación entre las variables con un diagrama de dispersión. Con este gráfico, responda: 
+
+a) ¿se observa alguna tendencia en los datos? ¿cuál? y 
+
+b) ¿considera que el análisis se beneficiaría de eliminar algún caso? ¿por qué? (1p)
+
+
+# Segunda sección
+
+Imagine ud. que, en la base de datos `proc_data` (N = 1.000) que está usando para su investigación, las variables `x3` y `x4` fueron re-codificadas de tal manera que las categorías de respuesta “No sabe/No responde” fueron convertidas a casos pérdidos. Con esta recodificación, la distribución de los casos pérdidos en las variables de esta base de datos es la siguiente:
+
+A raíz de esta información, responda las siguientes preguntas:
+
+## Pregunta 2.1
+
+Utilice el software R para calcular una matriz de correlación con las variables `x1`,`x2`,`x3` y `x4`, considerando el tratamiento de sus casos pérdidos. Reporte sus resultados en una tabla o un gráfico. (1 p)
+
+## Pregunta 2.2
+
+Interprete los resultados obtenidos en la matriz de correlación tanto en términos de magnitud de los coeficientes, así como también en términos de significancia estadística. (1p)
+
+## Pregunta 2.3
+
+Justifique y explique el método de tratamiento de casos pérdidos que utilizó para estimar la matriz de correlación. (2p)
+
+# Tercera sección
+
+Para esta pregunta me sumo a la base de datos con dos variables, una de dos categorías y una de tres (alta/baja educación, y izquierda-centro-derecha, o algo así)
+
+3.1. Código de tabla, código de cálculo  de prueba estadística correspondiente (1)
+3.2 Interpretación, considerando inferencia estadística (2) y magnitud de efecto  (1)
+

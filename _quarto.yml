@@ -56,6 +56,8 @@ website:
       - text: "Recursos"
         file: resource/index.qmd
       - syllabus.qmd
+      - text: "Evaluaciones"
+        file: evaluations/index.qmd
       - icon: cloud-fill
         href: "https://rstudio.cloud"
         aria-label: RStudio.cloud
@@ -127,6 +129,18 @@ website:
           file: assignment/foro-practicos.qmd
         - text: "Consola R Online"
           file: assignment/consola.qmd
+    - title: "Evaluaciones"
+      style: "docked"
+      search: false
+      lang: es
+      background: dark
+      contents:
+        - text: "Descripción"
+          file: evaluations/index.qmd
+        - section: "Documentos"
+          contents:
+#            - text: "Evaluación 2"
+#              file: evaluations/prueba2.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
