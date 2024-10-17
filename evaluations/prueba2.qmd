@@ -16,58 +16,88 @@ knitr::opts_chunk$set(
 ```
 
 ```{r paquetes, include=FALSE}
-if (! require("pacman")) install.packages("pacman")
+if (!require("pacman")) install.packages("pacman")
 
-pacman::p_load(tidyverse, 
-               sjmisc, 
-               sjPlot, 
-               kableExtra,
-               sjlabelled,
-               naniar)
+pacman::p_load(
+    tidyverse,
+    sjmisc,
+    sjPlot,
+    kableExtra,
+    sjlabelled,
+    naniar
+)
 
-options(scipen=999)
+options(scipen = 999)
 rm(list = ls())
 ```
 
-```{r datos, include=FALSE}
-
+```{r, include=FALSE}
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset1.RData"))
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset2.RData"))
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset3.RData"))
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset4.RData"))
 ```
+
+Imagine que usted es parte de un equipo de investigación de un centro de estudios sociales. Actualmente, el centro está llevando a cabo una investigación que se guía por las siguientes preguntas:
+
+- **Pregunta 1:** ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?
+- **Pregunta 2:** ¿En qué medida se relaciona el tener educación universitaria o más con la posición política de las personas?
+
+Las cuales tienen las siguientes hipótesis de investigación:
+
+> H1: A mayor clase social subjetiva, mayores son los niveles de autoritarismo
+> H2: Existe asociación entre el tener educación universitaria o más y la posición política de las personas
+
+Como sociólogo experto en manejo de datos y análisis cuantitativo, a usted se le ha encargado realizar un reporte que permita responder estas preguntas. Para esta tarea usted cuenta con la base de datos [{{< fa table >}} `DATOS2024`](https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset1.RData). Esta base cuenta con 1000 casos y 7 variables, las cuales son:
+
+  - `id`: Identificador único de la encuesta
+  - `clase_subj`: Clase social subjetiva
+  - `autoritarismo`: Autoritarismo
+  - `educ`: Nivel educacional
+  - `pos_pol`: Posición política
+  - `educ_rec`: Nivel educacional recodificada (universitario o más)
+  - `pos_pol_rec`: Posición política recodificada
 
 # Primera sección
 
-Imagine que ud. es parte de un equipo que está investigando la relación entre X e Y. En concreto, la revisión de antecedentes llevó a la siguiente pregunta de investigación: ¿en qué medida X afecta a Y? La hipótesis de investigación del equipo es que a mayor X, menor Y. Cómo sociólogo experto en manejo de datos y análisis cuantitativo, se le ha encargado escribir el reporte de resultados de la investigación.
-
-Para esta tarea, ud. cuenta con los datos de DATA los cuales corresponden a DESCRIPCIÓN DATA. Para la investigación debe utilizar las variables X1… e Y1….
-
-A raíz de esta información, responda las siguientes preguntas:
-
+En esta primera sección, usted debe responder la **Pregunta 1** y la hipótesis **H1**.
 
 ## Pregunta 1.1
 
-Escoja un tipo de coeficiente de correlación (Pearson, Spearman o Kendall) y justifique metodológicamente su elección (1p). 
+A través del software R, a) cálcule un coeficiente de correlación (Pearson, Spearman o Kendall) para `clase_subj` y `autoritarismo` y b) genere un diagrama de dispersión entre estas variables. (1p)
 
 ## Pregunta 1.2 
 
-Utilice el software R para calcular el coeficiente de correlación escogido. Interprete sus resultados tanto en términos de magnitud del coeficiente, así cómo también en términos de significancia estadística (2p).
+Justifique el coeficiente de correlación escogido. (1p)
 
 ## Pregunta 1.3 
 
-Visualice la relación entre las variables con un diagrama de dispersión. Con este gráfico, responda: 
-
-a) ¿se observa alguna tendencia en los datos? ¿cuál? y 
-
-b) ¿considera que el análisis se beneficiaría de eliminar algún caso? ¿por qué? (1p)
-
+Interprete el coeficiente de correlación y el diagrama de dispersión. Incluya la magnitud del coeficiente, el sentido de la dirección y la inferencia estadística en su respuesta. Considerando esta evidencia, responda la pregunta de investigación (**Pregunta 1**) y la hipótesis alternativa (**H1**). (2p)
 
 # Segunda sección
 
-Imagine ud. que, en la base de datos `proc_data` (N = 1.000) que está usando para su investigación, las variables `x3` y `x4` fueron re-codificadas de tal manera que las categorías de respuesta “No sabe/No responde” fueron convertidas a casos pérdidos. Con esta recodificación, la distribución de los casos pérdidos en las variables de esta base de datos es la siguiente:
+Imagine usted que, en la base de datos `dataset` (n = 1.000) que está usando para su investigación, las variables `clase_subj`, `pos_pol` y `autoritarismo` fueron re-codificadas de tal manera que las categorías de respuesta "No sabe/No responde" fueron convertidas a casos pérdidos (`NA`). Con esta recodificación, la distribución de los casos pérdidos en las variables de esta base de datos es la siguiente:
+
+```{r, include=FALSE}
+
+tab_perdidos <- data.frame(
+    var = c("educ", "clase_subj", "pos_pol", "autoritarismo"),
+    label = c("Nivel educacional", "Clase social subjetiva", "Posición política", "Autoritarismo"),
+    n_perdidos = c(0, 10, 150, 20),
+    porc_perdidos = c("0%", "1%", "15%", "2%")
+)
+
+tab_perdidos %>%
+    kable(format = "html", align = "r", col.names = c("Variable", "Etiqueta", "n casos perdidos", "% casos perdidos")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>%
+    kableExtra::kable_styling(latex_options = "hold_position", position = "center")
+```
 
 A raíz de esta información, responda las siguientes preguntas:
 
 ## Pregunta 2.1
 
-Utilice el software R para calcular una matriz de correlación con las variables `x1`,`x2`,`x3` y `x4`, considerando el tratamiento de sus casos pérdidos. Reporte sus resultados en una tabla o un gráfico. (1 p)
+Utilice el software R para calcular una matriz de correlación con las variables `educ`, `clase_subj`, `pos_pol` y `autoritarismo`, considerando el tratamiento de sus casos pérdidos. Reporte sus resultados en una tabla o un gráfico. (1p)
 
 ## Pregunta 2.2
 
