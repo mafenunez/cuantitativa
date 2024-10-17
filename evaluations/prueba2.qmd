@@ -38,7 +38,7 @@ load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/
 load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset4.RData"))
 ```
 
-Imagine que usted es parte de un equipo de investigación de un centro de estudios sociales. Actualmente, el centro está llevando a cabo una investigación que se guía por las siguientes preguntas:
+Imagine que usted es parte de un equipo de investigación en un centro de estudios sociales que busca comprender mejor cómo ciertos factores sociales se asocian con actitudes políticas. En este momento, el centro está realizando un estudio guiado por las siguientes preguntas de investigación:
 
 - **Pregunta 1:** ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?
 - **Pregunta 2:** ¿En qué medida se relaciona el tener educación universitaria o más con la posición política de las personas?
@@ -46,9 +46,10 @@ Imagine que usted es parte de un equipo de investigación de un centro de estudi
 Las cuales tienen las siguientes hipótesis de investigación:
 
 > H1: A mayor clase social subjetiva, mayores son los niveles de autoritarismo
+
 > H2: Existe asociación entre el tener educación universitaria o más y la posición política de las personas
 
-Como sociólogo experto en manejo de datos y análisis cuantitativo, a usted se le ha encargado realizar un reporte que permita responder estas preguntas. Para esta tarea usted cuenta con la base de datos [{{< fa table >}} `DATOS2024`](https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset1.RData). Esta base cuenta con 1000 casos y 7 variables, las cuales son:
+Como sociólogo experto en análisis cuantitativo y manejo de datos, usted ha sido encargado de elaborar un informe que permita responder estas preguntas. Para esta tarea, dispone de la base de datos [{{< fa table >}} `DATOS2024`](https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset1.RData), la cual contiene 1000 casos y 7 variables, descritas a continuación:
 
   - `id`: Identificador único de la encuesta
   - `clase_subj`: Clase social subjetiva
@@ -58,13 +59,15 @@ Como sociólogo experto en manejo de datos y análisis cuantitativo, a usted se 
   - `educ_rec`: Nivel educacional recodificada (universitario o más)
   - `pos_pol_rec`: Posición política recodificada
 
+Su tarea será aplicar herramientas estadísticas apropiadas para explorar las relaciones propuestas en las hipótesis y generar un reporte claro y coherente.
+
 # Primera sección
 
 En esta primera sección, usted debe responder la **Pregunta 1** y la hipótesis **H1**.
 
 ## Pregunta 1.1
 
-A través del software R, a) cálcule un coeficiente de correlación (Pearson, Spearman o Kendall) para `clase_subj` y `autoritarismo` y b) genere un diagrama de dispersión entre estas variables. (1p)
+A través del software R cálcule un coeficiente de correlación (Pearson, Spearman o Kendall) para `clase_subj` y `autoritarismo` y genere un diagrama de dispersión entre estas variables. (1p)
 
 ## Pregunta 1.2 
 
@@ -78,7 +81,9 @@ Interprete el coeficiente de correlación y el diagrama de dispersión. Incluya 
 
 Imagine usted que, en la base de datos `dataset` (n = 1.000) que está usando para su investigación, las variables `clase_subj`, `pos_pol` y `autoritarismo` fueron re-codificadas de tal manera que las categorías de respuesta "No sabe/No responde" fueron convertidas a casos pérdidos (`NA`). Con esta recodificación, la distribución de los casos pérdidos en las variables de esta base de datos es la siguiente:
 
-```{r, include=FALSE}
+```{r, echo = FALSE}
+#| label: tbl-perdidos
+#| tbl-cap: Distribución de casos perdidos por variable
 
 tab_perdidos <- data.frame(
     var = c("educ", "clase_subj", "pos_pol", "autoritarismo"),
@@ -108,6 +113,8 @@ Interprete los resultados obtenidos en la matriz de correlación tanto en térmi
 Justifique y explique el método de tratamiento de casos pérdidos que utilizó para estimar la matriz de correlación. (2p)
 
 # Tercera sección
+
+En esta tercera sección, usted debe responder la **Pregunta 2** y la hipótesis **H2**...
 
 Para esta pregunta me sumo a la base de datos con dos variables, una de dos categorías y una de tres (alta/baja educación, y izquierda-centro-derecha, o algo así)
 

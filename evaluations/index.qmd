@@ -8,4 +8,4 @@ format:
 
 ## Descripción
 
-En esta sección se encuentran disponibles los ...
+En esta sección se encuentran disponibles las evaluaciones vigentes del curso.
