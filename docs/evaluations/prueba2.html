@@ -70,7 +70,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <meta property="og:title" content="Evaluación 2 - Estadística Correlacional 2024 – Estadística Correlacional">
@@ -185,20 +187,21 @@ ul.task-list li input[type="checkbox"] {
 <p>Usted es parte de un equipo de investigación en un centro de estudios que se encuentra analizando cómo ciertos factores sociales se asocian con actitudes políticas. El centro realizó una encuesta y cuenta con una base de datos con las siguientes variables:</p>
 <ul>
 <li><code>id</code>: Identificador único de la encuesta</li>
-<li><code>autoritarismo</code>: Pregunta sobre “Se requieren autoridades fuertes para que el país funcione”, respuestas en escala Likert desde 1= muy en desacuerdo, hasta 5= muy de acuerdo - - <code>pos_pol</code>: Posición política: Escala de identificación política desde 1=izquierda, hasta 10= derecha</li>
-<li><code>pos_pol_rec</code>: Posición política recodificada a 3 categorías donde 1= izquierda, 2=centro, y 3=derecha derechadicotómica</li>
-<li><code>educ_rec</code>: Nivel educacional recodificada dicotómica (1=universitario o más, 0=menos que universitario)</li>
+<li><code>autoritarismo</code>: Pregunta sobre “<em>Se requieren autoridades fuertes para que el país funcione</em>”, respuestas en escala Likert desde 1 = Muy en desacuerdo, hasta 5 = Muy de acuerdo</li>
+<li><code>pos_pol</code>: Posición política. Escala de identificación política desde 1 = Izquierda, hasta 10 = Derecha</li>
+<li><code>pos_pol_rec</code>: Posición política recodificada a 3 categorías donde 1 = Izquierda, 2 = Centro, y 3 = Derecha</li>
+<li><code>educ_rec</code>: Nivel educacional recodificada dicotómica (1 = Universitario o más, 0 = Menos que universitario)</li>
 </ul>
 <p>La base de datos se encuentra aquí: <a href="">link</a></p>
 <section id="pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo" class="level2">
 <h2 class="anchored" data-anchor-id="pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo">Pregunta 1 ¿En qué medida se relaciona la posición política de las personas con sus niveles de autoritarismo?</h2>
-<p>1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos /scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)</p>
+<p>1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos/scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)</p>
 <p>1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)</p>
 </section>
 <section id="pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política" class="level2">
 <h2 class="anchored" data-anchor-id="pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política">Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?</h2>
 <p>2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y posición política. (1p)</p>
-<p>2.2 Tomando en cuenta la tabla de abajo, comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y educación. (3p)</p>
+<p>2.2 Tomando en cuenta la <a href="#tbl-perdidos" class="quarto-xref">Tabla&nbsp;1</a> comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y educación. (3p)</p>
 <div class="cell">
 <div id="tbl-perdidos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -250,7 +253,7 @@ Tabla&nbsp;1: Distribución de casos perdidos por variable
 <section id="pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política" class="level2">
 <h2 class="anchored" data-anchor-id="pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política">Pregunta 3: ¿Cómo se relaciona el nivel educacional con la posición política?</h2>
 <p>Utilizando la versión categórica de posición política:</p>
-<p>3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código)(1p)</p>
+<p>3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código). (1p)</p>
 <p>3.2 Interprete el Chi2 en términos de inferencia y magnitud del efecto. (3p)</p>
 
 
