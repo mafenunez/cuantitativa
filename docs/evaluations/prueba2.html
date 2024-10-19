@@ -70,9 +70,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
-
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
 
 
 <meta property="og:title" content="Evaluación 2 - Estadística Correlacional 2024 – Estadística Correlacional">
@@ -150,19 +148,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#primera-sección" id="toc-primera-sección" class="nav-link active" data-scroll-target="#primera-sección">Primera sección</a>
-  <ul class="collapse">
-  <li><a href="#pregunta-1.1" id="toc-pregunta-1.1" class="nav-link" data-scroll-target="#pregunta-1.1">Pregunta 1.1</a></li>
-  <li><a href="#pregunta-1.2" id="toc-pregunta-1.2" class="nav-link" data-scroll-target="#pregunta-1.2">Pregunta 1.2</a></li>
-  <li><a href="#pregunta-1.3" id="toc-pregunta-1.3" class="nav-link" data-scroll-target="#pregunta-1.3">Pregunta 1.3</a></li>
-  </ul></li>
-  <li><a href="#segunda-sección" id="toc-segunda-sección" class="nav-link" data-scroll-target="#segunda-sección">Segunda sección</a>
-  <ul class="collapse">
-  <li><a href="#pregunta-2.1" id="toc-pregunta-2.1" class="nav-link" data-scroll-target="#pregunta-2.1">Pregunta 2.1</a></li>
-  <li><a href="#pregunta-2.2" id="toc-pregunta-2.2" class="nav-link" data-scroll-target="#pregunta-2.2">Pregunta 2.2</a></li>
-  <li><a href="#pregunta-2.3" id="toc-pregunta-2.3" class="nav-link" data-scroll-target="#pregunta-2.3">Pregunta 2.3</a></li>
-  </ul></li>
-  <li><a href="#tercera-sección" id="toc-tercera-sección" class="nav-link" data-scroll-target="#tercera-sección">Tercera sección</a></li>
+  <li><a href="#pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo" id="toc-pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo" class="nav-link active" data-scroll-target="#pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo">Pregunta 1 ¿En qué medida se relaciona la posición política de las personas con sus niveles de autoritarismo?</a></li>
+  <li><a href="#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política" id="toc-pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política" class="nav-link" data-scroll-target="#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política">Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?</a></li>
+  <li><a href="#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política" id="toc-pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política" class="nav-link" data-scroll-target="#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política">Pregunta 3: ¿Cómo se relaciona el nivel educacional con la posición política?</a></li>
   </ul>
 </nav>
     </div>
@@ -194,48 +182,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Imagine que usted es parte de un equipo de investigación en un centro de estudios sociales que busca comprender mejor cómo ciertos factores sociales se asocian con actitudes políticas. En este momento, el centro está realizando un estudio guiado por las siguientes preguntas de investigación:</p>
-<ul>
-<li><strong>Pregunta 1:</strong> ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?</li>
-<li><strong>Pregunta 2:</strong> ¿En qué medida se relaciona el tener educación universitaria o más con la posición política de las personas?</li>
-</ul>
-<p>Las cuales tienen las siguientes hipótesis de investigación:</p>
-<blockquote class="blockquote">
-<p>H1: A mayor clase social subjetiva, mayores son los niveles de autoritarismo</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>H2: Existe asociación entre el tener educación universitaria o más y la posición política de las personas</p>
-</blockquote>
-<p>Como sociólogo experto en análisis cuantitativo y manejo de datos, usted ha sido encargado de elaborar un informe que permita responder estas preguntas. Para esta tarea, dispone de la base de datos <a href="https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset1.RData"><i class="fa-solid fa-table" aria-label="table"></i> <code>DATOS2024</code></a>, la cual contiene 1000 casos y 7 variables, descritas a continuación:</p>
+<p>Usted es parte de un equipo de investigación en un centro de estudios que se encuentra analizando cómo ciertos factores sociales se asocian con actitudes políticas. El centro realizó una encuesta y cuenta con una base de datos con las siguientes variables:</p>
 <ul>
 <li><code>id</code>: Identificador único de la encuesta</li>
-<li><code>clase_subj</code>: Clase social subjetiva</li>
-<li><code>autoritarismo</code>: Autoritarismo</li>
-<li><code>educ</code>: Nivel educacional</li>
-<li><code>pos_pol</code>: Posición política</li>
-<li><code>educ_rec</code>: Nivel educacional recodificada (universitario o más)</li>
-<li><code>pos_pol_rec</code>: Posición política recodificada</li>
+<li><code>autoritarismo</code>: Pregunta sobre “Se requieren autoridades fuertes para que el país funcione”, respuestas en escala Likert desde 1= muy en desacuerdo, hasta 5= muy de acuerdo - - <code>pos_pol</code>: Posición política: Escala de identificación política desde 1=izquierda, hasta 10= derecha</li>
+<li><code>pos_pol_rec</code>: Posición política recodificada a 3 categorías donde 1= izquierda, 2=centro, y 3=derecha derechadicotómica</li>
+<li><code>educ_rec</code>: Nivel educacional recodificada dicotómica (1=universitario o más, 0=menos que universitario)</li>
 </ul>
-<p>Su tarea será aplicar herramientas estadísticas apropiadas para explorar las relaciones propuestas en las hipótesis y generar un reporte claro y coherente.</p>
-<section id="primera-sección" class="level1">
-<h1>Primera sección</h1>
-<p>En esta primera sección, usted debe responder la <strong>Pregunta 1</strong> y la hipótesis <strong>H1</strong>.</p>
-<section id="pregunta-1.1" class="level2">
-<h2 class="anchored" data-anchor-id="pregunta-1.1">Pregunta 1.1</h2>
-<p>A través del software R cálcule un coeficiente de correlación (Pearson, Spearman o Kendall) para <code>clase_subj</code> y <code>autoritarismo</code> y genere un diagrama de dispersión entre estas variables. (1p)</p>
+<p>La base de datos se encuentra aquí: <a href="">link</a></p>
+<section id="pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo">Pregunta 1 ¿En qué medida se relaciona la posición política de las personas con sus niveles de autoritarismo?</h2>
+<p>1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos /scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)</p>
+<p>1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)</p>
 </section>
-<section id="pregunta-1.2" class="level2">
-<h2 class="anchored" data-anchor-id="pregunta-1.2">Pregunta 1.2</h2>
-<p>Justifique el coeficiente de correlación escogido. (1p)</p>
-</section>
-<section id="pregunta-1.3" class="level2">
-<h2 class="anchored" data-anchor-id="pregunta-1.3">Pregunta 1.3</h2>
-<p>Interprete el coeficiente de correlación y el diagrama de dispersión. Incluya la magnitud del coeficiente, el sentido de la dirección y la inferencia estadística en su respuesta. Considerando esta evidencia, responda la pregunta de investigación (<strong>Pregunta 1</strong>) y la hipótesis alternativa (<strong>H1</strong>). (2p)</p>
-</section>
-</section>
-<section id="segunda-sección" class="level1">
-<h1>Segunda sección</h1>
-<p>Imagine usted que, en la base de datos <code>dataset</code> (n = 1.000) que está usando para su investigación, las variables <code>clase_subj</code>, <code>pos_pol</code> y <code>autoritarismo</code> fueron re-codificadas de tal manera que las categorías de respuesta “No sabe/No responde” fueron convertidas a casos pérdidos (<code>NA</code>). Con esta recodificación, la distribución de los casos pérdidos en las variables de esta base de datos es la siguiente:</p>
+<section id="pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política">Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?</h2>
+<p>2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y posición política. (1p)</p>
+<p>2.2 Tomando en cuenta la tabla de abajo, comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y educación. (3p)</p>
 <div class="cell">
 <div id="tbl-perdidos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -256,28 +219,22 @@ Tabla&nbsp;1: Distribución de casos perdidos por variable
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">educ</td>
+<td style="text-align: right;">educ_rec</td>
 <td style="text-align: right;">Nivel educacional</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0%</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">clase_subj</td>
-<td style="text-align: right;">Clase social subjetiva</td>
+<td style="text-align: right;">pos_pol</td>
+<td style="text-align: right;">Posición política</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">1%</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">pos_pol</td>
-<td style="text-align: right;">Posición política</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">15%</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">autoritarismo</td>
 <td style="text-align: right;">Autoritarismo</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">2%</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">15%</td>
 </tr>
 </tbody>
 </table>
@@ -289,25 +246,12 @@ Tabla&nbsp;1: Distribución de casos perdidos por variable
 </figure>
 </div>
 </div>
-<p>A raíz de esta información, responda las siguientes preguntas:</p>
-<section id="pregunta-2.1" class="level2">
-<h2 class="anchored" data-anchor-id="pregunta-2.1">Pregunta 2.1</h2>
-<p>Utilice el software R para calcular una matriz de correlación con las variables <code>educ</code>, <code>clase_subj</code>, <code>pos_pol</code> y <code>autoritarismo</code>, considerando el tratamiento de sus casos pérdidos. Reporte sus resultados en una tabla o un gráfico. (1p)</p>
 </section>
-<section id="pregunta-2.2" class="level2">
-<h2 class="anchored" data-anchor-id="pregunta-2.2">Pregunta 2.2</h2>
-<p>Interprete los resultados obtenidos en la matriz de correlación tanto en términos de magnitud de los coeficientes, así como también en términos de significancia estadística. (1p)</p>
-</section>
-<section id="pregunta-2.3" class="level2">
-<h2 class="anchored" data-anchor-id="pregunta-2.3">Pregunta 2.3</h2>
-<p>Justifique y explique el método de tratamiento de casos pérdidos que utilizó para estimar la matriz de correlación. (2p)</p>
-</section>
-</section>
-<section id="tercera-sección" class="level1">
-<h1>Tercera sección</h1>
-<p>En esta tercera sección, usted debe responder la <strong>Pregunta 2</strong> y la hipótesis <strong>H2</strong>…</p>
-<p>Para esta pregunta me sumo a la base de datos con dos variables, una de dos categorías y una de tres (alta/baja educación, y izquierda-centro-derecha, o algo así)</p>
-<p>3.1. Código de tabla, código de cálculo de prueba estadística correspondiente (1) 3.2 Interpretación, considerando inferencia estadística (2) y magnitud de efecto (1)</p>
+<section id="pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política">Pregunta 3: ¿Cómo se relaciona el nivel educacional con la posición política?</h2>
+<p>Utilizando la versión categórica de posición política:</p>
+<p>3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código)(1p)</p>
+<p>3.2 Interprete el Chi2 en términos de inferencia y magnitud del efecto. (3p)</p>
 
 
 </section>

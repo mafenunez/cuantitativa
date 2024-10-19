@@ -925,5 +925,76 @@
     "title": "Nuevo sistema de asesorías grupales",
     "section": "",
     "text": "← News\n\n\n\n\n\nCon el objetivo de dar asesoría y acompañamiento en la preparación para la segunda evaluación del curso (Martes 22 de Octubre), hemos implementado una nueva modalidad que reemplaza la asignación previa de ayudantes realizada durante la Unidad 1. Ahora,se podrá postular a asesorías por grupos conformados según su preferencia.\nPasos:\n\nConformación de grupo: entre 3 a 8 integrantes\nUn integrante del grupo (coordinador) se inscribe en el siguiente formulario, hasta el día lunes 14 a las 12:00 PM\nEl día martes 15 se les comunicará el horario y ayudante asignado para esta tutoría\n\nPor cualquier duda respecto a la inscripción, escribir Andreas Laffert (apoyo docente) vía UCursos.\n(Nota: estos grupos no son - necesariamente - los mismos que luego se inscribirán para realizar el trabajo grupal de la Unidad 3)."
+  },
+  {
+    "objectID": "evaluations/prueba2.html",
+    "href": "evaluations/prueba2.html",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "",
+    "text": "Usted es parte de un equipo de investigación en un centro de estudios que se encuentra analizando cómo ciertos factores sociales se asocian con actitudes políticas. El centro realizó una encuesta y cuenta con una base de datos con las siguientes variables:\nLa base de datos se encuentra aquí: link"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política",
+    "href": "evaluations/prueba2.html#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-la-posición-política",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 3: ¿Cómo se relaciona el nivel educacional con la posición política?",
+    "text": "Pregunta 3: ¿Cómo se relaciona el nivel educacional con la posición política?\nUtilizando la versión categórica de posición política:\n3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código)(1p)\n3.2 Interprete el Chi2 en términos de inferencia y magnitud del efecto. (3p)"
+  },
+  {
+    "objectID": "evaluations/index.html",
+    "href": "evaluations/index.html",
+    "title": "Evaluaciones",
+    "section": "",
+    "text": "En esta sección se encuentran disponibles las evaluaciones vigentes del curso.",
+    "crumbs": [
+      "Evaluaciones",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "evaluations/index.html#descripción",
+    "href": "evaluations/index.html#descripción",
+    "title": "Evaluaciones",
+    "section": "",
+    "text": "En esta sección se encuentran disponibles las evaluaciones vigentes del curso.",
+    "crumbs": [
+      "Evaluaciones",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-1-4p-en-qué-medida-se-relaciona-la-clase-social-subjetiva-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "href": "evaluations/prueba2.html#pregunta-1-4p-en-qué-medida-se-relaciona-la-clase-social-subjetiva-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 1 (4p) ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?",
+    "text": "Pregunta 1 (4p) ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?\n1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos /scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)\n1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-2-cómo-se-relacionan-clase-social-subjetiva-autoritarismo-y-posición-política",
+    "href": "evaluations/prueba2.html#pregunta-2-cómo-se-relacionan-clase-social-subjetiva-autoritarismo-y-posición-política",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 2: ¿Cómo se relacionan clase social subjetiva, autoritarismo y posición política?",
+    "text": "Pregunta 2: ¿Cómo se relacionan clase social subjetiva, autoritarismo y posición política?\n2.1 Estime y reporte la matriz de correlaciones de las variables de clase subjetiva, autoritarismo y posición política. Para la posición política considere tanto la versión original como la recodificada a dicotómica.\n2.2 Tomando en cuenta la siguiente tabla:\n\n\n\n\nTabla 1: Distribución de casos perdidos por variable\n\n\n\n\n\n\n\nVariable\nEtiqueta\nn casos perdidos\n% casos perdidos\n\n\n\n\neduc\nNivel educacional\n0\n0%\n\n\nclase_subj\nClase social subjetiva\n10\n1%\n\n\npos_pol\nPosición política\n150\n15%\n\n\nautoritarismo\nAutoritarismo\n20\n2%\n\n\n\n\n\n\n\n\n\n\n\nComente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y posición política dicotómica."
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-1-en-qué-medida-se-relaciona-la-clase-social-subjetiva-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "href": "evaluations/prueba2.html#pregunta-1-en-qué-medida-se-relaciona-la-clase-social-subjetiva-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 1 ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?",
+    "text": "Pregunta 1 ¿En qué medida se relaciona la clase social subjetiva de las personas con sus niveles de autoritarismo?\n1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos /scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)\n1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "href": "evaluations/prueba2.html#pregunta-1-en-qué-medida-se-relaciona-la-posición-política-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 1 ¿En qué medida se relaciona la posición política de las personas con sus niveles de autoritarismo?",
+    "text": "Pregunta 1 ¿En qué medida se relaciona la posición política de las personas con sus niveles de autoritarismo?\n1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos /scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)\n1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política",
+    "href": "evaluations/prueba2.html#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-posición-política",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?",
+    "text": "Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?\n2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y posición política. (1p)\n2.2 Tomando en cuenta la tabla de abajo, comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y educación. (3p)\n\n\n\n\nTabla 1: Distribución de casos perdidos por variable\n\n\n\n\n\n\n\nVariable\nEtiqueta\nn casos perdidos\n% casos perdidos\n\n\n\n\neduc_rec\nNivel educacional\n0\n0%\n\n\npos_pol\nPosición política\n10\n1%\n\n\nautoritarismo\nAutoritarismo\n150\n15%"
   }
 ]
