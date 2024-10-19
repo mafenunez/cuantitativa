@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/news/index.html",
+    "listing": "/index.html",
     "items": [
       "/news/2024-10-14_evaluacion2.html",
       "/news/2024-10-14_taller_centro_idea2.html",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/news/index.html",
     "items": [
       "/news/2024-10-14_evaluacion2.html",
       "/news/2024-10-14_taller_centro_idea2.html",
