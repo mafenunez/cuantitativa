@@ -42,42 +42,42 @@ load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/
 Usted es parte de un equipo de investigación en un centro de estudios que se encuentra analizando cómo ciertos factores sociales se asocian con actitudes políticas. El centro realizó una encuesta y cuenta con una base de datos con las siguientes variables:
 
   - `id`: Identificador único de la encuesta
-  - `autoritarismo`: Pregunta sobre "_Se requieren autoridades fuertes para que el país funcione_", respuestas en escala Likert desde 1 = Muy en desacuerdo, hasta 5 = Muy de acuerdo
-  - `pos_pol`: Posición política. Escala de identificación política desde 1 = Izquierda, hasta 10 = Derecha
-  - `pos_pol_rec`: Posición política recodificada a 3 categorías donde 1 = Izquierda, 2 = Centro, y 3 = Derecha
+  - `autoritarismo`: Indice de autoritarismo. Puntaje de 0 a 100, a mayor puntaje mayores niveles de autoritarismo.
+  - `ingresos`: Ingresos del entrevistado
+  - `ingresos_rec`: Ingresos recodificados a 3 categorías donde 1 = Bajos ingresos, 2 = Medios ingresos, y 3 = Altos ingresos
   - `educ_rec`: Nivel educacional recodificada dicotómica (1 = Universitario o más, 0 = Menos que universitario)
 
 ```{r include=FALSE}
 frq(dataset1$autoritarismo)
-frq(dataset1$pos_pol)
-frq(dataset1$pos_pol_rec)
+frq(dataset1$ingresos)
+frq(dataset1$ingresos_rec)
 frq(dataset1$educ)
 frq(dataset1$educ_rec)
 ```
 
 La base de datos se encuentra aquí: [link]() 
 
-## Pregunta 1  ¿En qué medida se relaciona la posición política de las personas con sus niveles de autoritarismo?
+## Pregunta 1  ¿En qué medida se relacionan los ingresos de las personas con sus niveles de autoritarismo?
 
 1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos/scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)
 
 1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p) 
 
-## Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?
+## Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y los ingresos?
 
-2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y posición política. (1p)
+2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y los ingresos. (1p)
 
-2.2 Tomando en cuenta la @tbl-perdidos comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y educación. (3p)
+2.2 Tomando en cuenta la @tbl-perdidos comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre ingresos y educación. (3p)
 
 ```{r, echo = FALSE}
 #| label: tbl-perdidos
 #| tbl-cap: Distribución de casos perdidos por variable
 
 tab_perdidos <- data.frame(
-    var = c("educ_rec", "pos_pol", "autoritarismo"),
-    label = c("Nivel educacional", "Posición política", "Autoritarismo"),
-    n_perdidos = c(0, 10, 150),
-    porc_perdidos = c("0%", "1%", "15%")
+    var = c("educ_rec", "ingresos", "autoritarismo"),
+    label = c("Nivel educacional", "Ingresos", "Autoritarismo"),
+    n_perdidos = c(0, 150, 10),
+    porc_perdidos = c("0%", "15%", "1%")
 )
 
 tab_perdidos %>%
@@ -86,9 +86,9 @@ tab_perdidos %>%
     kableExtra::kable_styling(latex_options = "hold_position", position = "center")
 ```
 
-## Pregunta 3: ¿Cómo se relaciona el nivel educacional con la posición política?
+## Pregunta 3: ¿Cómo se relaciona el nivel educacional con los ingresos?
 
-Utilizando la versión categórica de posición política:
+Utilizando la versión categórica de ingresos:
 
 3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código). (1p)
 
