@@ -10,7 +10,52 @@
 <atom:link href="https://correlacional.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Mon, 14 Oct 2024 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 20 Oct 2024 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Videos Tutoriales</title>
+  <link>https://correlacional.netlify.app/news/2024-10-20_tutoriales.html</link>
+  <description><![CDATA[ 
+
+<div class="back-nav"><a href="../news/">← News</a></div>
+
+
+
+
+<ol type="1">
+<li>Elementos básicos</li>
+</ol>
+<iframe src="https://drive.google.com/file/d/1evVjJSmMdseI07b3o0c1nb-B1uY8_3tc/preview" width="360" height="640" allow="autoplay">
+</iframe>
+<ol start="2" type="1">
+<li>Lenguaje y trabajo en R</li>
+</ol>
+<iframe src="https://drive.google.com/file/d/1z_E_uYKJ7BwTq2CfCG51mdzoTXWqHZR-/preview" width="360" height="640" allow="autoplay">
+</iframe>
+<ol start="3" type="1">
+<li>Trabajo en R Studio</li>
+</ol>
+<iframe src="https://drive.google.com/file/d/1dKQJbSCcnqTzB7p5Jn93AM28dL0zCghl/preview" width="360" height="640" allow="autoplay">
+</iframe>
+<ol start="4" type="1">
+<li>Recodificación</li>
+</ol>
+<iframe src="https://drive.google.com/file/d/11Uvzm1NhUF10UA--okImGu4segO1root/preview" width="360" height="640" allow="autoplay">
+</iframe>
+<ol start="5" type="1">
+<li>Herramientas de ayuda</li>
+</ol>
+<iframe src="https://drive.google.com/file/d/1uXSXMik-Y4h7YUgCtK7HnZg1WgKoGyYy/preview" width="360" height="640" allow="autoplay">
+</iframe>
+
+
+
+ ]]></description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-10-20_tutoriales.html</guid>
+  <pubDate>Sun, 20 Oct 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/news/images/tutorial.png" medium="image" type="image/png" height="101" width="144"/>
+</item>
 <item>
   <title>Informaciones evaluación 2</title>
   <link>https://correlacional.netlify.app/news/2024-10-14_evaluacion2.html</link>
