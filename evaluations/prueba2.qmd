@@ -43,11 +43,12 @@ Usted es parte de un equipo de investigación en un centro de estudios que se en
 
   - `id`: Identificador único de la encuesta
   - `autoritarismo`: Indice de autoritarismo. Puntaje de 0 a 100, a mayor puntaje mayores niveles de autoritarismo.
-  - `ingresos`: Ingresos del entrevistado
+  - `ingresos`: Ingresos del entrevistado (en pesos)
   - `ingresos_rec`: Ingresos recodificados a 3 categorías donde 1 = Bajos ingresos, 2 = Medios ingresos, y 3 = Altos ingresos
   - `educ_rec`: Nivel educacional recodificada dicotómica (1 = Universitario o más, 0 = Menos que universitario)
 
 ```{r include=FALSE}
+names(dataset1)
 frq(dataset1$autoritarismo)
 frq(dataset1$ingresos)
 frq(dataset1$ingresos_rec)
