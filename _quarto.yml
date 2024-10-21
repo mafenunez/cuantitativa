@@ -94,7 +94,7 @@ website:
             - text: "Bivariada 4"
               file: content/11-content.qmd
             - text: "Bivariada 5"
-              file: content/12-content.qmd              
+              file: content/12-content.qmd
         - text: "Foro Clases"
           file: content/foro-clases.qmd
     - title: "Prácticos"
@@ -129,6 +129,20 @@ website:
           file: assignment/foro-practicos.qmd
         - text: "Consola R Online"
           file: assignment/consola.qmd
+    - title: "Recursos"
+      contents:
+        - text: "Descripción"
+          file: resource/index.qmd
+        - section: "Guías"
+          contents:
+            - text: "1: Versiones de R y librerías"
+            - file: resource/install.qmd
+            - text: "2: Videos tutoriales"
+          # - file: resource/videos.qmd
+            - text: "3: Glosario de conceptos"
+            - file: resource/glosario.qmd
+            - text: "4: Varios"
+            - file: resource/varios.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
