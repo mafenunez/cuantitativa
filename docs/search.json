@@ -996,5 +996,26 @@
     "title": "Evaluación 2 - Estadística Correlacional 2024",
     "section": "Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?",
     "text": "Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y posición política?\n2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y posición política. (1p)\n2.2 Tomando en cuenta la tabla de abajo, comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre posición política y educación. (3p)\n\n\n\n\nTabla 1: Distribución de casos perdidos por variable\n\n\n\n\n\n\n\nVariable\nEtiqueta\nn casos perdidos\n% casos perdidos\n\n\n\n\neduc_rec\nNivel educacional\n0\n0%\n\n\npos_pol\nPosición política\n10\n1%\n\n\nautoritarismo\nAutoritarismo\n150\n15%"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "href": "evaluations/prueba2.html#pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 1 ¿En qué medida se relacionan los ingresos de las personas con sus niveles de autoritarismo?",
+    "text": "Pregunta 1 ¿En qué medida se relacionan los ingresos de las personas con sus niveles de autoritarismo?\n1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos/scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)\n1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos",
+    "href": "evaluations/prueba2.html#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y los ingresos?",
+    "text": "Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y los ingresos?\n2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y los ingresos. (1p)\n2.2 Tomando en cuenta la Tabla 1 comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre ingresos y educación. (3p)\n\n\n\n\nTabla 1: Distribución de casos perdidos por variable\n\n\n\n\n\n\n\nVariable\nEtiqueta\nn casos perdidos\n% casos perdidos\n\n\n\n\neduc_rec\nNivel educacional\n0\n0%\n\n\ningresos\nIngresos\n150\n15%\n\n\nautoritarismo\nAutoritarismo\n10\n1%"
+  },
+  {
+    "objectID": "evaluations/prueba2.html#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos",
+    "href": "evaluations/prueba2.html#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos",
+    "title": "Evaluación 2 - Estadística Correlacional 2024",
+    "section": "Pregunta 3: ¿Cómo se relaciona el nivel educacional con los ingresos?",
+    "text": "Pregunta 3: ¿Cómo se relaciona el nivel educacional con los ingresos?\nUtilizando la versión categórica de ingresos:\n3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código). (1p)\n3.2 Interprete el Chi2 en términos de inferencia y magnitud del efecto. (3p)"
   }
 ]
