@@ -1,7 +1,172 @@
 ---
-title: "Instalar R, RStudio y tidyverse"
+title: "R, librerías y versiones"
+lang: es
+execute:
+  freeze: auto
+  cache: false
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
+knitr::opts_chunk$set(
+    warning = F,
+    error = F,
+    message = F
+)
 ```
+
+# 1. Descripción
+
+Trabajar con el software de programación R y el entorno de desarrollo integrado (IDE) RStudio requiere, la mayor parte del tiempo, estar al tanto de actualizaciones tanto de R como de las librerías que utilizamos para el procesamiento y análisis de datos. 
+
+R y sus librerías tienen distintas versiones. No estar al tanto de esto puede generar problemas cuando, por ejemplo, queremos correr algún código que encontramos en internet, no podemos ejecutar el código de un colega o cuando queremos utilizar librerías o herramientas nuevas que nos ofrece la comunidad de R. 
+
+Por tanto, cuando estemos desarrollando una evaluación práctica en RStudio es de suma importancia contar con una versión actualizada de R y de las librerías necesarias que se utilizan en las sesiones prácticas del curso.
+
+En esta guía de recursos te dejaremos algunas buenas prácticas para conocer:
+
+1. Con qué versión de R y librerías estoy trabajando
+2. Cómo reportar las versiones que utilizo a otras personas
+3. Actualizar mi versión de R y librerías necesarias para este curso
+
+
+# 2. Instalar pacman y utils
+
+Lo primero que haremos es verificar que tenemos instaladas dos librerías importantes: `pacman` y `utils`. La librería `utils` ya viene por defecto en R, así que solo instalaremos manualmente `pacman`.
+
+```{r install, echo=TRUE, eval=FALSE}
+install.packages("pacman")
+```
+
+Con la función `install.packages("")` instalamos una determinada librería en nuestro computador. El nombre de la librería va dentro de las comillas " ".
+
+
+::: callout-note
+
+**IMPORTANTE**
+
+Si ya tienes instaladas estas librerías entonces no es necesario volver a instalarlas con `install.packages("")`. Solo basta con llamarlas con `library()`.
+
+:::
+
+Ahora nuestras librerías solo están instaldas en nuestro computador, nos falta llamarlas para que el software reconozca que las usaremos en el futuro. Esto lo hacemos con la función `library()`, y dentro de los paréntesis () va el nombre de la librería determinada **sin** comillas.
+
+```{r llamar, echo=TRUE}
+library(pacman)
+library(utils)
+```
+
+
+# 3. Conocer mi versión de R y librerías
+
+Con la función `sessionInfo()` del paquete `utils` podemos obtener un resumen tanto de la versión de R como de las librerías que tenemos instaladas en nuestro computador. Veamos cómo se hace:
+
+```{r utils, echo=TRUE}
+utils::sessionInfo()
+```
+
+En este output de la consola vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) versión de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo “other attached packages”.
+
+# 4. Reportar mi versión de R y librerías
+
+Para reportar la versión de R y librerías que tengo en mi computador a otras personas (como el profesor o colegas), basta con copiar el output que obtuvimos con `sessionInfo()` y enviarlo a quien corresponda.
+
+# 5. Actualizar versión de R y librerías para este curso
+
+## Actualizar R
+
+El método más eficiente es descargar una nueva versión de R desde [sitio web de R > CRAN](https://www.r-project.org/). 
+
+
+```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='left'}
+knitr::include_graphics("../images/r1.png", error = FALSE)
+```
+
+El CRAN que utilizamos es el de la Universidad de Chile. Debes descargar e instalar la versión de R correspondiente a tu sistema operativo. Luego, reinicia tu RStudio. La nueva versión de R se cargará automáticamente.
+
+
+```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='left'}
+knitr::include_graphics("../images/r2.png", error = FALSE)
+```
+
+```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='right'}
+knitr::include_graphics("../images/r3.png", error = FALSE)
+```
+La nueva versión de R aparece justo después de instalar R y reiniciar RStudio.
+
+
+## Actualizar librerías
+
+Luego de realizar el paso anterior, para installar y llamar a las librerías que utilizamos en el curso usaremos la función `p_load()` del paquete `pacman`. Lo genial de esta función es que instala y llama librerías en un solo movimiento, es decir: 
+
+- si incluyo una librería que no tengo instalada previamante, `p_load()` la instala y llama
+- si incluyo una librería que ya tengo instala previamente, `p_load()` la reconoce y sólo la llama
+
+En este curso hemos utilizado diversas librerías y las fundamentales para la evaluación 2 son:
+
+- `tidyverse`
+- `sjPlot`
+- `sjmisc`
+- `kableExtra`
+- `psych`
+- `corrplot`
+- `broom`
+- `car`
+  
+Algunos otros paquetes adicionales muy útiles son:
+
+- `gginference`
+- `ggplot2`
+- `haven`
+
+Veamos cómo instalar estas librerías claves para la evaluación 2 y desarrollo del curso.
+
+```{r paquetes, echo=TRUE}
+
+pacman::p_load(tidyverse, # Manipulacion de datos
+               car, # Recodificar
+               sjPlot, # Tablas y graficos
+               sjmisc, # Descriptivos
+               kableExtra, # Tablas
+               psych, # Bivariados
+               corrplot, # Graficos correlacioj
+               broom) # Varios
+```
+
+Comprobemos si se instalaron las librerías y qué versiones con `sessionInfo()`
+
+```{r utils2, echo=TRUE}
+utils::sessionInfo()
+```
+
+## Opción vía Rstudio
+
+Si queremos actualizar una librería en R, lo que podemos hacer es dirigirnos al panel inferior derecho y dar click en la pestaña de "Packages". Allí, les aparecerá un listado de las librerías que tienen en su computador, una descripción y su versión. 
+
+
+```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='center'}
+knitr::include_graphics("../images/r4.png", error = FALSE)
+```
+
+Para actualizar una librería, podemos seleccionarla y darle click al botón de "Update" y luego "Install Update" a la librería correspondiente. Veamos un **ejemplo**
+
+```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='center'}
+knitr::include_graphics("../images/r5.png", error = FALSE)
+```
+
+## Opción vía código
+
+Bien, pero ¿hay otra alternativa? Sí, como todo en R. Una forma sencilla de actualizar una librería o varias es con la función `install.packages` pero identificando argumentos adicionales. La estructura del código es así: `install.packages("package_name", dependencies = TRUE, update = TRUE)`. Supongamos que queremos actualizar a la versión más de nueva de `corrplot`: 
+
+
+```{r update, echo=TRUE, eval=FALSE}
+install.packages("corrplot", dependencies = TRUE, update = TRUE)
+```
+
+
+Con esto, actualizamos manualmente vía código una librería. Para verificarlo podemos, nuevamente, usar `sessionInfo()` o de las otras maneras que hemos aprendido.
+
+## Recursos adicionales
+
+
+Para más informaciones, sobre R y Rstudio, revisar link de práctico de estadística descriptiva -->  [link](https://descriptiva-facso.netlify.app/assignment/01-practico)

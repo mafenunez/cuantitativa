@@ -1,0 +1,51 @@
+---
+title: "Varios"
+lang: es
+execute:
+  freeze: auto
+---
+
+
+## Reporte
+
+- [Tablas con R, con ejemplo de canciones de Spotify](https://felixanalytix.medium.com/how-to-make-beautiful-tables-using-r-programming-35d75cc919fb)
+
+- [Introduction to Quarto](https://www.youtube.com/watch?v=_f3latmOhew)
+
+## Estadística descriptiva
+
+- [Curso Estadística Descriptiva Sociología UChile, 1er Sem 2023](https://descriptiva-facso.netlify.app/)
+
+## Uso de R
+
+- [Conocimientos básicos de programación en R](https://descriptiva-facso.netlify.app/content/02-content)
+
+- [Importar datos en R](https://descriptiva-facso.netlify.app/resource/03-resource) 
+
+- [Procesamiento y análisis de datos en R (tidyverse)](https://descriptiva-facso.netlify.app/content/05-content)
+
+- [Procesamiento y análisis de datos en R (base)](https://descriptiva-facso.netlify.app/resource/04-resource)
+
+- [Más para aprender R](https://descriptiva-facso.netlify.app/resource/02-resource)
+
+## Inferencia 
+
+- [Por qué se divide la varianza por N-1?](https://es.khanacademy.org/math/ap-statistics/summarizing-quantitative-data-ap/more-standard-deviation/v/another-simulation-giving-evidence-that-n-1-gives-us-an-unbiased-estimate-of-variance)
+
+- [Statistical Inference via Data Science A ModernDive into R and the Tidyverse](https://moderndive.com/index.html)
+
+- [Introduction to modern statistics (Mine Çetinkaya-Rundel and Johanna Hardin)](openintro-ims.netlify.app/)
+
+- [Inferencia univariada](https://descriptiva-facso.netlify.app/content/08-content)
+
+## Visualización
+
+- [Visualización descriptiva de datos en R](https://descriptiva-facso.netlify.app/content/06-content)
+
+- [R Graph Gallery](https://r-graph-gallery.com/) 
+
+## Bases de datos
+
+- [Bases de datos para trabajos o investigación](https://descriptiva-facso.netlify.app/resource/01-resource)
+
+

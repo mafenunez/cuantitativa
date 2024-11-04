@@ -530,7 +530,10 @@ results_ej
 
 Con este output podemos sostener lo siguiente:
 
-> El coeficiente de correlación de Pearson entre la edad y el promedio de meritocracia es postivo, pequeño y estadísticamente significativo ($r$ = 0.11, $p$ < 0.05). Por tanto, con un 95% de confianza se puede rechazar la $H_{0}$ de no asociación entre variables, existiendo evidencia a favor de la $H_{A}$ sobre una asociación significativa entre la edad de las personas y su percepción de meritocracia.
+> El coeficiente de correlación de Pearson entre la edad y el promedio de meritocracia es positivo y estadísticamente significativo ($r$ = 0.11, $p$ < 0.001). Por tanto, con un 95% de confianza se puede rechazar la $H_{0}$ de no asociación entre variables, existiendo evidencia a favor de la $H_{A}$ sobre una asociación significativa entre la edad de las personas y su percepción de meritocracia. 
+
+> Respecto al tamaño de este efecto, de acuerdo a los criterios de Cohen corresponde a un tamaño pequeño. Consistentemente, la varianza compartida ($r²$) entre ambas variables es muy baja, correspondiendo a un 0.01%.
+
 
 Para contestar el punto 5 usaremos el comando `plot_scatter` para visualizar la asociación entre `edad` y `pmerit`.
 
@@ -543,3 +546,29 @@ sjPlot::plot_scatter(data = proc_elsoc,
 ```
 
 De acuerdo con la @fig-ej, podemos observar que no existe un claro patrón de asociación entre la `edad` y `pmerit`. En detalle, la nube de puntos muestra una distribución bivariada muy dispersa, por lo que es posible sostener que no hay una asociación lineal suficientemente fuerte. Esto, se puede respaldar en el coeficiente de correlación que obtuvimos antes $r$ = 0.11, ya que si bien es positivo es de un tamaño de efecto muy pequeño según los criteriores de Cohen (1988).
+
+
+
+
+:::::: {.row .d-flex .justify-content-center}
+::::: {.col-md-6} 
+:::: {.card .bg-danger .text-white}
+::: {.card-body}
+
+**A tener en cuenta en la interpretación**
+
+- Los dos aspectos principales en la interpretación de una prueba estadística son la **inferencia** y el **tamaño de efecto**
+
+- En la **inferencia** se comenta si existe evidencia significativa para rechazar la hipótesis nula de no asociación. Para ello se considera:
+  - el nombre de la prueba utilizada (Z, T, Pearson,Spearman, Chi2, etc), 
+  - el resultado del cálculo de esta prueba empírica con los datos (ej: t=2.60)
+  - información adicional si corresponde en el cálculo (ej: grados de libertad)
+  - el valor p correspondiente a la prueba empírica: si bien existe un nivel convencional de rechazo de Ho p<0.05, en caso que el p sea menor que otros valores convencionales (p<0.01 o p<0.001) hay que mencionar los niveles con menor probabilidad de error.
+
+- En el caso de **tamaño de efecto** hay que considerar aquellos específicos de cada prueba, por ejemplo criterios de Cohen y R2 para Pearson, o Phi/Cramer para Chi 2.
+
+:::
+::::
+:::::
+::::::
+
