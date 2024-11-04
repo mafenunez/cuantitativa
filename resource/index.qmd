@@ -7,5 +7,88 @@ execute:
 
 En esta sección se irán subiendo una serie de recursos relacionados con el curso.
 
-Selecciona alguno en el menú de la izquierda <- 
+<style>
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 80%;
+    border: 2px solid black; /* Bordes externos gruesos y color negro */
+  }
+  
+  th, td {
+    border: 1px solid #D3D3D3; /* Bordes internos de color gris claro */
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .justificar {
+    text-align: justify;
+  }
+</style>
+
+## Glosario de conceptos
+
+| Concepto | Definición |
+|:------------:|:------------:|
+| Estadística <span class="justificar">   | Conjunto de métodos y herramientas que involucra la recopilación, análisis, interpretación y presentación de datos numéricos con el objetivo de describir patrones, relaciones y tendencias en fenómenos naturales o sociales.   |
+| [Reproducibilidad](https://lisa-coes.com/03componentes/) <span class="justificar">  | La capacidad de regenerar un experimento, análisis o estudio utilizando los mismos datos y métodos para llegar a los mismos resultados originales, verificando y asegurando la validez de los hallazgos.    |
+| [Ciencia Social Abierta](https://lisa-coes.com/) <span class="justificar">   | Un enfoque en la investigación social que promueve la transparencia, el acceso abierto a datos, métodos y resultados, y la colaboración entre investigadores para mejorar la calidad y confiabilidad de la investigación.    |
+| [Protocolo IPO (Input-Process-Output)](https://lisa-coes.com/ipo-repro/) <span class="justificar"> | Sistema digital de carpetas interconectadas: entrada, proceso y salida. Se utiliza para organizar, procesar y documentar los datos y código de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.             |
+| R project <span class="justificar">| Carpeta raíz organizada donde trabajas en un proyecto concreto en el lenguaje de programación R, permitiéndote gestionar archivos, paquetes y configuraciones de manera específica para ese proyecto.              |
+| Texto plano  <span class="justificar">|  Tipo de texto sin formato especial que se puede leer independiente del lector que se utilice.             |
+| [Markdown](https://daringfireball.net/projects/markdown/)  <span class="justificar">  | Clase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Se utiliza comúnmente para escribir documentos simples con formato, como páginas web, documentación y presentaciones.              |
+| [Documentos dinámicos](https://lisa-coes.github.io/lisa-book/herramientas-para-los-an%C3%A1lisis-reproducibles.html#texto-plano-y-documentos-din%C3%A1micos) <span class="justificar"> | Archivos que combinan texto plano y código de análisis (gráficos, tablas y resultados), de manera simultánea en un solo documento, permitiendo la generación automática y reproducible de resultados actualizados a medida que cambian los datos o parámetros.              |
+| [RMarkdown](https://bookdown.org/yihui/rmarkdown/) <span class="justificar">| Una extensión de Markdown en el entorno R que permite la integración simultánea de texto plano y código R y su ejecución en el documento, lo que facilita la creación de documentos dinámicos con análisis estadísticos y visualizaciones.              |
+| Librerías <span class="justificar">| Conjuntos de funciones y herramientas predefinidas que se pueden utilizar en lenguajes de programación, como R, para realizar tareas específicas sin tener que escribir todo el código desde cero.              |
+| Knitear <span class="justificar"> | Proceso de compilación secuencial de código y resultados de ejecución en un documento RMarkdown, generando un documento final con texto formateado, código y gráficos integrados.              |
+| Renderizar <span class="justificar"> | En el contexto de RMarkdown se refiere al proceso de convertir el código y contenido en un documento legible y presentable. En otras palabras, cuando renderizas un documento RMarkdown, estás transformando el código, texto y elementos visuales en un formato final, como un informe, una presentación o un documento HTML, que pueda ser compartido o presentado a otros de manera comprensible.              |
+| YAML  <span class="justificar">   | Acrónimo de "YAML Ain't Markup Language", es un formato de serialización de datos legible por humanos que se utiliza para configurar y definir la estructura de datos en muchos programas y aplicaciones. En RMarkdown corresponden al encabezado de instrucciones generales del documento.            |
+| [Chunk](https://bookdown.org/yihui/rmarkdown/r-code.html) <span class="justificar"> | Un bloque de código, que puede ser en R, en un documento RMarkdown, rodeado por marcas especiales que indican al sistema cómo manejar y ejecutar ese fragmento de código, y luego mostrar sus resultados en el documento final.              |
+
+
+## Reporte
+
+- [Tablas con R, con ejemplo de canciones de Spotify](https://felixanalytix.medium.com/how-to-make-beautiful-tables-using-r-programming-35d75cc919fb)
+
+- [Introduction to Quarto](https://www.youtube.com/watch?v=_f3latmOhew)
+
+## Estadística descriptiva
+
+- [Curso Estadística Descriptiva Sociología UChile, 1er Sem 2023](https://descriptiva-facso.netlify.app/)
+
+## Uso de R
+
+- [Conocimientos básicos de programación en R](https://descriptiva-facso.netlify.app/content/02-content)
+
+- [Importar datos en R](https://descriptiva-facso.netlify.app/resource/03-resource) 
+
+- [Procesamiento y análisis de datos en R (tidyverse)](https://descriptiva-facso.netlify.app/content/05-content)
+
+- [Procesamiento y análisis de datos en R (base)](https://descriptiva-facso.netlify.app/resource/04-resource)
+
+- [Más para aprender R](https://descriptiva-facso.netlify.app/resource/02-resource)
+
+## Inferencia 
+
+-[Infer: Inferencia estadística en R](https://infer.netlify.app/), acá [video tutorial en español](https://www.youtube.com/watch?v=u5CCTB7EvsE)
+
+- [Por qué se divide la varianza por N-1?](https://es.khanacademy.org/math/ap-statistics/summarizing-quantitative-data-ap/more-standard-deviation/v/another-simulation-giving-evidence-that-n-1-gives-us-an-unbiased-estimate-of-variance)
+
+- [Statistical Inference via Data Science A ModernDive into R and the Tidyverse](https://moderndive.com/index.html)
+
+- [Introduction to modern statistics (Mine Çetinkaya-Rundel and Johanna Hardin)](openintro-ims.netlify.app/)
+
+- [Inferencia univariada](https://descriptiva-facso.netlify.app/content/08-content)
+
+## Visualización
+
+- [Visualización descriptiva de datos en R](https://descriptiva-facso.netlify.app/content/06-content)
+
+- [R Graph Gallery](https://r-graph-gallery.com/) 
+
+## Bases de datos
+
+- [Bases de datos para trabajos o investigación](https://descriptiva-facso.netlify.app/resource/01-resource)
+
 

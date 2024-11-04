@@ -8,7 +8,7 @@
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Taller Centro Idea 2 – Estadística Correlacional</title>
+<title>Evaluación 2 - Estadística Correlacional 2024 – Estadística Correlacional</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,9 +69,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-<meta property="og:title" content="Taller Centro Idea 2 – Estadística Correlacional">
+<meta property="og:title" content="Evaluación 2 - Estadística Correlacional 2024 – Estadística Correlacional">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site_name" content="Estadística Correlacional">
@@ -121,6 +123,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text">Programa</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../evaluations/index.html"> 
+<span class="menu-text">Evaluaciones</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://rstudio.cloud"> <i class="bi bi-cloud-fill" role="img" aria-label="RStudio.cloud">
 </i> 
@@ -137,22 +143,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo" id="toc-pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo" class="nav-link active" data-scroll-target="#pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo">Pregunta 1 ¿En qué medida se relacionan los ingresos de las personas con sus niveles de autoritarismo?</a></li>
+  <li><a href="#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos" id="toc-pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos" class="nav-link" data-scroll-target="#pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos">Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y los ingresos?</a></li>
+  <li><a href="#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos" id="toc-pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos" class="nav-link" data-scroll-target="#pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos">Pregunta 3: ¿Cómo se relaciona el nivel educacional con los ingresos?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<div class="back-nav"><a href="../news/">← News</a></div>
-
-<header id="title-block-header" class="news quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Taller Centro Idea 2</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">info</div>
-    <div class="quarto-category">mail-UCursos</div>
-  </div>
-  </div>
+<h1 class="title">Evaluación 2 - Estadística Correlacional 2024</h1>
+</div>
 
 
 
@@ -160,9 +168,9 @@ ul.task-list li input[type="checkbox"] {
 
     
     <div>
-    <div class="quarto-title-meta-heading">Posted</div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">lunes octubre 14, 2024 at 12:00 AM</p>
+      <p class="date">22 de octubre de 2024</p>
     </div>
   </div>
   
@@ -174,10 +182,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>El centro IDEA está ofreciendo nuevamente un taller para preparar la evaluación del curso, esta vez de la Unidad II. Será este miércoles 16 de Octubre a las 14:30</p>
-<p><img src="../news/images/taller_idea2.jpg" class="img-fluid"></p>
+<p>Usted es parte de un equipo de investigación en un centro de estudios que se encuentra analizando cómo ciertos factores sociales se asocian con actitudes políticas. El centro realizó una encuesta y cuenta con una base de datos con las siguientes variables:</p>
+<ul>
+<li><code>id</code>: Identificador único de la encuesta</li>
+<li><code>autoritarismo</code>: Indice de autoritarismo. Puntaje de 0 a 100, a mayor puntaje mayores niveles de autoritarismo.</li>
+<li><code>ingresos</code>: Ingresos del entrevistado (en pesos)</li>
+<li><code>ingresos_rec</code>: Ingresos recodificados a 3 categorías donde 1 = Bajos ingresos, 2 = Medios ingresos, y 3 = Altos ingresos</li>
+<li><code>educ_rec</code>: Nivel educacional recodificada dicotómica (1 = Universitario o más, 0 = Menos que universitario)</li>
+</ul>
+<p>La base de datos se encuentra aquí: <a href="">link</a></p>
+<section id="pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-1-en-qué-medida-se-relacionan-los-ingresos-de-las-personas-con-sus-niveles-de-autoritarismo">Pregunta 1 ¿En qué medida se relacionan los ingresos de las personas con sus niveles de autoritarismo?</h2>
+<p>1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos/scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)</p>
+<p>1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p)</p>
+</section>
+<section id="pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-2-cómo-se-relacionan-el-nivel-educacional-autoritarismo-y-los-ingresos">Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y los ingresos?</h2>
+<p>2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y los ingresos. (1p)</p>
+<p>2.2 Tomando en cuenta la <a href="#tbl-perdidos" class="quarto-xref">Tabla&nbsp;1</a> comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre ingresos y educación. (3p)</p>
+<div class="cell">
+<div id="tbl-perdidos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-perdidos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Distribución de casos perdidos por variable
+</figcaption>
+<div aria-describedby="tbl-perdidos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Etiqueta</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n casos perdidos</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">% casos perdidos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">educ_rec</td>
+<td style="text-align: right;">Nivel educacional</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">ingresos</td>
+<td style="text-align: right;">Ingresos</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">autoritarismo</td>
+<td style="text-align: right;">Autoritarismo</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1%</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-3-cómo-se-relaciona-el-nivel-educacional-con-los-ingresos">Pregunta 3: ¿Cómo se relaciona el nivel educacional con los ingresos?</h2>
+<p>Utilizando la versión categórica de ingresos:</p>
+<p>3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código). (1p)</p>
+<p>3.2 Interprete el Chi2 en términos de inferencia y magnitud del efecto. (3p)</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

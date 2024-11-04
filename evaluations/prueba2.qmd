@@ -1,0 +1,96 @@
+---
+title: "Evaluación 2 - Estadística Correlacional 2024 "
+date: "2024-10-22"
+lang: es
+execute:
+  freeze: auto
+  cache: false 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    warning = F,
+    error = F,
+    message = F
+)
+```
+
+```{r paquetes, include=FALSE}
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+    tidyverse,
+    sjmisc,
+    sjPlot,
+    kableExtra,
+    sjlabelled,
+    naniar
+)
+
+options(scipen = 999)
+rm(list = ls())
+```
+
+```{r, include=FALSE}
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset1.RData"))
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset2.RData"))
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset3.RData"))
+load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/refs/heads/main/dataset4.RData"))
+
+```
+
+Usted es parte de un equipo de investigación en un centro de estudios que se encuentra analizando cómo ciertos factores sociales se asocian con actitudes políticas. El centro realizó una encuesta y cuenta con una base de datos con las siguientes variables:
+
+  - `id`: Identificador único de la encuesta
+  - `autoritarismo`: Indice de autoritarismo. Puntaje de 0 a 100, a mayor puntaje mayores niveles de autoritarismo.
+  - `ingresos`: Ingresos del entrevistado (en pesos)
+  - `ingresos_rec`: Ingresos recodificados a 3 categorías donde 1 = Bajos ingresos, 2 = Medios ingresos, y 3 = Altos ingresos
+  - `educ_rec`: Nivel educacional recodificada dicotómica (1 = Universitario o más, 0 = Menos que universitario)
+
+```{r include=FALSE}
+names(dataset1)
+frq(dataset1$autoritarismo)
+frq(dataset1$ingresos)
+frq(dataset1$ingresos_rec)
+frq(dataset1$educ)
+frq(dataset1$educ_rec)
+```
+
+La base de datos se encuentra aquí: [link]() 
+
+## Pregunta 1  ¿En qué medida se relacionan los ingresos de las personas con sus niveles de autoritarismo?
+
+1.1 Estime la asociación entre ambas variables utilizando R y genere un diagrama de dispersión (nube de puntos/scatterplot). Corte y pegue el código en el recuadro de abajo. (1p)
+
+1.2 Interprete el coeficiente de correlación (considerando inferencia estadística, magnitud y sentido del efecto). (3p) 
+
+## Pregunta 2: ¿Cómo se relacionan el nivel educacional, autoritarismo y los ingresos?
+
+2.1 Estime y reporte la matriz de correlaciones de las variables de nivel educacional, autoritarismo y los ingresos. (1p)
+
+2.2 Tomando en cuenta la @tbl-perdidos comente sobre el tratamiento de casos perdidos en el cálculo de las correlaciones, así como también del tipo de correlación calculada entre ingresos y educación. (3p)
+
+```{r, echo = FALSE}
+#| label: tbl-perdidos
+#| tbl-cap: Distribución de casos perdidos por variable
+
+tab_perdidos <- data.frame(
+    var = c("educ_rec", "ingresos", "autoritarismo"),
+    label = c("Nivel educacional", "Ingresos", "Autoritarismo"),
+    n_perdidos = c(0, 150, 10),
+    porc_perdidos = c("0%", "15%", "1%")
+)
+
+tab_perdidos %>%
+    kable(format = "html", align = "r", col.names = c("Variable", "Etiqueta", "n casos perdidos", "% casos perdidos")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = T) %>%
+    kableExtra::kable_styling(latex_options = "hold_position", position = "center")
+```
+
+## Pregunta 3: ¿Cómo se relaciona el nivel educacional con los ingresos?
+
+Utilizando la versión categórica de ingresos:
+
+3.1 Reporte tabla de contigencia y el calculo de Chi2 (corte y pegue el código). (1p)
+
+3.2 Interprete el Chi2 en términos de inferencia y magnitud del efecto. (3p)
