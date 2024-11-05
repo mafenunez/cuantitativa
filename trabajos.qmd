@@ -39,17 +39,19 @@ Para la elaboración de los trabajos se utilizarán bases de datos secundarias d
 
 # Temas y análisis
 
-Cada grupo seleccionará un tema/concepto central (variable dependiente), por ejemplo: prejuicio hacia migrantes, nivel educacional, orientación política, etc. Luego, debe relacionar el tema seleccionado con al menos dos variables (ej: género, nivel socioeconómico, salud, confianza en instituciones, etc. Los análisis deben considerar al menos un cruce entre variables categóricas, y uno entre una variable continua y una categórica. Para seleccionar el tema se deben revisar los cuestionarios, libros de códigos y reportes de las encuestas mencionadas.
+Cada grupo seleccionará **un tema/concepto central** (_variable dependiente_), por ejemplo: prejuicio hacia migrantes, nivel educacional, orientación política, etc. Luego, debe relacionar el tema seleccionado con al menos dos variables (ej: género, nivel socioeconómico, salud, confianza en instituciones, etc.) que serán las _variables independientes_ del reporte. Para seleccionar el tema y las variables disponibles se deben revisar los cuestionarios, libros de códigos y reportes de las encuestas mencionadas.
+
+Los análisis deben considerar al menos un cruce entre variables categóricas, y otro entre una variable continua y una categórica. 
 
 # Inscripción de grupos
 
-Inscribirse en la siguiente [planilla](https://docs.google.com/spreadsheets/d/1GbHVgzCs9uwPMIeOMZUzi841Gqt5VQi6wov-bDCQ7U4/edit?gid=0#gid=0) a más tardar hasta el **08 de Noviembre**.
+Inscribirse en la siguiente [planilla](https://docs.google.com/spreadsheets/d/1GbHVgzCs9uwPMIeOMZUzi841Gqt5VQi6wov-bDCQ7U4/edit?gid=0#gid=0) hasta el **08 de Noviembre**.
 
 # Secciones del informe 
 
 A continuación se presentan las secciones que debe contener el informe, con una aproximación del número de palabras de cada sección:
 
-**Título**: Breve, lo principal es hacer alusión a las principales variables a relacionar (0,5 puntos)
+**Título y resumen** (1 punto)
 
 **1. Introducción** (2 puntos, app. 500 palabras)
 
@@ -67,9 +69,13 @@ En este apartado es importante considerar:
 
 Esta sección debe estar respaldada por al menos 5 referencias bibliográficas.
 
-**2. Variables** (2 puntos, app. 800 palabras)
+**2. Metodología** (2 puntos, app. 800 palabras)
 
-Esta sección también incluye una **tabla de descriptivos** básicos, y un detalle de la operacionalización y medición de las variables.
+2.1 Datos: descripción detallada de los datos a utilizar
+
+2.2 Variables
+
+Descripción de cada una de las variables, su operacionalización y medición. Esta sección también incluye una **tabla de descriptivos** básicos.
 
 ::: callout-note
 **Atención sobre recodificación de variables**
@@ -82,9 +88,11 @@ Es importante que las variables sean recodificadas en el sentido del atributo qu
 
 :::
 
-Mencionar al final de esta sección los métodos estadísticos a utilizar para el contraste de hipótesis.
+2.3 Métodos
 
-**3. Análisis** (6 puntos, app. 1000 -1500 palabras)
+Mencionar los métodos estadísticos a utilizar para el contraste de hipótesis y cálculo del tamaño de efecto.
+
+**3. Análisis** (8 puntos, app. 1000 -1500 palabras)
 
 - 3.1 Análisis descriptivo: tablas y/o gráficos comentados, univariados y bivariados según sea más pertinente. Para esto considere medidas de tendencia central, dispersión y frecuencias, siempre considerando el nivel de medición de sus variables. En los casos que sea atingente, incluya los intervalos de confianza al 95 %. 
 
@@ -92,7 +100,7 @@ Mencionar al final de esta sección los métodos estadísticos a utilizar para e
 
 Al final de esta sección también se realiza la discusión de resultados en relación a las hipótesis planteadas
 
-**4. Conclusiones** (2 puntos, app. 300 palabras)
+**4. Conclusiones** (1 puntos, app. 300 palabras)
 
 Resumen general, limitaciones y sugerencias para futuros análisis
 
