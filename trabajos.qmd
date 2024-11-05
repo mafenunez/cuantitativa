@@ -8,6 +8,8 @@ website:
       repo: cursos-metodos-facso/correlacional
 ---
 
+![](/news/images/trabajo-grupo.jpg)
+
 El curso de Estadística Correlacional considera la elaboración de un trabajo grupal como instancia final de [evaluación](/syllabus#evaluación). El trabajo a realizar es la elaboración de un **reporte de análisis bivariado**.
 
 La nota de este trabajo equivale a un **30%** de la nota final del curso, donde 20% equivale al reporte escrito y 10% a la presentación (en formato póster).
@@ -62,6 +64,8 @@ En este apartado es importante considerar:
   - Precisar los conceptos centrales a investigar: Ejemplo "vamos a analizar la participación informal, entendiendo por ello la frecuencia de participación en actividades como marchas, boycotts y en redes sociales" [cita que apoye la definición].
   
   - Mencionar el principal objetivo del trabajo y las hipótesis de investigación en el párrafo final de esta sección (ej: se espera que el nivel educacional sea mayor en zonas urbanas en relación a zonas rurales). Mencionar al menos tres hipótesis.
+
+Esta sección debe estar respaldada por al menos 5 referencias bibliográficas.
 
 **2. Variables** (2 puntos, app. 800 palabras)
 

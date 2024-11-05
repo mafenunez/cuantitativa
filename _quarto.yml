@@ -51,8 +51,8 @@ website:
         file: content/index.qmd
       - text: "Prácticos"
         file: assignment/index.qmd
-#      - text: "Trabajos"
-#        file: trabajos.qmd
+      - text: "Trabajos"
+        file: trabajos.qmd
       - text: "Recursos"
         file: resource/index.qmd
       - syllabus.qmd
