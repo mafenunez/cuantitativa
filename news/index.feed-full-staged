@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Noticias y mensajes importantes Estadística Correlacional</title>
+<link>https://correlacional.netlify.app/news/</link>
+<atom:link href="https://correlacional.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.5.57</generator>
+<lastBuildDate>Mon, 04 Nov 2024 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/news/2024-11-04_trabajo_final.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-11-04_trabajo_final.html</link>
+  <description>{B4F502887207:/news/2024-11-04_trabajo_final.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-11-04_trabajo_final.html</guid>
+  <pubDate>Mon, 04 Nov 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/news/images/trabajo-grupo.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-10-20_tutoriales.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-10-20_tutoriales.html</link>
+  <description>{B4F502887207:/news/2024-10-20_tutoriales.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-10-20_tutoriales.html</guid>
+  <pubDate>Sun, 20 Oct 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/news/images/tutorial.png" medium="image" type="image/png" height="101" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-10-14_evaluacion2.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-10-14_evaluacion2.html</link>
+  <description>{B4F502887207:/news/2024-10-14_evaluacion2.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-10-14_evaluacion2.html</guid>
+  <pubDate>Mon, 14 Oct 2024 03:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-10-14_taller_centro_idea2.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-10-14_taller_centro_idea2.html</link>
+  <description>{B4F502887207:/news/2024-10-14_taller_centro_idea2.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-10-14_taller_centro_idea2.html</guid>
+  <pubDate>Mon, 14 Oct 2024 03:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-10-10_tutorias_grupales.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-10-10_tutorias_grupales.html</link>
+  <description>{B4F502887207:/news/2024-10-10_tutorias_grupales.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-10-10_tutorias_grupales.html</guid>
+  <pubDate>Thu, 10 Oct 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://coworkingfy.com/wp-content/uploads/2019/12/ilustracion-grupo-de-trabajo.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-10-07_Desarrollo ejercicio autonomo.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-10-07_Desarrollo ejercicio autonomo.html</link>
+  <description>{B4F502887207:/news/2024-10-07_Desarrollo ejercicio autonomo.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-10-07_Desarrollo ejercicio autonomo.html</guid>
+  <pubDate>Mon, 07 Oct 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-09-30_reporte-notas1.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-09-30_reporte-notas1.html</link>
+  <description>{B4F502887207:/news/2024-09-30_reporte-notas1.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-09-30_reporte-notas1.html</guid>
+  <pubDate>Mon, 30 Sep 2024 03:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-09-04_taller_centro_idea.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-09-04_taller_centro_idea.html</link>
+  <description>{B4F502887207:/news/2024-09-04_taller_centro_idea.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-09-04_taller_centro_idea.html</guid>
+  <pubDate>Wed, 04 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/img/afichetaller1.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-09-03_cambios evaluacion 1.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-09-03_cambios evaluacion 1.html</link>
+  <description>{B4F502887207:/news/2024-09-03_cambios evaluacion 1.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-09-03_cambios evaluacion 1.html</guid>
+  <pubDate>Tue, 03 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-09-02_equipo docente y ayudantes.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-09-02_equipo docente y ayudantes.html</link>
+  <description>{B4F502887207:/news/2024-09-02_equipo docente y ayudantes.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-09-02_equipo docente y ayudantes.html</guid>
+  <pubDate>Mon, 02 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-08-28_asignacion_ayudantes1.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-08-28_asignacion_ayudantes1.html</link>
+  <description>{B4F502887207:/news/2024-08-28_asignacion_ayudantes1.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-08-28_asignacion_ayudantes1.html</guid>
+  <pubDate>Thu, 29 Aug 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-08-23_primera-practica.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-08-23_primera-practica.html</link>
+  <description>{B4F502887207:/news/2024-08-23_primera-practica.html}</description>
+  <category>info</category>
+  <category>mail-UCursos</category>
+  <guid>https://correlacional.netlify.app/news/2024-08-23_primera-practica.html</guid>
+  <pubDate>Fri, 23 Aug 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-08-19_cambio-practico.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-08-19_cambio-practico.html</link>
+  <description>{B4F502887207:/news/2024-08-19_cambio-practico.html}</description>
+  <category>info</category>
+  <guid>https://correlacional.netlify.app/news/2024-08-19_cambio-practico.html</guid>
+  <pubDate>Mon, 19 Aug 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/news/2024-08-19_inicio.html}</title>
+  <link>https://correlacional.netlify.app/news/2024-08-19_inicio.html</link>
+  <description>{B4F502887207:/news/2024-08-19_inicio.html}</description>
+  <category>info</category>
+  <guid>https://correlacional.netlify.app/news/2024-08-19_inicio.html</guid>
+  <pubDate>Mon, 19 Aug 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://correlacional.netlify.app/files/logo-correlacional.png" medium="image" type="image/png" height="165" width="144"/>
+</item>
+</channel>
+</rss>
