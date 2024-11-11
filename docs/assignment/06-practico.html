@@ -8,7 +8,7 @@
 
 <meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
 
-<title>Tabals en reportes dinámicos – Estadística Correlacional</title>
+<title>Tablas en reportes dinámicos – Estadística Correlacional</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,9 +107,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+<link href="../site_libs/table1-1.0/table1_defaults.css" rel="stylesheet">
 
 
-<meta property="og:title" content="Tabals en reportes dinámicos – Estadística Correlacional">
+
+<meta property="og:title" content="Tablas en reportes dinámicos – Estadística Correlacional">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
 <meta property="og:site_name" content="Estadística Correlacional">
@@ -196,10 +198,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tablas-con-kable" id="toc-tablas-con-kable" class="nav-link" data-scroll-target="#tablas-con-kable">Tablas con Kable</a></li>
   <li><a href="#tablas-con-otros-paquetes" id="toc-tablas-con-otros-paquetes" class="nav-link" data-scroll-target="#tablas-con-otros-paquetes">Tablas con otros paquetes</a>
   <ul class="collapse">
-  <li><a href="#stargazer" id="toc-stargazer" class="nav-link" data-scroll-target="#stargazer">stargazer</a></li>
-  <li><a href="#sjmisc" id="toc-sjmisc" class="nav-link" data-scroll-target="#sjmisc">sjmisc</a></li>
-  <li><a href="#sjplot" id="toc-sjplot" class="nav-link" data-scroll-target="#sjplot">sjPlot</a></li>
-  <li><a href="#summarytools" id="toc-summarytools" class="nav-link" data-scroll-target="#summarytools">summarytools</a></li>
+  <li><a href="#funciones-para-tablas-univariadas" id="toc-funciones-para-tablas-univariadas" class="nav-link" data-scroll-target="#funciones-para-tablas-univariadas">Funciones para tablas univariadas</a>
+  <ul class="collapse">
+  <li><a href="#summarytools" id="toc-summarytools" class="nav-link" data-scroll-target="#summarytools"><code>summarytools</code>:</a></li>
+  <li><a href="#stargazer" id="toc-stargazer" class="nav-link" data-scroll-target="#stargazer"><code>stargazer</code>:</a></li>
+  <li><a href="#psych" id="toc-psych" class="nav-link" data-scroll-target="#psych"><code>psych</code>:</a></li>
+  <li><a href="#sjmisc" id="toc-sjmisc" class="nav-link" data-scroll-target="#sjmisc"><code>sjmisc</code>:</a></li>
+  <li><a href="#table1" id="toc-table1" class="nav-link" data-scroll-target="#table1"><code>table1</code>:</a></li>
+  </ul></li>
+  <li><a href="#ejemplos-tablas-univariadas" id="toc-ejemplos-tablas-univariadas" class="nav-link" data-scroll-target="#ejemplos-tablas-univariadas">Ejemplos tablas univariadas</a></li>
+  <li><a href="#funciones-para-tablas-bivariadas" id="toc-funciones-para-tablas-bivariadas" class="nav-link" data-scroll-target="#funciones-para-tablas-bivariadas">Funciones para tablas bivariadas</a>
+  <ul class="collapse">
+  <li><a href="#sjplot" id="toc-sjplot" class="nav-link" data-scroll-target="#sjplot"><code>sjPlot</code>:</a></li>
+  <li><a href="#summarytools-1" id="toc-summarytools-1" class="nav-link" data-scroll-target="#summarytools-1"><code>summarytools</code>:</a></li>
+  <li><a href="#crosstable" id="toc-crosstable" class="nav-link" data-scroll-target="#crosstable"><code>crosstable</code></a></li>
+  <li><a href="#table1-1" id="toc-table1-1" class="nav-link" data-scroll-target="#table1-1"><code>table1</code>:</a></li>
+  <li><a href="#dplyr-y-janitor" id="toc-dplyr-y-janitor" class="nav-link" data-scroll-target="#dplyr-y-janitor"><code>dplyr</code> y <code>janitor</code>:</a></li>
+  </ul></li>
+  <li><a href="#ejemplo-tablas-bivariadas" id="toc-ejemplo-tablas-bivariadas" class="nav-link" data-scroll-target="#ejemplo-tablas-bivariadas">Ejemplo tablas bivariadas</a></li>
   </ul></li>
   <li><a href="#autoreferenciar-elementos-dentro-un-r-markdown" id="toc-autoreferenciar-elementos-dentro-un-r-markdown" class="nav-link" data-scroll-target="#autoreferenciar-elementos-dentro-un-r-markdown">Autoreferenciar elementos dentro un R Markdown</a></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
@@ -210,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header">
-<h1 class="title display-7">Tabals en reportes dinámicos</h1>
+<h1 class="title display-7">Tablas en reportes dinámicos</h1>
 
 <div class="date-block bg-assignment text-white p-2">
   <p class="date">Sesión del viernes, 29 de septiembre de 2023</p>
@@ -271,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="opciones-de-chunk">Opciones de chunk</h4>
 <p>Hay distintas opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">Guía de referencia de RMarkdown</a> o en el <a href="https://yihui.org/knitr/options/">sitio web de <strong>knitr</strong></a>. Estos recursos se crearon inicialmente para RMarkdown, pero también son aplicables a <a href="https://quarto.org/docs/computations/r.html#chunk-options">Quarto</a>.</p>
 <p>En Quarto, las opciones del chunk van inmediatamente después de la sección <code>{r}</code>. Para especificar una opción, se debe partir con <code>#|</code>, luego la opción y luego el valor lógico. Por ejemplo:</p>
-<pre><code>``{r nombre-chunk, message = FALSE, echo = TRUE}
+<pre><code>``{r nombre-chunk}
 #| message: FALSE
 #| echo: TRUE
 
@@ -292,12 +308,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># Manipulacion datos</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>               sjmisc, <span class="co"># Descriptivos</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>               kableExtra, <span class="co">#Tablas</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               stargazer, <span class="co"># Tablas</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>               ggrepel</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>               ) <span class="co"># Graficos</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               summarytools, <span class="co"># Tablas</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>               sjPlot, <span class="co"># Tablas y gráficos</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>               stargazer, <span class="co"># Tablas</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>               janitor,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>               gtsummary,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>               crosstable,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>               table1,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               report,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>               tableone</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>               ) </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Cargamos los datos desde internet.</p>
 <div class="cell">
@@ -335,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de <code>kableExtra</code> (hay otras opciones, por ejemplo <code>flextable</code>, pero no es tan buena).</p></li>
 </ol>
 <p>Ejemplifiquemos con nuestros datos.</p>
-<p>Primero, generaremos un objeto llamado <code>tab1</code> que usaremos como contenido de la tabla. Este objeto tendrá la distribución de <code>it1</code> (confianza interpersonal) por país.</p>
+<p>Primero, generaremos un objeto llamado <code>tab1</code> que usaremos como contenido de la tabla. Este objeto tendrá la distribución de <code>it1</code> (confianza interpersonal) por país, es decir, es una tabla bivariada.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, it1) <span class="sc">%&gt;%</span> <span class="co"># agrupamos por pais y variable</span></span>
@@ -924,7 +947,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<p>En este caso, nuestro ejemplo fue para una variable categorica. Sin embargo, podríamos hacer lo mismo para una variable continua y crear una tabla con los principales estadisticos descriptivos.</p>
+<p>En este caso, nuestro ejemplo fue para una variable categorica. Sin embargo, podríamos hacer lo mismo para una variable continua y crear una tabla bivariada con los principales estadisticos descriptivos.</p>
 <p>Creemos el objeto <code>tab2</code>, el cual serán los estadísticos descriptivos de la variable <code>edad</code> por país en nuestra base de datos.</p>
 <p>::: {.cell}</p>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
@@ -1138,112 +1161,600 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="tablas-con-otros-paquetes" class="level1">
 <h1>Tablas con otros paquetes</h1>
-<p>Si bien <code>kableExtra</code> es la mejor forma para referenciar, ya que nos da mayor contrtol del contenido y el formato, existen otras funciones. Las funciones varían de acuerdo a qué es lo que se quiere reportar, es decir, si es una variable categorica o númerica y si es un estadístico univariado o bivariado.</p>
-<section id="stargazer" class="level2">
-<h2 class="anchored" data-anchor-id="stargazer">stargazer</h2>
-<p><code>startazer</code> es un paquete que permite reportar análisis univariados y multivariados en distintos formatos (html o LaTex). Para efectos de este curso, nos es especialmente útil para ver de manera rápida estadísticos descriptivos de muchas variables al mismo tiempo. Para ello utilizamos la función <code>stargazer()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un pequeño procesamiento ya que algunas variables que queremos visualizar son character en vez de númericas</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"gini"</span>, <span class="st">"gdp"</span>), <span class="sc">~</span> <span class="fu">as.numeric</span>(.))) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(edad, gini, gdp)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>stargazer<span class="sc">::</span><span class="fu">stargazer</span>(<span class="fu">as.data.frame</span>(lapop <span class="sc">%&gt;%</span> <span class="fu">select</span>(edad, gini, gdp)), <span class="at">type =</span> <span class="st">"html"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;edad&lt;/td&gt;&lt;td&gt;23,372&lt;/td&gt;&lt;td&gt;40.461&lt;/td&gt;&lt;td&gt;16.798&lt;/td&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;gini&lt;/td&gt;&lt;td&gt;23,386&lt;/td&gt;&lt;td&gt;45.778&lt;/td&gt;&lt;td&gt;4.043&lt;/td&gt;&lt;td&gt;38.000&lt;/td&gt;&lt;td&gt;53.300&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;gdp&lt;/td&gt;&lt;td&gt;23,386&lt;/td&gt;&lt;td&gt;8.748&lt;/td&gt;&lt;td&gt;4.278&lt;/td&gt;&lt;td&gt;2.475&lt;/td&gt;&lt;td&gt;16.038&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></pre>
-</div>
-</div>
+<p>Si bien <code>kableExtra</code> es la mejor forma para referenciar, ya que nos da mayor contrtol del contenido y el formato, existen otras funciones. Las funciones varían de acuerdo a qué es lo que se quiere reportar, es decir, si es una variable categorica o númerica y si es un estadístico univariado o bivariado. De todos modos, solo algunas funciones tienen una salida directa en HTML (pensando en que se utilizarán en Quarto), por lo que algunas veces solo nos ahorraremos el procesamiento, el formateo deberemos hacerlo igual.</p>
+<p>La principal virtud de estas funciones es que nos ahorra hacer el procesamiento de la tabla. Sin embargo, el desafío es que debemos saber bien qué es lo que queremos reportar para utilizar la función adecuada.</p>
+<p>A continuación, presentaremos algunas de las funcionas más conocidas, dividiendo si son para tablas univariadas o bivariadas.</p>
+<section id="funciones-para-tablas-univariadas" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-para-tablas-univariadas">Funciones para tablas univariadas</h2>
+<p>Estas tablas suelen incluir estadísticas descriptivas de una sola variable como medias, medianas, desviaciones estándar, entre otras.</p>
+<section id="summarytools" class="level3">
+<h3 class="anchored" data-anchor-id="summarytools"><code>summarytools</code>:</h3>
+<ul>
+<li><code>summarytools::dfSummary():</code> Genera un resumen univariado completo de cada variable en el dataset, con estadísticas, frecuencia de valores y gráficos.</li>
+<li><code>summarytools::descr():</code> Proporciona estadísticas descriptivas para variables numéricas.</li>
+</ul>
 </section>
-<section id="sjmisc" class="level2">
-<h2 class="anchored" data-anchor-id="sjmisc">sjmisc</h2>
-<p>Otra alternativa para sacar sacar estadísticos descriptivos de varias columnas de una base de datos con la función <code>descr</code> del paquete <code>sjmisc</code>. Combinado con <code>kable()</code>, podemos presentarla en un documento dinámico:</p>
+<section id="stargazer" class="level3">
+<h3 class="anchored" data-anchor-id="stargazer"><code>stargazer</code>:</h3>
+<ul>
+<li><code>stargazer::stargazer()</code>: Para reportar estadísticas descriptivas.</li>
+</ul>
+</section>
+<section id="psych" class="level3">
+<h3 class="anchored" data-anchor-id="psych"><code>psych</code>:</h3>
+<ul>
+<li><code>psych::describe()</code>: Calcula estadísticas descriptivas adicionales, como curtosis y asimetría.</li>
+</ul>
+</section>
+<section id="sjmisc" class="level3">
+<h3 class="anchored" data-anchor-id="sjmisc"><code>sjmisc</code>:</h3>
+<ul>
+<li><code>sjmisc::frq()</code>: Para tablas de frecuencias detalladas de variables categóricas. Incluye labels.</li>
+</ul>
+</section>
+<section id="table1" class="level3">
+<h3 class="anchored" data-anchor-id="table1"><code>table1</code>:</h3>
+<ul>
+<li><code>table1::table1()</code>: Permite ver tanto variables categoricas como numericas en la misma tabla de manera estética</li>
+</ul>
+</section>
+</section>
+<section id="ejemplos-tablas-univariadas" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplos-tablas-univariadas">Ejemplos tablas univariadas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">descr</span>(lapop <span class="sc">%&gt;%</span> <span class="fu">select</span>(edad, gini, gdp)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creemos una version de lapop solo con algunas variables como ejemplo</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>data_example <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pais, it1, edad, sexo, gini, gdp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarytools</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(data_example) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">view</span>(<span class="at">method =</span> <span class="st">"render"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">summarytools::dfSummary</h4>
+<strong>Dimensions</strong>: 23386 x 6
+  <br><strong>Duplicates</strong>: 16464
+<br>
+
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline caption-top table-sm small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">var</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">type</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">label</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">NA.prc</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">se</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">md</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">trimmed</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">range</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">iqr</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">skew</th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>No</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Variable</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Label</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Stats / Values</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Freqs (% of Valid)</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Graph</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Valid</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Missing</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">edad</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">Edad</td>
-<td style="text-align: right;">23372</td>
-<td style="text-align: right;">0.0598649</td>
-<td style="text-align: right;">40.460551</td>
-<td style="text-align: right;">16.798382</td>
-<td style="text-align: right;">0.1098802</td>
-<td style="text-align: right;">38.000000</td>
-<td style="text-align: right;">39.158199</td>
-<td style="text-align: left;">83 (16-99)</td>
-<td style="text-align: right;">25.00000</td>
-<td style="text-align: right;">0.5675725</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">pais [character]</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. BOL</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. COL</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">3. CHL</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">4. URY</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">5. MEX</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">6. HND</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">7. PAN</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">8. ECU</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">9. ARG</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">10. PER</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">[ 5 others ]</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1682</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">7.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1663</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">7.1%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1638</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">7.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1581</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1580</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1560</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.7%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1559</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.7%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1533</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.6%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1528</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.5%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1521</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">6.5%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">7541</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">32.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAD0AAAEKBAMAAABTREB7AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTJNpZAiAAAAfklEQVRo3u3SsQ2AMAxE0YxANoCwAey/GyiiQALrUAoczL/2NXH0U/JfqcuXDYfP674Fx9tc9ZWNveX1eZO4D8cbXfWVjdE3HsHpH/+z0z8e2b37Vk7/OP33+3/4t927f/rG6b/f/8FjO/3jkd27b+XF2Hi+72Y4/sRVX57bAIS9a2cRCexbAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">23386 (100.0%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">gini</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">gini</td>
-<td style="text-align: right;">23386</td>
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">45.777846</td>
-<td style="text-align: right;">4.042916</td>
-<td style="text-align: right;">0.0264373</td>
-<td style="text-align: right;">45.700000</td>
-<td style="text-align: right;">45.896141</td>
-<td style="text-align: left;">15.3 (38-53.3)</td>
-<td style="text-align: right;">6.10000</td>
-<td style="text-align: right;">-0.2035339</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">it1 [numeric]</td>
+<td style="text-align: left;">Confianza Interpersonal</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 2.7 (1)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1 ≤ 3 ≤ 4</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 1 (0.4)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 2px 0 7px; margin: 0; border: 0;">1</td>
+<td style="text-align: left; padding: 0 2px; border: 0;">:</td>
+<td style="text-align: right; padding: 0 4px 0 6px; margin: 0; border: 0;">2580</td>
+<td style="text-align: left; padding: 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0 2px; margin: 0; border: 0;">11.3%</td>
+<td style="text-align: left; padding: 0 4px 0 0; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 2px 0 7px; margin: 0; border: 0;">2</td>
+<td style="text-align: left; padding: 0 2px; border: 0;">:</td>
+<td style="text-align: right; padding: 0 4px 0 6px; margin: 0; border: 0;">7157</td>
+<td style="text-align: left; padding: 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0 2px; margin: 0; border: 0;">31.4%</td>
+<td style="text-align: left; padding: 0 4px 0 0; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 2px 0 7px; margin: 0; border: 0;">3</td>
+<td style="text-align: left; padding: 0 2px; border: 0;">:</td>
+<td style="text-align: right; padding: 0 4px 0 6px; margin: 0; border: 0;">7693</td>
+<td style="text-align: left; padding: 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0 2px; margin: 0; border: 0;">33.8%</td>
+<td style="text-align: left; padding: 0 4px 0 0; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 2px 0 7px; margin: 0; border: 0;">4</td>
+<td style="text-align: left; padding: 0 2px; border: 0;">:</td>
+<td style="text-align: right; padding: 0 4px 0 6px; margin: 0; border: 0;">5353</td>
+<td style="text-align: left; padding: 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0 2px; margin: 0; border: 0;">23.5%</td>
+<td style="text-align: left; padding: 0 4px 0 0; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAD8AAABmBAMAAACO8FTTAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAYklEQVRIx+3TsQ3AMAhEUUaIN7DIBrD/bi6cNCAbKQq2i/v1a5AOojPit2K6HnBrTwAA1oBwk2XUf4AHuStMAgCQBMJNLviLz4/DdX6mKgBADgg3ueUvDHBXCABAKgg3ubsG4mxoNeNgKPQAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">22783 (97.4%)</td>
+<td style="text-align: center;">603 (2.6%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">gdp</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">gdp</td>
-<td style="text-align: right;">23386</td>
-<td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">8.747801</td>
-<td style="text-align: right;">4.277921</td>
-<td style="text-align: right;">0.0279740</td>
-<td style="text-align: right;">7.997761</td>
-<td style="text-align: right;">8.634054</td>
-<td style="text-align: left;">13.56 (2.48-16.04)</td>
-<td style="text-align: right;">7.24112</td>
-<td style="text-align: right;">0.2535294</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">edad [numeric]</td>
+<td style="text-align: left;">Edad</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 40.5 (16.8)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">16 ≤ 38 ≤ 99</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 25 (0.4)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">81 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAvUlEQVRo3u3VUQ6DIBCEYa6gNyjeQO5/t7qJaWIBYZdt0tJ/El+/jGaEEIgly5k1HlmsecdSSvvcmHyu6IVtAoGBgY1i8lu6YQK9MPMBWcLM7cDA9Jj+dq9hpmuvhpleF+yfMNVwW5iqHRgYGNiXY90HZA/W3a4Xk3YPL+x4EthMWHMeGmxrtQP7Mex2Hlrsth0YmCNWHa4Fq7YDA3PGisO1YsV2YGAfwLLhjmBZu3mxy3cbxS7tTiy6JBBLnsNLfjfyeDqCAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">23372 (99.9%)</td>
+<td style="text-align: center;">14 (0.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">sexo [factor]</td>
+<td style="text-align: left;">Sexo</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. Hombre</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. Mujer</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">11634</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">49.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">11739</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">50.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAFgAAAA3BAMAAAB6GZCIAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAPElEQVRIx2NgGJpAiRigCFWsbEwEGFU8qnhUMc0Uk5RhBYkCNFdMlJuVSAkNo1HFo4pHFdNKMUkZdqgBABBVRqQuI8s9AAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">23373 (99.9%)</td>
+<td style="text-align: center;">13 (0.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">gini [numeric]</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 45.8 (4)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">38 ≤ 45.7 ≤ 53.3</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 6.1 (0.1)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">15 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAj0lEQVRo3u3Y0QnAIAxFUVewG1Q3aPbfrU1QkdJWEaEI9/0oMR7xT3SOjMS/Jmh8X5pYFJHjXtz0hH0WdhUFDAwMDAwMDAwMbFHMHsfTMC2AgYGBgYGBgf2KPf/9ZaysdmK5o/xZ6mhY/YpqY6FuLzfTSUx7j2/MgITFumMEszYwMDAwMDAwsNWwMCWOjOQEt6307ijH4hUAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">23386 (100.0%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">gdp [numeric]</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 8.7 (4.3)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2.5 ≤ 8 ≤ 16</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 7.2 (0.5)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">15 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAlklEQVRo3u3Xyw2AIBBFUVrADsQOnP57UyZAJCBRJFGT+1bATA6fHcaQnlgf52NDJj+Z7a0csUVE1oTtE2lh2dZPsaz7l5g+xyhMB2BgYGBgYGBgYGBgYGBvYpVPdoZp3QVMxy2sPKc2xT20vgbMV6TEXNZcweLyFWxJYnnpPuzk0mBgYGBgYGBgYGBgYGCfwdyQGNKTDYZWkh9MD2oBAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">23386 (100.0%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.3.3)<br>2024-11-11</p>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">descr</span>(data_example<span class="sc">$</span>edad) <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error : Can't find summarytools</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">40.4605511</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Std.Dev</td>
+<td style="text-align: right;">16.7983821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Min</td>
+<td style="text-align: right;">16.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q1</td>
+<td style="text-align: right;">27.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Median</td>
+<td style="text-align: right;">38.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q3</td>
+<td style="text-align: right;">52.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Max</td>
+<td style="text-align: right;">99.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAD</td>
+<td style="text-align: right;">17.7912000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IQR</td>
+<td style="text-align: right;">25.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CV</td>
+<td style="text-align: right;">0.4151793</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Skewness</td>
+<td style="text-align: right;">0.5674996</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SE.Skewness</td>
+<td style="text-align: right;">0.0160214</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kurtosis</td>
+<td style="text-align: right;">-0.5770780</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">N.Valid</td>
+<td style="text-align: right;">23372.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pct.Valid</td>
+<td style="text-align: right;">99.9401351</td>
 </tr>
 </tbody>
 </table>
 
 
 </div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stargazer</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(<span class="fu">as.data.frame</span>(data_example), <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">summary.stat =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;it1&lt;/td&gt;&lt;td&gt;2.694&lt;/td&gt;&lt;td&gt;0.953&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;edad&lt;/td&gt;&lt;td&gt;40.461&lt;/td&gt;&lt;td&gt;16.798&lt;/td&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;gini&lt;/td&gt;&lt;td&gt;45.778&lt;/td&gt;&lt;td&gt;4.043&lt;/td&gt;&lt;td&gt;38.000&lt;/td&gt;&lt;td&gt;53.300&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;gdp&lt;/td&gt;&lt;td&gt;8.748&lt;/td&gt;&lt;td&gt;4.278&lt;/td&gt;&lt;td&gt;2.475&lt;/td&gt;&lt;td&gt;16.038&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></pre>
 </div>
-<p>Este paquete también tiene opciones de tablas de frecuencias, las cuales son útiles para el reporte de variable categóricas. Una de sus principales virtudes es que incluye las <code>labels</code> en la tabla:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(lapop<span class="sc">$</span>it1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># psych</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data_example) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="kable_wrapper caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vars</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">trimmed</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mad</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">max</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">range</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">skew</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">kurtosis</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">pais*</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">23386</td>
+<td style="text-align: right;">7.950911</td>
+<td style="text-align: right;">4.3253391</td>
+<td style="text-align: right;">8.000000</td>
+<td style="text-align: right;">7.935810</td>
+<td style="text-align: right;">5.930400</td>
+<td style="text-align: right;">1.00000</td>
+<td style="text-align: right;">15.00000</td>
+<td style="text-align: right;">14.00000</td>
+<td style="text-align: right;">0.0201754</td>
+<td style="text-align: right;">-1.2152000</td>
+<td style="text-align: right;">0.0282841</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">it1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">22783</td>
+<td style="text-align: right;">2.694333</td>
+<td style="text-align: right;">0.9532423</td>
+<td style="text-align: right;">3.000000</td>
+<td style="text-align: right;">2.742909</td>
+<td style="text-align: right;">1.482600</td>
+<td style="text-align: right;">1.00000</td>
+<td style="text-align: right;">4.00000</td>
+<td style="text-align: right;">3.00000</td>
+<td style="text-align: right;">-0.1424032</td>
+<td style="text-align: right;">-0.9507169</td>
+<td style="text-align: right;">0.0063154</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">23372</td>
+<td style="text-align: right;">40.460551</td>
+<td style="text-align: right;">16.7983821</td>
+<td style="text-align: right;">38.000000</td>
+<td style="text-align: right;">39.158199</td>
+<td style="text-align: right;">17.791200</td>
+<td style="text-align: right;">16.00000</td>
+<td style="text-align: right;">99.00000</td>
+<td style="text-align: right;">83.00000</td>
+<td style="text-align: right;">0.5674996</td>
+<td style="text-align: right;">-0.5770780</td>
+<td style="text-align: right;">0.1098802</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sexo*</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">23373</td>
+<td style="text-align: right;">1.502246</td>
+<td style="text-align: right;">0.5000057</td>
+<td style="text-align: right;">2.000000</td>
+<td style="text-align: right;">1.502808</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1.00000</td>
+<td style="text-align: right;">2.00000</td>
+<td style="text-align: right;">1.00000</td>
+<td style="text-align: right;">-0.0089842</td>
+<td style="text-align: right;">-2.0000048</td>
+<td style="text-align: right;">0.0032705</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gini</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">23386</td>
+<td style="text-align: right;">45.777846</td>
+<td style="text-align: right;">4.0429160</td>
+<td style="text-align: right;">45.700000</td>
+<td style="text-align: right;">45.896141</td>
+<td style="text-align: right;">4.151280</td>
+<td style="text-align: right;">38.00000</td>
+<td style="text-align: right;">53.30000</td>
+<td style="text-align: right;">15.30000</td>
+<td style="text-align: right;">-0.2035078</td>
+<td style="text-align: right;">-0.6251471</td>
+<td style="text-align: right;">0.0264373</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">23386</td>
+<td style="text-align: right;">8.747801</td>
+<td style="text-align: right;">4.2779214</td>
+<td style="text-align: right;">7.997761</td>
+<td style="text-align: right;">8.634054</td>
+<td style="text-align: right;">6.045964</td>
+<td style="text-align: right;">2.47517</td>
+<td style="text-align: right;">16.03793</td>
+<td style="text-align: right;">13.56276</td>
+<td style="text-align: right;">0.2534969</td>
+<td style="text-align: right;">-1.2525404</td>
+<td style="text-align: right;">0.0279740</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sjmisc</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(data_example<span class="sc">$</span>it1) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="kable_wrapper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 100%">
 </colgroup>
@@ -1309,14 +1820,964 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table1</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sexo) <span class="sc">+</span> edad <span class="sc">+</span> gini <span class="sc">+</span> gdp, <span class="at">data =</span> data_example)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="Rtable1">
+<table class="Rtable1 caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th class="rowlabel firstrow lastrow" data-quarto-table-cell-role="th"></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">Overall<br>
+<span class="stratn">(N=23386)</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowlabel firstrow">factor(sexo)</td>
+<td class="firstrow"></td>
+</tr>
+<tr class="even">
+<td class="rowlabel">Hombre</td>
+<td>11634 (49.7%)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel">Mujer</td>
+<td>11739 (50.2%)</td>
+</tr>
+<tr class="even">
+<td class="rowlabel lastrow">Missing</td>
+<td class="lastrow">13 (0.1%)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel firstrow">Edad</td>
+<td class="firstrow"></td>
+</tr>
+<tr class="even">
+<td class="rowlabel">Mean (SD)</td>
+<td>40.5 (16.8)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel">Median [Min, Max]</td>
+<td>38.0 [16.0, 99.0]</td>
+</tr>
+<tr class="even">
+<td class="rowlabel lastrow">Missing</td>
+<td class="lastrow">14 (0.1%)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel firstrow">gini</td>
+<td class="firstrow"></td>
+</tr>
+<tr class="even">
+<td class="rowlabel">Mean (SD)</td>
+<td>45.8 (4.04)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel lastrow">Median [Min, Max]</td>
+<td class="lastrow">45.7 [38.0, 53.3]</td>
+</tr>
+<tr class="even">
+<td class="rowlabel firstrow">gdp</td>
+<td class="firstrow"></td>
+</tr>
+<tr class="odd">
+<td class="rowlabel">Mean (SD)</td>
+<td>8.75 (4.28)</td>
+</tr>
+<tr class="even">
+<td class="rowlabel lastrow">Median [Min, Max]</td>
+<td class="lastrow">8.00 [2.48, 16.0]</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<p>También podemos utilizar la función <code>frq</code> para análisis bivariados. Por ejemplo, podríamos replicar nuestro análisis de confianza interpersonal por país, sin necesidad de nosotros crear el <code>data.frame</code></p>
+</div>
+</div>
 </section>
-<section id="sjplot" class="level2">
-<h2 class="anchored" data-anchor-id="sjplot">sjPlot</h2>
+<section id="funciones-para-tablas-bivariadas" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-para-tablas-bivariadas">Funciones para tablas bivariadas</h2>
+<p>Las tablas bivariadas permiten explorar relaciones entre pares de variables, útiles para comparar medias o analizar frecuencias conjuntas en tablas de contingencia.</p>
+<section id="sjplot" class="level3">
+<h3 class="anchored" data-anchor-id="sjplot"><code>sjPlot</code>:</h3>
+<ul>
+<li><code>sjPlot::tab_xtab()</code>: Produce tablas cruzadas de frecuencias y porcentajes, y es útil para comparar variables categóricas entre grupos.</li>
+</ul>
 </section>
-<section id="summarytools" class="level2">
-<h2 class="anchored" data-anchor-id="summarytools">summarytools</h2>
+<section id="summarytools-1" class="level3">
+<h3 class="anchored" data-anchor-id="summarytools-1"><code>summarytools</code>:</h3>
+<ul>
+<li><code>summarytools::ctable()</code>: Para tablas de contingencia que incluyen porcentajes y frecuencias, con opciones de personalización.</li>
+</ul>
+</section>
+<section id="crosstable" class="level3">
+<h3 class="anchored" data-anchor-id="crosstable"><code>crosstable</code></h3>
+<ul>
+<li><code>crosstable::crosstable()</code>: También produce tablas de continencia con opciones de personalización.</li>
+</ul>
+</section>
+<section id="table1-1" class="level3">
+<h3 class="anchored" data-anchor-id="table1-1"><code>table1</code>:</h3>
+<ul>
+<li><code>table1::table1()</code>: También se puede utilizar agrupando las variables (numericas o categoricas) por alguna variable categórica.</li>
+</ul>
+</section>
+<section id="dplyr-y-janitor" class="level3">
+<h3 class="anchored" data-anchor-id="dplyr-y-janitor"><code>dplyr</code> y <code>janitor</code>:</h3>
+<ul>
+<li>dplyr + <code>janitor::tabyl()</code>: Puedes hacer resúmenes bivariados personalizados con count() o group_by(), y tabyl() genera tablas de contingencia de frecuencias para un vistazo rápido.</li>
+</ul>
+</section>
+</section>
+<section id="ejemplo-tablas-bivariadas" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-tablas-bivariadas">Ejemplo tablas bivariadas</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sjPlot</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_xtab</span>(data_example<span class="sc">$</span>pais, data_example<span class="sc">$</span>it1, <span class="at">show.row.prc =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table style="border-collapse:collapse; border:none;">
+ <tbody><tr>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">País</th>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="4">Confianza<br>Interpersonal</th>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">Total</th>
+ </tr>
+ 
+<tr>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Nada confiable</td>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Poco confiable</td>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Algo confiable</td>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Muy confiable</td>
+ </tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">ARG</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">122</span><br><span style="color:#333399;">8.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">331</span><br><span style="color:#333399;">22.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">689</span><br><span style="color:#333399;">46&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">355</span><br><span style="color:#333399;">23.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1497</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">BOL</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">228</span><br><span style="color:#333399;">13.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">681</span><br><span style="color:#333399;">41.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">536</span><br><span style="color:#333399;">32.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">195</span><br><span style="color:#333399;">11.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1640</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">BRA</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">193</span><br><span style="color:#333399;">13.2&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">680</span><br><span style="color:#333399;">46.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">296</span><br><span style="color:#333399;">20.2&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">296</span><br><span style="color:#333399;">20.2&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1465</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">CHL</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">173</span><br><span style="color:#333399;">10.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">384</span><br><span style="color:#333399;">23.6&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">664</span><br><span style="color:#333399;">40.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">403</span><br><span style="color:#333399;">24.8&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1624</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">COL</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">152</span><br><span style="color:#333399;">9.3&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">428</span><br><span style="color:#333399;">26.2&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">572</span><br><span style="color:#333399;">35&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">482</span><br><span style="color:#333399;">29.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1634</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">CRI</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">128</span><br><span style="color:#333399;">8.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">339</span><br><span style="color:#333399;">23&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">520</span><br><span style="color:#333399;">35.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">484</span><br><span style="color:#333399;">32.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1471</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">DOM</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">171</span><br><span style="color:#333399;">11.8&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">440</span><br><span style="color:#333399;">30.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">474</span><br><span style="color:#333399;">32.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">364</span><br><span style="color:#333399;">25.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1449</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">ECU</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">179</span><br><span style="color:#333399;">11.8&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">580</span><br><span style="color:#333399;">38.2&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">494</span><br><span style="color:#333399;">32.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">265</span><br><span style="color:#333399;">17.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1518</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">HND</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">219</span><br><span style="color:#333399;">14.8&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">447</span><br><span style="color:#333399;">30.2&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">356</span><br><span style="color:#333399;">24.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">457</span><br><span style="color:#333399;">30.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1479</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">MEX</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">177</span><br><span style="color:#333399;">11.6&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">524</span><br><span style="color:#333399;">34.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">497</span><br><span style="color:#333399;">32.6&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">327</span><br><span style="color:#333399;">21.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1525</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">PAN</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">222</span><br><span style="color:#333399;">14.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">530</span><br><span style="color:#333399;">34.6&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">491</span><br><span style="color:#333399;">32.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">288</span><br><span style="color:#333399;">18.8&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1531</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">PER</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">227</span><br><span style="color:#333399;">15.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">644</span><br><span style="color:#333399;">42.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">475</span><br><span style="color:#333399;">31.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">161</span><br><span style="color:#333399;">10.7&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1507</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">PRY</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">147</span><br><span style="color:#333399;">10.1&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">365</span><br><span style="color:#333399;">25&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">540</span><br><span style="color:#333399;">37&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">407</span><br><span style="color:#333399;">27.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1459</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">SLV</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">130</span><br><span style="color:#333399;">8.9&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">488</span><br><span style="color:#333399;">33.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">397</span><br><span style="color:#333399;">27.3&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">441</span><br><span style="color:#333399;">30.3&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1456</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">URY</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">112</span><br><span style="color:#333399;">7.3&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">296</span><br><span style="color:#333399;">19.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">692</span><br><span style="color:#333399;">45.3&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">428</span><br><span style="color:#333399;">28&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1528</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+ 
+<tr> 
+<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">Total</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">2580</span><br><span style="color:#333399;">11.3&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">7157</span><br><span style="color:#333399;">31.4&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">7693</span><br><span style="color:#333399;">33.8&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">5353</span><br><span style="color:#333399;">23.5&nbsp;%</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">22783</span><br><span style="color:#333399;">100&nbsp;%</span></td> 
+</tr>
+<tr><td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="6">χ<sup>2</sup>=1306.960 · df=42 · Cramer's V=0.138 · p=0.000</td> 
+</tr>
+ 
+</tbody></table>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarytools</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">ctable</span>(data_example<span class="sc">$</span>pais, data_example<span class="sc">$</span>sexo, <span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cross-Tabulation, Row Proportions  
+pais * sexo  
+Data Frame: data_example  
+
+------- ------ --------------- --------------- ------------ ----------------
+          sexo          Hombre           Mujer         &lt;NA&gt;            Total
+   pais                                                                     
+    ARG            758 (49.6%)     770 (50.4%)    0 (0.00%)    1528 (100.0%)
+    BOL            846 (50.3%)     836 (49.7%)    0 (0.00%)    1682 (100.0%)
+    BRA            748 (49.9%)     750 (50.1%)    0 (0.00%)    1498 (100.0%)
+    CHL            813 (49.6%)     824 (50.3%)    1 (0.06%)    1638 (100.0%)
+    COL            830 (49.9%)     833 (50.1%)    0 (0.00%)    1663 (100.0%)
+    CRI            750 (50.0%)     751 (50.0%)    0 (0.00%)    1501 (100.0%)
+    DOM            753 (49.7%)     761 (50.2%)    2 (0.13%)    1516 (100.0%)
+    ECU            760 (49.6%)     764 (49.8%)    9 (0.59%)    1533 (100.0%)
+    HND            778 (49.9%)     782 (50.1%)    0 (0.00%)    1560 (100.0%)
+    MEX            775 (49.1%)     805 (50.9%)    0 (0.00%)    1580 (100.0%)
+    PAN            782 (50.2%)     777 (49.8%)    0 (0.00%)    1559 (100.0%)
+    PER            758 (49.8%)     762 (50.1%)    1 (0.07%)    1521 (100.0%)
+    PRY            755 (49.8%)     760 (50.2%)    0 (0.00%)    1515 (100.0%)
+    SLV            755 (50.0%)     756 (50.0%)    0 (0.00%)    1511 (100.0%)
+    URY            773 (48.9%)     808 (51.1%)    0 (0.00%)    1581 (100.0%)
+  Total          11634 (49.7%)   11739 (50.2%)   13 (0.06%)   23386 (100.0%)
+------- ------ --------------- --------------- ------------ ----------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># crosstable</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crosstable</span>(data_example, pais, <span class="at">by =</span> sexo, <span class="at">margin=</span><span class="fu">c</span>(<span class="st">"row"</span>, <span class="st">"col"</span>), <span class="at">total =</span> <span class="st">"both"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">.id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">label</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hombre</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mujer</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">NA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: left;">758 (6.52% / 49.61%)</td>
+<td style="text-align: left;">770 (6.56% / 50.39%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1528 (6.53%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">BOL</td>
+<td style="text-align: left;">846 (7.27% / 50.30%)</td>
+<td style="text-align: left;">836 (7.12% / 49.70%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1682 (7.19%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">BRA</td>
+<td style="text-align: left;">748 (6.43% / 49.93%)</td>
+<td style="text-align: left;">750 (6.39% / 50.07%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1498 (6.41%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">CHL</td>
+<td style="text-align: left;">813 (6.99% / 49.66%)</td>
+<td style="text-align: left;">824 (7.02% / 50.34%)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1638 (7.00%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">COL</td>
+<td style="text-align: left;">830 (7.13% / 49.91%)</td>
+<td style="text-align: left;">833 (7.10% / 50.09%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1663 (7.11%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">CRI</td>
+<td style="text-align: left;">750 (6.45% / 49.97%)</td>
+<td style="text-align: left;">751 (6.40% / 50.03%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1501 (6.42%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">DOM</td>
+<td style="text-align: left;">753 (6.47% / 49.74%)</td>
+<td style="text-align: left;">761 (6.48% / 50.26%)</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1516 (6.48%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">ECU</td>
+<td style="text-align: left;">760 (6.53% / 49.87%)</td>
+<td style="text-align: left;">764 (6.51% / 50.13%)</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">1533 (6.56%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">HND</td>
+<td style="text-align: left;">778 (6.69% / 49.87%)</td>
+<td style="text-align: left;">782 (6.66% / 50.13%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1560 (6.67%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">MEX</td>
+<td style="text-align: left;">775 (6.66% / 49.05%)</td>
+<td style="text-align: left;">805 (6.86% / 50.95%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1580 (6.76%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">PAN</td>
+<td style="text-align: left;">782 (6.72% / 50.16%)</td>
+<td style="text-align: left;">777 (6.62% / 49.84%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1559 (6.67%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">PER</td>
+<td style="text-align: left;">758 (6.52% / 49.87%)</td>
+<td style="text-align: left;">762 (6.49% / 50.13%)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1521 (6.50%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">PRY</td>
+<td style="text-align: left;">755 (6.49% / 49.83%)</td>
+<td style="text-align: left;">760 (6.47% / 50.17%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1515 (6.48%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">SLV</td>
+<td style="text-align: left;">755 (6.49% / 49.97%)</td>
+<td style="text-align: left;">756 (6.44% / 50.03%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1511 (6.46%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">URY</td>
+<td style="text-align: left;">773 (6.64% / 48.89%)</td>
+<td style="text-align: left;">808 (6.88% / 51.11%)</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1581 (6.76%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pais</td>
+<td style="text-align: left;">País</td>
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">11634 (49.78%)</td>
+<td style="text-align: left;">11739 (50.22%)</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">23386 (100.00%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table1</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sexo) <span class="sc">+</span> edad <span class="sc">+</span> gini <span class="sc">+</span> gdp <span class="sc">|</span> pais, <span class="at">data =</span> data_example)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .table1.internal(x = x, labels = labels, groupspan = groupspan, :
+Table has 16 columns. Are you sure this is what you want?</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="Rtable1">
+<table class="Rtable1 caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th class="rowlabel firstrow lastrow" data-quarto-table-cell-role="th"></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">ARG<br>
+<span class="stratn">(N=1528)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">BOL<br>
+<span class="stratn">(N=1682)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">BRA<br>
+<span class="stratn">(N=1498)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">CHL<br>
+<span class="stratn">(N=1638)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">COL<br>
+<span class="stratn">(N=1663)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">CRI<br>
+<span class="stratn">(N=1501)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">DOM<br>
+<span class="stratn">(N=1516)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">ECU<br>
+<span class="stratn">(N=1533)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">HND<br>
+<span class="stratn">(N=1560)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">MEX<br>
+<span class="stratn">(N=1580)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">PAN<br>
+<span class="stratn">(N=1559)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">PER<br>
+<span class="stratn">(N=1521)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">PRY<br>
+<span class="stratn">(N=1515)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">SLV<br>
+<span class="stratn">(N=1511)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">URY<br>
+<span class="stratn">(N=1581)</span></span></th>
+<th class="firstrow lastrow" data-quarto-table-cell-role="th"><span class="stratlabel">Overall<br>
+<span class="stratn">(N=23386)</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowlabel firstrow">factor(sexo)</td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+</tr>
+<tr class="even">
+<td class="rowlabel">Hombre</td>
+<td>758 (49.6%)</td>
+<td>846 (50.3%)</td>
+<td>748 (49.9%)</td>
+<td>813 (49.6%)</td>
+<td>830 (49.9%)</td>
+<td>750 (50.0%)</td>
+<td>753 (49.7%)</td>
+<td>760 (49.6%)</td>
+<td>778 (49.9%)</td>
+<td>775 (49.1%)</td>
+<td>782 (50.2%)</td>
+<td>758 (49.8%)</td>
+<td>755 (49.8%)</td>
+<td>755 (50.0%)</td>
+<td>773 (48.9%)</td>
+<td>11634 (49.7%)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel">Mujer</td>
+<td>770 (50.4%)</td>
+<td>836 (49.7%)</td>
+<td>750 (50.1%)</td>
+<td>824 (50.3%)</td>
+<td>833 (50.1%)</td>
+<td>751 (50.0%)</td>
+<td>761 (50.2%)</td>
+<td>764 (49.8%)</td>
+<td>782 (50.1%)</td>
+<td>805 (50.9%)</td>
+<td>777 (49.8%)</td>
+<td>762 (50.1%)</td>
+<td>760 (50.2%)</td>
+<td>756 (50.0%)</td>
+<td>808 (51.1%)</td>
+<td>11739 (50.2%)</td>
+</tr>
+<tr class="even">
+<td class="rowlabel lastrow">Missing</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">1 (0.1%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">2 (0.1%)</td>
+<td class="lastrow">9 (0.6%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">1 (0.1%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">13 (0.1%)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel firstrow">Edad</td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+</tr>
+<tr class="even">
+<td class="rowlabel">Mean (SD)</td>
+<td>41.8 (17.8)</td>
+<td>39.5 (16.3)</td>
+<td>39.1 (16.2)</td>
+<td>42.2 (16.8)</td>
+<td>40.4 (16.3)</td>
+<td>40.5 (16.9)</td>
+<td>40.0 (17.0)</td>
+<td>38.2 (17.1)</td>
+<td>38.2 (16.3)</td>
+<td>42.1 (17.0)</td>
+<td>39.6 (16.2)</td>
+<td>38.8 (15.5)</td>
+<td>40.0 (16.3)</td>
+<td>40.0 (16.6)</td>
+<td>46.2 (17.9)</td>
+<td>40.5 (16.8)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel">Median [Min, Max]</td>
+<td>39.0 [16.0, 90.0]</td>
+<td>36.0 [18.0, 89.0]</td>
+<td>37.0 [16.0, 92.0]</td>
+<td>40.0 [18.0, 92.0]</td>
+<td>37.0 [18.0, 90.0]</td>
+<td>37.0 [18.0, 89.0]</td>
+<td>37.0 [18.0, 87.0]</td>
+<td>35.0 [16.0, 92.0]</td>
+<td>34.0 [18.0, 89.0]</td>
+<td>40.0 [18.0, 88.0]</td>
+<td>37.5 [18.0, 93.0]</td>
+<td>36.0 [18.0, 91.0]</td>
+<td>37.0 [18.0, 87.0]</td>
+<td>38.0 [18.0, 99.0]</td>
+<td>44.0 [18.0, 95.0]</td>
+<td>38.0 [16.0, 99.0]</td>
+</tr>
+<tr class="even">
+<td class="rowlabel lastrow">Missing</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">1 (0.1%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">2 (0.1%)</td>
+<td class="lastrow">9 (0.6%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">1 (0.1%)</td>
+<td class="lastrow">1 (0.1%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">0 (0%)</td>
+<td class="lastrow">14 (0.1%)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel firstrow">gini</td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+</tr>
+<tr class="even">
+<td class="rowlabel">Mean (SD)</td>
+<td>41.1 (0)</td>
+<td>44.6 (0)</td>
+<td>53.3 (0)</td>
+<td>44.4 (0)</td>
+<td>49.7 (0)</td>
+<td>48.3 (0)</td>
+<td>45.7 (0)</td>
+<td>44.7 (0)</td>
+<td>49.4 (0)</td>
+<td>46.3 (0)</td>
+<td>49.9 (0)</td>
+<td>43.3 (0)</td>
+<td>48.5 (0)</td>
+<td>38.0 (0)</td>
+<td>39.5 (0)</td>
+<td>45.8 (4.04)</td>
+</tr>
+<tr class="odd">
+<td class="rowlabel lastrow">Median [Min, Max]</td>
+<td class="lastrow">41.1 [41.1, 41.1]</td>
+<td class="lastrow">44.6 [44.6, 44.6]</td>
+<td class="lastrow">53.3 [53.3, 53.3]</td>
+<td class="lastrow">44.4 [44.4, 44.4]</td>
+<td class="lastrow">49.7 [49.7, 49.7]</td>
+<td class="lastrow">48.3 [48.3, 48.3]</td>
+<td class="lastrow">45.7 [45.7, 45.7]</td>
+<td class="lastrow">44.7 [44.7, 44.7]</td>
+<td class="lastrow">49.4 [49.4, 49.4]</td>
+<td class="lastrow">46.3 [46.3, 46.3]</td>
+<td class="lastrow">49.9 [49.9, 49.9]</td>
+<td class="lastrow">43.3 [43.3, 43.3]</td>
+<td class="lastrow">48.5 [48.5, 48.5]</td>
+<td class="lastrow">38.0 [38.0, 38.0]</td>
+<td class="lastrow">39.5 [39.5, 39.5]</td>
+<td class="lastrow">45.7 [38.0, 53.3]</td>
+</tr>
+<tr class="even">
+<td class="rowlabel firstrow">gdp</td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+<td class="firstrow"></td>
+</tr>
+<tr class="odd">
+<td class="rowlabel">Mean (SD)</td>
+<td>13.1 (0)</td>
+<td>3.29 (0)</td>
+<td>8.58 (0)</td>
+<td>13.9 (0)</td>
+<td>6.27 (0)</td>
+<td>12.5 (0)</td>
+<td>8.00 (0)</td>
+<td>5.95 (0)</td>
+<td>2.48 (0)</td>
+<td>9.95 (0)</td>
+<td>14.9 (0)</td>
+<td>6.57 (0)</td>
+<td>5.87 (0)</td>
+<td>3.92 (0)</td>
+<td>16.0 (0)</td>
+<td>8.75 (4.28)</td>
+</tr>
+<tr class="even">
+<td class="rowlabel lastrow">Median [Min, Max]</td>
+<td class="lastrow">13.1 [13.1, 13.1]</td>
+<td class="lastrow">3.29 [3.29, 3.29]</td>
+<td class="lastrow">8.58 [8.58, 8.58]</td>
+<td class="lastrow">13.9 [13.9, 13.9]</td>
+<td class="lastrow">6.27 [6.27, 6.27]</td>
+<td class="lastrow">12.5 [12.5, 12.5]</td>
+<td class="lastrow">8.00 [8.00, 8.00]</td>
+<td class="lastrow">5.95 [5.95, 5.95]</td>
+<td class="lastrow">2.48 [2.48, 2.48]</td>
+<td class="lastrow">9.95 [9.95, 9.95]</td>
+<td class="lastrow">14.9 [14.9, 14.9]</td>
+<td class="lastrow">6.57 [6.57, 6.57]</td>
+<td class="lastrow">5.87 [5.87, 5.87]</td>
+<td class="lastrow">3.92 [3.92, 3.92]</td>
+<td class="lastrow">16.0 [16.0, 16.0]</td>
+<td class="lastrow">8.00 [2.48, 16.0]</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr y janitor</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>data_example <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(pais, it1) <span class="sc">%&gt;%</span> <span class="co"># Esto reemplaza el procesamiento, buena alternativa</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">pais</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">4</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NA_</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">331</td>
+<td style="text-align: right;">689</td>
+<td style="text-align: right;">355</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BOL</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">681</td>
+<td style="text-align: right;">536</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BRA</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">680</td>
+<td style="text-align: right;">296</td>
+<td style="text-align: right;">296</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CHL</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">384</td>
+<td style="text-align: right;">664</td>
+<td style="text-align: right;">403</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">COL</td>
+<td style="text-align: right;">152</td>
+<td style="text-align: right;">428</td>
+<td style="text-align: right;">572</td>
+<td style="text-align: right;">482</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CRI</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">339</td>
+<td style="text-align: right;">520</td>
+<td style="text-align: right;">484</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DOM</td>
+<td style="text-align: right;">171</td>
+<td style="text-align: right;">440</td>
+<td style="text-align: right;">474</td>
+<td style="text-align: right;">364</td>
+<td style="text-align: right;">67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ECU</td>
+<td style="text-align: right;">179</td>
+<td style="text-align: right;">580</td>
+<td style="text-align: right;">494</td>
+<td style="text-align: right;">265</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HND</td>
+<td style="text-align: right;">219</td>
+<td style="text-align: right;">447</td>
+<td style="text-align: right;">356</td>
+<td style="text-align: right;">457</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MEX</td>
+<td style="text-align: right;">177</td>
+<td style="text-align: right;">524</td>
+<td style="text-align: right;">497</td>
+<td style="text-align: right;">327</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PAN</td>
+<td style="text-align: right;">222</td>
+<td style="text-align: right;">530</td>
+<td style="text-align: right;">491</td>
+<td style="text-align: right;">288</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PER</td>
+<td style="text-align: right;">227</td>
+<td style="text-align: right;">644</td>
+<td style="text-align: right;">475</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PRY</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">365</td>
+<td style="text-align: right;">540</td>
+<td style="text-align: right;">407</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SLV</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">488</td>
+<td style="text-align: right;">397</td>
+<td style="text-align: right;">441</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">URY</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">296</td>
+<td style="text-align: right;">692</td>
+<td style="text-align: right;">428</td>
+<td style="text-align: right;">53</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 </section>
 </section>
 <section id="autoreferenciar-elementos-dentro-un-r-markdown" class="level1">
@@ -1350,8 +2811,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 tabla1
 ````</code></pre>
 <div class="cell" data-tbl-cap-location="top">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tabla1</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lapop)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tabla1</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lapop)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "year"        "pais"        "pais_name"   "idnum"       "upm"        
  [6] "strata"      "wt"          "weight1500"  "sexo"        "edad"       
@@ -1515,9 +2976,9 @@ Tabla&nbsp;1: Confianza interpersonal según país
 <p>También podemos referenciar a resultados estadísticos que hayamos realizado con anterioridad en nuestro documento.</p>
 <p>Como ejemplo, obtengamos la correlación entre el índice de Gini de los países y su producto interno bruto (PIB) y lo guardamos en un objeto <code>M</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(lapop<span class="sc">$</span>gini, lapop<span class="sc">$</span>gdp)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(lapop<span class="sc">$</span>gini, lapop<span class="sc">$</span>gdp)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.1125219</code></pre>
 </div>
