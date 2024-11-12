@@ -297,8 +297,7 @@ psych::describe(data_example) %>%
 
 ```{r message=FALSE, warning=FALSE}
 sjmisc::frq(data_example$it1) %>%
-  kable() %>%
-  kable_styling(full_width = TRUE)
+  kable() 
 ```
 
 ### [`table1`](https://cran.r-project.org/web/packages/table1/vignettes/table1-examples.html):
