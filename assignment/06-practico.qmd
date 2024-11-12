@@ -1,6 +1,6 @@
 ---
 title: "Tablas en reportes dinámicos"
-date: "2023-09-29"
+date: "2024-10-12"
 lang: es
 website:
   comments:
@@ -42,7 +42,7 @@ Hay tres formas de insertar chunks:
 2.  Pulsa el botón "Insert" en la parte superior de la ventana del editor
 
 ```{r insert, echo=FALSE, out.width="40%"}
-knitr::include_graphics("../files/insertchunkquarto.png", error = FALSE)
+knitr::include_graphics("../files/insertchunk.png", error = FALSE)
 ```
 
 3.  Escribirlo manualmente
@@ -74,12 +74,9 @@ En Quarto, las opciones del chunk van inmediatamente después de la sección `{r
 
 Otra forma de hacerlo es **configurar** las opciones generales de todos los chunks que hagamos **al inicio del documento** en el YAML:
 
-    `execute: 
-  echo: false
-  eval: true
-  message: false
-  warning: false
-  include: true`
+```{r, echo=FALSE, out.width="40%"}
+knitr::include_graphics("../files/yaml.png", error = FALSE)
+```
 
 De esta manera ya no es necesario indicar en _cada_ chunk las opciones, y se aplicaran las configuraciones generales que indicamos al comienzo. 
 
@@ -90,16 +87,14 @@ Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesa
 ```{r librerias, echo=TRUE, message=FALSE, warning=FALSE, collapse=TRUE}
 pacman::p_load(tidyverse, # Manipulacion datos
                sjmisc, # Descriptivos
-               kableExtra, #Tablas
+               knitr, # Render y tablas
+               kableExtra, # Formateo tablas
                summarytools, # Tablas
                sjPlot, # Tablas y gráficos
                stargazer, # Tablas
-               janitor,
-               gtsummary,
-               crosstable,
-               table1,
-               report,
-               tableone
+               janitor, # Tablas y formateo
+               crosstable, # Tablas
+               table1 # Tablas
                ) 
 
 options(scipen = 999) # para desactivar notacion cientifica
@@ -113,7 +108,6 @@ Cargamos los datos desde internet.
 load(url("https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/lapop_proc_2018.RData")) #Cargar base de datos
 
 # Un pequeño procesamiento para algunas variables que usaremos más adelante
-
 lapop <- lapop %>% mutate(across(c("gini", "gdp"), ~ as.numeric(.))) 
 
 ```
@@ -134,7 +128,7 @@ La mejor forma de generar tablas para documentos dinámicos es con la función `
 
 1) Procesar nuestros datos de manera que genermos un objeto tipo `data.frame` (u otros similares) con la información requerida. Esto lo hacemos a través de `dplyr` o algún otro paquete dedicado al manejo de datos.
 
-2) Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de `kableExtra` (hay otras opciones, por ejemplo `flextable`, pero no es tan buena).
+2) Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de `kableExtra` (hay otras opciones, por ejemplo [`flextable`](https://ardata-fr.github.io/flextable-book/), pero no es tan buena).
 
 Ejemplifiquemos con nuestros datos.
 
@@ -155,8 +149,7 @@ tab1
 **Creemos nuestra tabla**. Usemos primero la función `kable()` directamente:
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
-tab1 %>% 
-  kableExtra::kable()
+tab1 %>% kable()
 ```
 
 Ahora tenemos una tabla, pero es muy simple y poco presentable. Especifiquemos opciones de formato:
@@ -167,9 +160,10 @@ Ahora tenemos una tabla, pero es muy simple y poco presentable. Especifiquemos o
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 tab1 %>% 
-  kableExtra::kable(format = "html",
-                    align = "c",
-                    col.names = c("País", "Nada confiable", "Poco confiable", "Algo confiable", "Muy confiable"))
+  kable(
+    format = "html",
+    align = "c",
+    col.names = c("País", "Nada confiable", "Poco confiable", "Algo confiable", "Muy confiable"))
 ```
 
 Ahora agregemos otros elementos importantes, como el título, estilo y fuente a la tabla:
@@ -180,7 +174,7 @@ Ahora agregemos otros elementos importantes, como el título, estilo y fuente a 
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 tab1 %>% 
-  kableExtra::kable(format = "html",
+  kable(format = "html",
                     align = "c",
                     col.names = c("País", "Nada confiable", "Poco confiable", "Algo confiable", "Muy confiable"),
                     caption = "Tabla 1. Confianza interpersonal según país") %>% 
@@ -196,7 +190,7 @@ tab1 %>%
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 tabla1 <- tab1 %>% 
-  kableExtra::kable(format = "html",
+  kable(format = "html",
                     align = "c",
                     col.names = c("País", "Nada confiable", "Poco confiable", "Algo confiable", "Muy confiable"),
                     caption = "Tabla 1. Confianza interpersonal según país") %>% 
@@ -206,7 +200,7 @@ tabla1 <- tab1 %>%
 tabla1
 ```
 
-En este caso, nuestro ejemplo fue para una variable categorica. Sin embargo, podríamos hacer lo mismo para una variable continua y crear una tabla bivariada con los principales estadisticos descriptivos.
+En este caso, nuestro ejemplo fue para hacer una tabla bivariada con dos variables categóricas. Sin embargo, podríamos hacer lo mismo para una variable continua y crear una tabla bivariada con los principales estadisticos descriptivos.
 
 Creemos el objeto `tab2`, el cual serán los estadísticos descriptivos de la variable `edad` por país en nuestra base de datos.
 
@@ -214,13 +208,13 @@ Creemos el objeto `tab2`, el cual serán los estadísticos descriptivos de la va
  tab2 <- lapop %>% 
     group_by(pais) %>% 
     summarise(
-        n = n(),
-        min = min(edad, na.rm = T),
-        max = max(edad, na.rm = T),
-        media = round(mean(edad, na.rm = T), 2),
-        sd = round(sd(edad, na.rm = T), 2),
-        mediana = median(edad, na.rm = T),
-        cv = round((media/sd)*100, 2)
+        n = n(), # Tamaño muestral
+        min = min(edad, na.rm = T), # Mínimo
+        max = max(edad, na.rm = T), # Máximo
+        media = round(mean(edad, na.rm = T), 2), # Media redondeada a 2 digitos
+        sd = round(sd(edad, na.rm = T), 2), # Desviación estándar redondeada a 2 digitos
+        mediana = median(edad, na.rm = T), # Mediana
+        cv = round((media/sd)*100, 2) # Coeficiente de variación redondeado a 2 digi
         )
  ```
 
@@ -228,7 +222,7 @@ Y ahora apliquemos el formato con `kable()` y las funcionalidades del paquete de
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 tabla2 <- tab2 %>% 
-  kableExtra::kable(format = "html",
+  kable(format = "html",
                     align = "c",
                     col.names = c("País", "Tamaño muestral", "Mínimo", "Máximo", "Media", "Desv. estándar", "Mediana", "Coef. variación"),
                     caption = "Tabla 2. Edad según país") %>% 
@@ -242,15 +236,35 @@ Para ver todas las funcionalidades y estilos que se pueden generar con `kableExt
 
 # Tablas con otros paquetes
 
-Si bien `kableExtra` es la mejor forma para referenciar, ya que nos da mayor contrtol del contenido y el formato, existen otras funciones. Las funciones varían de acuerdo a qué es lo que se quiere reportar, es decir, si es una variable categorica o númerica y si es un estadístico univariado o bivariado. De todos modos, solo algunas funciones tienen una salida directa en HTML (pensando en que se utilizarán en Quarto), por lo que algunas veces solo nos ahorraremos el procesamiento, el formateo deberemos hacerlo igual.
+Si bien la combinación de crear nuestra tabla (probablemente con `dplyr`) y formatear con `kableExtra` es la mejor forma para reportar tablas, existen otras funciones. Las funciones varían de acuerdo a qué es lo que se quiere reportar, es decir, si es una variable categorica o númerica y si es el reporte debe ser univariado o bivariado. De todos modos, solo algunas funciones tienen una salida directa en HTML (pensando en que se utilizarán en Quarto), por lo que algunas veces solo nos ahorraremos el procesamiento, el formateo deberemos hacerlo igual.
 
 La principal virtud de estas funciones es que nos ahorra hacer el procesamiento de la tabla. Sin embargo, el desafío es que debemos saber bien qué es lo que queremos reportar para utilizar la función adecuada.
 
 A continuación, presentaremos algunas de las funcionas más conocidas, dividiendo si son para tablas univariadas o bivariadas.
 
+Vamos a crear una versión recortada de lapop para ejemplifcar cada función:
+
+```{r}
+# Creemos una version de lapop solo con algunas variables como ejemplo
+data_example <- lapop %>% 
+  select(pais, it1, edad, sexo, gini, gdp)
+
+```
+
 ## Funciones para tablas univariadas
 
 Estas tablas suelen incluir estadísticas descriptivas de una sola variable como medias, medianas, desviaciones estándar, entre otras.
+
+::: {details}
+## Título de la Tabla
+Aquí puedes dar una breve introducción o explicación de la tabla.
+
+```{r}
+# Código para generar la tabla
+library(dplyr)
+mtcars %>% head()  # Ejemplo con datos de mtcars
+```
+:::
 
 ### `summarytools`:
 
@@ -274,13 +288,6 @@ Estas tablas suelen incluir estadísticas descriptivas de una sola variable como
 - `table1::table1()`: Permite ver tanto variables categoricas como numericas en la misma tabla de manera estética
 
 ## Ejemplos tablas univariadas
-
-```{r}
-# Creemos una version de lapop solo con algunas variables como ejemplo
-data_example <- lapop %>% 
-  select(pais, it1, edad, sexo, gini, gdp)
-
-```
 
 ```{r}
 # summarytools
@@ -343,7 +350,7 @@ sjPlot::tab_xtab(data_example$pais, data_example$it1, show.row.prc = TRUE)
 summarytools::ctable(data_example$pais, data_example$sexo, method = "render")
 
 # crosstable
-crosstable(data_example, pais, by = sexo, margin=c("row", "col"), total = "both") %>% 
+crosstable::crosstable(data_example, pais, by = sexo, margin=c("row", "col"), total = "both") %>% 
   kable() %>%
   kable_styling(full_width = TRUE)
 
