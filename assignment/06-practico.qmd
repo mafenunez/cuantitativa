@@ -24,16 +24,17 @@ Recordemos que, para generar un archivo en quarto, hacemos lo siguiente:
 
 ## Chunks
 
-Para integrar código de R en un archivo `Quarto` usamos los `chunks`, que son *trozos* de código dentro de nuestra hoja. Estos permiten hacer análisis dentro del documento visualizando los resultados en el documento final.
+Para integrar código de R en un archivo `Quarto` usamos los `chunks`, que son *trozos* de código dentro de nuestra hoja. Estos permiten hacer análisis dentro del documento visualizando los resultados en el documento final. Un chunk se especifica mediante una línea de código inicial ` ```{r}`, y se cierra con ` ``` `
 
 Los chunks se ven así dentro del .qmd:
 
-    `r ''```{r}
-    # El codigo va aquí
+````
+```{r}`r ''`
+1 + 1
+```
+````
 
-    ```
-
-#### Insertar chunks
+### Insertar chunks
 
 Hay tres formas de insertar chunks:
 
@@ -47,40 +48,41 @@ knitr::include_graphics("../files/insertchunk.png", error = FALSE)
 
 3.  Escribirlo manualmente
 
-#### Nombre de chunk
+### Nombre de chunk
 
 Para añadir un nombre, inclúyelo inmediatamente después de la `{r` en la primera línea del chunk. Los nombres no pueden contener espacios, pero sí guiones bajos y guiones.
 
 Importante: **Todos los nombres de chunk de tu documento deben ser únicos.**
 
-    `r ''```{r nombre-chunk}
-    # El codigo va aquí
-
-    ```
+````
+```{r nombre-chunk}`r ''`
+1 + 1
+```
+````
     
-#### Opciones de chunk
+### Opciones de chunk
 
 Hay distintas opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la [Guía de referencia de RMarkdown](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) o en el [sitio web de **knitr**](https://yihui.org/knitr/options/). Estos recursos se crearon inicialmente para RMarkdown, pero también son aplicables a [Quarto](https://quarto.org/docs/computations/r.html#chunk-options).
 
 En Quarto, las opciones del chunk van inmediatamente después de la sección `{r}`. Para especificar una opción, se debe partir con `#|`, luego la opción y luego el valor lógico. Por ejemplo:
 
-    `r ''```{r nombre-chunk}
-    #| message: FALSE
-    #| echo: TRUE
-
-    # El codigo va aquí
-
-    ```
+````
+```{r}`r ''`
+#| message: false
+#| echo: true
+1 + 1
+```
+````
 
 Otra forma de hacerlo es **configurar** las opciones generales de todos los chunks que hagamos **al inicio del documento** en el YAML:
 
 ```{r, echo=FALSE, out.width="40%"}
-knitr::include_graphics("../files/yaml.png", error = FALSE)
+knitr::include_graphics("../files/yaml2.png", error = FALSE)
 ```
 
 De esta manera ya no es necesario indicar en _cada_ chunk las opciones, y se aplicaran las configuraciones generales que indicamos al comienzo. 
 
-# Preparación de datos
+## Preparación de datos
 
 Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.
 
@@ -126,9 +128,9 @@ Contamos con 39 variables (columnas) y 23.386 observaciones (filas).
 
 La mejor forma de generar tablas para documentos dinámicos es con la función `kable()` del paquete `knitr` y las distintas funciones de formateo que ofrece el paquete `kableExtra`. Esto se debe a que `kable()` y las funciones de `kableExtra` aplican estilo y formato a un objeto de R (generalmente un `data.frame`). Esto quiere decir que para hacer una tabla debemos:
 
-1) Procesar nuestros datos de manera que genermos un objeto tipo `data.frame` (u otros similares) con la información requerida. Esto lo hacemos a través de `dplyr` o algún otro paquete dedicado al manejo de datos.
+1. Procesar nuestros datos de manera que genermos un objeto tipo `data.frame` (u otros similares) con la información requerida. Esto lo hacemos a través de `dplyr` o algún otro paquete dedicado al manejo de datos.
 
-2) Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de `kableExtra` (hay otras opciones, por ejemplo [`flextable`](https://ardata-fr.github.io/flextable-book/), pero no es tan buena).
+2. Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de `kableExtra` (hay otras opciones, por ejemplo [`flextable`](https://ardata-fr.github.io/flextable-book/), pero no es tan buena).
 
 Ejemplifiquemos con nuestros datos.
 
@@ -169,7 +171,7 @@ tab1 %>%
 Ahora agregemos otros elementos importantes, como el título, estilo y fuente a la tabla:
 
 - `caption`: para dar titulo de la tabla
-- `kable_classic()`: para dar estilo (revisar otros [aquí](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#Getting_Started))
+- `kable_classic()`: para dar estilo
 - `add_footnote()`: para agregar fuente o pie a la tabla
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
@@ -204,7 +206,7 @@ En este caso, nuestro ejemplo fue para hacer una tabla bivariada con dos variabl
 
 Creemos el objeto `tab2`, el cual serán los estadísticos descriptivos de la variable `edad` por país en nuestra base de datos.
 
- ```{r}
+ ```{r, echo=TRUE, warning=FALSE, message=FALSE}
  tab2 <- lapop %>% 
     group_by(pais) %>% 
     summarise(
@@ -242,7 +244,7 @@ La principal virtud de estas funciones es que nos ahorra hacer el procesamiento 
 
 A continuación, presentaremos algunas de las funcionas más conocidas, dividiendo si son para tablas univariadas o bivariadas.
 
-Vamos a crear una versión recortada de lapop para ejemplifcar cada función:
+Vamos a crear una versión recortada de **lapop** para ejemplifcar cada función:
 
 ```{r}
 # Creemos una version de lapop solo con algunas variables como ejemplo
@@ -255,63 +257,55 @@ data_example <- lapop %>%
 
 Estas tablas suelen incluir estadísticas descriptivas de una sola variable como medias, medianas, desviaciones estándar, entre otras.
 
-::: {details}
-## Título de la Tabla
-Aquí puedes dar una breve introducción o explicación de la tabla.
-
-```{r}
-# Código para generar la tabla
-library(dplyr)
-mtcars %>% head()  # Ejemplo con datos de mtcars
-```
-:::
-
-### `summarytools`:
+### [`summarytools`](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html):
 
 - `summarytools::dfSummary():` Genera un resumen univariado completo de cada variable en el dataset, con estadísticas, frecuencia de valores y gráficos.
+
+```{r message=FALSE, warning=FALSE}
+summarytools::dfSummary(data_example) %>% 
+  summarytools::view(method = "render") 
+```
+
 - `summarytools::descr():` Proporciona estadísticas descriptivas para variables numéricas.
 
-### `stargazer`:
+```{r message=FALSE, warning=FALSE}
+summarytools::descr(data_example$edad) %>%
+  summarytools::view(method = "render")
+```
+
+### [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf):
 
 - `stargazer::stargazer()`: Para reportar estadísticas descriptivas.
 
-### `psych`:
+```{r message=FALSE, warning=FALSE, results='asis'}
+stargazer(as.data.frame(data_example), type = "html", summary.stat = c("mean", "sd", "min", "max"))
+```
+
+### [`psych`](https://personality-project.org/r/html/describe.html):
 
 - `psych::describe()`: Calcula estadísticas descriptivas adicionales, como curtosis y asimetría.
 
-### `sjmisc`:
-
-- `sjmisc::frq()`: Para tablas de frecuencias detalladas de variables categóricas. Incluye labels.
-
-### `table1`:
-
-- `table1::table1()`: Permite ver tanto variables categoricas como numericas en la misma tabla de manera estética
-
-## Ejemplos tablas univariadas
-
-```{r}
-# summarytools
-summarytools::dfSummary(data_example) %>% 
-  summarytools::view(method = "render") 
-
-summarytools::descr(data_example$edad) %>%
-  kable() %>%
-  kable_styling(full_width = TRUE)
-
-# stargazer
-stargazer(as.data.frame(data_example), type = "html", summary.stat = c("mean", "sd", "min", "max"))
-
-# psych
+```{r message=FALSE, warning=FALSE}
 psych::describe(data_example) %>%
   kable() %>%
   kable_styling(full_width = TRUE)
+```
 
-# sjmisc
+### [`sjmisc`](https://strengejacke.github.io/sjmisc/articles/exploringdatasets.html):
+
+- `sjmisc::frq()`: Para tablas de frecuencias detalladas de variables categóricas. Incluye labels.
+
+```{r message=FALSE, warning=FALSE}
 sjmisc::frq(data_example$it1) %>%
   kable() %>%
   kable_styling(full_width = TRUE)
+```
 
-# table1
+### [`table1`](https://cran.r-project.org/web/packages/table1/vignettes/table1-examples.html):
+
+- `table1::table1()`: Permite ver tanto variables categoricas como numericas en la misma tabla de manera estética
+
+```{r message=FALSE, warning=FALSE}
 table1::table1(~ factor(sexo) + edad + gini + gdp, data = data_example)
 ```
 
@@ -319,53 +313,53 @@ table1::table1(~ factor(sexo) + edad + gini + gdp, data = data_example)
 
 Las tablas bivariadas permiten explorar relaciones entre pares de variables, útiles para comparar medias o analizar frecuencias conjuntas en tablas de contingencia.
 
-### `sjPlot`:
+### [`sjPlot`:](https://strengejacke.github.io/sjPlot/articles/table_css.html)
 
 -  `sjPlot::tab_xtab()`: Produce tablas cruzadas de frecuencias y porcentajes, y es útil para comparar variables categóricas entre grupos.
 
-### `summarytools`:
+```{r message=FALSE, warning=FALSE}
+sjPlot::tab_xtab(data_example$pais, data_example$it1, show.row.prc = TRUE)
+```
+
+### [`summarytools`](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html):
 
 - `summarytools::ctable()`: Para tablas de contingencia que incluyen porcentajes y frecuencias, con opciones de personalización.
 
-### `crosstable`
+```{r message=FALSE, warning=FALSE}
+summarytools::ctable(data_example$pais, data_example$sexo) %>% 
+  summarytools::view(method = "render")
+```
+
+### [`crosstable`](https://cran.r-project.org/web/packages/crosstable/vignettes/crosstable.html):
 
 - `crosstable::crosstable()`: También produce tablas de continencia con opciones de personalización.
 
-### `table1`:
-
-- `table1::table1()`: También se puede utilizar agrupando las variables (numericas o categoricas) por alguna variable categórica. 
-
-### `dplyr` y `janitor`:
-
-- dplyr + `janitor::tabyl()`: Puedes hacer resúmenes bivariados personalizados con count() o group_by(), y tabyl() genera tablas de contingencia de frecuencias para un vistazo rápido.
-
-## Ejemplo tablas bivariadas
-
-```{r}
-
-# sjPlot
-sjPlot::tab_xtab(data_example$pais, data_example$it1, show.row.prc = TRUE)
-
-# summarytools
-summarytools::ctable(data_example$pais, data_example$sexo, method = "render")
-
-# crosstable
+```{r message=FALSE, warning=FALSE}
 crosstable::crosstable(data_example, pais, by = sexo, margin=c("row", "col"), total = "both") %>% 
   kable() %>%
   kable_styling(full_width = TRUE)
+```
 
-# table1
+### [`table1`](https://cran.r-project.org/web/packages/table1/vignettes/table1-examples.html):
+
+- `table1::table1()`: También se puede utilizar agrupando las variables (numericas o categoricas) por alguna variable categórica. 
+
+```{r message=FALSE, warning=FALSE}
 table1::table1(~ factor(sexo) + edad + gini + gdp | pais, data = data_example)
+```
 
-# dplyr y janitor
+### [`dplyr`](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) y [`janitor`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html):
+
+- dplyr + `janitor::tabyl()`: Puedes hacer resúmenes bivariados personalizados con count() o group_by(), y tabyl() genera tablas de contingencia de frecuencias para un vistazo rápido.
+
+```{r}
 data_example %>%
   janitor::tabyl(pais, it1) %>% # Esto reemplaza el procesamiento, buena alternativa
   kable() %>%
   kable_styling(full_width = TRUE)
-
 ```
 
-# Autoreferenciar elementos dentro un R Markdown
+# Autoreferenciar elementos dentro un documento dinámico
 
 Una de las ventajas de usar documentos dinámicos con Quarto es que podemos **autoreferenciar los elementos que creamos dentro del mismo documento**.
 
@@ -377,21 +371,21 @@ Esto se refiere que, si en un documento creamos una tabla, podemos citarlo o ref
 
 Para hacer esto **debemos darle un  _label_ al chunk** en donde producimos la tabla o gráfico en nuestro documento. Tomemos por ejemplo la misma `tabla1` que generamos anteriormente, pero ahora les daremos un nombre al chunk en donde ejecutaremos dichos elementos. 
 
-¿Qué nombre le ponemos? hay que considerar lo siguiente:
-
-- Cuando es una **tabla** debemos nombrar al chunk con el prefijo **`tbl-`** antes del nombre respectivo. 
+¿Qué nombre le ponemos? hay que considerar que cuando es una **tabla** debemos nombrar al chunk con el prefijo **`tbl-`** antes del nombre respectivo. 
 
 ¿Cómo las referenciamos? para referenciar tablas o debemos usar el prefijo `@` antes del nombre que le dimos al elemento. 
 
-#### a) Tablas 
+## a. Tablas 
 
 Por ejemplo, si queremos referenciar a nuestra `tabla1`, en el chunk en donde la ejecutemos debemos indicar:
 
-    `r ''````{r}
-    #| label: tbl-confianza
+````
+```{r}`r ''`
+#| label: tbl-confianza
 
-    tabla1
-    ````
+tabla1
+```
+````
 
 ```{r}
 #| label: tbl-confianza
@@ -409,7 +403,7 @@ Texto de ejemplo:
 
 > En la @tbl-confianza se muestra la distribución porcentual del grado de confianza interpersonal por país. 
 
-#### b) Resultados
+## b. Resultados
 
 También podemos referenciar a resultados estadísticos que hayamos realizado con anterioridad en nuestro documento. 
 
@@ -432,10 +426,23 @@ Dentro de las comillas ' ' y después de la letra _r_, indicamos el nombre del o
 
 ![](../files/resul-m.png)
 
-Texto de ejemplo:
+**Texto de ejemplo:**
+
+> El coeficiente de correlación de Pearson entre el índice de Gini y el producto interno bruto es negativo y pequeño = `'r M'`.
+
+**Texto de resultado:**
 
 > El coeficiente de correlación de Pearson entre el índice de Gini y el producto interno bruto es negativo y pequeño = `r M`.
 
+Esta opción es especialmente útil cuando estamos escribiendo un análisis de resultados, ya que ante cualqueier contingencia con los datos, no es necesario cambiar los datos en el texto.
+
+Un uso más avanzado de esta opción es hacer condicional el texto en base al objeto guardado. Por ejemplo:
+
+>  El coeficiente de correlación de Pearson entre el índice de Gíni y el producto interno bruto es `'r if(M > 0){"positivo"} else {"negativo"}'` y pequeño = `'r M'`.
+
+Y el resultado sería:
+
+>  El coeficiente de correlación de Pearson entre el índice de Gíni y el producto interno bruto es `r if(M > 0){"positivo"} else {"negativo"}` y pequeño = `r M`.
 
 # Resumen
 

@@ -192,9 +192,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#crear-un-documento-quarto" id="toc-crear-un-documento-quarto" class="nav-link" data-scroll-target="#crear-un-documento-quarto">Crear un documento Quarto</a>
   <ul class="collapse">
-  <li><a href="#chunks" id="toc-chunks" class="nav-link" data-scroll-target="#chunks">Chunks</a></li>
+  <li><a href="#chunks" id="toc-chunks" class="nav-link" data-scroll-target="#chunks">Chunks</a>
+  <ul class="collapse">
+  <li><a href="#insertar-chunks" id="toc-insertar-chunks" class="nav-link" data-scroll-target="#insertar-chunks">Insertar chunks</a></li>
+  <li><a href="#nombre-de-chunk" id="toc-nombre-de-chunk" class="nav-link" data-scroll-target="#nombre-de-chunk">Nombre de chunk</a></li>
+  <li><a href="#opciones-de-chunk" id="toc-opciones-de-chunk" class="nav-link" data-scroll-target="#opciones-de-chunk">Opciones de chunk</a></li>
   </ul></li>
   <li><a href="#preparación-de-datos" id="toc-preparación-de-datos" class="nav-link" data-scroll-target="#preparación-de-datos">Preparación de datos</a></li>
+  </ul></li>
   <li><a href="#tablas-con-kable" id="toc-tablas-con-kable" class="nav-link" data-scroll-target="#tablas-con-kable">Tablas con Kable</a></li>
   <li><a href="#tablas-con-otros-paquetes" id="toc-tablas-con-otros-paquetes" class="nav-link" data-scroll-target="#tablas-con-otros-paquetes">Tablas con otros paquetes</a>
   <ul class="collapse">
@@ -206,18 +211,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sjmisc" id="toc-sjmisc" class="nav-link" data-scroll-target="#sjmisc"><code>sjmisc</code>:</a></li>
   <li><a href="#table1" id="toc-table1" class="nav-link" data-scroll-target="#table1"><code>table1</code>:</a></li>
   </ul></li>
-  <li><a href="#ejemplos-tablas-univariadas" id="toc-ejemplos-tablas-univariadas" class="nav-link" data-scroll-target="#ejemplos-tablas-univariadas">Ejemplos tablas univariadas</a></li>
   <li><a href="#funciones-para-tablas-bivariadas" id="toc-funciones-para-tablas-bivariadas" class="nav-link" data-scroll-target="#funciones-para-tablas-bivariadas">Funciones para tablas bivariadas</a>
   <ul class="collapse">
   <li><a href="#sjplot" id="toc-sjplot" class="nav-link" data-scroll-target="#sjplot"><code>sjPlot</code>:</a></li>
   <li><a href="#summarytools-1" id="toc-summarytools-1" class="nav-link" data-scroll-target="#summarytools-1"><code>summarytools</code>:</a></li>
-  <li><a href="#crosstable" id="toc-crosstable" class="nav-link" data-scroll-target="#crosstable"><code>crosstable</code></a></li>
+  <li><a href="#crosstable" id="toc-crosstable" class="nav-link" data-scroll-target="#crosstable"><code>crosstable</code>:</a></li>
   <li><a href="#table1-1" id="toc-table1-1" class="nav-link" data-scroll-target="#table1-1"><code>table1</code>:</a></li>
   <li><a href="#dplyr-y-janitor" id="toc-dplyr-y-janitor" class="nav-link" data-scroll-target="#dplyr-y-janitor"><code>dplyr</code> y <code>janitor</code>:</a></li>
   </ul></li>
-  <li><a href="#ejemplo-tablas-bivariadas" id="toc-ejemplo-tablas-bivariadas" class="nav-link" data-scroll-target="#ejemplo-tablas-bivariadas">Ejemplo tablas bivariadas</a></li>
   </ul></li>
-  <li><a href="#autoreferenciar-elementos-dentro-un-r-markdown" id="toc-autoreferenciar-elementos-dentro-un-r-markdown" class="nav-link" data-scroll-target="#autoreferenciar-elementos-dentro-un-r-markdown">Autoreferenciar elementos dentro un R Markdown</a></li>
+  <li><a href="#autoreferenciar-elementos-dentro-un-documento-dinámico" id="toc-autoreferenciar-elementos-dentro-un-documento-dinámico" class="nav-link" data-scroll-target="#autoreferenciar-elementos-dentro-un-documento-dinámico">Autoreferenciar elementos dentro un documento dinámico</a>
+  <ul class="collapse">
+  <li><a href="#a.-tablas" id="toc-a.-tablas" class="nav-link" data-scroll-target="#a.-tablas">a. Tablas</a></li>
+  <li><a href="#b.-resultados" id="toc-b.-resultados" class="nav-link" data-scroll-target="#b.-resultados">b. Resultados</a></li>
+  </ul></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
   </ul>
 </nav>
@@ -229,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title display-7">Tablas en reportes dinámicos</h1>
 
 <div class="date-block bg-assignment text-white p-2">
-  <p class="date">Sesión del viernes, 29 de septiembre de 2023</p>
+  <p class="date">Sesión del sábado, 12 de octubre de 2024</p>
 </div>
 </header>
 
@@ -248,14 +255,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="../files/crear-qmd.gif" class="img-fluid"></p>
 <section id="chunks" class="level2">
 <h2 class="anchored" data-anchor-id="chunks">Chunks</h2>
-<p>Para integrar código de R en un archivo <code>Quarto</code> usamos los <code>chunks</code>, que son <em>trozos</em> de código dentro de nuestra hoja. Estos permiten hacer análisis dentro del documento visualizando los resultados en el documento final.</p>
+<p>Para integrar código de R en un archivo <code>Quarto</code> usamos los <code>chunks</code>, que son <em>trozos</em> de código dentro de nuestra hoja. Estos permiten hacer análisis dentro del documento visualizando los resultados en el documento final. Un chunk se especifica mediante una línea de código inicial <code>```{r}</code>, y se cierra con <code>```</code></p>
 <p>Los chunks se ven así dentro del .qmd:</p>
-<pre><code>``{r}
-# El codigo va aquí
-
+<pre><code>```{r}
+1 + 1
 ```</code></pre>
-<section id="insertar-chunks" class="level4">
-<h4 class="anchored" data-anchor-id="insertar-chunks">Insertar chunks</h4>
+<section id="insertar-chunks" class="level3">
+<h3 class="anchored" data-anchor-id="insertar-chunks">Insertar chunks</h3>
 <p>Hay tres formas de insertar chunks:</p>
 <ol type="1">
 <li><p>Pulsar <code>⌘⌥I</code> en macOS o <code>Control + Alt + I</code> en Windows</p></li>
@@ -265,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="../files/insertchunkquarto.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p><img src="../files/insertchunk.png" class="img-fluid figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
@@ -274,65 +280,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Escribirlo manualmente</li>
 </ol>
 </section>
-<section id="nombre-de-chunk" class="level4">
-<h4 class="anchored" data-anchor-id="nombre-de-chunk">Nombre de chunk</h4>
+<section id="nombre-de-chunk" class="level3">
+<h3 class="anchored" data-anchor-id="nombre-de-chunk">Nombre de chunk</h3>
 <p>Para añadir un nombre, inclúyelo inmediatamente después de la <code>{r</code> en la primera línea del chunk. Los nombres no pueden contener espacios, pero sí guiones bajos y guiones.</p>
 <p>Importante: <strong>Todos los nombres de chunk de tu documento deben ser únicos.</strong></p>
-<pre><code>``{r nombre-chunk}
-# El codigo va aquí
-
+<pre><code>```{r nombre-chunk}
+1 + 1
 ```</code></pre>
 </section>
-<section id="opciones-de-chunk" class="level4">
-<h4 class="anchored" data-anchor-id="opciones-de-chunk">Opciones de chunk</h4>
+<section id="opciones-de-chunk" class="level3">
+<h3 class="anchored" data-anchor-id="opciones-de-chunk">Opciones de chunk</h3>
 <p>Hay distintas opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">Guía de referencia de RMarkdown</a> o en el <a href="https://yihui.org/knitr/options/">sitio web de <strong>knitr</strong></a>. Estos recursos se crearon inicialmente para RMarkdown, pero también son aplicables a <a href="https://quarto.org/docs/computations/r.html#chunk-options">Quarto</a>.</p>
 <p>En Quarto, las opciones del chunk van inmediatamente después de la sección <code>{r}</code>. Para especificar una opción, se debe partir con <code>#|</code>, luego la opción y luego el valor lógico. Por ejemplo:</p>
-<pre><code>``{r nombre-chunk}
-#| message: FALSE
-#| echo: TRUE
-
-# El codigo va aquí
-
+<pre><code>```{r}
+#| message: false
+#| echo: true
+1 + 1
 ```</code></pre>
 <p>Otra forma de hacerlo es <strong>configurar</strong> las opciones generales de todos los chunks que hagamos <strong>al inicio del documento</strong> en el YAML:</p>
-<pre><code>`execute: </code></pre>
-<p>echo: false eval: true message: false warning: false include: true`</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="../files/yaml2.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>De esta manera ya no es necesario indicar en <em>cada</em> chunk las opciones, y se aplicaran las configuraciones generales que indicamos al comienzo.</p>
 </section>
 </section>
-</section>
-<section id="preparación-de-datos" class="level1">
-<h1>Preparación de datos</h1>
+<section id="preparación-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="preparación-de-datos">Preparación de datos</h2>
 <p>Comencemos por preparar nuestros datos. Iniciamos cargando las librerías necesarias.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># Manipulacion datos</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>               sjmisc, <span class="co"># Descriptivos</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>               kableExtra, <span class="co">#Tablas</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               summarytools, <span class="co"># Tablas</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>               sjPlot, <span class="co"># Tablas y gráficos</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>               stargazer, <span class="co"># Tablas</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>               janitor,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>               gtsummary,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>               crosstable,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>               table1,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               report,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>               tableone</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>               ) </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># Manipulacion datos</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               sjmisc, <span class="co"># Descriptivos</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               knitr, <span class="co"># Render y tablas</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               kableExtra, <span class="co"># Formateo tablas</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               summarytools, <span class="co"># Tablas</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               sjPlot, <span class="co"># Tablas y gráficos</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>               stargazer, <span class="co"># Tablas</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               janitor, <span class="co"># Tablas y formateo</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               crosstable, <span class="co"># Tablas</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>               table1 <span class="co"># Tablas</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>               ) </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># para desactivar notacion cientifica</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># para limpiar el entorno de trabajo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Cargamos los datos desde internet.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/lapop_proc_2018.RData"</span>)) <span class="co">#Cargar base de datos</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Un pequeño procesamiento para algunas variables que usaremos más adelante</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lapop <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"gini"</span>, <span class="st">"gdp"</span>), <span class="sc">~</span> <span class="fu">as.numeric</span>(.))) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/lapop_proc_2018.RData"</span>)) <span class="co">#Cargar base de datos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Un pequeño procesamiento para algunas variables que usaremos más adelante</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>lapop <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"gini"</span>, <span class="st">"gdp"</span>), <span class="sc">~</span> <span class="fu">as.numeric</span>(.))) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A continuación, exploramos la base de datos <strong>lapop</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lapop) <span class="co"># Nombre de columnas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lapop) <span class="co"># Nombre de columnas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "year"        "pais"        "pais_name"   "idnum"       "upm"        
  [6] "strata"      "wt"          "weight1500"  "sexo"        "edad"       
@@ -343,31 +349,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [31] "ros4"        "ing4"        "eff1"        "pn4"         "exc7"       
 [36] "pol1"        "vb2"         "gini"        "gdp"        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lapop) <span class="co"># Dimensiones</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lapop) <span class="co"># Dimensiones</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 23386    39</code></pre>
 </div>
 </div>
 <p>Contamos con 39 variables (columnas) y 23.386 observaciones (filas).</p>
 </section>
+</section>
 <section id="tablas-con-kable" class="level1">
 <h1>Tablas con Kable</h1>
 <p>La mejor forma de generar tablas para documentos dinámicos es con la función <code>kable()</code> del paquete <code>knitr</code> y las distintas funciones de formateo que ofrece el paquete <code>kableExtra</code>. Esto se debe a que <code>kable()</code> y las funciones de <code>kableExtra</code> aplican estilo y formato a un objeto de R (generalmente un <code>data.frame</code>). Esto quiere decir que para hacer una tabla debemos:</p>
 <ol type="1">
 <li><p>Procesar nuestros datos de manera que genermos un objeto tipo <code>data.frame</code> (u otros similares) con la información requerida. Esto lo hacemos a través de <code>dplyr</code> o algún otro paquete dedicado al manejo de datos.</p></li>
-<li><p>Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de <code>kableExtra</code> (hay otras opciones, por ejemplo <code>flextable</code>, pero no es tan buena).</p></li>
+<li><p>Aplicar el estilo y el formateo que queramos para ese objeto. Esto lo hacemos a través de <code>kableExtra</code> (hay otras opciones, por ejemplo <a href="https://ardata-fr.github.io/flextable-book/"><code>flextable</code></a>, pero no es tan buena).</p></li>
 </ol>
 <p>Ejemplifiquemos con nuestros datos.</p>
 <p>Primero, generaremos un objeto llamado <code>tab1</code> que usaremos como contenido de la tabla. Este objeto tendrá la distribución de <code>it1</code> (confianza interpersonal) por país, es decir, es una tabla bivariada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, it1) <span class="sc">%&gt;%</span> <span class="co"># agrupamos por pais y variable</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># contamos por categ de respuesta</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">round</span>((n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> <span class="co"># porcentaje</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="co"># borramos NA</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> pais, <span class="at">names_from =</span> it1, <span class="at">values_from =</span> prop) <span class="co"># convertimos a formato ancho</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>tab1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, it1) <span class="sc">%&gt;%</span> <span class="co"># agrupamos por pais y variable</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># contamos por categ de respuesta</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">round</span>((n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> <span class="co"># porcentaje</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="co"># borramos NA</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> pais, <span class="at">names_from =</span> it1, <span class="at">values_from =</span> prop) <span class="co"># convertimos a formato ancho</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>tab1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 5
 # Groups:   pais [15]
@@ -392,8 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Creemos nuestra tabla</strong>. Usemos primero la función <code>kable()</code> directamente:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -524,10 +530,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>col.names</code>: para nombres de columnas visibles en la tabla, se ingresan como un vector <code>c()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Nada confiable"</span>, <span class="st">"Poco confiable"</span>, <span class="st">"Algo confiable"</span>, <span class="st">"Muy confiable"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> <span class="st">"html"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Nada confiable"</span>, <span class="st">"Poco confiable"</span>, <span class="st">"Algo confiable"</span>, <span class="st">"Muy confiable"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -654,17 +661,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ahora agregemos otros elementos importantes, como el título, estilo y fuente a la tabla:</p>
 <ul>
 <li><code>caption</code>: para dar titulo de la tabla</li>
-<li><code>kable_classic()</code>: para dar estilo (revisar otros <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#Getting_Started">aquí</a>)</li>
+<li><code>kable_classic()</code>: para dar estilo</li>
 <li><code>add_footnote()</code>: para agregar fuente o pie a la tabla</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Nada confiable"</span>, <span class="st">"Poco confiable"</span>, <span class="st">"Algo confiable"</span>, <span class="st">"Muy confiable"</span>),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 1. Confianza interpersonal según país"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a LAPOP 2018."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tab1 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Nada confiable"</span>, <span class="st">"Poco confiable"</span>, <span class="st">"Algo confiable"</span>, <span class="st">"Muy confiable"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 1. Confianza interpersonal según país"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a LAPOP 2018."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Tabla 1. Confianza interpersonal según país</caption>
@@ -805,15 +812,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>font_size</code>: para indicar tamaño de la letra</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tabla1 <span class="ot">&lt;-</span> tab1 <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Nada confiable"</span>, <span class="st">"Poco confiable"</span>, <span class="st">"Algo confiable"</span>, <span class="st">"Muy confiable"</span>),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 1. Confianza interpersonal según país"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>, <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a LAPOP 2018."</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>tabla1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tabla1 <span class="ot">&lt;-</span> tab1 <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Nada confiable"</span>, <span class="st">"Poco confiable"</span>, <span class="st">"Algo confiable"</span>, <span class="st">"Muy confiable"</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 1. Confianza interpersonal según país"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>, <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a LAPOP 2018."</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>tabla1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Tabla 1. Confianza interpersonal según país</caption>
@@ -947,32 +954,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<p>En este caso, nuestro ejemplo fue para una variable categorica. Sin embargo, podríamos hacer lo mismo para una variable continua y crear una tabla bivariada con los principales estadisticos descriptivos.</p>
+<p>En este caso, nuestro ejemplo fue para hacer una tabla bivariada con dos variables categóricas. Sin embargo, podríamos hacer lo mismo para una variable continua y crear una tabla bivariada con los principales estadisticos descriptivos.</p>
 <p>Creemos el objeto <code>tab2</code>, el cual serán los estadísticos descriptivos de la variable <code>edad</code> por país en nuestra base de datos.</p>
 <p>::: {.cell}</p>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">min =</span> <span class="fu">min</span>(edad, <span class="at">na.rm =</span> T),</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">max =</span> <span class="fu">max</span>(edad, <span class="at">na.rm =</span> T),</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">media =</span> <span class="fu">round</span>(<span class="fu">mean</span>(edad, <span class="at">na.rm =</span> T), <span class="dv">2</span>),</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">sd =</span> <span class="fu">round</span>(<span class="fu">sd</span>(edad, <span class="at">na.rm =</span> T), <span class="dv">2</span>),</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">mediana =</span> <span class="fu">median</span>(edad, <span class="at">na.rm =</span> T),</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">cv =</span> <span class="fu">round</span>((media<span class="sc">/</span>sd)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(pais) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">n =</span> <span class="fu">n</span>(), <span class="co"># Tamaño muestral</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">min =</span> <span class="fu">min</span>(edad, <span class="at">na.rm =</span> T), <span class="co"># Mínimo</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">max =</span> <span class="fu">max</span>(edad, <span class="at">na.rm =</span> T), <span class="co"># Máximo</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">media =</span> <span class="fu">round</span>(<span class="fu">mean</span>(edad, <span class="at">na.rm =</span> T), <span class="dv">2</span>), <span class="co"># Media redondeada a 2 digitos</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">sd =</span> <span class="fu">round</span>(<span class="fu">sd</span>(edad, <span class="at">na.rm =</span> T), <span class="dv">2</span>), <span class="co"># Desviación estándar redondeada a 2 digitos</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">mediana =</span> <span class="fu">median</span>(edad, <span class="at">na.rm =</span> T), <span class="co"># Mediana</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">cv =</span> <span class="fu">round</span>((media<span class="sc">/</span>sd)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>) <span class="co"># Coeficiente de variación redondeado a 2 digi</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 <p>Y ahora apliquemos el formato con <code>kable()</code> y las funcionalidades del paquete de <code>kableExtra</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tabla2 <span class="ot">&lt;-</span> tab2 <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Tamaño muestral"</span>, <span class="st">"Mínimo"</span>, <span class="st">"Máximo"</span>, <span class="st">"Media"</span>, <span class="st">"Desv. estándar"</span>, <span class="st">"Mediana"</span>, <span class="st">"Coef. variación"</span>),</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 2. Edad según país"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>, <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a LAPOP 2018."</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>tabla2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tabla2 <span class="ot">&lt;-</span> tab2 <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"País"</span>, <span class="st">"Tamaño muestral"</span>, <span class="st">"Mínimo"</span>, <span class="st">"Máximo"</span>, <span class="st">"Media"</span>, <span class="st">"Desv. estándar"</span>, <span class="st">"Mediana"</span>, <span class="st">"Coef. variación"</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">caption =</span> <span class="st">"Tabla 2. Edad según país"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>, <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Fuente: Elaboración propia en base a LAPOP 2018."</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>tabla2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Tabla 2. Edad según país</caption>
@@ -1161,55 +1168,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="tablas-con-otros-paquetes" class="level1">
 <h1>Tablas con otros paquetes</h1>
-<p>Si bien <code>kableExtra</code> es la mejor forma para referenciar, ya que nos da mayor contrtol del contenido y el formato, existen otras funciones. Las funciones varían de acuerdo a qué es lo que se quiere reportar, es decir, si es una variable categorica o númerica y si es un estadístico univariado o bivariado. De todos modos, solo algunas funciones tienen una salida directa en HTML (pensando en que se utilizarán en Quarto), por lo que algunas veces solo nos ahorraremos el procesamiento, el formateo deberemos hacerlo igual.</p>
+<p>Si bien la combinación de crear nuestra tabla (probablemente con <code>dplyr</code>) y formatear con <code>kableExtra</code> es la mejor forma para reportar tablas, existen otras funciones. Las funciones varían de acuerdo a qué es lo que se quiere reportar, es decir, si es una variable categorica o númerica y si es el reporte debe ser univariado o bivariado. De todos modos, solo algunas funciones tienen una salida directa en HTML (pensando en que se utilizarán en Quarto), por lo que algunas veces solo nos ahorraremos el procesamiento, el formateo deberemos hacerlo igual.</p>
 <p>La principal virtud de estas funciones es que nos ahorra hacer el procesamiento de la tabla. Sin embargo, el desafío es que debemos saber bien qué es lo que queremos reportar para utilizar la función adecuada.</p>
 <p>A continuación, presentaremos algunas de las funcionas más conocidas, dividiendo si son para tablas univariadas o bivariadas.</p>
+<p>Vamos a crear una versión recortada de <strong>lapop</strong> para ejemplifcar cada función:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creemos una version de lapop solo con algunas variables como ejemplo</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data_example <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pais, it1, edad, sexo, gini, gdp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="funciones-para-tablas-univariadas" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-para-tablas-univariadas">Funciones para tablas univariadas</h2>
 <p>Estas tablas suelen incluir estadísticas descriptivas de una sola variable como medias, medianas, desviaciones estándar, entre otras.</p>
 <section id="summarytools" class="level3">
-<h3 class="anchored" data-anchor-id="summarytools"><code>summarytools</code>:</h3>
+<h3 class="anchored" data-anchor-id="summarytools"><a href="https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html"><code>summarytools</code></a>:</h3>
 <ul>
 <li><code>summarytools::dfSummary():</code> Genera un resumen univariado completo de cada variable en el dataset, con estadísticas, frecuencia de valores y gráficos.</li>
-<li><code>summarytools::descr():</code> Proporciona estadísticas descriptivas para variables numéricas.</li>
 </ul>
-</section>
-<section id="stargazer" class="level3">
-<h3 class="anchored" data-anchor-id="stargazer"><code>stargazer</code>:</h3>
-<ul>
-<li><code>stargazer::stargazer()</code>: Para reportar estadísticas descriptivas.</li>
-</ul>
-</section>
-<section id="psych" class="level3">
-<h3 class="anchored" data-anchor-id="psych"><code>psych</code>:</h3>
-<ul>
-<li><code>psych::describe()</code>: Calcula estadísticas descriptivas adicionales, como curtosis y asimetría.</li>
-</ul>
-</section>
-<section id="sjmisc" class="level3">
-<h3 class="anchored" data-anchor-id="sjmisc"><code>sjmisc</code>:</h3>
-<ul>
-<li><code>sjmisc::frq()</code>: Para tablas de frecuencias detalladas de variables categóricas. Incluye labels.</li>
-</ul>
-</section>
-<section id="table1" class="level3">
-<h3 class="anchored" data-anchor-id="table1"><code>table1</code>:</h3>
-<ul>
-<li><code>table1::table1()</code>: Permite ver tanto variables categoricas como numericas en la misma tabla de manera estética</li>
-</ul>
-</section>
-</section>
-<section id="ejemplos-tablas-univariadas" class="level2">
-<h2 class="anchored" data-anchor-id="ejemplos-tablas-univariadas">Ejemplos tablas univariadas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creemos una version de lapop solo con algunas variables como ejemplo</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>data_example <span class="ot">&lt;-</span> lapop <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pais, it1, edad, sexo, gini, gdp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarytools</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(data_example) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">view</span>(<span class="at">method =</span> <span class="st">"render"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(data_example) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">view</span>(<span class="at">method =</span> <span class="st">"render"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="container st-container">
 <h3 class="anchored">Data Frame Summary</h3>
@@ -1353,7 +1331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table></td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAD0AAAEKBAMAAABTREB7AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTJNpZAiAAAAfklEQVRo3u3SsQ2AMAxE0YxANoCwAey/GyiiQALrUAoczL/2NXH0U/JfqcuXDYfP674Fx9tc9ZWNveX1eZO4D8cbXfWVjdE3HsHpH/+z0z8e2b37Vk7/OP33+3/4t927f/rG6b/f/8FjO/3jkd27b+XF2Hi+72Y4/sRVX57bAIS9a2cRCexbAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAD0AAAEKBAMAAABTREB7AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwwDFyQwA2P4AAAAfklEQVRo3u3SsQ2AMAxE0YxANoCwAey/GyiiQALrUAoczL/2NXH0U/JfqcuXDYfP674Fx9tc9ZWNveX1eZO4D8cbXfWVjdE3HsHpH/+z0z8e2b37Vk7/OP33+3/4t927f/rG6b/f/8FjO/3jkd27b+XF2Hi+72Y4/sRVX57bAIS9a2cRCexbAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">23386 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
@@ -1413,7 +1391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table></td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAD8AAABmBAMAAACO8FTTAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAYklEQVRIx+3TsQ3AMAhEUUaIN7DIBrD/bi6cNCAbKQq2i/v1a5AOojPit2K6HnBrTwAA1oBwk2XUf4AHuStMAgCQBMJNLviLz4/DdX6mKgBADgg3ueUvDHBXCABAKgg3ubsG4mxoNeNgKPQAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAD8AAABmBAMAAACO8FTTAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwwDFyQwA2P4AAAAYklEQVRIx+3TsQ3AMAhEUUaIN7DIBrD/bi6cNCAbKQq2i/v1a5AOojPit2K6HnBrTwAA1oBwk2XUf4AHuStMAgCQBMJNLviLz4/DdX6mKgBADgg3ueUvDHBXCABAKgg3ubsG4mxoNeNgKPQAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">22783 (97.4%)</td>
 <td style="text-align: center;">603 (2.6%)</td>
 </tr>
@@ -1438,7 +1416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table></td>
 <td style="text-align: left; vertical-align: middle;">81 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAvUlEQVRo3u3VUQ6DIBCEYa6gNyjeQO5/t7qJaWIBYZdt0tJ/El+/jGaEEIgly5k1HlmsecdSSvvcmHyu6IVtAoGBgY1i8lu6YQK9MPMBWcLM7cDA9Jj+dq9hpmuvhpleF+yfMNVwW5iqHRgYGNiXY90HZA/W3a4Xk3YPL+x4EthMWHMeGmxrtQP7Mex2Hlrsth0YmCNWHa4Fq7YDA3PGisO1YsV2YGAfwLLhjmBZu3mxy3cbxS7tTiy6JBBLnsNLfjfyeDqCAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwwDFyQwA2P4AAAAvUlEQVRo3u3VUQ6DIBCEYa6gNyjeQO5/t7qJaWIBYZdt0tJ/El+/jGaEEIgly5k1HlmsecdSSvvcmHyu6IVtAoGBgY1i8lu6YQK9MPMBWcLM7cDA9Jj+dq9hpmuvhpleF+yfMNVwW5iqHRgYGNiXY90HZA/W3a4Xk3YPL+x4EthMWHMeGmxrtQP7Mex2Hlrsth0YmCNWHa4Fq7YDA3PGisO1YsV2YGAfwLLhjmBZu3mxy3cbxS7tTiy6JBBLnsNLfjfyeDqCAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">23372 (99.9%)</td>
 <td style="text-align: center;">14 (0.1%)</td>
 </tr>
@@ -1472,7 +1450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table></td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAFgAAAA3BAMAAAB6GZCIAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAPElEQVRIx2NgGJpAiRigCFWsbEwEGFU8qnhUMc0Uk5RhBYkCNFdMlJuVSAkNo1HFo4pHFdNKMUkZdqgBABBVRqQuI8s9AAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAFgAAAA3BAMAAAB6GZCIAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwwDFyQwA2P4AAAAPElEQVRIx2NgGJpAiRigCFWsbEwEGFU8qnhUMc0Uk5RhBYkCNFdMlJuVSAkNo1HFo4pHFdNKMUkZdqgBABBVRqQuI8s9AAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">23373 (99.9%)</td>
 <td style="text-align: center;">13 (0.1%)</td>
 </tr>
@@ -1497,7 +1475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table></td>
 <td style="text-align: left; vertical-align: middle;">15 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAj0lEQVRo3u3Y0QnAIAxFUVewG1Q3aPbfrU1QkdJWEaEI9/0oMR7xT3SOjMS/Jmh8X5pYFJHjXtz0hH0WdhUFDAwMDAwMDAwMbFHMHsfTMC2AgYGBgYGBgf2KPf/9ZaysdmK5o/xZ6mhY/YpqY6FuLzfTSUx7j2/MgITFumMEszYwMDAwMDAwsNWwMCWOjOQEt6307ijH4hUAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwwDFyQwA2P4AAAAj0lEQVRo3u3Y0QnAIAxFUVewG1Q3aPbfrU1QkdJWEaEI9/0oMR7xT3SOjMS/Jmh8X5pYFJHjXtz0hH0WdhUFDAwMDAwMDAwMbFHMHsfTMC2AgYGBgYGBgf2KPf/9ZaysdmK5o/xZ6mhY/YpqY6FuLzfTSUx7j2/MgITFumMEszYwMDAwMDAwsNWwMCWOjOQEt6307ijH4hUAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">23386 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
@@ -1522,111 +1500,225 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table></td>
 <td style="text-align: left; vertical-align: middle;">15 distinct values</td>
-<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwsROTM6oqC0AAAAlklEQVRo3u3Xyw2AIBBFUVrADsQOnP57UyZAJCBRJFGT+1bATA6fHcaQnlgf52NDJj+Z7a0csUVE1oTtE2lh2dZPsaz7l5g+xyhMB2BgYGBgYGBgYGBgYGBvYpVPdoZp3QVMxy2sPKc2xT20vgbMV6TEXNZcweLyFWxJYnnpPuzk0mBgYGBgYGBgYGBgYGCfwdyQGNKTDYZWkh9MD2oBAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAPUExURf////3+/aampvDw8P///7GHRIEAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAHdElNRQfoCwwDFyQwA2P4AAAAlklEQVRo3u3Xyw2AIBBFUVrADsQOnP57UyZAJCBRJFGT+1bATA6fHcaQnlgf52NDJj+Z7a0csUVE1oTtE2lh2dZPsaz7l5g+xyhMB2BgYGBgYGBgYGBgYGBvYpVPdoZp3QVMxy2sPKc2xT20vgbMV6TEXNZcweLyFWxJYnnpPuzk0mBgYGBgYGBgYGBgYGCfwdyQGNKTDYZWkh9MD2oBAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
 <td style="text-align: center;">23386 (100.0%)</td>
 <td style="text-align: center;">0 (0.0%)</td>
 </tr>
 </tbody>
 </table>
 
-<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.3.3)<br>2024-11-11</p>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.3.3)<br>2024-11-12</p>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">descr</span>(data_example<span class="sc">$</span>edad) <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>summarytools::descr():</code> Proporciona estadísticas descriptivas para variables numéricas.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">descr</span>(data_example<span class="sc">$</span>edad) <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">view</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Error : Can't find summarytools</code></pre>
 </div>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<div class="container st-container">
+<h3 class="anchored">Descriptive Statistics</h3>
+<h4 class="anchored">value</h4>
+<strong>Label</strong>: Edad
+  <br><strong>N</strong>: 23386
+<br>
+
+<table class="table table-bordered table-striped st-table st-table-bordered st-table-striped st-descr-table caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">value</th>
+<th data-quarto-table-cell-role="th"></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th">value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">40.4605511</td>
+<td><strong>Mean</strong></td>
+<td><span>40.46</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Std.Dev</td>
-<td style="text-align: right;">16.7983821</td>
+<td><strong>Std.Dev</strong></td>
+<td><span>16.80</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Min</td>
-<td style="text-align: right;">16.0000000</td>
+<td><strong>Min</strong></td>
+<td><span>16.00</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Q1</td>
-<td style="text-align: right;">27.0000000</td>
+<td><strong>Q1</strong></td>
+<td><span>27.00</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Median</td>
-<td style="text-align: right;">38.0000000</td>
+<td><strong>Median</strong></td>
+<td><span>38.00</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Q3</td>
-<td style="text-align: right;">52.0000000</td>
+<td><strong>Q3</strong></td>
+<td><span>52.00</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Max</td>
-<td style="text-align: right;">99.0000000</td>
+<td><strong>Max</strong></td>
+<td><span>99.00</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">MAD</td>
-<td style="text-align: right;">17.7912000</td>
+<td><strong>MAD</strong></td>
+<td><span>17.79</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">IQR</td>
-<td style="text-align: right;">25.0000000</td>
+<td><strong>IQR</strong></td>
+<td><span>25.00</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">CV</td>
-<td style="text-align: right;">0.4151793</td>
+<td><strong>CV</strong></td>
+<td><span>0.42</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Skewness</td>
-<td style="text-align: right;">0.5674996</td>
+<td><strong>Skewness</strong></td>
+<td><span>0.57</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SE.Skewness</td>
-<td style="text-align: right;">0.0160214</td>
+<td><strong>SE.Skewness</strong></td>
+<td><span>0.02</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Kurtosis</td>
-<td style="text-align: right;">-0.5770780</td>
+<td><strong>Kurtosis</strong></td>
+<td><span>-0.58</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">N.Valid</td>
-<td style="text-align: right;">23372.0000000</td>
+<td><strong>N.Valid</strong></td>
+<td><span>23372</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Pct.Valid</td>
-<td style="text-align: right;">99.9401351</td>
+<td><strong>Pct.Valid</strong></td>
+<td><span> 99.94</span></td>
 </tr>
 </tbody>
 </table>
 
-
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.3.3)<br>2024-11-12</p>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stargazer</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(<span class="fu">as.data.frame</span>(data_example), <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">summary.stat =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;it1&lt;/td&gt;&lt;td&gt;2.694&lt;/td&gt;&lt;td&gt;0.953&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;edad&lt;/td&gt;&lt;td&gt;40.461&lt;/td&gt;&lt;td&gt;16.798&lt;/td&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;gini&lt;/td&gt;&lt;td&gt;45.778&lt;/td&gt;&lt;td&gt;4.043&lt;/td&gt;&lt;td&gt;38.000&lt;/td&gt;&lt;td&gt;53.300&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;gdp&lt;/td&gt;&lt;td&gt;8.748&lt;/td&gt;&lt;td&gt;4.278&lt;/td&gt;&lt;td&gt;2.475&lt;/td&gt;&lt;td&gt;16.038&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="5" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># psych</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data_example) <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stargazer" class="level3">
+<h3 class="anchored" data-anchor-id="stargazer"><a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf"><code>stargazer</code></a>:</h3>
+<ul>
+<li><code>stargazer::stargazer()</code>: Para reportar estadísticas descriptivas.</li>
+</ul>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(<span class="fu">as.data.frame</span>(data_example), <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">summary.stat =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Statistic
+</td>
+<td>
+Mean
+</td>
+<td>
+St.&nbsp;Dev.
+</td>
+<td>
+Min
+</td>
+<td>
+Max
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+it1
+</td>
+<td>
+2.694
+</td>
+<td>
+0.953
+</td>
+<td>
+1
+</td>
+<td>
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+edad
+</td>
+<td>
+40.461
+</td>
+<td>
+16.798
+</td>
+<td>
+16
+</td>
+<td>
+99
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+gini
+</td>
+<td>
+45.778
+</td>
+<td>
+4.043
+</td>
+<td>
+38.000
+</td>
+<td>
+53.300
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+gdp
+</td>
+<td>
+8.748
+</td>
+<td>
+4.278
+</td>
+<td>
+2.475
+</td>
+<td>
+16.038
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</tbody></table>
+</section>
+<section id="psych" class="level3">
+<h3 class="anchored" data-anchor-id="psych"><a href="https://personality-project.org/r/html/describe.html"><code>psych</code></a>:</h3>
+<ul>
+<li><code>psych::describe()</code>: Calcula estadísticas descriptivas adicionales, como curtosis y asimetría.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(data_example) <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -1749,10 +1841,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sjmisc</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(data_example<span class="sc">$</span>it1) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sjmisc" class="level3">
+<h3 class="anchored" data-anchor-id="sjmisc"><a href="https://strengejacke.github.io/sjmisc/articles/exploringdatasets.html"><code>sjmisc</code></a>:</h3>
+<ul>
+<li><code>sjmisc::frq()</code>: Para tablas de frecuencias detalladas de variables categóricas. Incluye labels.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sjmisc<span class="sc">::</span><span class="fu">frq</span>(data_example<span class="sc">$</span>it1) <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="kable_wrapper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
@@ -1820,8 +1919,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table1</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sexo) <span class="sc">+</span> edad <span class="sc">+</span> gini <span class="sc">+</span> gdp, <span class="at">data =</span> data_example)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="table1" class="level3">
+<h3 class="anchored" data-anchor-id="table1"><a href="https://cran.r-project.org/web/packages/table1/vignettes/table1-examples.html"><code>table1</code></a>:</h3>
+<ul>
+<li><code>table1::table1()</code>: Permite ver tanto variables categoricas como numericas en la misma tabla de manera estética</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sexo) <span class="sc">+</span> edad <span class="sc">+</span> gini <span class="sc">+</span> gdp, <span class="at">data =</span> data_example)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="Rtable1">
 <table class="Rtable1 caption-top table table-sm table-striped small" data-quarto-postprocess="true">
@@ -1900,45 +2006,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+</section>
 <section id="funciones-para-tablas-bivariadas" class="level2">
 <h2 class="anchored" data-anchor-id="funciones-para-tablas-bivariadas">Funciones para tablas bivariadas</h2>
 <p>Las tablas bivariadas permiten explorar relaciones entre pares de variables, útiles para comparar medias o analizar frecuencias conjuntas en tablas de contingencia.</p>
 <section id="sjplot" class="level3">
-<h3 class="anchored" data-anchor-id="sjplot"><code>sjPlot</code>:</h3>
+<h3 class="anchored" data-anchor-id="sjplot"><a href="https://strengejacke.github.io/sjPlot/articles/table_css.html"><code>sjPlot</code>:</a></h3>
 <ul>
 <li><code>sjPlot::tab_xtab()</code>: Produce tablas cruzadas de frecuencias y porcentajes, y es útil para comparar variables categóricas entre grupos.</li>
 </ul>
-</section>
-<section id="summarytools-1" class="level3">
-<h3 class="anchored" data-anchor-id="summarytools-1"><code>summarytools</code>:</h3>
-<ul>
-<li><code>summarytools::ctable()</code>: Para tablas de contingencia que incluyen porcentajes y frecuencias, con opciones de personalización.</li>
-</ul>
-</section>
-<section id="crosstable" class="level3">
-<h3 class="anchored" data-anchor-id="crosstable"><code>crosstable</code></h3>
-<ul>
-<li><code>crosstable::crosstable()</code>: También produce tablas de continencia con opciones de personalización.</li>
-</ul>
-</section>
-<section id="table1-1" class="level3">
-<h3 class="anchored" data-anchor-id="table1-1"><code>table1</code>:</h3>
-<ul>
-<li><code>table1::table1()</code>: También se puede utilizar agrupando las variables (numericas o categoricas) por alguna variable categórica.</li>
-</ul>
-</section>
-<section id="dplyr-y-janitor" class="level3">
-<h3 class="anchored" data-anchor-id="dplyr-y-janitor"><code>dplyr</code> y <code>janitor</code>:</h3>
-<ul>
-<li>dplyr + <code>janitor::tabyl()</code>: Puedes hacer resúmenes bivariados personalizados con count() o group_by(), y tabyl() genera tablas de contingencia de frecuencias para un vistazo rápido.</li>
-</ul>
-</section>
-</section>
-<section id="ejemplo-tablas-bivariadas" class="level2">
-<h2 class="anchored" data-anchor-id="ejemplo-tablas-bivariadas">Ejemplo tablas bivariadas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sjPlot</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_xtab</span>(data_example<span class="sc">$</span>pais, data_example<span class="sc">$</span>it1, <span class="at">show.row.prc =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_xtab</span>(data_example<span class="sc">$</span>pais, data_example<span class="sc">$</span>it1, <span class="at">show.row.prc =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table style="border-collapse:collapse; border:none;">
  <tbody><tr>
@@ -2102,38 +2180,362 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  
 </tbody></table>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarytools</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">ctable</span>(data_example<span class="sc">$</span>pais, data_example<span class="sc">$</span>sexo, <span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Cross-Tabulation, Row Proportions  
-pais * sexo  
-Data Frame: data_example  
-
-------- ------ --------------- --------------- ------------ ----------------
-          sexo          Hombre           Mujer         &lt;NA&gt;            Total
-   pais                                                                     
-    ARG            758 (49.6%)     770 (50.4%)    0 (0.00%)    1528 (100.0%)
-    BOL            846 (50.3%)     836 (49.7%)    0 (0.00%)    1682 (100.0%)
-    BRA            748 (49.9%)     750 (50.1%)    0 (0.00%)    1498 (100.0%)
-    CHL            813 (49.6%)     824 (50.3%)    1 (0.06%)    1638 (100.0%)
-    COL            830 (49.9%)     833 (50.1%)    0 (0.00%)    1663 (100.0%)
-    CRI            750 (50.0%)     751 (50.0%)    0 (0.00%)    1501 (100.0%)
-    DOM            753 (49.7%)     761 (50.2%)    2 (0.13%)    1516 (100.0%)
-    ECU            760 (49.6%)     764 (49.8%)    9 (0.59%)    1533 (100.0%)
-    HND            778 (49.9%)     782 (50.1%)    0 (0.00%)    1560 (100.0%)
-    MEX            775 (49.1%)     805 (50.9%)    0 (0.00%)    1580 (100.0%)
-    PAN            782 (50.2%)     777 (49.8%)    0 (0.00%)    1559 (100.0%)
-    PER            758 (49.8%)     762 (50.1%)    1 (0.07%)    1521 (100.0%)
-    PRY            755 (49.8%)     760 (50.2%)    0 (0.00%)    1515 (100.0%)
-    SLV            755 (50.0%)     756 (50.0%)    0 (0.00%)    1511 (100.0%)
-    URY            773 (48.9%)     808 (51.1%)    0 (0.00%)    1581 (100.0%)
-  Total          11634 (49.7%)   11739 (50.2%)   13 (0.06%)   23386 (100.0%)
-------- ------ --------------- --------------- ------------ ----------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># crosstable</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crosstable</span>(data_example, pais, <span class="at">by =</span> sexo, <span class="at">margin=</span><span class="fu">c</span>(<span class="st">"row"</span>, <span class="st">"col"</span>), <span class="at">total =</span> <span class="st">"both"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="summarytools-1" class="level3">
+<h3 class="anchored" data-anchor-id="summarytools-1"><a href="https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html"><code>summarytools</code></a>:</h3>
+<ul>
+<li><code>summarytools::ctable()</code>: Para tablas de contingencia que incluyen porcentajes y frecuencias, con opciones de personalización.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">ctable</span>(data_example<span class="sc">$</span>pais, data_example<span class="sc">$</span>sexo) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">view</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error : Can't find summarytools
+Error : Can't find summarytools</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="container st-container">
+<h3 class="anchored">Cross-Tabulation, Row Proportions</h3>
+<h4 class="anchored">data_example$pais * data_example$sexo</h4>
+
+<table class="table table-bordered st-table st-table-bordered st-cross-table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="12" class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th">data_example$sexo</th>
+<th colspan="4" style="text-align: right;" data-quarto-table-cell-role="th"></th>
+</tr>
+<tr class="odd">
+<th style="text-align: center;"><strong>data_example$pais</strong></th>
+<th colspan="4" style="text-align: center;" data-quarto-table-cell-role="th">Hombre</th>
+<th colspan="4" style="text-align: center;" data-quarto-table-cell-role="th">Mujer</th>
+<th colspan="4" style="text-align: center;" data-quarto-table-cell-role="th">&lt;NA&gt;</th>
+<th colspan="4" style="text-align: center;" data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ARG</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">758</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.6%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">770</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.4%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1528</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>BOL</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">846</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.3%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">836</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.7%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1682</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>BRA</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">748</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.9%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">750</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.1%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1498</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>CHL</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">813</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.6%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">824</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.3%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.06%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1638</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>COL</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">830</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.9%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">833</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.1%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1663</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>CRI</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">750</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">751</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1501</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>DOM</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">753</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.7%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">761</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.2%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">2</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.13%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1516</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>ECU</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">760</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.6%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">764</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.8%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">9</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.59%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1533</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>HND</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">778</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.9%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">782</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.1%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1560</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>MEX</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">775</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.1%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">805</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.9%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1580</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>PAN</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">782</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.2%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">777</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.8%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1559</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>PER</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">758</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.8%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">762</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.1%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.07%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1521</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>PRY</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">755</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.8%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">760</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.2%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1515</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>SLV</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">755</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">756</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1511</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="odd">
+<td><strong>URY</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">773</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">48.9%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">808</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">51.1%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">0</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.00%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">1581</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">11634</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">49.7%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">11739</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">50.2%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">13</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">0.06%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+<td style="text-align: right; padding: 0 0 0 15px; border-right: 0;">23386</td>
+<td style="text-align: left; padding: 0 1px 0 4px; border-left: 0; border-right: 0;">(</td>
+<td style="text-align: left; padding: 0; border-left: 0; border-right: 0;">100.0%</td>
+<td style="text-align: left; padding: 0 15px 0 1px; border-left: 0;">)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.3.3)<br>2024-11-12</p>
+</div>
+</div>
+</div>
+</section>
+<section id="crosstable" class="level3">
+<h3 class="anchored" data-anchor-id="crosstable"><a href="https://cran.r-project.org/web/packages/crosstable/vignettes/crosstable.html"><code>crosstable</code></a>:</h3>
+<ul>
+<li><code>crosstable::crosstable()</code>: También produce tablas de continencia con opciones de personalización.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>crosstable<span class="sc">::</span><span class="fu">crosstable</span>(data_example, pais, <span class="at">by =</span> sexo, <span class="at">margin=</span><span class="fu">c</span>(<span class="st">"row"</span>, <span class="st">"col"</span>), <span class="at">total =</span> <span class="st">"both"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -2297,12 +2699,15 @@ Data Frame: data_example
 
 
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table1</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sexo) <span class="sc">+</span> edad <span class="sc">+</span> gini <span class="sc">+</span> gdp <span class="sc">|</span> pais, <span class="at">data =</span> data_example)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in .table1.internal(x = x, labels = labels, groupspan = groupspan, :
-Table has 16 columns. Are you sure this is what you want?</code></pre>
 </div>
+</section>
+<section id="table1-1" class="level3">
+<h3 class="anchored" data-anchor-id="table1-1"><a href="https://cran.r-project.org/web/packages/table1/vignettes/table1-examples.html"><code>table1</code></a>:</h3>
+<ul>
+<li><code>table1::table1()</code>: También se puede utilizar agrupando las variables (numericas o categoricas) por alguna variable categórica.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sexo) <span class="sc">+</span> edad <span class="sc">+</span> gini <span class="sc">+</span> gdp <span class="sc">|</span> pais, <span class="at">data =</span> data_example)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="Rtable1">
 <table class="Rtable1 caption-top table table-sm table-striped small" data-quarto-postprocess="true">
@@ -2634,11 +3039,18 @@ Table has 16 columns. Are you sure this is what you want?</code></pre>
 
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr y janitor</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>data_example <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(pais, it1) <span class="sc">%&gt;%</span> <span class="co"># Esto reemplaza el procesamiento, buena alternativa</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dplyr-y-janitor" class="level3">
+<h3 class="anchored" data-anchor-id="dplyr-y-janitor"><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html"><code>dplyr</code></a> y <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html"><code>janitor</code></a>:</h3>
+<ul>
+<li>dplyr + <code>janitor::tabyl()</code>: Puedes hacer resúmenes bivariados personalizados con count() o group_by(), y tabyl() genera tablas de contingencia de frecuencias para un vistazo rápido.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data_example <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(pais, it1) <span class="sc">%&gt;%</span> <span class="co"># Esto reemplaza el procesamiento, buena alternativa</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -2780,8 +3192,9 @@ Table has 16 columns. Are you sure this is what you want?</code></pre>
 </div>
 </section>
 </section>
-<section id="autoreferenciar-elementos-dentro-un-r-markdown" class="level1">
-<h1>Autoreferenciar elementos dentro un R Markdown</h1>
+</section>
+<section id="autoreferenciar-elementos-dentro-un-documento-dinámico" class="level1">
+<h1>Autoreferenciar elementos dentro un documento dinámico</h1>
 <p>Una de las ventajas de usar documentos dinámicos con Quarto es que podemos <strong>autoreferenciar los elementos que creamos dentro del mismo documento</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2797,22 +3210,19 @@ Table has 16 columns. Are you sure this is what you want?</code></pre>
 </div>
 </div>
 <p>Para hacer esto <strong>debemos darle un <em>label</em> al chunk</strong> en donde producimos la tabla o gráfico en nuestro documento. Tomemos por ejemplo la misma <code>tabla1</code> que generamos anteriormente, pero ahora les daremos un nombre al chunk en donde ejecutaremos dichos elementos.</p>
-<p>¿Qué nombre le ponemos? hay que considerar lo siguiente:</p>
-<ul>
-<li>Cuando es una <strong>tabla</strong> debemos nombrar al chunk con el prefijo <strong><code>tbl-</code></strong> antes del nombre respectivo.</li>
-</ul>
+<p>¿Qué nombre le ponemos? hay que considerar que cuando es una <strong>tabla</strong> debemos nombrar al chunk con el prefijo <strong><code>tbl-</code></strong> antes del nombre respectivo.</p>
 <p>¿Cómo las referenciamos? para referenciar tablas o debemos usar el prefijo <code>@</code> antes del nombre que le dimos al elemento.</p>
-<section id="a-tablas" class="level4">
-<h4 class="anchored" data-anchor-id="a-tablas">a) Tablas</h4>
+<section id="a.-tablas" class="level2">
+<h2 class="anchored" data-anchor-id="a.-tablas">a. Tablas</h2>
 <p>Por ejemplo, si queremos referenciar a nuestra <code>tabla1</code>, en el chunk en donde la ejecutemos debemos indicar:</p>
 <pre><code>```{r}
 #| label: tbl-confianza
 
 tabla1
-````</code></pre>
+```</code></pre>
 <div class="cell" data-tbl-cap-location="top">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tabla1</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lapop)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tabla1</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lapop)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "year"        "pais"        "pais_name"   "idnum"       "upm"        
  [6] "strata"      "wt"          "weight1500"  "sexo"        "edad"       
@@ -2971,14 +3381,14 @@ Tabla&nbsp;1: Confianza interpersonal según país
 <p>En la <a href="#tbl-confianza" class="quarto-xref">Tabla&nbsp;1</a> se muestra la distribución porcentual del grado de confianza interpersonal por país.</p>
 </blockquote>
 </section>
-<section id="b-resultados" class="level4">
-<h4 class="anchored" data-anchor-id="b-resultados">b) Resultados</h4>
+<section id="b.-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="b.-resultados">b. Resultados</h2>
 <p>También podemos referenciar a resultados estadísticos que hayamos realizado con anterioridad en nuestro documento.</p>
 <p>Como ejemplo, obtengamos la correlación entre el índice de Gini de los países y su producto interno bruto (PIB) y lo guardamos en un objeto <code>M</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(lapop<span class="sc">$</span>gini, lapop<span class="sc">$</span>gdp)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(lapop<span class="sc">$</span>gini, lapop<span class="sc">$</span>gdp)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.1125219</code></pre>
 </div>
@@ -2987,9 +3397,22 @@ Tabla&nbsp;1: Confianza interpersonal según país
 <pre><code> `r `</code></pre>
 <p>Dentro de las comillas ’ ’ y después de la letra <em>r</em>, indicamos el nombre del objeto que contiene un resultado. En este caso, para referenciar el resultado indicamos:</p>
 <p><img src="../files/resul-m.png" class="img-fluid"></p>
-<p>Texto de ejemplo:</p>
+<p><strong>Texto de ejemplo:</strong></p>
+<blockquote class="blockquote">
+<p>El coeficiente de correlación de Pearson entre el índice de Gini y el producto interno bruto es negativo y pequeño = <code>'r M'</code>.</p>
+</blockquote>
+<p><strong>Texto de resultado:</strong></p>
 <blockquote class="blockquote">
 <p>El coeficiente de correlación de Pearson entre el índice de Gini y el producto interno bruto es negativo y pequeño = -0.1125219.</p>
+</blockquote>
+<p>Esta opción es especialmente útil cuando estamos escribiendo un análisis de resultados, ya que ante cualqueier contingencia con los datos, no es necesario cambiar los datos en el texto.</p>
+<p>Un uso más avanzado de esta opción es hacer condicional el texto en base al objeto guardado. Por ejemplo:</p>
+<blockquote class="blockquote">
+<p>El coeficiente de correlación de Pearson entre el índice de Gíni y el producto interno bruto es <code>'r if(M &gt; 0){"positivo"} else {"negativo"}'</code> y pequeño = <code>'r M'</code>.</p>
+</blockquote>
+<p>Y el resultado sería:</p>
+<blockquote class="blockquote">
+<p>El coeficiente de correlación de Pearson entre el índice de Gíni y el producto interno bruto es negativo y pequeño = -0.1125219.</p>
 </blockquote>
 </section>
 </section>
