@@ -12,7 +12,7 @@ editor_options:
 image: /news/images/poster.png
 ---
 
-![](/news/images/poster.png)
+![](/news/images/poster.png){fig-align="center"}
 
 
 La evaluación del trabajo final del curso contempla su presentación en formato de póster de investigación (10% de la nota final del curso). Abajo se presenta una guía para su elaboración, y también se pone a disposición una [plantilla en Canva como base para su diseño.](https://www.canva.com/design/DAGWkQh-d5w/22nyP3BgQHmkOT0d-uAyGA/edit?utm_content=DAGWkQh-d5w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
