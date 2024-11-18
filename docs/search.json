@@ -900,5 +900,41 @@
     "title": "Reporte Evaluación 2",
     "section": "Correlación entre evaluaciones",
     "text": "Correlación entre evaluaciones\n\ncor(prueba2$nota, prueba2$nota_p1, use = \"complete.obs\")\n\n[1] 0.4392045\n\nggplot(prueba2, aes(x = nota_p1, y = nota)) + \n  geom_jitter(width = 0.2, color = \"red\", size = 2) + \n  labs(title = \"Relación entre Evaluación 1 y Evaluación 2 (r=0.4.4)\") + \n  labs(x = \"Evaluación 1\", y = \"Evaluación 2\") + \n  theme(axis.title = element_text(size = 12),        # Tamaño de las etiquetas de los ejes\n        axis.text = element_text(size = 12)) +       # Tamaño del texto de los ejes\n  theme(aspect.ratio = 1/1.5) +\n  theme(plot.title = element_text(size = 12,         # Tamaño del título\n                                  face = \"bold\",     # Tipo de letra (negrita)\n                                  hjust = 0.5))"
+  },
+  {
+    "objectID": "assignment/07-practico.html",
+    "href": "assignment/07-practico.html",
+    "title": "Práctico 7: Gráficos bivariados en reportes dinámicos",
+    "section": "",
+    "text": "El objetivo de esta guía práctica es introducir a la visualización de datos con R en documentos dinámicos mediante Quarto, considerando las mejores prácticas para comunicar datos y análisis en ciencias sociales.\nEn detalle, aprenderemos:\n\nQué es la visualización de datos y cómo comunicarlos a una audiencia de manera eficiente, completa e insesgada.\nVisualizar datos bivariados con diferentes librerías, pero principalmente con ggplot2.\n\n\n\n\n\n\n\nNota\n\n\n\nSi quieres profundizar cómo generar gráficos univariados, visita este práctico de estadística descriptiva 2023.\n\n\n\n\nEn esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuestas realizadas en diferentes países por el Latin American Public Opinion Proyect (LAPOP) en su ola del 2018. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  LAPOP 2018. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos LAPOP 2018.\n\n\n\nPara recordar cómo generar un archivo en Quarto, visitar el práctico 6 del curso.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "7: Gráficos bivariados en reportes dinámicos"
+    ]
+  },
+  {
+    "objectID": "assignment/07-practico.html#recursos-de-la-práctica",
+    "href": "assignment/07-practico.html#recursos-de-la-práctica",
+    "title": "Práctico 7: Gráficos bivariados en reportes dinámicos",
+    "section": "",
+    "text": "En esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuestas realizadas en diferentes países por el Latin American Public Opinion Proyect (LAPOP) en su ola del 2018. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace:  LAPOP 2018. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos LAPOP 2018.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "7: Gráficos bivariados en reportes dinámicos"
+    ]
+  },
+  {
+    "objectID": "assignment/07-practico.html#crear-un-documento-quarto",
+    "href": "assignment/07-practico.html#crear-un-documento-quarto",
+    "title": "Práctico 7: Gráficos bivariados en reportes dinámicos",
+    "section": "",
+    "text": "Para recordar cómo generar un archivo en Quarto, visitar el práctico 6 del curso.",
+    "crumbs": [
+      "Prácticos",
+      "Guías",
+      "7: Gráficos bivariados en reportes dinámicos"
+    ]
   }
 ]
