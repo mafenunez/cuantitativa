@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -201,6 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#gráficos-dentro-de-quarto" id="toc-gráficos-dentro-de-quarto" class="nav-link" data-scroll-target="#gráficos-dentro-de-quarto">6. Gráficos dentro de Quarto</a></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
+  <li><a href="#más-ejemplos-de-visualización-de-datos" id="toc-más-ejemplos-de-visualización-de-datos" class="nav-link" data-scroll-target="#más-ejemplos-de-visualización-de-datos">Más ejemplos de visualización de datos</a></li>
   </ul>
 </nav>
     </div>
@@ -224,7 +245,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Qué es la visualización de datos y cómo comunicarlos a una audiencia de manera eficiente, completa e insesgada.</p></li>
 <li><p>Visualizar datos bivariados con diferentes librerías, pero principalmente con <code>ggplot2</code>.</p></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Si quieres profundizar cómo generar gráficos univariados, visita <a href="https://descriptiva-facso.netlify.app/assignment/06-practico">este práctico</a> de estadística descriptiva 2023.</p>
+</div>
+</div>
 <section id="recursos-de-la-práctica" class="level2">
 <h2 class="anchored" data-anchor-id="recursos-de-la-práctica">Recursos de la práctica</h2>
 <p>En esta práctica trabajaremos con un subconjunto de datos previamente procesados derivados de las encuestas realizadas en diferentes países por el <a href="https://www.vanderbilt.edu/lapop/">Latin American Public Opinion Proyect (LAPOP)</a> en su ola del 2018. Para este ejercicio, obtendremos directamente esta base desde internet. No obstante, también tienes la opción de acceder a la misma información a través del siguiente enlace: <a href="https://github.com/cursos-metodos-facso/datos-ejemplos/raw/main/lapop_proc_2018.RData"><i class="fa-solid fa-table" aria-label="table"></i> <code>LAPOP 2018</code></a>. Desde allí, podrás descargar el archivo que contiene el subconjunto procesado de la base de datos LAPOP 2018.</p>
@@ -252,6 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>En esta primera imagen vemos un muy mal (intencionado) uso de elementos visuales y escalas para intentar dar un mensaje que no se condice con los mismos datos que expone el gráfico.</p>
 <div class="cell" data-layout-align="right">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-right">
@@ -261,12 +295,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>En esta segunda imagen el principal error (entre varios) es que los valores del eje x (la abscisa) del gráfico se presentan de mayor a menor… y no de menor a mayor como es usual y comunmente leen las personas.</p>
 </section>
 <section id="algunos-principios-para-visualizar-datos" class="level3">
 <h3 class="anchored" data-anchor-id="algunos-principios-para-visualizar-datos">Algunos principios para visualizar datos</h3>
 <p>¿Y entonces <strong>cómo realizar una buena/correcta visualización de datos</strong>? Tengamos como premisa la siguiente cita:</p>
 <p><em>“La excelencia gráfica es la presentación bien diseñada de datos interesantes: una cuestión de sustancia, de estadística y de diseño… [Consiste] en ideas complejas comunicadas con claridad, precisión y eficacia. … [Es] lo que da al espectador el mayor número de ideas en el menor tiempo con la menor tinta en el menor espacio … [Es] casi siempre multivariante … Y la excelencia gráfica requiere decir la verdad sobre los datos”.</em></p>
-<p><em>Tufte &amp; Graves-Morris <span class="citation" data-cites="tufte1983visual">(<a href="#ref-tufte1983visual" role="doc-biblioref"><strong>tufte1983visual?</strong></a>)</span>, The Visual Display of Quantitative Information, p.&nbsp;51</em></p>
+<p><em>Tufte <span class="citation" data-cites="tufte_visual_2001">(<a href="#ref-tufte_visual_2001" role="doc-biblioref">2001</a>)</span>, The Visual Display of Quantitative Information, p.&nbsp;51</em></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -382,12 +417,12 @@ Value |             Label |    N | Raw % | Valid % | Cum. %
 </div>
 </div>
 </div>
-<p><code>Ggplot2</code> es un potente paquete para visualizar datos en R. <strong>Funciona por capas</strong>, comenzando desde lo más central o nuclear hasta llegar a los detalles más estéticos necesarios.</p>
+<p><code>Ggplot</code> es un potente paquete para visualizar datos en R. <strong>Funciona por capas</strong>, comenzando desde lo más central o nuclear hasta llegar a los detalles más estéticos necesarios.</p>
 <div class="cell" data-layout-align="right">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-right">
 <figure class="figure">
-<p><img src="https://descriptiva-facso.netlify.app/images/gg.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:60.0%"></p>
+<p><img src="https://descriptiva-facso.netlify.app/images/gg.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
@@ -400,7 +435,7 @@ Value |             Label |    N | Raw % | Valid % | Cum. %
 </section>
 <section id="visualización-bivariada-de-datos" class="level1">
 <h1>5. Visualización bivariada de datos</h1>
-<p>El primer paso (recomendado) para generar gráficos en R es crear un objeto o base de datos ya procesada que contenga las variables que nos interesa listas para gráficas. Luego, ir aplicando capa por capa los diferentes elementos de mapping, geometría, escalas, estadísticas y elementos estéticos útiles.</p>
+<p>El primer paso (recomendado) para generar gráficos en R es crear un objeto o base de datos ya procesada que contenga las variables que nos interesan listas para graficar. Luego, ir aplicando capa por capa los diferentes elementos de mapping, geometría, escalas, estadísticas y elementos estéticos útiles.</p>
 <section id="a-diferencias-de-medias-o-proporciones-entre-grupos" class="level3">
 <h3 class="anchored" data-anchor-id="a-diferencias-de-medias-o-proporciones-entre-grupos">a) Diferencias de medias (o proporciones) entre grupos</h3>
 <p>Evaluemos si, visualmente, se observan diferencias en la media de preferencia por la redistribución entre las personas que se definen como de izquierda, centro, derecha y no identificada.</p>
@@ -536,7 +571,7 @@ Value |             Label |    N | Raw % | Valid % | Cum. %
 </section>
 <section id="b-asociación-entre-continuas" class="level3">
 <h3 class="anchored" data-anchor-id="b-asociación-entre-continuas">b) Asociación entre continuas</h3>
-<p>Evaluemos cómo se asocia la preferencias por la redistribución de los países con su nivel de desigualdad económica.</p>
+<p>Evaluemos cómo se asocian la preferencias por la redistribución de los países con su nivel de desigualdad económica.</p>
 <section id="con-ggplot2-1" class="level4">
 <h4 class="anchored" data-anchor-id="con-ggplot2-1">Con <code>ggplot2</code></h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -1012,9 +1047,9 @@ Value |             Label |    N | Raw % | Valid % | Cum. %
 <p>Para especificar elementos de presentación de gráficos en un documento Quarto usaremos las opciones de <strong>chunks</strong>. Algunas de las más comunes son:</p>
 <ul>
 <li><code>label</code>: para especificar el nombre y tipo de elemento, cuando es una figura debemos nombrar al chunk con el prefijo <code>fig-</code> antes del nombre respectivo</li>
-<li><code>fig.align</code>: para espeficiar alineación del gráfico en el documento (left, right, center)</li>
-<li><code>out.width</code>: para especificar el tamaño del gráfico en el documento</li>
-<li><code>fig.cap</code>: para espeficiar el título del gráfico que se muestra en el documento</li>
+<li><code>fig-align</code>: para espeficiar alineación del gráfico en el documento (left, right, center)</li>
+<li><code>out-width</code>: para especificar el tamaño del gráfico en el documento</li>
+<li><code>fig-cap</code>: para espeficiar el título del gráfico que se muestra en el documento</li>
 </ul>
 <p>¿Cómo las referenciamos? para referenciar tablas o figuras debemos usar el prefijo @ antes del nombre que le dimos al elemento.</p>
 <p>Tomemos por ejemplo el siguiente gráfico que muestra el promedio de preferencias redistribuivas (<code>ros4</code>) y del índice de Gini de los países (<code>gini</code>). Esto lo haremos paso por paso.</p>
@@ -1091,11 +1126,26 @@ Figura&nbsp;1: Asociación entre Índice de Gini y Preferencias Redistributivas
 <li>Otras opciones de gráficos rapidas para distintos tipos de análisis</li>
 <li>Cómo autoreferenciar elementos dentro un documento Quarto</li>
 </ol>
+</section>
+<section id="más-ejemplos-de-visualización-de-datos" class="level1">
+<h1>Más ejemplos de visualización de datos</h1>
+<ul>
+<li><a href="https://socviz.co/">Data Visualization A practical introduction, Kieran Healy</a></li>
+<li><a href="https://datavizf24.classes.andrewheiss.com/">Data Visualization with R, Andrew Heiss</a></li>
+<li><a href="https://rkabacoff.github.io/datavis/">Modern Data Visualization with R, Robert Kabacoff</a></li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Sciencie, Hadley Wickham</a></li>
+<li><a href="https://r-graph-gallery.com/">R Graph Gallery</a></li>
+</ul>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-tufte_visual_2001" class="csl-entry" role="listitem">
+Tufte, E. R. (2001). <em>The <span>Visual Display</span> of <span>Quantitative Information</span></em>. Graphics Press.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

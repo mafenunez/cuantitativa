@@ -32,8 +32,9 @@ En detalle, aprenderemos:
 
 2. Visualizar datos bivariados con diferentes librerías, pero principalmente con `ggplot2`.
 
-
+:::::: {.callout-note}
 Si quieres profundizar cómo generar gráficos univariados, visita [este práctico](https://descriptiva-facso.netlify.app/assignment/06-practico) de estadística descriptiva 2023.
+::::::
 
 ## Recursos de la práctica
 
@@ -62,10 +63,15 @@ Es bastante común ver malas formas de comunicar datos; en los medios de comunic
 knitr::include_graphics(path = "https://descriptiva-facso.netlify.app/images/pinera.png", error = F)
 ```
 
+En esta primera imagen vemos un muy mal (intencionado) uso de elementos visuales y escalas para intentar dar un mensaje que no se condice con los mismos datos que expone el gráfico.
+
 
 ```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='right'}
 knitr::include_graphics(path = "https://descriptiva-facso.netlify.app/images/tercera.jpeg", error = FALSE)
 ```
+
+
+En esta segunda imagen el principal error (entre varios) es que los valores del eje x (la abscisa) del gráfico se presentan de mayor a menor... y no de menor a mayor como es usual y comunmente leen las personas. 
 
 ### Algunos principios para visualizar datos
 
@@ -73,7 +79,7 @@ knitr::include_graphics(path = "https://descriptiva-facso.netlify.app/images/ter
 
 _"La excelencia gráfica es la presentación bien diseñada de datos interesantes: una cuestión de sustancia, de estadística y de diseño... [Consiste] en ideas complejas comunicadas con claridad, precisión y eficacia. ... [Es] lo que da al espectador el mayor número de ideas en el menor tiempo con la menor tinta en el menor espacio ... [Es] casi siempre multivariante ... Y la excelencia gráfica requiere decir la verdad sobre los datos"._ 
 
-_Tufte & Graves-Morris [-@tufte1983visual], The Visual Display of Quantitative Information, p. 51_
+_Tufte [-@tufte_visual_2001], The Visual Display of Quantitative Information, p. 51_
 
 
 :::::: {.callout-note}
@@ -180,9 +186,9 @@ knitr::include_graphics(path = "../images/Download.gif", error = FALSE)
 ```
 
  
-`Ggplot2` es un potente paquete para visualizar datos en R. **Funciona por capas**, comenzando desde lo más central o nuclear hasta llegar a los detalles más estéticos necesarios.
+`Ggplot` es un potente paquete para visualizar datos en R. **Funciona por capas**, comenzando desde lo más central o nuclear hasta llegar a los detalles más estéticos necesarios.
 
-```{r echo=FALSE, warning=FALSE, out.width="60%", fig.align='right'}
+```{r echo=FALSE, warning=FALSE, out.width="80%", fig.align='right'}
 knitr::include_graphics(path = "https://descriptiva-facso.netlify.app/images/gg.png", error = FALSE)
 ```
 
@@ -195,7 +201,7 @@ knitr::include_graphics(path = "https://descriptiva-facso.netlify.app/images/gg.
 
 # 5. Visualización bivariada de datos
 
-El primer paso (recomendado) para generar gráficos en R es crear un objeto o base de datos ya procesada que contenga las variables que nos interesa listas para gráficas. Luego, ir aplicando capa por capa los diferentes elementos de mapping, geometría, escalas, estadísticas y elementos estéticos útiles. 
+El primer paso (recomendado) para generar gráficos en R es crear un objeto o base de datos ya procesada que contenga las variables que nos interesan listas para graficar. Luego, ir aplicando capa por capa los diferentes elementos de mapping, geometría, escalas, estadísticas y elementos estéticos útiles. 
 
 ### a) Diferencias de medias (o proporciones) entre grupos
 
@@ -308,7 +314,7 @@ ggplot(data = db_g1,
 
 ### b) Asociación entre continuas
 
-Evaluemos cómo se asocia la preferencias por la redistribución de los países con su nivel de desigualdad económica.
+Evaluemos cómo se asocian la preferencias por la redistribución de los países con su nivel de desigualdad económica.
 
 
 #### Con `ggplot2`
@@ -693,9 +699,9 @@ Una de las ventajas de usar documentos dinámicos con Quarto es que podemos auto
 Para especificar elementos de presentación de gráficos en un documento Quarto usaremos las opciones de **chunks**. Algunas de las más comunes son:
 
 - `label`: para especificar el nombre y tipo de elemento, cuando es una figura debemos nombrar al chunk con el prefijo `fig-` antes del nombre respectivo
-- `fig.align`: para espeficiar alineación del gráfico en el documento (left, right, center)
-- `out.width`: para especificar el tamaño del gráfico en el documento
-- `fig.cap`: para espeficiar el título del gráfico que se muestra en el documento
+- `fig-align`: para espeficiar alineación del gráfico en el documento (left, right, center)
+- `out-width`: para especificar el tamaño del gráfico en el documento
+- `fig-cap`: para espeficiar el título del gráfico que se muestra en el documento
 
 ¿Cómo las referenciamos? para referenciar tablas o figuras debemos usar el prefijo @ antes del nombre que le dimos al elemento.
 
@@ -774,3 +780,11 @@ Hoy aprendimos a visualizar y reportar gráficos bivariados en documentos dinám
 1.  Generación y presentación de gráficos en Quarto a través de `ggplot2`
 2.  Otras opciones de gráficos rapidas para distintos tipos de análisis
 3.  Cómo autoreferenciar elementos dentro un documento Quarto
+
+# Más ejemplos de visualización de datos
+
+- [Data Visualization A practical introduction, Kieran Healy](https://socviz.co/)
+- [Data Visualization with R, Andrew Heiss](https://datavizf24.classes.andrewheiss.com/)
+- [Modern Data Visualization with R, Robert Kabacoff](https://rkabacoff.github.io/datavis/)
+- [R for Data Sciencie, Hadley Wickham](https://r4ds.had.co.nz/data-visualisation.html)
+- [R Graph Gallery](https://r-graph-gallery.com/)
