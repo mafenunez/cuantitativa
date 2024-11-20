@@ -1,6 +1,5 @@
 ---
 title: "Informaciones varias final del curso"
-draft: true
 date: 11-20-2024
 categories: [info, mail-UCursos]
 lang: es
