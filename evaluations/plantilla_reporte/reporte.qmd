@@ -6,7 +6,6 @@ author:
   - Persona 1
   - Persona 2
   - Persona 3
-
 date: "2024-11-19"
 lang: es
 format: 
@@ -35,7 +34,7 @@ Esta sección debe estar respaldada por al menos 5 referencias bibliográficas.
 
 ## Datos
 
-Descripción detallada de los datos a utilizar
+Descripción detallada de los datos a utilizar. Acá también se puede insertar el chunk para llamar los datos que se van a analizar:
 
 ## Variables
 
