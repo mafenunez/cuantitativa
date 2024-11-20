@@ -21,7 +21,7 @@ En breve: se suspende. En extenso: luego de la sesión de asesorías grupales de
 
 ## Plantilla de trabajo
 
-Para facilitar la elaboración del trabajo en formato Quarto hemos puesto a disposición una plantilla (template) que facilita la escritura y organización del informe. La plantilla es una carpeta organizada en base al protocolo [IPO](https://lisa-coes.com/ipo-repro/), se puede descargar comprimida [aquí](). Al descomprimirla, ejecutar el archivo informe.Rproj, se abrirá RStudio en modo proyecto, por lo tanto la carpeta base para todas las operaciones es la carpeta plantilla-informe. El principal archivo es informe.qmd, abrirlo y renderizar con el botón `render`. Luego completar cada una de las secciones. 
+Para facilitar la elaboración del trabajo en formato Quarto hemos puesto a disposición una plantilla (template) que facilita la escritura y organización del informe. La plantilla es una carpeta organizada en base al protocolo [IPO](https://lisa-coes.com/ipo-repro/), se puede descargar comprimida [aquí](https://github.com/cursos-metodos-facso/correlacional/raw/refs/heads/main/evaluations/plantilla_informe.zip). Al descomprimirla, ejecutar el archivo informe.Rproj, se abrirá RStudio en modo proyecto, por lo tanto la carpeta base para todas las operaciones es la carpeta plantilla-informe. El principal archivo es informe.qmd, abrirlo y renderizar con el botón `render`. Luego completar cada una de las secciones. 
 
 ## Pruebas recuperativas
 
