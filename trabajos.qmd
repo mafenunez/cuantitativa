@@ -111,7 +111,7 @@ Formato APA 7
 
 # Formato
 
-El formato de entrega del trabajo será en html vía Rmarkdown, dado facilita la integración y reproducibilidad de los análisis en R. La plantilla para poder realizar el trabajo se presentará en los prácticos.
+El formato de entrega del trabajo será en html vía Rmarkdown/Quarto, dado que facilita la integración y reproducibilidad de los análisis en R. La plantilla para poder realizar el trabajo se presentará en los prácticos.
 
 # Entrega
 
