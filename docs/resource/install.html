@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Estadística Correlacional - Inferencia, asociación y reporte">
+<meta name="description" content="Estrategias de Investigación Cuantitativa">
 
-<title>R, librerías y versiones – Estadística Correlacional</title>
+<title>Estrategias de Investigación Cuantitativa - R, librerías y versiones</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="..//files/logo-correlacional-transp.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -105,10 +104,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="R, librerías y versiones – Estadística Correlacional">
+<meta property="og:title" content="Estrategias de Investigación Cuantitativa - R, librerías y versiones">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://correlacional.netlify.app/files/logo-correlacional.png">
-<meta property="og:site_name" content="Estadística Correlacional">
+<meta property="og:image" content="https://cuantitativa.netlify.app/files/logo-correlacional.png">
+<meta property="og:site_name" content="Estrategias de Investigación Cuantitativa">
 <meta property="og:locale" content="es">
 <meta property="og:image:height" content="533">
 <meta property="og:image:width" content="466">
@@ -122,11 +121,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Estadística Correlacional</span>
+    <span class="navbar-title">Estrategias de Investigación Cuantitativa</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -140,12 +139,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Planificación</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/index.html"> 
+    <a class="nav-link" href="../assignment/index.qmd"> 
 <span class="menu-text">Clases</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../assignment/index.html"> 
-<span class="menu-text">Prácticos</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../trabajos.html"> 
@@ -166,17 +161,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Guías</li><li class="breadcrumb-item"><a href="../resource/install.html">R, librerías y versiones</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -195,9 +190,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Guías</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -326,36 +321,32 @@ Nota
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">sessionInfo</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.3 (2024-02-29)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 24.04.1 LTS
+<pre><code>R version 4.3.1 (2023-06-16 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 11 x64 (build 26100)
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0
+
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+[1] LC_COLLATE=Spanish_Chile.utf8  LC_CTYPE=Spanish_Chile.utf8   
+[3] LC_MONETARY=Spanish_Chile.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=Spanish_Chile.utf8    
 
 time zone: America/Santiago
-tzcode source: system (glibc)
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] pacman_0.5.1 knitr_1.48  
+[1] pacman_0.5.1 knitr_1.44  
 
 loaded via a namespace (and not attached):
- [1] htmlwidgets_1.6.4 compiler_4.3.3    fastmap_1.2.0     cli_3.6.3        
- [5] tools_4.3.3       htmltools_0.5.8.1 yaml_2.3.10       rmarkdown_2.28   
- [9] jsonlite_1.8.9    xfun_0.48         digest_0.6.37     rlang_1.1.4      
-[13] evaluate_1.0.1   </code></pre>
+ [1] htmlwidgets_1.6.4 compiler_4.3.1    fastmap_1.1.1     cli_3.6.3        
+ [5] tools_4.3.1       htmltools_0.5.8.1 rstudioapi_0.15.0 yaml_2.3.7       
+ [9] rmarkdown_2.28    jsonlite_1.8.9    xfun_0.39         digest_0.6.31    
+[13] rlang_1.1.4       evaluate_0.21    </code></pre>
 </div>
 </div>
 <p>En este output de la consola vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) versión de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo “other attached packages”.</p>
@@ -438,49 +429,51 @@ loaded via a namespace (and not attached):
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">sessionInfo</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.3 (2024-02-29)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 24.04.1 LTS
+<pre><code>R version 4.3.1 (2023-06-16 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 11 x64 (build 26100)
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0
+
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+[1] LC_COLLATE=Spanish_Chile.utf8  LC_CTYPE=Spanish_Chile.utf8   
+[3] LC_MONETARY=Spanish_Chile.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=Spanish_Chile.utf8    
 
 time zone: America/Santiago
-tzcode source: system (glibc)
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] broom_1.0.7      corrplot_0.94    psych_2.4.6.26   kableExtra_1.4.0
- [5] sjmisc_2.8.10    sjPlot_2.8.16    car_3.1-3        carData_3.0-5   
- [9] lubridate_1.9.3  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     
+ [1] broom_1.0.5      corrplot_0.92    psych_2.3.9      kableExtra_1.3.4
+ [5] sjmisc_2.8.9     sjPlot_2.8.15    car_3.1-2        carData_3.0-5   
+ [9] lubridate_1.9.2  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     
 [13] purrr_1.0.2      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    
-[17] ggplot2_3.5.1    tidyverse_2.0.0  pacman_0.5.1     knitr_1.48      
+[17] ggplot2_3.5.1    tidyverse_2.0.0  pacman_0.5.1     knitr_1.44      
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.5       xfun_0.48          htmlwidgets_1.6.4  insight_0.20.5    
- [5] lattice_0.22-6     tzdb_0.4.0         vctrs_0.6.5        tools_4.3.3       
- [9] sjstats_0.19.0     generics_0.1.3     datawizard_0.13.0  parallel_4.3.3    
-[13] fansi_1.0.6        pkgconfig_2.0.3    ggeffects_1.7.2    lifecycle_1.0.4   
-[17] compiler_4.3.3     munsell_0.5.1      mnormt_2.1.1       htmltools_0.5.8.1 
-[21] yaml_2.3.10        Formula_1.2-5      pillar_1.9.0       abind_1.4-8       
-[25] nlme_3.1-166       tidyselect_1.2.1   sjlabelled_1.2.0   digest_0.6.37     
-[29] performance_0.12.3 stringi_1.8.4      fastmap_1.2.0      grid_4.3.3        
-[33] colorspace_2.1-1   cli_3.6.3          magrittr_2.0.3     utf8_1.2.4        
-[37] withr_3.0.1        backports_1.5.0    scales_1.3.0       timechange_0.3.0  
-[41] rmarkdown_2.28     hms_1.1.3          evaluate_1.0.1     viridisLite_0.4.2 
-[45] rlang_1.1.4        glue_1.8.0         xml2_1.3.6         svglite_2.1.3     
-[49] rstudioapi_0.16.0  jsonlite_1.8.9     R6_2.5.1           systemfonts_1.1.0 </code></pre>
+ [1] sjlabelled_1.2.0   tidyselect_1.2.1   viridisLite_0.4.2  farver_2.1.1      
+ [5] fastmap_1.1.1      TH.data_1.1-3      bayestestR_0.15.3  sjstats_0.18.2    
+ [9] digest_0.6.31      estimability_1.4.1 timechange_0.2.0   lifecycle_1.0.4   
+[13] survival_3.5-5     magrittr_2.0.3     compiler_4.3.1     rlang_1.1.4       
+[17] tools_4.3.1        utf8_1.2.4         yaml_2.3.7         htmlwidgets_1.6.4 
+[21] mnormt_2.1.1       xml2_1.3.6         RColorBrewer_1.1-3 multcomp_1.4-28   
+[25] abind_1.4-5        withr_3.0.2        grid_4.3.1         fansi_1.0.6       
+[29] xtable_1.8-4       emmeans_1.8.8      scales_1.4.0       MASS_7.3-60       
+[33] insight_1.2.0      cli_3.6.3          mvtnorm_1.2-2      rmarkdown_2.28    
+[37] generics_0.1.3     rstudioapi_0.15.0  performance_0.13.0 modelr_0.1.11     
+[41] httr_1.4.7         tzdb_0.4.0         minqa_1.2.8        splines_4.3.1     
+[45] parallel_4.3.1     rvest_1.0.4        vctrs_0.6.5        boot_1.3-28.1     
+[49] webshot_0.5.5      Matrix_1.5-4.1     sandwich_3.0-2     jsonlite_1.8.9    
+[53] hms_1.1.3          systemfonts_1.0.4  glue_1.8.0         nloptr_2.0.3      
+[57] codetools_0.2-19   stringi_1.8.4      gtable_0.3.3       ggeffects_1.3.1   
+[61] lme4_1.1-33        pillar_1.9.0       htmltools_0.5.8.1  R6_2.5.1          
+[65] evaluate_0.21      lattice_0.21-8     backports_1.4.1    Rcpp_1.0.10       
+[69] svglite_2.1.1      coda_0.19-4.1      nlme_3.1-162       xfun_0.39         
+[73] zoo_1.8-12         pkgconfig_2.0.3   </code></pre>
 </div>
 </div>
 </section>
@@ -559,7 +552,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -591,37 +595,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/correlacional\.netlify\.app");
+      var filterRegex = new RegExp("https:\/\/cuantitativa\.netlify\.app");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -948,13 +930,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 by <a href="https://www.jc-castillo.com">Juan Castillo</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2025 by María Fernanda Núñez <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/cursos-metodos-facso/correlacional">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
+<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/mafenunezz/cuantitativa">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
 </div>
   </div>
 </footer>

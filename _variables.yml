@@ -1,34 +1,34 @@
-author: Juan Carlos Castillo (Credits to Andrew Heiss)
+author: María Fernanda Núñez
 
 instructor:
-  name: Prof. Juan Carlos Castillo
-  name_no_title: Juan Castillo
-  email: "[juancastillov@uchile.cl](mailto:juancastillov@uchile.cl)"
-  url: "https://www.jc-castillo.com"
-  twitter:
-  github: juancarloscastillo
-  office: "325 Sociología FACSO, Universidad de Chile"
+  name: Prof. Julieta Palma
+ # name_no_title: Juan Castillo
+  email: "[jpalma@uchile.cl](mailto:jpalma@uchile.cl)"
+ # url: "https://www.jc-castillo.com"
+ # twitter:
+ # github: juancarloscastillo
+  office: "301 Sociología FACSO, Universidad de Chile"
   contact_policy: >-
     E-mail es la mejor manera de ponerse en contacto conmigo y con el equipo docente del curso.
-  appointment_url: https://calendly.com/juancastillov/horas-oficina
+  appointment_url:
 
 other:
-  email: "[andreas.laffert@ug.uchile.cl](mailto:andreas.laffert@ug.uchile.cl)"
-  appointment_url: https://calendly.com/andreas-laffert
+  email: "[maria.nunez.2@ug.uchile.cl](mailto:maria.nunez.2@ug.uchile.cl)"
+  appointment_url:
 
-other2:
-  email: "[martin.venegas@ug.uchile.cl](mailto:martin.venegas@ug.uchile.cl)"
+#other2:
+#  email: "[martin.venegas@ug.uchile.cl](mailto:martin.venegas@ug.uchile.cl)"
 
 course:
   number: "PMAP 8521"
-  semester: "Segundo 2024"
-  days: "Lunes y Martes"
-  time: "10:15-11:45 (Lunes) y 8:30-10:00  (Martes)"
-  location: "Lunes - Aulario C6, Martes - Aulario C7-C8 & FACSO 345"
-  dates: "12 Agosto al 29 de Noviembre, 2023"
-  github: "https://github.com/cursos-metodos-facso/correlacional"
-  url: "https://correlacional.netlify.app"
-  copyright_year: "2024"
+  semester: "Segundo 2025"
+  days: "Martes"
+  time: " 8:30-11:45"
+  location: "Aulario A9"
+  dates: "4 Agosto al 28 de Noviembre, 2025"
+  github: "https://github.com/mafenunezz/cuantitativa"
+  url: "https://cuantitativa.netlify.app"
+  copyright_year: "2025"
   slack: ""
 
 university:

@@ -1,1 +1,1 @@
-Sitemap: https://correlacional.netlify.app/sitemap.xml
+Sitemap: https://cuantitativa.netlify.app/sitemap.xml

@@ -1,8 +1,7 @@
 ---
-title: "Estadística Correlacional"
-subtitle: "Inferencia, asociación y reporte"
+title: "Estrategias de Investigación Cuantitativa"
 details: |
-  SOC01019 • Segundo Semestre 2024<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile
+  SOC01020 • Segundo Semestre 2025<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile
 sidebar: false
 toc: false
 page-layout: full
@@ -12,7 +11,7 @@ format:
       - html/home/title-block.html
 execute:
   freeze: auto   
-course-logo: /files/logo-correlacional.png
+#course-logo: /files/logo-correlacional.png
 listing:
   id: informaciones
   contents: "news/2024*.qmd"
@@ -30,18 +29,18 @@ withr::with_dir(here::here(), {
 })
 ```
 
-:::: {.columns}
 
-:::: {style="background-color: #E1F2F2"}
+
+:::: {style="background-color: #F2DFCD "}
 
 ### Equipo docente
 ::: {.column width="40%"}
 
 
-**Profesor**
+**Profesora**
 
 <div class="image-cropper">
-  <img src="https://ucampus.uchile.cl/d/r/usuario/ff/ffd4a9d15a5239c0a425a58a798889c8/perfil/bf49d6261628eb095bcaec76eda1e0d1.jpg" alt="avatar" class="profile-pic">
+  <img src="/images/julieta.png" alt="avatar" class="profile-pic">
 </div>
 
 
@@ -50,7 +49,7 @@ withr::with_dir(here::here(), {
 
 - {{< fa university >}} &nbsp; {{< var instructor.office >}}
 - {{< fa envelope >}} &nbsp; {{< var instructor.email >}}
-- {{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var instructor.appointment_url >}})
+
 
 :::
 
@@ -60,24 +59,16 @@ withr::with_dir(here::here(), {
 
 ::: {.column width="38%"}
 
-**Apoyos docentes**
+**Apoyo docente**
 
 <div class="image-cropper">
-  <img src="/slides/img/martin.png" alt="avatar" class="profile-pic">
+  <img src="https://ucampus.uchile.cl/d/r/usuario/59/595eac1ba1e7c71fbbea076608baba9c/perfil/496fa860bf25d94e31d726b0778e7ac0.jpg" alt="avatar" class="profile-pic">
 </div>
 
-*Martín Venegas*
-
-- {{< fa envelope >}} &nbsp; {{< var other2.email >}}
-
-<div class="image-cropper">
-  <img src="https://ucampus.uchile.cl/d/r/usuario/5b/5b662afdc07fea74ce535d3c5e29712e/perfil/f812fd6a269ed14b58c1e61866f47274.jpg" alt="avatar" class="profile-pic">
-</div>
-
-
-*Andreas Laffert T.*
+*María Fernanda Núñez*
 
 - {{< fa envelope >}} &nbsp; {{< var other.email >}}
+
 
 :::
 
@@ -87,23 +78,17 @@ withr::with_dir(here::here(), {
 
 ::: {.column width="32%"}
 
-- Victoria Arias
-- Jesús Díaz
-- Javiera González
-- Antonia Jiménez
+- 
+- 
+- 
+- 
 :::
 
 ::: {.column width="32%"}
-- Sophia Karoussis
-- Cristóbal Mejías
-- María Fernanda Núñez
-- Luis Ríos
-:::
-
-::: {.column width="32%"}
-- Fernanda Zúñiga
-- Ismael Aguayo
-- Franco Acevedo
+- 
+- 
+-
+- 
 :::
 
 ::::
@@ -114,9 +99,8 @@ withr::with_dir(here::here(), {
 ::: {.column width="40%"}
 ### Sesiones
 
-- {{< fa university >}} &nbsp; **Lunes 10:15-11:45** - Aulario C/6
 
-- {{< fa university >}} &nbsp; **Martes 8:30-10:00** Aulario C7/C8 & FACSO 345
+- {{< fa university >}} &nbsp; **Martes 8:30-11:45** Aulario A9
 :::
 
 ::: {.column width="10%"}
@@ -139,10 +123,5 @@ Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/con
 :::
 
 -> ir a la [página de Informaciones](/news/index.qmd) del sitio.
-
-
-## Versiones previas del curso:
-
-- [2023](https://2023--correlacional.netlify.app/)
 
 
