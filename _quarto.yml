@@ -48,8 +48,8 @@ website:
         file: news/index.qmd
       - schedule.qmd
       - text: "Clases"
-     #   file: content/index.qmd
-      #- text: "Prácticos"
+        file: content/index.qmd
+      - text: "Prácticos"
         file: assignment/index.qmd
       - text: "Trabajos"
         file: trabajos.qmd
@@ -99,15 +99,19 @@ website:
              # file: content/13-content.qmd
        # - text: "Foro Clases"
         #  file: content/foro-clases.qmd
-   # - title: "Prácticos"
-    #  contents:
-     #   - text: "Descripción"
-      #    file: assignment/index.qmd
-       # - section: "Guías"
-        #  contents:
-          #  - text: "1: Curva Normal e Intervalos de Confianza"
-          #    file: assignment/01-practico.qmd
-          #  - text: "2: Test de hipótesis"
+    - title: "Prácticos"
+      contents:
+        - text: "Descripción"
+          file: assignment/index.qmd
+        - section: "Talleres de clases"
+          contents:
+            - text: "1: Operacionalización"
+             # file: assignment/01-practico.qmd
+        - section: "Talleres de R"
+          contents:
+            - text: "1: Índices y Escalas"
+              #file: assignment/01-practico.qmd
+            - text: "2: Análisis cuestionario"
           #    file: assignment/02-practico.qmd
           #  - text: "3: Correlación de Pearson"
            #   file: assignment/03-practico.qmd
@@ -135,16 +139,16 @@ website:
       contents:
         - text: "Descripción"
           file: resource/index.qmd
-        - section: "Guías"
+        - section: "Guías de apoyo"
           contents:
-            - text: "1: Versiones de R y librerías"
-            - file: resource/install.qmd
-            - text: "2: Videos tutoriales"
+            #- text: "1: Versiones de R y librerías"
+            #- file: resource/install.qmd
+           # - text: "2: Videos tutoriales"
           # - file: resource/videos.qmd
-            - text: "3: Glosario de conceptos"
-            - file: resource/glosario.qmd
-            - text: "4: Varios"
-            - file: resource/varios.qmd
+           # - text: "3: Glosario de conceptos"
+          #  - file: resource/glosario.qmd
+           # - text: "4: Varios"
+            #- file: resource/varios.qmd
   page-footer:
     left: |
       Content {{< fa brands creative-commons >}} {{< var course.copyright_year >}} by María Fernanda Núñez <br>

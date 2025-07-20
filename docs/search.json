@@ -4,28 +4,14 @@
     "href": "trabajos.html",
     "title": "Trabajos",
     "section": "",
-    "text": "El curso de Estadística Correlacional considera la elaboración de un trabajo grupal como instancia final de evaluación. El trabajo a realizar es la elaboración de un reporte de análisis bivariado.\nLa nota de este trabajo equivale a un 30% de la nota final del curso, donde 20% equivale al reporte escrito y 10% a la presentación (en formato póster)."
-  },
-  {
-    "objectID": "trabajos.html#organización-de-actividades",
-    "href": "trabajos.html#organización-de-actividades",
-    "title": "Trabajos",
-    "section": "9.1 Organización de actividades",
-    "text": "9.1 Organización de actividades\nHay 4 semanas para realizar el trabajo. Durante este tiempo los horarios de clases estarán destinados a contenidos asociados a la realización de los reportes, así como también a asesorar a los grupos. Se sugiere organizar las actividades de la siguiente manera:\n\nSemana 1: definición de grupos, temas y base de datos\nSemana 2: análisis descriptivos univariados, chequeo de nivel de medición de variables, varianza y casos perdidos\nSemana 3: escritura de introducción y análisis bivariados. Diseño de póster.\nSemana 4: conclusiones y redacción final, presentación de póster y entrega de reporte."
+    "text": "El curso de Estadística Correlacional considera la elaboración de un trabajo grupal como instancia final de evaluación."
   },
   {
     "objectID": "trabajos.html#escritura-académica",
     "href": "trabajos.html#escritura-académica",
     "title": "Trabajos",
-    "section": "9.2 Escritura académica",
-    "text": "9.2 Escritura académica\n\nUna idea por párrafo\nUso de “oración principal” (topic sentence): usualmente es la oración al principio del párrafo, que resume el sentido del párrafo completo y que conecta con el párrafo anterior.\nRecursos de apoyo a la escritura académica de la Universidad de Chile"
-  },
-  {
-    "objectID": "trabajos.html#a-tener-en-cuenta",
-    "href": "trabajos.html#a-tener-en-cuenta",
-    "title": "Trabajos",
-    "section": "9.3 A tener en cuenta:",
-    "text": "9.3 A tener en cuenta:\n\nlos conceptos centrales deben estar en las hipótesis y también luego operacionalizarse en variables. No presentar variables que no se relacionen con los conceptos centrales de la sección inicial\nsi hay muchos casos perdidos (mas de un tercio de datos originales), explicar claramente a qué se debe esta pérdida. Existe la posibilidad de recuperar casos perdidos de predictores categóricos (o recodificados a categóricos) agregando una categoría adicional de perdidos. Esto se explica en la guía de índices y transformación de variables.\ninterpretación de hipótesis e inferencia: las hipótesis nunca se comprueban o se descartan, solo se puede hablar de que existe o no existe evidencia a favor de la hipótesis planteada. Recordar que la ausencia de evidencia no es evidencia de ausencia.\nevitar términos técnicos estadísticos (ej: correlación) antes de la sección de metodología\nmantener coherencia entre conceptos, hipótesis, descripción de variables, análisis, discusión, ojalá siempre en el mismo orden."
+    "section": "1.1 Escritura académica",
+    "text": "1.1 Escritura académica\n\nUna idea por párrafo\nUso de “oración principal” (topic sentence): usualmente es la oración al principio del párrafo, que resume el sentido del párrafo completo y que conecta con el párrafo anterior.\nRecursos de apoyo a la escritura académica de la Universidad de Chile"
   },
   {
     "objectID": "schedule.html",
@@ -53,96 +39,56 @@
     "href": "resource/install.html",
     "title": "R, librerías y versiones",
     "section": "",
-    "text": "Trabajar con el software de programación R y el entorno de desarrollo integrado (IDE) RStudio requiere, la mayor parte del tiempo, estar al tanto de actualizaciones tanto de R como de las librerías que utilizamos para el procesamiento y análisis de datos.\nR y sus librerías tienen distintas versiones. No estar al tanto de esto puede generar problemas cuando, por ejemplo, queremos correr algún código que encontramos en internet, no podemos ejecutar el código de un colega o cuando queremos utilizar librerías o herramientas nuevas que nos ofrece la comunidad de R.\nPor tanto, cuando estemos desarrollando una evaluación práctica en RStudio es de suma importancia contar con una versión actualizada de R y de las librerías necesarias que se utilizan en las sesiones prácticas del curso.\nEn esta guía de recursos te dejaremos algunas buenas prácticas para conocer:\n\nCon qué versión de R y librerías estoy trabajando\nCómo reportar las versiones que utilizo a otras personas\nActualizar mi versión de R y librerías necesarias para este curso",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "R, librerías y versiones"
-    ]
+    "text": "Trabajar con el software de programación R y el entorno de desarrollo integrado (IDE) RStudio requiere, la mayor parte del tiempo, estar al tanto de actualizaciones tanto de R como de las librerías que utilizamos para el procesamiento y análisis de datos.\nR y sus librerías tienen distintas versiones. No estar al tanto de esto puede generar problemas cuando, por ejemplo, queremos correr algún código que encontramos en internet, no podemos ejecutar el código de un colega o cuando queremos utilizar librerías o herramientas nuevas que nos ofrece la comunidad de R.\nPor tanto, cuando estemos desarrollando una evaluación práctica en RStudio es de suma importancia contar con una versión actualizada de R y de las librerías necesarias que se utilizan en las sesiones prácticas del curso.\nEn esta guía de recursos te dejaremos algunas buenas prácticas para conocer:\n\nCon qué versión de R y librerías estoy trabajando\nCómo reportar las versiones que utilizo a otras personas\nActualizar mi versión de R y librerías necesarias para este curso"
   },
   {
     "objectID": "resource/install.html#actualizar-r",
     "href": "resource/install.html#actualizar-r",
     "title": "R, librerías y versiones",
     "section": "Actualizar R",
-    "text": "Actualizar R\nEl método más eficiente es descargar una nueva versión de R desde sitio web de R &gt; CRAN.\n\n\n\n\n\n\n\n\n\nEl CRAN que utilizamos es el de la Universidad de Chile. Debes descargar e instalar la versión de R correspondiente a tu sistema operativo. Luego, reinicia tu RStudio. La nueva versión de R se cargará automáticamente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa nueva versión de R aparece justo después de instalar R y reiniciar RStudio.",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "R, librerías y versiones"
-    ]
+    "text": "Actualizar R\nEl método más eficiente es descargar una nueva versión de R desde sitio web de R &gt; CRAN.\n\n\n\n\n\n\n\n\n\nEl CRAN que utilizamos es el de la Universidad de Chile. Debes descargar e instalar la versión de R correspondiente a tu sistema operativo. Luego, reinicia tu RStudio. La nueva versión de R se cargará automáticamente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa nueva versión de R aparece justo después de instalar R y reiniciar RStudio."
   },
   {
     "objectID": "resource/install.html#actualizar-librerías",
     "href": "resource/install.html#actualizar-librerías",
     "title": "R, librerías y versiones",
     "section": "Actualizar librerías",
-    "text": "Actualizar librerías\nLuego de realizar el paso anterior, para installar y llamar a las librerías que utilizamos en el curso usaremos la función p_load() del paquete pacman. Lo genial de esta función es que instala y llama librerías en un solo movimiento, es decir:\n\nsi incluyo una librería que no tengo instalada previamante, p_load() la instala y llama\nsi incluyo una librería que ya tengo instala previamente, p_load() la reconoce y sólo la llama\n\nEn este curso hemos utilizado diversas librerías y las fundamentales para la evaluación 2 son:\n\ntidyverse\nsjPlot\nsjmisc\nkableExtra\npsych\ncorrplot\nbroom\ncar\n\nAlgunos otros paquetes adicionales muy útiles son:\n\ngginference\nggplot2\nhaven\n\nVeamos cómo instalar estas librerías claves para la evaluación 2 y desarrollo del curso.\n\npacman::p_load(tidyverse, # Manipulacion de datos\n               car, # Recodificar\n               sjPlot, # Tablas y graficos\n               sjmisc, # Descriptivos\n               kableExtra, # Tablas\n               psych, # Bivariados\n               corrplot, # Graficos correlacioj\n               broom) # Varios\n\nComprobemos si se instalaron las librerías y qué versiones con sessionInfo()\n\nutils::sessionInfo()\n\nR version 4.3.1 (2023-06-16 ucrt)\nPlatform: x86_64-w64-mingw32/x64 (64-bit)\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=Spanish_Chile.utf8  LC_CTYPE=Spanish_Chile.utf8   \n[3] LC_MONETARY=Spanish_Chile.utf8 LC_NUMERIC=C                  \n[5] LC_TIME=Spanish_Chile.utf8    \n\ntime zone: America/Santiago\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] broom_1.0.5      corrplot_0.92    psych_2.3.9      kableExtra_1.3.4\n [5] sjmisc_2.8.9     sjPlot_2.8.15    car_3.1-2        carData_3.0-5   \n [9] lubridate_1.9.2  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     \n[13] purrr_1.0.2      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    \n[17] ggplot2_3.5.1    tidyverse_2.0.0  pacman_0.5.1     knitr_1.44      \n\nloaded via a namespace (and not attached):\n [1] sjlabelled_1.2.0   tidyselect_1.2.1   viridisLite_0.4.2  farver_2.1.1      \n [5] fastmap_1.1.1      TH.data_1.1-3      bayestestR_0.15.3  sjstats_0.18.2    \n [9] digest_0.6.31      estimability_1.4.1 timechange_0.2.0   lifecycle_1.0.4   \n[13] survival_3.5-5     magrittr_2.0.3     compiler_4.3.1     rlang_1.1.4       \n[17] tools_4.3.1        utf8_1.2.4         yaml_2.3.7         htmlwidgets_1.6.4 \n[21] mnormt_2.1.1       xml2_1.3.6         RColorBrewer_1.1-3 multcomp_1.4-28   \n[25] abind_1.4-5        withr_3.0.2        grid_4.3.1         fansi_1.0.6       \n[29] xtable_1.8-4       emmeans_1.8.8      scales_1.4.0       MASS_7.3-60       \n[33] insight_1.2.0      cli_3.6.3          mvtnorm_1.2-2      rmarkdown_2.28    \n[37] generics_0.1.3     rstudioapi_0.15.0  performance_0.13.0 modelr_0.1.11     \n[41] httr_1.4.7         tzdb_0.4.0         minqa_1.2.8        splines_4.3.1     \n[45] parallel_4.3.1     rvest_1.0.4        vctrs_0.6.5        boot_1.3-28.1     \n[49] webshot_0.5.5      Matrix_1.5-4.1     sandwich_3.0-2     jsonlite_1.8.9    \n[53] hms_1.1.3          systemfonts_1.0.4  glue_1.8.0         nloptr_2.0.3      \n[57] codetools_0.2-19   stringi_1.8.4      gtable_0.3.3       ggeffects_1.3.1   \n[61] lme4_1.1-33        pillar_1.9.0       htmltools_0.5.8.1  R6_2.5.1          \n[65] evaluate_0.21      lattice_0.21-8     backports_1.4.1    Rcpp_1.0.10       \n[69] svglite_2.1.1      coda_0.19-4.1      nlme_3.1-162       xfun_0.39         \n[73] zoo_1.8-12         pkgconfig_2.0.3",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "R, librerías y versiones"
-    ]
+    "text": "Actualizar librerías\nLuego de realizar el paso anterior, para installar y llamar a las librerías que utilizamos en el curso usaremos la función p_load() del paquete pacman. Lo genial de esta función es que instala y llama librerías en un solo movimiento, es decir:\n\nsi incluyo una librería que no tengo instalada previamante, p_load() la instala y llama\nsi incluyo una librería que ya tengo instala previamente, p_load() la reconoce y sólo la llama\n\nEn este curso hemos utilizado diversas librerías y las fundamentales para la evaluación 2 son:\n\ntidyverse\nsjPlot\nsjmisc\nkableExtra\npsych\ncorrplot\nbroom\ncar\n\nAlgunos otros paquetes adicionales muy útiles son:\n\ngginference\nggplot2\nhaven\n\nVeamos cómo instalar estas librerías claves para la evaluación 2 y desarrollo del curso.\n\npacman::p_load(tidyverse, # Manipulacion de datos\n               car, # Recodificar\n               sjPlot, # Tablas y graficos\n               sjmisc, # Descriptivos\n               kableExtra, # Tablas\n               psych, # Bivariados\n               corrplot, # Graficos correlacioj\n               broom) # Varios\n\nComprobemos si se instalaron las librerías y qué versiones con sessionInfo()\n\nutils::sessionInfo()\n\nR version 4.3.1 (2023-06-16 ucrt)\nPlatform: x86_64-w64-mingw32/x64 (64-bit)\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=Spanish_Chile.utf8  LC_CTYPE=Spanish_Chile.utf8   \n[3] LC_MONETARY=Spanish_Chile.utf8 LC_NUMERIC=C                  \n[5] LC_TIME=Spanish_Chile.utf8    \n\ntime zone: America/Santiago\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] broom_1.0.5      corrplot_0.92    psych_2.3.9      kableExtra_1.3.4\n [5] sjmisc_2.8.9     sjPlot_2.8.15    car_3.1-2        carData_3.0-5   \n [9] lubridate_1.9.2  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     \n[13] purrr_1.0.2      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    \n[17] ggplot2_3.5.1    tidyverse_2.0.0  pacman_0.5.1     knitr_1.44      \n\nloaded via a namespace (and not attached):\n [1] sjlabelled_1.2.0   tidyselect_1.2.1   viridisLite_0.4.2  farver_2.1.1      \n [5] fastmap_1.1.1      TH.data_1.1-3      bayestestR_0.15.3  sjstats_0.18.2    \n [9] digest_0.6.31      estimability_1.4.1 timechange_0.2.0   lifecycle_1.0.4   \n[13] survival_3.5-5     magrittr_2.0.3     compiler_4.3.1     rlang_1.1.4       \n[17] tools_4.3.1        utf8_1.2.4         yaml_2.3.7         htmlwidgets_1.6.4 \n[21] mnormt_2.1.1       xml2_1.3.6         RColorBrewer_1.1-3 multcomp_1.4-28   \n[25] abind_1.4-5        withr_3.0.2        grid_4.3.1         fansi_1.0.6       \n[29] xtable_1.8-4       emmeans_1.8.8      scales_1.4.0       MASS_7.3-60       \n[33] insight_1.2.0      cli_3.6.3          mvtnorm_1.2-2      rmarkdown_2.28    \n[37] generics_0.1.3     rstudioapi_0.15.0  performance_0.13.0 modelr_0.1.11     \n[41] httr_1.4.7         tzdb_0.4.0         minqa_1.2.8        splines_4.3.1     \n[45] parallel_4.3.1     rvest_1.0.4        vctrs_0.6.5        boot_1.3-28.1     \n[49] webshot_0.5.5      Matrix_1.5-4.1     sandwich_3.0-2     jsonlite_1.8.9    \n[53] hms_1.1.3          systemfonts_1.0.4  glue_1.8.0         nloptr_2.0.3      \n[57] codetools_0.2-19   stringi_1.8.4      gtable_0.3.3       ggeffects_1.3.1   \n[61] lme4_1.1-33        pillar_1.9.0       htmltools_0.5.8.1  R6_2.5.1          \n[65] evaluate_0.21      lattice_0.21-8     backports_1.4.1    Rcpp_1.0.10       \n[69] svglite_2.1.1      coda_0.19-4.1      nlme_3.1-162       xfun_0.39         \n[73] zoo_1.8-12         pkgconfig_2.0.3"
   },
   {
     "objectID": "resource/install.html#opción-vía-rstudio",
     "href": "resource/install.html#opción-vía-rstudio",
     "title": "R, librerías y versiones",
     "section": "Opción vía Rstudio",
-    "text": "Opción vía Rstudio\nSi queremos actualizar una librería en R, lo que podemos hacer es dirigirnos al panel inferior derecho y dar click en la pestaña de “Packages”. Allí, les aparecerá un listado de las librerías que tienen en su computador, una descripción y su versión.\n\n\n\n\n\n\n\n\n\nPara actualizar una librería, podemos seleccionarla y darle click al botón de “Update” y luego “Install Update” a la librería correspondiente. Veamos un ejemplo",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "R, librerías y versiones"
-    ]
+    "text": "Opción vía Rstudio\nSi queremos actualizar una librería en R, lo que podemos hacer es dirigirnos al panel inferior derecho y dar click en la pestaña de “Packages”. Allí, les aparecerá un listado de las librerías que tienen en su computador, una descripción y su versión.\n\n\n\n\n\n\n\n\n\nPara actualizar una librería, podemos seleccionarla y darle click al botón de “Update” y luego “Install Update” a la librería correspondiente. Veamos un ejemplo"
   },
   {
     "objectID": "resource/install.html#opción-vía-código",
     "href": "resource/install.html#opción-vía-código",
     "title": "R, librerías y versiones",
     "section": "Opción vía código",
-    "text": "Opción vía código\nBien, pero ¿hay otra alternativa? Sí, como todo en R. Una forma sencilla de actualizar una librería o varias es con la función install.packages pero identificando argumentos adicionales. La estructura del código es así: install.packages(\"package_name\", dependencies = TRUE, update = TRUE). Supongamos que queremos actualizar a la versión más de nueva de corrplot:\n\ninstall.packages(\"corrplot\", dependencies = TRUE, update = TRUE)\n\nCon esto, actualizamos manualmente vía código una librería. Para verificarlo podemos, nuevamente, usar sessionInfo() o de las otras maneras que hemos aprendido.",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "R, librerías y versiones"
-    ]
+    "text": "Opción vía código\nBien, pero ¿hay otra alternativa? Sí, como todo en R. Una forma sencilla de actualizar una librería o varias es con la función install.packages pero identificando argumentos adicionales. La estructura del código es así: install.packages(\"package_name\", dependencies = TRUE, update = TRUE). Supongamos que queremos actualizar a la versión más de nueva de corrplot:\n\ninstall.packages(\"corrplot\", dependencies = TRUE, update = TRUE)\n\nCon esto, actualizamos manualmente vía código una librería. Para verificarlo podemos, nuevamente, usar sessionInfo() o de las otras maneras que hemos aprendido."
   },
   {
     "objectID": "resource/install.html#recursos-adicionales",
     "href": "resource/install.html#recursos-adicionales",
     "title": "R, librerías y versiones",
     "section": "Recursos adicionales",
-    "text": "Recursos adicionales\nPara más informaciones, sobre R y Rstudio, revisar link de práctico de estadística descriptiva –&gt; link",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "R, librerías y versiones"
-    ]
+    "text": "Recursos adicionales\nPara más informaciones, sobre R y Rstudio, revisar link de práctico de estadística descriptiva –&gt; link"
   },
   {
     "objectID": "resource/glosario.html",
     "href": "resource/glosario.html",
     "title": "Glosario de conceptos",
     "section": "",
-    "text": "Concepto\nDefinición\n\n\n\n\nEstadística \nConjunto de métodos y herramientas que involucra la recopilación, análisis, interpretación y presentación de datos numéricos con el objetivo de describir patrones, relaciones y tendencias en fenómenos naturales o sociales.\n\n\nReproducibilidad \nLa capacidad de regenerar un experimento, análisis o estudio utilizando los mismos datos y métodos para llegar a los mismos resultados originales, verificando y asegurando la validez de los hallazgos.\n\n\nCiencia Social Abierta \nUn enfoque en la investigación social que promueve la transparencia, el acceso abierto a datos, métodos y resultados, y la colaboración entre investigadores para mejorar la calidad y confiabilidad de la investigación.\n\n\nProtocolo IPO (Input-Process-Output) \nSistema digital de carpetas interconectadas: entrada, proceso y salida. Se utiliza para organizar, procesar y documentar los datos y código de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.\n\n\nR project \nCarpeta raíz organizada donde trabajas en un proyecto concreto en el lenguaje de programación R, permitiéndote gestionar archivos, paquetes y configuraciones de manera específica para ese proyecto.\n\n\nTexto plano \nTipo de texto sin formato especial que se puede leer independiente del lector que se utilice.\n\n\nMarkdown \nClase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Se utiliza comúnmente para escribir documentos simples con formato, como páginas web, documentación y presentaciones.\n\n\nDocumentos dinámicos \nArchivos que combinan texto plano y código de análisis (gráficos, tablas y resultados), de manera simultánea en un solo documento, permitiendo la generación automática y reproducible de resultados actualizados a medida que cambian los datos o parámetros.\n\n\nRMarkdown \nUna extensión de Markdown en el entorno R que permite la integración simultánea de texto plano y código R y su ejecución en el documento, lo que facilita la creación de documentos dinámicos con análisis estadísticos y visualizaciones.\n\n\nLibrerías \nConjuntos de funciones y herramientas predefinidas que se pueden utilizar en lenguajes de programación, como R, para realizar tareas específicas sin tener que escribir todo el código desde cero.\n\n\nKnitear \nProceso de compilación secuencial de código y resultados de ejecución en un documento RMarkdown, generando un documento final con texto formateado, código y gráficos integrados.\n\n\nRenderizar \nEn el contexto de RMarkdown se refiere al proceso de convertir el código y contenido en un documento legible y presentable. En otras palabras, cuando renderizas un documento RMarkdown, estás transformando el código, texto y elementos visuales en un formato final, como un informe, una presentación o un documento HTML, que pueda ser compartido o presentado a otros de manera comprensible.\n\n\nYAML \nAcrónimo de “YAML Ain’t Markup Language”, es un formato de serialización de datos legible por humanos que se utiliza para configurar y definir la estructura de datos en muchos programas y aplicaciones. En RMarkdown corresponden al encabezado de instrucciones generales del documento.\n\n\nChunk \nUn bloque de código, que puede ser en R, en un documento RMarkdown, rodeado por marcas especiales que indican al sistema cómo manejar y ejecutar ese fragmento de código, y luego mostrar sus resultados en el documento final.",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Glosario de conceptos"
-    ]
+    "text": "Concepto\nDefinición\n\n\n\n\nEstadística \nConjunto de métodos y herramientas que involucra la recopilación, análisis, interpretación y presentación de datos numéricos con el objetivo de describir patrones, relaciones y tendencias en fenómenos naturales o sociales.\n\n\nReproducibilidad \nLa capacidad de regenerar un experimento, análisis o estudio utilizando los mismos datos y métodos para llegar a los mismos resultados originales, verificando y asegurando la validez de los hallazgos.\n\n\nCiencia Social Abierta \nUn enfoque en la investigación social que promueve la transparencia, el acceso abierto a datos, métodos y resultados, y la colaboración entre investigadores para mejorar la calidad y confiabilidad de la investigación.\n\n\nProtocolo IPO (Input-Process-Output) \nSistema digital de carpetas interconectadas: entrada, proceso y salida. Se utiliza para organizar, procesar y documentar los datos y código de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.\n\n\nR project \nCarpeta raíz organizada donde trabajas en un proyecto concreto en el lenguaje de programación R, permitiéndote gestionar archivos, paquetes y configuraciones de manera específica para ese proyecto.\n\n\nTexto plano \nTipo de texto sin formato especial que se puede leer independiente del lector que se utilice.\n\n\nMarkdown \nClase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Se utiliza comúnmente para escribir documentos simples con formato, como páginas web, documentación y presentaciones.\n\n\nDocumentos dinámicos \nArchivos que combinan texto plano y código de análisis (gráficos, tablas y resultados), de manera simultánea en un solo documento, permitiendo la generación automática y reproducible de resultados actualizados a medida que cambian los datos o parámetros.\n\n\nRMarkdown \nUna extensión de Markdown en el entorno R que permite la integración simultánea de texto plano y código R y su ejecución en el documento, lo que facilita la creación de documentos dinámicos con análisis estadísticos y visualizaciones.\n\n\nLibrerías \nConjuntos de funciones y herramientas predefinidas que se pueden utilizar en lenguajes de programación, como R, para realizar tareas específicas sin tener que escribir todo el código desde cero.\n\n\nKnitear \nProceso de compilación secuencial de código y resultados de ejecución en un documento RMarkdown, generando un documento final con texto formateado, código y gráficos integrados.\n\n\nRenderizar \nEn el contexto de RMarkdown se refiere al proceso de convertir el código y contenido en un documento legible y presentable. En otras palabras, cuando renderizas un documento RMarkdown, estás transformando el código, texto y elementos visuales en un formato final, como un informe, una presentación o un documento HTML, que pueda ser compartido o presentado a otros de manera comprensible.\n\n\nYAML \nAcrónimo de “YAML Ain’t Markup Language”, es un formato de serialización de datos legible por humanos que se utiliza para configurar y definir la estructura de datos en muchos programas y aplicaciones. En RMarkdown corresponden al encabezado de instrucciones generales del documento.\n\n\nChunk \nUn bloque de código, que puede ser en R, en un documento RMarkdown, rodeado por marcas especiales que indican al sistema cómo manejar y ejecutar ese fragmento de código, y luego mostrar sus resultados en el documento final."
   },
   {
     "objectID": "resource/glosario.html#glosario-de-conceptos",
     "href": "resource/glosario.html#glosario-de-conceptos",
     "title": "Glosario de conceptos",
     "section": "",
-    "text": "Concepto\nDefinición\n\n\n\n\nEstadística \nConjunto de métodos y herramientas que involucra la recopilación, análisis, interpretación y presentación de datos numéricos con el objetivo de describir patrones, relaciones y tendencias en fenómenos naturales o sociales.\n\n\nReproducibilidad \nLa capacidad de regenerar un experimento, análisis o estudio utilizando los mismos datos y métodos para llegar a los mismos resultados originales, verificando y asegurando la validez de los hallazgos.\n\n\nCiencia Social Abierta \nUn enfoque en la investigación social que promueve la transparencia, el acceso abierto a datos, métodos y resultados, y la colaboración entre investigadores para mejorar la calidad y confiabilidad de la investigación.\n\n\nProtocolo IPO (Input-Process-Output) \nSistema digital de carpetas interconectadas: entrada, proceso y salida. Se utiliza para organizar, procesar y documentar los datos y código de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.\n\n\nR project \nCarpeta raíz organizada donde trabajas en un proyecto concreto en el lenguaje de programación R, permitiéndote gestionar archivos, paquetes y configuraciones de manera específica para ese proyecto.\n\n\nTexto plano \nTipo de texto sin formato especial que se puede leer independiente del lector que se utilice.\n\n\nMarkdown \nClase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Se utiliza comúnmente para escribir documentos simples con formato, como páginas web, documentación y presentaciones.\n\n\nDocumentos dinámicos \nArchivos que combinan texto plano y código de análisis (gráficos, tablas y resultados), de manera simultánea en un solo documento, permitiendo la generación automática y reproducible de resultados actualizados a medida que cambian los datos o parámetros.\n\n\nRMarkdown \nUna extensión de Markdown en el entorno R que permite la integración simultánea de texto plano y código R y su ejecución en el documento, lo que facilita la creación de documentos dinámicos con análisis estadísticos y visualizaciones.\n\n\nLibrerías \nConjuntos de funciones y herramientas predefinidas que se pueden utilizar en lenguajes de programación, como R, para realizar tareas específicas sin tener que escribir todo el código desde cero.\n\n\nKnitear \nProceso de compilación secuencial de código y resultados de ejecución en un documento RMarkdown, generando un documento final con texto formateado, código y gráficos integrados.\n\n\nRenderizar \nEn el contexto de RMarkdown se refiere al proceso de convertir el código y contenido en un documento legible y presentable. En otras palabras, cuando renderizas un documento RMarkdown, estás transformando el código, texto y elementos visuales en un formato final, como un informe, una presentación o un documento HTML, que pueda ser compartido o presentado a otros de manera comprensible.\n\n\nYAML \nAcrónimo de “YAML Ain’t Markup Language”, es un formato de serialización de datos legible por humanos que se utiliza para configurar y definir la estructura de datos en muchos programas y aplicaciones. En RMarkdown corresponden al encabezado de instrucciones generales del documento.\n\n\nChunk \nUn bloque de código, que puede ser en R, en un documento RMarkdown, rodeado por marcas especiales que indican al sistema cómo manejar y ejecutar ese fragmento de código, y luego mostrar sus resultados en el documento final.",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Glosario de conceptos"
-    ]
+    "text": "Concepto\nDefinición\n\n\n\n\nEstadística \nConjunto de métodos y herramientas que involucra la recopilación, análisis, interpretación y presentación de datos numéricos con el objetivo de describir patrones, relaciones y tendencias en fenómenos naturales o sociales.\n\n\nReproducibilidad \nLa capacidad de regenerar un experimento, análisis o estudio utilizando los mismos datos y métodos para llegar a los mismos resultados originales, verificando y asegurando la validez de los hallazgos.\n\n\nCiencia Social Abierta \nUn enfoque en la investigación social que promueve la transparencia, el acceso abierto a datos, métodos y resultados, y la colaboración entre investigadores para mejorar la calidad y confiabilidad de la investigación.\n\n\nProtocolo IPO (Input-Process-Output) \nSistema digital de carpetas interconectadas: entrada, proceso y salida. Se utiliza para organizar, procesar y documentar los datos y código de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.\n\n\nR project \nCarpeta raíz organizada donde trabajas en un proyecto concreto en el lenguaje de programación R, permitiéndote gestionar archivos, paquetes y configuraciones de manera específica para ese proyecto.\n\n\nTexto plano \nTipo de texto sin formato especial que se puede leer independiente del lector que se utilice.\n\n\nMarkdown \nClase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Se utiliza comúnmente para escribir documentos simples con formato, como páginas web, documentación y presentaciones.\n\n\nDocumentos dinámicos \nArchivos que combinan texto plano y código de análisis (gráficos, tablas y resultados), de manera simultánea en un solo documento, permitiendo la generación automática y reproducible de resultados actualizados a medida que cambian los datos o parámetros.\n\n\nRMarkdown \nUna extensión de Markdown en el entorno R que permite la integración simultánea de texto plano y código R y su ejecución en el documento, lo que facilita la creación de documentos dinámicos con análisis estadísticos y visualizaciones.\n\n\nLibrerías \nConjuntos de funciones y herramientas predefinidas que se pueden utilizar en lenguajes de programación, como R, para realizar tareas específicas sin tener que escribir todo el código desde cero.\n\n\nKnitear \nProceso de compilación secuencial de código y resultados de ejecución en un documento RMarkdown, generando un documento final con texto formateado, código y gráficos integrados.\n\n\nRenderizar \nEn el contexto de RMarkdown se refiere al proceso de convertir el código y contenido en un documento legible y presentable. En otras palabras, cuando renderizas un documento RMarkdown, estás transformando el código, texto y elementos visuales en un formato final, como un informe, una presentación o un documento HTML, que pueda ser compartido o presentado a otros de manera comprensible.\n\n\nYAML \nAcrónimo de “YAML Ain’t Markup Language”, es un formato de serialización de datos legible por humanos que se utiliza para configurar y definir la estructura de datos en muchos programas y aplicaciones. En RMarkdown corresponden al encabezado de instrucciones generales del documento.\n\n\nChunk \nUn bloque de código, que puede ser en R, en un documento RMarkdown, rodeado por marcas especiales que indican al sistema cómo manejar y ejecutar ese fragmento de código, y luego mostrar sus resultados en el documento final."
   },
   {
     "objectID": "news/2024-08-19_inicio.html",
@@ -240,8 +186,9 @@
     "href": "content/index.html",
     "title": "Clases",
     "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones. Los documentos son en formato html (no son ppt), producidos con Xaringan. Para verlos en pantalla completa presionar F sobre el documento, y para una vista general de todas las slides presionar O.\nTambién a la izquierda hay un link al Foro para hacer preguntas relacionadas con las clases.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.",
+    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente.",
     "crumbs": [
+      "Clases",
       "Descripción"
     ]
   },
@@ -251,6 +198,17 @@
     "title": "Presentación",
     "section": "",
     "text": "Documento de presentación\n\n\nForo\nEn caso de preguntas sobre las clases hacerlas en Foro Clases"
+  },
+  {
+    "objectID": "assignment/index.html",
+    "href": "assignment/index.html",
+    "title": "Talleres",
+    "section": "",
+    "text": "En esta sección se encuentran disponibles los documentos de taller que sirven de base a cada clase, en el menú de la izquierda Talleres.",
+    "crumbs": [
+      "Prácticos",
+      "Descripción"
+    ]
   },
   {
     "objectID": "content/foro-clases.html",
@@ -334,22 +292,11 @@
     ]
   },
   {
-    "objectID": "resource/index.html#glosario-de-conceptos",
-    "href": "resource/index.html#glosario-de-conceptos",
+    "objectID": "resource/index.html#guías-de-apoyo-a-la-formulación-del-problema-de-investigación",
+    "href": "resource/index.html#guías-de-apoyo-a-la-formulación-del-problema-de-investigación",
     "title": "Recursos",
-    "section": "Glosario de conceptos",
-    "text": "Glosario de conceptos\n\n\n\nConcepto\nDefinición\n\n\n\n\nEstadística \nConjunto de métodos y herramientas que involucra la recopilación, análisis, interpretación y presentación de datos numéricos con el objetivo de describir patrones, relaciones y tendencias en fenómenos naturales o sociales.\n\n\nReproducibilidad \nLa capacidad de regenerar un experimento, análisis o estudio utilizando los mismos datos y métodos para llegar a los mismos resultados originales, verificando y asegurando la validez de los hallazgos.\n\n\nCiencia Social Abierta \nUn enfoque en la investigación social que promueve la transparencia, el acceso abierto a datos, métodos y resultados, y la colaboración entre investigadores para mejorar la calidad y confiabilidad de la investigación.\n\n\nProtocolo IPO (Input-Process-Output) \nSistema digital de carpetas interconectadas: entrada, proceso y salida. Se utiliza para organizar, procesar y documentar los datos y código de un proyecto de investigación para que cualquier persona pueda ejecutarlo y compartirlo.\n\n\nR project \nCarpeta raíz organizada donde trabajas en un proyecto concreto en el lenguaje de programación R, permitiéndote gestionar archivos, paquetes y configuraciones de manera específica para ese proyecto.\n\n\nTexto plano \nTipo de texto sin formato especial que se puede leer independiente del lector que se utilice.\n\n\nMarkdown \nClase especial de lenguaje que permite darle formato a texto simple con pocas marcas. Se utiliza comúnmente para escribir documentos simples con formato, como páginas web, documentación y presentaciones.\n\n\nDocumentos dinámicos \nArchivos que combinan texto plano y código de análisis (gráficos, tablas y resultados), de manera simultánea en un solo documento, permitiendo la generación automática y reproducible de resultados actualizados a medida que cambian los datos o parámetros.\n\n\nRMarkdown \nUna extensión de Markdown en el entorno R que permite la integración simultánea de texto plano y código R y su ejecución en el documento, lo que facilita la creación de documentos dinámicos con análisis estadísticos y visualizaciones.\n\n\nLibrerías \nConjuntos de funciones y herramientas predefinidas que se pueden utilizar en lenguajes de programación, como R, para realizar tareas específicas sin tener que escribir todo el código desde cero.\n\n\nKnitear \nProceso de compilación secuencial de código y resultados de ejecución en un documento RMarkdown, generando un documento final con texto formateado, código y gráficos integrados.\n\n\nRenderizar \nEn el contexto de RMarkdown se refiere al proceso de convertir el código y contenido en un documento legible y presentable. En otras palabras, cuando renderizas un documento RMarkdown, estás transformando el código, texto y elementos visuales en un formato final, como un informe, una presentación o un documento HTML, que pueda ser compartido o presentado a otros de manera comprensible.\n\n\nYAML \nAcrónimo de “YAML Ain’t Markup Language”, es un formato de serialización de datos legible por humanos que se utiliza para configurar y definir la estructura de datos en muchos programas y aplicaciones. En RMarkdown corresponden al encabezado de instrucciones generales del documento.\n\n\nChunk \nUn bloque de código, que puede ser en R, en un documento RMarkdown, rodeado por marcas especiales que indican al sistema cómo manejar y ejecutar ese fragmento de código, y luego mostrar sus resultados en el documento final.",
-    "crumbs": [
-      "Recursos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "resource/index.html#reporte",
-    "href": "resource/index.html#reporte",
-    "title": "Recursos",
-    "section": "Reporte",
-    "text": "Reporte\n\nTablas con R, con ejemplo de canciones de Spotify\nIntroduction to Quarto",
+    "section": "Guías de apoyo a la formulación del problema de investigación",
+    "text": "Guías de apoyo a la formulación del problema de investigación",
     "crumbs": [
       "Recursos",
       "Descripción"
@@ -360,7 +307,7 @@
     "href": "resource/index.html#estadística-descriptiva",
     "title": "Recursos",
     "section": "Estadística descriptiva",
-    "text": "Estadística descriptiva\n\nCurso Estadística Descriptiva Sociología UChile, 1er Sem 2023",
+    "text": "Estadística descriptiva\n\nCurso Estadística Descriptiva Sociología UChile, 1er Sem 2025",
     "crumbs": [
       "Recursos",
       "Descripción"
@@ -378,128 +325,60 @@
     ]
   },
   {
-    "objectID": "resource/index.html#inferencia",
-    "href": "resource/index.html#inferencia",
-    "title": "Recursos",
-    "section": "Inferencia",
-    "text": "Inferencia\n\nInfer: Inferencia estadística en R, acá video tutorial en español\nPor qué se divide la varianza por N-1?\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse\nIntroduction to modern statistics (Mine Çetinkaya-Rundel and Johanna Hardin)\nInferencia univariada",
-    "crumbs": [
-      "Recursos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "resource/index.html#visualización",
-    "href": "resource/index.html#visualización",
-    "title": "Recursos",
-    "section": "Visualización",
-    "text": "Visualización\n\nVisualización descriptiva de datos en R\nR Graph Gallery",
-    "crumbs": [
-      "Recursos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "resource/index.html#bases-de-datos",
-    "href": "resource/index.html#bases-de-datos",
-    "title": "Recursos",
-    "section": "Bases de datos",
-    "text": "Bases de datos\n\nBases de datos para trabajos o investigación",
-    "crumbs": [
-      "Recursos",
-      "Descripción"
-    ]
-  },
-  {
     "objectID": "resource/varios.html",
     "href": "resource/varios.html",
     "title": "Varios",
     "section": "",
-    "text": "Tablas con R, con ejemplo de canciones de Spotify\nIntroduction to Quarto",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Tablas con R, con ejemplo de canciones de Spotify\nIntroduction to Quarto"
   },
   {
     "objectID": "resource/varios.html#reporte",
     "href": "resource/varios.html#reporte",
     "title": "Varios",
     "section": "",
-    "text": "Tablas con R, con ejemplo de canciones de Spotify\nIntroduction to Quarto",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Tablas con R, con ejemplo de canciones de Spotify\nIntroduction to Quarto"
   },
   {
     "objectID": "resource/varios.html#estadística-descriptiva",
     "href": "resource/varios.html#estadística-descriptiva",
     "title": "Varios",
     "section": "Estadística descriptiva",
-    "text": "Estadística descriptiva\n\nCurso Estadística Descriptiva Sociología UChile, 1er Sem 2023",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Estadística descriptiva\n\nCurso Estadística Descriptiva Sociología UChile, 1er Sem 2023"
   },
   {
     "objectID": "resource/varios.html#uso-de-r",
     "href": "resource/varios.html#uso-de-r",
     "title": "Varios",
     "section": "Uso de R",
-    "text": "Uso de R\n\nConocimientos básicos de programación en R\nImportar datos en R\nProcesamiento y análisis de datos en R (tidyverse)\nProcesamiento y análisis de datos en R (base)\nMás para aprender R",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Uso de R\n\nConocimientos básicos de programación en R\nImportar datos en R\nProcesamiento y análisis de datos en R (tidyverse)\nProcesamiento y análisis de datos en R (base)\nMás para aprender R"
   },
   {
     "objectID": "resource/varios.html#inferencia",
     "href": "resource/varios.html#inferencia",
     "title": "Varios",
     "section": "Inferencia",
-    "text": "Inferencia\n\nPor qué se divide la varianza por N-1?\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse\nIntroduction to modern statistics (Mine Çetinkaya-Rundel and Johanna Hardin)\nInferencia univariada",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Inferencia\n\nPor qué se divide la varianza por N-1?\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse\nIntroduction to modern statistics (Mine Çetinkaya-Rundel and Johanna Hardin)\nInferencia univariada"
   },
   {
     "objectID": "resource/varios.html#visualización",
     "href": "resource/varios.html#visualización",
     "title": "Varios",
     "section": "Visualización",
-    "text": "Visualización\n\nVisualización descriptiva de datos en R\nR Graph Gallery",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Visualización\n\nVisualización descriptiva de datos en R\nR Graph Gallery"
   },
   {
     "objectID": "resource/varios.html#bases-de-datos",
     "href": "resource/varios.html#bases-de-datos",
     "title": "Varios",
     "section": "Bases de datos",
-    "text": "Bases de datos\n\nBases de datos para trabajos o investigación",
-    "crumbs": [
-      "Recursos",
-      "Guías",
-      "Varios"
-    ]
+    "text": "Bases de datos\n\nBases de datos para trabajos o investigación"
   },
   {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Programa",
     "section": "",
-    "text": "Prof. Julieta Palma\n   301 Sociología FACSO, Universidad de Chile\n   jpalma@uchile.cl\n   Agendar reunión\n\n\n\n\n\n   Martes\n   4 Agosto al 28 de Noviembre, 2025\n   8:30-11:45\n   Aulario A9\n   Slack"
+    "text": "Prof. Julieta Palma\n   301 Sociología FACSO, Universidad de Chile\n   jpalma@uchile.cl\n\n\n\n\n\n   Martes\n   4 Agosto al 28 de Noviembre, 2025\n   8:30-11:45\n   Aulario A9"
   },
   {
     "objectID": "syllabus.html#sobre-el-sentido-general-del-curso",

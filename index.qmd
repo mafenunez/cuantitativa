@@ -111,7 +111,7 @@ withr::with_dir(here::here(), {
 ### Contacto
 
 {{< var instructor.contact_policy >}}
-Para resolver dudas puntuales se recomienda el uso de los foros de [clases](/content/foro-clases.qmd) y de las [Guías prácticas](/assignment/foro-practicos.qmd).
+
 :::
 
 ::::
