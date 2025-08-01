@@ -47,7 +47,17 @@ En esta sección se irán subiendo una serie de recursos relacionados con el cur
 - [Más para aprender R](https://descriptiva-facso.netlify.app/resource/02-resource)
 
 
+## Recursos Web
 
+- [Statistics on women](https://ilostat.ilo.org/topics/women/) 
+
+- [CEPALSTAT](https://statistics.cepal.org/portal/cepalstat/index.html?lang=es)
+
+- [Human Development Index (HDI)](https://hdr.undp.org/data-center/human-development-index#/indicies/HDI) 
+
+- [Sistema de Indicadores Regionales de Desigualdades de Género (SIRDG-Descentrando)](https://www.descentrando.cl/sirdg/)
+
+- [Causal Inference: A Guide for Policymakers](https://simons.berkeley.edu/news/causal-inference-guide-policymakers) 
 
 
 

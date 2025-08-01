@@ -99,7 +99,7 @@ website:
              # file: content/13-content.qmd
        # - text: "Foro Clases"
         #  file: content/foro-clases.qmd
-    - title: "Prácticos"
+    - title: "Talleres"
       contents:
         - text: "Descripción"
           file: assignment/index.qmd

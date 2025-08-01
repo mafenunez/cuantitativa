@@ -31,77 +31,205 @@ library(pander)
 
 :::
 
-## Sobre el sentido general del curso
-
  
 
 ## Propósito general del curso
 
+Al finalizar el curso los estudiantes conocerán distintas estrategias de investigación cuantitativa a partir de las cuales serán capaces de identificar y construir problemas y objetos de investigación factibles de ser abordados a través de cuestionarios. Se espera que los estudiantes conozcan, a partir de la revisión de ejemplos actuales y de reconocida calidad científica, distintas experiencias de investigación cuantitativa; conozcan, diseñen y validen cuestionarios y escalas en el marco de la investigación social; conozcan, construyan y validen índices de medición de diferentes constructos sociales; apliquen los conocimientos adquiridos en los cursos de estadística descriptiva e inferencial; articulen y fundamenten las decisiones adoptadas para abordar y analizar un problema de investigación a través de técnicas cuantitativas; ; integren en la definición de problemas y de decisiones metodológicas fundamentos teóricos de carácter sociológico. Complementariamente se espera que los estudiantes adquieran herramientas que les permitan comunicar diseños y resultados de investigación en contextos sociales, profesionales y académicos.
 
 ## Competencias
+
+1.  Delimitar, conceptualizar y analizar diversos objetos de investigación social, con especial énfasis en aquellos relacionados con los procesos de transformación del país y Latinoamérica
+
+2.  Manejar diversas estrategias metodológicas de las ciencias sociales
+
+3. Manejar un conjunto de herramientas para el procesamiento y análisis de información
+
+4. Transmitir los conocimientos derivados de la práctica investigativa, así como aquellos adquiridos durante el proceso formativo.
 
 
 ## Subcompetencias
 
+1. Manejar un conjunto de paradigmas y enfoques teóricos generados en América Latina, que han procurado explicar el desarrollo de nuestras sociedades, destacando sus aportes críticos y de problematización de la realidad.
+
+2. Contribuir a generar conocimiento sociológico en el marco de estudios y/o procesos de investigación donde se articulen creativamente las dimensiones teórica, metodológica y práctica.
+
+3.  Comunicar los saberes disciplinares de manera pertinente a las características de distintos contextos y audiencias, utilizando diversas estrategias y formatos. 
 
 
 ## Resultados del aprendizaje
 
+Al término de esta actividad curricular, se espera que los y las estudiantes sean capaces de:
+
+1. Comprender la lógica y las principales características de la investigación cuantitativa en el análisis de problemas sociológicos, evaluando sus alcances y limitaciones en relación con otras estrategias metodológicas.
+
+2. Formular problemas de investigación que puedan ser abordados mediante diseños cuantitativos, identificando y articulando objetivos, hipótesis, conceptos y variables clave, así como los datos requeridos para su análisis. 
+
+3. Diseñar y aplicar instrumentos de producción y análisis de información cuantitativa, tales como cuestionarios, índices y escalas; evaluando su validez, confiabilidad y adecuación a los objetivos de investigación.
+
 
 ##  Saberes / Contenidos
 
-### Unidad I: 
+### Unidad I: La naturaleza de la investigación social cuantitativa 
+
+- Lógica y organización de una investigación social cuantitativa.
+
+- Temas centrales de la investigación social cuantitativa: confiabilidad, validez, causalidad, generalización y replicabilidad.
+
+- Introducción a la medición: unidad de análisis, indicadores, variables.
+
+- Limitaciones de la investigación social cuantitativa.
 
 
+### Unidad II: Diseños de investigación social cuantitativa 
 
-### Unidad II:  
+- Criterios para selección de un diseño de investigación: Causalidad, representatividad, confiabilidad, validez y replicabilidad.
+
+- Diseños transversales.
+
+- Diseños longitudinales.
+
+- Diseños experimentales y cuasi-experimentales.
+
+- Diseños comparativos y estudios de caso.
 
 
-### Unidad III: 
+### Unidad III: Conceptos y medición 
 
+- El proceso de operacionalización de conceptos.
+
+- Tipos de variables y niveles de medición.
+
+- Indicadores simples y múltiples, directos e indirectos.
+
+- Ejemplos de indicadores sociales.
+
+### Unidad IV. Construcción de índices y escalas
+
+- Construcción de índices: dimensiones e indicadores, ponderación, cálculo de puntuaciones intermedias e indicador integrado.
+
+- Construcción de escalas: tipos de escalas, elaboración de ítems, formas de cálculo.
+
+- Confiabilidad y validez en índices y escalas.
+
+- Ejemplos de índices y escalas.
+
+
+### Unidad V. La técnica de la encuesta social
+
+- Tipos de cuestionarios.
+
+- Tipos de preguntas.
+
+- Reglas para el diseño de preguntas. 
+
+- Pilotaje: objetivos y utilidades.
+
+- Consideraciones éticas en la investigación por encuestas.
+
+- Evaluación crítica de encuestas sociales.
+
+- Introducción al muestreo.
 
 
 ## Metodología
 
+Para el logro de los objetivos propuestos, la metodología del curso se basará en clases presenciales que combinen:
+
+- Clases lectivas, en donde se expondrán los principales contenidos asociados a cada unidad temática. Las clases lectivas serán realizadas por la profesora y tendrán un carácter expositivo.
+
+- Talleres, que buscan ejemplificar e implementar los contenidos teóricos entregados. En estas sesiones se espera que los y las estudiantes, junto con ejercitar los contenidos teóricos entregados, puedan reflexionar acerca de las decisiones metodológicas que tomaron para llevar a cabo dichos ejercicios. Con ello se busca reforzar el carácter reflexivo del proceso de investigación.
+
+- Trabajo autónomo, correspondiente a lecturas y estudio individual semanal de parte de los y las estudiantes.
+
+- Ayudantías del curso, que tendrán como objetivo resolver las dudas que surjan en relación con los contenidos entregados y realizar ejercicios prácticos relacionados con cada unidad. 
+
+Las clases tendrán énfasis en la discusión a partir de ejemplos de investigaciones empíricas y se espera que los estudiantes participen activamente sobre la base de sus lecturas semanales.
 
 
 
 ## Evaluación
 
+El curso contempla las siguientes evaluaciones:
 
-::: {.callout-note appearance="simple"}
+La evaluación del curso contempla actividades individuales y grupales, distribuidas en los siguientes componentes:
 
-## ATENCIÓN
+#### Pruebas individuales: se aplicarán dos pruebas durante el semestre.
 
-**Las fechas de evaluación no se cambian** por respeto a la planificación de los tiempos de tod_s quienes participan en el curso y el cumplimiento apropiado de los objetivos de aprendizaje.
+- La primera evaluará los contenidos y la bibliografía de las Unidades I y II.
 
-:::
+- La segunda evaluará los contenidos y la bibliografía de la Unidad III.
 
-::: {.callout-note appearance="simple"}
+- Cada prueba tendrá una ponderación del 30% en la nota final.
 
-## Sobre las pruebas
+#### Trabajos grupales: se realizarán dos trabajos en grupo (4 estudiantes) a lo largo del curso.
 
+- El primero estará enfocado en la aplicación de contenidos de la Unidad IV, particularmente en la construcción de índices y escalas.
 
-  
-:::
+- El segundo abordará los contenidos de la Unidad V, relacionados con diseño de encuestas sociales.
 
-## Inasistencias y atraso en entregas
+- Cada trabajo tendrá una ponderación del 20% en la nota final.
 
 
 ## Requisitos de aprobación 
 
+- Nota de aprobación mínima (Escala de 1,0 a 7,0): 4,0. 
+
+- Los y las estudiantes podrán eximirse si 1) tienen un promedio igual o superior a 5,5 y 2) asistieron al menos al 60% de las clases/talleres (quienes tengan menos asistencia pasan directamente a examen en segunda oportunidad).
+
+- Requisitos para presentación a examen en primera oportunidad: 
+     - Tener nota de presentación igual o superior a 3,5 
+     - Haber asistido al menos al 60% de las clases/talleres 
+     
+- Para dar el examen en segunda oportunidad no hay requisitos.
+
+- Ambos exámenes serán escritos. 
+
+"Las situaciones no cubiertas por este programa se resolverán por las disposiciones existentes en el Reglamento General de Estudios de Pregrado de la Facultad de Ciencias Sociales (Decreto Exento Nº0045106 del 24 de noviembre de 2017). Por último, se advierte que todo acto que falte a la ética e integridad académica será sancionado a partir de las medidas establecidas en los reglamentos existentes en la Universidad de Chile, y que velan por asegurar la calidad en la formación académica"
+
+
 
 ## Bibliografía Obligatoria 
 
+#### Unidad I. La naturaleza de la investigación social cuantitativa
+
+- Cea, M. (2001). Metodología Cuantitativa. Estrategias y técnicas de investigación social. Capítulos 3 y 4. Madrid: Editorial Síntesis. (pp. 81-157).
+
+- Desrosières, A. (2004). La política de los grandes números. Historia de la razón estadística. Capítulo 8: Clasificar y codificar. (pp. 259-303).
+
+#### Unidad II. Diseños de investigación social cuantitativa 
+
+- Hernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6ª ed.). McGraw-Hill. Capítulo 7: Concepción o elección del diseño de investigación.
+
+#### Unidad III. Conceptos y medición 
+
+- Gavarotto, C. A. (2004). El proceso de operacionalización de variables en una teoría social, análisis del suicidio en Durkheim. Cinta de Moebio: Revista Electrónica de Epistemología de Ciencias Sociales, (19), 1. 
+
+- Hernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6ª ed.). McGraw-Hill. Capítulo 9: Recolección de datos cuantitativos.
+
+#### Unidad IV. Construcción de índices y escalas
+
+- Asún, R. (2006). Construcción de cuestionarios y escalas: El proceso de la producción de información cuantitativa. En Canales, M. Metodologías de la investigación social. Introducción a los oficios. LOM. (pp. 63-113).
+
+- Tanujaya, B., Prahmana, R. C. I., & Mumu, J. (2022). Likert scale in social sciences research: Problems and difficulties. FWU Journal of Social Sciences, 16(4), 89-101.
+
+#### Unidad V. La técnica de la encuesta social
+
+- Einola, K., & Alvesson, M. (2021). Behind the numbers: Questioning questionnaires. Journal of Management Inquiry, 30(1), 102-114.
+Villarroel, R. (2018). Ética de la investigación social. En: Ética de la investigación en educación. Guía teórica y práctica para investigadores, (pp. 47–58), Ocholibros.
 
 
 ## Bibliografía Complementaria
 
+- Bryman, A. (2012). Social Research Methods (4th edition). Oxford University Press.
 
+- De Vaus, D. A. (2014). Surveys in Social Research. 6th Edition, Routledge.
 
+- Graham, A., Powell, M. A., & Taylor, N. (2015). Ethical Research Involving Children: Encouraging Reflexive Engagement in Research with Children and Young People. Children & Society, 29(5), 331–343. doi:10.1111/chso.12089
 
-## Sobre participación y comunicación
+- May, T. (2001). Social Research: Issues, Methods, and Design. 3rd Edition, Buckingham: Open University Press. Chapter 4, “Official Statistics: Topic and Resource”, pp 73-92.
 
+- Vivanco, M. (2006). Diseño de Muestras en la Investigación Social. En Canales, M. Metodologías de la investigación social. Introducción a los oficios. LOM. (pp. 141-167).
 
 
 
