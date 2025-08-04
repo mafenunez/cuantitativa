@@ -1,0 +1,16 @@
+---
+title: "Conceptos y medición"
+date: "2025-09-02"
+lang: es
+execute:
+  freeze: auto   
+website:
+  comments:
+  #  giscus:
+   #   repo: cursos-metodos-facso/correlacional
+---
+
+# Documento de presentación
+
+
+

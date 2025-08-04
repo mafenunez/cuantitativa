@@ -1,0 +1,19 @@
+---
+title: "Lecturas complementarias"
+#date: "2025-08-05"
+lang: es
+execute:
+  freeze: auto   
+website:
+  comments:
+  #  giscus:
+   #   repo: cursos-metodos-facso/correlacional
+---
+
+
+Estas lecturas corresponden a un complemento de los contenidos de las unidades del curso y no son evaluadas. 
+
+- autor 1
+
+
+

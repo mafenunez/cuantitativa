@@ -1,12 +1,32 @@
 ---
-title: "Informaciones por acá"
+title: "Bienvenida e informaciones"
 #date: ""
 categories: [info]
-#image: /files/logo-correlacional.png
+image: /files/img/01-news.png
 ---
 
-Estimad_s estudiantes, acá en esta pestaña quedará registro de las informaciones y actualizaciones del curso. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.
+Estimad_s estudiantes, acá en esta pestaña quedará registro de las *informaciones y actualizaciones del curso*. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.
 
 
-- 
+Además, les damos la <font color="orange">***¡Bienvenida al curso de Estrategias de Investigación Cuantitativa 2025!***</font> 
+
+El curso se encontrará a disposición en **esta Página Web**. Por ello, esta primera información se trata más bien de una *presentación de la página del curso* y así puedan conocerla. 
+
+Como pueden ver en el <font color="#1E2D59">**banner superior**</font>, se encuentran *7 secciones y 2 figuras*. 
+
+Primero, comenzaremos con las secciones: 
+
+- Informaciones
+- Planificación
+- Clases
+- Prácticos 
+- Trabajos
+- Recursos
+- Programa
+
+
+Segundo, las figuras del banner corresponde a:
+
+- Nube (R Cloud)
+- Buscador 
 

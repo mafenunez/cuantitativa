@@ -1,19 +1,16 @@
 ---
-title: "Presentación"
-date: "2024-08-12"
+title: "Presentación del curso"
+date: "2025-08-05"
 lang: es
 execute:
   freeze: auto   
 website:
   comments:
-    giscus:
-      repo: cursos-metodos-facso/correlacional
+  #  giscus:
+   #   repo: cursos-metodos-facso/correlacional
 ---
 
 # Documento de presentación
 
 
 
-# Foro
-
-En caso de preguntas sobre las clases hacerlas en [Foro Clases](/content/foro-clases.html)

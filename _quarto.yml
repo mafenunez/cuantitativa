@@ -49,7 +49,7 @@ website:
       - schedule.qmd
       - text: "Clases"
         file: content/index.qmd
-      - text: "Prácticos"
+      - text: "Talleres"
         file: assignment/index.qmd
       - text: "Trabajos"
         file: trabajos.qmd
@@ -71,15 +71,15 @@ website:
           file: content/index.qmd
         - section: "Presentaciones"
           contents:
-            - text: "Introducción"
-         #     file: content/01-content.qmd
-          #  - text: "Inferencia 1"
-           #   file: content/02-content.qmd
-          #  - text: "Inferencia 2"
+            - text: "Presentación del curso"
+              file: content/01-content.qmd
+            - text: "Conceptos básicos"
+              file: content/02-content.qmd
+          #  - text: "Diseños de investigación"
            #   file: content/03-content.qmd
-            #- text: "Inferencia 3"
+            #- text: "Conceptos y medición I"
              # file: content/04-content.qmd
-            #- text: "Inferencia 4"
+            #- text: "Conceptos y medición II"
              # file: content/05-content.qmd
           #  - text: "Inferencia 5"
            #   file: content/06-content.qmd
@@ -99,6 +99,12 @@ website:
              # file: content/13-content.qmd
        # - text: "Foro Clases"
         #  file: content/foro-clases.qmd
+        - section: "Lecturas"
+          contents:
+            - text: "Obligatorias"
+              file: content/13-content.qmd
+            - text: "Complementarias"
+              file: content/14-content.qmd
     - title: "Talleres"
       contents:
         - text: "Descripción"
@@ -133,14 +139,14 @@ website:
             #   file: assignment/11-practico.qmd
       #  - text: "Foro Prácticos"
        #   file: assignment/foro-practicos.qmd
-      #  - text: "Consola R Online"
-       #   file: assignment/consola.qmd
+        - text: "Consola R Online"
+          file: assignment/consola.qmd
     - title: "Recursos"
-      contents:
-        - text: "Descripción"
-          file: resource/index.qmd
-        - section: "Guías de apoyo"
-          contents:
+     # contents:
+      #  - text: "Descripción"
+       #   file: resource/index.qmd
+      #  - section: "Guías de apoyo"
+       #   contents:
             #- text: "1: Versiones de R y librerías"
             #- file: resource/install.qmd
            # - text: "2: Videos tutoriales"

@@ -1,0 +1,42 @@
+---
+title: "Lecturas obligatorias"
+#date: "2025-08-05"
+lang: es
+execute:
+  freeze: auto   
+website:
+  comments:
+  #  giscus:
+   #   repo: cursos-metodos-facso/correlacional
+---
+
+Estas lecturas están asociadas a clases especificas, visualizadas con más precisión enla  página de [Planificación](/schedule.html).
+
+<br>
+
+### Unidad 1
+
+- [Cea, M. (2001). Metodología Cuantitativa. Estrategias y técnicas de investigación social](/files/textos/Cea.pdf) 
+
+- [Desrosières, A. (2004). La política de los grandes números. Historia de la razón estadística](/files/textos/Desrosieres.pdf) 
+
+### Unidad 2 y 3
+
+- [Hernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6ª ed.)](/files/textos/Hernandez.pdf)
+
+- [Gavarotto, C. A. (2004). El proceso de operacionalización de variables en una teoría social, análisis del suicidio en Durkheim](/files/textos/Gavarotto.pdf)     
+
+### Unidad 4
+
+- [Asún, R. (2006). Construcción de cuestionarios y escalas: El proceso de la producción de información cuantitativa](/files/textos/Asun.pdf) 
+
+- [Tanujaya, B., Prahmana, R. C. I., & Mumu, J. (2022). Likert scale in social sciences research: Problems and difficulties](/files/textos/Tanujaya.pdf)
+
+### Unidad 5
+
+- [Einola, K., & Alvesson, M. (2021). Behind the numbers: Questioning questionnaires](/files/textos/Einola.pdf)
+
+- [Villarroel, R. (2018). Ética de la investigación social](/files/textos/Villarroel.pdf)
+
+
+
