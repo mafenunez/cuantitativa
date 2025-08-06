@@ -78,16 +78,13 @@ withr::with_dir(here::here(), {
 
 ::: {.column width="32%"}
 
-- 
-- 
-- 
-- 
+- Martina Buzio
+- Juan Pablo Días
+- Valentina Montecinos
 :::
 
 ::: {.column width="32%"}
-- 
-- 
--
+- Martina Lagos
 - 
 :::
 
@@ -112,6 +109,11 @@ withr::with_dir(here::here(), {
 
 {{< var instructor.contact_policy >}}
 
+### Otras versiones de este curso
+
+[2024](https://investigacion-cuantitativa.netlify.app/)
+
+
 :::
 
 ::::
@@ -123,5 +125,7 @@ withr::with_dir(here::here(), {
 :::
 
 -> ir a la [página de Informaciones](/news/index.qmd) del sitio.
+
+
 
 
