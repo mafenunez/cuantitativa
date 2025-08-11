@@ -85,7 +85,6 @@ withr::with_dir(here::here(), {
 
 ::: {.column width="32%"}
 - Martina Lagos
-- 
 :::
 
 ::::

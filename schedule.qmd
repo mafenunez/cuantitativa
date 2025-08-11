@@ -163,7 +163,7 @@ Este curso se compone de cuatro actividades principales:
     </tr>
     <tr style="background-color: #F2DFCD;">
       <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"><b>Entrega trabajo I</b></td>
+      <td style="padding: 14px;"><b>Entrega trabajo II</b></td>
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"></td>
     <tr>
