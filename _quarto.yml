@@ -71,10 +71,10 @@ website:
           file: content/index.qmd
         - section: "Presentaciones"
           contents:
-            - text: "Presentación del curso"
-              file: content/01-content.qmd
+           # - text: "Presentación del curso"
+           #   file: content/01-content.qmd
             - text: "Conceptos básicos"
-              file: content/02-content.qmd
+              file: content/01-content.qmd
           #  - text: "Diseños de investigación"
            #   file: content/03-content.qmd
             #- text: "Conceptos y medición I"

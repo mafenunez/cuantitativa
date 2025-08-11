@@ -1,5 +1,5 @@
 ---
-title: "Presentación del curso"
+title: "Causalidad, representatividad,<br>confiabilidad, validez y replicabilidad"
 date: "2025-08-05"
 lang: es
 execute:
@@ -12,5 +12,5 @@ website:
 
 # Documento de presentación
 
-
-
+<iframe src=/cuantitativa/docs/content/01-content-1.html height="550" width=100% allowfullscreen="true">
+</iframe> 
