@@ -79,7 +79,7 @@ withr::with_dir(here::here(), {
 ::: {.column width="32%"}
 
 - Martina Buzio
-- Juan Pablo Días
+- Juan Pablo Díaz
 - Valentina Montecinos
 :::
 
