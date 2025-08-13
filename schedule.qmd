@@ -54,7 +54,7 @@ Este curso se compone de cuatro actividades principales:
     </tr>
     <tr>
       <td style="padding: 14px;">Martes 12</td>
-      <td style="padding: 14px;"><a href="/content/03-content.html">Lógica, medición y limitaciones</a></td>
+      <td style="padding: 14px;"><a href="/content/01-content.html">Lógica, medición y limitaciones</a></td>
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"><a href="/files/textos/Desrosieres.pdf">Desrosières</a> Leer cap. 8</td>
     </tr>

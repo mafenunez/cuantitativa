@@ -73,7 +73,7 @@ website:
           contents:
            # - text: "Presentación del curso"
            #   file: content/01-content.qmd
-            - text: "Conceptos básicos"
+            - text: "Unidad I"
               file: content/01-content.qmd
           #  - text: "Diseños de investigación"
            #   file: content/03-content.qmd
