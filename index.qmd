@@ -33,8 +33,15 @@ withr::with_dir(here::here(), {
 
 :::: {style="background-color: #F2DFCD "}
 
+
 ### Equipo docente
-::: {.column width="40%"}
+
+
+::: {.column width="5%"}
+
+:::
+
+::: {.column width="29%"}
 
 
 **Profesora**
@@ -47,17 +54,19 @@ withr::with_dir(here::here(), {
 
 [{{< var instructor.name >}}]({{< var instructor.url >}})
 
-- {{< fa university >}} &nbsp; {{< var instructor.office >}}
-- {{< fa envelope >}} &nbsp; {{< var instructor.email >}}
+<ul style="list-style-type: none; padding-left: 1.5em;">
+  <li>{{< fa university >}} &nbsp; {{< var instructor.office >}}</li>
+  <li>{{< fa envelope >}} &nbsp; {{< var instructor.email >}}</li>
+</ul>
 
 
 :::
 
-::: {.column width="10%"}
+::: {.column width="3%"}
 
 :::
 
-::: {.column width="38%"}
+::: {.column width="29%"}
 
 **Apoyo docente**
 
@@ -67,36 +76,39 @@ withr::with_dir(here::here(), {
 
 *María Fernanda Núñez*
 
-- {{< fa envelope >}} &nbsp; {{< var other.email >}}
+<ul style="list-style-type: none; padding-left: 1.5em;">
+  <li>{{< fa envelope >}} &nbsp; {{< var other.email >}}</li>
+</ul>
 
 
 :::
 
-:::: {.columns}
+::: {.column width="3%"}
 
+:::
+
+::: {.column width="16%"}
 **Ayudantes**
-
-::: {.column width="32%"}
 
 - Martina Buzio
 - Juan Pablo Díaz
 - Valentina Montecinos
-:::
-
-::: {.column width="32%"}
 - Martina Lagos
+- Matilda Raccagni
 :::
-
-::::
 ::::
 
+:::: {style="background-color: #1E2D59 "}
 :::: {.columns}
 
+::: {.column width="5%"}
+
+:::
+
 ::: {.column width="40%"}
-### Sesiones
+### <span style="color: #E6E6E6  ;">Sesiones</span>
 
-
-- {{< fa university >}} &nbsp; **Martes 8:30-11:45** Aulario A9
+ <span style="color: #E6E6E6 ;"> {{< fa university >}} &nbsp; **Martes 8:30-11:45** Aulario A9 </span>
 :::
 
 ::: {.column width="10%"}
@@ -104,19 +116,18 @@ withr::with_dir(here::here(), {
 :::
 
 ::: {.column width="38%"}
-### Contacto
 
-{{< var instructor.contact_policy >}}
-
-### Otras versiones de este curso
+### <span style="color: #E6E6E6  ;">Otras versiones de este curso</span>
 
 [2024](https://investigacion-cuantitativa.netlify.app/)
 
 
 :::
-
+::::
 ::::
 
+
+<br>
 
 ## Últimas informaciones
 
