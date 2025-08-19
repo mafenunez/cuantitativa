@@ -37,7 +37,7 @@ website:
     # site: "@andrewheiss"
 
   open-graph:
-    image: "/files/logo-correlacional.png" # cambiar luego
+    image: "/files/log.png" # cambiar luego
     locale: es
 
   navbar:
