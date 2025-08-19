@@ -28,7 +28,7 @@ website:
   title: "Estrategias de Investigación Cuantitativa"
   site-url: "https://cuantitativa.netlify.app"
 
- # favicon: "/files/logo-correlacional-transp.png"
+  favicon: "/files/log-transparente.png"
 
   # twitter-card:
   #  image: "/files/social-image-sp23.png"
@@ -37,7 +37,7 @@ website:
     # site: "@andrewheiss"
 
   open-graph:
-    image: "/files/log.png" # cambiar luego
+    image: "/files/log-transparente.png" # cambiar luego
     locale: es
 
   navbar:
