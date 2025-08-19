@@ -4,10 +4,6 @@ date: "2025-08-19"
 lang: es
 execute:
   freeze: auto   
-website:
-  comments:
-  #  giscus:
-   #   repo: cursos-metodos-facso/correlacional
 ---
 
 # Documento de presentación
