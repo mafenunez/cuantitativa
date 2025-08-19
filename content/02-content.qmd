@@ -1,6 +1,6 @@
 ---
-title: "Causalidad, representatividad,<br>confiabilidad, validez y replicabilidad"
-date: "2025-08-5"
+title: "Diseños de investigación"
+date: "2025-08-19"
 lang: es
 execute:
   freeze: auto   
@@ -12,5 +12,8 @@ website:
 
 # Documento de presentación
 
+
+<iframe src="https://cuantitativa.netlify.app/content/02-content-1.html#/section" height="550" width=100% allowfullscreen="true">
+</iframe> 
 
 

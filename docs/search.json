@@ -182,19 +182,13 @@
   {
     "objectID": "content/02-content.html",
     "href": "content/02-content.html",
-    "title": "Causalidad, representatividad,confiabilidad, validez y replicabilidad",
+    "title": "Diseños de investigación",
     "section": "",
-    "text": "Documento de presentación"
-  },
-  {
-    "objectID": "assignment/index.html",
-    "href": "assignment/index.html",
-    "title": "Talleres",
-    "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de taller que sirven de base a cada clase, en el menú de la izquierda Talleres.",
+    "text": "Documento de presentación",
     "crumbs": [
-      "Talleres",
-      "Descripción"
+      "Clases",
+      "Presentaciones",
+      "Unidad II"
     ]
   },
   {
@@ -207,6 +201,17 @@
       "Clases",
       "Presentaciones",
       "Unidad I"
+    ]
+  },
+  {
+    "objectID": "assignment/index.html",
+    "href": "assignment/index.html",
+    "title": "Talleres",
+    "section": "",
+    "text": "En esta sección se encuentran disponibles los documentos de taller que sirven de base a cada clase, en el menú de la izquierda Talleres.",
+    "crumbs": [
+      "Talleres",
+      "Descripción"
     ]
   },
   {
@@ -228,7 +233,7 @@
     "href": "content/14-content.html",
     "title": "Lecturas complementarias",
     "section": "",
-    "text": "Estas lecturas corresponden a un complemento de los contenidos de las unidades del curso y no son evaluadas.\n\nautor 1",
+    "text": "Estas lecturas corresponden a un complemento de los contenidos de las unidades del curso y no son evaluadas.\n\n\nBryman, A. (2012). Social Research Methods",
     "crumbs": [
       "Clases",
       "Lecturas",

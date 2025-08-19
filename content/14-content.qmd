@@ -13,7 +13,7 @@ website:
 
 Estas lecturas corresponden a un complemento de los contenidos de las unidades del curso y no son evaluadas. 
 
-- autor 1
+- - [Bryman, A. (2012). Social Research Methods](/files/textos/Bryman.pdf)
 
 
 

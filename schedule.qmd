@@ -62,7 +62,7 @@ Este curso se compone de cuatro actividades principales:
     <tr><td colspan="4" style="padding: 14px; font-size: 22px;"><strong>UNIDAD 2: <i>Diseños de investigación social cuantitativa</i> </strong></td></tr>
     <tr>
       <td style="padding: 14px;">Martes 19</td>
-      <td style="padding: 14px;"><a href="/content/04-content.html">Diseños de investigación</a></td>
+      <td style="padding: 14px;"><a href="/content/02-content.html">Diseños de investigación</a></td>
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"><a href="/files/textos/Hernandez.pdf">Hernández, Fernández & Baptista</a> Leer cap. 7</td>
     </tr>
