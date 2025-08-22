@@ -1,0 +1,18 @@
+---
+title: "Uso de R"
+lang: es
+execute:
+  freeze: auto
+---
+
+
+- [Conocimientos básicos de programación en R](https://estadistica-descriptiva-uch.netlify.app/assignment/02-practico)
+
+- [Importar datos en R](https://descriptiva-facso.netlify.app/resource/03-resource) 
+
+- [Procesamiento y análisis de datos en R (tidyverse)](https://estadistica-descriptiva-uch.netlify.app/assignment/03-practico)
+
+- [Procesamiento y análisis de datos en R (base)](https://descriptiva-facso.netlify.app/resource/04-resource)
+
+- [Más para aprender R](https://descriptiva-facso.netlify.app/resource/02-resource)
+

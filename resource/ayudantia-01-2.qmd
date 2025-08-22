@@ -1,0 +1,29 @@
+---
+title: ""
+format: revealjs
+editor: visual
+---
+
+## 
+
+![](../files/img/a1/text2-1.jpg)
+
+## 
+
+![](../files/img/a1/text2-2.jpg)
+
+## 
+
+![](../files/img/a1/text2-3.jpg)
+
+##
+
+![](../files/img/a1/text2-4.jpg)
+
+##
+
+![](../files/img/a1/text2-5.jpg)
+
+##
+
+![](../files/img/a1/text2-6.jpg)

@@ -1,0 +1,9 @@
+---
+title: "Estadística Descriptiva"
+lang: es
+execute:
+  freeze: auto
+---
+
+
+- [Curso Estadística Descriptiva Sociología UChile, 1er Sem 2025](https://estadistica-descriptiva-uch.netlify.app/)

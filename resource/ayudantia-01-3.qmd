@@ -1,0 +1,41 @@
+---
+title: ""
+format: revealjs
+editor: visual
+---
+
+## 
+
+![](../files/img/a1/text3-1.jpg)
+
+## 
+
+![](../files/img/a1/text3-2.jpg)
+
+## 
+
+![](../files/img/a1/text3-3.jpg)
+
+## 
+
+![](../files/img/a1/text3-4.jpg)
+
+## 
+
+![](../files/img/a1/text3-5.jpg)
+
+## 
+
+![](../files/img/a1/text3-6.jpg)
+
+## 
+
+![](../files/img/a1/text3-7.jpg)
+
+## 
+
+![](../files/img/a1/text3-8.jpg)
+
+## 
+
+![](../files/img/a1/text3-9.jpg)

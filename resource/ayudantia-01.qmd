@@ -1,0 +1,47 @@
+---
+title: "Ayudantía I"
+lang: es
+execute:
+  freeze: auto
+---
+
+Esta primera ayudantía constituye un apoyo a los textos referidos a la Unidad I y Unidad II del curso que pueden ver en la página de [Planificación](/schedule.html). Se tratan de guías de lectura que permiten una introducción y apoyo a la revisión de cada texto. 
+
+
+## Texto 1: *Cea, M. (2001). Metodología Cuantitativa. Estrategias y técnicas de investigación social*
+
+Esta guía comprende los capítulos 3 y 4 (pp. 81-157).
+
+
+<iframe src="https://cuantitativa.netlify.app/resource/ayudantia-01-1.html#/section" height="550" width=100% allowfullscreen="true">
+</iframe> 
+
+
+## Texto 2: *Desrosières, A. (2004). La política de los grandes números. Historia de la razón estadística* 
+
+
+Esta guía comprende el capítulo 8: Clasificar y codificar. (pp. 259-303).
+
+
+<iframe src="https://cuantitativa.netlify.app/resource/ayudantia-01-2.html#/section" height="550" width=100% allowfullscreen="true">
+</iframe> 
+
+
+## Texto 3: *Hernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6ª ed.)*
+
+Esta guía comprende el capítulo 7: Concepción o elección del diseño de investigación.
+
+<iframe src="https://cuantitativa.netlify.app/resource/ayudantia-01-3.html#/section" height="550" width=100% allowfullscreen="true">
+</iframe> 
+
+
+## Actividad de cierre
+
+Para una mayor comprensión de los textos, se recomienda contestar las siguientes preguntas luego de su lectura y de la revisión de las guías:
+
+:::: {style="background-color: #F2DFCD "}
+- *¿En qué **aporta** el texto a la unidad?*
+- *¿Cómo se relaciona con lo visto en **clases**?*
+- *¿Cuáles son sus **conceptos claves** y cómo podemos **entenderlo para la investigación cuantitativa**?*
+- *¿Cómo podemos **aplicar** lo expuesto en el texto?*
+::::

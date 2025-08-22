@@ -7,57 +7,31 @@ execute:
 
 En esta sección se irán subiendo una serie de recursos relacionados con el curso.
 
-## Guías de apoyo a la formulación del problema de investigación
+Podrán encontrar: 
 
-<style>
-  table {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    width: 80%;
-    border: 2px solid black; /* Bordes externos gruesos y color negro */
-  }
-  
-  th, td {
-    border: 1px solid #D3D3D3; /* Bordes internos de color gris claro */
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .justificar {
-    text-align: justify;
-  }
-</style>
+:::: {style="background-color: #F2DFCD "}
 
+::: {.columns}
 
-## Estadística descriptiva
+::: {.column width="10%"}
+:::
 
-- [Curso Estadística Descriptiva Sociología UChile, 1er Sem 2025](https://estadistica-descriptiva-uch.netlify.app/)
+::: {.column width="40%"}
+ <i class="fas fa-book-reader"></i> [Guías de apoyo]()
 
-## Uso de R
+Realizadas desde el equipo docente y ayudantes. 
 
-- [Conocimientos básicos de programación en R](https://estadistica-descriptiva-uch.netlify.app/assignment/02-practico)
+:::
 
-- [Importar datos en R](https://descriptiva-facso.netlify.app/resource/03-resource) 
+::: {.column width="40%"}
+<i class="fas fa-link"></i> [Recursos Web]()
 
-- [Procesamiento y análisis de datos en R (tidyverse)](https://estadistica-descriptiva-uch.netlify.app/assignment/03-practico)
+Como un apoyo complementario al curso, con temáticas como bases de datos, uso de R y estadística.  
 
-- [Procesamiento y análisis de datos en R (base)](https://descriptiva-facso.netlify.app/resource/04-resource)
+:::
+:::
 
-- [Más para aprender R](https://descriptiva-facso.netlify.app/resource/02-resource)
-
-
-## Recursos Web
-
-- [Statistics on women](https://ilostat.ilo.org/topics/women/) 
-
-- [CEPALSTAT](https://statistics.cepal.org/portal/cepalstat/index.html?lang=es)
-
-- [Human Development Index (HDI)](https://hdr.undp.org/data-center/human-development-index#/indicies/HDI) 
-
-- [Sistema de Indicadores Regionales de Desigualdades de Género (SIRDG-Descentrando)](https://www.descentrando.cl/sirdg/)
-
-- [Causal Inference: A Guide for Policymakers](https://simons.berkeley.edu/news/causal-inference-guide-policymakers) 
+::::
 
 
 
