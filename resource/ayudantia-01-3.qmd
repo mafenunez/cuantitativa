@@ -4,38 +4,36 @@ format: revealjs
 editor: visual
 ---
 
-## 
+## {background-image="../files/img/a1/text3-1.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-1.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-2.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-2.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-3.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-3.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-4.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-4.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-5.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-5.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-6.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-6.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-7.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-7.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text3-8.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text3-8.jpg)
+---
 
-## 
-
-![](../files/img/a1/text3-9.jpg)
+## {background-image="../files/img/a1/text3-9.jpg" background-size="cover" background-position="center"}

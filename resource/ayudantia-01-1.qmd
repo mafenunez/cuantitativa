@@ -4,59 +4,59 @@ format: revealjs
 editor: visual
 ---
 
-## 
+## {background-image="../files/img/a1/text1-1.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-1.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-2.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-2.jpg)
+---
+
+## {background-image="../files/img/a1/text1-3.jpg" background-size="cover" background-position="center"}
+
+---
 
 
-## 
+## {background-image="../files/img/a1/text1-4.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-2.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-5.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-3.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-6.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-4.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-7.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-5.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-8.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-6.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-9.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-7.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-10.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-8.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-11.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-9.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-12.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-10.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-13.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-11.jpg)
+---
 
-## 
+## {background-image="../files/img/a1/text1-14.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/a1/text1-13.jpg)
 
-## 
-
-![](../files/img/a1/text1-14.jpg)

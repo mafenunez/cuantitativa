@@ -4,119 +4,116 @@ format: revealjs
 editor: visual
 ---
 
-## 
+## {background-image="../files/img/class-2/UII-1.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-1.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-2.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-2.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-3.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-3.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-4.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-4.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-5.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-5.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-6.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-6.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-7.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-7.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-8.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-8.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-9.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-9.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-10.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-10.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-11.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-11.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-12.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-12.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-13.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-13.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-14.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-14.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-15.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-15.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-16.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-16.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-17.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-17.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-18.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-18.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-19.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-19.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-20.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-20.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-21.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-21.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-22.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-22.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-23.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-23.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-24.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-24.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-25.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-25.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-26.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-26.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-27.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-27.jpg)
+---
 
-## 
+## {background-image="../files/img/class-2/UII-28.jpg" background-size="cover" background-position="center"}
 
-![](../files/img/class-2/UII-28.jpg)
+---
 
-## 
-
-![](../files/img/class-2/UII-29.jpg)
-
+## {background-image="../files/img/class-2/UII-29.jpg" background-size="cover" background-position="center"}

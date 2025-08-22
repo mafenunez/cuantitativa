@@ -10,7 +10,7 @@
 <atom:link href="https://cuantitativa.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.554</generator>
-<lastBuildDate>Fri, 22 Aug 2025 15:59:20 GMT</lastBuildDate>
+<lastBuildDate>Fri, 22 Aug 2025 16:26:41 GMT</lastBuildDate>
 <item>
   <title>Sobre organización de las clases del curso</title>
   <link>https://cuantitativa.netlify.app/news/02-new.html</link>
@@ -28,7 +28,7 @@
  ]]></description>
   <category>info</category>
   <guid>https://cuantitativa.netlify.app/news/02-new.html</guid>
-  <pubDate>Fri, 22 Aug 2025 15:59:20 GMT</pubDate>
+  <pubDate>Fri, 22 Aug 2025 16:26:41 GMT</pubDate>
   <media:content url="https://cuantitativa.netlify.app/files/img/02-news.png" medium="image" type="image/png" height="204" width="144"/>
 </item>
 <item>
@@ -67,7 +67,7 @@
  ]]></description>
   <category>info</category>
   <guid>https://cuantitativa.netlify.app/news/2024-08-19_inicio.html</guid>
-  <pubDate>Fri, 22 Aug 2025 15:59:20 GMT</pubDate>
+  <pubDate>Fri, 22 Aug 2025 16:26:41 GMT</pubDate>
   <media:content url="https://cuantitativa.netlify.app/files/img/01-news.png" medium="image" type="image/png" height="92" width="144"/>
 </item>
 </channel>
