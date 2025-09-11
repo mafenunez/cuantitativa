@@ -149,7 +149,8 @@ website:
           contents:
             - text: "Ayudantía I"
             - file: resource/ayudantia-01.qmd
-          #  - text: "2: Videos tutoriales"
+            - text: "Estrategias de estudio y lecto-escritura"
+            - file: resource/estrategias.qmd
         - section: "Recursos Web"
           contents:
             - text: "Estadística Descriptiva"
