@@ -45,9 +45,9 @@ Esta idea cobra mucho sentido cuando ya pasamos por este curso, ya que manejamos
     - IMPORTANTE: Recuerda contemplar el **estudio** y el **descanso**
     - ¿Dónde hacerlo? 
       a. **Calendarios físicos** <br>
-        <i class="fas fa-download"></i> [Descarga de planilla mensual](./files/mensual.pdf) <br>
-    <i class="fas fa-download"></i> [Descarga de planilla semanal](./files/semanal.pdf) <br>
-    <i class="fas fa-download"></i> [Descarga de planilla diaria](./files/diario.pdf)
+        <i class="fas fa-download"></i> [Descarga de planilla mensual](../files/mensual.pdf) <br>
+    <i class="fas fa-download"></i> [Descarga de planilla semanal](../files/semanal.pdf) <br>
+    <i class="fas fa-download"></i> [Descarga de planilla diaria](../files/diario.pdf)
       
       b. **Aplicaciones** <br>
     <i class="fas fa-link"></i> [Apps para Android](https://www.xatakandroid.com/listas/mejores-aplicaciones-calendario-para-android-comparativa-a-fondo?) <br>

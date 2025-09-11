@@ -66,9 +66,9 @@ Este curso se compone de cuatro actividades principales:
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"><a href="/files/textos/Hernandez.pdf">Hernández, Fernández & Baptista</a> Leer cap. 7</td>
     </tr>
-    <tr style="background-color: #F2DFCD;">
+    <tr style="background-color: #e0e0e0;">
       <td style="padding: 14px;">Martes 26</td>
-      <td style="padding: 14px;"><b>Prueba I</b></td>
+      <td style="padding: 14px;"><b>Suspendida</b></td>
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"></td>
     </tr>
@@ -94,16 +94,17 @@ Este curso se compone de cuatro actividades principales:
       <td style="padding: 14px;"></td>
     </tr>
     <tr>
+        </tr>
+    <tr style="background-color: #F2DFCD;">
       <td style="padding: 14px;">Martes 23</td>
-      <td style="padding: 14px;"><a href="/content/06-content.html"> </a></td>
-      <td style="padding: 14px;"><a href="/assignment/02-assignment.html">Taller de operacionalización</a></td>
+      <td style="padding: 14px;"><b>Prueba I</b></td>
+      <td style="padding: 14px;"></td>
       <td style="padding: 14px;"></td>
     </tr>
-    <tr style="background-color: #F2DFCD;">
+      <tr>
       <td style="padding: 14px;">Martes 30</td>
-      <td style="padding: 14px;"><b>Prueba II</b></td>
-      <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"></td>
+      <td style="padding: 14px;"><a href="/content/06-content.html"> </a></td>
+      <td style="padding: 14px;"><a href="/assignment/01-assignment.html">Taller de operacionalización</a></td>
     </tr>
     <!-- UNIDAD 4 -->
     <tr><td colspan="4" style="padding: 14px; font-size: 22px;"><strong> UNIDAD 4: <i>Construcción de índices y escalas</i>
@@ -115,23 +116,19 @@ Este curso se compone de cuatro actividades principales:
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"><a href="/files/textos/Asun.pdf">Asún</a> Leer Construcción de cuestionarios y escalas</td>
     </tr>
-    <tr>
-      <td style="padding: 14px;">Martes 14</td>
-      <td style="padding: 14px;"><a href="/content/09-content.hmtl">Construcción de escalas</a></td>
-      <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"><a href="/files/textos/Tanujaya.pdf">Tanujaya, Prahmana & Mumu</a></td>
-    </tr>
-    <tr>
-      <td style="padding: 14px;">Martes 21</td>
-      <td style="padding: 14px;"><a href="/content/10-content.html"></a></td>
-      <td style="padding: 14px;"><a href="/assignment/03-assignment.html">Taller de índices y escalas</a></td>
-      <td style="padding: 14px;"></td>
-    </tr>
+      </tr>
     <tr style="background-color: #F2DFCD;">
+      <td style="padding: 14px;">Martes 14</td>
+      <td style="padding: 14px;"><b>Prueba II</b></td>
       <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"><b>Entrega trabajo I</b></td>
       <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"></td>
+    </tr>
+    <tr>
+      <tr>
+      <td style="padding: 14px;">Martes 21</td>
+      <td style="padding: 14px;"><a href="/content/09-content.hmtl">Construcción de escalas</a></td>
+      <td style="padding: 14px;"><a>Taller de índices y escalas*</a></td>
+      <td style="padding: 14px;"><a href="/files/textos/Tanujaya.pdf">Tanujaya, Prahmana & Mumu</a></td>
     </tr>
     <tr style="background-color: #e0e0e0;">
       <td style="padding: 14px;">Martes 28</td>
@@ -149,6 +146,12 @@ Este curso se compone de cuatro actividades principales:
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"><a href="/files/textos/Einola.pdf">Einola & Alvesson</a></td>
     </tr>
+    <tr style="background-color: #F2DFCD;">
+      <td style="padding: 14px;"></td>
+      <td style="padding: 14px;"><b>Entrega trabajo I</b></td>
+      <td style="padding: 14px;"></td>
+      <td style="padding: 14px;"></td>
+    </tr>
     <tr>
       <td style="padding: 14px;">Martes 11</td>
       <td style="padding: 14px;"><a href="/content/11-content.html">Evaluación crítica de encuestas sociales</a></td>
@@ -162,14 +165,8 @@ Este curso se compone de cuatro actividades principales:
       <td style="padding: 14px;"></td>
     </tr>
     <tr style="background-color: #F2DFCD;">
-      <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"><b>Entrega trabajo II</b></td>
-      <td style="padding: 14px;"></td>
-      <td style="padding: 14px;"></td>
-    <tr>
-    <tr style="background-color: #e0e0e0;">
       <td style="padding: 14px;">Martes 25</td>
-      <td style="padding: 14px;">Preparación de exámenes</td>
+      <td style="padding: 14px;"><b>Entrega trabajo II</b></td>
       <td style="padding: 14px;"></td>
       <td style="padding: 14px;"></td>
     </tr>

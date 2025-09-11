@@ -1,7 +1,7 @@
 ---
 title: "Bienvenida e informaciones"
 #date: ""
-categories: [info]
+categories: [inicio]
 image: /files/img/01-news.png
 ---
 

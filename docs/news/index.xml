@@ -10,10 +10,10 @@
 <atom:link href="https://cuantitativa.netlify.app/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.554</generator>
-<lastBuildDate>Thu, 11 Sep 2025 01:58:38 GMT</lastBuildDate>
+<lastBuildDate>Thu, 11 Sep 2025 03:11:23 GMT</lastBuildDate>
 <item>
-  <title>Sobre organización de las clases del curso</title>
-  <link>https://cuantitativa.netlify.app/news/02-new.html</link>
+  <title>Nuevas fechas para las evaluaciones del curso (!)</title>
+  <link>https://cuantitativa.netlify.app/news/2025_02.html</link>
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
@@ -21,19 +21,21 @@
 
 
 
-<p><em>Próximamente…</em></p>
+<p>Estimad-s estudianes, en la pestaña de <a href="https://cuantitativa.netlify.app/schedule">Planificación</a> podrán encontrar la recalendarización del curso.</p>
+<p>Se mantienen las 4 evaluaciones pensadas, pero se modificarán las fechas de prueba y de entrega de sus trabajos.</p>
+<p>Lo más próximo es la <strong>Prueba I</strong>, la cual tiene como fecha el <span style="color: #BF382C;"><strong> 23 de septiembre </strong></span>.</p>
 
 
 
  ]]></description>
-  <category>info</category>
-  <guid>https://cuantitativa.netlify.app/news/02-new.html</guid>
-  <pubDate>Thu, 11 Sep 2025 01:58:38 GMT</pubDate>
-  <media:content url="https://cuantitativa.netlify.app/files/img/02-news.png" medium="image" type="image/png" height="204" width="144"/>
+  <category>planificación</category>
+  <guid>https://cuantitativa.netlify.app/news/2025_02.html</guid>
+  <pubDate>Thu, 11 Sep 2025 03:11:23 GMT</pubDate>
+  <media:content url="https://cuantitativa.netlify.app/files/img/02-news.png" medium="image" type="image/png" height="202" width="144"/>
 </item>
 <item>
   <title>Bienvenida e informaciones</title>
-  <link>https://cuantitativa.netlify.app/news/2024-08-19_inicio.html</link>
+  <link>https://cuantitativa.netlify.app/news/2025_inicio.html</link>
   <description><![CDATA[ 
 
 <div class="back-nav"><a href="../news/">← News</a></div>
@@ -65,9 +67,9 @@
 
 
  ]]></description>
-  <category>info</category>
-  <guid>https://cuantitativa.netlify.app/news/2024-08-19_inicio.html</guid>
-  <pubDate>Thu, 11 Sep 2025 01:58:38 GMT</pubDate>
+  <category>inicio</category>
+  <guid>https://cuantitativa.netlify.app/news/2025_inicio.html</guid>
+  <pubDate>Thu, 11 Sep 2025 03:11:23 GMT</pubDate>
   <media:content url="https://cuantitativa.netlify.app/files/img/01-news.png" medium="image" type="image/png" height="92" width="144"/>
 </item>
 </channel>

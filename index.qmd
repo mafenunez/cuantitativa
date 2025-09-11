@@ -14,7 +14,7 @@ execute:
 #course-logo: /files/logo-correlacional.png
 listing:
   id: informaciones
-  contents: "news/2024*.qmd"
+  contents: "news/2025*.qmd"
   type: grid
   sort: "date desc"
   categories: false

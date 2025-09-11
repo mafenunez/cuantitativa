@@ -1,0 +1,12 @@
+---
+title: "Nuevas fechas para las evaluaciones del curso (!)"
+#date: ""
+categories: [planificación]
+image: /files/img/02-news.png
+---
+
+Estimad-s estudianes, en la pestaña de [Planificación](https://cuantitativa.netlify.app/schedule) podrán encontrar la recalendarización del curso.
+
+Se mantienen las 4 evaluaciones pensadas, pero se modificarán las fechas de prueba y de entrega de sus trabajos. 
+
+Lo más próximo es la **Prueba I**, la cual tiene como fecha el <span style="color: #BF382C;"><strong> 23 de septiembre </strong></span>.
