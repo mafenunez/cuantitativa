@@ -120,7 +120,7 @@ withr::with_dir(here::here(), {
 ### <span style="color: #E6E6E6  ;">Guías de apoyo del curso</span>
 
 - [Guía de lectura: Ayudantía I](https://cuantitativa.netlify.app/resource/ayudantia-01)
-- [Estrategias de estudio y lecto-escritura](https://cuantitativa.netlify.app/resource/esrategias)
+- [Estrategias de estudio y lecto-escritura](https://cuantitativa.netlify.app/resource/estrategias)
 
 
 :::
