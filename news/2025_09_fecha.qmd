@@ -1,11 +1,11 @@
 ---
 title: "Nuevas fechas para las evaluaciones del curso (!)"
-#date: ""
+date: "2025-09-10"
 categories: [planificación]
-image: /files/img/02-news.png
+image: /files/img/news_02.png
 ---
 
-Estimad-s estudianes, en la pestaña de [Planificación](https://cuantitativa.netlify.app/schedule) podrán encontrar la recalendarización del curso.
+Estimad-s estudiantes, en la pestaña de [Planificación](https://cuantitativa.netlify.app/schedule) podrán encontrar la recalendarización del curso.
 
 Se mantienen las 4 evaluaciones pensadas, pero se modificarán las fechas de prueba y de entrega de sus trabajos. 
 

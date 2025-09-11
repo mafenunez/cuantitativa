@@ -2,15 +2,15 @@
   {
     "listing": "/index.html",
     "items": [
-      "/news/2025_02.html",
-      "/news/2025_inicio.html"
+      "/news/2025_09_fecha.html",
+      "/news/2025_08_20.html"
     ]
   },
   {
     "listing": "/news/index.html",
     "items": [
-      "/news/2025_02.html",
-      "/news/2025_inicio.html"
+      "/news/2025_09_fecha.html",
+      "/news/2025_08_20.html"
     ]
   }
 ]

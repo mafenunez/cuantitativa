@@ -117,9 +117,10 @@ withr::with_dir(here::here(), {
 
 ::: {.column width="38%"}
 
-### <span style="color: #E6E6E6  ;">Otras versiones de este curso</span>
+### <span style="color: #E6E6E6  ;">Guías de apoyo del curso</span>
 
-[2024](https://investigacion-cuantitativa.netlify.app/)
+- [Guía de lectura: Ayudantía I](https://cuantitativa.netlify.app/resource/ayudantia-01)
+- [Estrategias de estudio y lecto-escritura](https://cuantitativa.netlify.app/resource/esrategias)
 
 
 :::

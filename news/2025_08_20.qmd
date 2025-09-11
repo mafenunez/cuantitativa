@@ -1,8 +1,8 @@
 ---
 title: "Bienvenida e informaciones"
-#date: ""
+date: "2025-08-20"
 categories: [inicio]
-image: /files/img/01-news.png
+image: /files/img/news_01.png
 ---
 
 Estimad_s estudiantes, acá en esta pestaña quedará registro de las *informaciones y actualizaciones del curso*. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.
