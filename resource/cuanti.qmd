@@ -1,0 +1,23 @@
+---
+title: "Formulación de un problema cuantitativo"
+lang: es
+execute:
+  freeze: auto
+---
+
+
+
+¿Cómo formulamos una pregunta de investigación que pueda responderse con una metodlogía cuantitativa?
+
+- Hipótesis
+- Conceptos principales/centrales
+- Unidad de análisis
+- Diseño de investigación 
+
+
+
+Busca entender relaciones o efectos medibles entre dos fenómenos:
+- Causalidad - Diseño Experimental / Cuasi Experimental
+- Correlación, asociación - Transversal
+- Comparación - Comparativo 
+- Cambio en el tiempo - Longitudinal 
