@@ -1,6 +1,6 @@
 ---
-title: "Lógica, medición y limitaciones"
-date: "2025-08-12"
+title: "Conceptos y medición"
+date: "2025-09-02"
 lang: es
 execute:
   freeze: auto   
@@ -13,4 +13,5 @@ website:
 # Documento de presentación
 
 
-
+<iframe src="https://cuantitativa.netlify.app/content/03-content-1.html#/section" height="550" width=100% allowfullscreen="true">
+</iframe> 

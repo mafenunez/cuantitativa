@@ -202,15 +202,14 @@
     "text": "Documento de presentación"
   },
   {
-    "objectID": "content/02-content.html",
-    "href": "content/02-content.html",
-    "title": "Diseños de investigación",
+    "objectID": "assignment/index.html",
+    "href": "assignment/index.html",
+    "title": "Talleres",
     "section": "",
-    "text": "Documento de presentación",
+    "text": "En esta sección se encuentran disponibles los documentos de taller que sirven de base a cada clase, en el menú de la izquierda Talleres.",
     "crumbs": [
-      "Clases",
-      "Presentaciones",
-      "Unidad II"
+      "Talleres",
+      "Descripción"
     ]
   },
   {
@@ -226,22 +225,28 @@
     ]
   },
   {
-    "objectID": "assignment/index.html",
-    "href": "assignment/index.html",
-    "title": "Talleres",
+    "objectID": "content/02-content.html",
+    "href": "content/02-content.html",
+    "title": "Diseños de investigación",
     "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de taller que sirven de base a cada clase, en el menú de la izquierda Talleres.",
+    "text": "Documento de presentación",
     "crumbs": [
-      "Talleres",
-      "Descripción"
+      "Clases",
+      "Presentaciones",
+      "Unidad II"
     ]
   },
   {
     "objectID": "content/03-content.html",
     "href": "content/03-content.html",
-    "title": "Lógica, medición y limitaciones",
+    "title": "Conceptos y medición",
     "section": "",
-    "text": "Documento de presentación"
+    "text": "Documento de presentación",
+    "crumbs": [
+      "Clases",
+      "Presentaciones",
+      "Unidad III"
+    ]
   },
   {
     "objectID": "content/05-content.html",

@@ -77,8 +77,8 @@ website:
               file: content/01-content.qmd
             - text: "Unidad II"
               file: content/02-content.qmd
-            #- text: "Conceptos y medición I"
-             # file: content/04-content.qmd
+            - text: "Unidad III"
+              file: content/03-content.qmd
             #- text: "Conceptos y medición II"
              # file: content/05-content.qmd
           #  - text: "Inferencia 5"
