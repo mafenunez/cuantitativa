@@ -1,0 +1,155 @@
+---
+title: "Construcción de índices: Análisis"
+editor: visual
+lang: es
+---
+
+
+```{r}
+# Cargamos las librerías
+pacman::p_load(tidyverse, #colección de paquetes, de la cual utilizaremos dplyr
+               haven, # cargar y exportar bases de datos en formatos .sav 
+               dplyr) # para manipular datos
+
+# Importamos los datos
+casen <- read_sav("../assignment/input/casen.sav")
+```
+
+## 1. Dimensión Trabajo
+```{r}
+#| echo: false
+
+
+proc_casen <- casen %>% mutate(
+  ocupacion = case_when(edad > 18 ~ 1,
+                        edad < 18 ~ 0,
+                        o5 %in% c(1,2) ~ 1,
+                        o5 == 3 ~ 0 ))
+
+proc_casen <- proc_casen %>% mutate(
+  seguridad_social = case_when(edad >= 15 ~ 1,
+                               edad < 15 ~ 0,
+                               o15 %in% c(3,4,5,6,7,8,9) ~ 1,
+                               o15 %in% c(1,2) ~ 0,
+                               o1 == 2  ~ 1, 
+                               o1 == 1 ~ 0,
+                               o31 == 2 ~ 1,
+                               o31 == 1 ~ 0,
+                               o31 == -88 ~ NA))
+
+proc_casen <- proc_casen %>% mutate(
+  jubilaciones = case_when(edad >= 60 ~ 1,
+                           edad < 60 ~ 0,
+                           y12a_preg == 2 ~ 1,
+                           y12a_preg == 1 ~ 0, 
+                           y12a_preg %in% c(-88, -99) ~ NA,
+                           y15a_preg == 2 ~ 1,
+                           y15a_preg == 1 ~ 0, 
+                           y15a_preg %in% c(-88, -99) ~ NA,
+                           y15b_preg == 2 ~ 1,
+                           y15b_preg == 1 ~ 0, 
+                           y15b_preg %in% c(-88, -99) ~ NA,
+                           y15c_preg == 2 ~ 1,
+                           y15c_preg == 1 ~ 0,
+                           y15c_preg %in% c(-88, -99) ~ NA,
+                           o1 == 2  ~ 1, 
+                           o1 == 1 ~ 0,
+                           o31 == 2 ~ 1,
+                           o31 == 1 ~ 0,
+                           o31 == -88 ~ NA)) 
+```
+
+### Correlaciones
+```{r}
+trab <- select(proc_casen, ocupacion, seguridad_social, jubilaciones)
+
+sjPlot::tab_corr(trab, 
+                 na.deletion = "pairwise",
+                 triangle = "lower")
+
+```
+
+### Alpha de Cronbach
+```{r}
+trab_alpha <- psych::alpha(trab)
+
+trab_alpha
+
+trab_alpha$total$raw_alpha
+```
+
+
+## 2. IPM
+
+```{r}
+
+
+ipm <-  casen %>% select(
+  
+  # Educación
+  hh_d_asis,                       
+  hh_d_rez, 
+  hh_d_esc, 
+  
+  # Salud        
+  hh_d_mal,
+  hh_d_acc,
+  hh_d_prevs,
+  
+  # Trabajo y Seguridad Social
+  hh_d_act,
+  hh_d_cot,
+  hh_d_jub, 
+  
+  # Vivienda y Entorno
+  hh_d_habitab,
+  hh_d_servbas,
+  hh_d_entorno,
+  
+  # Redes y Cohesión Social
+  hh_d_appart,
+  hh_d_tsocial,
+  hh_d_seg)
+
+```
+### Correlaciones
+
+```{r}
+#| warning: false
+#| message: false
+sjPlot::tab_corr(ipm, 
+                 na.deletion = "pairwise", 
+                 triangle = "lower")
+
+
+```
+
+
+### Alpha de Cronbach
+
+```{r}
+#| warning: false
+#| message: false
+
+ipm_alpha <- psych::alpha(ipm)
+
+ipm_alpha
+
+ipm_alpha$total$raw_alpha
+
+```
+
+## 3. Base agregada
+
+```{r}
+#| warning: false
+#| message: false
+
+agg_casen <- casen %>% 
+  group_by(id_vivienda) %>% 
+  summarise_all(funs(mean)) %>%
+  as.data.frame()
+
+
+```
+
