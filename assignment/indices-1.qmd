@@ -9,15 +9,15 @@ lang: es
 
 ### Objetivo de la práctica
 
-El objetivo de esta guía práctica es recordar algunos procedimientos básicos de la preparación de datos con R, y enfatizar en la recodificación de variables para la trasnformación de índices.
+El objetivo de esta guía práctica es recordar algunos procedimientos básicos de la preparación de datos con R, y enfatizar en la recodificación de variables para la transformación de índices.
 
 En detalle, aprenderemos:
 
 1. Procesar una base de datos: **CASEN 2022**
 
-2. Recodifcar y trasnformar indicadores según condiciones: `case_when()`, `if_else()`
+2. Recodifcar y transformar indicadores según condiciones: `case_when()`, `if_else()`
 
-3. Generar el **índice de pobreza multidimensionl (IPM)**
+3. Generar el **índice de pobreza multidimensional (IPM)**
 
 
 ## 1. Repaso: recodificación y procesamiento 
@@ -50,7 +50,7 @@ Cuando recodifcamos buscamos *reducir o agrupar categorías*. Aquello es posible
 ```{r}
 
 # Cargamos las librerías
-pacman::p_load(tidyverse, #colección de paquetes, de la cual utilizaremos dplyr y haven
+pacman::p_load(tidyverse, #colección de paquetes, de la cual utilizaremos dplyr
                haven, # cargar y exportar bases de datos en formatos .sav 
                dplyr) # para manipular datos
 

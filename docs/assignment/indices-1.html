@@ -273,12 +273,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="presentación">Presentación</h2>
 <section id="objetivo-de-la-práctica" class="level3">
 <h3 class="anchored" data-anchor-id="objetivo-de-la-práctica">Objetivo de la práctica</h3>
-<p>El objetivo de esta guía práctica es recordar algunos procedimientos básicos de la preparación de datos con R, y enfatizar en la recodificación de variables para la trasnformación de índices.</p>
+<p>El objetivo de esta guía práctica es recordar algunos procedimientos básicos de la preparación de datos con R, y enfatizar en la recodificación de variables para la transformación de índices.</p>
 <p>En detalle, aprenderemos:</p>
 <ol type="1">
 <li><p>Procesar una base de datos: <strong>CASEN 2022</strong></p></li>
-<li><p>Recodifcar y trasnformar indicadores según condiciones: <code>case_when()</code>, <code>if_else()</code></p></li>
-<li><p>Generar el <strong>índice de pobreza multidimensionl (IPM)</strong></p></li>
+<li><p>Recodifcar y transformar indicadores según condiciones: <code>case_when()</code>, <code>if_else()</code></p></li>
+<li><p>Generar el <strong>índice de pobreza multidimensional (IPM)</strong></p></li>
 </ol>
 </section>
 </section>
@@ -317,7 +317,7 @@ Importante
 <p><img src="../files/img/trabajo.png" class="img-fluid"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos las librerías</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co">#colección de paquetes, de la cual utilizaremos dplyr y haven</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co">#colección de paquetes, de la cual utilizaremos dplyr</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               haven, <span class="co"># cargar y exportar bases de datos en formatos .sav </span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               dplyr) <span class="co"># para manipular datos</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
