@@ -276,9 +276,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El objetivo de esta guía práctica es recordar algunos procedimientos básicos de la preparación de datos con R, y enfatizar en la recodificación de variables para la trasnformación de índices.</p>
 <p>En detalle, aprenderemos:</p>
 <ol type="1">
-<li><p>Procesar una base de datos: CASEN 2022</p></li>
-<li><p>Recodifcar y trasnformar indicadores según condiciones</p></li>
-<li><p>Generar el índice de pobreza multidimensionl (IPM)</p></li>
+<li><p>Procesar una base de datos: <strong>CASEN 2022</strong></p></li>
+<li><p>Recodifcar y trasnformar indicadores según condiciones: <code>case_when()</code>, <code>if_else()</code></p></li>
+<li><p>Generar el <strong>índice de pobreza multidimensionl (IPM)</strong></p></li>
 </ol>
 </section>
 </section>
@@ -332,24 +332,39 @@ Importante
 </blockquote>
 <p>Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:</p>
 <ul>
-<li>edad (mayor a 18)</li>
-<li>o5 (busca trabajo)</li>
+<li><code>edad</code> (mayor a 18)</li>
+<li><code>o5</code> (busca trabajo)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> casen <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ocupacion =</span> case_when</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                               (edad <span class="sc">&gt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                  edad <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                 o5 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                 o5 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">0</span> )) <span class="sc">%&gt;%</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_vivienda) <span class="sc">%&gt;%</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_ocupacion =</span> <span class="fu">sum</span>(ocupacion, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">carencia_ocupacion =</span> <span class="fu">if_else</span>(n_ocupacion <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"Carente"</span>, <span class="st">"No carente"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando los datos del objeto casen, crearemos el objeto proc_casen, al cual le asociaremos el siguiente procedimiento:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> casen <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutaremos/craearemos la variable ocupacion con las siguientes condiciones:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ocupacion =</span> <span class="fu">case_when</span>(edad <span class="sc">&gt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                        edad <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                        o5 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                        o5 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">0</span> )) <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Para visualizar: </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="do">## a. </span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># agrupamos por hogar</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_vivienda) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creamos una variabole que recuente la cantidad de carencias en cuanto al indicador por hogar</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_ocupacion =</span> <span class="fu">sum</span>(ocupacion, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="co"># desagrupamos</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="do">## b. </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>     <span class="co"># creamos una variable cateogrica para visualizar hogar carente o no carente: </span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">carencia_ocupacion =</span> <span class="fu">if_else</span>(n_ocupacion <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"Carente"</span>, <span class="st">"No carente"</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="seguridad-social" class="level3">
@@ -360,30 +375,46 @@ Importante
 </blockquote>
 <p>Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:</p>
 <ul>
-<li>edad (mayor o igual a 15)</li>
-<li>o1 (ocupado)</li>
-<li>o15 (no es trabajador independiente)</li>
-<li>o31 (no cotiza en el sistema previsional)</li>
+<li><code>edad</code> (mayor o igual a 15)</li>
+<li><code>o1</code> (ocupado)</li>
+<li><code>o15</code> (no es trabajador independiente)</li>
+<li><code>o31</code> (no cotiza en el sistema previsional)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">seguridad_social =</span> case_when</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                               (edad <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                 edad <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                 o15 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                 o15 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                 o1 <span class="sc">==</span> <span class="dv">2</span>  <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                 o1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                                 o31 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                                 o31 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                                 o31 <span class="sc">==</span> <span class="sc">-</span><span class="dv">88</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_vivienda) <span class="sc">%&gt;%</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_seguridad_social =</span> <span class="fu">sum</span>(seguridad_social, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">carencia_seguridad_social =</span> <span class="fu">if_else</span>(n_seguridad_social <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"Carente"</span>, <span class="st">"No carente"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando los datos del objeto proc_casen, sobreescribimos el siguiente procedimiento:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutaremos/craearemos la variable seguridad_social con las siguientes condiciones:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">seguridad_social =</span> <span class="fu">case_when</span>(edad <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                               edad <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                               o15 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                               o15 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                               o1 <span class="sc">==</span> <span class="dv">2</span>  <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                               o1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                               o31 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                               o31 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                               o31 <span class="sc">==</span> <span class="sc">-</span><span class="dv">88</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Para visualizar: </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="do">## a. </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># agrupamos por hogar</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_vivienda) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creamos una variabole que recuente la cantidad de carencias en cuanto al indicador por hogar</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_seguridad_social =</span> <span class="fu">sum</span>(seguridad_social, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="co"># desagrupamos</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="do">## b. </span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># creamos una variable cateogrica para visualizar hogar carente o no carente: </span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">carencia_seguridad_social =</span> <span class="fu">if_else</span>(n_seguridad_social <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"Carente"</span>, <span class="st">"No carente"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="jubilaciones" class="level3">
@@ -394,50 +425,67 @@ Importante
 </blockquote>
 <p>Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:</p>
 <ul>
-<li>edad (mayor o igual a 60 años)</li>
-<li>o31 (no percibe una pensión contributiva o no contributiva)</li>
-<li>y12a_preg, y15a_preg, y15b_preg, y15c_preg (no recibe otros ingresos)</li>
+<li><code>edad</code> (mayor o igual a 60 años)</li>
+<li><code>o31</code> (no percibe una pensión contributiva o no contributiva)</li>
+<li><code>y12a_preg</code>, <code>y15a_preg</code>, <code>y15b_preg</code>, <code>y15c_preg</code> (no recibe otros ingresos)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">jubilaciones =</span> case_when</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                               (edad <span class="sc">&gt;=</span> <span class="dv">60</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                 edad <span class="sc">&lt;</span> <span class="dv">60</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                 y12a_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                 y12a_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                 y12a_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                 y15a_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                 y15a_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                 y15a_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                                 y15b_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                 y15b_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                 y15b_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                 y15c_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                                 y15c_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                                 y15c_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                 o1 <span class="sc">==</span> <span class="dv">2</span>  <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                 o1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                                 o31 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                                 o31 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                                 o31 <span class="sc">==</span> <span class="sc">-</span><span class="dv">88</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># para visualizar </span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_vivienda) <span class="sc">%&gt;%</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_jubilaciones =</span> <span class="fu">sum</span>(jubilaciones, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">carencia_jubilaciones =</span> <span class="fu">if_else</span>(n_jubilaciones <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"Carente"</span>, <span class="st">"No carente"</span>)</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando los datos del objeto proc_casen, sobreescribimos el siguiente procedimiento:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutaremos/craearemos la variable seguridad_social con las siguientes condiciones:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">jubilaciones =</span> <span class="fu">case_when</span>(edad <span class="sc">&gt;=</span> <span class="dv">60</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                           edad <span class="sc">&lt;</span> <span class="dv">60</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                           y12a_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                           y12a_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                           y12a_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                           y15a_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                           y15a_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                           y15a_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                           y15b_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                           y15b_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                           y15b_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                           y15c_preg <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                           y15c_preg <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                           y15c_preg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">88</span>, <span class="sc">-</span><span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                           o1 <span class="sc">==</span> <span class="dv">2</span>  <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                           o1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                           o31 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                           o31 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                           o31 <span class="sc">==</span> <span class="sc">-</span><span class="dv">88</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Para visualizar:</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="do">## a. </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># agrupamos por hogar</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_vivienda) <span class="sc">%&gt;%</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creamos una variabole que recuente la cantidad de carencias en cuanto al indicador por hogar</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_jubilaciones =</span> <span class="fu">sum</span>(jubilaciones, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="do">## b.  </span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>     <span class="co"># creamos una variable cateogrica para visualizar hogar carente o no carente: </span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">carencia_jubilaciones =</span> <span class="fu">if_else</span>(n_jubilaciones <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"Carente"</span>, <span class="st">"No carente"</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculamos-la-dimensión" class="level3">
 <h3 class="anchored" data-anchor-id="calculamos-la-dimensión">Calculamos la dimensión</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="at">trabajo =</span> <span class="fu">rowMeans</span>(<span class="fu">across</span>(<span class="fu">c</span>(ocupacion, seguridad_social, jubilaciones)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(proc_casen<span class="sc">$</span>trabajo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando los datos del objeto proc_casen, sobreescribimos el siguiente procedimiento:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>proc_casen <span class="ot">&lt;-</span> proc_casen <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutamos/creamos la variable para la dimensión de trabajo: </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">trabajo =</span> <span class="fu">rowMeans</span>(<span class="fu">across</span>(<span class="fu">c</span>(ocupacion, seguridad_social, jubilaciones)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># promediamos los tres indicadores por persona (fila/row)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculamos sus descriptivos:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(proc_casen<span class="sc">$</span>trabajo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.6667  0.6667  0.6094  0.6667  1.0000 </code></pre>
@@ -522,14 +570,25 @@ Importante
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>           salud<span class="sc">*</span><span class="fl">0.225</span> <span class="sc">+</span>    <span class="co"># multplicamos por su peso</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>           trabajo<span class="sc">*</span><span class="fl">0.225</span> <span class="sc">+</span>  <span class="co"># multiplicamos por su peso</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>           vivienda<span class="sc">*</span><span class="fl">0.225</span> <span class="sc">+</span> <span class="co"># multiplicamos por su peso</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>           redes_cohesion<span class="sc">*</span><span class="fl">0.10</span>)<span class="sc">/</span><span class="dv">1</span>) <span class="co"># multiplicamos por su peso</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>           redes_cohesion<span class="sc">*</span><span class="fl">0.10</span>)<span class="sc">/</span><span class="dv">1</span>) <span class="co"># multiplicamos por su peso</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># los pesos deben sumar 1 </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fl">0.225</span> <span class="sc">+</span> <span class="fl">0.225</span> <span class="sc">+</span> <span class="fl">0.225</span> <span class="sc">+</span> <span class="fl">0.225</span> <span class="sc">+</span> <span class="fl">0.10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(ipm), <span class="fu">aes</span>(<span class="at">x =</span> ipm)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"#1E2D59"</span>, <span class="at">fill =</span> <span class="st">"#1E2D59"</span>) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribución IPM"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cargamos la librería para graficar</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># indicamos las variables a graficar</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(ipm), <span class="fu">aes</span>(<span class="at">x =</span> ipm)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># indicamos el tipo de gráfico y sus colores</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"#1E2D59"</span>, <span class="at">fill =</span> <span class="st">"#1E2D59"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># indicamos el título del gráfico </span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribución IPM"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -541,34 +600,41 @@ Importante
 </section>
 <section id="interpretación" class="level3">
 <h3 class="anchored" data-anchor-id="interpretación">Interpretación</h3>
-<p>Por último, establcemos el umbral, para poder interpretar:</p>
+<p>Por último, establecemos el umbral, para poder interpretar:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ipm <span class="ot">&lt;-</span> ipm <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ipm_recod =</span>  <span class="fu">if_else</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  ipm <span class="sc">&gt;=</span> <span class="fl">0.25</span>, <span class="co"># si el valor del índice es menor o igual a 0.25 </span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="co"># dicha fila tome el valor 1</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="co"># la fila que no corresponda a la condición tome valor 0</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="cn">NA_real_</span>) <span class="co"># si no cumple ninguna, que sea un NA </span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ipm <span class="ot">&lt;-</span> ipm <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ipm_recod =</span>  <span class="fu">if_else</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  ipm <span class="sc">&gt;=</span> <span class="fl">0.25</span>, <span class="co"># si el valor del índice es menor o igual a 0.25 </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="co"># dicha fila tome el valor 1</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="co"># la fila que no corresponda a la condición tome valor 0</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="cn">NA_real_</span>) <span class="co"># si no cumple ninguna, que sea un NA </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>graf <span class="ot">&lt;-</span> ipm <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipm_recod =</span> <span class="fu">factor</span>(ipm_recod, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No presenta pobreza"</span>, <span class="st">"Presenta pobreza"</span>)),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">area =</span> <span class="fu">factor</span>(area, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Urbano"</span>, <span class="st">"Rural"</span>))</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> graf, </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ipm_recod, <span class="at">fill =</span> area)) <span class="sc">+</span> <span class="co"># especificamos datos y mapping </span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge2"</span>) <span class="sc">+</span> <span class="co"># agregamos geometria y especificamos posicion </span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span><span class="st">"IPM, segun área 2022"</span>, </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"IPM"</span>, </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: Elaboración propia en base a Encuesta CASEN 2022."</span>) <span class="sc">+</span><span class="co"># agregamos titulo, nombres a los ejes y fuente</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(.<span class="dv">9</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="co"># agregamos freq de cada barra por grupo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cargamos la librería para graficar</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># creamos un nuevo objeto "graf" para transformar la clase de las variables a factor, indicando los nombres que tomarán las categorías dicotómicas</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>graf <span class="ot">&lt;-</span> ipm <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipm_recod =</span> <span class="fu">factor</span>(ipm_recod, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No presenta pobreza"</span>, <span class="st">"Presenta pobreza"</span>)),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">area =</span> <span class="fu">factor</span>(area, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Urbano"</span>, <span class="st">"Rural"</span>))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># indicamos las variables a graficar</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> graf, </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ipm_recod, <span class="at">fill =</span> area)) <span class="sc">+</span> </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># indicamos el tipo de gráfico </span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge2"</span>) <span class="sc">+</span> <span class="co"># agregamos geometria y especificamos posicion </span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># agregamos labels</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span><span class="st">"IPM, segun área 2022"</span>, </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"IPM"</span>, </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuente: Elaboración propia en base a Encuesta CASEN 2022."</span>) <span class="sc">+</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># agregamos las frecuencias a las barras por grupo</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(.<span class="dv">9</span>), <span class="at">size =</span> <span class="dv">3</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -583,15 +649,15 @@ Importante
 <h2 class="anchored" data-anchor-id="ejercicios">4. Ejercicios</h2>
 <section id="ejercicio-individual" class="level3">
 <h3 class="anchored" data-anchor-id="ejercicio-individual">Ejercicio individual</h3>
-<p>Crear una nueva variable “indep_con_vivienda” usando <code>case_when()</code> y con las siguientes condiciones:</p>
+<p>Crear una nueva variable “indep_con_vivienda” usando <code>case_when()</code> o <code>if_else()</code> y con las siguientes condiciones:</p>
 <ul>
-<li>con la variable o15: <em>trabajadores independientes</em></li>
-<li>con la variable v13_propia: <strong>propia pagada o pagándose</strong></li>
+<li>con la variable <code>o15</code>: <strong>trabajadores independientes</strong></li>
+<li>con la variable <code>v13_propia</code>: <strong>propia pagada o pagándose</strong></li>
 </ul>
 </section>
 <section id="ejercicio-grupal" class="level3">
 <h3 class="anchored" data-anchor-id="ejercicio-grupal">Ejercicio grupal</h3>
-<p>Reunanse en grupos. Considerando la <strong>dimensión de educación</strong> del IPM, <em>elija uno de los tres indicadores y transforme una nueva variable</em> correspondiente al indicador. Para ello, deberán descargar desde la página del Observatorio Social, la base de datos de la CASEN 2022 e importar dicha base para seleccionar las variables a utilizar.</p>
+<p>Reunanse en grupos. Considerando la <strong>dimensión de educación</strong> del IPM, <em>elija uno de los tres indicadores y transforme una nueva variable</em> correspondiente al indicador. Para ello, deberán descargar desde la página del <a href="https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022">Observatorio Social</a>, la base de datos de la CASEN 2022 e importar dicha base para seleccionar las variables a utilizar.</p>
 <ul>
 <li><p><strong>Asistencia escolar</strong>: Uno de sus integrantes de 4 a 18 años de edad no está asistiendo a un establecimiento educacional y no ha egresado de cuarto medio, o al menos un integrante de 6 a 26 años tiene una condición permanente y/o de larga duración y no asiste a un establecimiento educacional.</p></li>
 <li><p><strong>Escolaridad</strong>: Uno de sus integrantes mayores de 18 años ha alcanzado menos años de escolaridad que los establecidos por ley, de acuerdo a su edad.</p></li>
