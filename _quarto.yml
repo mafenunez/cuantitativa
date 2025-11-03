@@ -109,15 +109,15 @@ website:
       contents:
         - text: "Descripción"
           file: assignment/index.qmd
-        - section: "Talleres de clases"
-          contents:
-            - text: "1: Operacionalización"
+        #- section: "Talleres de clases"
+         # contents:
+          #  - text: "1: Operacionalización"
              # file: assignment/01-practico.qmd
         - section: "Talleres de R"
           contents:
-            - text: "1: Índices y Escalas"
-              #file: assignment/01-practico.qmd
-            - text: "2: Análisis cuestionario"
+            - text: "1: Índices"
+              file: assignment/indices-1.qmd
+           # - text: "2: Análisis cuestionario"
           #    file: assignment/02-practico.qmd
           #  - text: "3: Correlación de Pearson"
            #   file: assignment/03-practico.qmd

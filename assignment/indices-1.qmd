@@ -1,13 +1,29 @@
 ---
 title: "Construcción de índices"
 editor: visual
+date: "2025-11-03"
 lang: es
 ---
 
-## Repaso: recodificación y procesamiento 
+## Presentación
+
+### Objetivo de la práctica
+
+El objetivo de esta guía práctica es recordar algunos procedimientos básicos de la preparación de datos con R, y enfatizar en la recodificación de variables para la trasnformación de índices.
+
+En detalle, aprenderemos:
+
+1. Procesar una base de datos: CASEN 2022
+
+2. Recodifcar y trasnformar indicadores según condiciones
+
+3. Generar el índice de pobreza multidimensionl (IPM)
 
 
-### NOIR
+## 1. Repaso: recodificación y procesamiento 
+
+
+### Niveles de medición: NOIR
 
 ::: callout-important
 Para recodificar debemos **siempre** remitir a los niveles de medición de las variables. 
@@ -21,12 +37,12 @@ Cuando recodifcamos buscamos *reducir o agrupar categorías*. Aquello es posible
 - **R**: variables de **r**azón. Propiedad (4): *clasifican, ordenan, expresan magnitudes y permiten operar sus categorías (aditividad)*
 
 
-### Procesamiento
+### Pasos procesamiento
 
 ![](../files/img/proc.png) 
 
 
-## CASEN: Dimensión Trabajo y Seguridad Social en IPM
+## 2. CASEN: Dimensión Trabajo y Seguridad Social en IPM
 
 ![](../files/img/trabajo.png) 
 
@@ -57,6 +73,22 @@ Considerando dicha definición, se trata de un indicador compuesto, por lo que d
 
 ```{r}
 
+proc_casen <- casen %>% mutate(ocupacion = case_when
+                               (edad > 18 ~ 1,
+                                  edad < 18 ~ 0,
+                                 o5 %in% c(1,2) ~ 1,
+                                 o5 == 3 ~ 0 )) %>%
+  group_by(id_vivienda) %>%
+  mutate(n_ocupacion = sum(ocupacion, na.rm = TRUE)) %>%
+  ungroup()
+
+
+proc_casen <- proc_casen %>%
+  mutate(
+    carencia_ocupacion = if_else(n_ocupacion > 1, "Carente", "No carente")
+  )
+
+
 ```
 
 
@@ -75,6 +107,24 @@ Considerando dicha definición, se trata de un indicador compuesto, por lo que d
 
 ```{r}
 
+proc_casen <- proc_casen %>% mutate(seguridad_social = case_when
+                               (edad >= 15 ~ 1,
+                                 edad < 15 ~ 0,
+                                 o15 %in% c(3,4,5,6,7,8,9) ~ 1,
+                                 o15 %in% c(1,2) ~ 0,
+                                 o1 == 2  ~ 1, 
+                                 o1 == 1 ~ 0,
+                                 o31 == 2 ~ 1,
+                                 o31 == 1 ~ 0,
+                                 o31 == -88 ~ NA)) %>%
+  group_by(id_vivienda) %>%
+  mutate(n_seguridad_social = sum(seguridad_social, na.rm = TRUE)) %>%
+  ungroup()
+
+proc_casen <- proc_casen %>%
+  mutate(
+    carencia_seguridad_social = if_else(n_seguridad_social > 1, "Carente", "No carente")
+  )
 ```
 
 
@@ -92,16 +142,55 @@ Considerando dicha definición, se trata de un indicador compuesto, por lo que d
 
 
 ```{r}
+proc_casen <- proc_casen %>% mutate(jubilaciones = case_when
+                               (edad >= 60 ~ 1,
+                                 edad < 60 ~ 0,
+                                 y12a_preg == 2 ~ 1,
+                                 y12a_preg == 1 ~ 1, 
+                                 y12a_preg %in% c(-88, -99) ~ NA,
+                                 y15a_preg == 2 ~ 1,
+                                 y15a_preg == 1 ~ 1, 
+                                 y15a_preg %in% c(-88, -99) ~ NA,
+                                 y15b_preg == 2 ~ 1,
+                                 y15b_preg == 1 ~ 1, 
+                                 y15b_preg %in% c(-88, -99) ~ NA,
+                                 y15c_preg == 2 ~ 1,
+                                 y15c_preg == 1 ~ 1, 
+                                 y15c_preg %in% c(-88, -99) ~ NA,
+                                 o1 == 2  ~ 1, 
+                                 o1 == 1 ~ 0,
+                                 o31 == 2 ~ 1,
+                                 o31 == 1 ~ 0,
+                                 o31 == -88 ~ NA)) %>%
+  
+# para visualizar 
+  group_by(id_vivienda) %>%
+  mutate(n_jubilaciones = sum(jubilaciones, na.rm = TRUE)) %>%
+  ungroup()
+
+# 
+proc_casen <- proc_casen %>%
+  mutate(
+    carencia_jubilaciones = if_else(n_jubilaciones > 1, "Carente", "No carente")
+  )
 
 ```
 
+### Calculamos la dimensión 
+```{r}
 
-## IPM
+proc_casen <- proc_casen %>%  mutate(trabajo = rowMeans(across(c(ocupacion, seguridad_social, jubilaciones)), na.rm = TRUE))
+
+summary(proc_casen$trabajo)
+```
+
+## 3. Índice de Pobreza Multidimensional (IPM)
 
 En la base de datos `CASEN` pueden encontrar las variables agregadas del módulo PM que cotneien las variables recodificadas para calcular el índice de Pobreza Multidimensional (IPM), todas con el sufijo `hh_d_` . 
 
 Con dichas variables, calcularemos el índice completo. 
 
+### Seleccionar
 Como la base de datos sigue siendo la misma, solo seleccionaremos las variables en un nuevo objeto de nombre `ipm`:
 ```{r}
 
@@ -131,10 +220,13 @@ ipm <- casen %>% select(
    # Redes y Cohesión Social
   hh_d_appart,
   hh_d_tsocial,
-  hh_d_seg )
+  hh_d_seg,
+  area,
+  region)
 ```
 
 
+### Dimensiones
 Ahora, calculamos las dimensiones
 ```{r}
 
@@ -162,7 +254,7 @@ ipm <- ipm %>%
 
 ```
 
-
+### Índice
 Ahora, calculamos el índice con su ponderación:
 ```{r}
 
@@ -179,12 +271,23 @@ ipm <- ipm %>% mutate(
 
 ```
 
+```{r}
+#| warning: false
+#| message: false
+library(ggplot2)
 
+ggplot(data.frame(ipm), aes(x = ipm)) +
+  geom_histogram(color = "#1E2D59", fill = "#1E2D59") +
+  ggtitle("Distribución IPM")
+```
+
+
+### Interpretación
 Por último, establcemos el umbral, para poder interpretar:
 ```{r}
 
 # Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:
-ipm <- ipm %>% mutate(ipm =  if_else(
+ipm <- ipm %>% mutate(ipm_recod =  if_else(
   ipm >= 0.25, # si el valor del índice es menor o igual a 0.25 
   1, # dicha fila tome el valor 1
   0, # la fila que no corresponda a la condición tome valor 0
@@ -193,8 +296,32 @@ ipm <- ipm %>% mutate(ipm =  if_else(
 
 ```
 
+```{r}
+#| warning: false
+#| message: false
+library(ggplot2)
 
-## Ejercicios 
+graf <- ipm %>%
+  mutate(
+    ipm_recod = factor(ipm_recod, labels = c("No presenta pobreza", "Presenta pobreza")),
+    area = factor(area, labels = c("Urbano", "Rural"))
+  )
+
+ggplot(data = graf, 
+       mapping = aes(x = ipm_recod, fill = area)) + # especificamos datos y mapping 
+  geom_bar(position = "dodge2") + # agregamos geometria y especificamos posicion 
+  labs(title ="IPM, segun área 2022", 
+       x = "IPM", 
+       y = "Frecuencia",
+       caption = "Fuente: Elaboración propia en base a Encuesta CASEN 2022.") +# agregamos titulo, nombres a los ejes y fuente
+  geom_text(aes(label = ..count..), stat = "count", colour = "black", 
+    vjust = 1.5, position = position_dodge(.9), size = 3) # agregamos freq de cada barra por grupo
+
+
+```
+
+
+## 4. Ejercicios 
 
 ### Ejercicio individual
 
@@ -206,7 +333,7 @@ Crear una nueva variable "indep_con_vivienda" usando `case_when()` y con las sig
 
 ### Ejercicio grupal
 
-Reunanse en grupos. Considerando la **dimensión de educación** del IPM, *elija uno de los tres indicadores y transforme una nueva variable* correspondiente al indicador. 
+Reunanse en grupos. Considerando la **dimensión de educación** del IPM, *elija uno de los tres indicadores y transforme una nueva variable* correspondiente al indicador. Para ello, deberán descargar desde la página del Observatorio Social, la base de datos de la CASEN 2022 e importar dicha base para seleccionar las variables a utilizar.  
 
 - **Asistencia escolar**: Uno de sus integrantes de 4 a 18 años de edad no está asistiendo a un establecimiento educacional y no ha egresado de cuarto medio, o al menos un integrante de 6 a 26 años tiene una condición permanente y/o de larga duración y no asiste a un establecimiento educacional.
 
