@@ -599,5 +599,47 @@
     "title": "Programa",
     "section": "Programación de sesiones",
     "text": "Programación de sesiones\nVisitar la página de Planificación."
+  },
+  {
+    "objectID": "assignment/indices-1.html",
+    "href": "assignment/indices-1.html",
+    "title": "Construcción de índices",
+    "section": "",
+    "text": "Important\n\n\n\nPara recodificar debemos siempre remitir a los niveles de medición de las variables.\n\n\nCuando recodifcamos buscamos reducir o agrupar categorías. Aquello es posible considerando los niveles de medición de las variables (NOIR) y sus propiedades (que son acumulativas). De modo que recodificamos variables que sean cuantitativas a cualitativas, no al revés.\n\nN: variables nominales. Propiedad (1): clasifican\nO: variables ordinales. Propiedad (2): clasifican y ordenan\nI: variables intervalares. Propiedad (3): clasifican, ordenan y expresan magnitudes\nR: variables de razón. Propiedad (4): clasifican, ordenan, expresan magnitudes y permiten operar sus categorías (aditividad)"
+  },
+  {
+    "objectID": "assignment/indices-1.html#repaso-recodificación-y-procesamiento",
+    "href": "assignment/indices-1.html#repaso-recodificación-y-procesamiento",
+    "title": "Construcción de índices",
+    "section": "",
+    "text": "Important\n\n\n\nPara recodificar debemos siempre remitir a los niveles de medición de las variables.\n\n\nCuando recodifcamos buscamos reducir o agrupar categorías. Aquello es posible considerando los niveles de medición de las variables (NOIR) y sus propiedades (que son acumulativas). De modo que recodificamos variables que sean cuantitativas a cualitativas, no al revés.\n\nN: variables nominales. Propiedad (1): clasifican\nO: variables ordinales. Propiedad (2): clasifican y ordenan\nI: variables intervalares. Propiedad (3): clasifican, ordenan y expresan magnitudes\nR: variables de razón. Propiedad (4): clasifican, ordenan, expresan magnitudes y permiten operar sus categorías (aditividad)"
+  },
+  {
+    "objectID": "assignment/indices-1.html#ejemplo",
+    "href": "assignment/indices-1.html#ejemplo",
+    "title": "Construcción de índices",
+    "section": "Ejemplo",
+    "text": "Ejemplo\n*imagen\n\npacman::p_load(tidyverse,\n               haven,\n               dplyr)\n\ncasen &lt;- read_sav(\"../assignment/input/casen-2024.sav\")\n\n\nOcupación\n\n\nSeguridad Social\n\n\nJubilaciones"
+  },
+  {
+    "objectID": "assignment/indices-1.html#ipm",
+    "href": "assignment/indices-1.html#ipm",
+    "title": "Construcción de índices",
+    "section": "IPM",
+    "text": "IPM\nEn la base de datos CASEN (link a libro de codigos) pueden encontrar las variables agregadas del módulo PM que cotneien las variables recodificadas para calcular el índice de Pobreza Multidimensional (IPM), todas con el sufijo hh_d_ .\nCon dichas variables, calcularemos el índice completo.\nComo la base de datos sigue siendo la misma, solo seleccionaremos las variables en un nuevo objeto de nombre ipm:\n\n# Usando los datos del objeto casen, crearemos el objeto ipm, al cual le asociaremos el siguiente procedimiento:\nipm &lt;- casen %&gt;% select(\n  \n  # Educación\n  hh_d_asis,                       \n  hh_d_rez, \n  hh_d_esc, \n  \n  # Salud        \n  hh_d_mal,\n  hh_d_acc,\n  hh_d_prevs,\n  \n  # Trabajo y Seguridad Social\n  hh_d_act,\n  hh_d_cot,\n  hh_d_jub, \n \n   # Vivienda y Entorno\n  hh_d_habitab,\n  hh_d_servbas,\n  hh_d_entorno,\n \n   # Redes y Cohesión Social\n  hh_d_appart,\n  hh_d_tsocial,\n  hh_d_seg )\n\nAhora, calculamos las dimensiones\n\n# Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:\nipm &lt;- ipm %&gt;%\n  \n  # mutaremos/crearemos 5 nuevas variables correspondientes a las dimensiones\n  mutate(\n    \n  # la variable educacion corresponderá al promedio por fila de las 3 varianles seleccionadas:  \n    educacion = rowMeans(across(c(hh_d_asis, hh_d_rez, hh_d_esc)), na.rm = TRUE),\n    \n  # la variable salud corresponderá al promedio por fila de las 3 varianles seleccionadas:  \n    salud     = rowMeans(across(c(hh_d_mal,hh_d_acc, hh_d_prevs)), na.rm = TRUE),\n    \n  # la variable trabajo corresponderá al promedio por fila de las 3 varianles seleccionadas:  \n    trabajo   = rowMeans(across(c(hh_d_act, hh_d_cot, hh_d_jub)), na.rm = TRUE),\n  \n  # la variable vivienda corresponderá al promedio por fila de las 3 varianles seleccionadas: \n    vivienda  = rowMeans(across(c(hh_d_habitab,hh_d_servbas,hh_d_entorno)), na.rm = TRUE), \n  \n  # la variable redes_cohesion corresponderá al promedio por fila de las 3 varianles seleccionadas: \n    redes_cohesion = rowMeans(across(c(hh_d_appart, hh_d_tsocial, hh_d_seg)), na.rm = TRUE))\n\nAhora, calculamos el índice con su ponderación:\n\n# Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:\nipm &lt;- ipm %&gt;% mutate(\n  \n  # creamos la nueva variable: \n  ipm = (educacion*0.225 +  # multplicamos por su peso\n           salud*0.225 +    # multplicamos por su peso\n           trabajo*0.225 +  # multiplicamos por su peso\n           vivienda*0.225 + # multiplicamos por su peso\n           redes_cohesion*0.10)/1) # multiplicamos por su peso\n\nPor último, establcemos el umbral, para poder interpretar:\n\n# Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:\nipm &lt;- ipm %&gt;% mutate(ipm =  if_else(\n  ipm &gt;= 0.25, # si el valor del índice es menor o igual a 0.25 \n  1, # dicha fila tome el valor 1\n  0, # la fila que no corresponda a la condición tome valor 0\n  missing = NA_real_) # si no cumple ninguna, que sea un NA \n  )"
+  },
+  {
+    "objectID": "assignment/indices-1.html#ejercicios",
+    "href": "assignment/indices-1.html#ejercicios",
+    "title": "Construcción de índices",
+    "section": "Ejercicios",
+    "text": "Ejercicios\n\nEjercicio individual\nCrear una nueva variable “indep_con_vivienda” usando case_when() y con las siguientes condiciones:\n\ncon la variable o15: trabajadores independientes\ncon la variable\n\n\n\nEjercicio grupal\nReunanse en grupos. Considerando la dimensión de educación del IPM, elija uno de los tres indicadores y transforme una nueva variable correspondiente al indicador.\n\nAsistencia escolar: Uno de sus integrantes de 4 a 18 años de edad no está asistiendo a un establecimiento educacional y no ha egresado de cuarto medio, o al menos un integrante de 6 a 26 años tiene una condición permanente y/o de larga duración y no asiste a un establecimiento educacional.\nEscolaridad: Uno de sus integrantes mayores de 18 años ha alcanzado menos años de escolaridad que los establecidos por ley, de acuerdo a su edad.\nRezago escolar: Uno de sus integrantes de 21 años o menos asiste a educación básica o media y se encuentra retrasado dos años o más."
+  },
+  {
+    "objectID": "assignment/indices-1.html#casen-dimensión-de-trabajo-en-ipm",
+    "href": "assignment/indices-1.html#casen-dimensión-de-trabajo-en-ipm",
+    "title": "Construcción de índices",
+    "section": "CASEN: Dimensión de Trabajo en IPM",
+    "text": "CASEN: Dimensión de Trabajo en IPM\n\nEn este práctico utilizaremos cuatro paquetes:\n\npacman: este facilita y agiliza la lectura de los paquetes a utilizar en R\ntidyverse: colección de paquetes, de la cual utilizaremos dplyr y haven\ndplyr: nos permite seleccionar variables de un set de datos\nhaven: cargar y exportar bases de datos en formatos .sav y .dta\n\n\n# Cargamos las librerías\npacman::p_load(tidyverse, #co lección de paquetes para manipulación de datos\n               haven, # para importar datos\n               dplyr) # para manipular datos\n\n# Importamos los datos\ncasen &lt;- read_sav(\"../assignment/input/casen.sav\")\n\nTenemos nuestra base, su estructura es la siguiente:\n\nOcupación\nDefinición operacional:\n\nEl hogar es carente si uno de sus integrantes mayores de 18 está desocupado, es decir, actualmente no tiene trabajo y busca trabajo durante el período de referencia\n\nConsiderando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:\n\nedad (mayor a 18)\no5 (busca trabajo)\n\n\n\nSeguridad Social\nDefinición operacional:\n\nEl hogar es carente si uno de sus integrantes de 15 años o más que se encuentra ocupado no cotiza en el sistema previsional y no es trabajador independiente con educación superior completa.\n\nConsiderando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:\n\nedad (mayor o igual a 15)\no1 (ocupado)\no15 (no es trabajador independiente)\no31 (no cotiza en el sistema previsional)\n\n\n\nJubilaciones\nDefinición operacional:\n\nEl hogar es carente si uno de sus integrantes en edad de jubilar no percibe una pensión contributiva o no contributiva y no recibe otros ingresos por arriendos, retiro de utilidades, dividendos e intereses.\n\nConsiderando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:\n\nedad (mayor o igual a 60 años)\no (no percibe una pensión contributiva o no contributiva)\no (no recibe otros ingresos)"
   }
 ]
