@@ -12,12 +12,12 @@ format:
 execute:
   freeze: auto   
 #course-logo: /files/logo-correlacional.png
-listing:
-  id: informaciones
-  contents: "news/2025*.qmd"
-  type: grid
-  sort: "date desc"
-  categories: false
+#listing:
+#  id: informaciones
+ # contents: "news/2025*.qmd"
+  #type: grid
+  #sort: "date desc"
+  #categories: false
 ---
 
 ```{r set-dependencies, include=FALSE}
@@ -31,17 +31,9 @@ withr::with_dir(here::here(), {
 
 
 
-:::: {style="background-color: #F2DFCD "}
-
-
 ### Equipo docente
 
 
-::: {.column width="5%"}
-
-:::
-
-::: {.column width="29%"}
 
 
 **Profesora**
@@ -61,13 +53,7 @@ withr::with_dir(here::here(), {
 </ul>
 
 
-:::
 
-::: {.column width="3%"}
-
-:::
-
-::: {.column width="29%"}
 
 **Apoyo docente**
 
@@ -80,26 +66,16 @@ withr::with_dir(here::here(), {
 <ul style="list-style-type: none; padding-left: 1.5em;">  
 </li> {{< fa university >}} &nbsp;  {{< var other.office >}}</li>
   <li>{{< fa envelope >}} &nbsp; {{< var other.email >}}</li>
-  </li>{{< fa calendar-check >}} &nbsp; [Agendar reunión]({{< var other.appointment_url >}})</li>
-</ul>
 
 
-:::
-
-::: {.column width="3%"}
-
-:::
-
-::: {.column width="16%"}
 **Ayudantes**
+- 
+- 
+- 
+- 
 
-- Martina Buzio
-- Juan Pablo Díaz
-- Valentina Montecinos
-- Martina Lagos
-- Matilda Raccagni
-:::
-::::
+
+
 
 :::: {style="background-color: #1E2D59 "}
 :::: {.columns}
@@ -111,7 +87,7 @@ withr::with_dir(here::here(), {
 ::: {.column width="40%"}
 ### <span style="color: #E6E6E6  ;">Sesiones</span>
 
- <span style="color: #E6E6E6 ;"> {{< fa university >}} &nbsp; **Martes 8:30-11:45** Aulario A9 </span>
+ <span style="color: #E6E6E6 ;"> {{< fa university >}} &nbsp; Pronto </span>
 :::
 
 ::: {.column width="10%"}
@@ -122,7 +98,7 @@ withr::with_dir(here::here(), {
 
 ### <span style="color: #E6E6E6  ;">Guías de apoyo del curso</span>
 
-- [Guía de lectura: Ayudantía I](https://cuantitativa.netlify.app/resource/ayudantia-01)
+- [Guía de lectura: Ayudantía I 2025](https://cuantitativa.netlify.app/resource/ayudantia-01)
 - [Estrategias de estudio y lecto-escritura](https://cuantitativa.netlify.app/resource/estrategias)
 
 
@@ -133,12 +109,7 @@ withr::with_dir(here::here(), {
 
 <br>
 
-## Últimas informaciones
 
-::: {#informaciones}
-:::
-
--> ir a la [página de Informaciones](/news/index.qmd) del sitio.
 
 
 

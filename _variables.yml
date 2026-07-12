@@ -22,14 +22,14 @@ other:
 
 course:
   number: "PMAP 8521"
-  semester: "Segundo 2025"
+  semester: "Segundo 2026"
   days: "Martes"
   time: " 8:30-11:45"
   location: "Aulario A9"
-  dates: "4 Agosto al 28 de Noviembre, 2025"
+  dates: "4 Agosto al 28 de Noviembre, 2026"
   github: "https://github.com/mafenunezz/cuantitativa"
   url: "https://cuantitativa.netlify.app"
-  copyright_year: "2025"
+  copyright_year: "2026"
   slack: ""
 
 university:

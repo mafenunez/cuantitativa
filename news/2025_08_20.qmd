@@ -1,29 +1,26 @@
 ---
-title: "Bienvenida e informaciones"
-date: "2025-08-20"
+title: "Tutorial página del curso"
+date: "2026-08-01"
 categories: [inicio]
 image: /files/img/news_01.png
 ---
 
-Estimad_s estudiantes, acá en esta pestaña quedará registro de las *informaciones y actualizaciones del curso*. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.
+¡Hola! acá en esta pestaña quedará registro de las *informaciones y actualizaciones del curso*. De todas maneras se enviará link por correo a UCursos cuando haya noticias relevantes.
 
 
-Además, les damos la <font color="orange">*bienvenida al curso de Estrategias de Investigación Cuantitativa 2025!*</font> 
+Además, les damos la <font color="orange">*bienvenida al curso de Estrategias de Investigación Cuantitativa 2026!*</font> 
 
 El curso se encontrará a disposición en **esta Página Web**. Por ello, esta primera información se trata más bien de una *presentación de la página del curso* para que así puedan conocerla y navegar en sus distintas pestañas y secciones. 
 
-Como pueden ver en el <font color="#1E2D59">**banner superior**</font>, se encuentran *7 secciones y 2 figuras*. 
+Como pueden ver en el <font color="#1E2D59">**banner izquierdo**</font>, se encuentran *5 secciones y 2 figuras*. 
 
 Primero, comenzaremos con las secciones: 
 
+- [Resumen de contenidos](https://cuantitativa.netlify.app/resumen): Se trata de un mapa dinámico con el cual pueden interectuar para observar cómo se relacionan los contenidos del curso en todas sus etapas y, asímimismo, visualizar la relevancia de cada unidad. 
 - Informaciones: donde nos encontramos ahora.
-- [Planificación](https://cuantitativa.netlify.app/schedule): Se comporta como la hoja de ruta del curso, en dicha sección ustedes pueden encontrar todo lo relevante del mismo a partir de las fechas y clases del curso. Busca ser una representación esquematica del semestre y sus recursos (presentaciones de clase, talleres y lecturas), los cuales se encuentran linkeados. Por lo que al hacer click en el [texto rojo](), les llevará automaticamente al material correspondiente.
-- [Clases](https://cuantitativa.netlify.app/content/): Contiene dos secciones,las presentaciones de clase y el listado ***descargable*** de [lecturas obligatorias](https://cuantitativa.netlify.app/content/13-content) y [lecturas complementarias](https://cuantitativa.netlify.app/content/14-content)  (Aun en proceso...).
-- [Talleres](https://cuantitativa.netlify.app/assignment/): En esta pestaña se irán subiendo los talleres de clase dispuestos en la [planificación](https://cuantitativa.netlify.app/schedule), así como los talleres de software que se realicen a lo largo del semestre.
-- [Trabajos](https://cuantitativa.netlify.app/trabajos): Aun se encuentra en construcción... Pero pronto se adjuntarán las pautas y rúbricas de los dos trabajos planificados para el semestre. 
+- [Clases](https://cuantitativa.netlify.app/content/): Contiene dos secciones,las sesiones de clase y el listado ***descargable*** de [lecturas obligatorias](https://cuantitativa.netlify.app/content/13-content) y [lecturas complementarias](https://cuantitativa.netlify.app/content/14-content).
+- [Talleres](https://cuantitativa.netlify.app/assignment/): En esta pestaña se irán subiendo los talleres de software que se realicen a lo largo del semestre.
 - [Recursos](https://cuantitativa.netlify.app/resource/): Acá se adjuntan una serie de links que son complementarios al curso y que sirven de apoyo a su formación académica.
-- [Programa](https://cuantitativa.netlify.app/syllabus): Por último, lo más importante y que deben siempre tener presente, nuestro programa del curso. 
-
 
 
 Segundo, las figuras del banner corresponde a:

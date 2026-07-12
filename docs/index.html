@@ -32,8 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href=".//files/log-transparente.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -72,65 +70,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-informaciones .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-informaciones'] = new List('listing-informaciones', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="Estrategias de Investigación Cuantitativa">
 <meta property="og:description" content="">
@@ -171,20 +111,8 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trabajos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resumen</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./news/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Informaciones</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Horario</span></a>
+  <a href="./resumen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resumen de contenidos</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -196,16 +124,10 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./content/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Descripción</span></a>
-  </div>
-</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Presentaciones</span></a>
+ <span class="menu-text">Sesiones</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -214,19 +136,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./content/01-content.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unidad I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./content/02-content.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unidad II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./content/03-content.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unidad III</span></a>
+ <span class="menu-text">Unidad I: La naturaleza de la investigación social cuantitativa</span></a>
   </div>
 </li>
       </ul>
@@ -265,40 +175,9 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./assignment/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Descripción</span></a>
-  </div>
-</li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
- <span class="menu-text">Talleres de R</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./assignment/indices-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1: Índices</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./assignment/indices-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2: Calidad índice</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./assignment/indices-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3: Base agregada</span></a>
-  </div>
-</li>
-      </ul>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Talleres de R</span></span>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -377,12 +256,6 @@ window.Quarto = {
   </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -414,12 +287,8 @@ window.Quarto = {
 </div>
 
 
-<section id="equipo-docente" class="level3" style="background-color: #F2DFCD ">
+<section id="equipo-docente" class="level3">
 <h3 class="anchored" data-anchor-id="equipo-docente">Equipo docente</h3>
-<div class="column" style="width:5%;">
-
-</div>
-<div class="column" style="width:29%;">
 <p><strong>Profesora</strong></p>
 <div class="image-cropper">
 <p><img src="./images/julieta.png" alt="avatar" class="profile-pic"></p>
@@ -436,11 +305,6 @@ window.Quarto = {
 <i class="fa-solid fa-calendar-check" aria-label="calendar-check"></i> &nbsp; Horario de consultas: Martes de 14:00 a 15:30 horas
 
 </ul>
-</div>
-<div class="column" style="width:3%;">
-
-</div>
-<div class="column" style="width:29%;">
 <p><strong>Apoyo docente</strong></p>
 <div class="image-cropper">
 <p><img src="https://ucampus.uchile.cl/d/r/usuario/59/595eac1ba1e7c71fbbea076608baba9c/perfil/496fa860bf25d94e31d726b0778e7ac0.jpg" alt="avatar" class="profile-pic"></p>
@@ -453,25 +317,14 @@ window.Quarto = {
 <li>
 <i class="fa-solid fa-envelope" aria-label="envelope"></i> &nbsp; <a href="mailto:maria.nunez.2@ug.uchile.cl">maria.nunez.2@ug.uchile.cl</a>
 </li>
-
-<i class="fa-solid fa-calendar-check" aria-label="calendar-check"></i> &nbsp; <a href="https://calendly.com/maria-fernanda-nunez">Agendar reunión</a>
-
-</ul>
-</div>
-<div class="column" style="width:3%;">
-
-</div>
-<div class="column" style="width:16%;">
-<p><strong>Ayudantes</strong></p>
+</ul></section>
+<section id="ayudantes" class="level2">
+<h2 class="anchored" data-anchor-id="ayudantes"><strong>Ayudantes</strong></h2>
 <ul>
-<li>Martina Buzio</li>
-<li>Juan Pablo Díaz</li>
-<li>Valentina Montecinos</li>
-<li>Martina Lagos</li>
-<li>Matilda Raccagni</li>
+<li></li>
+<li></li>
+<li></li>
 </ul>
-</div>
-</section>
 <div style="background-color: #1E2D59 ">
 <div class="columns">
 <div class="column" style="width:5%;">
@@ -479,7 +332,7 @@ window.Quarto = {
 </div><div class="column" style="width:40%;">
 <section id="sesiones" class="level3">
 <h3 class="anchored" data-anchor-id="sesiones"><span style="color: #E6E6E6  ;">Sesiones</span></h3>
-<p><span style="color: #E6E6E6 ;"> <i class="fa-solid fa-university" aria-label="university"></i> &nbsp; <strong>Martes 8:30-11:45</strong> Aulario A9 </span></p>
+<p><span style="color: #E6E6E6 ;"> <i class="fa-solid fa-university" aria-label="university"></i> &nbsp; Pronto </span></p>
 </section>
 </div><div class="column" style="width:10%;">
 
@@ -487,7 +340,7 @@ window.Quarto = {
 <section id="guías-de-apoyo-del-curso" class="level3">
 <h3 class="anchored" data-anchor-id="guías-de-apoyo-del-curso"><span style="color: #E6E6E6  ;">Guías de apoyo del curso</span></h3>
 <ul>
-<li><a href="https://cuantitativa.netlify.app/resource/ayudantia-01">Guía de lectura: Ayudantía I</a></li>
+<li><a href="https://cuantitativa.netlify.app/resource/ayudantia-01">Guía de lectura: Ayudantía I 2025</a></li>
 <li><a href="https://cuantitativa.netlify.app/resource/estrategias">Estrategias de estudio y lecto-escritura</a></li>
 </ul>
 </section>
@@ -495,67 +348,6 @@ window.Quarto = {
 </div>
 </div>
 <p><br></p>
-<section id="últimas-informaciones" class="level2">
-<h2 class="anchored" data-anchor-id="últimas-informaciones">Últimas informaciones</h2>
-<div id="listing-informaciones" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="planificación" data-listing-date-sort="1757473200000" data-listing-file-modified-sort="1757563963870" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="51">
-<a href="./news/2025_09_fecha.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./files/img/news_02.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Nuevas fechas para las evaluaciones del curso (!)
-</h5>
-<div class="card-text listing-description">
-Estimad-s estudiantes, en la pestaña de Planificación podrán encontrar la recalendarización del curso.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Sep 10, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="inicio" data-listing-date-sort="1755662400000" data-listing-file-modified-sort="1757563942454" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356">
-<a href="./news/2025_08_20.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./files/img/news_01.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Bienvenida e informaciones
-</h5>
-<div class="card-text listing-description">
-Estimad_s estudiantes, acá en esta pestaña quedará registro de las <em>informaciones y actualizaciones del curso</em>. De todas maneras se enviará link por correo a UCursos cuando…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Aug 20, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<p>-&gt; ir a la <a href="./news/index.html">página de Informaciones</a> del sitio.</p>
-
 
 
 </section>
@@ -974,7 +766,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2025 by María Fernanda Núñez <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2026 by María Fernanda Núñez <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

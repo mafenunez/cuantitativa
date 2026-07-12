@@ -1,6 +1,6 @@
 ---
-title: "Causalidad, representatividad,<br>confiabilidad, validez y replicabilidad"
-date: "2025-08-05"
+title: "Unidad I. La naturaleza de la investigación social cuantitativa"
+date: ""
 lang: es
 execute:
   freeze: auto   
@@ -10,7 +10,529 @@ website:
    #   repo: cursos-metodos-facso/correlacional
 ---
 
+
+# 1. El <span style="color: #1E2D59;"><strong>*proceso*</strong></span> de investigación cuantitativa (una secuencia tipo-ideal)
+
+```{=html}
+<style>
+  #mapa-secuencia-investigacion{
+    --c-secuencia:#2b2f36;
+    --c-retro:#9aa0a6;
+    --card-border:#c9cdd2;
+    --card-bg:#e9ebee;
+    --card-shadow:0 1px 2px rgba(0,0,0,.08);
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:#1a1a1a;
+  }
+  #mapa-secuencia-investigacion *{box-sizing:border-box;}
+  #mapa-secuencia-investigacion h1{font-size:1.15rem; margin:0 0 .2rem;}
+  #mapa-secuencia-investigacion p.sub{color:#555; margin:.1rem 0 1.1rem; font-size:.88rem; max-width:640px;}
+
+  #mapa-secuencia-investigacion .toolbar{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem;}
+  #mapa-secuencia-investigacion .toolbar button{
+    border:1px solid #ccc; background:#fff; border-radius:999px;
+    padding:.35rem .85rem; font-size:.78rem; cursor:pointer; color:#333;
+  }
+  #mapa-secuencia-investigacion .toolbar button.active{ color:#fff; border-color:transparent; }
+  #mapa-secuencia-investigacion .toolbar button[data-flow="secuencia"].active{background:var(--c-secuencia);}
+  #mapa-secuencia-investigacion .toolbar button[data-flow="retroalimentacion"].active{background:#7d838c;}
+  #mapa-secuencia-investigacion .toolbar button[data-flow="all"].active{background:#333;}
+
+  #mapa-secuencia-investigacion #map-wrap{ position:relative; max-width:720px; padding-right:70px; }
+  #mapa-secuencia-investigacion #map-svg{
+    position:absolute; inset:0; width:100%; height:100%;
+    z-index:1; pointer-events:none; overflow:visible;
+  }
+  #mapa-secuencia-investigacion .steps-col{
+    display:flex; flex-direction:column; gap:32px;
+    position:relative; z-index:2;
+  }
+  #mapa-secuencia-investigacion .step{
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:10px; box-shadow:var(--card-shadow);
+    padding:.7rem 1rem; font-size:.9rem; line-height:1.3;
+    max-width:520px; cursor:pointer;
+    transition:box-shadow .15s ease, border-color .15s ease;
+  }
+  #mapa-secuencia-investigacion .step:hover, #mapa-secuencia-investigacion .step.is-active{ box-shadow:0 3px 10px rgba(0,0,0,.18); border-color:#8a8f96; }
+  #mapa-secuencia-investigacion .step.theoretical{ border-style:dashed; border-width:2px; }
+  #mapa-secuencia-investigacion .step.is-active{ outline:2px solid #333; }
+
+  #mapa-secuencia-investigacion .legend{ margin-top:1.6rem; font-size:.78rem; color:#444; display:flex; gap:1.4rem; flex-wrap:wrap;}
+  #mapa-secuencia-investigacion .legend span{display:inline-flex; align-items:center; gap:.35rem;}
+  #mapa-secuencia-investigacion .swatch{width:20px; height:0; border-top:3px solid; display:inline-block;}
+</style>
+
+<div id="mapa-secuencia-investigacion">
+
+<h1>Secuencia del proceso de investigación cuantitativa</h1>
+<p class="sub">Pasa el cursor sobre cualquier paso para ver su conexión. Haz clic para fijarla. Usa los botones para
+aislar la secuencia principal o la retroalimentación entre resultados y teoría.</p>
+
+<div class="toolbar" id="toolbar">
+  <button data-flow="all" class="active">Ver todo</button>
+  <button data-flow="secuencia">Secuencia</button>
+  <button data-flow="retroalimentacion">Retroalimentación</button>
+</div>
+
+<div id="map-wrap">
+  <svg id="map-svg"><defs>
+    <marker id="arrow-secuencia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2b2f36"/></marker>
+    <marker id="arrow-retro" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa0a6"/></marker>
+  </defs></svg>
+
+  <div class="steps-col">
+    <div class="step theoretical" data-id="p1">1. Problema de Investigación: <strong>Teoría</strong></div>
+    <div class="step theoretical" data-id="p2">2. Hipótesis: posible existencia de un fenómeno</div>
+    <div class="step" data-id="p3">3. Diseño de investigación: transversal / experimental</div>
+    <div class="step" data-id="p4">4. Conceptos operativos: operacionalización</div>
+    <div class="step" data-id="p5">5. Selección del "lugar" de investigación</div>
+    <div class="step" data-id="p6">6. Selección de los encuestados: unidades</div>
+    <div class="step" data-id="p7">7. Recogida de datos: Instrumentos</div>
+    <div class="step" data-id="p8">8. Tratamiento de datos: Base de datos</div>
+    <div class="step" data-id="p9">9. Análisis de datos: técnica de análisis</div>
+    <div class="step" data-id="p10">10. Resultados y conclusiones (Publicación)</div>
+  </div>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="border-color:#2b2f36"></span> secuencia del proceso</span>
+  <span><span class="swatch" style="border-color:#9aa0a6"></span> retroalimentación: los resultados reabren la teoría</span>
+  <span><span class="swatch" style="border-color:#666; border-top-style:dashed;"></span> pasos teóricos (antes de operacionalizar)</span>
+</div>
+
+</div><!-- /#mapa-secuencia-investigacion -->
+
+<script>
+(function(){
+const root = document.getElementById('mapa-secuencia-investigacion');
+const STEPS = ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10'];
+
+const EDGES = [
+  ...STEPS.slice(0, -1).map((id, i) => ({from: id, to: STEPS[i+1], flow: 'secuencia'})),
+  {from: 'p10', to: 'p1', flow: 'retroalimentacion'},
+];
+
+const FLOW_COLOR      = {secuencia: '#2b2f36', retroalimentacion: '#9aa0a6'};
+const FLOW_MARKER     = {secuencia: 'arrow-secuencia', retroalimentacion: 'arrow-retro'};
+const DEFAULT_OPACITY = {secuencia: .85, retroalimentacion: .55};
+
+const wrap = root.querySelector('#map-wrap');
+const svg  = root.querySelector('#map-svg');
+const nodesById = {};
+root.querySelectorAll('[data-id]').forEach(el => nodesById[el.dataset.id] = el);
+
+function rectOf(el){
+  const r = el.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+  return {x:r.left-w.left, y:r.top-w.top, w:r.width, h:r.height,
+          cx:r.left-w.left+r.width/2, cy:r.top-w.top+r.height/2};
+}
+function anchor(from, to){
+  const goingDown = to.cy >= from.cy;
+  return {x: from.cx, y: goingDown ? from.y+from.h : from.y};
+}
+function anchorRight(r){ return {x: r.x+r.w, y: r.cy}; }
+
+function draw(){
+  svg.querySelectorAll('path.conn').forEach(p=>p.remove());
+  EDGES.forEach(edge=>{
+    const a = nodesById[edge.from], b = nodesById[edge.to];
+    if(!a || !b) return;
+    const ra = rectOf(a), rb = rectOf(b);
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('class', `conn conn-${edge.flow}`);
+    path.dataset.from = edge.from; path.dataset.to = edge.to; path.dataset.flow = edge.flow;
+
+    if(edge.flow === 'retroalimentacion'){
+      const p1 = anchorRight(ra), p2 = anchorRight(rb);
+      const loopX = Math.max(ra.x+ra.w, rb.x+rb.w) + 46;
+      path.setAttribute('d', `M${p1.x},${p1.y} C${loopX},${p1.y} ${loopX},${p2.y} ${p2.x},${p2.y}`);
+      path.setAttribute('stroke-width','9');
+      path.setAttribute('stroke-linecap','round');
+    } else {
+      const p1 = anchor(ra, rb), p2 = anchor(rb, ra);
+      const midY = (p1.y+p2.y)/2;
+      path.setAttribute('d', `M${p1.x},${p1.y} C${p1.x},${midY} ${p2.x},${midY} ${p2.x},${p2.y}`);
+      path.setAttribute('stroke-width','2.5');
+    }
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke', FLOW_COLOR[edge.flow]);
+    path.setAttribute('marker-end', `url(#${FLOW_MARKER[edge.flow]})`);
+    path.style.opacity = DEFAULT_OPACITY[edge.flow];
+    svg.appendChild(path);
+  });
+}
+draw();
+window.addEventListener('resize', draw);
+
+let currentFilter = 'all';
+
+function opacityFor(path){
+  const flow = path.dataset.flow;
+  if(path.dataset.pinned === '1') return 0.95;
+  if(currentFilter === 'all') return DEFAULT_OPACITY[flow];
+  return flow === currentFilter ? 0.9 : 0.05;
+}
+function refreshOpacities(){
+  svg.querySelectorAll('path.conn').forEach(p => p.style.opacity = opacityFor(p));
+}
+
+root.querySelector('#toolbar').addEventListener('click', e=>{
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  currentFilter = btn.dataset.flow;
+  root.querySelectorAll('#toolbar button').forEach(b=>b.classList.toggle('active', b===btn));
+  svg.querySelectorAll('path.conn').forEach(p=> p.dataset.pinned = '');
+  root.querySelectorAll('.step.is-active').forEach(c=>c.classList.remove('is-active'));
+  refreshOpacities();
+});
+
+root.querySelectorAll('[data-id]').forEach(card=>{
+  const id = card.dataset.id;
+  const related = () => svg.querySelectorAll(`path[data-from="${id}"], path[data-to="${id}"]`);
+
+  card.addEventListener('mouseenter', ()=> related().forEach(p=> p.style.opacity = 0.95));
+  card.addEventListener('mouseleave', ()=> related().forEach(p=> p.style.opacity = opacityFor(p)));
+  card.addEventListener('click', ()=>{
+    const nowActive = card.classList.toggle('is-active');
+    related().forEach(p=>{
+      p.dataset.pinned = nowActive ? '1' : '';
+      p.style.opacity = opacityFor(p);
+    });
+  });
+});
+})();
+</script>
+```
+
+
+## El <mark style="background-color: #F2DFCD;color: #1E2D59;">*problema*</mark> de investigación 
+
+
+¿Qué es lo que queremos investigar?:
+
+- **Problemas sociales** versus problemas de investigación (ej: problema: aumento del número de campamentos)
+- La definición de un problema de investigación también puede **emerger de la propia experiencia** (ej: impactos de los procesos de movilidad social)
+- La **teoría** como fuente de preguntas de investigación (ej: distribución del trabajo doméstico y compensación a la desviación de la norma de género)
+
+:::: {style="border: 2px solid #BF382C; border-radius: 8px; padding: 10px;"}
+¡No confundir tener un **tema de investigación** con haber formulado un problema de investigación!
+
+¿Qué sabemos ya respecto a lo que queremos investigar?: **Revisión de la investigación previa en el tema**
+
+Al conocer los principales hallazgos de la investigación previa en el tema que nos interesa, estamos en mejores condiciones de formular una pregunta de investigación
+::::
+
+
+## <mark style="background-color: #F2DFCD;color: #1E2D59;">*Pregunta* de investigación</mark>  
+
+>“Una pregunta de investigación es una pregunta que proporciona **una declaración explícita de lo que el investigador quiere saber**.
+Un **propósito** de investigación puede presentarse
+como una declaración (por ejemplo, "Quiero investigar si (o por qué) ..."), pero una pregunta obliga al investigador/a a ser más explícito sobre lo que se debe investigar” (Bryman 2012)
+
+**Las preguntas guían tu investigación**
+
+<i class="fas fa-check-circle"></i> Guían la revisión de la literatura
+
+<i class="fas fa-check-circle"></i> Guía tu decisión sobre el diseño de investigación más adecuado
+
+<i class="fas fa-check-circle"></i>Guían la elección del tipo de datos a utilizar
+
+<i class="fas fa-check-circle"></i>Guían el tipo de análisis de datos a realizar
+
+<i class="fas fa-check-circle"></i>Guían la definición de las conclusiones de tu estudio (respuestas) y las implicancias de ellas
+
+### Tipos de preguntas de investigación (Bryman 2012)
+
+- Predecir un resultado (¿*y* tiene lugar bajo las circunstancias *a* y *b*?)
+- Explicar las causas y/o consecuencias de un fenómeno (¿*y* es afectado por *x*; o *y* es consecuencia de *x*?)
+- Evaluar un fenómeno(¿*y* exhibe los beneficios que se asocian con un programa que tiene *abc* características?)
+- Describir un fenómeno (¿cómo es *y*, qué formas asume *y*?)
+- Comparar (¿*a* y *b* difieren con respecto de *x*?)
+
+*Ejemplos* 
+
+1. Pregunta: **¿Cómo influye el nivel socioeconómico en la movilidad social intergeneracional en América Latina?**
+
+Variables: Nivel socioeconómico de los padres (x), nivel educativo y ocupacional de los hijos (y).
+
+2. Pregunta: **¿Cuál es el efecto del acceso a tecnología educativa en el rendimiento académico de estudiantes de educación secundaria en zonas rurales?**
+
+Variables: Acceso a tecnología (x), rendimiento académico medido por calificaciones estandarizadas (y).
+
+3. Pregunta: **¿Influye el uso de redes sociales en la intención de voto de los jóvenes en elecciones presidenciales?**
+
+Variables: Consumo de información política en redes sociales (x), intención de voto (y).
+
+## ¿Qué es una <mark style="background-color: #F2DFCD;color: #1E2D59;">*hipótesis*</mark>?
+
+*En términos coloquiales:*
+
+> …una **hipótesis** es una **afirmación o suposición verificable** que establece una relación entre dos o más variables. Se formula con base en el conocimiento previo y se prueba mediante el **análisis de datos numéricos**.
+
+*En términos técnicos (Bryman, 2012):*
+
+>Una hipótesis es, en cierto sentido, una forma de pregunta de investigación, pero no se plantea como una pregunta sino que se plantea como una **anticipación de lo que se descubrirá**.
+
+
+## ¿Hipótesis<mark style="background-color: #F2DFCD;color: #1E2D59;"> *nula*</mark> o <mark style="background-color: #F2DFCD;color: #1E2D59;">*alternativa*</mark>? 
+
+**Hipótesis nula** (H₀): Es una afirmación que plantea que **no existe una relación o efecto significativo entre las variables estudiadas**. Se usa como punto de partida para la prueba estadística.
+
+*Ejemplo: No hay diferencia en el rendimiento entre estudiantes que estudian con música y los que no.*
+
+**Hipótesis alternativa** (H₁): Es una afirmación que propone que **sí existe una relación o efecto significativo entre las variables**. Es la que se busca apoyar con evidencia.
+
+*Ejemplo: Los estudiantes que estudian con música tienen un rendimiento diferente a los que no lo hacen.*
+
+
+<span style="color: #1E2D59;"><strong>¡Esto es materia de la estadística!</strong></span>
+
+:::: {style="border: 2px solid #1E2D59; border-radius: 8px; padding: 10px;"}
+Veamos esto en el ejemplo anterior: 
+
+1. Pregunta: **¿Cómo influye el nivel socioeconómico en la movilidad social intergeneracional en América Latina?**
+
+Variables: Nivel socioeconómico de los padres (x), nivel educativo y ocupacional de los hijos (y).
+
+:::: {style="background-color: #F2DFCD "}
+**Hipótesis - Hipótesis alternativa (H₁): Un nivel socioeconómico más alto de los padres está positivamente asociado con mayores oportunidades de movilidad social ascendente en América Latina.**
+::::
+
+2. Pregunta: **¿Cuál es el efecto del acceso a tecnología educativa en el rendimiento académico de estudiantes de educación secundaria en zonas rurales?**
+
+Variables: Acceso a tecnología (x), rendimiento académico medido por calificaciones estandarizadas (y).
+
+:::: {style="background-color: #F2DFCD "}
+**Hipótesis: Hipótesis alternativa (H₁): Los estudiantes de educación secundaria en zonas rurales con acceso a tecnología educativa tienen un mejor rendimiento académico en comparación con aquellos que no tienen acceso.**
+::::
+
+3. Pregunta: **¿Influye el uso de redes sociales en la intención de voto de los jóvenes en elecciones presidenciales?**
+
+Variables: Consumo de información política en redes sociales (x), intención de voto (y).
+
+:::: {style="background-color: #F2DFCD "}
+**Hipótesis: Hipótesis alternativa (H₁): Un mayor consumo de información política en redes sociales está asociado con una mayor intención de voto en los jóvenes durante elecciones presidenciales.**
+::::
+::::
+
+## <mark style="background-color: #F2DFCD;color: #1E2D59;">*Diseño*</mark>  de la investigación 
+
+Decisión en base a:
+
+- <span style="color: #1E2D59;">Determinación de relaciones causales.</span>
+- <span style="color: #1E2D59;">Generalización de resultados.</span>
+- <span style="color: #1E2D59;">Comprender un fenómeno en un contexto social específico.</span>
+- <span style="color: #1E2D59;">Evaluación temporal del fenómeno.</span>
+
+**Principales diseños de investigación**
+
+- <mark style="background-color: #F2DFCD;color: #1E2D59;">Diseños **experimentales** y **cuasi-experimentales**</mark>
+- <mark style="background-color: #F2DFCD;color: #1E2D59;">Diseños **longitudinales** (datos panel)</mark>
+- <mark style="background-color: #F2DFCD;color: #1E2D59;">Diseños **transversales**</mark>
+- <mark style="background-color: #F2DFCD;color: #1E2D59;">Estudios **comparados**</mark>
+- <mark style="background-color: #F2DFCD;color: #1E2D59;">Estudios de **casos**</mark>
+
+# 2. Medición de <span style="color: #1E2D59;"><strong>*conceptos*</strong></span> 
+
+Conceptos:
+
+>Etiquetas que damos a los elementos del mundo social que
+parecen tener características comunes y que nos parecen significativos (Bryman, 2012)
+
+>Categorías para la organización de ideas y observaciones (Bulmer, 1983)
+
+
+- <span style="color: #1E2D59;"><strong>Definición operacional de un concepto</strong></span>
+
+
+## Variables
+
+:::: .columns
+::: {.column width="50%"}
+:::: {style="border: 2px solid #BF382C; border-radius: 8px; padding: 10px;"}
+**Variables cualitativas (o categóricas)**
+Describen características o cualidades que no son numéricas.
+
+- **Nominales**: No tienen un orden lógico entre las categorías.
+Ejemplo: Género (mujer, hombre, otro); región de residencia (Norte, Centro, Sur)
+
+- **Ordinales**: Tienen un orden, pero no se puede asumir que la
+distancia entre categorías sea constante.
+Ejemplo: Nivel educacional (básico, medio, superior); satisfacción con el servicio (baja, media, alta)
+
+:::: {style="background-color: #F2DFCD "}
+**Variables dicotómicas (o binarias)**
+
+- Solo tienen dos categorías posibles (sí/no, 0/1). Pueden ser un subtipo de variable nominal.
+
+- Ejemplo: ¿Ha votado en la última elección? (Sí / No);
+¿Tiene empleo actualmente? (Sí / No)
+::::
+::::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+:::: {style="border: 2px solid #BF382C; border-radius: 8px; padding: 10px;"}
+**Variables cuantitativas (o numéricas)**
+Expresan cantidades y se pueden medir numéricamente.
+
+- **Discretas**: Toman valores enteros (no hay decimales).
+Ejemplo: Número de hijos; cantidad de libros leídos en un mes
+
+- **Continuas**: Pueden tomar cualquier valor dentro de un rango, incluyendo decimales.
+Ejemplo: Ingreso mensual; peso corporal; edad
+::::
+:::
+::::
+
+## Definición <mark style="background-color: #F2DFCD;color: #1E2D59;">*población objetivo*</mark> y la <mark style="background-color: #F2DFCD;color: #1E2D59;">*unidad de análisis*</mark> 
+
+
+:::: .columns
+::: {.column width="20%"}
+
+::::{style="border: 2px solid #1E2D59; border-radius: 8px; padding: 10px;"}
+Unidad de análisis,
+Unidad de observación,
+Unidad de información
+
+::::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+
+::::{style="border: 2px solid #1E2D59; border-radius: 8px; padding: 10px;"}
+Población y muestra 
+::::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+
+::::{style="border: 2px solid #1E2D59; border-radius: 8px; padding: 10px;"}
+Alcance de la investigación
+(geográfico, temporal)
+::::
+:::
+::::
+
+
+## Información <mark style="background-color: #F2DFCD;color: #1E2D59;">*Primaria*</mark>
+
+**Es la información recolectada directamente por el/la investigador para un propósito específico**. (Ej. encuestas, entrevistas estructuradas, observación directa, experimentos)
+
+Beneficios
+
+- **Relevancia**: está alineada con los objetivos específicos del estudio.
+- **Control**: puedes definir qué, cómo y a quién preguntar.
+- **Actualidad**: los datos reflejan la situación en tiempo real.
+- **Flexibilidad**: se pueden ajustar las herramientas o instrumentos según el avance del estudio.
+
+
+**Desafíos**
+
+- **Costosa**: requiere tiempo, recursos humanos y logísticos.
+-**Acceso a participantes**: puede ser difícil contactar o reclutar muestras adecuadas.
+- **Errores en la recolección**: si no se diseña bien, los datos pueden ser poco fiables.
+- **Ética y consentimiento**: implica mayor responsabilidad en la protección de datos personales.
+
+## Información <mark style="background-color: #F2DFCD;color: #1E2D59;">*Secundaria*</mark> 
+
+**Es la información ya existente, recolectada por otros para fines distintos**. (Ej. bases de datos oficiales, informes, estadísticas, artículos académicos, registros administrativos)
+
+**Beneficios**
+
+- **Menor costo y mayor rapidez**: ya está disponible y lista para usar.
+- **Fuentes consolidada**s: muchas veces proviene de instituciones oficiales o académicas.
+- **Comparabilidad histórica**: permite analizar tendencias a lo largo del tiempo.
+- **Útil para estudios exploratorios o contextuales**.
+
+
+**Desafíos**
+
+- **Falta de pertinencia**: puede no ajustarse exactamente a los objetivos del estudio.
+- **Datos desactualizados o incompletos**.
+- **Falta de control** sobre cómo se recolectaron los datos (definiciones, muestras, calidad).
+- **Restricciones de acceso o uso**: licencias, privacidad, formatos cerrados.
+
+## <mark style="background-color: #F2DFCD;color: #1E2D59;">*Procesamiento*</mark> y <mark style="background-color: #F2DFCD;color: #1E2D59;">*análisis*</mark> de información 
+
+- Cuantificación y codificación
+- Casos y variables
+- Plan de análisis y su relación con los objetivos de investigación
+- Técnicas de análisis de la información
+- Interpretación de los resultados
+
+
+ <span style="color: #1E2D59;"><strong>¡Esto está muy cerca de la estadística!</strong></span>
+
+
+# 3.  Preocupaciones centrales de la investigación social cuantitativa
+
+## <mark style="background-color: #F2DFCD; color: #1E2D59;">Medición</mark> 
+
+En investigación social cuantitativa los conceptos requieren ser medidos (operacionalización).
+
+Una vez los conceptos son medidos (definiciones operacionales), pueden funcionar como variables independientes o dependientes.
+
+- **Variables independientes**: proveen explicaciones a
+determinados aspectos del mundo social
+- **Variables dependientes**: aspectos del mundo social que
+requieren ser explicados
+
+Preocupación por confiabilidad y validez de las medidas
+
+## <mark style="background-color: #F2DFCD; color: #1E2D59;">Generalización</mark>
+
+- Necesidad de generalizar los resultados de una investigación más allá del contexto particular en que fue conducida.
+- Ello se relaciona con la preocupación por contar con muestras representativas (probabilísticas).
+- Estadística descriptiva vs inferencial.
+- Representatividad siempre circunscrita a la población de referencia. 
+
+## <mark style="background-color: #F2DFCD; color: #1E2D59;">Causalidad</mark>
+
+Preocupación por la explicación (procedimiento de las ciencias naturales experimentales).
+
+Condiciones para la causalidad:
+
+- *Temporalidad*
+- *Asociación estadística*
+- *No explicaciones alternativas*
+
+Distinción entre variables dependientes e independientes como reflejo de la tendencia a pensar en términos causales.
+
+Tres nociones de causalidad:
+
+- Como asociación estable
+- Como efecto de una intervención
+- Como explicación de un proceso
+
+Al estudiar el mundo social, normalmente no podemos manipular X (no siempre podemos llevar a cabo experimentos) debido a que hay variables que no pueden manipularse en la investigación y a la complejidad de los fenómenos sociales.
+
+## <mark style="background-color: #F2DFCD; color: #1E2D59;">Replicabilidad</mark> 
+
+- Preocupación por reducir la influencia de los sesgos y valores del/a investigador/a.
+- Replicabilidad de las investigaciones como forma de evaluar esta influencia (reproducción de la investigación).
+- Relación con la confiabilidad y validez de los resultados de la investigación.
+
+## Síntesis
+
+- Preocupación por la medición de conceptos: operacionalización.
+-  Pretensión de generalización: muestreo (probabilístico y no probabilístico)
+-  Búsqueda de relaciones causales: distintas nociones de causalidad, relación con tipo de análisis.
+-  Replicabilidad como estándar de confiabilidad y validez de la investigación.
+
 # Documento de presentación
 
 <iframe src="https://cuantitativa.netlify.app/content/01-content-1.html#/section" height="550" width=100% allowfullscreen="true">
 </iframe> 
+
