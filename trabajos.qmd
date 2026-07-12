@@ -1,5 +1,5 @@
 ---
-title: Trabajos
+title: Contenidos
 lang: es
 number-sections: true
 website:
@@ -8,19 +8,329 @@ website:
       repo: cursos-metodos-facso/correlacional
 ---
 
+```{=html}
+<style>
+  :root{
+    --c-u1:#5b5fc7;
+    --c-u2:#2b6cb0;
+    --c-u3:#0f8a7e;
+    --c-u4:#b7791f;
+    --c-u5:#b0324a;
+    --card-border:#d7dbe0;
+    --card-shadow:0 1px 2px rgba(0,0,0,.08);
+  }
+  #mapa-contenidos *{box-sizing:border-box;}
+  #mapa-contenidos{
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:#1a1a1a;
+  }
+  #mapa-contenidos h1{font-size:1.2rem; margin:0 0 .2rem;}
+  #mapa-contenidos p.sub{color:#555; margin:.1rem 0 1.1rem; font-size:.88rem; max-width:820px;}
 
+  #mapa-contenidos .toolbar{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem;}
+  #mapa-contenidos .toolbar button{
+    border:1px solid #ccc; background:#fff; border-radius:999px;
+    padding:.35rem .85rem; font-size:.78rem; cursor:pointer; color:#333;
+  }
+  #mapa-contenidos .toolbar button.active{ color:#fff; border-color:transparent; }
+  #mapa-contenidos .toolbar button[data-flow="diseno"].active{background:var(--c-u2);}
+  #mapa-contenidos .toolbar button[data-flow="medicion"].active{background:var(--c-u3);}
+  #mapa-contenidos .toolbar button[data-flow="indicadores"].active{background:var(--c-u4);}
+  #mapa-contenidos .toolbar button[data-flow="convergencia"].active{background:var(--c-u5);}
+  #mapa-contenidos .toolbar button[data-flow="all"].active{background:#333;}
 
-El curso de Estadística Correlacional considera la elaboración de un trabajo grupal como instancia final de [evaluación](/syllabus#evaluación).
+  #mapa-contenidos #map-wrap{ position:relative; max-width:900px; }
+  #mapa-contenidos #map-svg{
+    position:absolute; inset:0; width:100%; height:100%;
+    z-index:1; pointer-events:none; overflow:visible;
+  }
+  #mapa-contenidos .units-row{
+    display:flex; flex-direction:column; gap:44px;
+    position:relative; z-index:2;
+  }
+  #mapa-contenidos .unit-col{ width:100%; }
+  #mapa-contenidos .unit-head{
+    font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    padding:.4rem .55rem; border-radius:6px; margin-bottom:.6rem; color:#fff;
+    display:inline-block;
+  }
+  #mapa-contenidos .u1 .unit-head{background:var(--c-u1);}
+  #mapa-contenidos .u2 .unit-head{background:var(--c-u2);}
+  #mapa-contenidos .u3 .unit-head{background:var(--c-u3);}
+  #mapa-contenidos .u4 .unit-head{background:var(--c-u4);}
+  #mapa-contenidos .u5 .unit-head{background:var(--c-u5);}
 
+  #mapa-contenidos .cards-row{ display:flex; flex-wrap:wrap; gap:.6rem; }
 
-# Recomendaciones generales para el trabajo {.tabset}
+  #mapa-contenidos .card{
+    background:#fff; border:1px solid var(--card-border); border-left-width:4px;
+    border-radius:8px; box-shadow:var(--card-shadow);
+    padding:.5rem .65rem; font-size:.82rem; line-height:1.28;
+    cursor:pointer; transition:box-shadow .15s ease, border-color .15s ease;
+    flex:0 0 auto; max-width:230px;
+  }
+  #mapa-contenidos .card:hover, #mapa-contenidos .card.is-active{ box-shadow:0 3px 10px rgba(0,0,0,.16); }
+  #mapa-contenidos .u1 .card{border-left-color:var(--c-u1);}
+  #mapa-contenidos .u2 .card{border-left-color:var(--c-u2);}
+  #mapa-contenidos .u3 .card{border-left-color:var(--c-u3);}
+  #mapa-contenidos .u4 .card{border-left-color:var(--c-u4);}
+  #mapa-contenidos .u5 .card{border-left-color:var(--c-u5);}
+  #mapa-contenidos .card.is-active{ outline:2px solid #333; }
 
-## Escritura académica
+  #mapa-contenidos .sub-box{
+    border:1px dashed #c7ccd3; border-radius:8px; padding:.6rem .6rem .3rem;
+    margin-bottom:.6rem; background:rgba(15,138,126,.04);
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:flex-start;
+  }
+  #mapa-contenidos .sub-box .sub-label{
+    flex-basis:100%; font-size:.65rem; color:#666; text-transform:uppercase;
+    letter-spacing:.03em; margin-bottom:.1rem;
+  }
+  #mapa-contenidos .sub-box .card{ font-size:.76rem; padding:.4rem .55rem; max-width:180px; }
 
-- Una idea por párrafo
+  #mapa-contenidos .stage-pill{
+    display:table; margin:.5rem auto 1.1rem;
+    font-size:.72rem; font-weight:600; color:#444; background:#eef0f3;
+    border:1px solid #d7dbe0; border-radius:999px; padding:.3rem .8rem;
+  }
 
-- Uso de "oración principal" (topic sentence): usualmente es la oración al principio del párrafo, que resume el sentido del párrafo completo y que conecta con el párrafo anterior.
+  #mapa-contenidos .encuesta-main{
+    font-size:.95rem; font-weight:700; padding:.75rem .8rem; margin-bottom:.8rem; max-width:none;
+  }
+  #mapa-contenidos .chips-box{
+    border:1px solid var(--card-border); border-radius:8px; padding:.6rem .65rem;
+    background:#fff;
+  }
+  #mapa-contenidos .chips-box .chip-label{ font-size:.65rem; color:#666; text-transform:uppercase; margin-bottom:.4rem; display:block;}
+  #mapa-contenidos .chip{
+    display:inline-block; font-size:.72rem; background:#fbeef0; color:#7a2438;
+    border:1px solid #f0d3d8; border-radius:6px; padding:.2rem .5rem; margin:.15rem .25rem .15rem 0;
+  }
 
-- [Recursos de apoyo a la escritura académica de la Universidad de Chile](https://aprendizaje.uchile.cl/recursos-para-leer-escribir-y-hablar-en-la-universidad/escribir/)
+  #mapa-contenidos .legend{ margin-top:1.6rem; font-size:.78rem; color:#444; display:flex; gap:1.4rem; flex-wrap:wrap;}
+  #mapa-contenidos .legend span{display:inline-flex; align-items:center; gap:.35rem;}
+  #mapa-contenidos .swatch{width:20px; height:0; border-top:2.5px solid; display:inline-block;}
+</style>
 
+<div id="mapa-contenidos">
 
+<h1>Mapa de contenidos: de los fundamentos conceptuales a la encuesta</h1>
+<p class="sub">Pasa el cursor sobre cualquier tarjeta para ver con qué se conecta. Haz clic para fijar esa conexión
+(clic de nuevo para soltarla). Usa los botones para aislar un flujo a la vez y seguir el razonamiento paso a paso.</p>
+
+<div class="toolbar" id="toolbar">
+  <button data-flow="all" class="active">Ver todo</button>
+  <button data-flow="diseno">① Fundamentos → Diseños</button>
+  <button data-flow="medicion">② Medición → Operacionalización</button>
+  <button data-flow="indicadores">③ Indicadores → Índices y escalas</button>
+  <button data-flow="convergencia">④ Convergencia final → Encuesta</button>
+</div>
+
+<div id="map-wrap">
+  <svg id="map-svg"><defs>
+    <marker id="arrow-u2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2b6cb0"/></marker>
+    <marker id="arrow-u3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f8a7e"/></marker>
+    <marker id="arrow-u4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker>
+    <marker id="arrow-u5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b0324a"/></marker>
+    <marker id="arrow-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa0a6"/></marker>
+  </defs></svg>
+
+  <div class="units-row">
+
+    <!-- UNIDAD 1 -->
+    <div class="unit-col u1">
+      <div class="unit-head">Unidad 1 · Conceptos centrales</div>
+      <div class="cards-row">
+        <div class="card" data-id="u1-causalidad">Causalidad</div>
+        <div class="card" data-id="u1-validez">Validez</div>
+        <div class="card" data-id="u1-confiabilidad">Confiabilidad</div>
+        <div class="card" data-id="u1-replicabilidad">Replicabilidad</div>
+        <div class="card" data-id="u1-generalizacion">Generalización (representatividad)</div>
+        <div class="card" data-id="u1-medicion">Medición</div>
+      </div>
+    </div>
+
+    <!-- UNIDAD 2 -->
+    <div class="unit-col u2">
+      <div class="unit-head">Unidad 2 · Diseños de investigación</div>
+      <div class="cards-row">
+        <div class="card" data-id="u2-transversal">Diseños transversales</div>
+        <div class="card" data-id="u2-longitudinal">Diseños longitudinales</div>
+        <div class="card" data-id="u2-experimental">Diseños experimentales y cuasi-experimentales</div>
+        <div class="card" data-id="u2-comparativo">Diseños comparativos y estudios de caso</div>
+      </div>
+      <div class="stage-pill" data-id="stage-diseno">↓ Diseño definido</div>
+    </div>
+
+    <!-- UNIDAD 3 -->
+    <div class="unit-col u3">
+      <div class="unit-head">Unidad 3 · Operacionalización</div>
+      <div class="sub-box">
+        <span class="sub-label">Se retoma de Unidad 1 · Medición</span>
+        <div class="card" data-id="u1m-unidad-analisis">Unidad de análisis</div>
+        <div class="card" data-id="u1m-indicadores">Indicadores</div>
+        <div class="card" data-id="u1m-variables">Variables</div>
+      </div>
+      <div class="stage-pill" data-id="stage-medicion">↓ Medición operacionalizada</div>
+      <div class="cards-row">
+        <div class="card" data-id="u3-tipos-variables">Tipos de variables y niveles de medición</div>
+        <div class="card" data-id="u3-indicadores">Indicadores simples y múltiples, directos e indirectos</div>
+      </div>
+      <div class="stage-pill" data-id="stage-operacionalizacion">↓ Proceso de operacionalización listo</div>
+    </div>
+
+    <!-- UNIDAD 4 -->
+    <div class="unit-col u4">
+      <div class="unit-head">Unidad 4 · Índices y escalas</div>
+      <div class="cards-row">
+        <div class="card" data-id="u4-indices-escalas">Formulación de indicadores sociales: índices y escalas</div>
+      </div>
+      <div class="stage-pill" data-id="stage-indicadores">↓ Indicadores construidos</div>
+    </div>
+
+    <!-- UNIDAD 5 -->
+    <div class="unit-col u5">
+      <div class="unit-head">Unidad 5 · Encuesta</div>
+      <div class="card encuesta-main" data-id="u5-encuesta">Encuesta<br><span style="font-weight:400;font-size:.75rem;color:#666;">instrumento final de investigación</span></div>
+      <div class="chips-box">
+        <span class="chip-label">Contenidos de la unidad</span>
+        <span class="chip">Tipos de cuestionarios</span>
+        <span class="chip">Tipos de preguntas</span>
+        <span class="chip">Reglas para el diseño de preguntas</span>
+        <span class="chip">Pilotaje: objetivos y utilidades</span>
+        <span class="chip">Consideraciones éticas en la investigación por encuestas</span>
+        <span class="chip">Evaluación crítica de encuestas sociales</span>
+        <span class="chip">Introducción al muestreo</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="border-color:#9aa0a6"></span> conexión estructural (siempre visible)</span>
+  <span><span class="swatch" style="border-color:var(--c-u2)"></span> ① fundamentos → diseños</span>
+  <span><span class="swatch" style="border-color:var(--c-u3)"></span> ② medición → operacionalización</span>
+  <span><span class="swatch" style="border-color:var(--c-u4)"></span> ③ indicadores → índices/escalas</span>
+  <span><span class="swatch" style="border-color:var(--c-u5)"></span> ④ convergencia final → encuesta</span>
+</div>
+
+</div><!-- /#mapa-contenidos -->
+
+<script>
+(function(){
+const root = document.getElementById('mapa-contenidos');
+const CONCEPTOS_U1 = ['u1-causalidad','u1-validez','u1-confiabilidad','u1-replicabilidad','u1-generalizacion'];
+const DISENOS_U2   = ['u2-transversal','u2-longitudinal','u2-experimental','u2-comparativo'];
+
+const EDGES = [
+  ...CONCEPTOS_U1.flatMap(c => DISENOS_U2.map(d => ({from:c, to:d, flow:'diseno'}))),
+
+  {from:'u1-medicion', to:'u1m-unidad-analisis', flow:'medicion'},
+  {from:'u1-medicion', to:'u1m-indicadores',      flow:'medicion'},
+  {from:'u1-medicion', to:'u1m-variables',        flow:'medicion'},
+  {from:'u1m-unidad-analisis', to:'u3-tipos-variables', flow:'medicion'},
+  {from:'u1m-variables',       to:'u3-tipos-variables', flow:'medicion'},
+  {from:'u1m-indicadores',     to:'u3-indicadores',      flow:'medicion'},
+  {from:'u1m-unidad-analisis', to:'u3-indicadores',      flow:'medicion'},
+
+  {from:'u1m-indicadores', to:'u4-indices-escalas', flow:'indicadores'},
+  {from:'u3-indicadores',  to:'u4-indices-escalas', flow:'indicadores'},
+
+  ...DISENOS_U2.map(d => ({from:d, to:'stage-diseno', flow:'stage'})),
+  {from:'u1m-unidad-analisis', to:'stage-medicion', flow:'stage'},
+  {from:'u1m-indicadores',     to:'stage-medicion', flow:'stage'},
+  {from:'u1m-variables',       to:'stage-medicion', flow:'stage'},
+  {from:'u3-tipos-variables', to:'stage-operacionalizacion', flow:'stage'},
+  {from:'u3-indicadores',     to:'stage-operacionalizacion', flow:'stage'},
+  {from:'u4-indices-escalas', to:'stage-indicadores', flow:'stage'},
+
+  {from:'stage-diseno',            to:'u5-encuesta', flow:'convergencia'},
+  {from:'stage-medicion',          to:'u5-encuesta', flow:'convergencia'},
+  {from:'stage-operacionalizacion',to:'u5-encuesta', flow:'convergencia'},
+  {from:'stage-indicadores',       to:'u5-encuesta', flow:'convergencia'},
+];
+
+const FLOW_COLOR  = {diseno:'#2b6cb0', medicion:'#0f8a7e', indicadores:'#b7791f', convergencia:'#b0324a', stage:'#9aa0a6'};
+const FLOW_MARKER = {diseno:'arrow-u2', medicion:'arrow-u3', indicadores:'arrow-u4', convergencia:'arrow-u5', stage:'arrow-grey'};
+const DEFAULT_OPACITY = {diseno:.10, medicion:.20, indicadores:.30, convergencia:.40, stage:.55};
+
+const wrap = root.querySelector('#map-wrap');
+const svg  = root.querySelector('#map-svg');
+const nodesById = {};
+root.querySelectorAll('[data-id]').forEach(el => nodesById[el.dataset.id] = el);
+
+function rectOf(el){
+  const r = el.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+  return {x:r.left-w.left, y:r.top-w.top, w:r.width, h:r.height,
+          cx:r.left-w.left+r.width/2, cy:r.top-w.top+r.height/2};
+}
+function anchor(from, to){
+  const goingDown = to.cy >= from.cy;
+  return {x: from.cx, y: goingDown ? from.y+from.h : from.y};
+}
+
+function draw(){
+  svg.querySelectorAll('path.conn').forEach(p=>p.remove());
+  EDGES.forEach(edge=>{
+    const a = nodesById[edge.from], b = nodesById[edge.to];
+    if(!a || !b) return;
+    const ra = rectOf(a), rb = rectOf(b);
+    const p1 = anchor(ra, rb), p2 = anchor(rb, ra);
+    const midY = (p1.y+p2.y)/2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('class', `conn conn-${edge.flow}`);
+    path.dataset.from = edge.from; path.dataset.to = edge.to; path.dataset.flow = edge.flow;
+    path.setAttribute('d', `M${p1.x},${p1.y} C${p1.x},${midY} ${p2.x},${midY} ${p2.x},${p2.y}`);
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke', FLOW_COLOR[edge.flow]);
+    path.setAttribute('stroke-width', edge.flow==='stage' ? 1.5 : 2);
+    if(edge.flow==='diseno') path.setAttribute('stroke-dasharray','4,3');
+    path.setAttribute('marker-end', `url(#${FLOW_MARKER[edge.flow]})`);
+    path.style.opacity = DEFAULT_OPACITY[edge.flow];
+    svg.appendChild(path);
+  });
+}
+draw();
+window.addEventListener('resize', draw);
+
+let currentFilter = 'all';
+
+function opacityFor(path){
+  const flow = path.dataset.flow;
+  if(path.dataset.pinned === '1') return 0.95;
+  if(flow === 'stage') return DEFAULT_OPACITY.stage;
+  if(currentFilter === 'all') return DEFAULT_OPACITY[flow];
+  return flow === currentFilter ? 0.9 : 0.04;
+}
+function refreshOpacities(){
+  svg.querySelectorAll('path.conn').forEach(p => p.style.opacity = opacityFor(p));
+}
+
+root.querySelector('#toolbar').addEventListener('click', e=>{
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  currentFilter = btn.dataset.flow;
+  root.querySelectorAll('#toolbar button').forEach(b=>b.classList.toggle('active', b===btn));
+  svg.querySelectorAll('path.conn').forEach(p=> p.dataset.pinned = '');
+  root.querySelectorAll('.card.is-active').forEach(c=>c.classList.remove('is-active'));
+  refreshOpacities();
+});
+
+root.querySelectorAll('[data-id]').forEach(card=>{
+  const id = card.dataset.id;
+  const related = () => svg.querySelectorAll(`path[data-from="${id}"], path[data-to="${id}"]`);
+
+  card.addEventListener('mouseenter', ()=> related().forEach(p=> p.style.opacity = 0.95));
+  card.addEventListener('mouseleave', ()=> related().forEach(p=> p.style.opacity = opacityFor(p)));
+  card.addEventListener('click', ()=>{
+    const nowActive = card.classList.toggle('is-active');
+    related().forEach(p=>{
+      p.dataset.pinned = nowActive ? '1' : '';
+      p.style.opacity = opacityFor(p);
+    });
+  });
+});
+})();
+</script>
+```

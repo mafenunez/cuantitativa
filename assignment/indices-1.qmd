@@ -13,39 +13,34 @@ El objetivo de esta guía práctica es recordar algunos procedimientos básicos 
 
 En detalle, aprenderemos:
 
-1. Procesar una base de datos: **CASEN 2022**
+1.  Procesar una base de datos: **CASEN 2022**
 
-2. Recodifcar y transformar indicadores según condiciones: `case_when()`, `if_else()`
+2.  Recodifcar y transformar indicadores según condiciones: `case_when()`, `if_else()`
 
-3. Generar el **índice de pobreza multidimensional (IPM)**
+3.  Generar el **índice de pobreza multidimensional (IPM)**
 
-
-## 1. Repaso: recodificación y procesamiento 
-
+## 1. Repaso: recodificación y procesamiento
 
 ### Niveles de medición: NOIR
 
 ::: callout-important
-Para recodificar debemos **siempre** remitir a los niveles de medición de las variables. 
+Para recodificar debemos **siempre** remitir a los niveles de medición de las variables.
 :::
 
 Cuando recodifcamos buscamos *reducir o agrupar categorías*. Aquello es posible considerando los **niveles de medición de las variables (NOIR)** y sus **propiedades** (que son *acumulativas*). De modo que recodificamos variables que sean cuantitativas a cualitativas, no al revés.
 
-- **N**: variables **n**ominales. Propiedad (1): *clasifican*
-- **O**: variables **o**rdinales. Propiedad (2): *clasifican y ordenan*
-- **I**: variables **i**ntervalares. Propiedad (3): *clasifican, ordenan y expresan magnitudes*
-- **R**: variables de **r**azón. Propiedad (4): *clasifican, ordenan, expresan magnitudes y permiten operar sus categorías (aditividad)*
-
+-   **N**: variables **n**ominales. Propiedad (1): *clasifican*
+-   **O**: variables **o**rdinales. Propiedad (2): *clasifican y ordenan*
+-   **I**: variables **i**ntervalares. Propiedad (3): *clasifican, ordenan y expresan magnitudes*
+-   **R**: variables de **r**azón. Propiedad (4): *clasifican, ordenan, expresan magnitudes y permiten operar sus categorías (aditividad)*
 
 ### Pasos procesamiento
 
-![](../files/img/proc.png) 
-
+![](../files/img/proc.png)
 
 ## 2. CASEN: Dimensión Trabajo y Seguridad Social en IPM
 
-![](../files/img/trabajo.png) 
-
+![](../files/img/trabajo.png)
 
 ```{r}
 
@@ -65,11 +60,10 @@ Definición operacional:
 
 > El hogar es carente si uno de sus integrantes mayores de 18 está desocupado, es decir, actualmente no tiene trabajo y busca trabajo durante el período de referencia
 
-Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción: 
+Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:
 
-- `edad` (mayor a 18)
-- `o5` (busca trabajo)
-
+-   `edad` (mayor a 18)
+-   `o5` (busca trabajo)
 
 ```{r}
 # Usando los datos del objeto casen, crearemos el objeto proc_casen, al cual le asociaremos el siguiente procedimiento:
@@ -105,19 +99,18 @@ proc_casen <- proc_casen %>%
 
 ```
 
-
 ### Seguridad Social
 
 Definición operacional:
 
 > El hogar es carente si uno de sus integrantes de 15 años o más que se encuentra ocupado no cotiza en el sistema previsional y no es trabajador independiente con educación superior completa.
 
-Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción: 
+Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:
 
-- `edad` (mayor o igual a 15)
-- `o1` (ocupado)
-- `o15` (no es trabajador independiente)
-- `o31` (no cotiza en el sistema previsional)
+-   `edad` (mayor o igual a 15)
+-   `o1` (ocupado)
+-   `o15` (no es trabajador independiente)
+-   `o31` (no cotiza en el sistema previsional)
 
 ```{r}
 # Usando los datos del objeto proc_casen, sobreescribimos el siguiente procedimiento:
@@ -156,19 +149,17 @@ proc_casen <- proc_casen %>%
   )
 ```
 
-
-### Jubilaciones 
+### Jubilaciones
 
 Definición operacional:
 
 > El hogar es carente si uno de sus integrantes en edad de jubilar no percibe una pensión contributiva o no contributiva y no recibe otros ingresos por arriendos, retiro de utilidades, dividendos e intereses.
 
-Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción: 
+Considerando dicha definición, se trata de un indicador compuesto, por lo que debemos considerar las siguientes variables para su construcción:
 
-- `edad` (mayor o igual a 60 años)
-- `o31` (no percibe una pensión contributiva o no contributiva)
-- `y12a_preg`, `y15a_preg`, `y15b_preg`, `y15c_preg` (no recibe otros ingresos)
-
+-   `edad` (mayor o igual a 60 años)
+-   `o31` (no percibe una pensión contributiva o no contributiva)
+-   `y12a_preg`, `y15a_preg`, `y15b_preg`, `y15c_preg` (no recibe otros ingresos)
 
 ```{r}
 
@@ -218,7 +209,8 @@ proc_casen <- proc_casen %>%
 
 ```
 
-### Calculamos la dimensión 
+### Calculamos la dimensión
+
 ```{r}
 # Usando los datos del objeto proc_casen, sobreescribimos el siguiente procedimiento:
 proc_casen <- proc_casen %>%  mutate(
@@ -232,12 +224,14 @@ summary(proc_casen$trabajo)
 
 ## 3. Índice de Pobreza Multidimensional (IPM)
 
-En la base de datos `CASEN` pueden encontrar las variables agregadas del módulo PM que cotneien las variables recodificadas para calcular el índice de Pobreza Multidimensional (IPM), todas con el sufijo `hh_d_` . 
+En la base de datos `CASEN` pueden encontrar las variables agregadas del módulo PM que cotneien las variables recodificadas para calcular el índice de Pobreza Multidimensional (IPM), todas con el sufijo `hh_d_` .
 
-Con dichas variables, calcularemos el índice completo. 
+Con dichas variables, calcularemos el índice completo.
 
 ### Seleccionar
+
 Como la base de datos sigue siendo la misma, solo seleccionaremos las variables en un nuevo objeto de nombre `ipm`:
+
 ```{r}
 
 # Usando los datos del objeto casen, crearemos el objeto ipm, al cual le asociaremos el siguiente procedimiento:
@@ -271,9 +265,10 @@ ipm <- casen %>% select(
   region)
 ```
 
-
 ### Dimensiones
+
 Ahora, calculamos las dimensiones
+
 ```{r}
 
 # Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:
@@ -301,7 +296,9 @@ ipm <- ipm %>%
 ```
 
 ### Índice
+
 Ahora, calculamos el índice con su ponderación:
+
 ```{r}
 
 # Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:
@@ -335,9 +332,10 @@ ggplot(
   ggtitle("Distribución IPM")
 ```
 
-
 ### Interpretación
+
 Por último, establecemos el umbral, para poder interpretar:
+
 ```{r}
 
 # Usando los datos del objeto ipm, sobreescribimos el siguiente procedimiento:
@@ -382,25 +380,21 @@ ggplot(
 
 ```
 
-
-## 4. Ejercicios 
+## 4. Ejercicios
 
 ### Ejercicio individual
 
 Crear una nueva variable "indep_con_vivienda" usando `case_when()` o `if_else()` y con las siguientes condiciones:
 
-- con la variable `o15`: **trabajadores independientes**
-- con la variable `v13_propia`: **propia pagada o pagándose**
-
+-   con la variable `o15`: **trabajadores independientes**
+-   con la variable `v13_propia`: **propia pagada o pagándose**
 
 ### Ejercicio grupal
 
-Reunanse en grupos. Considerando la **dimensión de educación** del IPM, *elija uno de los tres indicadores y transforme una nueva variable* correspondiente al indicador. Para ello, deberán descargar desde la página del [Observatorio Social](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022), la base de datos de la CASEN 2022 e importar dicha base para seleccionar las variables a utilizar.  
+Reunanse en grupos. Considerando la **dimensión de educación** del IPM, *elija uno de los tres indicadores y transforme una nueva variable* correspondiente al indicador. Para ello, deberán descargar desde la página del [Observatorio Social](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022), la base de datos de la CASEN 2022 e importar dicha base para seleccionar las variables a utilizar.
 
-- **Asistencia escolar**: Uno de sus integrantes de 4 a 18 años de edad no está asistiendo a un establecimiento educacional y no ha egresado de cuarto medio, o al menos un integrante de 6 a 26 años tiene una condición permanente y/o de larga duración y no asiste a un establecimiento educacional.
+-   **Asistencia escolar**: Uno de sus integrantes de 4 a 18 años de edad no está asistiendo a un establecimiento educacional y no ha egresado de cuarto medio, o al menos un integrante de 6 a 26 años tiene una condición permanente y/o de larga duración y no asiste a un establecimiento educacional.
 
-- **Escolaridad**: Uno de sus integrantes mayores de 18 años ha alcanzado menos años de escolaridad que los establecidos por ley, de acuerdo a su edad.
+-   **Escolaridad**: Uno de sus integrantes mayores de 18 años ha alcanzado menos años de escolaridad que los establecidos por ley, de acuerdo a su edad.
 
-- **Rezago escolar**: Uno de sus integrantes de 21 años o menos asiste a educación básica o media y se encuentra retrasado dos años o más.
-
-
+-   **Rezago escolar**: Uno de sus integrantes de 21 años o menos asiste a educación básica o media y se encuentra retrasado dos años o más.

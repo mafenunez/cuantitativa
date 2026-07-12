@@ -1,8 +1,8 @@
 ---
 title: "Estrategias de Investigación Cuantitativa"
+sidebar: main
 details: |
-  SOC01020 • Segundo Semestre 2025<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile
-sidebar: false
+  SOC01020 • Segundo Semestre 2026<br>Departamento de Sociología, Facultad de Ciencias Sociales<br>Universidad de Chile
 toc: false
 page-layout: full
 format:

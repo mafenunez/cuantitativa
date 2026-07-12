@@ -1,80 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cuantitativa.netlify.app/trabajos.html</loc>
-    <lastmod>2025-07-20T13:38:32.747Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/schedule.html</loc>
-    <lastmod>2025-09-11T02:44:47.436Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/r.html</loc>
-    <lastmod>2025-08-22T15:44:32.855Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/index.html</loc>
-    <lastmod>2025-08-22T15:58:59.796Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/estrategias.html</loc>
-    <lastmod>2025-09-11T02:03:26.636Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/cuanti.html</loc>
-    <lastmod>2025-09-11T01:57:56.815Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/ayudantia-01-3.html</loc>
-    <lastmod>2025-09-11T03:52:57.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/ayudantia-01-1.html</loc>
-    <lastmod>2025-08-22T16:16:28.393Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/news/2025_09_fecha.html</loc>
-    <lastmod>2025-09-11T04:12:43.870Z</lastmod>
-  </url>
-  <url>
     <loc>https://cuantitativa.netlify.app/index.html</loc>
-    <lastmod>2025-09-12T17:17:56.139Z</lastmod>
+    <lastmod>2026-07-09T20:24:36.136Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/evaluations/prueba2.html</loc>
-    <lastmod>2025-07-18T19:53:33.113Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/resource/varios.html</loc>
+    <lastmod>2025-08-22T15:44:30.682Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/evaluations/index.html</loc>
-    <lastmod>2025-07-18T19:53:33.104Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/resource/glosario.html</loc>
+    <lastmod>2025-07-18T19:53:34.958Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/foro-clases.html</loc>
-    <lastmod>2025-07-18T19:53:28.655Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/resource/ayudantia-01.html</loc>
+    <lastmod>2025-08-22T15:21:36.681Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/13-content.html</loc>
-    <lastmod>2025-08-04T02:04:35.412Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/news/index.html</loc>
+    <lastmod>2026-07-09T20:24:36.136Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/04-content.html</loc>
-    <lastmod>2025-08-04T01:39:29.965Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/files/reporte_notas/reporte_notas.html</loc>
+    <lastmod>2025-07-18T19:53:33.862Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/03-content-1.html</loc>
-    <lastmod>2025-10-08T13:41:02.008Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/content/index.html</loc>
+    <lastmod>2025-07-20T13:54:38.380Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/02-content-1.html</loc>
-    <lastmod>2025-10-13T14:08:15.016Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/content/05-content.html</loc>
+    <lastmod>2025-08-04T01:39:56.718Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/01-content-1.html</loc>
-    <lastmod>2025-08-22T16:24:23.879Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/content/02-content.html</loc>
+    <lastmod>2025-08-19T21:53:55.813Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuantitativa.netlify.app/content/01-content.html</loc>
+    <lastmod>2025-08-11T03:18:37.315Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuantitativa.netlify.app/assignment/indices-3.html</loc>
+    <lastmod>2025-11-06T12:51:00.401Z</lastmod>
   </url>
   <url>
     <loc>https://cuantitativa.netlify.app/assignment/indices-1.html</loc>
-    <lastmod>2025-11-03T18:24:37.777Z</lastmod>
+    <lastmod>2026-07-09T20:24:36.082Z</lastmod>
   </url>
   <url>
     <loc>https://cuantitativa.netlify.app/assignment/consola.html</loc>
@@ -86,74 +58,50 @@
   </url>
   <url>
     <loc>https://cuantitativa.netlify.app/assignment/indices-2.html</loc>
-    <lastmod>2025-11-03T20:21:15.206Z</lastmod>
+    <lastmod>2026-07-09T20:24:36.085Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/01-content.html</loc>
-    <lastmod>2025-08-11T03:18:37.315Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/content/01-content-1.html</loc>
+    <lastmod>2025-08-22T16:24:23.879Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/02-content.html</loc>
-    <lastmod>2025-08-19T21:53:55.813Z</lastmod>
+    <loc>https://cuantitativa.netlify.app/content/02-content-1.html</loc>
+    <lastmod>2025-10-13T14:08:15.016Z</lastmod>
   </url>
   <url>
     <loc>https://cuantitativa.netlify.app/content/03-content.html</loc>
     <lastmod>2025-10-08T13:44:49.242Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/content/05-content.html</loc>
-    <lastmod>2025-08-04T01:39:56.718Z</lastmod>
-  </url>
-  <url>
     <loc>https://cuantitativa.netlify.app/content/14-content.html</loc>
     <lastmod>2025-08-19T20:52:25.407Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/content/index.html</loc>
-    <lastmod>2025-07-20T13:54:38.380Z</lastmod>
   </url>
   <url>
     <loc>https://cuantitativa.netlify.app/evaluations/plantilla_reporte/reporte.html</loc>
     <lastmod>2025-07-18T19:53:33.113Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/files/reporte_notas/reporte_notas.html</loc>
-    <lastmod>2025-07-18T19:53:33.862Z</lastmod>
-  </url>
-  <url>
     <loc>https://cuantitativa.netlify.app/news/2025_08_20.html</loc>
     <lastmod>2025-09-11T04:12:22.454Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/news/index.html</loc>
-    <lastmod>2025-08-04T02:48:02.322Z</lastmod>
-  </url>
-  <url>
     <loc>https://cuantitativa.netlify.app/resource/ayudantia-01-2.html</loc>
-    <lastmod>2025-08-22T16:18:09.619Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cuantitativa.netlify.app/resource/ayudantia-01.html</loc>
-    <lastmod>2025-08-22T15:21:36.681Z</lastmod>
+    <lastmod>2026-07-09T20:24:36.136Z</lastmod>
   </url>
   <url>
     <loc>https://cuantitativa.netlify.app/resource/ed.html</loc>
     <lastmod>2025-08-22T15:44:44.221Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/resource/glosario.html</loc>
-    <lastmod>2025-07-18T19:53:34.958Z</lastmod>
-  </url>
-  <url>
     <loc>https://cuantitativa.netlify.app/resource/install.html</loc>
     <lastmod>2025-07-18T19:53:34.959Z</lastmod>
   </url>
   <url>
-    <loc>https://cuantitativa.netlify.app/resource/varios.html</loc>
-    <lastmod>2025-08-22T15:44:30.682Z</lastmod>
-  </url>
-  <url>
     <loc>https://cuantitativa.netlify.app/syllabus.html</loc>
     <lastmod>2025-08-06T23:04:06.520Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cuantitativa.netlify.app/trabajos.html</loc>
+    <lastmod>2026-07-09T20:24:36.147Z</lastmod>
   </url>
 </urlset>

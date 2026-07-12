@@ -17,7 +17,6 @@ listing:
 #    description: "Updates and FAQs for PMAP 8521 at Georgia State University"
   categories: false
 page-layout: full
-sidebar: false
 toc: false
 format:
   html:

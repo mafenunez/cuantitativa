@@ -4,39 +4,38 @@ format: revealjs
 editor: visual
 ---
 
-## {background-image="../files/img/a1/text2-1.jpg" background-size="cover" background-position="center"}
+##  {background-image="../files/img/a1/text2-1.jpg" background-size="cover" background-position="center"}
 
----
+------------------------------------------------------------------------
 
-## {background-image="../files/img/a1/text2-2.jpg" background-size="cover" background-position="center"}
+##  {background-image="../files/img/a1/text2-2.jpg" background-size="cover" background-position="center"}
 
----
+------------------------------------------------------------------------
 
-## {background-image="../files/img/a1/text2-3.jpg" background-size="cover" background-position="center"}
+##  {background-image="../files/img/a1/text2-3.jpg" background-size="cover" background-position="center"}
 
----
+------------------------------------------------------------------------
 
-## {background-image="../files/img/a1/text2-4.jpg" background-size="cover" background-position="center"}
+##  {background-image="../files/img/a1/text2-4.jpg" background-size="cover" background-position="center"}
 
----
+------------------------------------------------------------------------
 
+##  {background-image="../files/img/a1/text2-5.jpg" background-size="cover" background-position="center"}
 
-## {background-image="../files/img/a1/text2-5.jpg" background-size="cover" background-position="center"}
+------------------------------------------------------------------------
 
----
+##  {background-image="../files/img/a1/text2-6.jpg" background-size="cover" background-position="center"}
 
-## {background-image="../files/img/a1/text2-6.jpg" background-size="cover" background-position="center"}
+------------------------------------------------------------------------
 
----
+##  {background-image="../files/img/a1/text2-7.jpg" background-size="cover" background-position="center"}
 
-## {background-image="../files/img/a1/text2-7.jpg" background-size="cover" background-position="center"}
+------------------------------------------------------------------------
 
----
+##  {background-image="../files/img/a1/text2-8.jpg" background-size="cover" background-position="center"}
 
-## {background-image="../files/img/a1/text2-8.jpg" background-size="cover" background-position="center"}
+------------------------------------------------------------------------
 
----
+##  {background-image="../files/img/a1/text2-9.jpg" background-size="cover" background-position="center"}
 
-## {background-image="../files/img/a1/text2-9.jpg" background-size="cover" background-position="center"}
-
----
+------------------------------------------------------------------------

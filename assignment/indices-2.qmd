@@ -1,8 +1,15 @@
 ---
-title: "Construcción de índices: Análisis"
+title: "Construcción de índices: Análisis de calidad"
 editor: visual
 lang: es
 ---
+
+## Presentación
+
+
+## Repaso: Análisis para la contruscción de índices (Calidad: Confiabilidad)
+
+
 
 
 ```{r}
@@ -69,6 +76,9 @@ sjPlot::tab_corr(trab,
 
 ```
 
+#### Análisis 
+
+
 ### Alpha de Cronbach
 ```{r}
 trab_alpha <- psych::alpha(trab)
@@ -77,6 +87,8 @@ trab_alpha
 
 trab_alpha$total$raw_alpha
 ```
+
+#### Análisis
 
 
 ## 2. IPM
@@ -123,7 +135,7 @@ sjPlot::tab_corr(ipm,
 
 
 ```
-
+#### Análisis
 
 ### Alpha de Cronbach
 
@@ -139,17 +151,5 @@ ipm_alpha$total$raw_alpha
 
 ```
 
-## 3. Base agregada
-
-```{r}
-#| warning: false
-#| message: false
-
-agg_casen <- casen %>% 
-  group_by(id_vivienda) %>% 
-  summarise_all(funs(mean)) %>%
-  as.data.frame()
-
-
-```
+#### Análisis
 

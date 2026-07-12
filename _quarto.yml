@@ -40,125 +40,118 @@ website:
     image: "/files/log-transparente.png" # cambiar luego
     locale: es
 
-  navbar:
-    pinned: true
-    background: "#1E2D59"
-    right:
-      - text: "Informaciones"
-        file: news/index.qmd
-      - schedule.qmd
-      - text: "Clases"
-        file: content/index.qmd
-      - text: "Talleres"
-        file: assignment/index.qmd
-      - text: "Trabajos"
-        file: trabajos.qmd
-      - text: "Recursos"
-        file: resource/index.qmd
-      - syllabus.qmd
-      - icon: cloud-fill
-        href: "https://rstudio.cloud"
-        aria-label: RStudio.cloud
-
   sidebar:
-    - title: "Clases"
+    - id: main
       style: "docked"
       search: false
       lang: es
-      background: dark
+      background: "#1E2D59"
       contents:
-        - text: "Descripción"
-          file: content/index.qmd
-        - section: "Presentaciones"
+        - text: "Resumen"
+          file: trabajos.qmd
+        - text: "Informaciones"
+          file: news/index.qmd
+        - text: "Horario"
+          file: schedule.qmd
+        - section: "Clases"
           contents:
-           # - text: "Presentación del curso"
-           #   file: content/01-content.qmd
-            - text: "Unidad I"
-              file: content/01-content.qmd
-            - text: "Unidad II"
-              file: content/02-content.qmd
-            - text: "Unidad III"
-              file: content/03-content.qmd
-            #- text: "Conceptos y medición II"
-             # file: content/05-content.qmd
-          #  - text: "Inferencia 5"
-           #   file: content/06-content.qmd
-          #  - text: "Ejercicio Inferencia"
-           #   file: content/07-content.qmd
-          #  - text: "Bivariada 1"
-           #   file: content/08-content.qmd
-          #  - text: "Bivariada 2"
-           #   file: content/09-content.qmd
-            #- text: "Bivariada 3"
-            #  file: content/10-content.qmd
-            #- text: "Bivariada 4"
-             # file: content/11-content.qmd
-            #- text: "Bivariada 5"
-             # file: content/12-content.qmd
-            #- text: "Documentos dinámicos"
-             # file: content/13-content.qmd
-       # - text: "Foro Clases"
-        #  file: content/foro-clases.qmd
-        - section: "Lecturas"
+            - text: "Descripción"
+              file: content/index.qmd
+            - section: "Presentaciones"
+              contents:
+               # - text: "Presentación del curso"
+               #   file: content/01-content.qmd
+                - text: "Unidad I"
+                  file: content/01-content.qmd
+                - text: "Unidad II"
+                  file: content/02-content.qmd
+                - text: "Unidad III"
+                  file: content/03-content.qmd
+                #- text: "Conceptos y medición II"
+                 # file: content/05-content.qmd
+              #  - text: "Inferencia 5"
+               #   file: content/06-content.qmd
+              #  - text: "Ejercicio Inferencia"
+               #   file: content/07-content.qmd
+              #  - text: "Bivariada 1"
+               #   file: content/08-content.qmd
+              #  - text: "Bivariada 2"
+               #   file: content/09-content.qmd
+                #- text: "Bivariada 3"
+                #  file: content/10-content.qmd
+                #- text: "Bivariada 4"
+                 # file: content/11-content.qmd
+                #- text: "Bivariada 5"
+                 # file: content/12-content.qmd
+                #- text: "Documentos dinámicos"
+                 # file: content/13-content.qmd
+           # - text: "Foro Clases"
+            #  file: content/foro-clases.qmd
+            - section: "Lecturas"
+              contents:
+                - text: "Obligatorias"
+                  file: content/13-content.qmd
+                - text: "Complementarias"
+                  file: content/14-content.qmd
+        - section: "Talleres"
           contents:
-            - text: "Obligatorias"
-              file: content/13-content.qmd
-            - text: "Complementarias"
-              file: content/14-content.qmd
-    - title: "Talleres"
-      contents:
-        - text: "Descripción"
-          file: assignment/index.qmd
-        #- section: "Talleres de clases"
-         # contents:
-          #  - text: "1: Operacionalización"
-             # file: assignment/01-practico.qmd
-        - section: "Talleres de R"
+            - text: "Descripción"
+              file: assignment/index.qmd
+            #- section: "Talleres de clases"
+             # contents:
+              #  - text: "1: Operacionalización"
+                 # file: assignment/01-practico.qmd
+            - section: "Talleres de R"
+              contents:
+                - text: "1: Índices"
+                  file: assignment/indices-1.qmd
+                - text: "2: Calidad índice"
+                  file: assignment/indices-2.qmd
+                - text: "3: Base agregada"
+                  file: assignment/indices-3.qmd
+              #  - text: "4- Matrices de correlación, casos perdidos e índices"
+              #    file: assignment/04-practico.qmd
+               # - text: "5: Asociación entre categóricas"
+                #  file: assignment/05-practico.qmd
+               # - text: "6: Visualización 1: Tablas"
+               #   file: assignment/06-practico.qmd
+              #  - text: "7: Gráficos bivariados en reportes dinámicos"
+             #     file: assignment/07-practico.qmd
+                # - text: "8: Inferencia 4"
+                #   file: assignment/08-practico.qmd
+                # - text: "9: Reporte - plantilla trabajos"
+                #   file: assignment/09-practico.qmd
+                # - text: "10: Asociación con categóricas"
+                #   file: assignment/10-practico.qmd
+                # - text: "CASEN-EBS"
+                #   file: assignment/11-practico.qmd
+          #  - text: "Foro Prácticos"
+           #   file: assignment/foro-practicos.qmd
+            - text: "Consola R Online"
+              file: assignment/consola.qmd
+        - section: "Recursos"
           contents:
-            - text: "1: Índices"
-              file: assignment/indices-1.qmd
-           # - text: "2: Análisis cuestionario"
-          #    file: assignment/02-practico.qmd
-          #  - text: "3: Correlación de Pearson"
-           #   file: assignment/03-practico.qmd
-          #  - text: "4- Matrices de correlación, casos perdidos e índices"
-          #    file: assignment/04-practico.qmd
-           # - text: "5: Asociación entre categóricas"
-            #  file: assignment/05-practico.qmd
-           # - text: "6: Visualización 1: Tablas"
-           #   file: assignment/06-practico.qmd
-          #  - text: "7: Gráficos bivariados en reportes dinámicos"
-         #     file: assignment/07-practico.qmd
-            # - text: "8: Inferencia 4"
-            #   file: assignment/08-practico.qmd
-            # - text: "9: Reporte - plantilla trabajos"
-            #   file: assignment/09-practico.qmd
-            # - text: "10: Asociación con categóricas"
-            #   file: assignment/10-practico.qmd
-            # - text: "CASEN-EBS"
-            #   file: assignment/11-practico.qmd
-      #  - text: "Foro Prácticos"
-       #   file: assignment/foro-practicos.qmd
-        - text: "Consola R Online"
-          file: assignment/consola.qmd
-    - title: "Recursos"
-      contents:
-        - text: "Descripción"
-          file: resource/index.qmd
-        - section: "Guías de apoyo"
-          contents:
-            - text: "Ayudantía I"
-            - file: resource/ayudantia-01.qmd
-            - text: "Estrategias de estudio y lecto-escritura"
-            - file: resource/estrategias.qmd
-        - section: "Recursos Web"
-          contents:
-            - text: "Estadística Descriptiva"
-            - file: resource/ed.qmd
-            - text: "Uso de R"
-            - file: resource/r.qmd
-            - text: "Varios"
-            - file: resource/varios.qmd
+            - text: "Descripción"
+              file: resource/index.qmd
+            - section: "Guías de apoyo"
+              contents:
+                - text: "Ayudantía I"
+                  file: resource/ayudantia-01.qmd
+                - text: "Estrategias de estudio y lecto-escritura"
+                  file: resource/estrategias.qmd
+            - section: "Recursos Web"
+              contents:
+                - text: "Estadística Descriptiva"
+                  file: resource/ed.qmd
+                - text: "Uso de R"
+                  file: resource/r.qmd
+                - text: "Varios"
+                  file: resource/varios.qmd
+        - text: "Syllabus"
+          file: syllabus.qmd
+        - icon: cloud-fill
+          href: "https://rstudio.cloud"
+          aria-label: RStudio.cloud
 
   page-footer:
     left: |

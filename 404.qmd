@@ -1,6 +1,6 @@
 ---
 title: Page Not Found
-sidebar: false
+sidebar: main
 toc: false
 ---
 

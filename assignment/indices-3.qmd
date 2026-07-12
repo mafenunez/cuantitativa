@@ -1,0 +1,28 @@
+---
+title: "Base agregada"
+editor: visual
+---
+
+Base agregada
+
+```{r}
+# Cargamos las librerías
+pacman::p_load(tidyverse, #colección de paquetes, de la cual utilizaremos dplyr
+               haven, # cargar y exportar bases de datos en formatos .sav 
+               dplyr) # para manipular datos
+
+# Importamos los datos
+casen <- read_sav("../assignment/input/casen.sav")
+```
+
+```{r}
+#| warning: false
+#| message: false
+
+agg_casen <- casen %>% 
+  group_by(id_vivienda) %>% 
+  summarise_all(funs(mean)) %>%
+  as.data.frame()
+
+
+```
