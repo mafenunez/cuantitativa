@@ -56,8 +56,8 @@ website:
         #  file: schedule.qmd
         - section: "Clases"
           contents:
-           # - text: "Descripción"
-            #  file: content/index.qmd
+            - text: "Descripción"
+              file: content/index.qmd
             - section: "Sesiones"
               contents:
                # - text: "Presentación del curso"
@@ -80,15 +80,15 @@ website:
                   file: content/13-content.qmd
                 - text: "Complementarias"
                   file: content/14-content.qmd
-        - section: "Talleres"
+        - section: "Uso de R"
           contents:
-#            - text: "Descripción"
-#              file: assignment/index.qmd
-            #- section: "Talleres de clases"
-             # contents:
+            - text: "Descripción"
+              file: assignment/index.qmd
+            - section: "Introducción a R"
+              contents:
               #  - text: "1: Operacionalización"
                  # file: assignment/01-practico.qmd
-            - section: "Talleres de R"
+            - section: "Índices"
               contents:
 #                - text: "1: Índices"
 #                  file: assignment/indices-1.qmd
@@ -96,6 +96,11 @@ website:
 #                  file: assignment/indices-2.qmd
 #                - text: "3: Base agregada"
 #                  file: assignment/indices-3.qmd
+            - section: "Escalas"
+              contents:
+#                - text: "1: Índices"
+#                  file: assignment/indices-1.qmd
+
               #  - text: "4- Matrices de correlación, casos perdidos e índices"
               #    file: assignment/04-practico.qmd
           #  - text: "Foro Prácticos"

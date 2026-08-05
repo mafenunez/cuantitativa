@@ -28,13 +28,15 @@ Estas lecturas están asociadas a clases especificas, visualizadas con más prec
 
 ### Unidad 4
 
-- [Asún, R. (2006). Construcción de cuestionarios y escalas: El proceso de la producción de información cuantitativa](/files/textos/Asun.pdf) 
+- [Márquez, R. (2006). Diseño de índices sintéticos a partir de datos secundarios](/files/textos/Asun.pdf) 
 
 - [Tanujaya, B., Prahmana, R. C. I., & Mumu, J. (2022). Likert scale in social sciences research: Problems and difficulties](/files/textos/Tanujaya.pdf)
 
 ### Unidad 5
 
 - [Einola, K., & Alvesson, M. (2021). Behind the numbers: Questioning questionnaires](/files/textos/Einola.pdf)
+
+- [Padua, J. (2018). Técnicas de Investigación Aplicadas a Las Ciencias Sociales](/files/textos/Padua.pdf) 
 
 - [Villarroel, R. (2018). Ética de la investigación social](/files/textos/Villarroel.pdf)
 

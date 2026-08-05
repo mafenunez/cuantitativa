@@ -36,7 +36,7 @@ withr::with_dir(here::here(), {
 
 
 
-**Profesora**
+#### **Profesora**
 
 <div class="image-cropper">
   <img src="/images/julieta.png" alt="avatar" class="profile-pic">
@@ -49,30 +49,39 @@ withr::with_dir(here::here(), {
 <ul style="list-style-type: none; padding-left: 1.5em;">
   <li>{{< fa university >}} &nbsp; {{< var instructor.office >}}</li>
   <li>{{< fa envelope >}} &nbsp; {{< var instructor.email >}}</li>
-  </li> {{< fa calendar-check >}} &nbsp; Horario de consultas: Martes de 14:00 a 15:30 horas</li>
+  </li> {{< fa calendar-check >}} &nbsp; Horario de consultas: Martes de 14:30 a 16:00 horas</li>
 </ul>
 
 
 
 
-**Apoyo docente**
+#### **Apoyo docente**
 
 <div class="image-cropper">
   <img src="https://ucampus.uchile.cl/d/r/usuario/59/595eac1ba1e7c71fbbea076608baba9c/perfil/496fa860bf25d94e31d726b0778e7ac0.jpg" alt="avatar" class="profile-pic">
 </div>
+
 
 *María Fernanda Núñez*
 
 <ul style="list-style-type: none; padding-left: 1.5em;">  
 </li> {{< fa university >}} &nbsp;  {{< var other.office >}}</li>
   <li>{{< fa envelope >}} &nbsp; {{< var other.email >}}</li>
+  </li> {{< fa calendar-check >}} &nbsp; Horario de consultas: pronto</li>
+</ul>
 
 
-**Ayudantes**
-- 
-- 
-- 
-- 
+#### **Ayudantes**
+
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Valentina Aristondo</mark>
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Amaya Barbet</mark>
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Mariana Cuervo</mark>
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Renato De Luca</mark>
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Pía Montt</mark>
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Cassidy Mansilla</mark>
+- <mark style="background-color: #F2DFCD; color: #1E2D59;">Nuni Sanhueza</mark>
+
+
 
 
 
@@ -87,7 +96,7 @@ withr::with_dir(here::here(), {
 ::: {.column width="40%"}
 ### <span style="color: #E6E6E6  ;">Sesiones</span>
 
- <span style="color: #E6E6E6 ;"> {{< fa university >}} &nbsp; Pronto </span>
+ <span style="color: #E6E6E6 ;"> {{< fa university >}} &nbsp; **Jueves 14:30-17:45** Sala 34 FACSO </span>
 :::
 
 ::: {.column width="10%"}

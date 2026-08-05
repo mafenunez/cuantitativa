@@ -4,7 +4,7 @@
     "href": "syllabus.html",
     "title": "Programa",
     "section": "",
-    "text": "Prof. Julieta Palma\n   301 Sociología FACSO, Universidad de Chile\n   jpalma@uchile.cl\n\n\n\n\n\n   Martes\n   4 Agosto al 28 de Noviembre, 2026\n   8:30-11:45\n   Aulario A9"
+    "text": "Prof. Julieta Palma\n   301 Sociología FACSO, Universidad de Chile\n   jpalma@uchile.cl\n\n\n\n\n\n   Jueves\n   4 Agosto al 28 de Noviembre, 2026\n   14:30-17:45\n   Sala 34 FACSO"
   },
   {
     "objectID": "syllabus.html#propósito-general-del-curso",
@@ -267,7 +267,11 @@
     "href": "content/index.html",
     "title": "Clases",
     "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de presentación que sirven de base a cada clase, en el menú de la izquierda Presentaciones.\nCada clase tiene como referencia lecturas que deben completarse antes de la sesión correspondiente."
+    "text": "En esta sección se encuentran disponibles las sesiones y lecturas del curso, ordenadas por unidad.",
+    "crumbs": [
+      "Clases",
+      "Descripción"
+    ]
   },
   {
     "objectID": "content/14-content.html",
@@ -546,9 +550,13 @@
   {
     "objectID": "assignment/index.html",
     "href": "assignment/index.html",
-    "title": "Talleres",
+    "title": "Uso de R",
     "section": "",
-    "text": "En esta sección se encuentran disponibles los documentos de taller que sirven de base a cada clase, en el menú de la izquierda Talleres."
+    "text": "En esta sección se encuentran disponible el material de apoyo para el trabajo en R.\nEste material es autoexplicativo y espera ser un apoyo para su estudio autonómo.\nSe divide en 3 secciones:\n\nIntroucción a R\nÍndices\nEscalas",
+    "crumbs": [
+      "Uso de R",
+      "Descripción"
+    ]
   },
   {
     "objectID": "assignment/indices-2.html#repaso-análisis-para-la-contruscción-de-índices-calidad-confiabilidad",
@@ -583,7 +591,7 @@
     "href": "content/13-content.html",
     "title": "Lecturas obligatorias",
     "section": "",
-    "text": "Estas lecturas están asociadas a clases especificas, visualizadas con más precisión enla página de Planificación.\n\n\nUnidad 1\n\nCea, M. (2001). Metodología Cuantitativa. Estrategias y técnicas de investigación social\nDesrosières, A. (2004). La política de los grandes números. Historia de la razón estadística\n\n\n\nUnidad 2 y 3\n\nHernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6ª ed.)\nGavarotto, C. A. (2004). El proceso de operacionalización de variables en una teoría social, análisis del suicidio en Durkheim\n\n\n\nUnidad 4\n\nAsún, R. (2006). Construcción de cuestionarios y escalas: El proceso de la producción de información cuantitativa\nTanujaya, B., Prahmana, R. C. I., & Mumu, J. (2022). Likert scale in social sciences research: Problems and difficulties\n\n\n\nUnidad 5\n\nEinola, K., & Alvesson, M. (2021). Behind the numbers: Questioning questionnaires\nVillarroel, R. (2018). Ética de la investigación social",
+    "text": "Estas lecturas están asociadas a clases especificas, visualizadas con más precisión enla página de Planificación.\n\n\nUnidad 1\n\nCea, M. (2001). Metodología Cuantitativa. Estrategias y técnicas de investigación social\nDesrosières, A. (2004). La política de los grandes números. Historia de la razón estadística\n\n\n\nUnidad 2 y 3\n\nHernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6ª ed.)\nGavarotto, C. A. (2004). El proceso de operacionalización de variables en una teoría social, análisis del suicidio en Durkheim\n\n\n\nUnidad 4\n\nMárquez, R. (2006). Diseño de índices sintéticos a partir de datos secundarios\nTanujaya, B., Prahmana, R. C. I., & Mumu, J. (2022). Likert scale in social sciences research: Problems and difficulties\n\n\n\nUnidad 5\n\nEinola, K., & Alvesson, M. (2021). Behind the numbers: Questioning questionnaires\nPadua, J. (2018). Técnicas de Investigación Aplicadas a Las Ciencias Sociales\nVillarroel, R. (2018). Ética de la investigación social",
     "crumbs": [
       "Clases",
       "Lecturas",
@@ -644,14 +652,7 @@
     "href": "index.html",
     "title": "\n            Estrategias de Investigación Cuantitativa\n        ",
     "section": "",
-    "text": "SOC01020 • Segundo Semestre 2026Departamento de Sociología, Facultad de Ciencias SocialesUniversidad de Chile"
-  },
-  {
-    "objectID": "index.html#ayudantes",
-    "href": "index.html#ayudantes",
-    "title": "\n            Estrategias de Investigación Cuantitativa\n        ",
-    "section": "Ayudantes",
-    "text": "Ayudantes\n\n\n\n\n\n\n\n\n\n\n\nSesiones\n    Pronto \n\n\n\n\n\nGuías de apoyo del curso\n\nGuía de lectura: Ayudantía I 2025\nEstrategias de estudio y lecto-escritura"
+    "text": "Estrategias de Investigación Cuantitativa\n        \n        \n            \n        \n        \n            SOC01020 • Segundo Semestre 2026Departamento de Sociología, Facultad de Ciencias SocialesUniversidad de Chile\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\nEquipo docente\n\nProfesora\n\n\n\nProf. Julieta Palma\n\n\n   301 Sociología FACSO, Universidad de Chile\n\n\n   jpalma@uchile.cl\n\n\n   Horario de consultas: Martes de 14:30 a 16:00 horas\n\n\n\n\nApoyo docente\n\n\n\nMaría Fernanda Núñez\n\n\n   337 Sociología FACSO, Universidad de Chile\n\n\n   maria.nunez.2@ug.uchile.cl\n\n\n   Horario de consultas: pronto\n\n\n\n\nAyudantes\n\nValentina Aristondo\nAmaya Barbet\nMariana Cuervo\nRenato De Luca\nPía Montt\nCassidy Mansilla\nNuni Sanhueza\n\n\n\n\n\n\n\nSesiones\n    Jueves 14:30-17:45 Sala 34 FACSO \n\n\n\n\n\nGuías de apoyo del curso\n\nGuía de lectura: Ayudantía I 2025\nEstrategias de estudio y lecto-escritura"
   },
   {
     "objectID": "news/index.html",
