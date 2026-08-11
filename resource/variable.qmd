@@ -1,0 +1,574 @@
+---
+title: "Variables y su clasificación"
+editor: visual
+---
+
+## Variables
+
+Según Cea D' Ancona (2001) las <mark style="background-color: #F2DFCD;color: #1E2D59;">***variables***</mark> son:
+
+> cualquier cualidad o característica de un objeto (o evento) que contenga, al menos, dos atributos (categorías o valores), en los que pueda clasificarse un objeto o evento determinado. 
+
+Los <mark style="background-color: #F2DFCD;color: #1E2D59;">***atributos***</mark>  son las distintas <mark style="background-color: #F2DFCD;color: #1E2D59;">*categorías*</mark>  o <mark style="background-color: #F2DFCD;color: #1E2D59;">*valores*</mark>  que componen la variable. En función de ellos se clasifica a los objetos (o eventos) en un grupo u otro.
+
+- La variable "edad" (años cumplidos), la "altura" (centímetros), o el "nivel de ingresos" (en pesetas), toman <mark style="background-color: #F2DFCD;color: #1E2D59;">*valores* (**numéricos**)</mark> . 
+- La variable "sexo" (varón, mujer), "estado civil" (soltero, casado, viudo, separado, divorciado), o "satisfacción conyugal" (bastante satisfecho, satisfecho, ni satisfecho ni insatisfecho, insatisfecho, bastante insatisfecho) adoptan <mark style="background-color: #F2DFCD;color: #1E2D59;">***categorías***</mark> . 
+
+La <mark style="background-color: #F2DFCD;color: #1E2D59;">*medición de una variable* consiste en el proceso de **asignar valores o categorías**</mark>  a las distintas características que conforman el objeto de estudio  
+
+## Esquema de clasificación 
+
+```{=html}
+<style>
+  #mapa-variables{
+    --c-u1:#5b5fc7;
+    --c-u2:#b7791f;
+    --c-u3:#0f8a7e;
+    --c-u4:#2b6cb0;
+    --card-border:#d7dbe0;
+    --card-shadow:0 1px 2px rgba(0,0,0,.08);
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:#1a1a1a;
+  }
+  #mapa-variables *{box-sizing:border-box;}
+  #mapa-variables h2{font-size:1.2rem; margin:0 0 .2rem;}
+  #mapa-variables p.sub{color:#555; margin:.1rem 0 1.1rem; font-size:.88rem; max-width:820px;}
+
+  #mapa-variables .toolbar{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem;}
+  #mapa-variables .toolbar button{
+    border:1px solid #ccc; background:#fff; border-radius:999px;
+    padding:.35rem .85rem; font-size:.78rem; cursor:pointer; color:#333;
+  }
+  #mapa-variables .toolbar button.active{ color:#fff; border-color:transparent; }
+  #mapa-variables .toolbar button[data-flow="abstraccion"].active{background:#5b5fc7;}
+  #mapa-variables .toolbar button[data-flow="funcion"].active{background:#b7791f;}
+  #mapa-variables .toolbar button[data-flow="indnivel"].active{background:#2b6cb0;}
+  #mapa-variables .toolbar button[data-flow="categorizacion"].active{background:#0f8a7e;}
+  #mapa-variables .toolbar button[data-flow="cuantificacion"].active{background:#b0324a;}
+  #mapa-variables .toolbar button[data-flow="all"].active{background:#333;}
+
+  #mapa-variables #map-wrap{ position:relative; max-width:960px; }
+  #mapa-variables #map-svg{
+    position:absolute; inset:0; width:100%; height:100%;
+    z-index:1; pointer-events:none; overflow:visible;
+  }
+  #mapa-variables .units-row{
+    display:flex; flex-direction:column; gap:44px;
+    position:relative; z-index:2;
+  }
+  #mapa-variables .unit-col{ width:100%; }
+  #mapa-variables .unit-head{
+    font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    padding:.4rem .55rem; border-radius:6px; margin-bottom:.4rem; color:#fff;
+    display:inline-block;
+  }
+  #mapa-variables .u1 .unit-head{background:var(--c-u1);}
+  #mapa-variables .u2 .unit-head{background:var(--c-u2);}
+  #mapa-variables .u3 .unit-head{background:var(--c-u3);}
+  #mapa-variables .u4 .unit-head{background:var(--c-u4);}
+
+  #mapa-variables .cards-row{ display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:.6rem; }
+
+  #mapa-variables .card{
+    background:#fff; border:1px solid var(--card-border); border-left-width:4px;
+    border-radius:8px; box-shadow:var(--card-shadow);
+    padding:.5rem .65rem; font-size:.82rem; line-height:1.28;
+    cursor:pointer; transition:box-shadow .15s ease, border-color .15s ease;
+    flex:0 0 auto; max-width:230px;
+  }
+  #mapa-variables .card:hover, #mapa-variables .card.is-active{ box-shadow:0 3px 10px rgba(0,0,0,.16); }
+  #mapa-variables .u1 .card{border-left-color:var(--c-u1);}
+  #mapa-variables .u2 .card{border-left-color:var(--c-u2);}
+  #mapa-variables .u3 .card{border-left-color:var(--c-u3);}
+  #mapa-variables .u4 .card{border-left-color:var(--c-u4);}
+  #mapa-variables .card.is-active{ outline:2px solid #333; }
+
+  #mapa-variables .sub-box{
+    border:1px dashed #c7ccd3; border-radius:8px; padding:.6rem .6rem .3rem;
+    margin-bottom:.6rem; background:rgba(43,108,176,.04);
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:flex-start;
+  }
+  #mapa-variables .sub-box .sub-label{
+    flex-basis:100%; font-size:.65rem; color:#666; text-transform:uppercase;
+    letter-spacing:.03em; margin-bottom:.1rem;
+  }
+  #mapa-variables .sub-box .card{ font-size:.76rem; padding:.4rem .55rem; max-width:190px; }
+
+  #mapa-variables .note{ font-size:.74rem; color:#666; font-style:italic; margin:.1rem 0 .6rem; max-width:680px;}
+
+  #mapa-variables .legend{ margin-top:1.6rem; font-size:.78rem; color:#444; display:flex; gap:1.2rem; flex-wrap:wrap;}
+  #mapa-variables .legend span{display:inline-flex; align-items:center; gap:.35rem;}
+  #mapa-variables .swatch{width:20px; height:0; border-top:2.5px solid; display:inline-block;}
+</style>
+
+<div id="mapa-variables">
+
+<h2>Clasificación de variables </h2>
+<p class="sub">Pasa el cursor sobre cualquier tarjeta para ver con qué se conecta. Haz clic para fijar esa conexión
+(clic de nuevo para soltarla). Usa los botones para aislar un criterio a la vez. El orden va de lo más general
+(nivel de abstracción) a lo más específico (nivel de medición).</p>
+
+<div class="toolbar" id="mv-toolbar">
+  <button data-flow="all" class="active">Ver todo</button>
+  <button data-flow="abstraccion">① Concepto → Dimensión → Indicador</button>
+  <button data-flow="funcion">② Función en la investigación</button>
+  <button data-flow="indnivel">③ El indicador puede tener cualquier nivel de medición</button>
+  <button data-flow="categorizacion">④ Nominal/Ordinal → Categóricas → Discretas</button>
+  <button data-flow="cuantificacion">⑤ Intervalo/Razón → Cuantitativas → Continuas (o Discretas)</button>
+</div>
+
+<div id="map-wrap">
+  <svg id="map-svg"><defs>
+    <marker id="mv-arrow-abst" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b5fc7"/></marker>
+    <marker id="mv-arrow-func" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker>
+    <marker id="mv-arrow-indnivel" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2b6cb0"/></marker>
+    <marker id="mv-arrow-cat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f8a7e"/></marker>
+    <marker id="mv-arrow-cuant" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b0324a"/></marker>
+  </defs></svg>
+
+  <div class="units-row">
+
+    <!-- U1: Nivel de abstracción -->
+    <div class="unit-col u1">
+      <div class="unit-head">Nivel de abstracción · operacionalización de conceptos</div>
+      <div class="cards-row">
+        <div class="card" data-id="na-generales">Variable general<br><span style="font-weight:400;font-size:.75rem;color:#666;">concepto abstracto</span></div>
+        <div class="card" data-id="na-intermedias">Variable intermedia<br><span style="font-weight:400;font-size:.75rem;color:#666;">dimensión teórica</span></div>
+        <div class="card" data-id="na-empiricas">Indicador / variable empírica<br><span style="font-weight:400;font-size:.75rem;color:#666;">expresión empírica</span></div>
+      </div>
+      <p class="note">De aquí en adelante, los criterios que siguen (función, escala y nivel de medición) se aplican solo al indicador / variable empírica.</p>
+    </div>
+
+    <!-- U2: Función en la investigación -->
+    <div class="unit-col u2">
+      <div class="unit-head">Función en la investigación · diseño cuantitativo</div>
+      <div class="cards-row">
+        <div class="card" data-id="fi-dependiente">Dependiente<br><span style="font-weight:400;font-size:.75rem;color:#666;">atributo central</span></div>
+        <div class="card" data-id="fi-independiente">Independiente</div>
+      </div>
+      <div class="sub-box">
+        <span class="sub-label">Subtipos de la independiente (aíslan su efecto)</span>
+        <div class="card" data-id="fi-control">De control</div>
+        <div class="card" data-id="fi-aleatoria">Aleatoria</div>
+      </div>
+      <p class="note">La independiente influye sobre la dependiente; las de control y aleatorias permiten aislar ese efecto.</p>
+    </div>
+
+    <!-- U3: Escala de medición -->
+    <div class="unit-col u3">
+      <div class="unit-head">Escala de medición</div>
+      <div class="cards-row">
+        <div class="card" data-id="em-continuas">Continuas</div>
+        <div class="card" data-id="em-discretas">Discretas</div>
+      </div>
+      <p class="note">Refiere a la disposición de los conjuntos de valores de una variable.</p>
+    </div>
+
+    <!-- U4: Nivel de medición -->
+    <div class="unit-col u4">
+      <div class="unit-head">Nivel de medición</div>
+      <div class="cards-row">
+        <div class="card" data-id="nm-nominal">Nominal</div>
+        <div class="card" data-id="nm-ordinal">Ordinal</div>
+        <div class="card" data-id="nm-intervalo">Intervalo</div>
+        <div class="card" data-id="nm-razon">Razón</div>
+      </div>
+      <div class="sub-box">
+        <span class="sub-label">Agrupaciones</span>
+        <div class="card" data-id="nm-categoricas">Categóricas</div>
+        <div class="card" data-id="nm-cuantitativas">Cuantitativas / numéricas</div>
+      </div>
+      <div class="sub-box">
+        <span class="sub-label">Subtipos de las categóricas</span>
+        <div class="card" data-id="nm-dicotomica">Dicotómica</div>
+        <div class="card" data-id="nm-politomica">Politómica</div>
+      </div>
+      <p class="note">Refiere a las propiedades que contienen los atributos de una variable.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="border-color:#5b5fc7"></span> ① concepto → dimensión → indicador</span>
+  <span><span class="swatch" style="border-color:#b7791f"></span> ② función en la investigación</span>
+  <span><span class="swatch" style="border-color:#2b6cb0"></span> ③ indicador → cualquier nivel de medición</span>
+  <span><span class="swatch" style="border-color:#0f8a7e"></span> ④ categorización → discretas</span>
+  <span><span class="swatch" style="border-color:#b0324a"></span> ⑤ cuantificación → continuas (o discretas)</span>
+</div>
+
+</div>
+
+<script>
+(function(){
+  const root = document.getElementById('mapa-variables');
+  if(!root) return;
+
+const EDGES = [
+  // ① Nivel de abstracción: concepto -> dimensión -> indicador
+  {from:'na-generales',   to:'na-intermedias', flow:'abstraccion'},
+  {from:'na-intermedias', to:'na-empiricas',   flow:'abstraccion'},
+
+  // ② Función en la investigación: el indicador cumple una función; independiente
+  // influye en la dependiente; control/aleatoria son subtipos de independiente
+  {from:'na-empiricas', to:'fi-dependiente',   flow:'funcion'},
+  {from:'na-empiricas', to:'fi-independiente', flow:'funcion'},
+  {from:'fi-independiente', to:'fi-control',   flow:'funcion'},
+  {from:'fi-independiente', to:'fi-aleatoria', flow:'funcion'},
+
+  // ③ El indicador puede tener cualquier nivel de medición
+  {from:'na-empiricas', to:'nm-nominal',   flow:'indnivel'},
+  {from:'na-empiricas', to:'nm-ordinal',   flow:'indnivel'},
+  {from:'na-empiricas', to:'nm-intervalo', flow:'indnivel'},
+  {from:'na-empiricas', to:'nm-razon',     flow:'indnivel'},
+
+  // ④ Categorización: nominal/ordinal -> categóricas -> subtipos -> discretas
+  {from:'nm-nominal', to:'nm-categoricas', flow:'categorizacion'},
+  {from:'nm-ordinal',  to:'nm-categoricas', flow:'categorizacion'},
+  {from:'nm-categoricas', to:'nm-dicotomica', flow:'categorizacion'},
+  {from:'nm-categoricas', to:'nm-politomica', flow:'categorizacion'},
+  {from:'nm-categoricas', to:'em-discretas', flow:'categorizacion'},
+
+  // ⑤ Cuantificación: intervalo/razón -> cuantitativas -> continuas (normalmente) o discretas (excepción)
+  {from:'nm-intervalo', to:'nm-cuantitativas', flow:'cuantificacion'},
+  {from:'nm-razon',     to:'nm-cuantitativas', flow:'cuantificacion'},
+  {from:'nm-cuantitativas', to:'em-continuas', flow:'cuantificacion'},
+  {from:'nm-cuantitativas', to:'em-discretas', flow:'cuantificacion'},
+];
+
+const FLOW_COLOR  = {abstraccion:'#5b5fc7', funcion:'#b7791f', indnivel:'#2b6cb0', categorizacion:'#0f8a7e', cuantificacion:'#b0324a'};
+const FLOW_MARKER = {abstraccion:'mv-arrow-abst', funcion:'mv-arrow-func', indnivel:'mv-arrow-indnivel', categorizacion:'mv-arrow-cat', cuantificacion:'mv-arrow-cuant'};
+const DEFAULT_OPACITY = {abstraccion:.4, funcion:.35, indnivel:.10, categorizacion:.35, cuantificacion:.30};
+
+const wrap = root.querySelector('#map-wrap');
+const svg  = root.querySelector('#map-svg');
+const nodesById = {};
+root.querySelectorAll('[data-id]').forEach(el => nodesById[el.dataset.id] = el);
+
+function rectOf(el){
+  const r = el.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+  return {x:r.left-w.left, y:r.top-w.top, w:r.width, h:r.height,
+          cx:r.left-w.left+r.width/2, cy:r.top-w.top+r.height/2};
+}
+function anchor(from, to){
+  const goingDown = to.cy >= from.cy;
+  return {x: from.cx, y: goingDown ? from.y+from.h : from.y};
+}
+
+function draw(){
+  svg.querySelectorAll('path.conn').forEach(p=>p.remove());
+  EDGES.forEach(edge=>{
+    const a = nodesById[edge.from], b = nodesById[edge.to];
+    if(!a || !b) return;
+    const ra = rectOf(a), rb = rectOf(b);
+    const p1 = anchor(ra, rb), p2 = anchor(rb, ra);
+    const midY = (p1.y+p2.y)/2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('class', `conn conn-${edge.flow}`);
+    path.dataset.from = edge.from; path.dataset.to = edge.to; path.dataset.flow = edge.flow;
+    path.setAttribute('d', `M${p1.x},${p1.y} C${p1.x},${midY} ${p2.x},${midY} ${p2.x},${p2.y}`);
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke', FLOW_COLOR[edge.flow]);
+    path.setAttribute('stroke-width', 2);
+    if(edge.flow==='indnivel') path.setAttribute('stroke-dasharray','4,3');
+    if(edge.flow==='cuantificacion' && edge.to==='em-discretas') path.setAttribute('stroke-dasharray','2,4');
+    path.setAttribute('marker-end', `url(#${FLOW_MARKER[edge.flow]})`);
+    path.style.opacity = DEFAULT_OPACITY[edge.flow];
+    svg.appendChild(path);
+  });
+}
+draw();
+window.addEventListener('resize', draw);
+
+let currentFilter = 'all';
+
+function opacityFor(path){
+  const flow = path.dataset.flow;
+  if(path.dataset.pinned === '1') return 0.95;
+  if(currentFilter === 'all') return DEFAULT_OPACITY[flow];
+  return flow === currentFilter ? 0.9 : 0.04;
+}
+function refreshOpacities(){
+  svg.querySelectorAll('path.conn').forEach(p => p.style.opacity = opacityFor(p));
+}
+
+root.querySelector('#mv-toolbar').addEventListener('click', e=>{
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  currentFilter = btn.dataset.flow;
+  root.querySelectorAll('#mv-toolbar button').forEach(b=>b.classList.toggle('active', b===btn));
+  svg.querySelectorAll('path.conn').forEach(p=> p.dataset.pinned = '');
+  root.querySelectorAll('.card.is-active').forEach(c=>c.classList.remove('is-active'));
+  refreshOpacities();
+});
+
+root.querySelectorAll('[data-id]').forEach(card=>{
+  const id = card.dataset.id;
+  const related = () => svg.querySelectorAll(`path[data-from="${id}"], path[data-to="${id}"]`);
+
+  card.addEventListener('mouseenter', ()=> related().forEach(p=> p.style.opacity = 0.95));
+  card.addEventListener('mouseleave', ()=> related().forEach(p=> p.style.opacity = opacityFor(p)));
+  card.addEventListener('click', ()=>{
+    const nowActive = card.classList.toggle('is-active');
+    related().forEach(p=>{
+      p.dataset.pinned = nowActive ? '1' : '';
+      p.style.opacity = opacityFor(p);
+    });
+  });
+});
+
+})();
+</script>
+```
+
+
+## Definiciones 
+
+```{=html}
+<style>
+  #glosario-variables{
+    --c-abstraccion:#5b5fc7;
+    --c-funcion:#b7791f;
+    --c-escala:#0f8a7e;
+    --c-nivel:#2b6cb0;
+    --card-border:#d7dbe0;
+    --card-shadow:0 1px 2px rgba(0,0,0,.08);
+    font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:#1a1a1a;
+  }
+  #glosario-variables *{box-sizing:border-box;}
+  #glosario-variables h1{font-size:1.2rem; margin:0 0 .2rem;}
+  #glosario-variables p.sub{color:#555; margin:.1rem 0 1.3rem; font-size:.88rem; max-width:760px;}
+
+  #glosario-variables #gv-wrap{ max-width:820px; }
+
+  #glosario-variables .gv-crumb{
+    display:flex; align-items:center; gap:.4rem; flex-wrap:wrap;
+    font-size:.78rem; color:#666; margin-bottom:1rem; min-height:1.4rem;
+  }
+  #glosario-variables .gv-crumb button{
+    border:none; background:none; color:#2b6cb0; cursor:pointer;
+    font-size:.78rem; padding:0; text-decoration:underline;
+  }
+  #glosario-variables .gv-crumb .sep{ color:#aaa; }
+  #glosario-variables .gv-crumb .current{ color:#333; font-weight:600; }
+
+  #glosario-variables .gv-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+    gap:.75rem;
+  }
+  #glosario-variables .gv-card{
+    background:#fff; border:1px solid var(--card-border); border-left-width:5px;
+    border-radius:10px; box-shadow:var(--card-shadow);
+    padding:.9rem 1rem; font-size:.92rem; font-weight:600; line-height:1.3;
+    cursor:pointer; transition:box-shadow .15s ease, transform .15s ease;
+    text-align:left;
+  }
+  #glosario-variables .gv-card:hover{ box-shadow:0 4px 14px rgba(0,0,0,.14); transform:translateY(-1px); }
+  #glosario-variables .gv-card .gv-hint{
+    display:block; font-weight:400; font-size:.74rem; color:#777; margin-top:.25rem;
+  }
+
+  #glosario-variables .gv-detail{
+    background:#fff; border:1px solid var(--card-border); border-left-width:6px;
+    border-radius:12px; box-shadow:var(--card-shadow);
+    padding:1.3rem 1.4rem;
+  }
+  #glosario-variables .gv-detail h2{ margin:0 0 .6rem; font-size:1.05rem; }
+  #glosario-variables .gv-detail .gv-definicion{ font-size:.92rem; line-height:1.55; color:#222; white-space:pre-wrap; }
+  #glosario-variables .gv-detail .gv-placeholder{ color:#999; font-style:italic; }
+
+  #glosario-variables .gv-step{ display:none; }
+  #glosario-variables .gv-step.is-active{ display:block; }
+</style>
+
+<div id="glosario-variables">
+
+<h1>Glosario de clasificación de variables</h1>
+<p class="sub">Elige un criterio de clasificación, luego un tipo dentro de ese criterio, y se desplegará su definición.</p>
+
+<div id="gv-wrap">
+  <div class="gv-crumb" id="gv-crumb"></div>
+
+  <!-- Paso 1: criterios de clasificación -->
+  <div class="gv-step is-active" id="gv-step-criterios">
+    <div class="gv-grid" id="gv-grid-criterios"></div>
+  </div>
+
+  <!-- Paso 2: tipos dentro del criterio elegido -->
+  <div class="gv-step" id="gv-step-tipos">
+    <div class="gv-grid" id="gv-grid-tipos"></div>
+  </div>
+
+  <!-- Paso 3: definición del tipo elegido -->
+  <div class="gv-step" id="gv-step-detalle">
+    <div class="gv-detail" id="gv-detalle-box"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  const root = document.getElementById('glosario-variables');
+  if(!root) return;
+
+  /* =========================================================================
+     DATOS — rellena aquí las definiciones.
+     Estructura: DATA[criterioId].tipos[tipoId] = { label, definicion }
+
+     IMPORTANTE sobre comillas: usa comillas invertidas (backticks, `...`)
+     para envolver cada "definicion" en vez de comillas simples ('...').
+     Los backticks te dejan escribir comillas simples y dobles dentro del
+     texto sin que se rompa el código — es justamente lo que te pasó antes
+     con el apóstrofo suelto en "mayor que'".
+     ========================================================================= */
+  const DATA = {
+    abstraccion: {
+      label: 'Nivel de abstracción',
+      color: '#5b5fc7',
+      tipos: {
+        general:     { label: 'Variable general',   definicion: `No pueden ser directamente observadas. Su medición exige que se traduzcan en variables intermedias e indicadores. Ejemplo: variable estatus social` },
+        intermedia:  { label: 'Variable intermedia', definicion: `Expresan alguna dimensión o aspecto parcial de los comprendidos en la variable genérica. Ejemplo: nivel educativo para la medición de la variable estatus social.` },
+        empirica:    { label: 'Variable empírica / indicador', definicion: `Representan aspectos específicos de las dimensiones que comprende un concepto abstracto o variable genérica. Se distinguen por ser directamente medibles. Ejemplo: los cursos académicos cumplidos como indicador para la dimensión nivel educativo` },
+      }
+    },
+    funcion: {
+      label: 'Función en la investigación',
+      color: '#b7791f',
+      tipos: {
+        dependiente:   { label: 'Dependiente',   definicion: `También denominada como de criterio ("y"). Sus atributos dependen de los que adopten las variables independientes.` },
+        independiente: { label: 'Independiente', definicion: `También denominada explicativa o predictora ("x"). Sus atributos se supone que influyen en los que adopta la variable dependiente. Figura en las hipótesis de investigación e indican posibles "causas" de la variación de la variable que centra el interés de la investigación (dependiente).` },
+        control:       { label: 'De control',    definicion: `En la relación entre una variable independiente y la dependiente siempre cabe la posibilidad de que existan otras variables mediando en la relación. Ello contribuye a la existencia de explicaciones alternativas que hagan espúrea la relación observada entre la variable dependiente y la independiente. Si el efecto de esas terceras variables se controla, dejan de ser perturbadoras y se convierten en variables de control.` },
+        aleatoria:     { label: 'Aleatoria',     definicion: `También denominadas estocásticas. Son variables perturbadoras, pero de menor incidencia en el conjunto de la investigación. Su efecto en la relación entre la variable independiente y la dependiente puede reducirse siguiendo un procedimiento aleatorio de selección de la muestra (los casos a observar).` },
+      }
+    },
+    escala: {
+      label: 'Escala de medición',
+      color: '#0f8a7e',
+      tipos: {
+        continua: { label: 'Continua', definicion: `Variables en las que pueden hallarse valores intermedios entre dos valores dados, al conformar una escala ininterrumpida de valores.` },
+        discreta: { label: 'Discreta', definicion: `Variables en las que no cabe la posibilidad de hallar valores intermedios, comprendidos entre dos atributos de la variable. La generalidad de las variables denominadas cualitativas (nominales y ordinales) son discretas. También lo son algunas cuantitativas (Ejemplo: número de miembros de una familia).` },
+      }
+    },
+    nivel: {
+      label: 'Nivel de medición',
+      color: '#2b6cb0',
+      tipos: {
+        nominal:   { label: 'Nominal',   definicion: `Variables cuyos atributos solo cumplen las condiciones esenciales de exhaustividad y exclusividad. Se hallan compuestas por distintas denominaciones, entre las que no puede establecerse ningún tipo de relación (de orden o de otra clase). Algunos ejemplos son: sexo, estado civil, nacionalidad, partido político, situación laboral y cualquier variable que indique una cualidad del objeto o evento que se analice, sin establecer ninguna graduación entre las distintas categorías que conforman la variable.` },
+        ordinal:   { label: 'Ordinal',   definicion: `Variables cuyos atributos nomina categorías las cuales pueden ser odernadas, en el sentido de "mayor que" o "menor que". No obstante, continua sin poder conocer la mgnitud exacta que diferencia a un atributo de otro. Algunos ejemplos son: clase social, nivel de estudios, ideología política, satisfacción laboral, calificación académica, curso acdémico y cualquier otra variable que comprenda categorías "ordenables".` },
+        intervalo: { label: 'Intervalo', definicion: `Variables que pueden "cuantificar" la distancia exacta que separa cada valor de la variable. Ello es posible gracias al establecimiento de alguna unidad física de medición estándar (años, horas, minutos).` },
+        razon:     { label: 'Razón',     definicion: `A las características del nivel de intervalo se suma la posibilidad de establecer un cero absoluto. Lo que permite el cálculo de proporciones y la realización de cualquier operación aritmética.` },
+      }
+    }
+  };
+  /* ========================================================================= */
+
+  const els = {
+    crumb: root.querySelector('#gv-crumb'),
+    stepCriterios: root.querySelector('#gv-step-criterios'),
+    stepTipos: root.querySelector('#gv-step-tipos'),
+    stepDetalle: root.querySelector('#gv-step-detalle'),
+    gridCriterios: root.querySelector('#gv-grid-criterios'),
+    gridTipos: root.querySelector('#gv-grid-tipos'),
+    detalleBox: root.querySelector('#gv-detalle-box'),
+  };
+
+  let state = { criterioId: null, tipoId: null };
+
+  function showStep(name){
+    [els.stepCriterios, els.stepTipos, els.stepDetalle].forEach(s => s.classList.remove('is-active'));
+    if(name === 'criterios') els.stepCriterios.classList.add('is-active');
+    if(name === 'tipos') els.stepTipos.classList.add('is-active');
+    if(name === 'detalle') els.stepDetalle.classList.add('is-active');
+  }
+
+  function renderCrumb(){
+    const parts = [];
+    parts.push(state.criterioId
+      ? `<button data-nav="criterios">Criterios</button>`
+      : `<span class="current">Criterios</span>`);
+
+    if(state.criterioId){
+      const crit = DATA[state.criterioId];
+      parts.push('<span class="sep">›</span>');
+      parts.push(state.tipoId
+        ? `<button data-nav="tipos">${crit.label}</button>`
+        : `<span class="current">${crit.label}</span>`);
+    }
+
+    if(state.tipoId){
+      const tipo = DATA[state.criterioId].tipos[state.tipoId];
+      parts.push('<span class="sep">›</span>');
+      parts.push(`<span class="current">${tipo.label}</span>`);
+    }
+
+    els.crumb.innerHTML = parts.join('');
+  }
+
+  function renderCriterios(){
+    els.gridCriterios.innerHTML = '';
+    Object.entries(DATA).forEach(([id, crit]) => {
+      const card = document.createElement('button');
+      card.className = 'gv-card';
+      card.style.borderLeftColor = crit.color;
+      card.innerHTML = `${crit.label}<span class="gv-hint">${Object.keys(crit.tipos).length} tipos</span>`;
+      card.addEventListener('click', () => {
+        state.criterioId = id;
+        state.tipoId = null;
+        renderTipos();
+        renderCrumb();
+        showStep('tipos');
+      });
+      els.gridCriterios.appendChild(card);
+    });
+  }
+
+  function renderTipos(){
+    const crit = DATA[state.criterioId];
+    els.gridTipos.innerHTML = '';
+    Object.entries(crit.tipos).forEach(([id, tipo]) => {
+      const card = document.createElement('button');
+      card.className = 'gv-card';
+      card.style.borderLeftColor = crit.color;
+      card.textContent = tipo.label;
+      card.addEventListener('click', () => {
+        state.tipoId = id;
+        renderDetalle();
+        renderCrumb();
+        showStep('detalle');
+      });
+      els.gridTipos.appendChild(card);
+    });
+  }
+
+  function renderDetalle(){
+    const crit = DATA[state.criterioId];
+    const tipo = crit.tipos[state.tipoId];
+    els.detalleBox.style.borderLeftColor = crit.color;
+    const texto = tipo.definicion && tipo.definicion.trim()
+      ? tipo.definicion
+      : '<span class="gv-placeholder">(sin definición todavía — rellena tipo.definicion en DATA)</span>';
+    els.detalleBox.innerHTML = `
+      <h2>${tipo.label}</h2>
+      <div class="gv-definicion">${texto}</div>
+    `;
+  }
+
+  els.crumb.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-nav]');
+    if(!btn) return;
+    if(btn.dataset.nav === 'criterios'){
+      state.criterioId = null; state.tipoId = null;
+      renderCrumb(); showStep('criterios');
+    } else if(btn.dataset.nav === 'tipos'){
+      state.tipoId = null;
+      renderCrumb(); showStep('tipos');
+    }
+  });
+
+  renderCriterios();
+  renderCrumb();
+})();
+</script>
+```
